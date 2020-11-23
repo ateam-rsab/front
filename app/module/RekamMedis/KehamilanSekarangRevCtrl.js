@@ -765,10 +765,12 @@ define(['initialize'], function(initialize) {
 					noregistrasifk: $state.params.noRec,
                     riwayatpapfk: $scope.noRecPap
 				}
-				ManagePhp.saveData(jsonSave).then(function(e) {
-                       ManagePhp.postLogging('Pengkajian Keperawatan', 'Norec Antrian Pasien Diperiksa',$state.params.noRec, 'Kehamilan Sekarang').then(function (res) {
-                         })
-				});
+
+				console.log(jsonSave);
+				// ManagePhp.saveData(jsonSave).then(function(e) {
+                //        ManagePhp.postLogging('Pengkajian Keperawatan', 'Norec Antrian Pasien Diperiksa',$state.params.noRec, 'Kehamilan Sekarang').then(function (res) {
+                //          })
+				// });
 			}
 			$scope.Back= function(){
 				$scope.item = {}

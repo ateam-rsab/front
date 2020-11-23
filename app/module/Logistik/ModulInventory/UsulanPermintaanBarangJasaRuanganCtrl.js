@@ -1259,7 +1259,7 @@ define(['initialize'], function (initialize) {
                     }
                     var client = new HttpClient();
                     //client.get('http://127.0.0.1:1237/printvb/printvb/logistik?cetak-SPPB=1&nores='+e.data.nokirim+'&view='+stt+'&user='+pegawaiUser.namalengkap, function(response) {
-                    client.get('http://127.0.0.1:1237/printvb/logistik?cetak-usulanpermintaanbarang=1&norec=' + $scope.item.noKirim + '&view=true', function (response) {
+                    client.get('http://127.0.0.1:1237/printvb/logistik?cetak-usulanpermintaanbarang=1&norec=' + $scope.item.noKirim.norec + '&view=true', function (response) {
                         //aadc=response;
                     });
                     window.history.back();

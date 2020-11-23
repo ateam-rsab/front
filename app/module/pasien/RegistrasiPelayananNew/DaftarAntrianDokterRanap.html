@@ -1,3 +1,11 @@
+<style>
+    .length-textarea {
+        margin: 2px;
+        font-size: smaller;
+        text-align: end;
+    }
+</style>
+
 <div>
     <div class="panel panel-default container_12" ng-hide="klikDiagnosa">
         <!-- <div class="panel-heading"><label class='title' c-label item="item">Daftar Pasien Rawat Inap</label></div> -->
@@ -324,19 +332,29 @@
                 <div class="clear"></div>
                 <div class="grid_12">
                     <textarea class="k-textbox" style="height: 76px; width:
-                        100%; resize: none;" ng-model="item.periksaDidapatkan"
+                        100%; resize: none;" ng-model="item.periksaDidapatkan" maxlength="3000"
                         ng-disabled="isVerify"></textarea>
+                    <p class="length-textarea">
+                        3000/{{item.periksaDidapatkan ? item.periksaDidapatkan.length : 0}}</p>
                 </div>
             </div>
             <label c-label item="item" c-label-text=Diagnosa></label>
             <textarea class="k-textbox" style="height: 76px; width: 100%;
-                resize: none;" ng-model="item.diagnosa" ng-disabled="isVerify"></textarea>
+                resize: none;" ng-model="item.diagnosa" ng-disabled="isVerify" maxlength="3000"></textarea>
+            <p class="length-textarea">
+                3000/{{item.diagnosa ? item.diagnosa.length : 0}}</p>
+
             <label c-label item="item" c-label-text=Keterangan></label>
             <textarea class="k-textbox" style="height: 76px; width: 100%;
-                resize: none;" ng-model="item.kesan" ng-disabled="isVerify"></textarea>
+                resize: none;" maxlength="3000" ng-model="item.kesan" ng-disabled="isVerify"></textarea>
+            <p class="length-textarea">
+                3000/{{item.kesan ? item.kesan.length : 0}}</p>
+
             <label c-label item="item" c-label-text=Saran></label>
             <textarea class="k-textbox" style="height: 76px; width: 100%;
-                resize: none;" ng-model="item.saran" ng-disabled="isVerify"></textarea>
+                resize: none;" ng-model="item.saran" ng-disabled="isVerify" maxlength="3000"></textarea>
+            <p class="length-textarea">
+                3000/{{item.saran ? item.saran.length : 0}}</p>
             <div class="grid_12">
                 <div class="k-edit-buttons k-state-default pull-right"
                     style="margin-top:10px">

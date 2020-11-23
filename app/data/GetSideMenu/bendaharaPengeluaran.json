@@ -8,6 +8,10 @@
         "link": "#/DaftarTagihanSupplier"
     },
     {
+        "name": "Rekapitulasi Pembayaran",
+        "link": "#/RekapitulasiPembayaran"
+    },
+    {
         "name": "Daftar Gaji Pegawai",
         "link": "#/DaftarPenggajian"
     },

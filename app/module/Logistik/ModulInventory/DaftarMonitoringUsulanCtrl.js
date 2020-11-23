@@ -152,6 +152,7 @@ define(['initialize'], function (initialize) {
                     //aadc=response;
                 });
             }
+            
             $scope.Cetak = function () {
                 var stt = 'false'
                 if (confirm('View Bukti Usulan? ')) {

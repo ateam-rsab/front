@@ -85,6 +85,7 @@ define(['initialize'], function (initialize) {
 
 
             }
+            
             // $scope.getRuangan = function(){
             //     $scope.listRuangan = $scope.item.instalasi.ruangan;
             // }
@@ -270,25 +271,8 @@ define(['initialize'], function (initialize) {
 
                 var tr = $(e.target).closest("tr");
                 var dataItem = this.dataItem(tr);
-                $scope.exportExcel(dataItem.details)
-            }
-
-            $scope.gridOpt = {
-                // toolbar: [{
-                //         text: "export",
-                //         name: "Export detail",
-                //         template: '<button ng-click="exportExcel()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
-                //     }
-
-                // ],
-                pageable: true,
-                scrollable: true,
-                columns: $scope.columnGrid
-            };
-
-            $scope.exportExcel = function (data) {
                 let dataSourceDetail = new kendo.data.DataSource({
-                    data: data
+                    data: dataItem.details
                 });
 
                 var tempDataExport = [];
@@ -314,7 +298,6 @@ define(['initialize'], function (initialize) {
                 tempDataExport = dataSourceDetail;
                 tempDataExport.fetch(function () {
                     var data = this.data();
-                    console.log(data);
                     for (var i = 0; i < data.length; i++) {
                         //push single row for every record
                         rows.push({
@@ -335,6 +318,7 @@ define(['initialize'], function (initialize) {
                                 }
                             ]
                         })
+                       
                     }
                     var workbook = new kendo.ooxml.Workbook({
                         sheets: [{
@@ -368,6 +352,110 @@ define(['initialize'], function (initialize) {
                     kendo.saveAs({
                         dataURI: workbook.toDataURL(),
                         fileName: "detail_pemakaian_stok_ruangan.xlsx"
+                    });
+                });
+            }
+
+            $scope.gridOpt = {
+                toolbar: [{
+                        text: "export",
+                        name: "Export detail",
+                        template: '<button ng-click="exportExcel()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
+                    }
+
+                ],
+                pageable: true,
+                scrollable: true,
+                columns: $scope.columnGrid
+            };
+
+            $scope.exportExcel = function () {
+
+                var tempDataExport = [];
+                var rows = [{
+                    cells: [{
+                            value: "Tanggal"
+                        },
+                        {
+                            value: "No Pemakaian"
+                        },
+                        {
+                            value: "Keterangan"
+                        },
+                        {
+                            value: "Ruangan"
+                        },
+                        {
+                            value: "Pegawai"
+                        }, {
+                            value:"Total"
+                        }
+                    ]
+                }];
+               
+
+                tempDataExport = $scope.dataGrid;
+                tempDataExport.fetch(function () {
+                    var data = this.data();
+                    for (var i = 0; i < data.length; i++) {
+                        //push single row for every record
+                        rows.push({
+                            cells: [{
+                                    value: data[i].tglstruk
+                                },
+                                {
+                                    value: data[i].nostruk
+                                },
+                                {
+                                    value: data[i].keterangan
+                                },
+                                {
+                                    value: data[i].namaruangan
+                                },
+                                {
+                                    value: data[i].namapegawai
+                                },
+                                {
+                                    value: data[i].total
+                                }
+                            ]
+                        })
+                    }
+                    var workbook = new kendo.ooxml.Workbook({
+                        sheets: [{
+                            freezePane: {
+                                rowSplit: 1
+                            },
+                            columns: [
+                                {
+                                    autoWidth: true
+                                },
+                                {
+                                    autoWidth: true
+                                },
+                                {
+                                    autoWidth: true
+                                },
+                                {
+                                    autoWidth: true
+                                },
+                                {
+                                    autoWidth: true
+                                },
+                                {
+                                    autoWidth: true
+                                }
+                            ],
+                            // Title of the sheet
+                            title: "Data Pemakaian Stok Ruangan",
+                            // Rows of the sheet
+                            rows: rows
+                        }]
+                    });
+                    //save the file as Excel file with extension xlsx
+                    kendo.saveAs({
+                        dataURI: workbook.toDataURL(),
+                        fileName: "data_pemakaian_stok_ruangan.xlsx"
                     });
                 });
             };

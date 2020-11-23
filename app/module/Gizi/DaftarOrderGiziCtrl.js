@@ -150,6 +150,19 @@ define(['initialize'], function (initialize) {
 
 			};
 
+			$scope.cetakPermintaan = () => {
+				var tglAwal = moment($scope.item.periodeAwal).format('YYYY-MM-DD');
+				var tglAkhir = moment($scope.item.periodeAkhir).format('YYYY-MM-DD');
+
+				window.open("http://192.168.12.4:7777/service-reporting/lap-permintaan-makanan?idRu=" + ($scope.item.ruangan ? $scope.item.ruangan.id : '') +"&tglAwal=" + tglAwal + "&tglAkhir=" + tglAkhir, "_blank");
+			}
+
+			$scope.cetakRekap = () => {
+				var tglAwal = moment($scope.item.periodeAwal).format('YYYY-MM-DD');
+				var tglAkhir = moment($scope.item.periodeAkhir).format('YYYY-MM-DD');
+				window.open("http://192.168.12.4:7777/service-reporting/lap-permintaan-makanan?idRu=" + ($scope.item.ruangan ? $scope.item.ruangan.id : '') + "&tglAwal=" + tglAwal + "&tglAkhir=" + tglAkhir, "_blank");
+			}
+
 			$scope.selectRow = function (dataItem) {
 				var dataSelect = _.find($scope.sourceGrid._data, function (data) {
 					return data.norec_op == dataItem.norec_op;

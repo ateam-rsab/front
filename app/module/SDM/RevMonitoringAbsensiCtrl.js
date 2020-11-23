@@ -5,6 +5,7 @@ define(['initialize'], function (initialize) {
             $scope.dataPegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
             $scope.pegawai = ModelItem.getPegawai();
             $scope.item = {};
+            $scope.dataDetail = [];
             firstLoad();
 
             function firstLoad() {
@@ -16,7 +17,7 @@ define(['initialize'], function (initialize) {
             var lastday = function (y, m) {
                 return new Date(y, m + 1, 0).getDate() //fungsi buat ngambil tgl terakhir in month
             }
-            var dateLast = lastday(nextMonth.getFullYear(), nextMonth.getMonth())// tgl terakhir
+            var dateLast = lastday(nextMonth.getFullYear(), nextMonth.getMonth()) // tgl terakhir
             $scope.dateLast = new Date(now.getFullYear(), now.getMonth() + 1, dateLast); // variable dateLast masukin ke html k-max
             $scope.now = new Date();
             $scope.dataVOloaded = true;
@@ -95,30 +96,54 @@ define(['initialize'], function (initialize) {
                     if ($scope.listUnitKerja.length == 1 && !$scope.isMonitoring) {
                         var single = res[0].data.data.dataSingle[0];
                         $scope.isSingle = true;
-                        $scope.listUnitKerja = [{ id: single.idUnit, name: single.nameUnit }];
+                        $scope.listUnitKerja = [{
+                            id: single.idUnit,
+                            name: single.nameUnit
+                        }];
                         // $scope.listSubUnitKerja = [{id:single.idSub,name:single.nameSub}];
                         ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-drop-down-subunit?id=" + single.idPgw + "&idUnit=" + single.idUnit).then(function (data) {
-                            $scope.item.subUnitKerja = { id: single.idSub, name: single.nameSub };
+                            $scope.item.subUnitKerja = {
+                                id: single.idSub,
+                                name: single.nameSub
+                            };
                             $scope.listSubUnitKerja = data.data.data;
                         });
-                        $scope.listPegawai = [{ id: single.idPgw, namalengkap: single.namalengkap }];
-                        $scope.item.unitKerja = { id: single.idUnit, name: single.nameUnit };
+                        $scope.listPegawai = [{
+                            id: single.idPgw,
+                            namalengkap: single.namalengkap
+                        }];
+                        $scope.item.unitKerja = {
+                            id: single.idUnit,
+                            name: single.nameUnit
+                        };
                         // $scope.item.subUnitKerja = {id:single.idSub,name:single.nameSub};
-                        $scope.item.pegawai = { id: single.idPgw, namalengkap: single.namalengkap };
+                        $scope.item.pegawai = {
+                            id: single.idPgw,
+                            namalengkap: single.namalengkap
+                        };
                     } else if ($scope.listUnitKerja.length == 1 && $scope.isMonitoring) {
-                        var single = res[0].data.data.dataSingle[0];
-                        $scope.isSingle = true;
-                        $scope.listUnitKerja = [{ id: single.idUnit, name: single.nameUnit }];
-                        // $scope.listSubUnitKerja = [{id:single.idSub,name:single.nameSub}];
-                        ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-drop-down-subunit?id=" + single.idPgw + "&idUnit=" + single.idUnit).then(function (data) {
-                            $scope.item.subUnitKerja = { id: single.idSub, name: single.nameSub };
-                            $scope.listSubUnitKerja = data.data.data;
-                        });
-                        // $scope.listPegawai = [{id:single.idPgw,namalengkap:single.namalengkap}];
-                        $scope.item.unitKerja = { id: single.idUnit, name: single.nameUnit };
-                        // $scope.item.subUnitKerja = {id:single.idSub,name:single.nameSub};
-                        // $scope.item.pegawai = {id:single.idPgw,namalengkap:single.namalengkap}; 
-                    }
+                    var single = res[0].data.data.dataSingle[0];
+                    $scope.isSingle = true;
+                    $scope.listUnitKerja = [{
+                        id: single.idUnit,
+                        name: single.nameUnit
+                    }];
+                    // $scope.listSubUnitKerja = [{id:single.idSub,name:single.nameSub}];
+                    ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-drop-down-subunit?id=" + single.idPgw + "&idUnit=" + single.idUnit).then(function (data) {
+                        $scope.item.subUnitKerja = {
+                            id: single.idSub,
+                            name: single.nameSub
+                        };
+                        $scope.listSubUnitKerja = data.data.data;
+                    });
+                    // $scope.listPegawai = [{id:single.idPgw,namalengkap:single.namalengkap}];
+                    $scope.item.unitKerja = {
+                        id: single.idUnit,
+                        name: single.nameUnit
+                    };
+                    // $scope.item.subUnitKerja = {id:single.idSub,name:single.nameSub};
+                    // $scope.item.pegawai = {id:single.idPgw,namalengkap:single.namalengkap}; 
+                }
                 $scope.isRouteLoading = false;
                 // $scope.jabatanLogin = res[3].data.data.idJabatan;
             });
@@ -167,8 +192,7 @@ define(['initialize'], function (initialize) {
                 } else if ($scope.item.pegawai.id !== undefined) {
                     $scope.paramURl = "sdm/get-kehadiran/" + $scope.item.pegawai.id + "/" + moment($scope.item.monitoringAwal).format("YYYY-MM-DD") + "/" + moment($scope.item.monitoringAkhir).format("YYYY-MM-DD");
                     $scope.pencarian();
-                }
-                else {
+                } else {
                     $scope.paramURl = "sdm/get-kehadiran-by-ruangan/" + $scope.item.unitKerja.id + "/" + $scope.item.subUnitKerja.id + "/" + moment($scope.item.monitoringAwal).format("YYYY-MM-DD") + "/" + moment($scope.item.monitoringAkhir).format("YYYY-MM-DD");
                     $scope.pencarian();
                 }
@@ -220,7 +244,9 @@ define(['initialize'], function (initialize) {
                     // },
                     {
                         field: "nama",
-                        headerAttributes: { style: "text-align : center" },
+                        headerAttributes: {
+                            style: "text-align : center"
+                        },
                         title: "Nama Pegawai",
                         width: "150px",
                         footerTemplate: "{{item.titleFooter}}",
@@ -230,47 +256,53 @@ define(['initialize'], function (initialize) {
                     {
                         field: "tanggal",
                         title: "Tanggal",
-                        headerAttributes: { style: "text-align : center" },
+                        headerAttributes: {
+                            style: "text-align : center"
+                        },
                         width: "100px"
                     },
                     {
                         title: "Jadwal",
-                        headerAttributes: { style: "text-align : center" },
-                        columns: [{
-                            field: "jadwalMasuk",
-                            title: "Masuk",
-                            width: "45px"
+                        headerAttributes: {
+                            style: "text-align : center"
                         },
-                        {
-                            field: "jadwalPulang",
-                            title: "Pulang",
-                            width: "45px"
-                        }
+                        columns: [{
+                                field: "jadwalMasuk",
+                                title: "Masuk",
+                                width: "45px"
+                            },
+                            {
+                                field: "jadwalPulang",
+                                title: "Pulang",
+                                width: "45px"
+                            }
                         ],
                     },
                     {
                         title: "Absensi ",
-                        headerAttributes: { style: "text-align : center" },
+                        headerAttributes: {
+                            style: "text-align : center"
+                        },
                         columns: [{
-                            field: "absensiMasuk",
-                            title: "Masuk",
-                            width: "45px"
-                        },
-                        {
-                            field: "validMasuk",
-                            title: "V",
-                            width: "18px"
-                        },
-                        {
-                            field: "absensiPulang",
-                            title: "Pulang",
-                            width: "45px"
-                        },
-                        {
-                            field: "validPulang",
-                            title: "V",
-                            width: "18px"
-                        }
+                                field: "absensiMasuk",
+                                title: "Masuk",
+                                width: "45px"
+                            },
+                            {
+                                field: "validMasuk",
+                                title: "V",
+                                width: "18px"
+                            },
+                            {
+                                field: "absensiPulang",
+                                title: "Pulang",
+                                width: "45px"
+                            },
+                            {
+                                field: "validPulang",
+                                title: "V",
+                                width: "18px"
+                            }
                         ],
                     },
                     {
@@ -278,14 +310,18 @@ define(['initialize'], function (initialize) {
                         title: "Terlambat (menit)",
                         width: "50px",
                         footerTemplate: "{{item.terlambat}}",
-                        headerAttributes: { style: "text-align : center" },
+                        headerAttributes: {
+                            style: "text-align : center"
+                        },
                     },
                     {
                         field: "pulangAwal",
                         title: "Pulang Awal (menit)",
                         width: "50px",
                         footerTemplate: "{{item.pulang}}",
-                        headerAttributes: { style: "text-align : center" },
+                        headerAttributes: {
+                            style: "text-align : center"
+                        },
                     },
                     {
                         field: "kelebihanJamKerja",
@@ -293,7 +329,9 @@ define(['initialize'], function (initialize) {
                         width: "50px",
                         aggregates: ["sum"],
                         footerTemplate: "{{item.kelebihan}}",
-                        headerAttributes: { style: "text-align : center" },
+                        headerAttributes: {
+                            style: "text-align : center"
+                        },
                     },
                     // { field: "jamEfektif", title: "<center>Jam Efektif</center>", width: "8%", aggregates: ["sum"], footerTemplate: "#= kendo.toString(sum,'n0')# (menit)" }, // jika jam efektif dikirim dari backend berupa integer, frontend dapat menghitung sendiri
                     {
@@ -301,19 +339,25 @@ define(['initialize'], function (initialize) {
                         title: "Jam Efektif",
                         width: "50px",
                         footerTemplate: "{{item.efektif}}",
-                        headerAttributes: { style: "text-align : center" },
+                        headerAttributes: {
+                            style: "text-align : center"
+                        },
                     },
                     {
                         field: "namaShift",
                         title: "Shift",
                         width: "50px",
-                        headerAttributes: { style: "text-align : center" },
+                        headerAttributes: {
+                            style: "text-align : center"
+                        },
                     },
                     {
                         field: "alasan",
                         title: "Keterangan",
                         width: "120px",
-                        headerAttributes: { style: "text-align : center" },
+                        headerAttributes: {
+                            style: "text-align : center"
+                        },
                     },
                     {
                         field: "listTrNo",
@@ -332,8 +376,7 @@ define(['initialize'], function (initialize) {
             }
             $scope.mainGridNotif = {
                 // editable: true,
-                columns: [
-                    {
+                columns: [{
                         field: "nama",
                         title: "Nama Pegawai",
                         visible: false,
@@ -349,6 +392,11 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.getDetail = function (data) {
+                if(!$scope.isBebasValidasi) {
+                    toastr.warning("Tidak ada akses!");
+                    return;
+                }
+
                 if (!data) {
                     messageContainer.error("Data Tidak Ditemukan");
                     return;
@@ -358,6 +406,7 @@ define(['initialize'], function (initialize) {
             };
 
             $scope.loadDetail = function (data) {
+                $scope.dataDetail = [];
                 $scope.listTrNo = data.listTrNo;
                 var listTrNo = [];
                 for (let index = 0; index < data.listTrNo.length; index++) {
@@ -365,40 +414,10 @@ define(['initialize'], function (initialize) {
                 }
 
                 ManageSdmNew.getListData("sdm/get-detail-presensi?listTrNo=" + listTrNo).then(function (res) {
-                    if (res.data.data.length == 2) {
-                        var canvas1 = document.getElementById("c1");
-                        var ctx1 = canvas1.getContext("2d");
-                        var image1 = new Image();
-                        image1.onload = function () {
-                            ctx1.drawImage(image1, 0, 0, 400, 400);
-                        };
-                        image1.src = res.data.data[0].imageURLData
-                        $scope.date1 = res.data.data[0].date
-                        $scope.location1 = "\u2264 " + res.data.data[0].accuracy + " meter sekitar " + res.data.data[0].location
-
-                        var canvas2 = document.getElementById("c2");
-                        var ctx2 = canvas2.getContext("2d");
-                        var image2 = new Image();
-                        image2.onload = function () {
-                            ctx2.drawImage(image2, 0, 0, 400, 400);
-                        };
-                        image2.src = res.data.data[1].imageURLData
-                        $scope.date2 = res.data.data[1].date
-                        $scope.location2 = "\u2264 " + res.data.data[1].accuracy + " meter sekitar " + res.data.data[1].location
-                    } else {
-                        var canvas1 = document.getElementById("c1");
-                        var ctx1 = canvas1.getContext("2d");
-                        var image1 = new Image();
-                        image1.onload = function () {
-                            ctx1.drawImage(image1, 0, 0, 400, 400);
-                        };
-                        image1.src = res.data.data[0].imageURLData
-                        $scope.date1 = res.data.data[0].date
-                        $scope.location1 = "\u2264 " + res.data.data[0].accuracy + " meter sekitar " + res.data.data[0].location
-                    }
-
+                    $scope.dataDetail = res.data.data;
+                    $scope.windDetailPresensi.center().open();
                 })
-                $scope.windDetailPresensi.center().open();
+                
             }
 
             // $scope.mainGridOption = {
@@ -584,8 +603,7 @@ define(['initialize'], function (initialize) {
                             serverPaging: false,
                             schema: {
                                 model: {
-                                    fields: {
-                                    }
+                                    fields: {}
                                 }
                             }
                         })
@@ -598,7 +616,9 @@ define(['initialize'], function (initialize) {
                         actions.splice(actions.indexOf("Close"), 1);
                         actions.push("Maximize", "Minimize")
                         // Set the new options
-                        $scope.dialogPopup.setOptions({ actions: actions });
+                        $scope.dialogPopup.setOptions({
+                            actions: actions
+                        });
 
                         $scope.dialogPopup.center();
                         $scope.dialogPopup.open();
@@ -638,14 +658,14 @@ define(['initialize'], function (initialize) {
                             }
                         }
                         var resSumHour = $scope.addTimes(timeArr)
-                        $scope.item.terlambat = terlambat//dat.data.data.jumlahTerlambat;
-                        $scope.item.pulang = pulang//dat.data.data.jumlahPulangAwal;
-                        $scope.item.kelebihan = kelebihan;//dat.data.data.jumlahKelebihanJamKerja;
+                        $scope.item.terlambat = terlambat //dat.data.data.jumlahTerlambat;
+                        $scope.item.pulang = pulang //dat.data.data.jumlahPulangAwal;
+                        $scope.item.kelebihan = kelebihan; //dat.data.data.jumlahKelebihanJamKerja;
                         // if (dat.data.data.jumlahJamEfektif == undefined){
                         //     dat.data.data.jumlahJamEfektif = 0
                         //     $scope.item.efektif = resSumHour.toFixed(2)
                         // } else {
-                        $scope.item.efektif = resSumHour//dat.data.data.jumlahJamEfektif.toFixed(2);
+                        $scope.item.efektif = resSumHour //dat.data.data.jumlahJamEfektif.toFixed(2);
                         // }
 
                         $scope.item.titleFooter = 'Jumlah : ';
@@ -714,17 +734,17 @@ define(['initialize'], function (initialize) {
                         },
                         group: $scope.group,
                         aggregate: [{
-                            field: "nama",
-                            aggregate: "count"
-                        },
-                        {
-                            field: "kelebihanJamKerja",
-                            aggregate: "sum"
-                        },
-                        {
-                            field: "jamEfektif",
-                            aggregate: "sum"
-                        },
+                                field: "nama",
+                                aggregate: "count"
+                            },
+                            {
+                                field: "kelebihanJamKerja",
+                                aggregate: "sum"
+                            },
+                            {
+                                field: "jamEfektif",
+                                aggregate: "sum"
+                            },
                             // editable: "inline"
                         ]
                     });
@@ -896,7 +916,10 @@ define(['initialize'], function (initialize) {
                         ManageSdmNew.getListData("sdm/get-dataPegawai-rev?idUnitKerja=" + $scope.item.unitKerja.id + "&idSubUnitKerja=" + newVal.id + "&idPegawaiLogin=" + $scope.pegawai.id).then(function (data) {
                             $scope.item.pegawai = "";
                             $scope.listPegawai = data.data.data;
-                            $scope.item.pegawai = { id: $scope.listPegawai[0].id, namaLengkap: $scope.listPegawai[0].namaLengkap }
+                            $scope.item.pegawai = {
+                                id: $scope.listPegawai[0].id,
+                                namaLengkap: $scope.listPegawai[0].namaLengkap
+                            }
                             if ($scope.listPegawai.length > 1) {
                                 $scope.isSingle = false;
                             }

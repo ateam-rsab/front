@@ -41,7 +41,7 @@ define(['initialize'], function (initialize) {
             }
 
             function LoadData() {
-                // $scope.isRouteLoading = true;
+                $scope.isRouteLoading = true;
                 var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm');
                 var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm');
                 //debugger
@@ -115,7 +115,7 @@ define(['initialize'], function (initialize) {
                     + tempDepartemen
                     + tempRuanganId
                     + tempKelPasienId).then(function (data) {
-                        // $scope.isRouteLoading = false;
+                        $scope.isRouteLoading = false;
                         var total = 0;
                         for (var i = 0; i < data.data.length; i++) {
                             ttladministrasi = ttladministrasi + parseFloat(data.data[i].administrasi) 

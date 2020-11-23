@@ -2,15 +2,50 @@ define(['initialize'], function (initialize) {
     initialize.controller('WelcomeCtrl', ['$scope', '$state', 'R', '$rootScope', 'MenuService', 'LoginHelper', '$mdDialog', 'DateHelper',
         function ($scope, $state, r, $rootScope, MenuService, LoginHelper, $mdDialog, DateHelper) {
             $scope.showSIPExpired = false;
-            $scope.showNotifChangePassword = true;
+            $scope.messageAbsensi = "Tidak ada";
+            $scope.showNotif = {
+                changePassword: false,
+                formISARC: true,
+                messageAbsensi: false
+            };
+
             $scope.OnInit = () => {
                 $scope.videoPlayed = {
-                    title: 'Maskerku Melindungi Kamu, Maskermu Melindungi Aku',
+                    title: '6 Langkah Cuci Tangan Pakai Sabun (CTPS)',
                     src: 'https://smart.rsabhk.co.id:2222/vid/masker.mp4'
                 }
             }
 
             $scope.OnInit();
+
+            let getDataAbsensi = () => {
+                MenuService.getNotification('sdm/get-kehadiran/22424/2020-11-18/2020-11-18').then(res => { 
+                    let dataKehadiran = res.data.data.listkehadiran[0];
+
+                    dataKehadiran.isAbsensiPulang = dataKehadiran.absensiPulang === '-' ? false : true;
+                    dataKehadiran.isAbsensiMasuk = dataKehadiran.absensiMasuk === '-' ? false : true;
+                    console.log(dataKehadiran);
+
+                    if(dataKehadiran.namaShift === "Libur") {
+                        $scope.showNotif.messageAbsensi = false;
+                        return;
+                    }
+
+                    if(!dataKehadiran.isAbsensiMasuk) {
+                        $scope.showNotif.messageAbsensi = true;
+                        $scope.messageAbsensi = "Anda belum absensi masuk hari ini";
+                        return;
+                    }
+
+                    if(!dataKehadiran.isAbsensiPulang) {
+                        $scope.showNotif.messageAbsensi = true;
+                        $scope.messageAbsensi = "Anda belum absensi pulang hari ini";
+                        return;
+                    }
+                    
+                });
+            }
+            getDataAbsensi();
 
             $scope.changeVideo = (path, title) => {
                 $scope.videoPlayed = {

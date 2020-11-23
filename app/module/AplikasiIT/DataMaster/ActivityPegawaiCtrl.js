@@ -213,3 +213,4 @@ define(['initialize'], function (initialize) {
 		}
 	]);
 });
+

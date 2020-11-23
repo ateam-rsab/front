@@ -43293,6 +43293,30 @@
     ]
   },
   {
+    "name": "RekapitulasiPembayaran",
+    "url": "/RekapitulasiPembayaran",
+    "templateurl": "module/Akuntansi/BendaharaPengeluaran/RekapitulasiPembayaran.html",
+    "controller": "RekapitulasiPembayaranCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SarprasService",
+        "define": "SarprasService"
+      },
+      {
+        "module": "AkuntansiService",
+        "define": "AkuntansiService"
+      }
+    ]
+  },
+  {
     "name": "AktivitasVerifikasiHarian",
     "url": "/AktivitasVerifikasiHarian",
     "templateurl": "module/Akuntansi/BendaharaPengeluaran/AktivitasVerifikasiHarian.html",

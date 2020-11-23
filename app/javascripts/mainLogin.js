@@ -103,82 +103,6 @@ require(['LoginService', 'core', "kendo.angular", 'Configuration', 'Helper', 'jQ
                                     "Z": "M",
                                 };
 
-                                // #region decrypt key
-                                let keyDec = {
-                                    "k": "a",
-                                    "l": "b",
-                                    "m": "c",
-                                    "n": "d",
-                                    "o": "e",
-                                    "p": "f",
-                                    "q": "g",
-                                    "r": "h",
-                                    "s": "i",
-                                    "t": "j",
-                                    "u": "k",
-                                    "v": "l",
-                                    "w": "m",
-                                    "x": "n",
-                                    "y": "o",
-                                    "z": "p",
-                                    "a": "q",
-                                    "b": "r",
-                                    "c": "s",
-                                    "d": "t",
-                                    "e": "u",
-                                    "f": "v",
-                                    "g": "w",
-                                    "h": "x",
-                                    "i": "y",
-                                    "j": "z",
-                                    "2": "1",
-                                    "3": "2",
-                                    "4": "3",
-                                    "5": "4",
-                                    "6": "5",
-                                    "7": "6",
-                                    "8": "7",
-                                    "9": "8",
-                                    "0": "9",
-                                    "1": "0",
-                                    "Q": "A",
-                                    "W": "B",
-                                    "E": "C",
-                                    "R": "D",
-                                    "T": "E",
-                                    "Y": "F",
-                                    "U": "G",
-                                    "I": "H",
-                                    "O": "I",
-                                    "P": "J",
-                                    "A": "K",
-                                    "S": "L",
-                                    "D": "M",
-                                    "F": "N",
-                                    "G": "O",
-                                    "H": "P",
-                                    "J": "Q",
-                                    "K": "R",
-                                    "L": "S",
-                                    "Z": "T",
-                                    "X": "U",
-                                    "C": "V",
-                                    "V": "W",
-                                    "B": "X",
-                                    "N": "Y",
-                                    "M": "Z",
-                                }
-                                //#endregion
-
-                                // for(let i in listedUserRedirect) {
-                                //     if(data.data.data.kelompokUser.kelompokUser === listedUserRedirect[i]) {
-                                //         // alert("Sini")
-                                //         window.location.replace('http://localhost:3333/#/login?namaUser=' + data.config.data.namaUser + '&password=' + data.config.data.kataSandi);
-                                //         return;
-
-                                //     }
-                                // }
-
                                 if (data.data.messages.message) {
                                     window.messageContainer.error(data.data.messages.message);
                                     $scope.isBusy = false;
@@ -201,7 +125,8 @@ require(['LoginService', 'core', "kendo.angular", 'Configuration', 'Helper', 'jQ
                                 window.localStorage.setItem('datauserlogin', JSON.stringify(dataUserLogin));
                                 window.localStorage.setItem('pegawai', JSON.stringify(data.data.data.pegawai));
 
-                                document.cookie = `${'dataLogin'.replace(/[a-zA-Z0-9]/g, m => keyEnc[m])}=${JSON.stringify({namaUser: userName,kataSandi: password}).replace(/[a-zA-Z0-9]/g, m => keyEnc[m])};`;
+                                // ${'dataLogin'.replace(/[a-zA-Z0-9]/g, m => keyEnc[m])}
+                                document.cookie = `dataLogin=${JSON.stringify({namaUser: userName,kataSandi: password}).replace(/[a-zA-Z0-9]/g, m => keyEnc[m])};`;
 
                                 var dataUrlRoute = [];
                                 var dataUrlRouteAkuntansi = [];

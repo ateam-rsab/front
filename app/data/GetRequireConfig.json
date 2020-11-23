@@ -7589,6 +7589,10 @@
       "urlDep": "module/Akuntansi/BendaharaPengeluaran/VerifikasiTagihanSupplierCtrl"
     },
     {
+      "nameDep": "RekapitulasiPembayaranCtrl",
+      "urlDep": "module/Akuntansi/BendaharaPengeluaran/RekapitulasiPembayaranCtrl"
+    },
+    {
       "nameDep": "AktivitasVerifikasiHarianCtrl",
       "urlDep": "module/Akuntansi/BendaharaPengeluaran/AktivitasVerifikasiHarianCtrl"
     },

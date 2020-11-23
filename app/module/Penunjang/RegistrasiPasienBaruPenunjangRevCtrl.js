@@ -233,6 +233,7 @@ define(['initialize', 'Configuration'], function(initialize, configuration) {
                         "kelurahan": item.alamat.kelurahan,
                         "kecamatan": item.alamat.kecamatan
                     });
+                console.log(item)
                 manageTataRekening.savePasienPenunjang(item).then(function(e) {
                     var tanggal = $scope.now;
                     var tanggalLahir = new Date(e.data.data.tgllahir);

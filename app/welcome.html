@@ -117,12 +117,16 @@
                 <strong>Info </strong> {{pesanPemberitahuan}}
             </div>
 
-            <div class="notify notify-warn" ng-if="showNotifChangePassword">
+            <div class="notify" ng-if="showNotif.messageAbsensi">
+                <strong>Info </strong> {{messageAbsensi}}
+            </div>
+
+            <div class="notify notify-warn" ng-if="showNotif.changePassword">
                 <strong>Perhatian </strong> Harap kepada pengguna SMART untuk mengganti Kata Kunci/Password pengguna
                 anda
             </div>
 
-            <div class="notify notify-warn" ng-if="showNotifChangePassword">
+            <div class="notify notify-warn" ng-if="showNotif.formISARC">
                 <strong>Perhatian </strong> Kepada seluruh karyawan Rumah Sakit Harapan Kita. Harap mengisi form
                 Instrumen Self Assessment Risiko COVID-19 <strong style="font-size:12px; font-style:italic">(<a
                         href="https://bit.ly/selfassessmentcovid19rsabhk" target="_blank">Klik disini</a>)</strong>

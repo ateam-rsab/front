@@ -13,6 +13,7 @@ define(['initialize'], function (initialize) {
             $scope.dataPasienSelected = {};
             $scope.isRouteLoading = false;
             $rootScope.isOpen = true;
+            $scope.listRuangan = [];
             $scope.cboUbahDokter = true;
             var cookie = document.cookie.split(';');
             cookie = cookie[0].split('=');
@@ -33,6 +34,7 @@ define(['initialize'], function (initialize) {
             }
 
             function loadCombo() {
+                $scope.listRuangan = [];
                 var chacePeriode = cacheHelper.get('DaftarAntrianDokterRajalCtrl');
                 if (chacePeriode != undefined) {
                     //debugger;
@@ -48,8 +50,21 @@ define(['initialize'], function (initialize) {
                     $scope.item.periodeAkhir = moment($scope.now).format('YYYY-MM-DD 23:59');
                     // $scope.item.tglpulang = $scope.now;                 
                 }
+
                 manageSarprasPhp.getDataTableTransaksi("dokter/get-data-combo-dokter", false).then(function (data) {
-                    $scope.listRuangan = data.data.ruanganRajal;
+                    for(let i in data.data.ruanganRajal) {
+                        $scope.listRuangan.push({
+                            id:data.data.ruanganRajal[i].id,
+                            namaruangan:data.data.ruanganRajal[i].namaruangan
+                        })
+                    }
+
+                    for(let i in data.data.ruanganRanap) { 
+                        $scope.listRuangan.push({
+                            id:data.data.ruanganRanap[i].id,
+                            namaruangan:data.data.ruanganRanap[i].namaruangan
+                        })
+                    }
                 });
 
                 manageSarprasPhp.getDataTableTransaksi("pasien/get-dokters-combos", false).then(function (data) {
