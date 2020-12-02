@@ -555,7 +555,7 @@ define(['initialize'], function (initialize) {
                     $scope.item.tahunCutiN2 = y - 2
 
                     $scope.sisaCutiN1 = $scope.item.sisaCutiN1;
-                    $scope.sisaCutiTotal = $scope.item.sisaCutiN2 + $scope.item.sisaCutiN1 + $scope.item.sisaCuti + $scope.item.sisaCutiB;
+                    $scope.sisaCutiTotal = $scope.item.sisaCutiN2 + $scope.item.sisaCutiN1 + $scope.item.sisaCuti;
                     if ($scope.item.sisaCutiN2 <= 0 && $scope.item.sisaCutiN1 <= 0 && $scope.item.sisaCuti <= 0 && $scope.item.sisaCutiB <= 0) {
                         $scope.cutiHabis = true;
                     } else {
@@ -1014,7 +1014,7 @@ define(['initialize'], function (initialize) {
                         return
                     }
                     //cek jumlah tanggal tidak lebih banyak dari total sisa cuti
-                    if ($scope.tanggalPermohonan.length > ($scope.sisaCutiTotal - $scope.jumlahCutiTahunanDiproses)) {
+                    if ($scope.tanggalPermohonan.length > (($scope.sisaCutiTotal + $scope.item.sisaCutiB) - $scope.jumlahCutiTahunanDiproses)) {
                         toastr.warning('Jumlah tanggal permohonan melebihi sisa cuti total dan pengajuan cuti tahunan yang belum diputuskan persetujuannya!')
                         return
                     }
