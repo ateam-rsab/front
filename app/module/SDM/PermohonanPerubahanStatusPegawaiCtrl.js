@@ -376,7 +376,7 @@ define(['initialize'], function (initialize) {
                     $scope.item.noUsulan = dat.data.data.noUsulan;
                     $scope.listStatusPegawai = dat.data.data.listStatusPegawai;
                 }).then(function () {
-                    if ($scope.loginUser.idJabatan == 633 || $scope.loginUser.idJabatan == 1139) {
+                    if ($scope.loginUser.idJabatan == 249) {
                         $scope.item.statusPegawai = _.find($scope.listStatusPegawai, function (e) {
                             $scope.tugasLuar = true;
                             return e.id == 28;
@@ -391,7 +391,7 @@ define(['initialize'], function (initialize) {
 
                         $scope.bukanLoginSdm = false;
 
-                    } else if ($scope.loginUser.idJabatan == 633 || $scope.loginUser.idJabatan == 1139) {
+                    } else if ($scope.loginUser.idJabatan == 249) {
 
                         $scope.tugasLuar = true;
                         $scope.bukanLoginSdm = false;
@@ -412,7 +412,7 @@ define(['initialize'], function (initialize) {
                 if (e.id == $scope.loginUser.idPegawai) {
                     $scope.tugasLuar = false;
                     $scope.getDataPegawai(e);
-                } else if (e.id != $scope.loginUser.idPegawai && ($scope.loginUser.idJabatan == 633 || $scope.loginUser.idJabatan == 1139)) {
+                } else if (e.id != $scope.loginUser.idPegawai && $scope.loginUser.idJabatan == 249) {
                     $scope.item.statusPegawai = _.find($scope.listStatusPegawai, function (ed) {
                         $scope.tugasLuar = true;
                         return ed.id == 28;
@@ -555,7 +555,7 @@ define(['initialize'], function (initialize) {
                     $scope.item.tahunCutiN2 = y - 2
 
                     $scope.sisaCutiN1 = $scope.item.sisaCutiN1;
-                    $scope.sisaCutiTotal = $scope.item.sisaCutiN2 + $scope.item.sisaCutiN1 + $scope.item.sisaCuti + $scope.item.sisaCutiB;
+                    $scope.sisaCutiTotal = $scope.item.sisaCutiN2 + $scope.item.sisaCutiN1 + $scope.item.sisaCuti;
                     if ($scope.item.sisaCutiN2 <= 0 && $scope.item.sisaCutiN1 <= 0 && $scope.item.sisaCuti <= 0 && $scope.item.sisaCutiB <= 0) {
                         $scope.cutiHabis = true;
                     } else {
@@ -1014,7 +1014,7 @@ define(['initialize'], function (initialize) {
                         return
                     }
                     //cek jumlah tanggal tidak lebih banyak dari total sisa cuti
-                    if ($scope.tanggalPermohonan.length > ($scope.sisaCutiTotal - $scope.jumlahCutiTahunanDiproses)) {
+                    if ($scope.tanggalPermohonan.length > (($scope.sisaCutiTotal + $scope.item.sisaCutiB) - $scope.jumlahCutiTahunanDiproses)) {
                         toastr.warning('Jumlah tanggal permohonan melebihi sisa cuti total dan pengajuan cuti tahunan yang belum diputuskan persetujuannya!')
                         return
                     }
