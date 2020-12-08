@@ -1,118 +1,292 @@
 <style>
-		.custom-event {
-		  text-shadow: 0 1px 1px #000;
-		}
-		.custom-all-day-event {
-		  text-align: center;
-		  text-transform: uppercase
-		}
-	  </style>
-<div ng-controller="InformasiJadwalDokterCtrl">
-	<div class="panel panel-default container_12">
-		<md-toolbar md-scroll-shrink class="shadow">
-			<div class="md-toolbar-tools">Informasi Jadwal Dokter</div>
-		</md-toolbar>
-		<!-- <div class="panel-heading" c-translate>Informasi Jadwal Dokter</div> -->
-		<div class="panel-body">
+	.custom-event {
+		text-shadow: 0 1px 1px #000;
+	}
+
+	.custom-all-day-event {
+		text-align: center;
+		text-transform: uppercase
+	}
+
+	.jadwal-container {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-evenly;
+	}
+
+	.card-day {
+		width: 40%;
+		display: flex;
+		padding: 20px;
+		flex-direction: column;
+		margin: 10px;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+		transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+	}
+
+	.card-day.active {
+		background-color: rgb(231, 249, 254);
+	}
+
+	.card-day:hover {
+		box-shadow: 0 5px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+	}
+
+
+	.card-day .card-day-header {
+		padding: 10px;
+		text-align: center;
+		font-size: 15px;
+		font-weight: bold;
+		border-bottom: 2px solid #6d6d6d;
+	}
+
+	.card-day .card-day-body {
+		padding: 10px 0;
+	}
+
+	.card-day .active {
+		box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+	}
+
+	.inactive {
+		background: #ff6d6d;
+		font-weight: bold;
+		color: white;
+	}
+</style>
+
+<!-- <div class="panel panel-default container_12">
+	<md-toolbar md-scroll-shrink class="shadow">
+		<div class="md-toolbar-tools">Informasi Jadwal Dokter</div>
+	</md-toolbar>
+	<div class="grid_12">
+		<div class="grid_3">
 			<div class="grid_12">
-				<div class="grid_3">
-					<div class="grid_12">
-						<label c-label item="item" c-label-text="Dokter"></label>
-						<div class="grid_12">
-							<input kendo-combo-box k-ng-model="item.dokter"
-								k-data-text-field="'namalengkap'" k-data-value-field="'id'"
-								k-filter="'contains'" k-auto-bind="false" k-data-source="listdokter" />
-						</div>
-					</div>
-				</div>
-				<div class="grid_3">
-					<div class="grid_12">
-						<label c-label item="item" c-label-text="Ruangan"></label>
-						<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan"
-							k-data-text-field="'namaruangan'" k-data-value-field="'id'"
-							k-filter="'contains'" k-auto-bind="false" k-data-source="ListRuangan" />
-					</div>
-				</div>
-				<div class="grid_1" style="margin-top: 23px;">
-					<md-button class="md-raised md-primary medium-button"
-						ng-click="SearchData()">
-						<span style="margin-right: 5px;">Cari</span>
-						<i class="fa fa-search"></i>
-					</md-button>
-					<!-- <button class="c-button" ng-click="SearchData()">Cari</button> -->
-				</div>
-			</div>
-			<div class="grid_12" style="margin: 30px 0 30px 0;" ng-show="grishoW">
-				<!-- grid table -->
-				<div class="grid_12 borderBox">
-					<div kendo-grid id="kGrid"
-						k-data-source="sourceJadwal"
-						k-groupable="'true'"
-						k-selectable="'row'"
-						class="max-height"
-						k-pageable="'true'"
-						k-columns="columndata"
-						k-sortable="'true'"
-						k-ng-model="dataSelected"
-						ng-click="klik(dataSelected)">
-						<!-- <div k-detail-template>
-	                        <kendo-tabstrip>
-	                            <div>
-	                                <div id="kGridDetail" kendo-grid k-options="data2(dataItem)" 
-	                                    k-sortable="'true'" 
-	                                    k-selectable="'row'" 
-	                                    k-ng-model="dataSelected2"
-	                                    ng-click="klikDetail(dataSelected2)">
-	                                </div>
-	                            </div>
-	                        </kendo-tabstrip>
-	                    </div> -->
-					</div>
-				</div>
-			</div>
-			<div class="grid_12" style="margin-top: 15px;">
+				<label c-label item="item" c-label-text="Dokter"></label>
 				<div class="grid_12">
-					<!-- <div id="example" ng-app="KendoDemos"> -->
-					<!-- <div ng-controller="MyCtrl"> -->
-					<div kendo-scheduler="scheduler" k-options="schedulerOptions"></div>
-					<!-- </div> -->
-
+					<input kendo-combo-box k-ng-model="item.dokter" k-data-text-field="'namalengkap'"
+						k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
+						k-data-source="listdokter" />
 				</div>
 			</div>
 		</div>
-		<div class="grid_12" style="margin-top:60px">
-			<div ng-include='" ../app/module/Shared/TemplateLoading" '></div>
+		<div class="grid_3">
+			<div class="grid_12">
+				<label c-label item="item" c-label-text="Ruangan"></label>
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaruangan'"
+					k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListRuangan" />
+			</div>
+		</div>
+		<div class="grid_1" style="margin-top: 23px;">
+			<md-button class="md-raised md-primary medium-button" ng-click="SearchData()">
+				<span style="margin-right: 5px;">Cari</span>
+				<i class="fa fa-search"></i>
+			</md-button>
+
+		</div>
+	</div>
+</div> -->
+<div class="grid_12" ng-if="!hideFiltering">
+	<div class="grid_3">
+		<div class="grid_12">
+			<label c-label item="item" c-label-text="Dokter"></label>
+			<div class="grid_12">
+				<input kendo-combo-box k-ng-model="item.dokter" k-data-text-field="'namalengkap'"
+					k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listdokter" />
+			</div>
+		</div>
+	</div>
+	<div class="grid_3">
+		<div class="grid_12">
+			<label c-label item="item" c-label-text="Ruangan"></label>
+			<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaruangan'"
+				k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListRuangan" />
+		</div>
+	</div>
+	<div class="grid_1" style="margin-top: 23px;">
+		<md-button class="md-raised md-primary medium-button" ng-click="SearchData()">
+			<span style="margin-right: 5px;">Cari</span>
+			<i class="fa fa-search"></i>
+		</md-button>
+		<!-- <button class="c-button" ng-click="SearchData()">Cari</button> -->
+	</div>
+</div>
+<div class="grid_12">
+	<div class="jadwal-container">
+
+		<div class="card-day" ng-class="{'active':today === 'Senin'}">
+			<div class="card-day-header">SENIN</div>
+			<div class="card-day-body">
+				<table>
+					<thead>
+						<tr>
+							<th>Nama Ruangan</th>
+							<th>Nama Dokter</th>
+							<th>Jam</th>
+							<th>Quota</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in dataJadwalDokter.senin"
+							ng-class="{'inactive':item.status === 'Tdk Aktif'}">
+							<td>{{item.namaruangan}}</td>
+							<td>{{item.namalengkap}}</td>
+							<td>{{item.jampraktek}}</td>
+							<td>{{item.quota}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
 
-		<!-- <div class="grid_12" >
-					<div class="grid_2" style="margin: 13px 0 30px 0;" >
-						<label c-label item="item" c-label-text="Nama Dokter"></label>
-					</div>
-					<div class="grid_3">
-						 <input style="width: 100%;" kendo-combo-box k-ng-model="item.dokter" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListDataDokter" />
-					</div>
-					<div class="grid_2" style="margin: 6px 0 0 20px;">
-	            	    <button class="c-button" ng-click="cari()">Cari</button>
-	                </div>
-				 	<div class="grid_2" ng-show="tampil" style="margin: 5px -10px 10px 20px;">
-	                     <img src="stylesheets/foto.jpg" >
-						 {{item.dokter.namaLengkap}}
-	                </div>
-				</div>
-				
-				<div class="grid_12" style="margin: 30px 0 30px 0;">
-	                <div class="grid_1"></div>
-	            	<div class="grid_12" style="margin-top: 10px;">
-	    				<div kendo-grid  k-data-source="sourceOrder" k-selectable="'row'" k-columns="columndataMasterDataPerusahaan" k-ng-model="current" ng-click="kl"></div>
-	            	</div>
-	        	</div>
-				<div class="grid_12" style="margin: 30px 0 30px 0;">
-		            <div class="grid_1"></div>
-		            <div class="grid_12">
-		    			<div kendo-grid  k-data-source="sourceOrde" k-selectable="'row'" k-columns="columndataMasterDataJadwal" k-ng-model="current" ng-click="kl">
-		                </div>
-		            </div>
-		        </div>
-					&nbsp;&nbsp;	# Mohon Konfirmasi Ulang Terlebih Dahulu ke (021)-5668284 ext 1110 (Customer Service) -->
+		<div class="card-day" ng-class="{'active':today === 'Selasa'}">
+			<div class="card-day-header">SELASA</div>
+			<div class="card-day-body">
+				<table>
+					<thead>
+						<tr>
+							<th>Nama Ruangan</th>
+							<th>Nama Dokter</th>
+							<th>Jam</th>
+							<th>Quota</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in dataJadwalDokter.selasa" ng-class="{'inactive':item.status === 'Tdk Aktif'}">
+							<td>{{item.namaruangan}}</td>
+							<td>{{item.namalengkap}}</td>
+							<td>{{item.jampraktek}}</td>
+							<td>{{item.quota}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="card-day" ng-class="{'active':today === 'Rabu'}">
+			<div class="card-day-header">RABU</div>
+			<div class="card-day-body">
+				<table>
+					<thead>
+						<tr>
+							<th>Nama Ruangan</th>
+							<th>Nama Dokter</th>
+							<th>Jam</th>
+							<th>Quota</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in dataJadwalDokter.rabu" ng-class="{'inactive':item.status === 'Tdk Aktif'}">
+							<td>{{item.namaruangan}}</td>
+							<td>{{item.namalengkap}}</td>
+							<td>{{item.jampraktek}}</td>
+							<td>{{item.quota}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="card-day" ng-class="{'active':today === 'Kamis'}">
+			<div class="card-day-header">KAMIS</div>
+			<div class="card-day-body">
+				<table>
+					<thead>
+						<tr>
+							<th>Nama Ruangan</th>
+							<th>Nama Dokter</th>
+							<th>Jam</th>
+							<th>Quota</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in dataJadwalDokter.kamis" ng-class="{'inactive':item.status === 'Tdk Aktif'}">
+							<td>{{item.namaruangan}}</td>
+							<td>{{item.namalengkap}}</td>
+							<td>{{item.jampraktek}}</td>
+							<td>{{item.quota}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="card-day" ng-class="{'active':today === 'Jumat'}">
+			<div class="card-day-header">JUM'AT</div>
+			<div class="card-day-body">
+				<table>
+					<thead>
+						<tr>
+							<th>Nama Ruangan</th>
+							<th>Nama Dokter</th>
+							<th>Jam</th>
+							<th>Quota</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in dataJadwalDokter.jumat" ng-class="{'inactive':item.status === 'Tdk Aktif'}">
+							<td>{{item.namaruangan}}</td>
+							<td>{{item.namalengkap}}</td>
+							<td>{{item.jampraktek}}</td>
+							<td>{{item.quota}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="card-day" ng-class="{'active':today === 'Sabtu'}">
+			<div class="card-day-header">SABTU</div>
+			<div class="card-day-body">
+				<table>
+					<thead>
+						<tr>
+							<th>Nama Ruangan</th>
+							<th>Nama Dokter</th>
+							<th>Jam</th>
+							<th>Quota</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in dataJadwalDokter.sabtu" ng-class="{'inactive':item.status === 'Tdk Aktif'}">
+							<td>{{item.namaruangan}}</td>
+							<td>{{item.namalengkap}}</td>
+							<td>{{item.jampraktek}}</td>
+							<td>{{item.quota}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="card-day" ng-class="{'active':today === 'Minggu'}">
+			<div class="card-day-header">MINGGU</div>
+			<div class="card-day-body">
+				<table>
+					<thead>
+						<tr>
+							<th>Nama Ruangan</th>
+							<th>Nama Dokter</th>
+							<th>Jam</th>
+							<th>Quota</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in dataJadwalDokter.minggu" ng-class="{'inactive':item.status === 'Tdk Aktif'}">
+							<td>{{item.namaruangan}}</td>
+							<td>{{item.namalengkap}}</td>
+							<td>{{item.jampraktek}}</td>
+							<td>{{item.quota}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
 	</div>
+</div>
+<div class="grid_12" style="margin-top:60px">
+	<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
 </div>

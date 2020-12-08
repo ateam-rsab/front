@@ -3,6 +3,7 @@ define(['initialize'], function (initialize) {
     initialize.controller('PelunasanPembayaranUmumCtrl', ['CacheHelper', '$timeout', '$q', '$rootScope', '$scope', 'ManageAkuntansi', '$state', 'DateHelper', 'ManageSarpras', 'ModelItemAkuntansi', '$mdDialog',
         function (cacheHelper, $timeout, $q, $rootScope, $scope, ManageAkuntansi, $state, dateHelper, ManageSarpras, modelItemAkuntansi, $mdDialog) {
             $scope.item = {};
+            $scope.totalTagihan = 0;
 
             $scope.now = new Date();
 
@@ -28,6 +29,11 @@ define(['initialize'], function (initialize) {
                 {
                     "field": "nospk",
                     "title": "<h3>No. SPK</h3>",
+                    "width": "150px"
+                },
+                {
+                    "field": "nosbk",
+                    "title": "<h3>No. SBK</h3>",
                     "width": "150px"
                 },
                 {
@@ -81,7 +87,7 @@ define(['initialize'], function (initialize) {
                         attributes: {
                             align: "center"
                         },
-                        // click: cetakTagihan,
+                        click: showPopUpPelunasan,
                         imageClass: "k-icon k-i-pencil"
                     }],
                     title: "",
@@ -105,23 +111,51 @@ define(['initialize'], function (initialize) {
                 columns: $scope.columnGrid
             };
 
+            function showPopUpPelunasan(e) {
+                e.preventDefault();
+                let tr = $(e.target).closest("tr");
+                let dataItem = this.dataItem(tr);
+                // console.log(dataItem);
+                // totalbayarFormatted
+                $scope.item.keteranganKeperluan = dataItem.keperluan ? dataItem.keperluan : "-";
+                $scope.item.totalTagihan = dataItem.totaltagihanFormatted;
+                $scope.selectedDataPelunasan = dataItem;
+                
+                $scope.popupPelunasan.open().center();
+            }
+
+            $scope.pelunasanTagihan = () => {
+                console.log($scope.item.totalBayar);
+
+                let data = {
+                    norec: $scope.selectedDataPelunasan.norec,
+                    totalbayar: $scope.item.totalBayar
+                }
+
+                ManageAkuntansi.postpost(data, "bendahara-pengeluaran/save-pelunasan-pembayaran-umum").then((res) => {
+                    $scope.popupPelunasan.close();
+                    $scope.item.totalBayar = 0;
+                    $scope.getData();
+                });
+            }
+
             $scope.getData = () => {
                 $scope.isRouteLoading = true;
                 ManageAkuntansi.getDataTableTransaksi("bendahara-pengeluaran/get-data-pelunasan-pembayaran-umum?tglAwal=" + dateHelper.formatDate($scope.item.tanggalAwal, 'YYYY-MM-DD') + "&tglAkhir=" + dateHelper.formatDate($scope.item.tanggalAkhir, 'YYYY-MM-DD')).then((res) => {
 
-                    for(let i in res.data.daftar) {
+                    for (let i in res.data.daftar) {
                         res.data.daftar[i].tgltransaksi = dateHelper.formatDate(res.data.daftar[i].tgltransaksi);
                         res.data.daftar[i].tglverifikasi = dateHelper.formatDate(res.data.daftar[i].tglverifikasi);
 
                         res.data.daftar[i].totaltagihanFormatted = new Intl.NumberFormat('id-ID', {
                             style: 'currency',
                             currency: 'IDR'
-                          }).format(res.data.daftar[i].totaltagihan ? res.data.daftar[i].totaltagihan : 0);
+                        }).format(res.data.daftar[i].totaltagihan ? res.data.daftar[i].totaltagihan : 0);
 
-                          res.data.daftar[i].totalbayarFormatted = new Intl.NumberFormat('id-ID', {
+                        res.data.daftar[i].totalbayarFormatted = new Intl.NumberFormat('id-ID', {
                             style: 'currency',
                             currency: 'IDR'
-                          }).format(res.data.daftar[i].totalbayar ? res.data.daftar[i].totalbayar : 0);
+                        }).format(res.data.daftar[i].totalbayar ? res.data.daftar[i].totalbayar : 0);
                     }
 
                     $scope.dataGrid = new kendo.data.DataSource({

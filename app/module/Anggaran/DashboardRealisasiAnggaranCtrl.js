@@ -8,6 +8,22 @@ define(['initialize'], function (initialize) {
                 data: []
             })
 
+            manageAkuntansi.getDataTableTransaksi('bendahara-pengeluaran/get-sumber-dana').then(res => {
+                $scope.listSumberDana = res.data;
+            })
+
+            $scope.getListAnggaran = () => {
+                manageAkuntansi.getDataTableTransaksi('bendahara-pengeluaran/get-penggunaan-anggaran?tahun=' + new Date().getFullYear() + "&kodeDana=" + $scope.item.sumberDana.kodeanggaran).then(res => {
+                    for (let i = 0; i < res.data.data.length; i++) {
+                        res.data.data[i].anggaranFormatted = new Intl.NumberFormat('id-ID', {
+                            style: 'currency',
+                            currency: 'IDR'
+                        }).format(res.data.data[i].anggaran);
+                    }
+                    $scope.listAnggaran = res.data.data;
+                });
+            }
+
             $scope.getDataRealisasiAnggaran = function () {
                 $scope.isRouteLoading = true;
                 // manageServicePhp.getDataTableTransaksi("bendahara-pengeluaran/get-penggunaan-anggaran?tahun=" + (new Date().getFullYear()) + "&kodeDana=" + ($scope.item.sumberDana ? $scope.item.sumberDana.kodeanggaran : ""), true).then(function (dat) {
@@ -92,7 +108,7 @@ define(['initialize'], function (initialize) {
                     "title": "<h3>Sisa Anggaran</h3>",
                     "width": "150px",
                 },
-                
+
                 {
                     command: [{
                         text: "Detail",
@@ -116,6 +132,11 @@ define(['initialize'], function (initialize) {
                         text: "export",
                         name: "Export detail",
                         template: '<button ng-click="exportExcel(true)" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
+                    },
+                    {
+                        text: "export",
+                        name: "Export detail",
+                        template: '<button ng-click="tambahData()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-plus"></span>Tambah Data</button>'
                     }
 
                 ],
@@ -134,23 +155,26 @@ define(['initialize'], function (initialize) {
                 columns: $scope.columnGrid
             };
 
+            $scope.tambahData = () => {
+                $scope.popupTambahData.open().center();
+            }
+
             $scope.exportExcel = (isVerified) => {
                 var tempDataExport = [];
                 var rows = [{
                     cells: [{
-                            value: "No."
-                        }, {
-                            value: "Kode"
-                        }, {
-                            value: "Nama Anggaran"
-                        }, {
-                            value: "Kode Dana"
-                        }, {
-                            value: "Anggaran"
-                        }, {
-                            value: "Penggunaan"
-                        }
-                    ]
+                        value: "No."
+                    }, {
+                        value: "Kode"
+                    }, {
+                        value: "Nama Anggaran"
+                    }, {
+                        value: "Kode Dana"
+                    }, {
+                        value: "Anggaran"
+                    }, {
+                        value: "Penggunaan"
+                    }]
                 }];
 
                 tempDataExport = isVerified ? $scope.dataGridVerified : $scope.dataGridUnverified;

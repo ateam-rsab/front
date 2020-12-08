@@ -17,8 +17,12 @@ define(['initialize'], function (initialize) {
             $scope.header.DataNoregis = true
             // var pegawaiUser = {}
             var detail = ''
-
+            $scope.listFilters = [
+                "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+                "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
+            ];
             LoadCacheHelper();
+
             function LoadCacheHelper() {
                 var chacePeriode = cacheHelper.get('TransaksiPelayananLaboratoriumDokterRevCtrl');
                 if (chacePeriode != undefined) {
@@ -46,8 +50,8 @@ define(['initialize'], function (initialize) {
                     }
                     manageLogistikPhp.getDataTableTransaksi("tatarekening/get-sudah-verif?noregistrasi=" +
                         $scope.item.noregistrasi, true).then(function (dat) {
-                            $scope.item.statusVerif = dat.data.status
-                        });
+                        $scope.item.statusVerif = dat.data.status
+                    });
                 }
                 init()
             }
@@ -76,24 +80,31 @@ define(['initialize'], function (initialize) {
             //     }
 
             // }
-            function init() {
+            $scope.filterPelayanan = function (data) {
+                $scope.isLoading = true;
+                manageLogistikPhp.getDataTableTransaksi("pelayanan/get-order-penunjang?departemenfk=3&nocm=" + nocm_str + '&norec_apd=' + norec_apd + "&filter_huruf=" + data.toLowerCase() + "&filter_contain=" + ($scope.filterContain ? $scope.filterContain : ""), true).then(function (dat) {
+                    for (let i in dat.data.produk) {
+                        dat.data.produk[i].checked = false;
+                        dat.data.produk[i].jmlLayanan = 0;
+                        dat.data.produk[i].checkedPemeriksaanLuar = false;
+                    }
 
-                manageLogistikPhp.getDataTableTransaksi("pelayanan/get-order-penunjang?departemenfk=3&nocm=" + nocm_str + '&norec_apd=' + norec_apd, true).then(function (dat) {
-                    // for (var i = 0; i < dat.data.length; i++) {
-                    //     dat.data[i].no = i+1
-                    //     // dat.data[i].total =parseFloat(dat.data[i].jumlah) * (parseFloat(dat.data[i].hargasatuan)-parseFloat(dat.data[i].hargadiscount))
-                    // }
-                    // $scope.dataGrid = dat.data.data;
                     $scope.item.ruanganAsal = dat.data.data[0].namaruangan
                     $scope.listRuanganTujuan = dat.data.ruangantujuan;
                     $scope.item.ruangantujuan = {
                         id: dat.data.ruangantujuan[2].id,
                         namaruangan: dat.data.ruangantujuan[2].namaruangan
+
                     }
                     $scope.listLayanan = dat.data.produk;
                     namaRuanganFk = dat.data.data[0].objectruanganfk
                     norec_pd = dat.data.data[0].noregistrasifk
+                    $scope.isLoading = false;
                 });
+            }
+            $scope.filterPelayanan("A");
+
+            function init() {
                 manageLogistikPhp.getDataTableTransaksi("get-detail-login", true).then(function (dat) {
                     $scope.PegawaiLogin2 = dat.data
                 });
@@ -122,6 +133,48 @@ define(['initialize'], function (initialize) {
                     });
                 }
             }
+
+            $scope.selectedDataProduk = [];
+            $scope.updateSelectedData = (data, i) => {
+                $scope.selectedDataProduk = [];
+                $scope.listLayanan[i].checked = !$scope.listLayanan[i].checked;
+
+                for (let i in $scope.listLayanan) {
+
+                    if ($scope.listLayanan[i].checked) {
+                        $scope.selectedDataProduk.push($scope.listLayanan[i]);
+                    }
+                }
+            }
+            $scope.updateDataPemeriksaanLuar = (data, i) => {
+                $scope.listLayanan[i].checkedPemeriksaanLuar = !$scope.listLayanan[i].checkedPemeriksaanLuar;
+            }
+
+
+            let tempDataGrid = [];
+            $scope.tambahData = () => {
+
+                for (let i in $scope.selectedDataProduk) {
+                    tempDataGrid.push({
+                        namaproduk: $scope.selectedDataProduk[i].namaproduk,
+                        no: tempDataGrid.length + 1,
+                        objectkelasfk: $scope.item.idKelas,
+                        objectruanganfk: namaRuanganFk,
+                        objectruangantujuanfk: $scope.item.ruangantujuan.id,
+                        produkfk: $scope.selectedDataProduk[i].id,
+                        qtyproduk: $scope.selectedDataProduk[i].jmlLayanan,
+                        pemeriksaanluar: $scope.selectedDataProduk[i].checkedPemeriksaanLuar
+                    })
+                }
+
+                console.log(tempDataGrid);
+                data2 = tempDataGrid;
+                $scope.dataGridOrder = new kendo.data.DataSource({
+                    data: tempDataGrid,
+                    pageSize: 20
+                });
+            }
+
             $rootScope.getRekamMedisCheck = function (bool) {
                 if (bool) {
                     manageLogistikPhp.getDataTableTransaksi('laporan/get-order-lab?NoCM' + $scope.item.noMr).then(function (e) {
@@ -136,8 +189,7 @@ define(['initialize'], function (initialize) {
 
 
                     });
-                }
-                else {
+                } else {
                     manageLogistikPhp.getDataTableTransaksi('laporan/get-order-lab?NoCM=' + $scope.item.noMr).then(function (e) {
                         for (var i = e.data.daftar.length - 1; i >= 0; i--) {
                             e.data.daftar[i].no = i + 1
@@ -176,8 +228,7 @@ define(['initialize'], function (initialize) {
             }
 
 
-            $scope.columnGrid = [
-                {
+            $scope.columnGrid = [{
                     "field": "no",
                     "title": "No",
                     "width": "10px",
@@ -232,8 +283,7 @@ define(['initialize'], function (initialize) {
                 }
             ];
 
-            $scope.columnGridOrder = [
-                {
+            $scope.columnGridOrder = [{
                     "field": "no",
                     "title": "No",
                     "width": "10px",
@@ -249,8 +299,22 @@ define(['initialize'], function (initialize) {
                     "width": "40px",
                 }
             ];
-            $scope.columnGridRiwayat = [
-                {
+
+            $scope.gridOrderOption = {
+                toolbar: [{
+                    name: "create",
+                    template: '<button ng-click="showPopUpOrder()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah</button>'
+                }],
+                pageable: true,
+                scrollable: true,
+                columns: $scope.columnGridOrder
+            }
+
+            $scope.showPopUpOrder = function () {
+                $scope.popupAddLayanan.open().center();
+            }
+
+            $scope.columnGridRiwayat = [{
                     "field": "no",
                     "title": "No",
                     "width": "20px",
@@ -286,9 +350,12 @@ define(['initialize'], function (initialize) {
                 //     "width": "70px",
                 // },
                 {
-                    command: [
-                        { text: "PDF", click: exportToPdf },
-                    ], title: "&nbsp;", width: 50,
+                    command: [{
+                        text: "PDF",
+                        click: exportToPdf
+                    }, ],
+                    title: "&nbsp;",
+                    width: 50,
                     attributes: {
                         style: "text-align:center;valign=middle"
                     }
@@ -307,8 +374,7 @@ define(['initialize'], function (initialize) {
                     dataSource: new kendo.data.DataSource({
                         data: dataItem.details
                     }),
-                    columns: [
-                        {
+                    columns: [{
                             field: "namaproduk",
                             title: "Deskripsi",
                             width: "300px"
@@ -317,7 +383,8 @@ define(['initialize'], function (initialize) {
                             field: "qtyproduk",
                             title: "Qty",
                             width: "100px"
-                        }]
+                        }
+                    ]
                 };
             };
             $scope.back = function () {
@@ -358,15 +425,15 @@ define(['initialize'], function (initialize) {
                 if ($scope.item.no != undefined) {
                     for (var i = data2.length - 1; i >= 0; i--) {
                         if (data2[i].no == $scope.item.no) {
-                            data.no = $scope.item.no
-
-                            data.produkfk = $scope.item.layanan.id
-                            data.namaproduk = $scope.item.layanan.namaproduk
-                            data.qtyproduk = parseFloat($scope.item.qty)
-                            data.objectruanganfk = namaRuanganFk
-                            data.objectruangantujuanfk = $scope.item.ruangantujuan.id
-                            data.pemeriksaanluar = $scope.item.pemeriksaanKeluar === true ? 1 : 0,
-                                data.objectkelasfk = $scope.item.idKelas
+                            data.namaproduk = $scope.item.layanan.namaproduk;
+                            data.no = $scope.item.no;
+                            data.objectkelasfk = $scope.item.idKelas;
+                            data.objectruanganfk = namaRuanganFk;
+                            data.objectruangantujuanfk = $scope.item.ruangantujuan.id;
+                            data.produkfk = $scope.item.layanan.id;
+                            data.qtyproduk = parseFloat($scope.item.qty);
+                            data.pemeriksaanluar = $scope.item.pemeriksaanKeluar === true ? 1 : 0;
+                            
 
                             data2[i] = data;
                             $scope.dataGridOrder = new kendo.data.DataSource({
@@ -404,7 +471,7 @@ define(['initialize'], function (initialize) {
                         break;
                     }
                 }
-                $scope.item.layanan = dataProduk;//{id:dataSelected.produkfk,namaproduk:dataSelected.namaproduk}
+                $scope.item.layanan = dataProduk; //{id:dataSelected.produkfk,namaproduk:dataSelected.namaproduk}
                 // $scope.item.stok = dataSelected.jmlstok //* $scope.item.nilaiKonversi 
 
                 $scope.item.qty = dataSelected.qtyproduk
@@ -481,7 +548,7 @@ define(['initialize'], function (initialize) {
                     norec_so: '',
                     norec_apd: norec_apd,
                     norec_pd: norec_pd,
-                    qtyproduk: data2.length,//
+                    qtyproduk: data2.length, //
                     objectruanganfk: namaRuanganFk,
                     objectruangantujuanfk: $scope.item.ruangantujuan.id,
                     departemenfk: 3,
@@ -492,8 +559,7 @@ define(['initialize'], function (initialize) {
                 manageLogistikPhp.postOrderLaboratRad(objSave).then(function (e) {
                     init();
                     $scope.BatalOrder();
-                    manageLogistikPhp.postLogging('Order Laboratorium', 'Norec strukorder_t', e.data.strukorder.norec, 'Menu Dokter').then(function (res) {
-                    })
+                    manageLogistikPhp.postLogging('Order Laboratorium', 'Norec strukorder_t', e.data.strukorder.norec, 'Menu Dokter').then(function (res) {})
                     // $scope.item.resep = e.data.noresep.norec
                     // var stt = 'false'
                     // if (confirm('View resep? ')) {

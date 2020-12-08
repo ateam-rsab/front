@@ -19,12 +19,15 @@ define(['initialize'], function (initialize) {
             $scope.OnInit();
 
             let getDataAbsensi = () => {
-                MenuService.getNotification('sdm/get-kehadiran/22424/2020-11-18/2020-11-18').then(res => { 
+                let today = DateHelper.formatDate(new Date(), "YYYY-MM-DD");
+                let dataPegawai = JSON.parse(localStorage.getItem("pegawai"));
+                console.log(dataPegawai.id);
+                MenuService.getNotification('sdm/get-kehadiran/' + dataPegawai.id + '/' + today + '/' + today).then(res => { 
                     let dataKehadiran = res.data.data.listkehadiran[0];
 
                     dataKehadiran.isAbsensiPulang = dataKehadiran.absensiPulang === '-' ? false : true;
                     dataKehadiran.isAbsensiMasuk = dataKehadiran.absensiMasuk === '-' ? false : true;
-                    console.log(dataKehadiran);
+                    // console.log(dataKehadiran);
 
                     if(dataKehadiran.namaShift === "Libur") {
                         $scope.showNotif.messageAbsensi = false;

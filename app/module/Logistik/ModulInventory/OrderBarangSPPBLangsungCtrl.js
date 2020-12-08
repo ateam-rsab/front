@@ -217,6 +217,12 @@ define(['initialize'], function (initialize) {
             //     }
             // });
             $scope.$watch('item.jumlah', function (newValue, oldValue) {
+                if(!$scope.item.disc) {
+                    $scope.item.disc = 0;
+                }
+                if(!$scope.item.ppn) {
+                    $scope.item.ppn = 0;
+                }
                 if (newValue != oldValue) {
                     hrg1 = parseFloat($scope.item.hargaSatuan)
                     hrgsdk = (hrg1 * parseFloat($scope.item.disc)) / 100
@@ -225,6 +231,12 @@ define(['initialize'], function (initialize) {
                 }
             });
             $scope.$watch('item.hargaSatuan', function (newValue, oldValue) {
+                if(!$scope.item.disc) {
+                    $scope.item.disc = 0;
+                }
+                if(!$scope.item.ppn) {
+                    $scope.item.ppn = 0;
+                }
                 if (newValue != oldValue) {
                     hrg1 = parseFloat($scope.item.hargaSatuan)
                     hrgsdk = (hrg1 * parseFloat($scope.item.disc)) / 100
@@ -233,6 +245,12 @@ define(['initialize'], function (initialize) {
                 }
             });
             $scope.$watch('item.disc', function (newValue, oldValue) {
+                if(!$scope.item.disc) {
+                    $scope.item.disc = 0;
+                }
+                if(!$scope.item.ppn) {
+                    $scope.item.ppn = 0;
+                }
                 if (newValue != oldValue) {
                     hrg1 = parseFloat($scope.item.hargaSatuan)
                     hrgsdk = (hrg1 * parseFloat($scope.item.disc)) / 100
@@ -241,6 +259,12 @@ define(['initialize'], function (initialize) {
                 }
             });
             $scope.$watch('item.ppn', function (newValue, oldValue) {
+                if(!$scope.item.disc) {
+                    $scope.item.disc = 0;
+                }
+                if(!$scope.item.ppn) {
+                    $scope.item.ppn = 0;
+                }
                 if (newValue != oldValue) {
                     hrg1 = parseFloat($scope.item.hargaSatuan)
                     hrgsdk = (hrg1 * parseFloat($scope.item.disc)) / 100
@@ -278,6 +302,13 @@ define(['initialize'], function (initialize) {
                 //     alert("Jumlah blm di isi!!")
                 //     return;
                 // }
+
+                if(!$scope.item.ppn) {
+                    alert("Harap isi PPN");
+                    $scope.item.ppn = 0
+                    return;
+                }
+
                 if (!$scope.item.produk) {
                     alert("Pilih Produk terlebih dahulu!!")
                     return;

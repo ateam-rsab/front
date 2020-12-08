@@ -4,7 +4,7 @@ define(['initialize'], function (initialize) {
         function (cacheHelper, $timeout, $q, $rootScope, $scope, ManageAkuntansi, $state, dateHelper, ManageSarpras, modelItemAkuntansi, $mdDialog) {
             $scope.item = {};
             $scope.confirm = {};
-
+            $scope.dataTemp = [];
             $scope.isKasubag = false;
             $scope.dataPegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
 
@@ -37,7 +37,7 @@ define(['initialize'], function (initialize) {
 
             $scope.loadDataVerifikasi = () => {
                 $scope.isRouteLoading = true;
-                ManageAkuntansi.getDataTableTransaksi("bendahara-pengeluaran/get-data-verifikasi-tagihan-suplier?tglAwal=" + dateHelper.formatDate($scope.item.tanggalAwal, 'YYYY-MM-DD') + "&tglAkhir=" + dateHelper.formatDate($scope.item.tanggalAkhir, 'YYYY-MM-DD') + "&Supplier=" + ($scope.item.namaSupplier ? $scope.item.namaSupplier : "") + "&status=").then((res) => {
+                ManageAkuntansi.getDataTableTransaksi("bendahara-pengeluaran/get-data-verifikasi-tagihan-suplier-by-tglverif?tglAwal=" + dateHelper.formatDate($scope.item.tanggalAwal, 'YYYY-MM-DD') + "&tglAkhir=" + dateHelper.formatDate($scope.item.tanggalAkhir, 'YYYY-MM-DD') + "&Supplier=" + ($scope.item.namaSupplier ? $scope.item.namaSupplier : "") + "&status=").then((res) => {
 
                     for (let i = 0; i < res.data.daftar.length; i++) {
                         res.data.daftar[i].totalFormatted = new Intl.NumberFormat('id-ID', {

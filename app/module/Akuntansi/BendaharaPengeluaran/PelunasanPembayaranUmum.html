@@ -35,3 +35,42 @@
 </div>
 
 <div ng-include=' "../app/module/Shared/TemplateLoading" '></div>
+
+<div kendo-window="popupPelunasan" k-title="'Pelunasan Pembayaran Umum'" k-width="700" k-visible="false" k-on-open="win2visible = true"
+k-on-close="win2visible = false">
+    <div class="panel panel-default container_12" style="padding: 0px 15px;">
+        <md-card>
+            <md-card-content>
+
+                <fieldset class="borderBox">
+                    <legend>Keterangan Keperluan</legend>
+
+
+                    <p>{{item.keteranganKeperluan}}</p>
+                
+                </fieldset>
+                
+                <fieldset class="borderBox" style="margin-top: 10px;margin-bottom: 10px;">
+                    <legend>Total Tagihan</legend>
+                    <p>{{item.totalTagihan}}</p>
+                </fieldset>
+                <div class="grid_12">
+                    <label c-label item="item">Total Bayar</label>
+                    <input c-text-box type="input" filter="numeric" class="k-textbox" ng-model="item.totalBayar" />
+                </div>
+            </md-card-content>
+        </md-card>
+    </div>
+    <div class="dialog_buttons pull-right" style="margin-top:5%;">
+        <div class="grid_4">
+            <md-button class="md-raised md-danger medium-button" style="width: 100%;" ng-click="popupPelunasan.close()">
+                Batal
+            </md-button>
+        </div>
+        <div class="grid_4">
+            <md-button class="md-raised md-primary medium-button" style="width: 100%;" ng-click="pelunasanTagihan()">
+                Bayar
+            </md-button>
+        </div>
+    </div>
+</div>

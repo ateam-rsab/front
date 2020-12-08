@@ -32,4 +32,63 @@
     </div>
 </div>
 
+<div kendo-window="popupTambahData" k-title="'Tambah Data'" k-width="1000" k-visible="false">
+    <div class="panel panel-default container_12" style="padding: 0px 10px;">
+        <div class="grid_12">
+            <div class="grid_3">
+                <label style="font-weight: bolder;">Kode</label>
+                <input c-text-box type="input" ng-model="item.kode" class="k-textbox" style="margin-top: 10px;"
+                    placeholder="Kode" />
+            </div>
+            <div class="grid_3">
+                <label style="font-weight: bolder;">Kode Dana</label>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.sumberDana"
+                    k-data-text-field="'asalproduk'" k-data-value-field="'id'" k-filter="'contains'"
+                    k-data-source="listSumberDana" k-on-change="getListAnggaran()" />
+            </div>
+
+            <div class="grid_6">
+                <label style="font-weight: bolder;">Nama Anggaran</label>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaAnggaran"
+                    k-data-text-field="'nama_anggaran'" k-data-value-field="'kode_anggaran'" k-filter="'contains'"
+                    k-data-source="listAnggaran" />
+            </div>
+
+        </div>
+
+        <div class="grid_12">
+            <div class="grid_4">
+                <label style="font-weight: bolder;">Anggaran</label>
+                <input c-text-box type="input" ng-model="item.anggaran" class="k-textbox" style="margin-top: 10px;"
+                    placeholder="Anggaran" />
+            </div>
+
+            <div class="grid_4">
+                <label style="font-weight: bolder;">Penggunaan</label>
+                <input c-text-box type="input" ng-model="item.penggunaan" class="k-textbox" style="margin-top: 10px;"
+                    placeholder="Penggunaan" />
+            </div>
+
+            <div class="grid_4">
+                <label style="font-weight: bolder;">Sisa Anggaran</label>
+                <input c-text-box type="input" ng-model="item.sisaAnggaran" class="k-textbox" style="margin-top: 10px;"
+                    placeholder="Sisa Anggaran" />
+            </div>
+        </div>
+    </div>
+    <div class="dialog_buttons pull-right" style="margin-top:5%;">
+        <div class="grid_4">
+            <md-button class="md-raised md-danger medium-button" style="width: 100%;"
+                ng-click="popupTambahData.close()">
+                Batal
+            </md-button>
+        </div>
+        <div class="grid_4">
+            <md-button class="md-raised md-primary medium-button" style="width: 100%;" ng-click="">
+                Konfirmasi
+            </md-button>
+        </div>
+    </div>
+</div>
+
 <div ng-include=' "../app/module/Shared/TemplateLoading" '></div>

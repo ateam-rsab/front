@@ -556,6 +556,27 @@ define(['initialize'], function(initialize) {
             }
         });      
         $scope.$watch('item.jumlah', function(newValue, oldValue) {
+            if(!$scope.item.jumlah) {
+                $scope.item.jumlah = 0;
+            }
+
+            if(!$scope.item.hargaSatuan) { 
+                $scope.item.hargaSatuan = 0;
+            }
+
+            if(!$scope.item.ppn) { 
+                $scope.item.ppn = 0;
+            }
+
+            if(!$scope.item.ppnpersen) {
+                $scope.item.ppnpersen = 0;
+            }
+            if(!$scope.item.hargaDiskon) {
+                $scope.item.hargaDiskon = 0;
+            }
+            if(!$scope.item.hargaDiskonPersen) {
+                $scope.item.hargaDiskonPersen = 0;
+            }
             if (newValue != oldValue  ) {
                 qty = parseFloat($scope.item.jumlah)
                 hrgsatuan = parseFloat($scope.item.hargaSatuan)
@@ -564,7 +585,29 @@ define(['initialize'], function(initialize) {
                 $scope.item.subTotal = qty*(hrgsatuan+ppn-hargadiskon)
             }
         });
+
         $scope.$watch('item.hargaSatuan', function(newValue, oldValue) {
+            if(!$scope.item.jumlah) {
+                $scope.item.jumlah = 0;
+            }
+
+            if(!$scope.item.hargaSatuan) { 
+                $scope.item.hargaSatuan = 0;
+            }
+            
+            if(!$scope.item.ppn) { 
+                $scope.item.ppn = 0;
+            }
+            if(!$scope.item.ppnpersen) {
+                $scope.item.ppnpersen = 0;
+            }
+            if(!$scope.item.hargaDiskon) {
+                $scope.item.hargaDiskon = 0;
+            }
+            if(!$scope.item.hargaDiskonPersen) {
+                $scope.item.hargaDiskonPersen = 0;
+            }
+
             if (newValue != oldValue  ) {
                 qty = parseFloat($scope.item.jumlah)
                 hrgsatuan = parseFloat($scope.item.hargaSatuan)
@@ -573,7 +616,28 @@ define(['initialize'], function(initialize) {
                 $scope.item.subTotal = qty*(hrgsatuan+ppn-hargadiskon)
             }
         });
+
         $scope.$watch('item.ppn', function(newValue, oldValue) {
+            if(!$scope.item.jumlah) {
+                $scope.item.jumlah = 0;
+            }
+
+            if(!$scope.item.hargaSatuan) { 
+                $scope.item.hargaSatuan = 0;
+            }
+
+            if(!$scope.item.ppn) { 
+                $scope.item.ppn = 0;
+            }
+            if(!$scope.item.ppnpersen) {
+                $scope.item.ppnpersen = 0;
+            }
+            if(!$scope.item.hargaDiskon) {
+                $scope.item.hargaDiskon = 0;
+            }
+            if(!$scope.item.hargaDiskonPersen) {
+                $scope.item.hargaDiskonPersen = 0;
+            }
             if (newValue != oldValue  ) {
                 qty = parseFloat($scope.item.jumlah)
                 hrgsatuan = parseFloat($scope.item.hargaSatuan)
@@ -582,7 +646,28 @@ define(['initialize'], function(initialize) {
                 $scope.item.subTotal = qty*(hrgsatuan+ppn-hargadiskon)
             }
         });
+
         $scope.$watch('item.hargaDiskon', function(newValue, oldValue) {
+            if(!$scope.item.jumlah) {
+                $scope.item.jumlah = 0;
+            }
+
+            if(!$scope.item.hargaSatuan) { 
+                $scope.item.hargaSatuan = 0;
+            }
+
+            if(!$scope.item.ppn) { 
+                $scope.item.ppn = 0;
+            }
+            if(!$scope.item.ppnpersen) {
+                $scope.item.ppnpersen = 0;
+            }
+            if(!$scope.item.hargaDiskon) {
+                $scope.item.hargaDiskon = 0;
+            }
+            if(!$scope.item.hargaDiskonPersen) {
+                $scope.item.hargaDiskonPersen = 0;
+            }
             if (newValue != oldValue  ) {
                 qty = parseFloat($scope.item.jumlah)
                 hrgsatuan = parseFloat($scope.item.hargaSatuan)
@@ -591,12 +676,45 @@ define(['initialize'], function(initialize) {
                 $scope.item.subTotal = qty*(hrgsatuan+ppn-hargadiskon)
             }
         });
+
         $scope.$watch('item.ppnpersen', function(newValue, oldValue) {
+            if(!$scope.item.jumlah) {
+                $scope.item.jumlah = 0;
+            }
+
+            if(!$scope.item.hargaSatuan) { 
+                $scope.item.hargaSatuan = 0;
+            }
+            if(!$scope.item.ppnpersen) {
+                $scope.item.ppnpersen = 0;
+            }
+            if(!$scope.item.hargaDiskon) {
+                $scope.item.hargaDiskon = 0;
+            }
+            if(!$scope.item.hargaDiskonPersen) {
+                $scope.item.hargaDiskonPersen = 0;
+            }
             if (newValue != oldValue  ) {
                 $scope.item.ppn = (parseFloat($scope.item.ppnpersen)*parseFloat($scope.item.hargaSatuan))/100
             }
         });
+
         $scope.$watch('item.hargaDiskonPersen', function(newValue, oldValue) {
+            if(!$scope.item.jumlah) {
+                $scope.item.jumlah = 0;
+            }
+            if(!$scope.item.hargaSatuan) { 
+                $scope.item.hargaSatuan = 0;
+            }
+            if(!$scope.item.ppnpersen) {
+                $scope.item.ppnpersen = 0;
+            }
+            if(!$scope.item.hargaDiskon) {
+                $scope.item.hargaDiskon = 0;
+            }
+            if(!$scope.item.hargaDiskonPersen) {
+                $scope.item.hargaDiskonPersen = 0;
+            }
             if (newValue != oldValue  ) {
                 $scope.item.hargaDiskon = (parseFloat($scope.item.hargaDiskonPersen)*parseFloat($scope.item.hargaSatuan))/100
             }

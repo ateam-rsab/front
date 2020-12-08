@@ -874,7 +874,7 @@
              saveInformasiMedis: function(pasien, tanggal, data) {
 
                  return r.post({
-                     url: baseUrlApiAction + "ria.wayat-psikososial/save-riwayat-psikososial"
+                     url: baseUrlApiAction + "riwayat-psikososial/save-riwayat-psikososial"
                  }, {
 
                      detailInformasiMedis: data.StatusPsikososialSet

@@ -16,6 +16,45 @@
         text-align: left;
         width: 100%;
     }
+
+    .filters {
+        display: flex;
+        margin-bottom: 10px;
+    }
+
+    .filters span {
+        padding: 2px;
+        border: 1px solid gray;
+        border-radius: 3px;
+        margin: 0 5px 0 0;
+        cursor: pointer;
+        min-width: 15px;
+        text-align: center;
+    }
+
+    .window-footer {
+        /* position: absolute; */
+        /* bottom: 0; */
+        display: block;
+        /* width: 95%; */
+        /* margin-top: 150px; */
+        padding: 19px 0 20px;
+        /* text-align: right; */
+        border-top: 1px solid #e5e5e5;
+    }
+
+    .window-body {
+        overflow: auto;
+        /* height: calc(100% - 90px); */
+        padding: 10px;
+        height: 450px;
+    }
+
+    .active {
+        background-color: #7a7a7a;
+        color: #f7f7f7;
+        font-weight: bold;
+    }
 </style>
 
 <div class="grid_12">
@@ -117,41 +156,74 @@
 
                 </div>
             </div>
-            <div kendo-window="popupAddLayanan" k-title="'Tambah Layanan'" k-width="1000" k-height="500" k-visible="false" k-on-open="win2visible = true">
+            <div kendo-window="popupAddLayanan" k-title="'Tambah Layanan'" k-width="1100" k-height="650"
+                k-visible="false" k-on-open="win2visible = true">
                 <div class="panel panel-default container_12" style="padding: 0px 10px;">
-                   <div class="grid_12">
-                    <div class="grid_4" ng-repeat="item in listLayanan">
-                       <md-card style="height: 200px;">
-                            <md-card-title>
-                                <md-checkbox style="display: flex;align-items: center;" aria-label="{{item.namaproduk}}">
-                                    {{item.namaproduk}}
-                                </md-checkbox>
-                            </md-card-title>
-                            <md-card-content>
-                                <label>Jumlah Layanan</label>
-                                <input type="number" min="0" class="k-textbox">
-                            </md-card-content>
-                        </md-card>
+                    <div class="filters">
+                        <span ng-repeat="data in listFilters" ng-click="filterPelayanan(data)">{{data}}</span>
                     </div>
-                       <!-- <div class="grid_3" ng-repeat="item in listLayanan">
-                           <md-card>
+                    <div class="grid_12">
+                        <div class="grid_4">
+                            <input c-text-box type="input" filter="" class="k-textbox" ng-model="filterContain" />
+                        </div>
+                        <div class="grid_1" style="margin-top: 6px;">
+                            <md-button class="md-raised md-primary medium-button"
+                                ng-click="filterPelayanan(selectedFilter)">
+                                <span style="margin-right: 5px;">Cari</span>
+                                <i class="fa fa-search"></i>
+                            </md-button>
+                        </div>
+                    </div>
+                    <!-- <hr> -->
+                    <div class="window-body">
+
+                        <div layout="row" layout-sm="column" layout-align="space-around" ng-if="isLoading">
+                            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                        </div>
+                        <div class="grid_4" ng-repeat="data in listLayanan track by $index" ng-if="!isLoading">
+                            <md-card style="height: 200px;">
                                 <md-card-title>
-                                    <md-checkbox aria-label="{{item.namaproduk}}">
-                                        {{item.namaproduk}}
+                                    <md-checkbox style="display: flex;align-items: center;" ng-checked="data.checked"
+                                        ng-click="updateSelectedData(data, $index)">
+                                        {{ data.namaproduk }}
                                     </md-checkbox>
+                                    <!-- <md-checkbox style="display: flex;align-items: center;" ng-model="item.checkedData[$index]"
+                                        aria-label="{{item.namaproduk}}">{{item.namaproduk}}
+                                    </md-checkbox> -->
                                 </md-card-title>
                                 <md-card-content>
-                                    <input type="text">
+                                    <label>Jumlah Layanan</label>
+                                    <input type="number" min="0" class="k-textbox" ng-disabled="!data.checked"
+                                        ng-model="data.jmlLayanan">
                                 </md-card-content>
-                           </md-card>
-                       </div> -->
-                    
-                   </div>
-                    <div class="grid_12">
-                        <div class="k-edit-buttons  k-state-default pull-right" style="margin-top:10px">
-                            <button class="k-button k-button-icontext k-primary k-grid-update"><span class="k-icon k-update"></span>Simpan</button>
-                            <button class="k-button  k-button-icontext" ng-click="batal()"><span class="k-icon k-cancel"></span>Batal</button>
+                            </md-card>
                         </div>
+
+                        <div class="grid_12" style="font-size: 20px;font-weight: bold;text-align: center;"
+                            ng-if="listLayanan.length === 0 && !isLoading">
+                            <p>Tidak ada Data</p>
+                        </div>
+
+
+                    </div>
+
+                    <div class="window-footer">
+                        <!-- <div class="k-edit-buttons  k-state-default pull-right" style="margin-top:10px"> -->
+                        <!-- <button class="k-button k-button-icontext k-primary k-grid-update"><span
+                                class="k-icon k-update"></span>Simpan</button> -->
+                        <md-button class="md-raised md-primary medium-button" style="width: 100px;"
+                            ng-click="tambahData()">
+                            <span style="margin-right: 5px;">Tambah</span>
+                            <i class="fa fa-plus"></i>
+                        </md-button>
+                        <md-button class="md-raised md-danger medium-button" ng-click="findData()"
+                            style="width: 100px;">
+                            <span style="margin-right: 5px;">Batal</span>
+                            <i class="fa fa-cancel"></i>
+                        </md-button>
+                        <!-- <button class="k-button  k-button-icontext" ng-click="batal()"><span
+                                class="k-icon k-cancel"></span>Batal</button> -->
+                        <!-- </div> -->
                     </div>
                 </div>
             </div>

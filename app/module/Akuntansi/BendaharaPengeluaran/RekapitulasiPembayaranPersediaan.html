@@ -88,7 +88,8 @@
     </div> -->
     <div ng-include=' "../app/module/Shared/TemplateLoading" '></div>
 
-    <div kendo-window="verifkasiRekanan" k-title="'Verifikasi Tagihan Rekanan'" k-width="1000" k-visible="false">
+    <div kendo-window="verifkasiRekanan" k-title="'Verifikasi Tagihan Rekanan'" k-width="1000" k-visible="false" k-on-open="win2visible = true" 
+    k-on-close="win2visible = false">
         <div class="panel panel-default container_12" style="padding: 0px 10px;">
             <md-card>
                 <md-card-content>

@@ -76,6 +76,10 @@
             {
                 "name": "Monitoring Fast & Slow Barang",
                 "link": "#/Logistik/monitoringStokRuanganRev"
+            },
+            {
+                "name": "Stok Penyesuaian",
+                "link": "#/Logistik/StokPenyesuaian"
             }
         ]
     },

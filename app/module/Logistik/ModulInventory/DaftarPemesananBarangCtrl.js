@@ -316,8 +316,12 @@ define(['initialize'], function (initialize) {
                         text: "export",
                         name: "Export detail",
                         template: '<button ng-click="exportExcel()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
-                    }
-
+                    },
+                        {
+                            text: "export",
+                            name: "Export detail",
+                            template: '<button ng-click="exportExcelDetail()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export Detail</button>'
+                        }
                 ],
                 pageable: true,
                 scrollable: true,
@@ -333,9 +337,9 @@ define(['initialize'], function (initialize) {
                         {
                             value: "No. SPPB"
                         },
-                        {
-                            value: "No. Usulan"
-                        },
+                        // {
+                        //     value: "No. Usulan"
+                        // },
                         {
                             value: "Tanggal"
                         },
@@ -364,9 +368,9 @@ define(['initialize'], function (initialize) {
                                 {
                                     value: data[i].noorder
                                 },
-                                {
-                                    value: data[i].nousulan
-                                },
+                                // {
+                                //     value: data[i].nousulan
+                                // },
                                 {
                                     value: data[i].tglorder
                                 },
@@ -388,21 +392,20 @@ define(['initialize'], function (initialize) {
                                 rowSplit: 1
                             },
                             columns: [{
-                                    autoWidth: true
-                                }, {
-                                    autoWidth: true
-                                }, {
-                                    autoWidth: true
-                                }, {
-                                    autoWidth: true
-                                }, {
-                                    autoWidth: true
-                                }, {
-                                    autoWidth: true
-                                }, {
-                                    autoWidth: true
-                                }
-                            ],
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }],
                             // Title of the sheet
                             title: "Daftar Pemesanan Barang / SPPB ",
                             // Rows of the sheet
@@ -416,6 +419,209 @@ define(['initialize'], function (initialize) {
                     });
                 });
             };
+
+            $scope.exportExcelDetail = function () {
+
+                let dataGridPB = $scope.dataGrid.data();
+                let dataTempSourceExportPB = [];
+
+
+                for (let i = 0; i < dataGridPB.length; i++) {
+
+                    for (let ii = 0; ii < dataGridPB[i].details.length; ii++) {
+                        let dataTemp2 = {
+                            noorder: dataGridPB[i].noorder,
+                            noUsulan: dataGridPB[i].nousulan,
+
+                            namarekanan: dataGridPB[i].namarekanan,
+                            jmlitem: dataGridPB[i].jmlitem,
+                            petugas: dataGridPB[i].petugas,
+                            tglorder: dataGridPB[i].tglorder,
+                            namaproduk: dataGridPB[i].details[ii].namaproduk,
+                            satuanstandar: dataGridPB[i].details[ii].satuanstandar,
+                            qtyproduk: dataGridPB[i].details[ii].qtyproduk,
+                            qtyterimalast: dataGridPB[i].details[ii].qtyterimalast,
+
+                            hargasatuan: dataGridPB[i].details[ii].hargasatuan,
+                            hargadiscount: dataGridPB[i].details[ii].hargadiscount,
+                            hargappn: dataGridPB[i].details[ii].hargappn,
+                            total: dataGridPB[i].details[ii].total,
+                            qtyprodukkonfirmasi: dataGridPB[i].details[ii].qtyprodukkonfirmasi
+                        }
+                        dataTempSourceExportPB.push(dataTemp2);
+                    }
+
+                }
+
+                $scope.dataSourceExportPB = new kendo.data.DataSource({
+                    data: dataTempSourceExportPB
+                });
+
+                console.log($scope.dataSourceExportPB);
+
+                var tempDataExport = [];
+                var rows = [{
+                    cells: [{
+                            value: "No. SPPB"
+                        },
+                        {
+                            value: "No. Usulan"
+                        },
+                        {
+                            value: "Tanngal"
+                        },
+                        {
+                            value: "Supplier"
+                        },
+                        {
+                            value: "Item"
+                        },
+                        {
+                            value: "Pembuat PO"
+                        },
+                        {
+                            value: "Nama Produk"
+                        },
+                        {
+                            value: "Satuan"
+                        },
+                        {
+                            value: "QTY"
+                        },
+                        {
+                            value: "Sudah Terima"
+                        },
+                        {
+                            value: "Harga Satuan"
+                        },
+                        {
+                            value: "Disc%"
+                        },
+                        {
+                            value: "PPN%"
+                        },
+                        {
+                            value: "Total"
+                        }
+                    ]
+                }];
+
+                tempDataExport = $scope.dataSourceExportPB;
+                tempDataExport.fetch(function () {
+                    var data = this.data();
+                    console.log(data);
+                    for (var i = 0; i < data.length; i++) {
+                        //push single row for every record
+                        rows.push({
+                            cells: [{
+                                    value: data[i].noorder
+                                },
+                                {
+                                    value: data[i].noUsulan
+                                },
+                                {
+                                    value: data[i].tglorder
+                                },
+                                {
+                                    value: data[i].namarekanan
+                                },
+                                {
+                                    value: data[i].jmlitem
+                                },
+                                {
+                                    value: data[i].petugas
+                                },
+                                {
+                                    value: data[i].namaproduk
+                                },
+                                {
+                                    value: data[i].satuanstandar
+                                },
+                                {
+                                    value: data[i].qtyproduk
+                                },
+                                {
+                                    value: data[i].qtyterimalast
+                                },
+                                {
+                                    value: data[i].hargasatuan
+                                },
+                                {
+                                    value: data[i].hargadiscount
+                                },
+                                {
+                                    value: data[i].hargappn
+                                },
+                                {
+                                    value: data[i].total
+                                }
+                            ]
+                        })
+                    }
+                    var workbook = new kendo.ooxml.Workbook({
+                        sheets: [{
+                            freezePane: {
+                                rowSplit: 1
+                            },
+                            columns: [
+                                // Column settings (width)
+                                {
+                                    autoWidth: true
+                                },
+                                {
+                                    autoWidth: true
+                                },
+                                {
+                                    autoWidth: true
+                                },
+                                {
+                                    autoWidth: true
+                                },
+                                {
+                                    autoWidth: true
+                                },
+                                {
+                                    autoWidth: true
+                                },
+                                {
+                                    autoWidth: true
+                                },
+                                {
+                                    autoWidth: true
+                                },
+                                {
+                                    autoWidth: true
+                                },
+                                {
+                                    autoWidth: true
+                                },
+                                {
+                                    autoWidth: true
+                                },
+                                {
+                                    autoWidth: true
+                                }, {
+                                    autoWidth: true
+                                }, {
+                                    autoWidth: true
+                                }, {
+                                    autoWidth: true
+                                }
+                            ],
+                            // Title of the sheet
+                            title: "Detail Daftar Pemesanan Barang",
+                            // Rows of the sheet
+                            rows: rows
+                        }]
+                    });
+                    //save the file as Excel file with extension xlsx
+                    kendo.saveAs({
+                        dataURI: workbook.toDataURL(),
+                        fileName: "Detail Daftar Pemesanan Barang.xlsx"
+                    });
+                });
+
+            }
 
             $scope.data2 = function (dataItem) {
                 return {
@@ -498,7 +704,6 @@ define(['initialize'], function (initialize) {
             }
 
             function itungUsia(tgl) {
-                debugger;
                 // var tg = parseInt(form.elements[0].value);
                 // var bl = parseInt(form.elements[1].value);
                 // var th = parseInt(form.elements[2].value);
