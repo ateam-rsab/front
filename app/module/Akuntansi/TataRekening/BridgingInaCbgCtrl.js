@@ -711,7 +711,7 @@ define(['initialize'], function(initialize) {
 					for (let i = 0; i < data.length; i++) {
 						var element = data[i];
 						if (element.dataresponse === 'SIGNATURE_NOT_MATCH') {
-							alert('Tanda Tangan Digital tidak sesuai! Silakan periksa kembali No. SEP yang kosong atau (-)!')
+							alert('Tanda Tangan Digital tidak sesuai! Data tidak lengkap!')
 							return
 						}
 					}			

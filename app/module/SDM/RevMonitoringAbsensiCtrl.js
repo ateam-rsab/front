@@ -67,7 +67,7 @@ define(['initialize'], function (initialize) {
                     }
                 };
                 $scope.isBebasValidasi = false;
-                if (ModelItem.getPegawai().nama === "Administrator" || $scope.isPegawaiSDM || $scope.pegawaiDayaGunaSDM == 633) {
+                if (ModelItem.getPegawai().nama === "Administrator" || $scope.isPegawaiSDM || $scope.pegawaiDayaGunaSDM == 249) {
                     $scope.isSingle = false;
                     var tempDataPegawai = res[4].data;
                     $scope.listPegawai = [];
@@ -886,12 +886,16 @@ define(['initialize'], function (initialize) {
             $scope.$watch('item.unitKerja', function (newVal, oldVal) {
                 if (!newVal) return;
                 if ((newVal && oldVal) && newVal.id == oldVal.id || $scope.isSingle === true) return;
-                // manageSarprasPhp.getDataTableMaster("monitoringabsensi/get-drop-down-subunit?id=" + ModelItem.getPegawai().id + "&idUnit=" + newVal.id + "&isMonitoring=" + $scope.isMonitoring).then(function(data) {
-                ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-drop-down-subunit?id=" + ModelItem.getPegawai().id + "&idUnit=" + newVal.id).then(function (data) {
-                    $scope.item.subUnitKerja = "";
-                    $scope.listSubUnitKerja = data.data.data;
-                });
-
+                $scope.item.subUnitKerja = "";
+                if (ModelItem.getPegawai().nama === "Administrator" || $scope.isPegawaiSDM || $scope.pegawaiDayaGunaSDM == 249) {
+                    ManageSdm.getOrderList("service/list-generic/?view=SubUnitKerjaPegawai&select=id,name&criteria=statusEnabled,unitKerjaId&values=true," + newVal.id + "&order=name:asc").then(function (dat) {
+                        $scope.listSubUnitKerja = dat.data;
+                    });
+                } else {
+                    ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-drop-down-subunit?id=" + ModelItem.getPegawai().id + "&idUnit=" + newVal.id).then(function (data) {
+                        $scope.listSubUnitKerja = data.data.data;
+                    });
+                }
             });
             $scope.$watch('item.subUnitKerja', function (newVal, oldVal) {
                 if (oldVal != undefined) {
@@ -964,7 +968,7 @@ define(['initialize'], function (initialize) {
 
             function resetAndCheckListPegawai() {
                 ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true").then(function (data) {
-                    if (ModelItem.getPegawai().nama === "Administrator" || $scope.isPegawaiSDM || $scope.pegawaiDayaGunaSDM == 633) {
+                    if (ModelItem.getPegawai().nama === "Administrator" || $scope.isPegawaiSDM || $scope.pegawaiDayaGunaSDM == 249) {
                         $scope.isSingle = false;
                         $scope.listPegawai = data.data;
                         $scope.isBebasValidasi = true;
