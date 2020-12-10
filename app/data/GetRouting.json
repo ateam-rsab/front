@@ -47433,6 +47433,10 @@
         "define": "LoginService"
       },
       {
+        "module": "PhpService",
+        "define": "PhpService"
+      },
+      {
         "module": "LogistikServicePhp",
         "define": "LogistikServicePhp"
       }
