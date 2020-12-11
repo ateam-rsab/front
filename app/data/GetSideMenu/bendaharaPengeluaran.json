@@ -8,6 +8,10 @@
         "link": "#/DaftarTagihanSupplier"
     },
     {
+        "name": "Pelunasan Pembayaran Umum",
+        "link": "#/PelunasanPembayaranUmum"
+    },
+    {
         "name": "Rekapitulasi Pembayaran",
         "link": "#/RekapitulasiPembayaran"
     },
@@ -41,10 +45,6 @@
             {
                 "name": "Pembayaran Umum",
                 "link": "#/PembayaranUmum"
-            },
-            {
-                "name": "Pelunasan Pembayaran Umum",
-                "link": "#/PelunasanPembayaranUmum"
             }
         ]
     },
