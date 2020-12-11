@@ -1215,7 +1215,7 @@ define(['initialize'], function (initialize) {
                 //     mataanggaran = $scope.item.mataAnggaran.norec
                 // }
 
-                // var asalproduk = null;
+                var asalproduk = null;
 
                 // if (!$scope.item.asalproduk) {
                 //     asalproduk = parseFloat($scope.item.asalproduk.id)
