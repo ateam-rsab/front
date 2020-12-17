@@ -14,7 +14,7 @@ define(['initialize'], function (initialize) {
 
             let acTtdSk = $('#autoCompleteAtasanTtd').data("kendoAutoComplete");
             let acJabatan = $('#autoCompleteAtasanJabatan').data("kendoAutoComplete");
-            
+
             $scope.isSimpan = true;
             $scope.isAtasan = false;
             $scope.isDirut = false;
@@ -109,7 +109,7 @@ define(['initialize'], function (initialize) {
                                 statusPerkawinan: el.statusPerkawinan
                             }
                             $scope.ListStatusKawin.push(dataTemp);
-                        }                        
+                        }
                     });
                     $scope.ListKategoriPegawai = res[5].data.splice(1);
                     $scope.ListJenisKelamin = res[6].data.splice(1);
@@ -167,14 +167,14 @@ define(['initialize'], function (initialize) {
                         filter: "contains",
                         dataSource: $scope.listPegawaiRiwayatAuto
                     });
-                    
+
                     $scope.ListJabatanAuto = [];
                     for (let i = 0; $scope.ListJabatan.length > i; i++) {
                         $scope.ListJabatanAuto.push($scope.ListJabatan[i].namaJabatan);
                     }
                     $("#autoCompleteAtasanJabatan").kendoAutoComplete({
                         filter: "contains",
-                        dataSource:$scope.ListJabatanAuto
+                        dataSource: $scope.ListJabatanAuto
                     });
                     tempDataKelompokJabatan.forEach(function (el) {
                         if (el.detailKelompokJabatan !== '-') {
@@ -329,10 +329,10 @@ define(['initialize'], function (initialize) {
                         text: "Buat Jabatan Internal Baru",
                         template: '<button ng-click="createNewJabatanInternal()" id="btnCreateNewJabatan" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah Jabatan</button>'
                     },
-                    { 
-                        name: "pengaturanBawahan", 
-                        text: "Pengaturan Bawahan", 
-                        template: '<button ng-click="pengaturanBawahan()" class="k-button k-button-icontext"><span class="k-icon k-i-gear"></span>Pengaturan Bawahan</button>' 
+                    {
+                        name: "pengaturanBawahan",
+                        text: "Pengaturan Bawahan",
+                        template: '<button ng-click="pengaturanBawahan()" class="k-button k-button-icontext"><span class="k-icon k-i-gear"></span>Pengaturan Bawahan</button>'
                     }],
                     pageable: true,
                     // scrollable: true,
@@ -675,8 +675,8 @@ define(['initialize'], function (initialize) {
                 if (!validateJabatanUtama()) {
                     if (!newModel[0].isPrimary) {
                         toastr.warning('Harap Pilih Satu Jabatan sebagai Jabatan Utama')
-                    $scope.enableBtnSimpanJabatanInternal = true;
-                    return
+                        $scope.enableBtnSimpanJabatanInternal = true;
+                        return
                     }
                 }
 
@@ -735,7 +735,7 @@ define(['initialize'], function (initialize) {
                     $scope.loadDataGridJabatanInternal();
                     $scope.enableBtnSimpanJabatanInternal = true;
                     $scope.loadDataRiwayatJabatan();
-                }, (error) => { 
+                }, (error) => {
                     $scope.enableBtnSimpanJabatanInternal = true;
                 });
             }
@@ -934,18 +934,17 @@ define(['initialize'], function (initialize) {
                         month = date[1];
                         year = date[2];
                     }
-                    periode = year + "-" + month + "-" + day;
-                    // FindPegawai.getPensiun(newVal[0], periode).then(function(res) {
-                    ManageSdmNew.getListData("pegawai/get-tgl-pensiun/" + periode + "/" + newVal[0]).then(function (res) {
-                        $scope.item.pensiun = res.data.data.usiaPensiun;
-                        $scope.item.tglPensiun = dateHelper.formatDate(res.data.data.tglPensiun, "DD-MM-YYYY");
-                        $scope.item.tglkeluar = dateHelper.formatDate(res.data.data.tglPensiun, "DD-MM-YYYY");
-                        // if($scope.item.tglKeluar == null || $scope.item.tglKeluar == undefined) {
-                        //     $scope.item.tglKeluar = dateHelper.toDateFromTimestamp($scope.item.tglPensiun);
-                        //     $scope.item.tglPensiun = dateHelper.toDateFromTimestamp($scope.item.tglPensiun);
-                        // }
-                        getModel($scope.item);
-                    })
+
+                    // perhitungan tgl pensiun hanya untuk PNS
+                    if ($scope.item.kategoryPegawai.id == 1) {
+                        periode = year + "-" + month + "-" + day;
+                        ManageSdmNew.getListData("pegawai/get-tgl-pensiun/" + periode + "/" + newVal[0]).then(function (res) {
+                            $scope.item.pensiun = res.data.data.usiaPensiun;
+                            $scope.item.tglPensiun = dateHelper.formatDate(res.data.data.tglPensiun, "DD-MM-YYYY");
+                            $scope.item.tglkeluar = dateHelper.formatDate(res.data.data.tglPensiun, "DD-MM-YYYY");
+                            getModel($scope.item);
+                        })
+                    }
                 }
             });
 
@@ -1104,7 +1103,7 @@ define(['initialize'], function (initialize) {
                     $scope.tglSK = dateHelper.toTimeStamp($scope.item.tglSK);
                     if (isString($scope.item.tglSK)) {
                         var dateDetail = $scope.item.tglSK.split("-");
-                        var newDate=dateDetail[1]+"/"+dateDetail[0]+"/"+dateDetail[2];
+                        var newDate = dateDetail[1] + "/" + dateDetail[0] + "/" + dateDetail[2];
                         $scope.tglSK = new Date(newDate).getTime();
                     }
                 }
@@ -1548,7 +1547,7 @@ define(['initialize'], function (initialize) {
 
             $scope.createNewRiwayatJabatan = function () {
                 $scope.popUpRiwayat.center().open();
-                
+
                 $scope.item.noSK = '';
                 $scope.item.tglSK = '';
                 $scope.item.jenisJabatan = '';
@@ -1562,8 +1561,8 @@ define(['initialize'], function (initialize) {
             };
 
             function changeRowJabatan(e) {
-                
-                
+
+
                 clearField();
                 e.preventDefault();
                 var grid = this;
@@ -1582,7 +1581,7 @@ define(['initialize'], function (initialize) {
                 // $scope.item.atasanTtdSK = { id: dataItem.idPgwTtd, namaLengkap:dataItem.namaLengkapTtd };
                 $scope.item.atasanTtdSK = dataItem.ttdPegawaiSk;
                 $scope.item.keterangan = dataItem.keterangan;
-                
+
                 // $scope.item.jabatanTtd = { id:dataItem.idJabatanTtd, namaJabatan:dataItem.namaJabatanTtd };
                 $scope.item.jabatanTtd = dataItem.ttdJabatanSk;
                 $scope.popUpRiwayat.center().open();
@@ -1798,7 +1797,7 @@ define(['initialize'], function (initialize) {
                     "tglLulus": dataItem.tglLulus,
                     "nilaiIPK": dataItem.nilaiIPK,
                     "noIjazah": dataItem.noIjazah,
-                    "tglIjazah": dataItem.tglIjazah 
+                    "tglIjazah": dataItem.tglIjazah
                 }
                 ManageSdmNew.saveData(dataObjPost, 'pegawai/save-riwayat-pendidikan').then(res => {
                     // console.log(res);
@@ -1821,7 +1820,7 @@ define(['initialize'], function (initialize) {
             };
 
             $scope.savePendidikan = function () {
-                if(!$scope.item.riwayatPendidikan) {
+                if (!$scope.item.riwayatPendidikan) {
                     toastr.warning('Harap Masukkan Pendidikan');
                     return;
                 }

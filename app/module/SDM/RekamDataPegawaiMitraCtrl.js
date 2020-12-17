@@ -977,18 +977,16 @@ define(['initialize'], function (initialize) {
                         month = date[1];
                         year = date[2];
                     }
-                    periode = year + "-" + month + "-" + day;
-                    // FindPegawai.getPensiun(newVal[0], periode).then(function(res) {
-                    // ManageSdmNew.getListData("pegawai/get-tgl-pensiun/" + periode + "/" + newVal[0]).then(function (res) {
-                    //     $scope.item.pensiun = res.data.data.usiaPensiun;
-                    //     $scope.item.tglPensiun = dateHelper.formatDate(res.data.data.tglPensiun, "DD-MM-YYYY");
-                    //     $scope.item.tglkeluar = dateHelper.formatDate(res.data.data.tglPensiun, "DD-MM-YYYY");
-                    //     if ($scope.item.tglKeluar == null || $scope.item.tglKeluar == undefined) {
-                    //         $scope.item.tglKeluar = dateHelper.toDateFromTimestamp($scope.item.tglPensiun);
-                    //         $scope.item.tglPensiun = dateHelper.toDateFromTimestamp($scope.item.tglPensiun);
-                    //     }
-                    //     getModel($scope.item);
-                    // })
+
+                    // if ($scope.item.kategoryPegawai.id == 1) {
+                    //     periode = year + "-" + month + "-" + day;
+                    //     ManageSdmNew.getListData("pegawai/get-tgl-pensiun/" + periode + "/" + newVal[0]).then(function (res) {
+                    //         $scope.item.pensiun = res.data.data.usiaPensiun;
+                    //         $scope.item.tglPensiun = dateHelper.formatDate(res.data.data.tglPensiun, "DD-MM-YYYY");
+                    //         $scope.item.tglkeluar = dateHelper.formatDate(res.data.data.tglPensiun, "DD-MM-YYYY");
+                    //         getModel($scope.item);
+                    //     })
+                    // }
                 }
             });
 
