@@ -37568,6 +37568,10 @@
         "define": "LoginService"
       },
       {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
         "module": "SarprasService",
         "define": "SarprasService"
       }

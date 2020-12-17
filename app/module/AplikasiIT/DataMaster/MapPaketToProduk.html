@@ -1,33 +1,56 @@
 <div ng-controller="MapPaketToProdukCtrl">
 	<div ng-show="dataVOloaded">
 		<c-panel item="item" header="'Map Paket To Produk'" disabled>
-
-			<!-- paket -->
+			<!-- kelompok produk -->
 			<div class="grid_6">
 				<div class="grid_12">
-					<label c-label item="item" c-label-text="paket"></label>
+					<label c-label item="item" c-label-text="kelompokProduk"></label>
 				</div>
 				<div class="clear"></div>
 
 				<div class="grid_12">
-					<input style="width: 100%;" kendo-combo-box k-ng-model="item.paket"
-						k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'"
-						k-auto-bind="false" k-data-source="listpaket" />
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.kelompokproduk"
+						k-data-text-field="'kelompokProduk'" k-data-value-field="'id'" k-filter="'contains'"
+						k-auto-bind="false" k-data-source="listkelompokproduk" ng-disabled="isEdit" />
 				</div>
 			</div>
-
-			<!-- paketId -->
-			<div class="grid_6">
+			<!-- satuan -->
+			<!-- <div class="grid_6">
 				<div class="grid_12">
-					<label c-label item="item" c-label-text="paketId"></label>
+					<label c-label item="item" c-label-text="satuan"></label>
 				</div>
 				<div class="clear"></div>
 
 				<div class="grid_12">
-					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.paketId" />
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.satuan"
+						k-data-text-field="'satuanStandar'" k-data-value-field="'id'" k-filter="'contains'"
+						k-auto-bind="false" k-data-source="listsatuan" />
+				</div>
+			</div> -->
+			<!-- jenis produk -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="jenisProduk"></label>
+				</div>
+				<div class="clear"></div>
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisproduk"
+						k-data-text-field="'jenisProduk'" k-data-value-field="'id'" k-filter="'contains'"
+						k-auto-bind="false" k-data-source="listjenisproduk" ng-disabled="isEdit" />
 				</div>
 			</div>
-
+			<!-- detail jenis produk -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="detailJenisProduk"></label>
+				</div>
+				<div class="clear"></div>
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.detailjenisproduk"
+						k-data-text-field="'detailJenisProduk'" k-data-value-field="'id'" k-filter="'contains'"
+						k-auto-bind="false" k-data-source="listdetailjenisproduk" ng-disabled="isEdit" />
+				</div>
+			</div>
 			<!-- produk -->
 			<div class="grid_6">
 				<div class="grid_12">
@@ -37,13 +60,48 @@
 
 				<div class="grid_12">
 					<input style="width: 100%;" kendo-combo-box k-ng-model="item.produk"
-						k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'"
-						k-auto-bind="false" k-data-source="listproduk" />
+						k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-filter="'contains'"
+						k-auto-bind="false" k-data-source="listproduk" ng-disabled="isEdit" />
 				</div>
 			</div>
-
-			<!-- produkId -->
+			<!-- jenis paket -->
 			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="jenisPaket"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenispaket"
+						k-data-text-field="'jenisPaket'" k-data-value-field="'id'" k-filter="'contains'"
+						k-auto-bind="false" k-data-source="listjenispaket" />
+				</div>
+			</div>
+			<!-- paket -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="paket"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.paket" k-data-text-field="'namaPaket'"
+						k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listpaket" />
+				</div>
+			</div>
+			<!-- paketId -->
+			<!-- <div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="paketId"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.paketId" />
+				</div>
+			</div> -->
+			<!-- produkId -->
+			<!-- <div class="grid_6">
 				<div class="grid_12">
 					<label c-label item="item" c-label-text="produkId"></label>
 				</div>
@@ -52,10 +110,9 @@
 				<div class="grid_12">
 					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.produkId" />
 				</div>
-			</div>
-
+			</div> -->
 			<!-- qtyProduk -->
-			<div class="grid_6">
+			<!-- <div class="grid_6">
 				<div class="grid_12">
 					<label c-label item="item" c-label-text="qtyProduk"></label>
 				</div>
@@ -64,24 +121,10 @@
 				<div class="grid_12">
 					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.qtyProduk" />
 				</div>
-			</div>
-
-			<!-- satuan -->
-			<div class="grid_6">
-				<div class="grid_12">
-					<label c-label item="item" c-label-text="satuan"></label>
-				</div>
-				<div class="clear"></div>
-
-				<div class="grid_12">
-					<input style="width: 100%;" kendo-combo-box k-ng-model="item.satuan"
-						k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'"
-						k-auto-bind="false" k-data-source="listsatuan" />
-				</div>
-			</div>
+			</div> -->
 
 			<!-- satuanId -->
-			<div class="grid_6">
+			<!-- <div class="grid_6">
 				<div class="grid_12">
 					<label c-label item="item" c-label-text="satuanId"></label>
 				</div>
@@ -90,10 +133,9 @@
 				<div class="grid_12">
 					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.satuanId" />
 				</div>
-			</div>
-
+			</div> -->
 			<!-- reportDisplay -->
-			<div class="grid_6">
+			<!-- <div class="grid_6">
 				<div class="grid_12">
 					<label c-label item="item" c-label-text="reportDisplay"></label>
 				</div>
@@ -102,10 +144,9 @@
 				<div class="grid_12">
 					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
 				</div>
-			</div>
-
+			</div> -->
 			<!-- kodeExternal -->
-			<div class="grid_6">
+			<!-- <div class="grid_6">
 				<div class="grid_12">
 					<label c-label item="item" c-label-text="kodeExternal"></label>
 				</div>
@@ -114,10 +155,9 @@
 				<div class="grid_12">
 					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
 				</div>
-			</div>
-
+			</div> -->
 			<!-- namaExternal -->
-			<div class="grid_6">
+			<!-- <div class="grid_6">
 				<div class="grid_12">
 					<label c-label item="item" c-label-text="namaExternal"></label>
 				</div>
@@ -126,15 +166,13 @@
 				<div class="grid_12">
 					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
 				</div>
-			</div>
-
+			</div> -->
 			<!-- MapPaketToProduk -->
 			<div class="grid_12">
 				<div class="grid_12 headerBox">
 					<p>MapPaketToProduk</p>
 				</div>
 				<div class="clear"></div>
-
 				<!-- grid table -->
 				<div class="grid_12 borderBox">
 					<kendo-grid options="mainGridOptions" k-data-source="dataSource" k-ng-model="current"
@@ -143,13 +181,13 @@
 				<div class="clear"></div>
 			</div>
 			<div class="clear"></div>
-
-
-
 		</c-panel>
-
 		<div class="grid_12">
-			<div class="grid_8"></div>
+			<div class="grid_8" ng-hide=showEdit></div>
+			<div class="grid_6" ng-show=showEdit></div>
+			<div class="grid_2" ng-show="showEdit">
+				<button class="c-button" ng-click="activate()">Aktifkan/Nonaktifkan</button>
+			</div>
 			<div class="grid_2" ng-show="showEdit">
 				<button class="c-button" ng-click="edit()">Edit</button>
 			</div>
@@ -159,6 +197,9 @@
 			<div class="grid_2">
 				<button class="c-button" ng-click="batal()">Batal</button>
 			</div>
+		</div>
+		<div class="grid_12" style="margin-top:60px">
+			<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
 		</div>
 	</div>
 </div>

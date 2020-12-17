@@ -318,7 +318,7 @@ define(['initialize'], function (initialize) {
 					});
 			}
 			function categoryDropDownEditorEselon(container, options) {
-				$('<input required name="' + options.field + '"/>')
+				$('<input name="' + options.field + '"/>')
 					.appendTo(container)
 					.kendoDropDownList({
 						dataTextField: "eselon",
