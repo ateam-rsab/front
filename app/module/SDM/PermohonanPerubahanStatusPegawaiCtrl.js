@@ -554,13 +554,11 @@ define(['initialize'], function (initialize) {
                         "isTangguhkan": false
                     }
 
-                    if (DateHelper.formatDate(twoYearAgo, "YYYY") !== "2018") {
-                        ManageSdmNew.saveData(CB2, "sdm/save-jatah-cuti-dan-izin-pegawai").then(function (e) {
-                            //unused function subroutine
-                        }, function (err) {
-                            throw err;
-                        })
-                    }
+                    ManageSdmNew.saveData(CB2, "sdm/save-jatah-cuti-dan-izin-pegawai").then(function (e) {
+                        //unused function subroutine
+                    }, function (err) {
+                        throw err;
+                    })
 
                     // $scope.item.dataCutiN = dat.data.data.dataCutiN;
                     // var data = {
