@@ -335,13 +335,27 @@
 
         <div class="filters">
             <span ng-repeat="data in listFilters" ng-click="filterPelayanan(data)">{{data}}</span>
+
+            <md-button class="md-raised md-primary medium-button" ng-click="filterPelayanan('')">
+                <span>Reset</span>
+            </md-button>
         </div>
 
         <div class="grid_12">
             <div class="grid_4">
+                <label c-label item="item">Kategori</label>
+                <input kendo-combo-box k-ng-model="item.kategori" k-data-text-field="'jenisperiksa'"
+                    k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKategori" k-on-change="changeBaseUrlFiltering(true, item.kategori.id)"/>
+            </div>
+            <div class="grid_4">
+                <label c-label item="item">Paket</label>
+                <input kendo-combo-box k-ng-model="item.paket" k-data-text-field="'namapaket'"
+                    k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPaket" k-on-change="changeBaseUrlFiltering(false, item.paket.id)"/>
+            </div>
+            <div class="grid_3" style="margin-top: 16px;">
                 <input c-text-box type="input" filter="" class="k-textbox" ng-model="filterContain" />
             </div>
-            <div class="grid_1" style="margin-top: 6px;">
+            <div class="grid_1" style="margin-top: 20px;">
                 <md-button class="md-raised md-primary medium-button" ng-click="filterPelayanan(selectedFilter)">
                     <span style="margin-right: 5px;">Cari</span>
                     <i class="fa fa-search"></i>
@@ -354,6 +368,7 @@
             <div layout="row" layout-sm="column" layout-align="space-around" ng-if="isLoading">
                 <md-progress-circular md-mode="indeterminate"></md-progress-circular>
             </div>
+
             <div class="grid_4" ng-repeat="data in listLayanan track by $index" ng-if="!isLoading">
                 <md-card style="height: 200px;">
                     <md-card-title>
@@ -369,11 +384,11 @@
                     <md-card-content>
                         <label style="display: block; margin-bottom: 10px;">
                             <input type="checkbox" ng-checked="data.checkedPemeriksaanLuar"
-                                   ng-click="updateDataPemeriksaanLuar(data, $index)" ng-disabled="!data.checked"/>
+                                ng-click="updateDataPemeriksaanLuar(data, $index)" ng-disabled="!data.checked" />
                             Pemeriksaan Luar
-                          </label>
+                        </label>
                         <label>Jumlah Layanan</label>
-                        <input type="number" min="0" class="k-textbox" ng-disabled="!data.checked"
+                        <input type="number" min="1" class="k-textbox" ng-disabled="!data.checked"
                             ng-model="data.jmlLayanan">
                     </md-card-content>
                 </md-card>

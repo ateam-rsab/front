@@ -100,6 +100,11 @@ define(['Configuration'], function(configuration) {
                 return r.get({
                     url: configuration.baseApiUrlData + 'pemusnahan-barang/list-stok-detail?kelProdukId=' + idKelProduk + '&jenProdukId=' + idJenProduk + '&produkId=' + idProduk
                 });
+            },
+            getDataPaketLayanan: function() {
+                return r.get({
+                    url: configuration.baseUrlAction + 'service/list-generic/?view=Paket&select=id,namaPaket&criteria=statusEnabled,jenisPaketId&values=true,4&order=namaPaket:asc'
+                })
             }
         };
     }]);

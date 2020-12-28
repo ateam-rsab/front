@@ -687,6 +687,8 @@ define(['initialize'], function (initialize) {
             $scope.klikGrid = function (dataSelected) {
                 var dataProduk = [];
                 //no:no,
+                $scope.isConsisDisabled = false;
+
                 $scope.item.no = dataSelected.no
                 $scope.item.rke = dataSelected.rke
                 manageLogistikPhp.getDataTableTransaksi("farmasi/get-jenis-obat?jrid=" + dataSelected.jenisobatfk, true).then(function (JR) {
@@ -929,21 +931,48 @@ define(['initialize'], function (initialize) {
                 })
             }
 
-            $scope.BridgingMiniR45 = function () {
+            $scope.promptMiniR45 = () => {
                 if ($scope.dataSelected == undefined) {
                     alert("Pilih Resep terlebih dahulu!!")
-                    return
-                } //
-                if ($scope.dataSelected.jeniskemasan != 'Racikan/Puyer') {
-                    alert("Harus Racikan puyer!!")
-                    return
-                }
-                var objSave = {
-                    strukresep: $scope.dataSelected.norec_resep,
-                    rke: $scope.dataSelected.rke
+                    return;
                 }
 
-                manageLogistikPhp.postpost("bridging/save-mini-r45-rev-1", objSave).then(function (e) {
+                if ($scope.dataSelected.jeniskemasan != 'Racikan') {
+                    alert("Harus Racikan puyer!!");
+                    return;
+                }
+
+                var confirm = $mdDialog.prompt()
+                    .title('Harap masukkan jumlah bungkus Mini R-45?')
+                    .initialValue('0')
+                    .ok('Ya');
+
+                $mdDialog.show(confirm).then(function (result) {
+                    if (result === "0" || !result) {
+                        toastr.warning("Harap isi Jumlah Bungkus", "Perhatian");
+                        return;
+                    }
+                    $scope.jmlBungkusMiniR45 = result;
+                    console.log(result);
+                    $scope.BridgingMiniR45();
+                }, function () {
+
+                });
+            }
+
+            $scope.BridgingMiniR45 = function () {
+                // if ($scope.dataSelected == undefined) {
+                //     alert("Pilih Resep terlebih dahulu!!")
+                //     return
+                // } 
+
+                var objSave = {
+                    strukresep: $scope.norecObat ? $scope.norecObat : $scope.dataSelected.norec_resep,
+                    rke: $scope.dataSelected.rke,
+                    bungkus: parseInt($scope.jmlBungkusMiniR45)
+                }
+
+                manageLogistikPhp.postpost("bridging/save-mini-r45-obat-bebas", objSave).then(function (e) {
 
                 })
             }
@@ -1040,15 +1069,15 @@ define(['initialize'], function (initialize) {
                         .ok('Ya')
                         .cancel('Batal');
 
-                    // if (isConfirm) {
-                    //     $mdDialog.show(confirmDialog).then(function () {
-                    //         // yes
-                    //         $scope.BridgingConsisD();
-                    //     }, function () {
-                    //         console.info('Cancel');
-                    //     });
-                    // }
-                    $scope.BridgingConsisD();
+                    if (isConfirm) {
+                        $mdDialog.show(confirmDialog).then(function () {
+                            // yes
+                            $scope.BridgingConsisD();
+                        }, function () {
+                            console.info('Cancel');
+                        });
+                    }
+                    // $scope.BridgingConsisD();
                     // BaruLagi()
                     // if (noOrder == 'EditResep') {
                     //     var objDelete = {norec:norecResep}

@@ -240,6 +240,10 @@
           {
             "name": "Master Supplier",
             "link": "#/Rekanan2"
+          },
+          {
+            "name": "Master Produk",
+            "link": "#/Produk2"
           }
         ]
       },

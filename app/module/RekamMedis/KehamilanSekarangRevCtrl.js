@@ -169,12 +169,12 @@ define(['initialize'], function(initialize) {
                             }else if($scope.dataKehilanSekarang[i].objectfk == "KHS-000019"){
                                 $scope.norecTglPartus = $scope.dataKehilanSekarang[i].norec
                                  var tgl =  new Date($scope.dataKehilanSekarang[i].nilai)
-                    			$scope.item.tglPartus = moment(tgl).format('YYYY-MM-DD')
+                    			$scope.item.tglPartus = tgl; //moment(tgl).format('YYYY-MM-DD')
                               
                             }else if($scope.dataKehilanSekarang[i].objectfk == "KHS-000020"){
                                 $scope.norecJamPartus = $scope.dataKehilanSekarang[i].norec
                                 var tgl =  new Date($scope.dataKehilanSekarang[i].nilai)
-                    			$scope.item.jamPartus  = moment(tgl).format('HH-mm')
+                    			$scope.item.jamPartus  = $scope.dataKehilanSekarang[i].nilai // moment(tgl).format('HH-mm')
                             }else if($scope.dataKehilanSekarang[i].objectfk == "KHS-000021"){
                                 $scope.norecLetakPartus = $scope.dataKehilanSekarang[i].norec
                                 $scope.item.letakPartus = $scope.dataKehilanSekarang[i].nilai 
@@ -767,10 +767,10 @@ define(['initialize'], function(initialize) {
 				}
 
 				console.log(jsonSave);
-				// ManagePhp.saveData(jsonSave).then(function(e) {
-                //        ManagePhp.postLogging('Pengkajian Keperawatan', 'Norec Antrian Pasien Diperiksa',$state.params.noRec, 'Kehamilan Sekarang').then(function (res) {
-                //          })
-				// });
+				ManagePhp.saveData(jsonSave).then(function(e) {
+                       ManagePhp.postLogging('Pengkajian Keperawatan', 'Norec Antrian Pasien Diperiksa',$state.params.noRec, 'Kehamilan Sekarang').then(function (res) {
+                         })
+				});
 			}
 			$scope.Back= function(){
 				$scope.item = {}

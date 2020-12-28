@@ -57,6 +57,61 @@
 	}
 </style>
 
+<div class="panel panel-default container_12">
+	<md-toolbar md-scroll-shrink class="shadow">
+		<div class="md-toolbar-tools">Informasi Jadwal Dokter</div>
+	</md-toolbar>
+	<!-- <div class="panel-heading" c-translate>Informasi Jadwal Dokter</div> -->
+	<div class="panel-body">
+		<div class="grid_12">
+			<div class="grid_3">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Dokter"></label>
+					<div class="grid_12">
+						<input kendo-combo-box k-ng-model="item.dokter" k-data-text-field="'namalengkap'"
+							k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
+							k-data-source="listdokter" />
+					</div>
+				</div>
+			</div>
+			<div class="grid_3">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Ruangan"></label>
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan"
+						k-data-text-field="'namaruangan'" k-data-value-field="'id'" k-filter="'contains'"
+						k-auto-bind="false" k-data-source="ListRuangan" />
+				</div>
+			</div>
+			<div class="grid_1">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Bulan"></label>
+					<div class="grid_12">
+						<!-- k-options="monthSelectorOptions"  -->
+						<input kendo-date-picker k-options="monthSelectorOptions" k-ng-model="item.bulan"
+							k-format="'MMMM yyyy'" style="width: 100%;" />
+					</div>
+				</div>
+			</div>
+			<div class="grid_1" style="margin-top: 23px;">
+				<md-button class="md-raised md-primary medium-button" ng-click="SearchData()">
+					<span style="margin-right: 5px;">Cari</span>
+					<i class="fa fa-search"></i>
+				</md-button>
+			</div>
+		</div>
+
+
+		<div class="grid_12" style="margin-top: 15px;">
+			<div class="grid_12">
+				<div kendo-scheduler="scheduler" k-options="schedulerOptions"></div>
+			</div>
+		</div>
+	</div>
+	<div class="grid_12" style="margin-top:60px">
+		<div ng-include='" ../app/module/Shared/TemplateLoading" '></div>
+	</div>
+</div>
+
 <!-- <div class="panel panel-default container_12">
 	<md-toolbar md-scroll-shrink class="shadow">
 		<div class="md-toolbar-tools">Informasi Jadwal Dokter</div>
@@ -79,6 +134,16 @@
 					k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListRuangan" />
 			</div>
 		</div>
+
+		<div class="grid_3">
+			<div class="grid_12">
+				<label c-label item="item" c-label-text="Bulan"></label>
+				<div class="grid_12">
+					<input kendo-date-picker k-options="monthSelectorOptions" k-ng-model="item.bulan"
+						k-format="'MMMM yyyy'" />
+				</div>
+			</div>
+		</div>
 		<div class="grid_1" style="margin-top: 23px;">
 			<md-button class="md-raised md-primary medium-button" ng-click="SearchData()">
 				<span style="margin-right: 5px;">Cari</span>
@@ -87,8 +152,14 @@
 
 		</div>
 	</div>
+
+	<div class="grid_12">
+		<div id="kGrid" kendo-grid k-data-source="dataGrid" k-selectable="'row'" k-options="opsiGridSip"
+			k-scrollable="'true'" k-pageable="'true'" k-sortable="'true'" k-ng-model="dataSelected"></div>
+	</div>
 </div> -->
-<div class="grid_12" ng-if="!hideFiltering">
+
+<!-- <div class="grid_12">
 	<div class="grid_3">
 		<div class="grid_12">
 			<label c-label item="item" c-label-text="Dokter"></label>
@@ -105,15 +176,23 @@
 				k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListRuangan" />
 		</div>
 	</div>
+	<div class="grid_1">
+		<div class="grid_12">
+			<label c-label item="item" c-label-text="Bulan"></label>
+			<div class="grid_12">
+				<input kendo-date-picker k-options="monthSelectorOptions" k-ng-model="item.bulan" k-format="'MMMM yyyy'"
+					style="width: 100%;" />
+			</div>
+		</div>
+	</div>
 	<div class="grid_1" style="margin-top: 23px;">
 		<md-button class="md-raised md-primary medium-button" ng-click="SearchData()">
 			<span style="margin-right: 5px;">Cari</span>
 			<i class="fa fa-search"></i>
 		</md-button>
-		<!-- <button class="c-button" ng-click="SearchData()">Cari</button> -->
 	</div>
-</div>
-<div class="grid_12">
+</div> -->
+<!-- <div class="grid_12">
 	<div class="jadwal-container">
 
 		<div class="card-day" ng-class="{'active':today === 'Senin'}">
@@ -154,7 +233,8 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="item in dataJadwalDokter.selasa" ng-class="{'inactive':item.status === 'Tdk Aktif'}">
+						<tr ng-repeat="item in dataJadwalDokter.selasa"
+							ng-class="{'inactive':item.status === 'Tdk Aktif'}">
 							<td>{{item.namaruangan}}</td>
 							<td>{{item.namalengkap}}</td>
 							<td>{{item.jampraktek}}</td>
@@ -178,7 +258,8 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="item in dataJadwalDokter.rabu" ng-class="{'inactive':item.status === 'Tdk Aktif'}">
+						<tr ng-repeat="item in dataJadwalDokter.rabu"
+							ng-class="{'inactive':item.status === 'Tdk Aktif'}">
 							<td>{{item.namaruangan}}</td>
 							<td>{{item.namalengkap}}</td>
 							<td>{{item.jampraktek}}</td>
@@ -202,7 +283,8 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="item in dataJadwalDokter.kamis" ng-class="{'inactive':item.status === 'Tdk Aktif'}">
+						<tr ng-repeat="item in dataJadwalDokter.kamis"
+							ng-class="{'inactive':item.status === 'Tdk Aktif'}">
 							<td>{{item.namaruangan}}</td>
 							<td>{{item.namalengkap}}</td>
 							<td>{{item.jampraktek}}</td>
@@ -226,7 +308,8 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="item in dataJadwalDokter.jumat" ng-class="{'inactive':item.status === 'Tdk Aktif'}">
+						<tr ng-repeat="item in dataJadwalDokter.jumat"
+							ng-class="{'inactive':item.status === 'Tdk Aktif'}">
 							<td>{{item.namaruangan}}</td>
 							<td>{{item.namalengkap}}</td>
 							<td>{{item.jampraktek}}</td>
@@ -250,7 +333,8 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="item in dataJadwalDokter.sabtu" ng-class="{'inactive':item.status === 'Tdk Aktif'}">
+						<tr ng-repeat="item in dataJadwalDokter.sabtu"
+							ng-class="{'inactive':item.status === 'Tdk Aktif'}">
 							<td>{{item.namaruangan}}</td>
 							<td>{{item.namalengkap}}</td>
 							<td>{{item.jampraktek}}</td>
@@ -274,7 +358,8 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="item in dataJadwalDokter.minggu" ng-class="{'inactive':item.status === 'Tdk Aktif'}">
+						<tr ng-repeat="item in dataJadwalDokter.minggu"
+							ng-class="{'inactive':item.status === 'Tdk Aktif'}">
 							<td>{{item.namaruangan}}</td>
 							<td>{{item.namalengkap}}</td>
 							<td>{{item.jampraktek}}</td>
@@ -286,7 +371,7 @@
 		</div>
 
 	</div>
-</div>
+</div> -->
 <div class="grid_12" style="margin-top:60px">
 	<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
 </div>

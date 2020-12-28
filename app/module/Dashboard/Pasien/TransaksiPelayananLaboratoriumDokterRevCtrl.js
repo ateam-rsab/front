@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('TransaksiPelayananLaboratoriumDokterRevCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper',
-        function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper) {
+    initialize.controller('TransaksiPelayananLaboratoriumDokterRevCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper', 'FindProduk',
+        function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper, FindProduk) {
             $scope.item = {};
             $scope.dataVOloaded = true;
             $scope.now = new Date();
@@ -17,6 +17,7 @@ define(['initialize'], function (initialize) {
             $scope.header.DataNoregis = true
             // var pegawaiUser = {}
             var detail = ''
+            let baseURLFiltering = "idjenisperiksapenunjang="
             $scope.listFilters = [
                 "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
                 "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
@@ -80,9 +81,37 @@ define(['initialize'], function (initialize) {
             //     }
 
             // }
+
+            $scope.getDataPaket = function() {
+                // http://192.168.12.3:8080/jasamedika-web/service/list-generic/?view=Paket&select=id,namaPaket&criteria=statusEnabled,jenisPaketId&values=true,4&order=namaPaket:asc
+                manageLogistikPhp.getDataTableMaster("produk/master-paket?idjenispaket=4").then(function (dat) { 
+                    $scope.listPaket = dat.data;
+                    // console.log(dat);
+                });
+            }
+            $scope.getDataPaket();
+
+            $scope.getDataKategori = () => {
+                manageLogistikPhp.getDataTableMaster("produk/grup-penunjang").then(function (dat) { 
+                    $scope.listKategori = dat.data.penunjang.jenisperiksapenunjang;
+                    // console.log($scope.listKategori);
+                    // jenisperiksapenunjang
+                })
+            }
+            $scope.getDataKategori();
+
+            $scope.changeBaseUrlFiltering = (data, id) => {
+                if(data) {
+                    $scope.item.paket = null;
+                } else {
+                    $scope.item.kategori = null;
+                }
+                baseURLFiltering = (data ? "idjenisperiksapenunjang=" : "idpaket=") + (id ? id : "");
+            }
+
             $scope.filterPelayanan = function (data) {
                 $scope.isLoading = true;
-                manageLogistikPhp.getDataTableTransaksi("pelayanan/get-order-penunjang?departemenfk=3&nocm=" + nocm_str + '&norec_apd=' + norec_apd + "&filter_huruf=" + data.toLowerCase() + "&filter_contain=" + ($scope.filterContain ? $scope.filterContain : ""), true).then(function (dat) {
+                manageLogistikPhp.getDataTableTransaksi("pelayanan/get-order-penunjang?departemenfk=3&nocm=" + nocm_str + '&norec_apd=' + norec_apd + "&" + baseURLFiltering + "&filter_huruf=" + (data ? data.toLowerCase() : "") + "&filter_contain=" + ($scope.filterContain ? $scope.filterContain : ""), true).then(function (dat) {
                     for (let i in dat.data.produk) {
                         dat.data.produk[i].checked = false;
                         dat.data.produk[i].jmlLayanan = 0;
@@ -102,7 +131,7 @@ define(['initialize'], function (initialize) {
                     $scope.isLoading = false;
                 });
             }
-            $scope.filterPelayanan("A");
+            $scope.filterPelayanan("");
 
             function init() {
                 manageLogistikPhp.getDataTableTransaksi("get-detail-login", true).then(function (dat) {
