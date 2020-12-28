@@ -629,14 +629,16 @@ define(['initialize'], function (initialize) {
                         year = date[2];
                     }
 
-                    periode = year + "-" + month + "-" + day;
-                    ManageSdmNew.getListData("pegawai/get-tgl-pensiun/" + periode + "/" + newVal[0]).then(function (res) {
-                        $scope.item.pensiun = res.data.data.usiaPensiun;
-                        $scope.item.tglPensiun = dateHelper.formatDate(res.data.data.tglPensiun, "DD-MM-YYYY");
-                        $scope.item.tglkeluar = dateHelper.formatDate(res.data.data.tglPensiun, "DD-MM-YYYY");
-
-                        getModel($scope.item);
-                    })
+                    // perhitungan tgl pensiun hanya untuk PNS
+                    // if ($scope.item.kategoryPegawai.id == 1) {
+                    //     periode = year + "-" + month + "-" + day;
+                    //     ManageSdmNew.getListData("pegawai/get-tgl-pensiun/" + periode + "/" + newVal[0]).then(function (res) {
+                    //         $scope.item.pensiun = res.data.data.usiaPensiun;
+                    //         $scope.item.tglPensiun = dateHelper.formatDate(res.data.data.tglPensiun, "DD-MM-YYYY");
+                    //         $scope.item.tglkeluar = dateHelper.formatDate(res.data.data.tglPensiun, "DD-MM-YYYY");
+                    //         getModel($scope.item);
+                    //     })
+                    // }
                 }
             });
 

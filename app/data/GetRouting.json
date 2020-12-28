@@ -37596,6 +37596,10 @@
         "define": "LoginService"
       },
       {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
         "module": "SarprasService",
         "define": "SarprasService"
       }
@@ -47507,6 +47511,10 @@
       {
         "module": "LoginServices",
         "define": "LoginService"
+      },
+      {
+        "module": "PhpService",
+        "define": "PhpService"
       },
       {
         "module": "LogistikServicePhp",
