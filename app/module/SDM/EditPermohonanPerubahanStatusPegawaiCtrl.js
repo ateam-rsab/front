@@ -582,7 +582,7 @@ define(['initialize'], function (initialize) {
 					"dataItem.statusPegawai|ng-model|Status kehadiran",
 					"dataItem.alamatCuti|k-ng-model|Alamat",
 					"dataItem.nomorTelepon|ng-model|No Telepon",
-
+					"item.deskripsiUsulan|k-ng-model|Deskripsi usulan"
 				]
 
 				if ($scope.dataItem.statusPegawai.id == 28) {

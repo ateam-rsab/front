@@ -1005,7 +1005,8 @@ define(['initialize'], function (initialize) {
                 var listRawRequired = [
                     "item.namaPegawai|k-ng-model|Pegawai",
                     "item.tglPengajuan|k-ng-model|Tanggal pengajuan",
-                    "item.statusPegawai|k-ng-model|Status kehadiran"
+                    "item.statusPegawai|k-ng-model|Status kehadiran",
+                    "item.deskripsiUsulan|k-ng-model|Deskripsi usulan"
                 ]
 
                 if ($scope.item.statusPegawai.id == 28) {
