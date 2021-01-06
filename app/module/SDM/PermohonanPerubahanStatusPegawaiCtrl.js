@@ -1164,18 +1164,18 @@ define(['initialize'], function (initialize) {
                         }
                     }
 
-                    var statusCutiLuarKota = "";
-                    if ($scope.item.isCutiLuarKota == undefined) {
-                        toastr.warning('Status cuti luar negeri / dalam negeri belum dipilih', 'Peringatan');
-                        return;
-                    } else {
-                        if ($scope.item.isCutiLuarKota == 1) {
-                            statusCutiLuarKota = "true";
-                        }
-                        else {
-                            statusCutiLuarKota = "false";
-                        }
-                    }
+                    // var statusCutiLuarKota = "";
+                    // if ($scope.item.isCutiLuarKota == undefined) {
+                    //     toastr.warning('Status cuti luar negeri / dalam negeri belum dipilih', 'Peringatan');
+                    //     return;
+                    // } else {
+                    //     if ($scope.item.isCutiLuarKota == 1) {
+                    //         statusCutiLuarKota = "true";
+                    //     }
+                    //     else {
+                    //         statusCutiLuarKota = "false";
+                    //     }
+                    // }
 
                     dataSend = {
                         "noPlanning": $scope.item.noUsulan,
@@ -1202,8 +1202,8 @@ define(['initialize'], function (initialize) {
                         "jabatanPemberiNotaDinas": {
                             "id": $scope.item.jabatanNotaDinas != undefined ? $scope.item.jabatanNotaDinas.id : 14
                         },
-                        "isCutiLuarNegeri": statusCutiLuarNegeri,
-                        "isCutiLuarKota": statusCutiLuarKota
+                        "isCutiLuarNegeri": statusCutiLuarNegeri
+                        // "isCutiLuarKota": statusCutiLuarKota
                     }
 
                     if (listDate.length == 0 && !$scope.isCutiMelahirkan) {
@@ -1646,6 +1646,7 @@ define(['initialize'], function (initialize) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
                 // $scope.item = dataItem;
+
                 if (!dataItem) {
                     messageContainer.error("Data Tidak Ditemukan");
                     return;
@@ -1657,7 +1658,8 @@ define(['initialize'], function (initialize) {
                         dataItem.jabatanCetak = {
                             id: res.data.data[0].id,
                             namaJabatan: res.data.data[0].namaLengkap,
-                            idUnitKerja: res.data.data[0].idUnitKerja
+                            idUnitKerja: res.data.data[0].idUnitKerja,
+                            levelJabatan: res.data.data[0].levelJabatan
                         };
                     };
                 });
@@ -1707,7 +1709,30 @@ define(['initialize'], function (initialize) {
                     }, function (error) {
                         throw error;
                     }).then(function () {
-                        $scope.loadWindow(dataItem);
+                        ManageSdmNew.getListData("sdm/get-pegawai-atasan?id=" + dataItem.pegwaiId + "&idJabatan=" + dataItem.jabatanCetak.id).then(function (res) {
+                            if (res.data.data.length > 0) {
+                                dataItem.atasanLangsung = {
+                                    id: res.data.data[0].idAtasanLangsung,
+                                    namaLengkap: res.data.data[0].namaAtasanLangsung
+                                };
+                                dataItem.pejabatPenilai = {
+                                    id: res.data.data[0].idAtasanPejabatPenilai,
+                                    namaLengkap: res.data.data[0].namaAtasanPejabatPenilai
+                                }
+                            }
+
+                            if (dataItem.jabatanCetak) {
+                                if (dataItem.jabatanCetak.levelJabatan > 3) {
+                                    $scope.showPejabatPenilai = true;
+                                    $scope.hideAtasanLangsung = true;
+                                } else {
+                                    $scope.showPejabatPenilai = false;
+                                    $scope.hideAtasanLangsung = false;
+                                }
+                            }
+
+                            $scope.loadWindow(dataItem);
+                        })
                     })
                 } else {
                     messageContainer.error("Tidak dapat mencetak Surat Izin Cuti");
@@ -1753,6 +1778,33 @@ define(['initialize'], function (initialize) {
                 })
                 $scope.winCetakPelimpahan.center().open();
             }
+
+            $scope.$watch('currentData.jabatanCetak', function (e) {
+                if (!e) return;
+
+                ManageSdmNew.getListData("sdm/get-pegawai-atasan?id=" + $scope.pegawai.id + "&idJabatan=" + e.id).then(function (res) {
+                    if (res.data.data.length > 0) {
+                        $scope.currentData.atasanLangsung = {
+                            id: res.data.data[0].idAtasanLangsung,
+                            namaLengkap: res.data.data[0].namaAtasanLangsung
+                        };
+                        $scope.currentData.pejabatPenilai = {
+                            id: res.data.data[0].idAtasanPejabatPenilai,
+                            namaLengkap: res.data.data[0].namaAtasanPejabatPenilai
+                        }
+                    }
+
+                    if ($scope.currentData.jabatanCetak) {
+                        if ($scope.currentData.jabatanCetak.levelJabatan > 3) {
+                            $scope.showPejabatPenilai = true;
+                            $scope.hideAtasanLangsung = true;
+                        } else {
+                            $scope.showPejabatPenilai = false;
+                            $scope.hideAtasanLangsung = false;
+                        }
+                    }
+                })
+            })
 
             $scope.$watch('currentData.atasanLangsung', function (e) {
                 if (!e) return;

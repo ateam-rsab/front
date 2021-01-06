@@ -683,18 +683,18 @@ define(['initialize'], function (initialize) {
 						}
 					}
 
-					var statusCutiLuarKota = "";
-					if ($scope.item.isCutiLuarKota == undefined) {
-						toastr.warning('Status cuti luar kota belum diisi', 'Peringatan');
-						return;
-					} else {
-						if ($scope.item.isCutiLuarKota == 1) {
-							statusCutiLuarKota = "true";
-						}
-						else {
-							statusCutiLuarKota = "false";
-						}
-					}
+					// var statusCutiLuarKota = "";
+					// if ($scope.item.isCutiLuarKota == undefined) {
+					// 	toastr.warning('Status cuti luar kota belum diisi', 'Peringatan');
+					// 	return;
+					// } else {
+					// 	if ($scope.item.isCutiLuarKota == 1) {
+					// 		statusCutiLuarKota = "true";
+					// 	}
+					// 	else {
+					// 		statusCutiLuarKota = "false";
+					// 	}
+					// }
 
 					dataSend = {
 						"noRec": $scope.dataItem.noRec,
@@ -722,8 +722,8 @@ define(['initialize'], function (initialize) {
 						"jabatanPemberiNotaDinas": {
 							"id": $scope.dataItem.jabatanPemberiNotaDinas.id != null ? $scope.dataItem.jabatanPemberiNotaDinas.id : 14
 						},
-						"isCutiLuarNegeri": statusCutiLuarNegeri,
-						"isCutiLuarKota": statusCutiLuarKota
+						"isCutiLuarNegeri": statusCutiLuarNegeri
+						// "isCutiLuarKota": statusCutiLuarKota
 					}
 					// ManageSdm.editPermohonanUbhStsHadirPgw(dataSend).then(function(e) {
 					ManageSdmNew.saveData(dataSend, "sdm/update-pegawai-status").then(function (e) {
