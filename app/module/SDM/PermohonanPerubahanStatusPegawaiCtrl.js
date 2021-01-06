@@ -86,7 +86,10 @@ define(['initialize'], function (initialize) {
                     var lastModel = $scope.tanggalPermohonan.length - 1;
                     for (var i = 0; i < $scope.tanggalPermohonan.length; i++) {
                         if (i < lastModel && kendo.toString($scope.tanggalPermohonan[i].tgl, "MM/dd/yyyy") === kendo.toString(this.value(), "MM/dd/yyyy")) {
-                            if ($scope.item.statusPegawai.id != 24 && $scope.item.statusPegawai.id != 25 && $scope.item.statusPegawai.id != 29) {
+                            if ($scope.item.statusPegawai.id != 24
+                                && $scope.item.statusPegawai.id != 25
+                                && $scope.item.statusPegawai.id != 26
+                                && $scope.item.statusPegawai.id != 29) {
                                 toastr.error("Tanggal " + kendo.toString(this.value(), "dd/MM/yyyy") + " sudah diajukan", "Peringatan");
                                 $scope.tanggalPermohonan[lastModel].tgl = "";
                                 $(this.element).closest('span').addClass("duplicateDate");
@@ -110,13 +113,15 @@ define(['initialize'], function (initialize) {
                 if (isValid.status) {
                     var lastDate = $scope.tanggalPermohonan.length - 1;
                     if ($scope.tanggalPermohonan[lastDate].tgl instanceof Date) {
-                        if ($scope.item.statusPegawai.id == 27 || $scope.item.statusPegawai.id == 26 || $scope.item.statusPegawai.id == 28) {
+                        if ($scope.item.statusPegawai.id == 27 || $scope.item.statusPegawai.id == 28) {
                             var newItemNo = $scope.tanggalPermohonan.length + 1;
                             $scope.tanggalPermohonan.push({
                                 id: newItemNo,
                                 tgl: "dd/MM/yyyy"
                             })
-                        } else if ($scope.item.statusPegawai.id == 24 || $scope.item.statusPegawai.id == 25) {
+                        } else if ($scope.item.statusPegawai.id == 24
+                            || $scope.item.statusPegawai.id == 25
+                            || $scope.item.statusPegawai.id == 26) {
                             if ($scope.tanggalPermohonan.length < 2) {
                                 var newItemNo = $scope.tanggalPermohonan.length + 1;
                                 $scope.tanggalPermohonan.push({
@@ -169,7 +174,10 @@ define(['initialize'], function (initialize) {
                         } else {
                             messageContainer.error('Jumlah sisa cuti tidak cukup, Jumlah sisa cuti anda : ' + $scope.item.sisaCuti + ' hari')
                         }
-                    } else if ($scope.item.statusPegawai.id == 24 || $scope.item.statusPegawai.id == 25 || $scope.item.statusPegawai.id == 29) {
+                    } else if ($scope.item.statusPegawai.id == 24
+                        || $scope.item.statusPegawai.id == 25
+                        || $scope.item.statusPegawai.id == 26
+                        || $scope.item.statusPegawai.id == 29) {
                         if ($scope.item.statusPegawai.id == 29) {
                             if ($scope.loginUser.idPegawai == $scope.item.namaPegawai.id) {
                                 if ($scope.tanggalPermohonan.length < 2) {
@@ -208,7 +216,10 @@ define(['initialize'], function (initialize) {
             $scope.removeNewTgl = function (id) {
                 if (id == 1) return;
 
-                if ($scope.item.statusPegawai.id == 24 || $scope.item.statusPegawai.id == 25 || $scope.item.statusPegawai.id == 29) {
+                if ($scope.item.statusPegawai.id == 24
+                    || $scope.item.statusPegawai.id == 25
+                    || $scope.item.statusPegawai.id == 26
+                    || $scope.item.statusPegawai.id == 29) {
                     //unused condition
                 } else {
                     if ($scope.tanggalPermohonan.length > 1) {
@@ -494,7 +505,7 @@ define(['initialize'], function (initialize) {
                 ManageSdmNew.getListData("sdm/get-data-cuti?pegawaiId=" + $scope.item.namaPegawai.id + "&statusPegawaiId=" + $scope.item.statusPegawai.id, true).then(function (dat) {
                     // +$scope.item.kategoriPegawaiId
                     $scope.item.dataCutiB = dat.data.data.dataCutiB;
-                    var data = {
+                    var CB = {
                         "statusEnabled": true,
                         "tahun": DateHelper.formatDate($scope.now, "YYYY"),
                         "kdProfile": 0,
@@ -508,7 +519,53 @@ define(['initialize'], function (initialize) {
                         "isTangguhkan": false
                     }
 
-                    ManageSdmNew.saveData(data, "sdm/save-jatah-cuti-dan-izin-pegawai").then(function (e) {
+                    ManageSdmNew.saveData(CB, "sdm/save-jatah-cuti-dan-izin-pegawai").then(function (e) {
+                        //unused function subroutine
+                    }, function (err) {
+                        throw err;
+                    })
+
+                    var oneYearAgo = new Date();
+                    oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+                    $scope.item.dataCutiB1 = dat.data.data.dataCutiB1;
+                    var CB1 = {
+                        "statusEnabled": true,
+                        "tahun": DateHelper.formatDate(oneYearAgo, "YYYY"),
+                        "kdProfile": 0,
+                        "pegawai": {
+                            "id": $scope.item.namaPegawai.id
+                        },
+                        "value": $scope.item.dataCutiB1,
+                        "komponenIndex": {
+                            "id": 21
+                        },
+                        "isTangguhkan": false
+                    }
+
+                    ManageSdmNew.saveData(CB1, "sdm/save-jatah-cuti-dan-izin-pegawai").then(function (e) {
+                        //unused function subroutine
+                    }, function (err) {
+                        throw err;
+                    })
+
+                    var twoYearAgo = new Date();
+                    twoYearAgo.setFullYear(twoYearAgo.getFullYear() - 2);
+                    $scope.item.dataCutiB2 = dat.data.data.dataCutiB2;
+                    var CB2 = {
+                        "statusEnabled": true,
+                        "tahun": DateHelper.formatDate(twoYearAgo, "YYYY"),
+                        "kdProfile": 0,
+                        "pegawai": {
+                            "id": $scope.item.namaPegawai.id
+                        },
+                        "value": $scope.item.dataCutiB2,
+                        "komponenIndex": {
+                            "id": 21
+                        },
+                        "isTangguhkan": false
+                    }
+
+                    ManageSdmNew.saveData(CB2, "sdm/save-jatah-cuti-dan-izin-pegawai").then(function (e) {
                         //unused function subroutine
                     }, function (err) {
                         throw err;
@@ -597,7 +654,8 @@ define(['initialize'], function (initialize) {
             $scope.hideJumlahCuti = false;
 
             $scope.showJumlahCuti = function () {
-                if($scope.item.statusPegawai.id === 25 || $scope.item.statusPegawai.id === 24) {
+                if ($scope.item.statusPegawai.id === 24
+                    || $scope.item.statusPegawai.id === 25) {
                     $scope.isCutiMelahirkan = true;
                     return;
                 } else {
@@ -638,15 +696,19 @@ define(['initialize'], function (initialize) {
                 //Tugas Luar    28 
                 //Cuti Melahirkan   25
                 //Cuti Besar    24 
-                if ($scope.item.statusPegawai.id == 26 || $scope.item.statusPegawai.id == 28 ||
-                    $scope.item.statusPegawai.id == 24 || $scope.item.statusPegawai.id == 25) {
+                if ($scope.item.statusPegawai.id == 24
+                    || $scope.item.statusPegawai.id == 25
+                    || $scope.item.statusPegawai.id == 26
+                    || $scope.item.statusPegawai.id == 28) {
                     $scope.hideSakit = false;
                     $scope.cutiHabis = false;
                 } else {
                     $scope.hideJumlahIjin = false;
                 }
 
-                if ($scope.item.statusPegawai.id == 24 || $scope.item.statusPegawai.id == 25) {
+                if ($scope.item.statusPegawai.id == 24
+                    || $scope.item.statusPegawai.id == 25
+                    || $scope.item.statusPegawai.id == 26) {
                     $scope.hideTglpermohonan = true;
                     $scope.showTglAwal = true;
                     $scope.showTglAkhir = true;
@@ -675,8 +737,8 @@ define(['initialize'], function (initialize) {
                 $scope.disabledTglAkhir = $scope.item.tglAwalCutiMelahirkan ? false : true;
                 $scope.item.tglAkhirCutiMelahirkan = null;
 
-                
-                $scope.maxDateCutiMelahirkan = new Date(Math.floor(Math.floor($scope.item.tglAwalCutiMelahirkan.getTime()/1000) + 7689600)*1000);
+
+                $scope.maxDateCutiMelahirkan = new Date(Math.floor(Math.floor($scope.item.tglAwalCutiMelahirkan.getTime() / 1000) + 7689600) * 1000);
                 $scope.item.tglAkhirCutiMelahirkan = $scope.maxDateCutiMelahirkan;
             }
 
@@ -927,17 +989,17 @@ define(['initialize'], function (initialize) {
 
             $scope.Save = function () {
                 let tempTanggalCutiMelahirkan = [];
-                if($scope.isCutiMelahirkan) {
+                if ($scope.isCutiMelahirkan) {
                     tempTanggalCutiMelahirkan = [
                         {
-                            tgl:DateHelper.formatDate($scope.item.tglAwalCutiMelahirkan, 'YYYY-MM-DD')
+                            tgl: DateHelper.formatDate($scope.item.tglAwalCutiMelahirkan, 'YYYY-MM-DD')
                         }, {
-                            tgl:DateHelper.formatDate($scope.item.tglAkhirCutiMelahirkan, 'YYYY-MM-DD')
+                            tgl: DateHelper.formatDate($scope.item.tglAkhirCutiMelahirkan, 'YYYY-MM-DD')
                         }
-                        
+
                     ];
 
-                    if($scope.item.tglAkhirCutiMelahirkan > $scope.maxDateCutiMelahirkan) {
+                    if ($scope.item.tglAkhirCutiMelahirkan > $scope.maxDateCutiMelahirkan) {
                         toastr.warning('Cuti tidak bisa lebih dari 90 hari');
                         return;
                     }
@@ -959,7 +1021,8 @@ define(['initialize'], function (initialize) {
                 var listRawRequired = [
                     "item.namaPegawai|k-ng-model|Pegawai",
                     "item.tglPengajuan|k-ng-model|Tanggal pengajuan",
-                    "item.statusPegawai|k-ng-model|Status kehadiran"
+                    "item.statusPegawai|k-ng-model|Status kehadiran",
+                    "item.deskripsiUsulan|k-ng-model|Deskripsi usulan"
                 ]
 
                 if ($scope.item.statusPegawai.id == 28) {
@@ -990,7 +1053,7 @@ define(['initialize'], function (initialize) {
                     var tahunPermohonan = [];
 
                     var yearNow = parseInt(moment(new Date()).format('YYYY'))
-                    
+
                     for (var i = 0; i < $scope.tanggalPermohonan.length; i++) {
                         if ($scope.tanggalPermohonan[i].tgl instanceof Date) {
                             var tgl = $scope.tanggalPermohonan[i].tgl.getFullYear();
@@ -1042,18 +1105,21 @@ define(['initialize'], function (initialize) {
                 //     } 
                 // }
 
-                if($scope.isCutiMelahirkan && tempTanggalCutiMelahirkan.length <= 1) {
+                if ($scope.isCutiMelahirkan && tempTanggalCutiMelahirkan.length <= 1) {
                     messageContainer.error('Tanggal harus terdiri dari tanggal awal dan tanggal akhir (periode)')
                     return;
                 }
-                
-                if(!$scope.isCutiMelahirkan) {
-                    if (($scope.item.statusPegawai.id == 24 || $scope.item.statusPegawai.id == 25) && $scope.tanggalPermohonan.length === 1) {
+
+                if (!$scope.isCutiMelahirkan) {
+                    if (($scope.item.statusPegawai.id == 24
+                        || $scope.item.statusPegawai.id == 25
+                        || $scope.item.statusPegawai.id == 26)
+                        && $scope.tanggalPermohonan.length === 1) {
                         // if (!listPegawaiAdminSDM.includes($scope.pegawai.id)) {
                         messageContainer.error('Tanggal harus terdiri dari tanggal awal dan tanggal akhir (periode)')
                         return;
                         // }
-                    } 
+                    }
                 }
                 if ($scope.item.statusPegawai.id == 29 && $scope.tanggalPermohonan.length === 1) {
                     var isPegawaiSDM = false;
@@ -1338,20 +1404,30 @@ define(['initialize'], function (initialize) {
                 }
 
                 var listRawRequired = [
-                    "currentData.jabatanCetak|k-ng-model|Jabatan",
-                    "currentData.atasanLangsung|k-ng-model|Atasan langsung",
-                    "currentData.jabatanAtasanLangsung|ng-model|Jabatan atasan langsung",
-                    "currentData.pejabatPenilai|k-ng-model|Pejabat penilai",
-                    "currentData.jabatanPejabatPenilai|ng-model|Jabatan pejabat penilai"
+                    "currentData.jabatanCetak|k-ng-model|Jabatan"
                 ];
+
+                // if (!currentData.atasanLangsung) {
+                //     listRawRequired.push(
+                //         "currentData.pejabatPenilai|k-ng-model|Pejabat penilai",
+                //         "currentData.jabatanPejabatPenilai|ng-model|Jabatan pejabat penilai"
+                //     )
+                // }
+
+                // if (!currentData.pejabatPenilai) {
+                //     listRawRequired.push(
+                //         "currentData.atasanLangsung|k-ng-model|Atasan langsung",
+                //         "currentData.jabatanAtasanLangsung|ng-model|Jabatan atasan langsung"
+                //     )
+                // }
 
                 var isValid = ModelItem.setValidation($scope, listRawRequired);
                 if (isValid.status) {
                     var idKaRuangan = data.kepalaRuangan ? data.kepalaRuangan.id : "";
                     if (data.isCutiLuarNegeri == "1") {
-                        var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCutiLuarNegeri?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + data.atasanLangsung.id + "&idAtasan2=" + data.pejabatPenilai.id + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + data.jabatanAtasanLangsung.id + "&idJabatanAtasan2=" + data.jabatanPejabatPenilai.id);
+                        var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCutiLuarNegeri?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + (data.atasanLangsung ? data.atasanLangsung.id : "") + "&idAtasan2=" + (data.pejabatPenilai ? data.pejabatPenilai.id : "") + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + (data.jabatanAtasanLangsung ? data.jabatanAtasanLangsung.id : "") + "&idJabatanAtasan2=" + (data.jabatanPejabatPenilai ? data.jabatanPejabatPenilai.id : ""));
                     } else {
-                        var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCuti?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + data.atasanLangsung.id + "&idAtasan2=" + data.pejabatPenilai.id + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + data.jabatanAtasanLangsung.id + "&idJabatanAtasan2=" + data.jabatanPejabatPenilai.id);
+                        var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCuti?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + (data.atasanLangsung ? data.atasanLangsung.id : "") + "&idAtasan2=" + (data.pejabatPenilai ? data.pejabatPenilai.id : "") + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + (data.jabatanAtasanLangsung ? data.jabatanAtasanLangsung.id : "") + "&idJabatanAtasan2=" + (data.jabatanPejabatPenilai ? data.jabatanPejabatPenilai.id : ""));
                     }
 
                     window.open(urlLaporan, "halamanCetakDua");
@@ -1369,18 +1445,28 @@ define(['initialize'], function (initialize) {
                 }
 
                 var listRawRequired = [
-                    "currentData.jabatanCetak|k-ng-model|Jabatan",
-                    "currentData.atasanLangsung|k-ng-model|Atasan langsung",
-                    "currentData.jabatanAtasanLangsung|ng-model|Jabatan atasan langsung",
-                    "currentData.pejabatPenilai|k-ng-model|Pejabat penilai",
-                    "currentData.jabatanPejabatPenilai|ng-model|Jabatan pejabat penilai"
+                    "currentData.jabatanCetak|k-ng-model|Jabatan"
                 ];
+
+                // if (!currentData.atasanLangsung) {
+                //     listRawRequired.push(
+                //         "currentData.pejabatPenilai|k-ng-model|Pejabat penilai",
+                //         "currentData.jabatanPejabatPenilai|ng-model|Jabatan pejabat penilai"
+                //     )
+                // }
+
+                // if (!currentData.pejabatPenilai) {
+                //     listRawRequired.push(
+                //         "currentData.atasanLangsung|k-ng-model|Atasan langsung",
+                //         "currentData.jabatanAtasanLangsung|ng-model|Jabatan atasan langsung"
+                //     )
+                // }
 
                 var isValid = ModelItem.setValidation($scope, listRawRequired);
                 if (isValid.status) {
                     if (data.statusPegawai === "Izin") {
                         var idKaRuangan = data.kepalaRuangan ? data.kepalaRuangan.id : "";
-                        var urlLaporan = cetakHelper.openURLReporting("reporting/lapSuratIzin?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan=" + data.atasanLangsung.id + "&idJabatanAtasan=" + data.jabatanAtasanLangsung.id);
+                        var urlLaporan = cetakHelper.openURLReporting("reporting/lapSuratIzin?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan=" + (data.atasanLangsung ? data.atasanLangsung.id : (data.pejabatPenilai ? data.pejabatPenilai.id : "")) + "&idJabatanAtasan=" + (data.jabatanAtasanLangsung ? data.jabatanAtasanLangsung.id : (data.jabatanPejabatPenilai ? data.jabatanPejabatPenilai.id : "")));
                         $scope.winDialog.close();
                         delete $scope.currentData.pegawai1;
                         delete $scope.currentData.pegawai2;
@@ -1389,11 +1475,11 @@ define(['initialize'], function (initialize) {
                         // return;
                     } else if (data.statusPegawai === "Cuti Alasan Penting") {
                         var idKaRuangan = data.kepalaRuangan ? data.kepalaRuangan.id : "";
-                        var urlSuratIzinSementara = cetakHelper.openURLReporting("reporting/suratIzinSementara?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + data.atasanLangsung.id + "&idAtasan2=" + data.pejabatPenilai.id + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + data.jabatanAtasanLangsung.id + "&idJabatanAtasan2=" + data.jabatanPejabatPenilai.id);
+                        var urlSuratIzinSementara = cetakHelper.openURLReporting("reporting/suratIzinSementara?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + (data.atasanLangsung ? data.atasanLangsung.id : (data.pejabatPenilai ? data.pejabatPenilai.id : "")) + "&idAtasan2=" + (data.pejabatPenilai ? data.pejabatPenilai.id : "") + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + (data.jabatanAtasanLangsung ? data.jabatanAtasanLangsung.id : (data.jabatanPejabatPenilai ? data.jabatanPejabatPenilai.id : "")) + "&idJabatanAtasan2=" + (data.jabatanPejabatPenilai ? data.jabatanPejabatPenilai.id : ""));
                         if (data.isCutiLuarNegeri == "1") {
-                            var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCutiLuarNegeri?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + data.atasanLangsung.id + "&idAtasan2=" + data.pejabatPenilai.id + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + data.jabatanAtasanLangsung.id + "&idJabatanAtasan2=" + data.jabatanPejabatPenilai.id);
+                            var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCutiLuarNegeri?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + (data.atasanLangsung ? data.atasanLangsung.id : "") + "&idAtasan2=" + (data.pejabatPenilai ? data.pejabatPenilai.id : "") + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + (data.jabatanAtasanLangsung ? data.jabatanAtasanLangsung.id : "") + "&idJabatanAtasan2=" + (data.jabatanPejabatPenilai ? data.jabatanPejabatPenilai.id : ""));
                         } else {
-                            var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCuti?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + data.atasanLangsung.id + "&idAtasan2=" + data.pejabatPenilai.id + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + data.jabatanAtasanLangsung.id + "&idJabatanAtasan2=" + data.jabatanPejabatPenilai.id);
+                            var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCuti?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + (data.atasanLangsung ? data.atasanLangsung.id : "") + "&idAtasan2=" + (data.pejabatPenilai ? data.pejabatPenilai.id : "") + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + (data.jabatanAtasanLangsung ? data.jabatanAtasanLangsung.id : "") + "&idJabatanAtasan2=" + (data.jabatanPejabatPenilai ? data.jabatanPejabatPenilai.id : ""));
                         }
                         $scope.winDialog.close();
                         delete $scope.currentData.pegawai1;
@@ -1425,9 +1511,9 @@ define(['initialize'], function (initialize) {
                     } else {
                         var idKaRuangan = data.kepalaRuangan ? data.kepalaRuangan.id : "";
                         if (data.isCutiLuarNegeri == "1") {
-                            var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCutiLuarNegeri?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + data.atasanLangsung.id + "&idAtasan2=" + data.pejabatPenilai.id + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + data.jabatanAtasanLangsung.id + "&idJabatanAtasan2=" + data.jabatanPejabatPenilai.id);
+                            var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCutiLuarNegeri?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + (data.atasanLangsung ? data.atasanLangsung.id : "") + "&idAtasan2=" + (data.pejabatPenilai ? data.pejabatPenilai.id : "") + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + (data.jabatanAtasanLangsung ? data.jabatanAtasanLangsung.id : "") + "&idJabatanAtasan2=" + (data.jabatanPejabatPenilai ? data.jabatanPejabatPenilai.id : ""));
                         } else {
-                            var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCuti?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + data.atasanLangsung.id + "&idAtasan2=" + data.pejabatPenilai.id + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + data.jabatanAtasanLangsung.id + "&idJabatanAtasan2=" + data.jabatanPejabatPenilai.id);
+                            var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCuti?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + (data.atasanLangsung ? data.atasanLangsung.id : "") + "&idAtasan2=" + (data.pejabatPenilai ? data.pejabatPenilai.id : "") + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + (data.jabatanAtasanLangsung ? data.jabatanAtasanLangsung.id : "") + "&idJabatanAtasan2=" + (data.jabatanPejabatPenilai ? data.jabatanPejabatPenilai.id : ""));
                         }
                         $scope.winDialog.close();
                         delete $scope.currentData.pegawai1;

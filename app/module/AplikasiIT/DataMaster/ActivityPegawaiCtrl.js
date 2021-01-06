@@ -87,7 +87,7 @@ define(['initialize'], function (initialize) {
 				if (data == "null") {
 					return "";
 				} else {
-					return dateHelper.formatDate(parseInt(data), "DD-MM-YYYY HH:MM:SS");
+					return dateHelper.formatDate(parseInt(data), "DD-MM-YYYY HH:mm:ss");
 				}
 			};
 			$scope.klik = function (current) {

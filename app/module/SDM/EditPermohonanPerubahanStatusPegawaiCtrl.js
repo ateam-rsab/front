@@ -42,7 +42,10 @@ define(['initialize'], function (initialize) {
 					var lastModel = $scope.tanggalPermohonan.length - 1;
 					for (var i = 0; i < $scope.tanggalPermohonan.length; i++) {
 						if (i < lastModel && kendo.toString(new Date($scope.tanggalPermohonan[i].tgl), "MM/dd/yyyy") === kendo.toString(this.value(), "MM/dd/yyyy")) {
-							if ($scope.dataItem.statusPegawai.id != 24 && $scope.dataItem.statusPegawai.id != 25 && $scope.dataItem.statusPegawai.id != 29) {
+							if ($scope.dataItem.statusPegawai.id != 24
+								&& $scope.dataItem.statusPegawai.id != 25
+								&& $scope.dataItem.statusPegawai.id != 26
+								&& $scope.dataItem.statusPegawai.id != 29) {
 								toastr.error("Tanggal " + kendo.toString(this.value(), "dd/MM/yyyy") + " sudah diajukan", "Peringatan");
 								$scope.tanggalPermohonan[lastModel].tgl = "";
 								$(this.element).closest('span').addClass("duplicateDate");
@@ -59,14 +62,15 @@ define(['initialize'], function (initialize) {
 			$scope.addNewTgl = function () {
 				var lastDate = $scope.tanggalPermohonan.length - 1;
 				if ($scope.tanggalPermohonan[lastDate].tgl != "dd/MM/yyyy") {
-					if ($scope.dataItem.statusPegawai.id == 27 || $scope.dataItem.statusPegawai.id == 26
-						|| $scope.dataItem.statusPegawai.id == 28) {
+					if ($scope.dataItem.statusPegawai.id == 27 || $scope.dataItem.statusPegawai.id == 28) {
 						var newItemNo = $scope.tanggalPermohonan.length + 1;
 						$scope.tanggalPermohonan.push({
 							id: newItemNo,
 							tgl: "dd/MM/yyyy"
 						})
-					} else if ($scope.dataItem.statusPegawai.id == 24 || $scope.dataItem.statusPegawai.id == 25) {
+					} else if ($scope.dataItem.statusPegawai.id == 24
+						|| $scope.dataItem.statusPegawai.id == 25
+						|| $scope.dataItem.statusPegawai.id == 26) {
 						if ($scope.tanggalPermohonan.length < 2) {
 							var newItemNo = $scope.tanggalPermohonan.length + 1;
 							$scope.tanggalPermohonan.push({
@@ -138,10 +142,12 @@ define(['initialize'], function (initialize) {
 			$scope.removeNewTgl = function (id) {
 				if (id == 1 && $scope.tanggalPermohonan.length == 1) return;
 
-				if ($scope.dataItem.statusPegawai.id == 24 || $scope.dataItem.statusPegawai.id == 25 || $scope.dataItem.statusPegawai.id == 29) {
+				if ($scope.dataItem.statusPegawai.id == 24
+					|| $scope.dataItem.statusPegawai.id == 25
+					|| $scope.dataItem.statusPegawai.id == 26
+					|| $scope.dataItem.statusPegawai.id == 29) {
 
 				} else {
-
 					for (var i = 0; i < $scope.tanggalPermohonan.length; i++) {
 						if (id == $scope.tanggalPermohonan[i].id) {
 							$scope.tanggalPermohonan.splice(i, 1);
@@ -170,6 +176,23 @@ define(['initialize'], function (initialize) {
 				}
 				$scope.getCuti();
 				$scope.getIzin();
+
+				if ($scope.dataItem.statusPegawai.statusPegawai === "Cuti Besar"
+					|| $scope.dataItem.statusPegawai.statusPegawai === "Cuti Melahirkan"
+					|| $scope.dataItem.statusPegawai.statusPegawai === "Cuti Alasan Penting") {
+					$scope.hideTglpermohonan = true;
+					$scope.showTglAwal = true;
+					$scope.showTglAkhir = true;
+				} else if ($scope.dataItem.statusPegawai.statusPegawai === "Sakit"
+					&& $scope.pegawaiLogin.id == $scope.item.namaPegawai.id) {
+					$scope.hideTglpermohonan = true;
+					$scope.showTglAwal = true;
+					$scope.showTglAkhir = true;
+				} else {
+					$scope.hideTglpermohonan = false;
+					$scope.showTglAwal = false;
+					$scope.showTglAkhir = false;
+				}
 				// condition base if bagian sdm can view all permohonan perubahan status kehadiran
 				// uncomment codes below to activate
 				// if(result[2].statResponse){
@@ -582,7 +605,7 @@ define(['initialize'], function (initialize) {
 					"dataItem.statusPegawai|ng-model|Status kehadiran",
 					"dataItem.alamatCuti|k-ng-model|Alamat",
 					"dataItem.nomorTelepon|ng-model|No Telepon",
-
+					"dataItem.deskripsiStatusPegawaiPlan|k-ng-model|Deskripsi usulan"
 				]
 
 				if ($scope.dataItem.statusPegawai.id == 28) {
