@@ -1710,22 +1710,25 @@ define(['initialize'], function (initialize) {
                         throw error;
                     }).then(function () {
                         ManageSdmNew.getListData("sdm/get-pegawai-atasan?id=" + dataItem.pegwaiId + "&idJabatan=" + dataItem.jabatanCetak.id).then(function (res) {
-                            if (res.data.data.length > 0) {
-                                dataItem.atasanLangsung = {
-                                    id: res.data.data[0].idAtasanLangsung,
-                                    namaLengkap: res.data.data[0].namaAtasanLangsung
-                                };
-                                dataItem.pejabatPenilai = {
-                                    id: res.data.data[0].idAtasanPejabatPenilai,
-                                    namaLengkap: res.data.data[0].namaAtasanPejabatPenilai
-                                }
-                            }
-
                             if (dataItem.jabatanCetak) {
                                 if (dataItem.jabatanCetak.levelJabatan > 3) {
+                                    if (res.data.data.length > 0) {
+                                        dataItem.atasanLangsung = undefined
+                                        dataItem.pejabatPenilai = {
+                                            id: res.data.data[0].idAtasanPejabatPenilai,
+                                            namaLengkap: res.data.data[0].namaAtasanPejabatPenilai
+                                        }
+                                    }
                                     $scope.showPejabatPenilai = true;
                                     $scope.hideAtasanLangsung = true;
                                 } else {
+                                    if (res.data.data.length > 0) {
+                                        dataItem.atasanLangsung = {
+                                            id: res.data.data[0].idAtasanLangsung,
+                                            namaLengkap: res.data.data[0].namaAtasanLangsung
+                                        };
+                                        dataItem.pejabatPenilai = undefined
+                                    }
                                     $scope.showPejabatPenilai = false;
                                     $scope.hideAtasanLangsung = false;
                                 }
@@ -1783,22 +1786,25 @@ define(['initialize'], function (initialize) {
                 if (!e) return;
 
                 ManageSdmNew.getListData("sdm/get-pegawai-atasan?id=" + $scope.pegawai.id + "&idJabatan=" + e.id).then(function (res) {
-                    if (res.data.data.length > 0) {
-                        $scope.currentData.atasanLangsung = {
-                            id: res.data.data[0].idAtasanLangsung,
-                            namaLengkap: res.data.data[0].namaAtasanLangsung
-                        };
-                        $scope.currentData.pejabatPenilai = {
-                            id: res.data.data[0].idAtasanPejabatPenilai,
-                            namaLengkap: res.data.data[0].namaAtasanPejabatPenilai
-                        }
-                    }
-
                     if ($scope.currentData.jabatanCetak) {
                         if ($scope.currentData.jabatanCetak.levelJabatan > 3) {
+                            if (res.data.data.length > 0) {
+                                $scope.currentData.atasanLangsung = undefined;
+                                $scope.currentData.pejabatPenilai = {
+                                    id: res.data.data[0].idAtasanPejabatPenilai,
+                                    namaLengkap: res.data.data[0].namaAtasanPejabatPenilai
+                                }
+                            }
                             $scope.showPejabatPenilai = true;
                             $scope.hideAtasanLangsung = true;
                         } else {
+                            if (res.data.data.length > 0) {
+                                $scope.currentData.atasanLangsung = {
+                                    id: res.data.data[0].idAtasanLangsung,
+                                    namaLengkap: res.data.data[0].namaAtasanLangsung
+                                };
+                                $scope.currentData.pejabatPenilai = undefined;
+                            }
                             $scope.showPejabatPenilai = false;
                             $scope.hideAtasanLangsung = false;
                         }
