@@ -175,6 +175,9 @@
                                   var msg = response.data.messages;
                                   if (msg['label-success'] === "SUKSES") {
                                       window.messageContainer.log(msg['label-success']);
+                                  } else if (response.data.messages != undefined) {
+                                    var msg = response.data.messages;
+                                    window.messageContainer.log(msg['label-success']);
                                   } else {
                                       window.messageContainer.error(msg['label-success']);
                                   }
