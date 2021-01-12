@@ -589,7 +589,7 @@ define(['initialize'], function (initialize) {
 					"status": null,
 					"objectjenisgenerikfk": null,
 					"poinmedis": null,
-					"kelompokProdukId": $scope.item.kelompok.id
+					"idkelompokproduk": $scope.item.kelompok ? $scope.item.kelompok.id : ""
 				}
 				// }else{
 				// var data = {  
