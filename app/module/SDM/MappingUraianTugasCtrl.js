@@ -31,7 +31,7 @@ define(['initialize'], function (initialize) {
                                                 return true;
                                             }
                                         }},
-                                        satuan: {validation: {required: true,
+                                        satuan: {validation: {
                                             validasiSatuan: function (input) {
                                                 if (input.is("[name='satuan']") && input.val() === "") {                        
                                                     return false;
