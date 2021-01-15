@@ -242,6 +242,7 @@ define(['initialize'], function (initialize) {
 
 
 			$scope.SearchData = function () {
+				$scope.dataPasienSelected = undefined;
 				loadData()
 			}
 
