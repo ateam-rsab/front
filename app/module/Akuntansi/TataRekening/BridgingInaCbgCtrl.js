@@ -94,82 +94,82 @@ define(['initialize'], function (initialize) {
 				selectable: 'row',
 				pageable: true,
 				columns: [{
-						"field": "tglregistrasi",
-						"title": "Tgl Registrasi",
-						"width": "10%",
-						"template": "<span class='style-left'>{{formatTanggal('#: tglregistrasi #')}}</span>"
-					},
-					{
-						"field": "noregistrasi",
-						"title": "NoReg",
-						"width": "10%"
-					},
-					{
-						"field": "nocm",
-						"title": "NoRM",
-						"width": "10%",
-						"template": "<span class='style-center'>#: nocm #</span>"
-					},
-					{
-						"field": "namapasien",
-						"title": "Nama Pasien",
-						"width": "20%",
-						"template": "<span class='style-left'>#: namapasien #</span>"
-					},
-					// {
-					// 	"field": "namaruangan",
-					// 	"title": "Nama Ruangan",
-					// 	"width":"150px",
-					// 	"template": "<span class='style-left'>#: namaruangan #</span>"
-					// },
-					{
-						"field": "namadokter",
-						"title": "Nama Dokter",
-						"width": "15%",
-						"template": '# if( namadokter==null) {# - # } else {# #= namadokter # #} #'
-					},
-					// {
-					// 	"field": "kelompokpasien",
-					// 	"title": "Kelompok Pasien",
-					// 	"width":"100px",
-					// 	"template": "<span class='style-left'>#: kelompokpasien #</span>"
-					// },
-					{
-						"field": "tglpulang",
-						"title": "Tgl Pulang",
-						"width": "10%",
-						"template": "<span class='style-left'>{{formatTanggal('#: tglpulang #')}}</span>"
-					},
-					// {
-					// 	"field": "statuspasien",
-					// 	"title": "Status",
-					// 	"width":"80px",
-					// 	"template": "<span class='style-center'>#: statuspasien #</span>"
-					// },
-					// {
-					// 	"field": "nostruk",
-					// 	"title": "NoStrukVerif",
-					// 	"width":"100px",
-					// 	"template": '# if( nostruk==null) {# - # } else {# #= nostruk # #} #'
-					// },
-					// {
-					// 	"field": "nosbm",
-					// 	"title": "NoSBM",
-					// 	"width":"100px",
-					// 	"template": '# if( nosbm==null) {# - # } else {# #= nosbm # #} #'
-					// },
-					// {
-					// 	"field": "kasir",
-					// 	"title": "Kasir",
-					// 	"width":"100px",
-					// 	"template": '# if( kasir==null) {# - # } else {# #= kasir # #} #'
-					// },
-					{
-						"field": "nosep",
-						"title": "No SEP",
-						"width": "10%",
-						"template": '# if( nosep==null) {# - # } else {# #= nosep # #} #'
-					}
+					"field": "tglregistrasi",
+					"title": "Tgl Registrasi",
+					"width": "10%",
+					"template": "<span class='style-left'>{{formatTanggal('#: tglregistrasi #')}}</span>"
+				},
+				{
+					"field": "noregistrasi",
+					"title": "NoReg",
+					"width": "10%"
+				},
+				{
+					"field": "nocm",
+					"title": "NoRM",
+					"width": "10%",
+					"template": "<span class='style-center'>#: nocm #</span>"
+				},
+				{
+					"field": "namapasien",
+					"title": "Nama Pasien",
+					"width": "20%",
+					"template": "<span class='style-left'>#: namapasien #</span>"
+				},
+				// {
+				// 	"field": "namaruangan",
+				// 	"title": "Nama Ruangan",
+				// 	"width":"150px",
+				// 	"template": "<span class='style-left'>#: namaruangan #</span>"
+				// },
+				{
+					"field": "namadokter",
+					"title": "Nama Dokter",
+					"width": "15%",
+					"template": '# if( namadokter==null) {# - # } else {# #= namadokter # #} #'
+				},
+				// {
+				// 	"field": "kelompokpasien",
+				// 	"title": "Kelompok Pasien",
+				// 	"width":"100px",
+				// 	"template": "<span class='style-left'>#: kelompokpasien #</span>"
+				// },
+				{
+					"field": "tglpulang",
+					"title": "Tgl Pulang",
+					"width": "10%",
+					"template": "<span class='style-left'>{{formatTanggal('#: tglpulang #')}}</span>"
+				},
+				// {
+				// 	"field": "statuspasien",
+				// 	"title": "Status",
+				// 	"width":"80px",
+				// 	"template": "<span class='style-center'>#: statuspasien #</span>"
+				// },
+				// {
+				// 	"field": "nostruk",
+				// 	"title": "NoStrukVerif",
+				// 	"width":"100px",
+				// 	"template": '# if( nostruk==null) {# - # } else {# #= nostruk # #} #'
+				// },
+				// {
+				// 	"field": "nosbm",
+				// 	"title": "NoSBM",
+				// 	"width":"100px",
+				// 	"template": '# if( nosbm==null) {# - # } else {# #= nosbm # #} #'
+				// },
+				// {
+				// 	"field": "kasir",
+				// 	"title": "Kasir",
+				// 	"width":"100px",
+				// 	"template": '# if( kasir==null) {# - # } else {# #= kasir # #} #'
+				// },
+				{
+					"field": "nosep",
+					"title": "No SEP",
+					"width": "10%",
+					"template": '# if( nosep==null) {# - # } else {# #= nosep # #} #'
+				}
 					// ,
 					// {
 					// 	"field": "status",
@@ -471,16 +471,16 @@ define(['initialize'], function (initialize) {
 				} else {
 					manageTataRekening.getDataTableTransaksi('registrasi/get-norec-apd?noreg=' + $scope.dataPasienSelected.noregistrasi +
 						'&ruangId=' + $scope.dataPasienSelected.ruanganid).then(function (e) {
-						if (e.data.length > 0) {
-							$state.go('PindahPulangPasien', {
-								norecPD: $scope.dataPasienSelected.norec,
-								norecAPD: e.data[0].norec_apd
-							});
-							var CachePindah = $scope.dataPasienSelected.ruanganid
-							cacheHelper.set('CachePindah', CachePindah);
-						}
+							if (e.data.length > 0) {
+								$state.go('PindahPulangPasien', {
+									norecPD: $scope.dataPasienSelected.norec,
+									norecAPD: e.data[0].norec_apd
+								});
+								var CachePindah = $scope.dataPasienSelected.ruanganid
+								cacheHelper.set('CachePindah', CachePindah);
+							}
 
-					})
+						})
 
 				}
 				// var tglpulang = moment($scope.item.tanggalPulang).format('YYYY-MM-DD HH:mm:ss');
@@ -523,31 +523,34 @@ define(['initialize'], function (initialize) {
 				// 	dt2.push(dt1)
 				// }
 
+				var list = []
 				var data = {
+					metadata: {
+						method: "new_claim"
+					},
 					data: {
-						metadata: {
-							method: "new_claim"
-						},
-						data: {
-							nomor_kartu: $scope.dataPasienSelected.nokepesertaan,
-							nomor_sep: $scope.dataPasienSelected.nosep,
-							nomor_rm: $scope.dataPasienSelected.nocm,
-							nama_pasien: $scope.dataPasienSelected.namapasien,
-							tgl_lahir: $scope.dataPasienSelected.tgllahir,
-							gender: $scope.dataPasienSelected.gender
-						}
+						nomor_kartu: $scope.dataPasienSelected.nokepesertaan,
+						nomor_sep: $scope.dataPasienSelected.nosep,
+						nomor_rm: $scope.dataPasienSelected.nocm,
+						nama_pasien: $scope.dataPasienSelected.namapasien,
+						tgl_lahir: $scope.dataPasienSelected.tgllahir,
+						gender: $scope.dataPasienSelected.gender
 					}
 				}
 
+				list.push(data);
+				var jsonSave = {
+					"data": list
+				}
 				console.log(data);
-				manageTataRekening.savebridginginacbg(data).then(function(e){
+				manageTataRekening.savebridginginacbg(jsonSave).then(function (e) {
 					// LoadData();
 				})
 			}
 
 			$scope.set_claim_data = function () {
 				console.log($scope.dataPasienSelected);
-				if(!$scope.dataPasienSelected) {
+				if (!$scope.dataPasienSelected) {
 					toastr.warning("Harap pilih data pasien terlebih dahulu");
 					return;
 				}
@@ -623,6 +626,7 @@ define(['initialize'], function (initialize) {
 					discharge_status = 5;
 				}
 
+				let list = []
 				let data = {
 					metadata: {
 						method: "set_claim_data",
@@ -678,11 +682,16 @@ define(['initialize'], function (initialize) {
 					}
 				}
 
+				list.push(data)
+				jsonSave = {
+					"data": list
+				}
+
 				console.log(data);
 				// var objData = {
 				// 	"data": dt2
 				// }
-				manageTataRekening.savebridginginacbg(data).then(function (e) {
+				manageTataRekening.savebridginginacbg(jsonSave).then(function (e) {
 					var data = e.data.dataresponse
 					for (let i = 0; i < data.length; i++) {
 						var element = data[i];
@@ -1445,7 +1454,7 @@ define(['initialize'], function (initialize) {
 								manageTataRekening.postData('yankes/update-rujukan', jsonSave)
 									.then(function (response) {
 										console.log('Update Yankes Rujukan')
-									}, error => {});
+									}, error => { });
 								break
 							}
 						}
@@ -1465,7 +1474,7 @@ define(['initialize'], function (initialize) {
 						manageTataRekening.postData('yankes/insert-rujukan', da)
 							.then(function (response) {
 								console.log('Insert Yankes Rujukan')
-							}, error => {});
+							}, error => { });
 					}
 				})
 

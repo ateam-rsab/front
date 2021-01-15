@@ -15,11 +15,11 @@ define(['initialize'], function (initialize) {
 
                 $q.all([
                     ManageSdm.getOrderList("service/list-generic/?view=PelaksanaanTugas&select=id,pelaksanaanTugas&criteria=statusEnabled&values=true", true),
-                    ManageSdm.getOrderList("service/list-generic/?view=Jabatan&select=id,namaJabatan&criteria=statusEnabled&values=true", true),
+                    ManageSdm.getOrderList("service/list-generic/?view=JenisJabatan&select=id,jenisJabatan&criteria=statusEnabled&values=true", true),
                     ManageSdmNew.getListData("sdm/get-all-uraian-tugas")
                 ]).then(function (res) {
                     $scope.listPelaksana = res[0];
-                    $scope.listJabatan = res[1];
+                    $scope.listJenisJabatan = res[1];
                     if (res[2].statResponse) {
                         $scope.gridUraianTugas = new kendo.data.DataSource({
                             data: res[2].data.data,
@@ -378,6 +378,14 @@ define(['initialize'], function (initialize) {
                 })
             })
 
+            $scope.$watch('item.jenisJabatan', function (newVal, oldVal) {
+                if (newVal && newVal !== oldVal) {
+                    ManageSdm.getOrderList("service/list-generic/?view=Jabatan&select=id,namaJabatan&criteria=statusEnabled&values=true&criteria=jenisJabatanId&values=" + newVal.id, true).then(function (res) {
+                        $scope.listJabatan = res.data;
+                    })
+                }
+            })
+
             function applyFilter(filterField, filterValue) {
                 var gridData = $("#gridMappingTugas").data("kendoGrid");
                 var currFilterObj = gridData.dataSource.filter();
@@ -415,6 +423,7 @@ define(['initialize'], function (initialize) {
             $scope.resetDatasource = function () {
                 var gridData = $("#gridMappingTugas").data("kendoGrid");
                 gridData.dataSource.filter({});
+                $scope.listJabatan = [];
                 $scope.item = {};
             }
 

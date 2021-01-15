@@ -2,8 +2,14 @@
     <c-panel item="item" header="'Daftar Mapping Rincian Kegiatan - Jabatan'" disabled>
         <div class="panel-body">
             <div class="grid_12">
+                <div class="grid_2">
+                    <label c-label c-label-text="Pilih Jenis Jabatan" real></label>
+                    <input kendo-combo-box style="width:100%" k-ng-model="item.jenisJabatan"
+                        k-data-text-field="'jenisJabatan'" k-data-value-field="'id'" k-filter="'contains'"
+                        k-auto-bind="false" k-data-source="listJenisJabatan" />
+                </div>
                 <div class="grid_3">
-                    <label c-label c-label-text="Pilih Jabatan" real></label>
+                    <label c-label c-label-text="Jabatan" real></label>
                     <input kendo-combo-box style="width:100%" k-ng-model="item.pilihJabatan"
                         k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-filter="'contains'"
                         k-auto-bind="false" k-data-source="listJabatan" />
