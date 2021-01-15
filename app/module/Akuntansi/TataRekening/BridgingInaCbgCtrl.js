@@ -499,7 +499,7 @@ define(['initialize'], function (initialize) {
 			}
 
 			$scope.new_claim = function () {
-				console.log($scope.dataPasienSelected);
+				// console.log($scope.dataPasienSelected);
 				if (!$scope.dataPasienSelected) {
 					toastr.warning("Harap pilih data pasien terlebih dahulu");
 					return;
@@ -542,14 +542,14 @@ define(['initialize'], function (initialize) {
 				var jsonSave = {
 					"data": list
 				}
-				console.log(data);
+				// console.log(data);
 				manageTataRekening.savebridginginacbg(jsonSave).then(function (e) {
 					// LoadData();
 				})
 			}
 
 			$scope.set_claim_data = function () {
-				console.log($scope.dataPasienSelected);
+				// console.log($scope.dataPasienSelected);
 				if (!$scope.dataPasienSelected) {
 					toastr.warning("Harap pilih data pasien terlebih dahulu");
 					return;
@@ -683,11 +683,11 @@ define(['initialize'], function (initialize) {
 				}
 
 				list.push(data)
-				jsonSave = {
+				var jsonSave = {
 					"data": list
 				}
 
-				console.log(data);
+				// console.log(data);
 				// var objData = {
 				// 	"data": dt2
 				// }
@@ -1426,11 +1426,11 @@ define(['initialize'], function (initialize) {
 				var now = moment(new Date()).format('YYYY-MM-DD')
 				manageTataRekening.getDataTableTransaksi('sisrute/rujukan/get?tanggal=' + now).then(function (response) {
 					$scope.jmlRujukanMasuk = response.data.total
-					console.log('rujukan masuk : ' + response.data.total)
+					// console.log('rujukan masuk : ' + response.data.total)
 				})
 				manageTataRekening.getDataTableTransaksi('sisrute/rujukan/get?tanggal=' + now + '&create=true').then(function (response) {
 					$scope.jmlRujukanKeluar = response.data.total
-					console.log('rujukan masuk : ' + response.data.total)
+					// console.log('rujukan masuk : ' + response.data.total)
 				})
 			}
 			// postRujukanYankes()
@@ -1453,7 +1453,7 @@ define(['initialize'], function (initialize) {
 								}
 								manageTataRekening.postData('yankes/update-rujukan', jsonSave)
 									.then(function (response) {
-										console.log('Update Yankes Rujukan')
+										// console.log('Update Yankes Rujukan')
 									}, error => { });
 								break
 							}
@@ -1473,7 +1473,7 @@ define(['initialize'], function (initialize) {
 
 						manageTataRekening.postData('yankes/insert-rujukan', da)
 							.then(function (response) {
-								console.log('Insert Yankes Rujukan')
+								// console.log('Insert Yankes Rujukan')
 							}, error => { });
 					}
 				})
