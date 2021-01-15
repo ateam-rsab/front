@@ -1077,28 +1077,30 @@ define(['initialize'], function (initialize) {
                             console.info('Cancel');
                         });
                     }
-                    // $scope.BridgingConsisD();
-                    // BaruLagi()
-                    // if (noOrder == 'EditResep') {
-                    //     var objDelete = {norec:norecResep}
-                    //     manageLogistikPhp.posthapuspelayananapotik(objDelete).then(function(e) {
+                    $scope.BridgingConsisD();
+                    BaruLagi()
+                    if (noOrder == 'EditResep') {
+                        var objDelete = {
+                            norec: norecResep
+                        }
+                        manageLogistikPhp.posthapuspelayananapotik(objDelete).then(function (e) {
 
-                    //     })
-                    // }
-                    // if (norecResep != '') {
-                    //     var chacePeriode = {
-                    //         0: '',
-                    //         1: '',
-                    //         2: '',
-                    //         3: '',
-                    //         4: '',
-                    //         5: '',
-                    //         6: ''
-                    //     }
-                    //     cacheHelper.set('InputResepApotikNonLayananCtrl', chacePeriode);
-                    //     window.history.back();
-                    // }
-                    // window.history.back();
+                        })
+                    }
+                    if (norecResep != '') {
+                        var chacePeriode = {
+                            0: '',
+                            1: '',
+                            2: '',
+                            3: '',
+                            4: '',
+                            5: '',
+                            6: ''
+                        }
+                        cacheHelper.set('InputResepApotikNonLayananCtrl', chacePeriode);
+                        window.history.back();
+                    }
+                    window.history.back();
                 }, err => $scope.isSimpanDisabled = false)
 
                 // $state.go("TransaksiPelayananApotik")

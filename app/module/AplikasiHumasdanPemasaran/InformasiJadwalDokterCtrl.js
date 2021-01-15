@@ -224,8 +224,6 @@ define(['initialize'], function (initialize) {
 						});
 					}
 
-					// console.log(datatemp);
-
 					$scope.schedulerOptions = {
 						date: new Date(Awal),
 						// startTime: new Date(Awal),
@@ -255,72 +253,44 @@ define(['initialize'], function (initialize) {
 						}]
 					};
 
-					// $scope.schedulerOptions = {
-					// 	date: new Date($scope.item.bulan),
-					// 	// startTime: new Date(Awal),
-					// 	height: 600,
-					// 	views: [
-					// 		"agenda",
-					// 		{
-					// 			type: "month",
-					// 			selected: true,
-					// 			allDaySlot: false
-					// 		},
-					// 		{
-					// 			selectedDateFormat: "{0:dd-MM-yyyy}"
-					// 		}
-					// 	],
-					// 	// eventTemplate: "<span class='custom-event'>{{dataItem.title}}</span>",
-					// 	// allDayEventTemplate: "<div class='custom-all-day-event'>{{dataItem.title}}</div>",
-					// 	// timezone: "Indonesia/Jakarta",
-					// 	dataSource: datatemp,
-					// 	// resources: [
-					// 	//        {
-					// 	//            field: "namaruangan",
-					// 	//            dataSource: datatemp,
-					// 	//            title: "namaruangan"
-					// 	//        }
-					// 	// ]
-					// };
+					$scope.dataJadwalDokter.senin = [];
+					$scope.dataJadwalDokter.selasa = [];
+					$scope.dataJadwalDokter.rabu = [];
+					$scope.dataJadwalDokter.kamis = [];
+					$scope.dataJadwalDokter.jumat = [];
+					$scope.dataJadwalDokter.sabtu = [];
+					$scope.dataJadwalDokter.minggu = [];
 
-					// $scope.dataJadwalDokter.senin = [];
-					// $scope.dataJadwalDokter.selasa = [];
-					// $scope.dataJadwalDokter.rabu = [];
-					// $scope.dataJadwalDokter.kamis = [];
-					// $scope.dataJadwalDokter.jumat = [];
-					// $scope.dataJadwalDokter.sabtu = [];
-					// $scope.dataJadwalDokter.minggu = [];
+					for (let i in data) {
+						// data[i].namahari = data[i].namahari.toLowerCase();
+						// console.log(i, data[i]);
 
-					// for (let i in data) {
-					// 	// data[i].namahari = data[i].namahari.toLowerCase();
-					// 	// console.log(i, data[i]);
-
-					// 	switch (data[i].namahari) {
-					// 		case "SENIN":
-					// 			$scope.dataJadwalDokter.senin.push(data[i]);
-					// 			break;
-					// 		case "SELASA":
-					// 			$scope.dataJadwalDokter.selasa.push(data[i]);
-					// 			break;
-					// 		case "RABU":
-					// 			$scope.dataJadwalDokter.rabu.push(data[i]);
-					// 			break;
-					// 		case "KAMIS":
-					// 			$scope.dataJadwalDokter.kamis.push(data[i]);
-					// 			break;
-					// 		case "JUMAT":
-					// 			$scope.dataJadwalDokter.jumat.push(data[i]);
-					// 			break;
-					// 		case "SABTU":
-					// 			$scope.dataJadwalDokter.sabtu.push(data[i]);
-					// 			break;
-					// 		case "MINGGU":
-					// 			$scope.dataJadwalDokter.minggu.push(data[i]);
-					// 			break;
-					// 		default:
-					// 			break;
-					// 	}
-					// }
+						switch (data[i].namahari) {
+							case "SENIN":
+								$scope.dataJadwalDokter.senin.push(data[i]);
+								break;
+							case "SELASA":
+								$scope.dataJadwalDokter.selasa.push(data[i]);
+								break;
+							case "RABU":
+								$scope.dataJadwalDokter.rabu.push(data[i]);
+								break;
+							case "KAMIS":
+								$scope.dataJadwalDokter.kamis.push(data[i]);
+								break;
+							case "JUMAT":
+								$scope.dataJadwalDokter.jumat.push(data[i]);
+								break;
+							case "SABTU":
+								$scope.dataJadwalDokter.sabtu.push(data[i]);
+								break;
+							case "MINGGU":
+								$scope.dataJadwalDokter.minggu.push(data[i]);
+								break;
+							default:
+								break;
+						}
+					}
 
 					// $scope.dataGrid = new kendo.data.DataSource({
 					// 	data: res,

@@ -46,7 +46,7 @@ define(['initialize'], function(initialize, pasienServices) {
                    modelItemAkuntansi.getDataDummyPHP("pasien/get-combo-icd9", true, true, 10).then(function(data) {
                          $scope.listDiagnosaTindakan= data;
                      });
-                     modelItemAkuntansi.getDataDummyPHP("diagnosa/get-data-diagnosa-part", true, true, 10).then(function(data) {
+                     modelItemAkuntansi.getDataDummyPHP("diagnosa/get-data-diagnosa-part", true, true, 20).then(function(data) {
                         $scope.listDiagnosa= data;
                     });
                      ManagePhp.getData('diagnosa/get-data-combo').then(function (data) {
