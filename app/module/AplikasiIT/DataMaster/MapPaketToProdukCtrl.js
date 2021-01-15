@@ -215,6 +215,11 @@ define(['initialize'], function (initialize) {
 
 			// save 
 			$scope.tambah = function () {
+				if (!$scope.item.produk.satuanStandarId || $scope.item.produk.satuanStandarId == null) {
+					toastr.warning('Belum setting satuan di master produk!');
+					return
+				}
+					
 				var data = {
 					"class": "MapPaketToProduk",
 					"listField": {

@@ -588,7 +588,8 @@ define(['initialize'], function (initialize) {
 					"tglproduksi": "2017-07-12",
 					"status": null,
 					"objectjenisgenerikfk": null,
-					"poinmedis": null
+					"poinmedis": null,
+					"idkelompokproduk": $scope.item.kelompok ? $scope.item.kelompok.id : ""
 				}
 				// }else{
 				// var data = {  

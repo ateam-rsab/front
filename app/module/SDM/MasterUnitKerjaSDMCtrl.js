@@ -197,6 +197,16 @@ define(['initialize'], function(initialize) {
                     "kdProfile": 0,
                     "name": items.name,
                     "reportDisplay":  items.name,
+                    "subUnitKerja" : {
+                        "statusEnabled": true,
+                        "namaExternal": items.name,
+                        "kdProfile": 0,
+                        "name":  items.name,
+                        "reportDisplay":  items.name,
+                        "unitKerja":{
+                            "id":items.id
+                        }
+                    }
                 }
                 $scope.reloadGrid = item.statusEnabled;
                 ManageSdmNew.saveData(item,"sdm/save-unit-kerja").then(function(e){
