@@ -71,8 +71,8 @@ define(['initialize'], function (initialize) {
                 columns: [
                     {
                         field: "id",
-                        title: "id",
-                        hidden: true
+                        title: "Kode",
+                        hidden: false
                     },
                     {
                         field: "rincianKegiatan",
