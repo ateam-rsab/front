@@ -5,7 +5,7 @@ define(['initialize'], function (initialize) {
             $scope.isRouteLoading = false;
             $scope.selectedYear = {
                 tahun: new Date().getFullYear(),
-                id: 1
+                id: new Date().getFullYear() - 2020
             }
             $scope.mainGridOptions = {
                 scrollable: true,
@@ -92,10 +92,11 @@ define(['initialize'], function (initialize) {
                 let currentYear = new Date().getFullYear();
                 $scope.listOfYear = [];
                 let startYear = 2020;
+                let j = 0
                 for (let i = startYear; i <= currentYear; i++) {
                     $scope.listOfYear.push({
                         tahun: startYear++,
-                        id: i + 1
+                        id: j + 1
                     })
                 }
 
