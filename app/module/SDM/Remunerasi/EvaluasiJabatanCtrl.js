@@ -397,9 +397,9 @@ define(['initialize'], function (initialize) {
                     totalNilai = Math.ceil(e.data.data.result);
                     if (totalNilai < $scope.data.kelompokJabatan.nilaiTerendah || totalNilai > $scope.data.kelompokJabatan.nilaiTertinggi) {
                         $scope.isSimpanDisabled = true;
-                        
-                        if(totalNilai < $scope.data.kelompokJabatan.nilaiTerendah) toastr.info("Total Perhitungan Jabatan Kurang dari Nilai Terendah Jabatan");
-                        if(totalNilai > $scope.data.kelompokJabatan.nilaiTerendah) toastr.info("Total Perhitungan Jabatan Lebih dari Nilai Terendah Jabatan");
+
+                        if (totalNilai < $scope.data.kelompokJabatan.nilaiTerendah) toastr.info("Total Perhitungan Jabatan Kurang dari Nilai Terendah Jabatan");
+                        if (totalNilai > $scope.data.kelompokJabatan.nilaiTerendah) toastr.info("Total Perhitungan Jabatan Lebih dari Nilai Terendah Jabatan");
                     } else {
                         $scope.isSimpanDisabled = false;
                     }
