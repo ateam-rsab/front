@@ -5,9 +5,47 @@ define(['initialize'], function (initialize) {
             $scope.today = new Date();
             $scope.tanggalPasienMasuk = new Date();
             $scope.isRouteLoading = true;
+            $(':text').val('0');
 
             $scope.onChangeTab = (index) => {
                 // console.log(index);
+                if (index === 1) {
+                    getDataPasienMasuk();
+                    return;
+                }
+
+                if (index === 2) {
+                    getDataPasienDirawat();
+                    return;
+                }
+
+                if (index === 3) {
+                    getDataRekapPasienKeluar();
+                    return;
+                }
+
+                if (index === 4) {
+                    getDataTempatTidur();
+                    return;
+                }
+
+                if (index === 5) {
+                    getDataSDM();
+                    return;
+                }
+
+                if (index === 6) {
+                    getDataAlkesApd();
+                    return;
+                }
+
+                // if(index === 2) {
+                //     return;
+                // }
+
+                // if(index === 2) {
+                //     return;
+                // }
             }
 
             $scope.listRiwayatPasien = [{
@@ -25,108 +63,112 @@ define(['initialize'], function (initialize) {
 
             // #region PASIEN MASUK 
             let getDataPasienMasuk = () => {
+                $scope.isRouteLoading = true;
                 $scope.optGroupPasienMasuk = {
                     pageable: true,
                     scrollable: true,
                     columns: [{
-                        field: "tanggal",
-                        title: "Tanggal",
-                        width: "100px",
-                    }, {
-                        field: "tgl_lapor",
-                        title: "Tanggal <br> Lapor",
-                        width: "100px",
-                    }, {
-                        field: "koders",
-                        title: "Koders",
-                        width: "100px",
-                    }, {
-                        title: "IGD Suspect",
-                        width: "100px",
-                        columns: [{
-                            field: "igd_suspect_l",
-                            title: "L",
-                            width: "70px",
+                            field: "tanggal",
+                            title: "Tanggal",
+                            width: "100px",
                         }, {
-                            field: "igd_suspect_p",
-                            title: "P",
-                            width: "70px",
-                        }]
-                    }, {
-                        title: "IGD Konfirm",
-                        width: "100px",
-                        columns: [{
-                            field: "igd_confirm_l",
-                            title: "L",
-                            width: "70px",
-                        }, {
-                            field: "igd_confirm_p",
-                            title: "P",
-                            width: "70px",
-                        }]
-                    }, {
-                        title: "Rawat Jalan Suspect",
-                        width: "100px",
-                        columns: [{
-                            field: "rj_suspect_l",
-                            title: "L",
-                            width: "70px",
-                        }, {
-                            field: "rj_suspect_p",
-                            title: "P",
-                            width: "70px",
-                        }]
-                    }, {
-                        title: "Rawat Jalan Konfirm",
-                        width: "100px",
-                        columns: [{
-                            field: "rj_confirm_l",
-                            title: "L",
-                            width: "70px",
-                        }, {
-                            field: "rj_confirm_p",
-                            title: "P",
-                            width: "70px",
-                        }]
-                    }, {
-                        title: "Rawat Inap Suspect",
-                        width: "100px",
-                        columns: [{
-                            field: "ri_suspect_l",
-                            title: "L",
-                            width: "70px",
-                        }, {
-                            field: "ri_suspect_p",
-                            title: "P",
-                            width: "70px",
-                        }]
-                    }, {
-                        title: "Rawat Inap Konfirm",
-                        width: "100px",
-                        columns: [{
-                            field: "ri_confirm_l",
-                            title: "L",
-                            width: "70px",
-                        }, {
-                            field: "ri_confirm_p",
-                            title: "P",
-                            width: "70px",
-                        }]
-                    }, {
-                        command: [{
-                            text: "Hapus",
-                            align: "center",
-                            attributes: {
-                                align: "center"
-                            },
-                            click: confirmHapusPasienMasuk,
-                        }],
-                        title: "",
-                        width: "100px",
-                        attributes: {
-                            style: "text-align:center;valign=middle"
+                            field: "tgl_lapor",
+                            title: "Tanggal <br> Lapor",
+                            width: "100px",
                         },
-                    }]
+                        // {
+                        //     field: "koders",
+                        //     title: "Koders",
+                        //     width: "100px",
+                        // },
+                        {
+                            title: "IGD Suspect",
+                            width: "100px",
+                            columns: [{
+                                field: "igd_suspect_l",
+                                title: "L",
+                                width: "70px",
+                            }, {
+                                field: "igd_suspect_p",
+                                title: "P",
+                                width: "70px",
+                            }]
+                        }, {
+                            title: "IGD Konfirm",
+                            width: "100px",
+                            columns: [{
+                                field: "igd_confirm_l",
+                                title: "L",
+                                width: "70px",
+                            }, {
+                                field: "igd_confirm_p",
+                                title: "P",
+                                width: "70px",
+                            }]
+                        }, {
+                            title: "Rawat Jalan Suspect",
+                            width: "100px",
+                            columns: [{
+                                field: "rj_suspect_l",
+                                title: "L",
+                                width: "70px",
+                            }, {
+                                field: "rj_suspect_p",
+                                title: "P",
+                                width: "70px",
+                            }]
+                        }, {
+                            title: "Rawat Jalan Konfirm",
+                            width: "100px",
+                            columns: [{
+                                field: "rj_confirm_l",
+                                title: "L",
+                                width: "70px",
+                            }, {
+                                field: "rj_confirm_p",
+                                title: "P",
+                                width: "70px",
+                            }]
+                        }, {
+                            title: "Rawat Inap Suspect",
+                            width: "100px",
+                            columns: [{
+                                field: "ri_suspect_l",
+                                title: "L",
+                                width: "70px",
+                            }, {
+                                field: "ri_suspect_p",
+                                title: "P",
+                                width: "70px",
+                            }]
+                        }, {
+                            title: "Rawat Inap Konfirm",
+                            width: "100px",
+                            columns: [{
+                                field: "ri_confirm_l",
+                                title: "L",
+                                width: "70px",
+                            }, {
+                                field: "ri_confirm_p",
+                                title: "P",
+                                width: "70px",
+                            }]
+                        }, {
+                            command: [{
+                                text: "Hapus",
+                                align: "center",
+                                attributes: {
+                                    align: "center"
+                                },
+                                click: confirmHapusPasienMasuk,
+                            }],
+                            title: "",
+                            width: "100px",
+                            attributes: {
+                                style: "text-align:center;valign=middle"
+                            },
+                        }
+                    ]
                 }
 
                 managePhp.getDataBridgingRSOnline("get-pasien-masuk").then(res => {
@@ -137,7 +179,7 @@ define(['initialize'], function (initialize) {
                     $scope.isRouteLoading = false;
                 })
             }
-            getDataPasienMasuk();
+            // getDataPasienMasuk();
 
             $scope.simpanRekapPasienMasuk = () => {
                 $scope.isRouteLoading = true;
@@ -223,11 +265,13 @@ define(['initialize'], function (initialize) {
                         field: "tgl_lapor",
                         title: "Tanggal<br>Lapor",
                         width: "150px",
-                    }, {
-                        field: "koders",
-                        title: "Kode RS",
-                        width: "100px"
-                    }, {
+                    },
+                    // {
+                    //     field: "koders",
+                    //     title: "Kode RS",
+                    //     width: "100px"
+                    // },
+                    {
                         title: "ICU dengan<br> Ventilator Konfirm",
                         width: "250px",
                         columns: [{
@@ -461,61 +505,69 @@ define(['initialize'], function (initialize) {
                     $scope.isRouteLoading = false;
                 })
             }
-            getDataPasienDirawat();
+            // getDataPasienDirawat();
 
             $scope.onChangeRiwayatPasien = () => {
                 getDataPasienDirawat();
             }
 
             $scope.simpanDataPasienDenganKomorbid = () => {
-                let data = {
-                    tanggal: $scope.tanggalPasienMasuk ? DateHelper.formatDate($scope.tanggalPasienMasuk, "YYYY-MM-DD") : $scope.tanggalPasienMasuk,
-                    icu_dengan_ventilator_suspect_l: "0",
-                    icu_dengan_ventilator_suspect_p: "0",
-                    icu_dengan_ventilator_confirm_l: "2",
-                    icu_dengan_ventilator_confirm_p: "0",
-                    icu_tanpa_ventilator_suspect_l: "2",
-                    icu_tanpa_ventilator_suspect_p: "5",
-                    icu_tanpa_ventilator_confirm_l: "2",
-                    icu_tanpa_ventilator_confirm_p: "0",
-                    icu_tekanan_negatif_dengan_ventilator_suspect_l: "0",
-                    icu_tekanan_negatif_dengan_ventilator_suspect_p: "0",
-                    icu_tekanan_negatif_dengan_ventilator_confim_l: "0",
-                    icu_tekanan_negatif_dengan_ventilator_confim_p: "0",
-                    icu_tekanan_negatif_tanpa_ventilator_suspect_l: "0",
-                    icu_tekanan_negatif_tanpa_ventilator_suspect_p: "0",
-                    icu_tekanan_negatif_tanpa_ventilator_confim_l: "0",
-                    icu_tekanan_negatif_tanpa_ventilator_confim_p: "0",
-                    isolasi_tekanan_negatif_suspect_l: "2",
-                    isolasi_tekanan_negatif_suspect_p: "2",
-                    isolasi_tekanan_negatif_confirm_l: "7",
-                    isolasi_tanpa_tekanan_negatif_suspect_l: "5",
-                    isolasi_tanpa_tekanan_negatif_suspect_p: "24",
-                    isolasi_tanpa_tekanan_negatif_confirm_l: "5",
-                    isolasi_tanpa_tekanan_negatif_confirm_p: "15",
-                    nicu_khusus_covid_suspect_l: "0",
-                    nicu_khusus_covid_suspect_p: "0",
-                    nicu_khusus_covid_confirm_l: "0",
-                    nicu_khusus_covid_confirm_p: "0",
-                    picu_khusus_covid_suspect_l: "1",
-                    picu_khusus_covid_suspect_p: "0",
-                    picu_khusus_covid_confirm_l: "0",
-                    picu_khusus_covid_confirm_p: "0"
+                let url = $scope.riwayatPasien.value === 1 ? "send-pasien-dirawat-komorbid/" + $scope.tanggalPasienMasuk ? DateHelper.formatDate($scope.tanggalPasienMasuk, "YYYY-MM-DD") : $scope.tanggalPasienMasuk : "send-pasien-dirawat-tanpa-komorbid/" + $scope.tanggalPasienMasuk ? DateHelper.formatDate($scope.tanggalPasienMasuk, "YYYY-MM-DD") : $scope.tanggalPasienMasuk;
+                let dataSave = {
+                    tanggal: $scope.tanggalPasienMasuk ? DateHelper.formatDate($scope.tanggalPasienMasuk, "YYYY-MM-DD") : new Date(),
+                    icu_dengan_ventilator_suspect_l: $scope.icuDenganVentilatorSuspectL,
+                    icu_dengan_ventilator_suspect_p: $scope.icuDenganVentilatorSuspectP,
+                    icu_dengan_ventilator_confirm_l: $scope.icuDenganVentilatorKonfirmL,
+                    icu_dengan_ventilator_confirm_p: $scope.icuDenganVentilatorKonfirmP,
+                    icu_tanpa_ventilator_suspect_l: $scope.icuTanpaVentilatorSuspectL,
+                    icu_tanpa_ventilator_suspect_p: $scope.icuTanpaVentilatorSuspectP,
+                    icu_tanpa_ventilator_confirm_l: $scope.icuTanpaVentilatorKonfirmL,
+                    icu_tanpa_ventilator_confirm_p: $scope.icuTanpaVentilatorKonfirmP,
+                    icu_tekanan_negatif_dengan_ventilator_suspect_l: $scope.icuTekananNegatifDenganVentilatorSuspectL,
+                    icu_tekanan_negatif_dengan_ventilator_suspect_p: $scope.icuTekananNegatifDenganVentilatorSuspectP,
+                    icu_tekanan_negatif_dengan_ventilator_confim_l: $scope.icuTekananNegatifDenganVentilatorKonfirmL,
+                    icu_tekanan_negatif_dengan_ventilator_confim_p: $scope.icuTekananNegatifDenganVentilatorKonfirmP,
+                    icu_tekanan_negatif_tanpa_ventilator_suspect_l: $scope.icuTekananNegatifTanpaVentilatorSuspectL,
+                    icu_tekanan_negatif_tanpa_ventilator_suspect_p: $scope.icuTekananNegatifTanpaVentilatorSuspectP,
+                    icu_tekanan_negatif_tanpa_ventilator_confim_l: $scope.icuTekananNegatifTanpaVentilatorKonfirmL,
+                    icu_tekanan_negatif_tanpa_ventilator_confim_p: $scope.icuTekananNegatifTanpaVentilatorKonfirmP,
+                    isolasi_tekanan_negatif_suspect_l: $scope.isolasiTekananNegatifSuspectL,
+                    isolasi_tekanan_negatif_suspect_p: $scope.isolasiTekananNegatifSuspectP,
+                    isolasi_tekanan_negatif_confirm_l: $scope.isolasiTekananNegatifKonfirmL,
+                    isolasi_tekanan_negatif_confirm_p: $scope.isolasiTekananNegatifKonfirmP,
+                    isolasi_tanpa_tekanan_negatif_suspect_l: $scope.isolasiTanpaTekananNegatifSuspectL,
+                    isolasi_tanpa_tekanan_negatif_suspect_p: $scope.isolasiTanpaTekananNegatifSuspectP,
+                    isolasi_tanpa_tekanan_negatif_confirm_l: $scope.isolasiTanpaTekananNegatifKonfirmL,
+                    isolasi_tanpa_tekanan_negatif_confirm_p: $scope.isolasiTanpaTekananNegatifKonfirmP,
+                    nicu_khusus_covid_suspect_l: $scope.nicuKhususCovidSuspectL,
+                    nicu_khusus_covid_suspect_p: $scope.nicuKhususCovidSuspectP,
+                    nicu_khusus_covid_confirm_l: $scope.nicuKhususCovidKonfirmL,
+                    nicu_khusus_covid_confirm_p: $scope.nicuKhususCovidKonfirmP,
+                    picu_khusus_covid_suspect_l: $scope.picuKhususCovidSuspectL,
+                    picu_khusus_covid_suspect_p: $scope.picuKhususCovidSuspectP,
+                    picu_khusus_covid_confirm_l: $scope.picuKhususCovidKonfirmL,
+                    picu_khusus_covid_confirm_p: $scope.picuKhususCovidKonfirmP
                 }
-            }
+                managePhp.saveDataBridgingRSOnline(url, dataSave).then(res => {
+                    $scope.isRouteLoading = false;
+                    getDataPasienDirawat();
+                })
 
+            }
             // #endregion PASIEN DIRAWAT
 
             // #region Pasien Keluar
             let getDataRekapPasienKeluar = () => {
+                $scope.isRouteLoading = true;
                 $scope.optGroupPasienKeluar = {
                     pageable: true,
                     scrollable: true,
-                    columns: [{
-                            field: "koders",
-                            title: "Kode RS",
-                            width: "100px"
-                        },
+                    columns: [
+                        // {
+                        //     field: "koders",
+                        //     title: "Kode RS",
+                        //     width: "100px"
+                        // },
                         {
                             field: "tanggal",
                             title: "Tanggal",
@@ -663,45 +715,49 @@ define(['initialize'], function (initialize) {
                     $scope.isRouteLoading = false;
                 })
             }
+            // getDataRekapPasienKeluar();
 
-            getDataRekapPasienKeluar();
             $scope.simpanRekapPasienKeluar = () => {
                 let data = {
-                    tanggal: $scope.tanggalPasienMasuk ? DateHelper.formatDate($scope.tanggalPasienMasuk, "YYYY-MM-DD") : $scope.tanggalPasienMasuk,
+                    tanggal: $scope.tanggalPasienMasuk ? DateHelper.formatDate($scope.tanggalPasienMasuk, "YYYY-MM-DD") : new Date(),
                     sembuh: $scope.sembuh,
-                    discarded: $scope.discarded,
-                    meninggal_komorbid: $scope.meninggalKomorbid,
-                    meninggal_tanpa_komorbid: $scope.meninggalTanpaKomorbid,
-                    meninggal_prob_pre_komorbid: $scope.meninggalProbPreKomorbid,
-                    meninggal_prob_neo_komorbid: $scope.meninggalProbNeoKomorbid,
-                    meninggal_prob_bayi_komorbid: $scope.meninggalProbBayiKomorbid,
-                    meninggal_prob_balita_komorbid: $scope.meninggalProbBalitaKomorbid,
-                    meninggal_prob_anak_komorbid: $scope.meninggalProbAnakKomorbid,
-                    meninggal_prob_remaja_komorbid: $scope.meninggalProbRemajaKomorbid,
-                    meninggal_prob_dws_komorbid: $scope.meninggalProbDwsKomorbid,
-                    meninggal_prob_lansia_komorbid: $scope.meninggalProbLansiaKomorbid,
-                    meninggal_prob_pre_tanpa_komorbid: $scope.meninggalProbPreTanpaKomorbid,
-                    meninggal_prob_neo_tanpa_komorbid: $scope.meninggalProbNeoTanpaKomorbid,
-                    meninggal_prob_bayi_tanpa_komorbid: $scope.meninggalProbBayiTanpaKomorbid,
-                    meninggal_prob_balita_tanpa_komorbid: $scope.meninggalProbBalitaTanpaKomorbid,
-                    meninggal_prob_anak_tanpa_komorbid: $scope.meninggalProbAnakTanpaKomorbid,
-                    meninggal_prob_remaja_tanpa_komorbid: $scope.meninggalProbRemajaTanpaKomorbid,
-                    meninggal_prob_dws_tanpa_komorbid: $scope.meninggalProbDwsTanpaKomorbid,
-                    meninggal_prob_lansia_tanpa_komorbid: $scope.meninggalProbLansiaTanpaKomorbid,
-                    meninggal_disarded_komorbid: $scope.meninggal_disarded_komorbid,
-                    meninggal_discarded_tanpa_komorbid: $scope.meninggalDiscardedTanpaKomorbid,
-                    dirujuk: $scope.dirujuk,
-                    isman: $scope.isman,
-                    aps: $scope.aps
+                    discarded: $scope.discarded ? $scope.discarded : 0,
+                    meninggal_komorbid: $scope.meninggalKomorbid ? $scope.meninggalKomorbid : 0,
+                    meninggal_tanpa_komorbid: $scope.meninggalTanpaKomorbid ? $scope.meninggalTanpaKomorbid : 0,
+                    meninggal_prob_pre_komorbid: $scope.meninggalProbPreKomorbid ? $scope.meninggalProbPreKomorbid : 0,
+                    meninggal_prob_neo_komorbid: $scope.meninggalProbNeoKomorbid ? $scope.meninggalProbNeoKomorbid : 0,
+                    meninggal_prob_bayi_komorbid: $scope.meninggalProbBayiKomorbid ? $scope.meninggalProbBayiKomorbid : 0,
+                    meninggal_prob_balita_komorbid: $scope.meninggalProbBalitaKomorbid ? $scope.meninggalProbBalitaKomorbid : 0,
+                    meninggal_prob_anak_komorbid: $scope.meninggalProbAnakKomorbid ? $scope.meninggalProbAnakKomorbid : 0,
+                    meninggal_prob_remaja_komorbid: $scope.meninggalProbRemajaKomorbid ? $scope.meninggalProbRemajaKomorbid : 0,
+                    meninggal_prob_dws_komorbid: $scope.meninggalProbDwsKomorbid ? $scope.meninggalProbDwsKomorbid : 0,
+                    meninggal_prob_lansia_komorbid: $scope.meninggalProbLansiaKomorbid ? $scope.meninggalProbLansiaKomorbid : 0,
+                    meninggal_prob_pre_tanpa_komorbid: $scope.meninggalProbPreTanpaKomorbid ? $scope.meninggalProbPreTanpaKomorbid : 0,
+                    meninggal_prob_neo_tanpa_komorbid: $scope.meninggalProbNeoTanpaKomorbid ? $scope.meninggalProbNeoTanpaKomorbid : 0,
+                    meninggal_prob_bayi_tanpa_komorbid: $scope.meninggalProbBayiTanpaKomorbid ? $scope.meninggalProbBayiTanpaKomorbid : 0,
+                    meninggal_prob_balita_tanpa_komorbid: $scope.meninggalProbBalitaTanpaKomorbid ? $scope.meninggalProbBalitaTanpaKomorbid : 0,
+                    meninggal_prob_anak_tanpa_komorbid: $scope.meninggalProbAnakTanpaKomorbid ? $scope.meninggalProbAnakTanpaKomorbid : 0,
+                    meninggal_prob_remaja_tanpa_komorbid: $scope.meninggalProbRemajaTanpaKomorbid ? $scope.meninggalProbRemajaTanpaKomorbid : 0,
+                    meninggal_prob_dws_tanpa_komorbid: $scope.meninggalProbDwsTanpaKomorbid ? $scope.meninggalProbDwsTanpaKomorbid : 0,
+                    meninggal_prob_lansia_tanpa_komorbid: $scope.meninggalProbLansiaTanpaKomorbid ? $scope.meninggalProbLansiaTanpaKomorbid : 0,
+                    meninggal_disarded_komorbid: $scope.meninggal_disarded_komorbid ? $scope.meninggal_disarded_komorbid : 0,
+                    meninggal_discarded_tanpa_komorbid: $scope.meninggalDiscardedTanpaKomorbid ? $scope.meninggalDiscardedTanpaKomorbid : 0,
+                    dirujuk: $scope.dirujuk ? $scope.dirujuk : 0,
+                    isman: $scope.isman ? $scope.isman : 0,
+                    aps: $scope.aps ? $scope.aps : 0
                 }
 
-
+                managePhp.saveDataBridgingRSOnline("send-pasien-keluar/" + $scope.tanggalPasienMasuk ? DateHelper.formatDate($scope.tanggalPasienMasuk, "YYYY-MM-DD") : new Date(), data).then(res => {
+                    $scope.isRouteLoading = false;
+                    getDataRekapPasienKeluar();
+                })
             }
 
             // #endregion Pasien Keluar
 
             // #region Tempat Tidur
             let getDataTempatTidur = () => {
+                $scope.isRouteLoading = true;
                 $scope.optGroupTempatTidur = {
                     pageable: true,
                     scrollable: true,
@@ -749,14 +805,11 @@ define(['initialize'], function (initialize) {
                     }, ]
                 }
 
-                // localhost:7878/service-bridging-integerasi-covid/get-referensi-tempat-tidur
                 managePhp.getDataBridgingRSOnline("get-referensi-tempat-tidur").then(res => {
                     $scope.listDataReferensiTempatTidur = res.data.data.tempat_tidur;
                 })
-                // localhost:7878/service-bridging-integerasi-covid/get-tempat-tidur
-                managePhp.getDataBridgingRSOnline("get-tempat-tidur").then(res => {
-                    console.log(res.data.data.fasyankes);
 
+                managePhp.getDataBridgingRSOnline("get-tempat-tidur").then(res => {
                     $scope.dataSourceTempatTidur = new kendo.data.DataSource({
                         data: res.data.data.fasyankes,
                         pageSize: 20
@@ -764,30 +817,33 @@ define(['initialize'], function (initialize) {
                     $scope.isRouteLoading = false;
                 })
             }
-            getDataTempatTidur();
+            // getDataTempatTidur();
 
             $scope.simpanDataTempatTidur = () => {
+                $scope.isRouteLoading = true;
                 let dataSave = {
-                    // id_tt: "1",
-                    // tt: "VVIP/ Super VIP",
-                    // kode_siranap: jmlRuangan,
-                    ruang: $scope.namaRuangan,
-                    jumlah_ruang: $scope.jmlRuangan,
-                    jumlah: $scope.jumlah,
-                    terpakai: $scope.terpakai,
-                    prepare: $scope.prepare,
-                    prepare_plan: $scope.prepare_plan,
-                    kosong: $scope.kosong,
-                    covid: $scope.covid,
+                    id_tt: $scope.referensiTempatTidur.kode_tt,
+                    ruang: $scope.namaRuangan ? $scope.namaRuangan : "",
+                    jumlah_ruang: $scope.jmlRuangan ? $scope.jmlRuangan : 0,
+                    jumlah: $scope.jumlah ? $scope.jumlah : 0,
+                    terpakai: $scope.terpakai ? $scope.terpakai : 0,
+                    prepare: $scope.prepare ? $scope.prepare : 0,
+                    prepare_plan: $scope.prepare_plan ? $scope.prepare_plan : 0,
+                    kosong: $scope.kosong ? $scope.kosong : 0,
+                    covid: $scope.covid ? $scope.covid : 0,
                 }
 
-                console.log(dataSave);
+                managePhp.saveDataBridgingRSOnline("send-add-tempat-tidur", dataSave).then(res => {
+                    $scope.isRouteLoading = false;
+                    getDataTempatTidur();
+                })
             }
 
             // #endregion Tempat Tidur
 
             //#region Data SDM
             let getDataSDM = () => {
+                $scope.isRouteLoading = true;
                 $scope.optGroupDataSDM = {
                     pageable: true,
                     scrollable: true,
@@ -813,38 +869,44 @@ define(['initialize'], function (initialize) {
                         width: "100px"
                     }]
                 }
-                // localhost:7878/service-bridging-integerasi-covid/get-referensi-sdm
 
+                // localhost:7878/service-bridging-integerasi-covid/get-referensi-sdm
                 managePhp.getDataBridgingRSOnline("get-referensi-sdm").then(res => {
                     $scope.listReferensiDataSDM = res.data.data.kebutuhan_sdm;
                 })
 
                 // localhost:7878/service-bridging-integerasi-covid/get-ketersediaan-sdm
                 managePhp.getDataBridgingRSOnline("get-ketersediaan-sdm").then(res => {
-                    // console.log('sdm', res);
                     $scope.dataSourceSDM = new kendo.data.DataSource({
                         data: res.data.data.sdm,
                         pageSize: 20
-                    })
+                    });
+                    $scope.isRouteLoading = false;
                 })
             }
-            getDataSDM();
+            // getDataSDM();
 
             $scope.simpanDataSDM = () => {
+                $scope.isRouteLoading = true;
                 let dataSave = {
-                    id_kebutuhan: "",
-                    jumlah_eksisting: $scope.jumlahEksisting,
-                    jumlah: $scope.jumlah,
-                    jumlah_diterima: $scope.jumlahDiterima,
+                    id_kebutuhan: $scope.referensiSDM.id_kebutuhan,
+                    jumlah_eksisting: $scope.jumlahEksistingSDM ? $scope.jumlahEksistingSDM : 0,
+                    jumlah: $scope.jumlahSDM ? $scope.jumlahSDM : 0,
+                    jumlah_diterima: $scope.jumlahDiterimaSDM ? $scope.jumlahDiterimaSDM : 0,
                 }
 
                 console.log(dataSave);
+                managePhp.saveDataBridgingRSOnline("send-ketersediaan-sdm", dataSave).then(res => {
+                    $scope.isRouteLoading = false;
+                    getDataSDM();
+                })
             }
             //#endregion
 
             //#region Data ALKSES & APD
 
             let getDataAlkesApd = () => {
+                $scope.isRouteLoading = true;
                 $scope.optGroupAlkes = {
                     pageable: true,
                     scrollable: true,
@@ -873,10 +935,9 @@ define(['initialize'], function (initialize) {
 
                 // localhost:7878/service-bridging-integerasi-covid/get-referensi-kebutuhan-apd
                 managePhp.getDataBridgingRSOnline("get-referensi-kebutuhan-apd").then(res => {
-                    console.log("refs => ", res);
                     $scope.listDataAlkes = res.data.data.kebutuhan_apd;
-                    $scope.isRouteLoading = false;
                 })
+
                 // localhost:7878/service-bridging-integerasi-covid/get-ketersediaan-apd
                 managePhp.getDataBridgingRSOnline("get-ketersediaan-apd").then(res => {
                     $scope.dataSourceAlkes = new kendo.data.DataSource({
@@ -889,8 +950,23 @@ define(['initialize'], function (initialize) {
             getDataAlkesApd();
 
             $scope.simpanDataAlkes = () => {
+                $scope.isRouteLoading = true;
+                let dataSave = {
+                    id_kebutuhan: $scope.referensiAlkes.id_kebutuhan,
+                    jumlah_eksisting: $scope.jumlahEksistingDA ? $scope.jumlahEksistingDA : 0,
+                    jumlah: $scope.jumlahDA ? $scope.jumlahDA : 0,
+                    jumlah_diterima: $scope.jumlahDiterimaDA ? $scope.jumlahDiterimaDA : 0,
+                }
+
+                console.log(dataSave);
+                managePhp.saveDataBridgingRSOnline("send-ketersediaan-apd", dataSave).then(res => {
+                    $scope.isRouteLoading = false;
+                    getDataAlkesApd();
+                })
+                // localhost:7878/service-bridging-integerasi-covid/send-ketersediaan-apd
 
             }
+
             //#endregion
         }
     ]);

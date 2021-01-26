@@ -15,6 +15,12 @@
                             k-data-source="listJabatan" k-on-change="getDataKelompokJabatan()" />
                     </div>
                     <div class="grid_12">
+                        <span c-label c-label-text="Kelompok Jabatan" />
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="data.kelompokJabatan"
+                            k-data-text-field="'detailKelompokJabatan'" k-filter="'contains'" k-data-value-field="'id'"
+                            k-data-source="listKelompokJabatan"/>
+                    </div>
+                    <div class="grid_12">
                         <span c-label c-label-text="Bulan" />
                         <input required style="width: 100%;" kendo-combo-box k-ng-model="selectedBulan"
                             k-data-text-field="'name'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'"
@@ -230,7 +236,17 @@
                     </div>
                     <!-- Total Hitung-->
                     <div class="grid_3">
-                        <label c-label item="item" c-label-text="Total Nilai Jabatan"></label>
+                        <label c-label item="item" c-label-text="Nilai Terendah Jabatan"></label>
+                        <input c-text-box type="input" class="k-textbox" ng-model="data.kelompokJabatan.nilaiTerendah"
+                            disabled="disabled" />
+                    </div>
+                    <div class="grid_3">
+                        <label c-label item="item" c-label-text="Nilai Tertinggi Jabatan"></label>
+                        <input c-text-box type="input" class="k-textbox" ng-model="data.kelompokJabatan.nilaiTertinggi"
+                            disabled="disabled" />
+                    </div>
+                    <div class="grid_3">
+                        <label c-label item="item" c-label-text="Total Perhitangan Nilai Jabatan"></label>
                         <input c-text-box type="input" class="k-textbox" ng-model="totalNilaiJabatan"
                             disabled="disabled" />
 
@@ -257,7 +273,7 @@
                                 </c-button> -->
                             </div>
                             <div ng-hide='isNext' class="grid_3" style="float:right">
-                                <md-button class="md-raised md-primary" ng-click="Save()">
+                                <md-button class="md-raised md-primary" ng-click="Save()" ng-disabled="isSimpanDisabled">
                                     <span>Simpan</span>
                                 </md-button>
                                 <!-- <c-button ng-show="!isLoading" class="success"

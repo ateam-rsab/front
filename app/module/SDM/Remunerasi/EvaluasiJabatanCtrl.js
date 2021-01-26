@@ -9,6 +9,7 @@ define(['initialize'], function (initialize) {
             $scope.totalNilaiJabatan = "";
             $scope.grade = "";
             $scope.detailGrade = "";
+            $scope.isSimpanDisabled = true;
 
             modelItem.getDataDummyGeneric('Ruangan').then(function (e) {
                 $scope.ruangans = _.sortBy(e, function (i) {
@@ -26,7 +27,7 @@ define(['initialize'], function (initialize) {
                 // http://localhost:8080/jasamedika-sdm/service/list-generic/?view=NilaiKelompokJabatan&select=id,detailKelompokJabatan,nilaiTerendah,nilaiTertinggi&criteria=statusEnabled,kelompokJabatanId&values=true,1
                 ManageSdmNew.getListData("service/list-generic/?view=NilaiKelompokJabatan&select=id,detailKelompokJabatan,nilaiTerendah,nilaiTertinggi&criteria=statusEnabled,kelompokJabatanId&values=true," + $scope.data.jabatan.kelompokJabatanId).then((res) => {
 
-                    $scope.listJabatan = res.data;
+                    $scope.listKelompokJabatan = res.data;
                 })
             }
             // manageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap,ruanganId,jabatanInternalId&criteria=statusEnabled&values=true").then(function (dat) {
@@ -310,7 +311,7 @@ define(['initialize'], function (initialize) {
                     return;
                 }
 
-                toastr.info("Harap tunggu sedang menghitung total Nilai Jabatan")
+                // toastr.info("Harap tunggu sedang menghitung total Nilai Jabatan")
                 $rootScope.doneLoad = false;
                 // var arrayFaktor = [];
 
@@ -390,10 +391,19 @@ define(['initialize'], function (initialize) {
 
                 console.log(dataSave);
 
-                // http://192.168.12.3:8080/jasamedika-sdm/sdm/hitung-grade-evaluasi-jabatan/
                 ManageSdmNew.saveData(dataSave, "sdm/hitung-grade-evaluasi-jabatan/").then(function (e) {
+
                     $scope.totalNilaiJabatan = Math.ceil(e.data.data.result);
                     totalNilai = Math.ceil(e.data.data.result);
+                    if (totalNilai < $scope.data.kelompokJabatan.nilaiTerendah || totalNilai > $scope.data.kelompokJabatan.nilaiTertinggi) {
+                        $scope.isSimpanDisabled = true;
+                        
+                        if(totalNilai < $scope.data.kelompokJabatan.nilaiTerendah) toastr.info("Total Perhitungan Jabatan Kurang dari Nilai Terendah Jabatan");
+                        if(totalNilai > $scope.data.kelompokJabatan.nilaiTerendah) toastr.info("Total Perhitungan Jabatan Lebih dari Nilai Terendah Jabatan");
+                    } else {
+                        $scope.isSimpanDisabled = false;
+                    }
+
                     $scope.grade = e.data.data.grade ? e.data.data.grade : "-";
                     $scope.detailGrade = e.data.data.detailGrade ? e.data.data.detailGrade : "-";
 
