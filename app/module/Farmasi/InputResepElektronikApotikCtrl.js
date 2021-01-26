@@ -1408,11 +1408,34 @@ define(['initialize'], function (initialize) {
                 });
             }
 
+            $scope.prompBridgingConsisD = () => {
+                $scope.counterID = 0;
+
+                var confirm = $mdDialog.prompt()
+                    .title('Isi Nomor sesuai Jenis Pasien : BPJS, Umum dan Ranap?')
+                    // .textContent('Bowser is a common name.')
+                    .placeholder('Nomor')
+                    .initialValue("0")
+                    .ok('Ya')
+                // .cancel('I\'m a cat person');
+
+                $mdDialog.show(confirm).then(function (result) {
+                    $scope.counterID = result;
+                    $scope.BridgingConsisD();
+                }, function () {
+                    
+                });
+            }
+
             $scope.BridgingConsisD = function () {
-                var confirm = prompt("Isi Nomor sesuai Jenis Pasien : BPJS, Umum dan Ranap", "3");
+                if(!$scope.counterID) {
+                    $scope.prompBridgingConsisD();
+                    return;
+                }
+                // var confirm = prompt("Isi Nomor sesuai Jenis Pasien : BPJS, Umum dan Ranap", "3");
                 var objSave = {
                     strukresep: $scope.item.resep,
-                    counterid: confirm
+                    counterid: parseInt($scope.counterID)
                 }
 
                 manageLogistikPhp.saveconsisobatbebas(objSave).then(function (e) {

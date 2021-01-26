@@ -1,26 +1,42 @@
 <div class="EvaluasiJabatanCtrl">
     <div class="panel panel-default container_12" style="background-color:transparant">
-        <div class="panel-heading"><label class='title' c-label item="item" c-label-text="Evaluasi Jabatan" real></label></div>
+        <md-toolbar md-scroll-shrink class="shadow">
+            <div class="md-toolbar-tools">Evaluasi Jabatan</div>
+        </md-toolbar>
+        <!-- <div class="panel-heading"><label class='title' c-label item="item" c-label-text="Evaluasi Jabatan"
+                real></label></div> -->
         <div class="panel-body">
             <div class="grid_12">
                 <div class="grid_3">
                     <div class="grid_12">
+                        <span c-label c-label-text="Jabatan" />
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="data.jabatan"
+                            k-data-text-field="'namaJabatan'" k-filter="'contains'" k-data-value-field="'id'"
+                            k-data-source="listJabatan" k-on-change="getDataKelompokJabatan()" />
+                    </div>
+                    <div class="grid_12">
                         <span c-label c-label-text="Bulan" />
-                        <input required style="width: 100%;" kendo-combo-box k-ng-model="selectedBulan" k-data-text-field="'name'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listMonth" />
+                        <input required style="width: 100%;" kendo-combo-box k-ng-model="selectedBulan"
+                            k-data-text-field="'name'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'"
+                            k-data-source="listMonth" disabled/>
                     </div>
                     <div class="grid_12">
                         <span c-label c-label-text="Tahun" />
-                        <input required style="width: 100%;" kendo-combo-box k-ng-model="selectedTahun" k-data-text-field="'id'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listTahun" />
+                        <input required style="width: 100%;" kendo-combo-box k-ng-model="selectedTahun"
+                            k-data-text-field="'id'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'"
+                            k-data-source="listTahun" disabled/>
                     </div>
-                    <div class="grid_12" style="padding-top:10px">
+                    <!-- <div class="grid_12" style="padding-top:10px">
                         <md-content>
                             <md-toolbar layout="row" class="md-hue-3">
                                 <div class="md-toolbar-tools">
                                     <span>Nama Pegawai</span>
                                 </div>
                             </md-toolbar>
-                            <input style="width: 100%;" kendo-combo-box k-ng-model="data.pegawai" k-data-text-field="'namaLengkap'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listPegawai" on-change="getRuangan(data.pegawai)"/>
-                            <!--<input c-text-box type="input" class="k-textbox" ng-model="namaPegawai" />
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="data.jabatan"
+                                k-data-text-field="'namaJabatan'" k-filter="'contains'" k-data-value-field="'id'"
+                                k-data-source="listJabatan" />
+                            <input c-text-box type="input" class="k-textbox" ng-model="namaPegawai" />
                             <md-list flex>
                                 <md-list-item class="md-3-line" ng-repeat="current in listPegawai|filter:namaPegawai" ng-click="choose(current)">
                                     <img ng-show="current===item" src="stylesheets/Check.png" class="md-avatar" />
@@ -28,60 +44,80 @@
                                         <h3 style="color:black">{{ current.namaLengkap }}</h3>
                                     </div>
                                 </md-list-item>
-                            </md-list>-->
+                            </md-list>
                         </md-content>
                     </div>
                     <div class="grid_12">
                         <label c-label item="item" c-label-text="Ruangan"></label>
-                        <input style="width: 100%;" kendo-combo-box k-ng-model="data.ruangan" k-data-text-field="'namaRuangan'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="ruangans" />
-                    </div>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="data.ruangan"
+                            k-data-text-field="'namaRuangan'" k-filter="'contains'" k-minLength="'3'"
+                            k-data-value-field="'id'" k-data-source="ruangans" />
+                    </div> -->
                 </div>
                 <div class="grid_9">
                     <div class="grid_4">
                         <label class="c-label">1. Komtek</label>
-                        <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor1" k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listFaktor['Faktor 1']" k-auto-bind="'false'" />
+                        <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor1"
+                            k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'"
+                            k-data-source="listFaktor1" k-auto-bind="'false'" />
 
                     </div>
                     <div class="grid_4">
                         <label class="c-label">2. Manajerial </label>
-                        <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor2" k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listFaktor['Faktor 2']" k-auto-bind="'false'" />
+                        <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor2"
+                            k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'"
+                            k-data-source="listFaktor['Faktor 2']" k-auto-bind="'false'" />
 
                     </div>
                     <div class="grid_4">
                         <label class="c-label">3. Komunikasi</label>
-                        <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor3" k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listFaktor['Faktor 3']" k-auto-bind="'false'" />
+                        <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor3"
+                            k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'"
+                            k-data-source="listFaktor['Faktor 3']" k-auto-bind="'false'" />
 
                     </div>
                     <div class="grid_4">
                         <label class="c-label">4. Analisa</label>
-                        <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor4" k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listFaktor['Faktor 4']" k-auto-bind="'false'" />
+                        <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor4"
+                            k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'"
+                            k-data-source="listFaktor['Faktor 4']" k-auto-bind="'false'" />
 
                     </div>
                     <div class="grid_4">
                         <label class="c-label">5. Pedoman</label>
-                        <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor5" k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listFaktor['Faktor 5']" k-auto-bind="'false'" />
+                        <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor5"
+                            k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'"
+                            k-data-source="listFaktor['Faktor 5']" k-auto-bind="'false'" />
 
                     </div>
 
                     <div class="grid_4">
                         <label class="c-label">7. Wewenang </label>
-                        <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor7" k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listFaktor['Faktor 7']" k-auto-bind="'false'" />
+                        <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor7"
+                            k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'"
+                            k-data-source="listFaktor['Faktor 7']" k-auto-bind="'false'" />
 
                     </div>
                     <div class="grid_4">
                         <label class="c-label">8. Harta</label>
-                        <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor8" k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listFaktor['Faktor 8']" k-auto-bind="'false'" />
+                        <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor8"
+                            k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'"
+                            k-data-source="listFaktor['Faktor 8']" k-auto-bind="'false'" />
 
                     </div>
                     <div class="grid_4">
                         <label class="c-label">9. Peran Jabatan</label>
-                        <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor9" k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listFaktor['Faktor 9']" k-auto-bind="'false'" />
+                        <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor9"
+                            k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'"
+                            k-data-source="listFaktor['Faktor 9']" k-auto-bind="'false'" />
 
                     </div>
 
                     <div class="grid_4">
                         <label class="c-label">10. Probabilitas Resiko</label>
-                        <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor10" k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listFaktor['Faktor 10']" k-auto-bind="'false'" />
+                        <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor10"
+                            k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'"
+                            k-data-source="listFaktor['Faktor 10']" k-auto-bind="'false'" />
 
                     </div>
 
@@ -96,139 +132,181 @@
 
                     <div class="grid_2">
                         <label class="c-label"> Faktor A</label>
-                        <br/>
+                        <br />
                         <md-radio-group ng-model="item.faktorA.id">
-                            <md-radio-button ng-value="data.id" class="md-primary" ng-repeat="data in listFaktorA">{{data.profile}}</md-radio-button>
+                            <md-radio-button ng-value="data.id" class="md-primary" ng-repeat="data in listFaktorA">
+                                {{data.profile}}</md-radio-button>
                         </md-radio-group>
                     </div>
                     <div class="grid_2">
                         <label class="c-label"> Faktor B</label>
-                        <br/>
+                        <br />
                         <md-radio-group ng-model="item.faktorB.id">
-                            <md-radio-button ng-value="data.id" class="md-primary" ng-repeat="data in listFaktorB">{{data.profile}}</md-radio-button>
+                            <md-radio-button ng-value="data.id" class="md-primary" ng-repeat="data in listFaktorB">
+                                {{data.profile}}</md-radio-button>
                         </md-radio-group>
                     </div>
                     <div class="grid_2">
                         <label class="c-label"> Faktor C</label>
-                        <br/>
+                        <br />
                         <md-radio-group ng-model="item.faktorC.id">
-                            <md-radio-button ng-value="data.id" class="md-primary" ng-repeat="data in listFaktorC">{{data.profile}}</md-radio-button>
+                            <md-radio-button ng-value="data.id" class="md-primary" ng-repeat="data in listFaktorC">
+                                {{data.profile}}</md-radio-button>
                         </md-radio-group>
                     </div>
                     <div class="grid_2">
                         <label class="c-label"> Faktor D</label>
-                        <br/>
+                        <br />
                         <md-radio-group ng-model="item.faktorD.id">
-                            <md-radio-button ng-value="data.id" class="md-primary" ng-repeat="data in listFaktorD">{{data.profile}}</md-radio-button>
+                            <md-radio-button ng-value="data.id" class="md-primary" ng-repeat="data in listFaktorD">
+                                {{data.profile}}</md-radio-button>
                         </md-radio-group>
                     </div>
 
                     <div class="grid_2">
                         <label class="c-label"> Faktor E</label>
-                        <br/>
+                        <br />
                         <md-radio-group ng-model="item.faktorE.id">
-                            <md-radio-button ng-value="data.id" class="md-primary" ng-repeat="data in listFaktorE">{{data.profile}}</md-radio-button>
+                            <md-radio-button ng-value="data.id" class="md-primary" ng-repeat="data in listFaktorE">
+                                {{data.profile}}</md-radio-button>
                         </md-radio-group>
                     </div>
                     <div class="grid_2">
                         <label class="c-label"> Faktor F</label>
-                        <br/>
+                        <br />
                         <md-radio-group ng-model="item.faktorF.id">
-                            <md-radio-button ng-value="data.id" class="md-primary" ng-repeat="data in listFaktorF">{{data.profile}}</md-radio-button>
+                            <md-radio-button ng-value="data.id" class="md-primary" ng-repeat="data in listFaktorF">
+                                {{data.profile}}</md-radio-button>
                         </md-radio-group>
                     </div>
                     <div class="grid_2">
                         <label class="c-label"> Faktor G</label>
-                        <br/>
+                        <br />
                         <md-radio-group ng-model="item.faktorG.id">
-                            <md-radio-button ng-value="data.id" class="md-primary" ng-repeat="data in listFaktorG">{{data.profile}}</md-radio-button>
+                            <md-radio-button ng-value="data.id" class="md-primary" ng-repeat="data in listFaktorG">
+                                {{data.profile}}</md-radio-button>
                         </md-radio-group>
                     </div>
                     <div class="grid_2">
                         <label class="c-label"> Faktor H</label>
-                        <br/>
+                        <br />
                         <md-radio-group ng-model="item.faktorH.id">
-                            <md-radio-button ng-value="data.id" class="md-primary" ng-repeat="data in listFaktorH">{{data.profile}}</md-radio-button>
+                            <md-radio-button ng-value="data.id" class="md-primary" ng-repeat="data in listFaktorH">
+                                {{data.profile}}</md-radio-button>
                         </md-radio-group>
                     </div>
 
                     <div class="grid_2">
                         <label class="c-label"> Faktor I</label>
-                        <br/>
+                        <br />
                         <md-radio-group ng-model="item.faktorI.id">
-                            <md-radio-button ng-value="data.id" class="md-primary" ng-repeat="data in listFaktorI">{{data.profile}}</md-radio-button>
+                            <md-radio-button ng-value="data.id" class="md-primary" ng-repeat="data in listFaktorI">
+                                {{data.profile}}</md-radio-button>
                         </md-radio-group>
                     </div>
                     <div class="grid_2">
                         <label class="c-label"> Faktor J</label>
-                        <br/>
+                        <br />
                         <md-radio-group ng-model="item.faktorJ.id">
-                            <md-radio-button ng-value="data.id" class="md-primary" ng-repeat="data in listFaktorJ">{{data.profile}}</md-radio-button>
+                            <md-radio-button ng-value="data.id" class="md-primary" ng-repeat="data in listFaktorJ">
+                                {{data.profile}}</md-radio-button>
                         </md-radio-group>
                     </div>
                     <div class="grid_2">
                         <label class="c-label"> Faktor K</label>
-                        <br/>
+                        <br />
                         <md-radio-group ng-model="item.faktorK.id">
-                            <md-radio-button ng-value="data.id" class="md-primary" ng-repeat="data in listFaktorK">{{data.profile}}</md-radio-button>
+                            <md-radio-button ng-value="data.id" class="md-primary" ng-repeat="data in listFaktorK">
+                                {{data.profile}}</md-radio-button>
                         </md-radio-group>
                     </div>
                     <div class="grid_2">
                         <label class="c-label"> Faktor L</label>
-                        <br/>
+                        <br />
                         <md-radio-group ng-model="item.faktorL.id">
-                            <md-radio-button ng-value="data.id" class="md-primary" ng-repeat="data in listFaktorL">{{data.profile}}</md-radio-button>
+                            <md-radio-button ng-value="data.id" class="md-primary" ng-repeat="data in listFaktorL">
+                                {{data.profile}}</md-radio-button>
                         </md-radio-group>
                     </div>
                     <!-- Total Hitung-->
                     <div class="grid_3">
                         <label c-label item="item" c-label-text="Total Nilai Jabatan"></label>
-                        <input c-text-box type="input" class="k-textbox" ng-model="totalNilaiJabatan" disabled="disabled" />
+                        <input c-text-box type="input" class="k-textbox" ng-model="totalNilaiJabatan"
+                            disabled="disabled" />
 
                     </div>
-                    <div class="grid_3">
+                    <!-- <div class="grid_3">
                         <label c-label item="item" c-label-text="Grade"></label>
                         <input c-text-box type="input" class="k-textbox" ng-model="grade" disabled="disabled" />
                     </div>
                     <div class="grid_4">
                         <label c-label item="item" c-label-text="Keterangan"></label>
                         <input c-text-box type="input" class="k-textbox" ng-model="detailGrade" disabled="disabled" />
-                    </div>
+                    </div> -->
                     <div class="grid_12">
                         <div class="grid_12 " style="float:left;" ng-hide="isHide">
                             <div class="grid_3">
                                 &nbsp;
                             </div>
                             <div ng-hide='isNext' class="grid_3" style="float:right">
-                                <c-button ng-show="!isLoading" class="success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" is-validate click="Hitung">
+                                <md-button ng-show="!isLoading" class="md-raised md-primary" ng-click="Hitung()">
+                                    <span>Hitung</span>
+                                </md-button>
+                                <!-- <c-button ng-show="!isLoading" class="success" style="width: 100%; font-size: 24px; padding:0px; margin:0px;" item="item" size="36" position=" 'right'" is-validate click="Hitung">
                                     <span class="title">Hitung</span>
-                                </c-button>
+                                </c-button> -->
                             </div>
                             <div ng-hide='isNext' class="grid_3" style="float:right">
-                                <c-button ng-show="!isLoading" class="success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" is-validate click="Save">
+                                <md-button class="md-raised md-primary" ng-click="Save()">
+                                    <span>Simpan</span>
+                                </md-button>
+                                <!-- <c-button ng-show="!isLoading" class="success"
+                                    style="width: 100%; font-size: 24px; padding:0px; margin:0px;" item="item" size="36"
+                                    position=" 'right'" is-validate click="Save">
                                     <span class="title">Simpan</span>
-                                </c-button>
+                                </c-button> -->
                             </div>
 
                             <div ng-show='isNext' class="grid_3" style="float:right;">
-                                <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" click="Next">
+                                <md-button ng-show="!isLoading" class="md-raised md-primary" ng-click="Next()">
+                                    <span>Selanjutnya</span>
+                                </md-button>
+                                <!-- <c-button ng-show="!isLoading"
+                                    style="width: 100%; font-size: 24px; padding:0px; margin:0px;" item="item" size="36"
+                                    position=" 'right'" click="Next">
                                     <span class="title">Selanjutnya</span>
-                                </c-button>
+                                </c-button> -->
                             </div>
                             <div ng-show='isNext' class="grid_3" style="float:right;">
-                                <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" is-back>
+                                <md-button ng-show="!isLoading" class="md-raised md-primary" is-back>
+                                    <span>Kembali</span>
+                                </md-button>
+                                <!-- <c-button ng-show="!isLoading"
+                                    style="width: 100%; font-size: 24px; padding:0px; margin:0px;" item="item" size="36"
+                                    position=" 'right'" is-back>
                                     <span class="title">Kembali</span>
-                                </c-button>
+                                </c-button> -->
                             </div>
                             <div ng-hide='isNext' class="grid_3" style="float:right">
-                                <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" class="cancel" click="Back">
+                                <md-button ng-show="!isLoading" class="md-raised md-danger" ng-click="Back()">
+                                    <span>Batal</span>
+                                </md-button>
+
+                                <!-- <c-button ng-show="!isLoading"
+                                    style="width: 100%; font-size: 24px; padding:0px; margin:0px;" item="item" size="36"
+                                    position=" 'right'" class="cancel" click="Back">
                                     <span class="title">Batal</span>
-                                </c-button>
+                                </c-button> -->
                             </div>
                             <div ng-show='isReport' class="grid_3" style="float:right;">
-                                <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="cetak">
+                                <md-button ng-show="!isLoading" class="md-raised md-primary" ng-click="cetak()">
+                                    <span>Cetak</span>
+                                </md-button>
+                                <!-- <c-button ng-show="!isLoading"
+                                    style="width: 100%; font-size: 24px; padding:0px; margin:0px;" item="item" size="36"
+                                    position="'right'" is-validate click="cetak">
                                     <span class="title">Cetak</span>
-                                </c-button>
+                                </c-button> -->
                             </div>
 
 

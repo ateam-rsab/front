@@ -33,6 +33,10 @@
         ]
     },
     {
+        "name": "Laporan COVID-19",
+        "link": "#/LaporanPasienCovid"
+    },
+    {
         "name": "Form Master",
         "children": [
             {

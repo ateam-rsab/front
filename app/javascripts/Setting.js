@@ -117,6 +117,7 @@ define([], function () {
             urlDataMaster: `${baseURLJava}:${portJava}/jasamedika-web/generated_master/`,
 
             baseUrlListData: `${baseURLJava}:${portJava}/jasamedika-web/service/list-generic/?view=`,
+            baseURLBridgingRSOnline: 'http://172.16.44.33:7878/service-bridging-integerasi-covid/',
 
             // URL BARU
             // K3KL

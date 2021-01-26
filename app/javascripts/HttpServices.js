@@ -4,6 +4,8 @@
      var baseUrlListData = config.baseUrlListData;
      var baseUrlApiData = config.baseApiUrlData;
      var httpServices = angular.module('HttpServices', []);
+
+     
      httpServices.service('R', ['$q', '$http', function($q, $http) {
          return {
              get: function(obj) {
@@ -39,7 +41,8 @@
                  return deffer.promise;
              },
              post: function(obj, data) {
-                 console.log(JSON.stringify(data));
+              
+                //  console.log(JSON.stringify(data));
                  var deffer = $q.defer();
                  if (obj.method === undefined)
                      obj.method = "GET";

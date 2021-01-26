@@ -2297,6 +2297,10 @@
       "urlDep": "module/AplikasiIT/MapRuanganToJenisRuanganCtrl"
     },
     {
+      "nameDep": "LaporanPasienCovidCtrl",
+      "urlDep": "module/AplikasiIT/LaporanPasienCovidCtrl"
+    },
+    {
       "nameDep": "LaporanKegiatanOperasionalDetailCtrl",
       "urlDep": "module/Laporan/LaporanKegiatanOperasionalDetailCtrl"
     },

@@ -256,7 +256,7 @@ define(['initialize'], function (initialize) {
                     .ok('Ya');
 
                 $mdDialog.show(confirm).then(function (result) {
-                    if(result === "0" || !result) {
+                    if (result === "0" || !result) {
                         toastr.warning("Harap isi Jumlah Bungkus", "Perhatian");
                         return;
                     }
@@ -278,23 +278,41 @@ define(['initialize'], function (initialize) {
                 manageLogistikPhp.postpost("bridging/save-mini-r45-rev-1", objSave).then(function (e) {
 
                 })
-
-
             }
 
-            $scope.BridgingConsisD = function () {
+            $scope.prompBridgingConsisD = () => {
+                $scope.counterID = 0;
+
                 if ($scope.dataSelected == undefined) {
                     alert("Pilih Resep terlebih dahulu!!")
                     return
                 }
-                // if ($scope.dataSelected.jeniskemasan != 'Non Racikan') {
-                //     alert("Harus Non Racikan!!")
-                //     return
-                // }
-                var kampret = prompt("Input Counter ID", "3");
+                if ($scope.dataSelected.jeniskemasan != 'Non Racikan') {
+                    alert("Harus Non Racikan!!")
+                    return
+                }
+
+                var confirm = $mdDialog.prompt()
+                    .title('Isi Nomor sesuai Jenis Pasien : BPJS, Umum dan Ranap?')
+                    // .textContent('Bowser is a common name.')
+                    .placeholder('Nomor')
+                    .initialValue("0")
+                    .ok('Ya')
+                // .cancel('I\'m a cat person');
+
+                $mdDialog.show(confirm).then(function (result) {
+                    $scope.counterID = result;
+                    $scope.BridgingConsisD();
+                }, function () {
+
+                });
+            }
+
+            $scope.BridgingConsisD = function () {
+
                 var objSave = {
                     strukresep: $scope.dataSelected.norec_resep,
-                    counterid: kampret
+                    counterid: parseInt($scope.counterID)
                 }
 
                 manageLogistikPhp.saveconsisobatbebas(objSave).then(function (e) {

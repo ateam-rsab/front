@@ -14950,6 +14950,26 @@
     ]
   },
   {
+    "name": "LaporanPasienCovid",
+    "url": "/LaporanPasienCovid",
+    "templateurl": "module/AplikasiIT/LaporanPasienCovid.html",
+    "controller": "LaporanPasienCovidCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "PhpService",
+        "define": "PhpService"
+      }
+    ]
+  },
+  {
     "name": "LaporanKegiatanOperasionalDetail",
     "url": "/LaporanKegiatanOperasionalDetail",
     "templateurl": "module/Laporan/LaporanKegiatanOperasionalDetail.html",
