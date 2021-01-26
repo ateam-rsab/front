@@ -1,0 +1,40 @@
+<md-toolbar md-scroll-shrink class="shadow">
+    <div class="md-toolbar-tools">Rekapitulasi Pembayaran</div>
+</md-toolbar>
+
+<div ng-include=' "../app/module/Shared/TemplateLoading" '></div>
+
+<div class="grid_12">
+
+    <div class="grid_2">
+        <label c-label item="item" c-label-text="Periode Awal"></label>
+        <input style="width: 100%" k-ng-model="item.tanggalAwal" kendo-date-picker k-max="now" placeholer="yyyy-MM-dd"
+            k-format="'yyyy-MM-dd'" />
+    </div>
+    <div class="grid_2">
+        <label c-label item="item" c-label-text="Periode Akhir"></label>
+        <input style="width: 100%" k-ng-model="item.tanggalAkhir" kendo-date-picker placeholer="yyyy-MM-dd"
+            k-format="'yyyy-MM-dd'" />
+    </div>
+    <div class="grid_1" style="margin-top:23px;">
+        <md-button class="md-raised md-primary medium-button" ng-click="loadAllData()">
+            <span style="margin-right: 5px;">Cari</span>
+            <i class="fa fa-search"></i>
+        </md-button>
+    </div>
+</div>
+
+
+<div class="grid_12">
+    <div class="headerBox">
+        <p>Daftar Rekapitulasi Pembayaran</p>
+    </div>
+    <div class="grid_12">
+        <div class="grid_12">
+            <div id="kGrid" kendo-grid k-data-source="dataGridVerified" k-selectable="'row'" k-pageable="'true'"
+                k-sortable="'true'" options="gridOpt" k-ng-model="dataSelected">
+            </div>
+
+        </div>
+    </div>
+</div>

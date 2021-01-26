@@ -548,10 +548,10 @@ define(['initialize'], function (initialize) {
             //   value: "Tanggal Struk"
             // },
             {
-              value: "Tanggal Dokumen"
+              value: "Tanggal Faktur"
             },
             {
-              value: "No. Dokumen"
+              value: "No. Faktur"
             },
             {
               value: "Total"
@@ -608,7 +608,7 @@ define(['initialize'], function (initialize) {
                   value: data[i].tgldokumen
                 },
                 {
-                  value: data[i].nostruk
+                  value: data[i].nodokumen
                 },
                 // {
                 //   value:

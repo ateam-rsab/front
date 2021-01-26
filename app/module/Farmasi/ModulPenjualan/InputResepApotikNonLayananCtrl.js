@@ -914,18 +914,37 @@ define(['initialize'], function (initialize) {
                 })
             }
 
-            $scope.BridgingConsisD = function () {
+            $scope.prompBridgingConsisD = () => {
+                $scope.counterID = 0;
 
-                // if ($scope.dataSelected.jeniskemasan != 'Non Racikan') {
-                //     alert("Harus Non Racikan!!")
-                //     return
-                // }
-                var confirm = prompt("Isi Nomor sesuai Jenis Pasien : BPJS, Umum dan Ranap", "3");
+                var confirm = $mdDialog.prompt()
+                    .title('Isi Nomor sesuai Jenis Pasien : BPJS, Umum dan Ranap?')
+                    // .textContent('Bowser is a common name.')
+                    .placeholder('Nomor')
+                    .initialValue("0")
+                    .ok('Ya')
+                // .cancel('I\'m a cat person');
+
+                $mdDialog.show(confirm).then(function (result) {
+                    $scope.counterID = result;
+                    $scope.BridgingConsisD();
+                }, function () {
+                    
+                });
+            }
+
+            $scope.BridgingConsisD = function () {
+                if(!$scope.counterID) {
+                    $scope.prompBridgingConsisD();
+                    return;
+                }
+                
                 var objSave = {
                     strukresep: $scope.norecObat,
-                    counterid: confirm
+                    counterid: parseInt($scope.counterID)
                 }
 
+                console.log(objSave);
                 manageLogistikPhp.saveconsisobatbebas(objSave).then(function (e) {
                     // $state.go()
                 })
@@ -1076,28 +1095,32 @@ define(['initialize'], function (initialize) {
                         }, function () {
                             console.info('Cancel');
                         });
-                    }
-                    // $scope.BridgingConsisD();
-                    // BaruLagi()
-                    // if (noOrder == 'EditResep') {
-                    //     var objDelete = {norec:norecResep}
-                    //     manageLogistikPhp.posthapuspelayananapotik(objDelete).then(function(e) {
 
-                    //     })
-                    // }
-                    // if (norecResep != '') {
-                    //     var chacePeriode = {
-                    //         0: '',
-                    //         1: '',
-                    //         2: '',
-                    //         3: '',
-                    //         4: '',
-                    //         5: '',
-                    //         6: ''
-                    //     }
-                    //     cacheHelper.set('InputResepApotikNonLayananCtrl', chacePeriode);
-                    //     window.history.back();
-                    // }
+                        return;
+                    }
+                    $scope.BridgingConsisD();
+                    BaruLagi()
+                    if (noOrder == 'EditResep') {
+                        var objDelete = {
+                            norec: norecResep
+                        }
+                        manageLogistikPhp.posthapuspelayananapotik(objDelete).then(function (e) {
+
+                        })
+                    }
+                    if (norecResep != '') {
+                        var chacePeriode = {
+                            0: '',
+                            1: '',
+                            2: '',
+                            3: '',
+                            4: '',
+                            5: '',
+                            6: ''
+                        }
+                        cacheHelper.set('InputResepApotikNonLayananCtrl', chacePeriode);
+                        window.history.back();
+                    }
                     // window.history.back();
                 }, err => $scope.isSimpanDisabled = false)
 

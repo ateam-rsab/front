@@ -1,6 +1,6 @@
 define([], function () {
     'use strict';
-    var baseURLFrontend = window.location.hostname === "192.168.12.3" ? "http://192.168.12.3" : "http://172.16.111.40",
+    var baseURLFrontend = window.location.hostname === "192.168.12.3" ? "http://192.168.12.3" : "http://172.16.111.45",
         portFrontend = window.location.hostname === "192.168.12.3" ? '4444' :'4444',
         
         baseURLPhp = 'http://192.168.12.3',
@@ -106,8 +106,8 @@ define([], function () {
             baseApiPostData_Akuntansi: `${baseURLPhp}:${portPhp}/simrs_harkit/service/`,
 
             /**Login Java */
-            // baseUrlJavaLogin: `${baseURLJava}:${portJava}/jasamedika-web/auth/sign-in`,
-            // baseUrlJavaLogout: `${baseURLJava}:${portJava}/jasamedika-web/auth/sign-out`,
+            baseUrlJavaLogin: `${baseURLJava}:${portJava}/jasamedika-web/auth/sign-in`,
+            baseUrlJavaLogout: `${baseURLJava}:${portJava}/jasamedika-web/auth/sign-out`,
 
             baseUrlAction: `${baseURLJava}:${portJava}/jasamedika-web/`,
             baseApiUrlData: `${baseURLJava}:${portJava}/jasamedika-web/`,
@@ -117,6 +117,7 @@ define([], function () {
             urlDataMaster: `${baseURLJava}:${portJava}/jasamedika-web/generated_master/`,
 
             baseUrlListData: `${baseURLJava}:${portJava}/jasamedika-web/service/list-generic/?view=`,
+            baseURLBridgingRSOnline: 'http://172.16.44.33:7878/service-bridging-integerasi-covid/',
 
             // URL BARU
             // K3KL

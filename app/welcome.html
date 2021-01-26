@@ -63,7 +63,8 @@
         width: 60%;
         max-width: 60%;
         font-weight: 400;
-        color: #303030
+        color: #303030;
+        line-height: 25px;
     }
 
     .doc-action {
@@ -101,6 +102,37 @@
     .notify.notify-warn {
         background-color: #ffcf77
     }
+
+    md-pagination-wrapper.md-center-tabs,
+    md-tabs.md-default-theme.md-primary>md-tabs-wrapper,
+    md-tabs.md-primary>md-tabs-wrapper {
+        background-color: #37d3d7;
+    }
+
+    md-tabs.md-default-theme.md-primary>md-tabs-wrapper>md-tabs-canvas>md-pagination-wrapper>md-tab-item:not([disabled]),
+    md-tabs.md-primary>md-tabs-wrapper>md-tabs-canvas>md-pagination-wrapper>md-tab-item:not([disabled]),
+    md-tabs.md-default-theme.md-primary>md-tabs-wrapper>md-tabs-canvas>md-pagination-wrapper>md-tab-item:not([disabled]) md-icon,
+    md-tabs.md-primary>md-tabs-wrapper>md-tabs-canvas>md-pagination-wrapper>md-tab-item:not([disabled]) md-icon {
+        color: rgb(69, 69, 69);
+    }
+
+    md-tabs.md-default-theme.md-primary>md-tabs-wrapper>md-tabs-canvas>md-pagination-wrapper>md-tab-item:not([disabled]).md-active,
+    md-tabs.md-primary>md-tabs-wrapper>md-tabs-canvas>md-pagination-wrapper>md-tab-item:not([disabled]).md-active,
+    md-tabs.md-default-theme.md-primary>md-tabs-wrapper>md-tabs-canvas>md-pagination-wrapper>md-tab-item:not([disabled]).md-active md-icon,
+    md-tabs.md-primary>md-tabs-wrapper>md-tabs-canvas>md-pagination-wrapper>md-tab-item:not([disabled]).md-active md-icon,
+    md-tabs.md-default-theme.md-primary>md-tabs-wrapper>md-tabs-canvas>md-pagination-wrapper>md-tab-item:not([disabled]).md-focused,
+    md-tabs.md-primary>md-tabs-wrapper>md-tabs-canvas>md-pagination-wrapper>md-tab-item:not([disabled]).md-focused,
+    md-tabs.md-default-theme.md-primary>md-tabs-wrapper>md-tabs-canvas>md-pagination-wrapper>md-tab-item:not([disabled]).md-focused md-icon,
+    md-tabs.md-primary>md-tabs-wrapper>md-tabs-canvas>md-pagination-wrapper>md-tab-item:not([disabled]).md-focused md-icon {
+        color: rgb(69, 69, 69);
+        font-weight: bolder;
+    }
+
+    md-tabs.md-default-theme md-ink-bar,
+    md-tabs md-ink-bar {
+        color: rgb(23 84 86);
+        background: rgb(23 84 86);
+    }
 </style>
 
 <div ng-controller="WelcomeCtrl">
@@ -136,40 +168,64 @@
     <div class="smart-container-home">
 
         <md-card class="card-list-dokumen">
-            <md-card-header>
+            <!-- <md-card-header>
                 <h4>Dokumen Terkait COVID-19</h4>
-            </md-card-header>
+            </md-card-header> -->
             <md-card-content>
-                <ul class="list-1">
-                    <li>
-                        <div class="doc-description">
-                            Pedoman Pencegahan Pengendalian
-                            <strong>CORONA VIRUS DISEASE (COVID-19).</strong>
-                        </div>
-                        <div class="doc-action">
-                            <a href="data/dokumen/pedoman-covid19.pdf" download>Download PDF</a>
-                        </div>
-                    </li>
 
-                    <li>
-                        <div class="doc-description">
-                            Standar APD (Alat Pelindung Diri) dalam Lingkungan Kerja RSAB Harapan Kita
-                        </div>
-                        <div class="doc-action">
-                            <a href="data/dokumen/suit-level.pdf" download>Download PDF</a>
-                        </div>
-                    </li>
 
-                    <li>
-                        <div class="doc-description">
-                            Standar APD (Alat Pelindung Diri) dalam Manajemen Penanganan COVID-19
-                        </div>
-                        <div class="doc-action">
-                            <a href="data/dokumen/Standar_APD_dalam_Manajemen_Penanganan_Covid19.pdf.pdf"
-                                download>Download PDF</a>
-                        </div>
-                    </li>
-                </ul>
+                <div ng-cloak style="height: 100%;">
+                    <md-content>
+                        <md-tabs class="md-primary" md-dynamic-height md-center-tabs>
+                            <md-tab label="Pemberitahuan">
+                                <md-content class="md-padding">
+                                    <h2 class="md-display-1">Belum ada Pemberitahuan</h2>
+                                </md-content>
+                            </md-tab>
+                            
+                            <md-tab label="Dokumen Terkait COVID-19">
+                                <ul class="list-1">
+                                    <li>
+                                        <div class="doc-description">
+                                            Pedoman Pencegahan Pengendalian
+                                            <strong>CORONA VIRUS DISEASE (COVID-19).</strong>
+                                        </div>
+                                        <div class="doc-action">
+                                            <a href="data/dokumen/pedoman-covid19.pdf" download>Download PDF</a>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="doc-description">
+                                            Standar APD (Alat Pelindung Diri) dalam Lingkungan Kerja RSAB Harapan
+                                            Kita
+                                        </div>
+                                        <div class="doc-action">
+                                            <a href="data/dokumen/suit-level.pdf" download>Download PDF</a>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="doc-description">
+                                            Standar APD (Alat Pelindung Diri) dalam Manajemen Penanganan COVID-19
+                                        </div>
+                                        <div class="doc-action">
+                                            <a href="data/dokumen/Standar_APD_dalam_Manajemen_Penanganan_Covid19.pdf.pdf"
+                                                download>Download PDF</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </md-tab>
+
+                            <md-tab label="Pembaruan">
+                                <md-content class="md-padding">
+                                    <h2 class="md-display-1">Belum ada Pembaruan</h2>
+                                    
+                                </md-content>
+                            </md-tab>
+                        </md-tabs>
+                    </md-content>
+                </div>
             </md-card-content>
         </md-card>
 
@@ -194,8 +250,8 @@
                     </ul>
                 </div>
                 <!-- <embed src="https://smart.rsabhk.co.id:2222/vid/jaga-jarak.mp4"width="500" height="500" > -->
-                <video name="media" id="video-kampanye" src="https://smart.rsabhk.co.id:2222/vid/masker.mp4" autoplay
-                    autobuffer loop controls>
+                <video name="media" id="video-kampanye" src="https://smart.rsabhk.co.id:2222/vid/masker.mp4" autobuffer
+                    loop controls>
                     Your browser does not support HTML video.
                 </video>
             </md-card-content>

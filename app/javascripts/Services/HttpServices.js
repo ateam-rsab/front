@@ -4,14 +4,18 @@ define(['Configuration'], function (config) {
     var baseUrlListData = config.baseUrlListData;
     var baseUrlApiData = config.baseApiUrlData;
     var httpServices = angular.module('HttpServices', []);
-
+    let getCookie = (name) => {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
     // Start Syamsu
     httpServices.service('R', ['$rootScope', '$q', '$http', '$location', function ($rootScope, $q, $http, $location) {
         let browser = navigator.appName;
 
         if (navigator.userAgent.indexOf('Safari') !== -1) {
             var arr = document.cookie.split(';');
-            var authorization;
+            var authorization = getCookie("authorization");
             for (var i = 0; i < arr.length; i++) {
                 var element = arr[i].split('=');
                 if (element[0].indexOf('authorization') != -1) {
@@ -57,14 +61,14 @@ define(['Configuration'], function (config) {
                     var deffer = $q.defer();
                     if (obj.method === undefined)
                         obj.method = "GET";
-                    var authorization = "";
+                    var authorization = getCookie('authorization');
                     var arr = document.cookie.split(';')
-                    for (var i = 0; i < arr.length; i++) {
-                        var element = arr[i].split('=');
-                        if (element[0].indexOf('authorization') > 0) {
-                            authorization = element[1];
-                        }
-                    }
+                    // for (var i = 0; i < arr.length; i++) {
+                    //     var element = arr[i].split('=');
+                    //     if (element[0].indexOf('authorization') > 0) {
+                    //         authorization = element[1];
+                    //     }
+                    // }
 
                     if (({}).hasOwnProperty.call(data, 'supervisorToken')) { // Syamsu
                         if (data.supervisorToken !== undefined) {
@@ -167,7 +171,7 @@ define(['Configuration'], function (config) {
                         }
                     }
                     $http(req).then(function successCallback(response) {
-                        if (response.data.data !== null) {
+                        if (response.data.data) {
                             if (response.data.data.message != undefined) {
                                 var msg = response.data.data.message;
                                 window.messageContainer.log(msg);
@@ -184,7 +188,12 @@ define(['Configuration'], function (config) {
                                 var msg = response.data.messages;
                                 window.messageContainer.log(msg['label-success']);
                             }
+                        } else {
+                            let message = response.data.message;
+                            window.messageContainer.log(message);
+                            console.log(response);
                         }
+
                         deffer.resolve(response);
                     }, function errorCallback(response, a, b, c, d) {
                         var msgError = "";
@@ -215,19 +224,20 @@ define(['Configuration'], function (config) {
                 }
             }
         }
+
         return {
             get: function (obj) {
                 var deffer = $q.defer();
                 if (obj.method === undefined)
                     obj.method = "GET";
-                var authorization = "";
-                var arr = document.cookie.split(';')
-                for (var i = 0; i < arr.length; i++) {
-                    var element = arr[i].split('=');
-                    if (element[0].indexOf('authorization') > 0) {
-                        authorization = element[1];
-                    }
-                }
+                var authorization = getCookie("authorization");
+                // var arr = document.cookie.split(';')
+                // for (var i = 0; i < arr.length; i++) {
+                //     var element = arr[i].split('=');
+                //     if (element[0].indexOf('authorization') > 0) {
+                //         authorization = element[1];
+                //     }
+                // }
                 var url = "";
                 if (obj.url.indexOf("?") >= 0) {
                     url = obj.url + "&X-AUTH-TOKEN=" + authorization;
@@ -455,13 +465,13 @@ define(['Configuration'], function (config) {
                                         if (element === undefined) {
                                             item[key] = null;
                                         } else
-                                            if (element === 0 || element === null)
-                                                item[key] = undefined;
-                                            else
-                                                if (isNaN(Date.parse(element)))
-                                                    item[key] = new Date(element)
-                                                else
-                                                    item[key] = Date.parse(element);
+                                        if (element === 0 || element === null)
+                                            item[key] = undefined;
+                                        else
+                                        if (isNaN(Date.parse(element)))
+                                            item[key] = new Date(element)
+                                        else
+                                            item[key] = Date.parse(element);
 
                                     }
                                 } else {
@@ -727,7 +737,7 @@ define(['Configuration'], function (config) {
                                     return e.messages["Total-Count"];
                                 return undefined;
                             },
-                            totalPages: function (e) { }
+                            totalPages: function (e) {}
                         }
 
                     });
@@ -1337,45 +1347,45 @@ define(['Configuration'], function (config) {
                         }
                     });
                 else
-                    if (url === undefined) {
-                        var select = "";
-                        for (var i in fields) {
-                            if (select === "")
-                                select += i;
-                            else
-                                select += "," + i;
-                        }
-                        return new kendo.data.DataSource({
-                            serverFiltering: isServer,
-                            serverPaging: true,
-                            pageSize: 10,
-                            transport: {
-                                read: {
-                                    type: 'GET',
-                                    url: "Super/ListTable/?view=" + model + "&select=" + select,
-                                    dataType: 'json',
-                                    beforeSend: function (req) {
+                if (url === undefined) {
+                    var select = "";
+                    for (var i in fields) {
+                        if (select === "")
+                            select += i;
+                        else
+                            select += "," + i;
+                    }
+                    return new kendo.data.DataSource({
+                        serverFiltering: isServer,
+                        serverPaging: true,
+                        pageSize: 10,
+                        transport: {
+                            read: {
+                                type: 'GET',
+                                url: "Super/ListTable/?view=" + model + "&select=" + select,
+                                dataType: 'json',
+                                beforeSend: function (req) {
 
-                                    }
-                                },
+                                }
                             },
-                            schema: {
-                                model: {
-                                    fields: fields
-                                }
+                        },
+                        schema: {
+                            model: {
+                                fields: fields
                             }
-                        });
+                        }
+                    });
 
-                    } else
-                        return new kendo.data.DataSource({
-                            serverFiltering: isServer,
-                            data: data,
-                            schema: {
-                                model: {
-                                    fields: fields
-                                }
+                } else
+                    return new kendo.data.DataSource({
+                        serverFiltering: isServer,
+                        data: data,
+                        schema: {
+                            model: {
+                                fields: fields
                             }
-                        });
+                        }
+                    });
             };
         }
     ]);
@@ -1383,150 +1393,150 @@ define(['Configuration'], function (config) {
 });
 
 
- /// INI YANG LAMAAA
+/// INI YANG LAMAAA
 
 
- // httpServices.service('R', ['$q', '$http', function($q, $http) {
- //     return {
- //         get: function(obj) {
- //             var deffer = $q.defer();
- //             if (obj.method === undefined)
- //                 obj.method = "GET";
- //             var authorization = "";
- //             var arr = document.cookie.split(';')
- //             for (var i = 0; i < arr.length; i++) {
- //                 var element = arr[i].split('=');
- //                 if (element[0].indexOf('authorization') > 0) {
- //                     authorization = element[1];
- //                 }
- //             }
- //             var url = "";
- //             if (obj.url.indexOf("?") >= 0) {
- //                 url = obj.url + "&X-AUTH-TOKEN=" + authorization;
- //             } else
- //                 url = obj.url + "?X-AUTH-TOKEN=" + authorization;
+// httpServices.service('R', ['$q', '$http', function($q, $http) {
+//     return {
+//         get: function(obj) {
+//             var deffer = $q.defer();
+//             if (obj.method === undefined)
+//                 obj.method = "GET";
+//             var authorization = "";
+//             var arr = document.cookie.split(';')
+//             for (var i = 0; i < arr.length; i++) {
+//                 var element = arr[i].split('=');
+//                 if (element[0].indexOf('authorization') > 0) {
+//                     authorization = element[1];
+//                 }
+//             }
+//             var url = "";
+//             if (obj.url.indexOf("?") >= 0) {
+//                 url = obj.url + "&X-AUTH-TOKEN=" + authorization;
+//             } else
+//                 url = obj.url + "?X-AUTH-TOKEN=" + authorization;
 
- //             $http.get(url, {
- //                 headers: {
- //                     'Content-Type': 'application/json',
- //                     'X-AUTH-TOKEN': authorization
- //                 }
- //             }).then(function successCallback(response) {
- //                 response.statResponse = true;
- //                 deffer.resolve(response);
- //             }, function errorCallback(response, err, da) {
- //                 response.statResponse = false;
- //                 deffer.reject(response);
- //             });
- //             return deffer.promise;
- //         },
- //         post: function(obj, data) {
- //             console.log(JSON.stringify(data));
- //             var deffer = $q.defer();
- //             if (obj.method === undefined)
- //                 obj.method = "GET";
- //             var authorization = "";
- //             var arr = document.cookie.split(';')
- //             for (var i = 0; i < arr.length; i++) {
- //                 var element = arr[i].split('=');
- //                 if (element[0].indexOf('authorization') > 0) {
- //                     authorization = element[1];
- //                 }
- //             }
+//             $http.get(url, {
+//                 headers: {
+//                     'Content-Type': 'application/json',
+//                     'X-AUTH-TOKEN': authorization
+//                 }
+//             }).then(function successCallback(response) {
+//                 response.statResponse = true;
+//                 deffer.resolve(response);
+//             }, function errorCallback(response, err, da) {
+//                 response.statResponse = false;
+//                 deffer.reject(response);
+//             });
+//             return deffer.promise;
+//         },
+//         post: function(obj, data) {
+//             console.log(JSON.stringify(data));
+//             var deffer = $q.defer();
+//             if (obj.method === undefined)
+//                 obj.method = "GET";
+//             var authorization = "";
+//             var arr = document.cookie.split(';')
+//             for (var i = 0; i < arr.length; i++) {
+//                 var element = arr[i].split('=');
+//                 if (element[0].indexOf('authorization') > 0) {
+//                     authorization = element[1];
+//                 }
+//             }
 
- //             if (data.supervisorToken !== undefined) {
- //                 authorization = data.supervisorToken;
- //             }
+//             if (data.supervisorToken !== undefined) {
+//                 authorization = data.supervisorToken;
+//             }
 
- //             var req = {};
- //             if (obj.url === undefined) {
- //                 var url = "";
- //                 if (obj.indexOf("?") >= 0) {
- //                    url = obj + "&X-AUTH-TOKEN=" + authorization;
- //                } else
- //                    url = obj + "?X-AUTH-TOKEN=" + authorization;
- //                req = {
- //                    method: 'POST',
- //                    url: url,
- //                    headers: {
- //                        'Content-Type': 'application/json',
- //                        'X-AUTH-TOKEN': authorization,
- //                        'Module': data.module,
- //                        'Form': data.form,
- //                        'Action': data.action
- //                    },
- //                    data: data
- //                }
- //             } else {
- //                var url = "";
- //                if (obj.url.indexOf("?") >= 0) {
- //                    url = obj.url + "&X-AUTH-TOKEN=" + authorization;
- //                } else {
- //                    url = obj.url + "?X-AUTH-TOKEN=" + authorization;
- //                }
- //                req = {
- //                    method: 'POST',
- //                    url: url,
- //                    headers: {
- //                        'Content-Type': 'application/json',
- //                        'X-AUTH-TOKEN': authorization,
- //                        'Module': data.module,
- //                        'Form': data.form,
- //                        'Action': data.action
- //                    },
- //                    data: data
- //                }
- //             }
- //             $http(req).then(function successCallback(response) {
- //                 if (response.data.data !== null) {
- //                     if (response.data.data.message != undefined) {
- //                         var msg = response.data.data.message;
- //                         window.messageContainer.log(msg);
- //                     } else if (response.data.messages) {
- //                        var msg = response.data.messages;
- //                        if (msg['label-success'] === "SUKSES") {
- //                            window.messageContainer.log(msg['label-success']);
- //                        }
- //                        else {
- //                            window.messageContainer.error(msg['label-success']);
- //                        }
-
-
- //                     } else if (response.data.messages != undefined) {
- //                         var msg = response.data.messages;
- //                         window.messageContainer.log(msg['label-success']);
- //                     }
- //                 }
- //                 deffer.resolve(response);
- //             }, function errorCallback(response) {
- //                 //disini yah pak handlenya 
- //                  var msgError = "";
-
- //                 if(response.status === 403)
- //                 {
- //                     response["hak_akses"] = false;
- //                 }
- //                 else {
- //                     if (response.data.fieldErrors != undefined) {
-
- //                        for (var i = 0; i < response.data.fieldErrors.length; i++) {
- //                            msgError = response.data.fieldErrors[i].message;
- //                            window.messageContainer.error(msgError);
- //                        }
- //                    } 
- //                    else {
- //                        msgError = response.statusText;
- //                        window.messageContainer.error(msgError);
- //                    }
- //                 }
+//             var req = {};
+//             if (obj.url === undefined) {
+//                 var url = "";
+//                 if (obj.indexOf("?") >= 0) {
+//                    url = obj + "&X-AUTH-TOKEN=" + authorization;
+//                } else
+//                    url = obj + "?X-AUTH-TOKEN=" + authorization;
+//                req = {
+//                    method: 'POST',
+//                    url: url,
+//                    headers: {
+//                        'Content-Type': 'application/json',
+//                        'X-AUTH-TOKEN': authorization,
+//                        'Module': data.module,
+//                        'Form': data.form,
+//                        'Action': data.action
+//                    },
+//                    data: data
+//                }
+//             } else {
+//                var url = "";
+//                if (obj.url.indexOf("?") >= 0) {
+//                    url = obj.url + "&X-AUTH-TOKEN=" + authorization;
+//                } else {
+//                    url = obj.url + "?X-AUTH-TOKEN=" + authorization;
+//                }
+//                req = {
+//                    method: 'POST',
+//                    url: url,
+//                    headers: {
+//                        'Content-Type': 'application/json',
+//                        'X-AUTH-TOKEN': authorization,
+//                        'Module': data.module,
+//                        'Form': data.form,
+//                        'Action': data.action
+//                    },
+//                    data: data
+//                }
+//             }
+//             $http(req).then(function successCallback(response) {
+//                 if (response.data.data !== null) {
+//                     if (response.data.data.message != undefined) {
+//                         var msg = response.data.data.message;
+//                         window.messageContainer.log(msg);
+//                     } else if (response.data.messages) {
+//                        var msg = response.data.messages;
+//                        if (msg['label-success'] === "SUKSES") {
+//                            window.messageContainer.log(msg['label-success']);
+//                        }
+//                        else {
+//                            window.messageContainer.error(msg['label-success']);
+//                        }
 
 
- //                 deffer.reject(response);
- //             });
- //             return deffer.promise;
- //         }
- //     }
- // }]);
+//                     } else if (response.data.messages != undefined) {
+//                         var msg = response.data.messages;
+//                         window.messageContainer.log(msg['label-success']);
+//                     }
+//                 }
+//                 deffer.resolve(response);
+//             }, function errorCallback(response) {
+//                 //disini yah pak handlenya 
+//                  var msgError = "";
+
+//                 if(response.status === 403)
+//                 {
+//                     response["hak_akses"] = false;
+//                 }
+//                 else {
+//                     if (response.data.fieldErrors != undefined) {
+
+//                        for (var i = 0; i < response.data.fieldErrors.length; i++) {
+//                            msgError = response.data.fieldErrors[i].message;
+//                            window.messageContainer.error(msgError);
+//                        }
+//                    } 
+//                    else {
+//                        msgError = response.statusText;
+//                        window.messageContainer.error(msgError);
+//                    }
+//                 }
 
 
- ///
+//                 deffer.reject(response);
+//             });
+//             return deffer.promise;
+//         }
+//     }
+// }]);
+
+
+///

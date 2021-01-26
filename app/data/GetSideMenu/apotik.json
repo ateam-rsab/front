@@ -123,6 +123,10 @@
         "link": "#/ReportApotek"
       },
       {
+        "name": "Laporan Layanan",
+        "link": "#/LaporanLayanan"
+      },
+      {
         "name": "Laporan Obat Antibiotik",
         "link": "#/LaporanObatAntibiotik"
       },

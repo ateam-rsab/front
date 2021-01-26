@@ -21,7 +21,7 @@ define(['initialize'], function (initialize) {
             let getDataAbsensi = () => {
                 let today = DateHelper.formatDate(new Date(), "YYYY-MM-DD");
                 let dataPegawai = JSON.parse(localStorage.getItem("pegawai"));
-                console.log(dataPegawai.id);
+                
                 MenuService.getNotification('sdm/get-kehadiran/' + dataPegawai.id + '/' + today + '/' + today).then(res => { 
                     let dataKehadiran = res.data.data.listkehadiran[0];
 

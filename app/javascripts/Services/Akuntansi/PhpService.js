@@ -6,13 +6,14 @@
    var urlPrinting = config.urlPrinting;
    var urlDataGeneric = config.urlDataGeneric_Akuntansi;
    var urlDataMasterJava = config.urlDataMaster;
+   var baseURLBridgingRSOnline = config.baseURLBridgingRSOnline;
    var akuntansiService = angular.module('PhpService', ['ngResource', 'HttpServicesAkuntansi', 'Services']);
    akuntansiService.service('ManageSarprasPhp', ['R_Akuntansi', function (r) {
      return {
 
        getDataMaster: function (url) {
          return r.get({
-           url: urlDataMasterJava + url 
+           url: urlDataMasterJava + url
          });
        },
 
@@ -199,6 +200,24 @@
 
    akuntansiService.service('ManagePhp', ['R_Akuntansi', function (r) {
      return {
+
+       getDataBridgingRSOnline: function (url) {
+         return r.get({
+           url: baseURLBridgingRSOnline + url
+         })
+       },
+
+       saveDataBridgingRSOnline: function (url, data) {
+         return r.post({
+           url: baseURLBridgingRSOnline + url
+         }, data)
+       },
+
+       deleteDataBridgingRSOnline: function (url, data) {
+         return r.delete({
+           url: baseURLBridgingRSOnline + url
+         }, data)
+       },
 
        getData: function (urlGet) {
          return r.get({

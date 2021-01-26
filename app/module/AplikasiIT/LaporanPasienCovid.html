@@ -1,0 +1,677 @@
+<style>
+    span.label-input {
+        display: block;
+        font-size: 12px;
+        font-weight: bolder;
+        height: 30px;
+    }
+</style>
+<md-toolbar md-scroll-shrink class="shadow">
+    <div class="md-toolbar-tools">Laporan Pasien COVID-19</div>
+</md-toolbar>
+
+<md-tabs md-dynamic-height md-border-bottom md-selected="tabLapCovid">
+    <md-tab label="Rekap Pasien Masuk" md-on-select="onChangeTab(1)">
+        <md-content class="md-padding">
+
+            <div class="grid_12">
+                <div class="grid_2">
+                    <span class="label-input">Tanggal</span>
+                    <input style="width: 100%" kendo-date-picker k-ng-model="tanggalPasienMasuk" k-min="today"
+                        data-k-format="'yyyy-MM-dd'" />
+                </div>
+
+            </div>
+            <div class="grid_2">
+                <!-- <span c-label c-label-text="IGD Suspect" /> -->
+                <span class="label-input">IGD Suspect</span>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="igdSuspectL"
+                        placeholder="L" />
+                </div>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="igdSuspectP"
+                        placeholder="P" />
+                </div>
+            </div>
+
+            <div class="grid_2">
+                <!-- <span c-label c-label-text="IGD Konfirm" /> -->
+                <span class="label-input">IGD Konfirm</span>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="igdKonfirmL"
+                        placeholder="L" />
+                </div>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="igdKonfirmP"
+                        placeholder="P" />
+                </div>
+            </div>
+
+            <div class="grid_2">
+                <!-- <span c-label c-label-text="Rawat Jalan Suspect" /> -->
+                <span class="label-input">Rawat Jalan Suspect</span>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="rjSuspectL"
+                        placeholder="L" />
+                </div>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="rjSuspectP"
+                        placeholder="P" />
+                </div>
+            </div>
+
+            <div class="grid_2">
+                <!-- <span c-label c-label-text="Rawat Jalan Konfirm" /> -->
+                <span class="label-input">Rawat Jalan Konfirm</span>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="rjKonfirmL"
+                        placeholder="L" />
+                </div>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="rjKonfirmP"
+                        placeholder="P" />
+                </div>
+            </div>
+
+            <div class="grid_2">
+                <!-- <span c-label c-label-text="Rawat Inap Suspect" /> -->
+                <span class="label-input">Rawat Inap Suspect</span>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="riSuspectL"
+                        placeholder="L" />
+                </div>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="riSuspectP"
+                        placeholder="P" />
+                </div>
+            </div>
+
+            <div class="grid_2">
+                <!-- <span c-label c-label-text="Rawat Jalan Konfirm" /> -->
+                <span class="label-input">Rawat Inap Konfirm</span>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="riKonfirmL"
+                        placeholder="L" />
+                </div>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="riKonfirmP"
+                        placeholder="P" />
+                </div>
+            </div>
+
+            <div class="grid_2">
+                <md-button ng-show="!isLoading" class="md-raised md-primary" ng-click="simpanRekapPasienMasuk()">
+                    <span>Simpan</span>
+                </md-button>
+            </div>
+
+            <div class="grid_12">
+                <div id="kGrid" kendo-grid k-data-source="dataSourcePasienMasuk" k-selectable="'row'"
+                    k-options="optGroupPasienMasuk" k-scrollable="'true'" k-pageable="'true'" k-sortable="'true'"
+                    k-ng-model="dataSelected">
+                </div>
+            </div>
+        </md-content>
+    </md-tab>
+
+    <md-tab label="Rekap Pasien Dirawat" md-on-select="onChangeTab(2)">
+        <md-content class="md-padding">
+            <div class="grid_12">
+                <div class="grid_2">
+                    <span class="label-input">Tanggal</span>
+                    <input style="width: 100%" kendo-date-picker k-ng-model="tanggalPasienMasuk" k-min="today"
+                        data-k-format="'yyyy-MM-dd'" />
+                </div>
+                <div class="grid_2">
+                    <span class="label-input">Riwayat Pasien</span>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="riwayatPasien" k-data-text-field="'name'"
+                        k-filter="'contains'" k-data-value-field="'id'" k-data-source="listRiwayatPasien"
+                        k-on-change="onChangeRiwayatPasien()" k-auto-bind="'false'" />
+                </div>
+
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">ICU dengan Ventilator Suspect</span>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                        ng-model="icuDenganVentilatorSuspectL" placeholder="L" />
+                </div>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                        ng-model="icuDenganVentilatorSuspectP" placeholder="P" />
+                </div>
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">ICU dengan Ventilator Konfirm</span>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                        ng-model="icuDenganVentilatorKonfirmL" placeholder="L" />
+                </div>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                        ng-model="icuDenganVentilatorKonfirmP" placeholder="P" />
+                </div>
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">ICU tanpa Ventilator Suspect</span>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                        ng-model="icuTanpaVentilatorSuspectL" placeholder="L" />
+                </div>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                        ng-model="icuTanpaVentilatorSuspectP" placeholder="P" />
+                </div>
+            </div>
+
+            <div class="grid_2">
+                <!-- <span c-label c-label-text="ICU tanpa Ventilator Konfirm" /> -->
+                <span class="label-input">ICU tanpa Ventilator Konfirm</span>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                        ng-model="icuTanpaVentilatorKonfirmL" placeholder="L" />
+                </div>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                        ng-model="icuTanpaVentilatorKonfirmP" placeholder="P" />
+                </div>
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">ICU Tekanan negatif dengan Ventilator Suspect</span>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                        ng-model="icuTekananNegatifDenganVentilatorSuspectL" placeholder="L" />
+                </div>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                        ng-model="icuTekananNegatifDenganVentilatorSuspectP" placeholder="P" />
+                </div>
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">ICU Tekanan negatif dengan Ventilator Konfirm</span>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                        ng-model="icuTekananNegatifDenganVentilatorKonfirmL" placeholder="L" />
+                </div>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                        ng-model="icuTekananNegatifDenganVentilatorKonfirmP" placeholder="P" />
+                </div>
+            </div>
+
+            <div class="grid_2">
+                <!-- <span c-label c-label-text="ICU Tekanan negatif tanpa Ventilator Suspect" /> -->
+                <span class="label-input">ICU Tekanan negatif tanpa Ventilator Suspect</span>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                        ng-model="icuTekananNegatifTanpaVentilatorSuspectL" placeholder="L" />
+                </div>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                        ng-model="icuTekananNegatifTanpaVentilatorSuspectP" placeholder="P" />
+                </div>
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">ICU Tekanan negatif tanpa Ventilator Konfirm</span>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                        ng-model="icuTekananNegatifTanpaVentilatorKonfirmL" placeholder="L" />
+                </div>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                        ng-model="icuTekananNegatifTanpaVentilatorKonfirmP" placeholder="P" />
+                </div>
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">Isolasi Tekanan negatif Suspect</span>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                        ng-model="isolasiTekananNegatifSuspectL" placeholder="L" />
+                </div>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                        ng-model="isolasiTekananNegatifSuspectP" placeholder="P" />
+                </div>
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">Isolasi Tekanan negatif Konfirm</span>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                        ng-model="isolasiTekananNegatifKonfirmL" placeholder="L" />
+                </div>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                        ng-model="isolasiTekananNegatifKonfirmP" placeholder="P" />
+                </div>
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">Isolasi tanpa Tekanan negatif Suspect</span>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                        ng-model="isolasiTanpaTekananNegatifSuspectL" placeholder="L" />
+                </div>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                        ng-model="isolasiTanpaTekananNegatifSuspectP" placeholder="P" />
+                </div>
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">Isolasi tanpa Tekanan negatif Konfirm</span>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                        ng-model="isolasiTanpaTekananNegatifKonfirmL" placeholder="L" />
+                </div>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                        ng-model="isolasiTanpaTekananNegatifKonfirmP" placeholder="P" />
+                </div>
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">NICU khusus covid suspect</span>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                        ng-model="nicuKhususCovidSuspectL" placeholder="L" />
+                </div>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                        ng-model="nicuKhususCovidSuspectP" placeholder="P" />
+                </div>
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">NICU khusus covid Konfirm</span>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                        ng-model="nicuKhususCovidKonfirmL" placeholder="L" />
+                </div>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                        ng-model="nicuKhususCovidKonfirmP" placeholder="P" />
+                </div>
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">PICU khusus covid suspect</span>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                        ng-model="picuKhususCovidSuspectL" placeholder="L" />
+                </div>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                        ng-model="picuKhususCovidSuspectP" placeholder="P" />
+                </div>
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">PICU khusus covid Konfirm</span>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                        ng-model="picuKhususCovidKonfirmL" placeholder="L" />
+                </div>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                        ng-model="picuKhususCovidKonfirmP" placeholder="P" />
+                </div>
+            </div>
+
+            <div class="grid_12">
+                <div class="grid_2">
+                    <md-button ng-show="!isLoading" class="md-raised md-primary"
+                        ng-click="simpanDataPasienDenganKomorbid()">
+                        <span>Simpan</span>
+                    </md-button>
+                </div>
+            </div>
+
+            <div class="grid_12">
+                <!-- <div id="kGrid" kendo-grid k-data-source="dataSourcePasienDirawat" k-selectable="'row'"
+                    k-options="optGroupPasienDirawat" k-scrollable="'true'" k-pageable="'true'" k-sortable="'true'"
+                    k-ng-model="dataSelected"> -->
+                <div id="kGrid" kendo-grid k-data-source="dataSourcePasienDirawat" k-selectable="'row'"
+                    k-options="optGroupPasienDirawat" k-scrollable="'true'" k-pageable="'true'" k-sortable="'true'"
+                    k-ng-model="dataSelected">
+                </div>
+            </div>
+
+        </md-content>
+    </md-tab>
+
+    <md-tab label="Rekap Pasien Keluar" md-on-select="onChangeTab(3)">
+        <md-content class="md-padding">
+            <div class="grid_12">
+                <div class="grid_2">
+                    <span class="label-input">Tanggal</span>
+                    <input style="width: 100%" kendo-date-picker k-ng-model="tanggalPasienMasuk" k-min="today"
+                        data-k-format="'yyyy-MM-dd'" />
+                </div>
+
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">Pasien Sembuh</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="sembuh" />
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">Discarded</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="discarded" />
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">Meninggal Komorbid</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="meninggaKomorbid" />
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">Meninggal tanpa Komorbid</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="meninggalTanpaKomorbid" />
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">Meninggal prob Pre Komorbid</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                    ng-model="meninggalProbPreKomorbid" />
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">Meninggal prob Neo Komorbid</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                    ng-model="meninggalProbNeoKomorbid" />
+
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">Meninggal prob Bayi Komorbid</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                    ng-model="meninggalProbBayiKomorbid" />
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">Meninggal prob Balita Komorbid</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                    ng-model="meninggalProbBalitaKomorbid" />
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">Meninggal prob Anak Komorbid</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                    ng-model="meninggalProbAnakKomorbid" />
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">Meninggal prob Remaja Komorbid</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                    ng-model="meninggalProbRemajaKomorbid" />
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">Meninggal prob Dewasa Komorbid</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                    ng-model="meninggalProbDwsKomorbid" />
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">Meninggal prob Lansia Komorbid</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                    ng-model="meninggalProbLansiaKomorbid" />
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">Meninggal prob Pre tanpa Komorbid</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                    ng-model="meninggalProbPreTanpaKomorbid" />
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">Meninggal prob Neo tanpa Komorbid</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                    ng-model="meninggalProbNeoTanpaKomorbid" />
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">Meninggal prob Bayi tanpa Komorbid</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                    ng-model="meninggalProbBayiTanpaKomorbid" />
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">Meninggal prob Balita tanpa Komorbid</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                    ng-model="meninggalProbBalitaTanpaKomorbid" />
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">Meninggal prob Anak tanpa Komorbid</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                    ng-model="meninggalProbAnakTanpaKomorbid" />
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">Meninggal prob Remaja tanpa Komorbid</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                    ng-model="meninggalProbRemajaTanpaKomorbid" />
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">Meninggal prob Dewasa tanpa Komorbid</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                    ng-model="meninggalProbDwsTanpaKomorbid" />
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">Meninggal prob Lansia tanpa Komorbid</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                    ng-model="meninggalProbLansiaTanpaKomorbid" />
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">Meninggal Discarded Komorbid</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                    ng-model="meninggalDiscardedKomorbid" />
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">Meninggal Discarded tanpa Komorbid</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox"
+                    ng-model="meninggalDiscardedTanpaKomorbid" />
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">Di Rujuk</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="dirujuk" />
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">Isolasi Mandiri</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="isman" />
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">APS</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="aps" />
+            </div>
+
+            <div class="grid_12">
+                <div class="grid_2">
+                    <md-button ng-show="!isLoading" class="md-raised md-primary" ng-click="simpanRekapPasienKeluar()">
+                        <span>Simpan</span>
+                    </md-button>
+                </div>
+            </div>
+
+            <div class="grid_12">
+                <div class="grid_12">
+                    <div id="kGrid" kendo-grid k-data-source="dataSourcePasienKeluar" k-selectable="'row'"
+                        k-options="optGroupPasienKeluar" k-scrollable="'true'" k-pageable="'true'" k-sortable="'true'"
+                        k-ng-model="dataSelected">
+                    </div>
+                </div>
+            </div>
+
+        </md-content>
+    </md-tab>
+
+    <md-tab label="Tempat Tidur" md-on-select="onChangeTab(4)">
+        <md-content class="md-padding">
+
+            <div class="grid_2">
+                <span class="label-input">Referensi Tempat Tidur</span>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="referensiTempatTidur"
+                    k-data-text-field="'nama_tt'" k-filter="'contains'" k-data-value-field="'kode_tt'"
+                    k-data-source="listDataReferensiTempatTidur" k-auto-bind="'false'" />
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">Nama Ruangan</span>
+                <input c-text-box type="input" class="k-textbox" ng-model="namaRuangan" />
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">Jumlah Ruang</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="jmlRuangan" />
+            </div>
+            <div class="grid_2">
+                <span class="label-input">Jumlah</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="jumlah" />
+            </div>
+            <div class="grid_2">
+                <span class="label-input">Terpakai</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="terpakai" />
+            </div>
+            <div class="grid_2">
+                <span class="label-input">Prepare</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="prepare" />
+            </div>
+            <div class="grid_2">
+                <span class="label-input">Prepare Plan</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="prepare_plan" />
+            </div>
+            <div class="grid_2">
+                <span class="label-input">Kosong</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="kosong" />
+            </div>
+            <div class="grid_2">
+                <span class="label-input">Covid</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="Covid" />
+            </div>
+
+            <div class="grid_12">
+                <div class="grid_2">
+                    <md-button ng-show="!isLoading" class="md-raised md-primary" ng-click="simpanDataTempatTidur()">
+                        <span>Simpan</span>
+                    </md-button>
+                </div>
+            </div>
+
+
+            <div class="grid_12">
+                <div id="kGrid" kendo-grid k-data-source="dataSourceTempatTidur" k-selectable="'row'"
+                    k-options="optGroupTempatTidur" k-scrollable="'true'" k-pageable="'true'" k-sortable="'true'"
+                    k-ng-model="dataSelected">
+                </div>
+            </div>
+
+
+        </md-content>
+    </md-tab>
+
+    <md-tab label="Data SDM" md-on-select="onChangeTab(5)">
+        <md-content class="md-padding">
+            <div class="grid_3">
+                <span class="label-input">Referensi Data SDM</span>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="referensiSDM" k-data-text-field="'kebutuhan'"
+                    k-filter="'contains'" k-data-value-field="'id_kebutuhan'" k-data-source="listReferensiDataSDM"
+                    k-auto-bind="'false'" />
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">Jumlah Eksisting</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="jumlahEksistingSDM" />
+            </div>
+
+            <div class="grid_1">
+                <span class="label-input">Jumlah</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="jumlahSDM" />
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">Jumlah Diterima</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="jumlahDiterimaSDM" />
+            </div>
+
+            <div class="grid_12">
+                <div class="grid_2">
+                    <md-button ng-show="!isLoading" class="md-raised md-primary" ng-click="simpanDataSDM()">
+                        <span>Simpan</span>
+                    </md-button>
+                </div>
+            </div>
+
+            <div class="grid_12">
+                <div id="kGrid" kendo-grid k-data-source="dataSourceSDM" k-selectable="'row'"
+                    k-options="optGroupDataSDM" k-scrollable="'true'" k-pageable="'true'" k-sortable="'true'"
+                    k-ng-model="dataSelected">
+                </div>
+            </div>
+
+        </md-content>
+    </md-tab>
+
+    <md-tab label="Data Alkes & APD" md-on-select="onChangeTab(6)">
+        <md-content class="md-padding">
+            <div class="grid_3">
+                <span class="label-input">Referensi Data Alkes & APD</span>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="referensiAlkes" k-data-text-field="'kebutuhan'"
+                    k-filter="'contains'" k-data-value-field="'id_kebutuhan'" k-data-source="listDataAlkes"
+                    k-auto-bind="'false'" />
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">Jumlah Eksisting</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="jumlahEksistingDA" />
+            </div>
+
+            <div class="grid_1">
+                <span class="label-input">Jumlah</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="jumlahDA" />
+            </div>
+
+            <div class="grid_2">
+                <span class="label-input">Jumlah Diterima</span>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="jumlahDiterimaDA" />
+            </div>
+
+            <div class="grid_12">
+                <div class="grid_2">
+                    <md-button ng-show="!isLoading" class="md-raised md-primary" ng-click="simpanDataAlkes()">
+                        <span>Simpan</span>
+                    </md-button>
+                </div>
+            </div>
+
+            <div class="grid_12">
+                <div id="kGrid" kendo-grid k-data-source="dataSourceAlkes" k-selectable="'row'"
+                    k-options="optGroupAlkes" k-scrollable="'true'" k-pageable="'true'" k-sortable="'true'"
+                    k-ng-model="dataSelected">
+                </div>
+            </div>
+
+        </md-content>
+    </md-tab>
+</md-tabs>
+
+<div class="grid_12" style="margin-top:60px">
+    <div ng-include='" ../app/module/Shared/TemplateLoading" '></div>
+</div>
