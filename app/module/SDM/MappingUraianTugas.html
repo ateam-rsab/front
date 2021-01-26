@@ -56,6 +56,15 @@
         </div>
         <div class="grid_12">
             <div class="grid_12">
+                <label c-label c-label-text="jenisJabatan" style="padding-top:14px;padding-bottom:5px"></label>
+            </div>
+            <div class="grid_12">
+                <input kendo-combo-box style="width:100%" k-ng-model="item.jenisJabatan" k-data-text-field="'jenisJabatan'"
+                    k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisJabatan" />
+            </div>
+        </div>
+        <div class="grid_12">
+            <div class="grid_12">
                 <label c-label c-label-text="jabatan" style="padding-top:14px;padding-bottom:5px"></label>
             </div>
             <div class="grid_12">

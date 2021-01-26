@@ -10,10 +10,10 @@ define(['initialize'], function (initialize) {
 
                 $q.all([
                     ManageSdm.getOrderList("service/list-generic/?view=PelaksanaanTugas&select=id,pelaksanaanTugas&criteria=statusEnabled&values=true", true),
-                    ManageSdm.getOrderList("service/list-generic/?view=Jabatan&select=id,namaJabatan&criteria=jenisJabatan&values=3&criteria=statusEnabled&values=true", true)
+                    ManageSdm.getOrderList("service/list-generic/?view=JenisJabatan&select=id,jenisJabatan&criteria=statusEnabled&values=true", true)
                 ]).then(function (e) {
                     $scope.listPelaksana = e[0];
-                    $scope.listJabatan = e[1];
+                    $scope.listJenisJabatan = e[1];
 
                     ManageSdm.getOrderList("service/list-generic/?view=RincianKegiatan&select=*&criteria=statusEnabled&values=true").then(function (res) {
                         $scope.gridUraianTugas = new kendo.data.DataSource({
@@ -108,8 +108,11 @@ define(['initialize'], function (initialize) {
 
             function showDetails(e) {
                 e.preventDefault();
+                $scope.listJabatan = [];
+
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
                 $scope.item = dataItem;
+                $scope.item.jenisJabatan = {};
                 $scope.mappingTugas.center().open();
 
                 $timeout(function () {
@@ -228,6 +231,14 @@ define(['initialize'], function (initialize) {
                         applyFilter("rincianKegiatan", newVal)
                     }
                 }, 1000)
+            })
+
+            $scope.$watch('item.jenisJabatan', function (newVal, oldVal) {
+                if (newVal && newVal !== oldVal) {
+                    ManageSdm.getOrderList("service/list-generic/?view=Jabatan&select=id,namaJabatan&criteria=statusEnabled&values=true&criteria=jenisJabatanId&values=" + newVal.id, true).then(function (res) {
+                        $scope.listJabatan = res.data;
+                    })
+                }
             })
 
             function applyFilter(filterField, filterValue) {
