@@ -170,6 +170,12 @@ define(['initialize'], function (initialize) {
                 },
                 columns: [
                     {
+                        field: "rincianKegiatan.id",
+                        title: "Kode Rincian Kegiatan",
+                        width: "10%",
+                        filterable: false
+                    },
+                    {
                         field: "id",
                         title: "id",
                         hidden: true,
@@ -359,13 +365,13 @@ define(['initialize'], function (initialize) {
             var timeoutPromise;
             $scope.$watch('item.pilihJabatan', function (newVal, oldVal) {
                 if (newVal && newVal !== oldVal) {
-                    applyFilter('jabatanId', newVal)
+                    applyFilter('jabatan.id', newVal)
                 }
             })
 
             $scope.$watch('item.pilihPelaksanaan', function (newVal, oldVal) {
                 if (newVal && newVal !== oldVal) {
-                    applyFilter('pelaksanaanTugasId', newVal)
+                    applyFilter('pelaksanaanTugas.id', newVal)
                 }
             })
 

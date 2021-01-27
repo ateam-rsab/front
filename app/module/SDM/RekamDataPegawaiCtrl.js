@@ -2106,13 +2106,17 @@ define(['initialize'], function (initialize) {
                     "item.kedudukan|k-ng-model|Kedudukan pegawai",
                     "item.kategoryPegawai|k-ng-model|Kategori pegawai",
                     "item.alamat|k-ng-model|Alamat",
-                    "item.noHandphone|k-ng-model|No handphone",
-                    "item.email|k-ng-model|Email",
                     "item.tglLahir|k-ng-model|Tanggal lahir",
                     "item.tempatLahir|k-ng-model|Tempat lahir",
                     "item.noIdentitas|k-ng-model|No identitas",
                     "item.nama|k-ng-model|Nama pegawai"
-                ];
+                ]
+                if (!$state.params.idPegawai) {
+                    listRawRequired.push(
+                        "item.noHandphone|k-ng-model|No handphone",
+                        "item.email|k-ng-model|Email"
+                    )
+                }
                 var isValid = ModelItem.setValidation($scope, listRawRequired);
                 if (isValid.status) {
                     if (_.contains($scope.item.tglLahir, '-')) {
