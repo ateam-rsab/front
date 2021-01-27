@@ -103,6 +103,11 @@
         background-color: #ffcf77
     }
 
+    .notify-danger {
+        background-color: #ff6f6f;
+        color: #d7d7d7;
+    }
+
     md-pagination-wrapper.md-center-tabs,
     md-tabs.md-default-theme.md-primary>md-tabs-wrapper,
     md-tabs.md-primary>md-tabs-wrapper {
@@ -149,7 +154,7 @@
                 <strong>Info </strong> {{pesanPemberitahuan}}
             </div>
 
-            <div class="notify" ng-if="showNotif.messageAbsensi">
+            <div class="notify notify-danger" ng-if="showNotif.messageAbsensi">
                 <strong>Info </strong> {{messageAbsensi}}
             </div>
 
