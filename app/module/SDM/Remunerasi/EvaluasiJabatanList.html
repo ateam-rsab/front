@@ -10,14 +10,14 @@
                         <span c-label c-label-text="Jabatan" />
                         <input style="width: 100%;" kendo-combo-box k-ng-model="data.jabatan"
                             k-data-text-field="'namaJabatan'" k-filter="'contains'" k-data-value-field="'id'"
-                            k-data-source="listJabatan" k-on-change="getDataKelompokJabatan()" />
+                            k-data-source="listJabatan" />
                     </div>
-                    <div class="grid_12">
+                    <!-- <div class="grid_12">
                         <span c-label c-label-text="Kelompok Jabatan" />
                         <input style="width: 100%;" kendo-combo-box k-ng-model="data.kelompokJabatan"
                             k-data-text-field="'detailKelompokJabatan'" k-filter="'contains'" k-data-value-field="'id'"
                             k-data-source="listKelompokJabatan" />
-                    </div>
+                    </div> -->
                     <div class="grid_12">
                         <span c-label c-label-text="Bulan" />
                         <input required style="width: 100%;" kendo-combo-box k-ng-model="selectedBulan"
@@ -208,12 +208,12 @@
                     <!-- Total Hitung-->
                     <div class="grid_3">
                         <label c-label item="item" c-label-text="batasBawah"></label>
-                        <input c-text-box type="input" class="k-textbox" ng-model="data.kelompokJabatan.nilaiTerendah"
+                        <input c-text-box type="input" class="k-textbox" ng-model="data.jabatan.nilaiTerendah"
                             disabled="disabled" />
                     </div>
                     <div class="grid_3">
                         <label c-label item="item" c-label-text="batasAtas"></label>
-                        <input c-text-box type="input" class="k-textbox" ng-model="data.kelompokJabatan.nilaiTertinggi"
+                        <input c-text-box type="input" class="k-textbox" ng-model="data.jabatan.nilaiTertinggi"
                             disabled="disabled" />
                     </div>
                     <div class="grid_3">
