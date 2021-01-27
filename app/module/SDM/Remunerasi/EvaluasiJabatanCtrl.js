@@ -17,17 +17,19 @@ define(['initialize'], function (initialize) {
                 });
             });
 
-            ManageSdmNew.getListData("service/list-generic/?view=Jabatan&select=id,namaJabatan,kelompokJabatanId&criteria=statusEnabled,kdJabatan&values=true,ANJAB").then((res) => {
+            // ManageSdmNew.getListData("service/list-generic/?view=Jabatan&select=id,namaJabatan,kelompokJabatanId&criteria=statusEnabled,kdJabatan&values=true,ANJAB").then((res) => {
+            //     $scope.listJabatan = res.data;
+            // })
 
-                $scope.listJabatan = res.data;
+            // $scope.getDataKelompokJabatan = () => {
+            //     ManageSdmNew.getListData("service/list-generic/?view=NilaiKelompokJabatan&select=id,detailKelompokJabatan,nilaiTerendah,nilaiTertinggi&criteria=statusEnabled,kelompokJabatanId&values=true," + $scope.data.jabatan.kelompokJabatanId).then((res) => {
+            //         $scope.listKelompokJabatan = res.data;
+            //     })
+            // }
+
+            ManageSdmNew.getListData("jabatan/get-list-jabatan-anjab").then((res) => {
+                $scope.listJabatan = res.data.data;
             })
-
-            $scope.getDataKelompokJabatan = () => {
-                ManageSdmNew.getListData("service/list-generic/?view=NilaiKelompokJabatan&select=id,detailKelompokJabatan,nilaiTerendah,nilaiTertinggi&criteria=statusEnabled,kelompokJabatanId&values=true," + $scope.data.jabatan.kelompokJabatanId).then((res) => {
-
-                    $scope.listKelompokJabatan = res.data;
-                })
-            }
 
             $scope.getRuangan = function (employee) {
                 if (!employee) return;
@@ -140,10 +142,10 @@ define(['initialize'], function (initialize) {
                     toastr.warning("Harap pilih Jabatan", "Simpan Gagal");
                     return false;
                 }
-                if (!$scope.data.kelompokJabatan) {
-                    toastr.warning("Harap pilih Kelompok Jabatan", "Simpan Gagal");
-                    return false;
-                }
+                // if (!$scope.data.kelompokJabatan) {
+                //     toastr.warning("Harap pilih Kelompok Jabatan", "Simpan Gagal");
+                //     return false;
+                // }
 
                 if (!$scope.item.faktor1) {
                     toastr.warning("Harap pilih Faktor 1 (Komtek)", " Simpan Gagal");
@@ -270,6 +272,9 @@ define(['initialize'], function (initialize) {
                     jabatan: {
                         id: $scope.data.jabatan.id
                     },
+                    // grade: {
+                    //     id: $scope.data.kelompokJabatan.id
+                    // },
                     tahun: $scope.selectedTahun.id.toString(),
                     statusEnabled: true,
                     kdProfile: 0,
@@ -337,20 +342,29 @@ define(['initialize'], function (initialize) {
                 }
 
                 ManageSdmNew.saveData(dataSave, "sdm/hitung-grade-evaluasi-jabatan/").then(function (e) {
-
-                    $scope.totalNilaiJabatan = Math.ceil(e.data.data.result);
                     totalNilai = Math.ceil(e.data.data.result);
-                    if (totalNilai < $scope.data.kelompokJabatan.nilaiTerendah || totalNilai > $scope.data.kelompokJabatan.nilaiTertinggi) {
+                    if (totalNilai < $scope.data.jabatan.nilaiTerendah || totalNilai > $scope.data.jabatan.nilaiTertinggi) {
                         $scope.isSimpanDisabled = true;
 
-                        if (totalNilai < $scope.data.kelompokJabatan.nilaiTerendah) toastr.info("Total Perhitungan Nilai Jabatan Kurang dari Batas Bawah");
-                        if (totalNilai > $scope.data.kelompokJabatan.nilaiTertinggi) toastr.info("Total Perhitungan Nilai Jabatan Lebih dari Batas Atas");
+                        if (totalNilai < $scope.data.jabatan.nilaiTerendah) {
+                            $scope.totalNilaiJabatan = 0;
+                            toastr.info("Total Perhitungan Nilai Jabatan Kurang dari Batas Bawah");
+                        }
+
+                        if (totalNilai > $scope.data.jabatan.nilaiTertinggi) {
+                            $scope.totalNilaiJabatan = 0;
+                            toastr.info("Total Perhitungan Nilai Jabatan Lebih dari Batas Atas");
+                        }
                     } else {
+                        if ($scope.data.jabatan.nilaiTerendah <= totalNilai
+                            && totalNilai <= $scope.data.jabatan.nilaiTertinggi) {
+                            $scope.totalNilaiJabatan = Math.ceil(e.data.data.result);
+                        }
                         $scope.isSimpanDisabled = false;
                     }
 
-                    $scope.grade = e.data.data.grade ? e.data.data.grade : "-";
-                    $scope.detailGrade = e.data.data.detailGrade ? e.data.data.detailGrade : "-";
+                    // $scope.grade = e.data.data.grade ? e.data.data.grade : "-";
+                    // $scope.detailGrade = e.data.data.detailGrade ? e.data.data.detailGrade : "-";
 
                 });
                 $rootScope.doneLoad = true;
