@@ -17,22 +17,17 @@ define(['initialize'], function (initialize) {
                 });
             });
 
-            // http://192.168.12.3:8080/jasamedika-web/service/list-generic/?view=Jabatan&select=id,namaJabatan&criteria=statusEnabled,kdJabatan&values=true,ANJAB
             ManageSdmNew.getListData("service/list-generic/?view=Jabatan&select=id,namaJabatan,kelompokJabatanId&criteria=statusEnabled,kdJabatan&values=true,ANJAB").then((res) => {
 
                 $scope.listJabatan = res.data;
             })
 
             $scope.getDataKelompokJabatan = () => {
-                // http://localhost:8080/jasamedika-sdm/service/list-generic/?view=NilaiKelompokJabatan&select=id,detailKelompokJabatan,nilaiTerendah,nilaiTertinggi&criteria=statusEnabled,kelompokJabatanId&values=true,1
                 ManageSdmNew.getListData("service/list-generic/?view=NilaiKelompokJabatan&select=id,detailKelompokJabatan,nilaiTerendah,nilaiTertinggi&criteria=statusEnabled,kelompokJabatanId&values=true," + $scope.data.jabatan.kelompokJabatanId).then((res) => {
 
                     $scope.listKelompokJabatan = res.data;
                 })
             }
-            // manageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap,ruanganId,jabatanInternalId&criteria=statusEnabled&values=true").then(function (dat) {
-            //     $scope.listPegawai = dat.data;
-            // });
 
             $scope.getRuangan = function (employee) {
                 if (!employee) return;
@@ -59,9 +54,15 @@ define(['initialize'], function (initialize) {
                 $scope.map = e;
                 modelItem.getDataDummyGeneric('FaktorEvaluasi').then(function (e) {
                     var arr = _.groupBy(e, "faktor");
-
-                    // console.log(_.sortBy(arr["Faktor 1"], "profile"));
                     $scope.listFaktor1 = _.sortBy(arr["Faktor 1"], "profile");
+                    $scope.listFaktor2 = _.sortBy(arr["Faktor 2"], "profile");
+                    $scope.listFaktor3 = _.sortBy(arr["Faktor 3"], "profile");
+                    $scope.listFaktor4 = _.sortBy(arr["Faktor 4"], "profile");
+                    $scope.listFaktor5 = _.sortBy(arr["Faktor 5"], "profile");
+                    $scope.listFaktor7 = _.sortBy(arr["Faktor 7"], "profile");
+                    $scope.listFaktor8 = _.sortBy(arr["Faktor 8"], "profile");
+                    $scope.listFaktor9 = _.sortBy(arr["Faktor 9"], "profile");
+                    $scope.listFaktor10 = _.sortBy(arr["Faktor 10"], "profile");
                     var temp = [];
                     for (var key in arr) {
                         if (arr.hasOwnProperty(key)) {
@@ -124,17 +125,11 @@ define(['initialize'], function (initialize) {
                     name: dateHelper.toMonth(i)
                 });
 
-            // $scope.$watch('data.ruangan', function (e) {
-            //     if (e === undefined) return;
-            //     $scope.refresh();
-            // });
             $scope.$watch('selectedTahun', function (e) {
                 if (e === undefined) return;
-                // $scope.refresh();
             });
             $scope.$watch('selectedBulan', function (e) {
                 if (e === undefined) return;
-                // $scope.refresh();
             });
 
             $scope.selectedBulan = $scope.listMonth[new Date().getMonth()];
@@ -143,6 +138,47 @@ define(['initialize'], function (initialize) {
             let validate = () => {
                 if (!$scope.data.jabatan) {
                     toastr.warning("Harap pilih Jabatan", "Simpan Gagal");
+                    return false;
+                }
+                if (!$scope.data.kelompokJabatan) {
+                    toastr.warning("Harap pilih Kelompok Jabatan", "Simpan Gagal");
+                    return false;
+                }
+
+                if (!$scope.item.faktor1) {
+                    toastr.warning("Harap pilih Faktor 1 (Komtek)", " Simpan Gagal");
+                    return false;
+                }
+                if (!$scope.item.faktor2) {
+                    toastr.warning("Harap pilih Faktor 2 (Manajerial)", " Simpan Gagal");
+                    return false;
+                }
+                if (!$scope.item.faktor3) {
+                    toastr.warning("Harap pilih Faktor 3 (Komunikasi)", " Simpan Gagal");
+                    return false;
+                }
+                if (!$scope.item.faktor4) {
+                    toastr.warning("Harap pilih Faktor 4 (Analisa)", " Simpan Gagal");
+                    return false;
+                }
+                if (!$scope.item.faktor5) {
+                    toastr.warning("Harap pilih Faktor 5 (Pedoman)", " Simpan Gagal");
+                    return false;
+                }
+                if (!$scope.item.faktor7) {
+                    toastr.warning("Harap pilih Faktor 7 (Wewenang)", " Simpan Gagal");
+                    return false;
+                }
+                if (!$scope.item.faktor8) {
+                    toastr.warning("Harap pilih Faktor 8 (Harta)", " Simpan Gagal");
+                    return false;
+                }
+                if (!$scope.item.faktor9) {
+                    toastr.warning("Harap pilih Faktor 9 (Peran Jabatan)", " Simpan Gagal");
+                    return false;
+                }
+                if (!$scope.item.faktor10) {
+                    toastr.warning("Harap pilih Faktor 10 (Pobabilitas Resiko)", " Simpan Gagal");
                     return false;
                 }
 
@@ -195,43 +231,6 @@ define(['initialize'], function (initialize) {
                     return false;
                 }
 
-                if (!$scope.item.faktor1) {
-                    toastr.warning("Harap pilih Faktor 1 (Komtek)", " Simpan Gagal");
-                    return false;
-                }
-                if (!$scope.item.faktor2) {
-                    toastr.warning("Harap pilih Faktor 2 (Manajerial)", " Simpan Gagal");
-                    return false;
-                }
-                if (!$scope.item.faktor3) {
-                    toastr.warning("Harap pilih Faktor 3 (Komunikasi)", " Simpan Gagal");
-                    return false;
-                }
-                if (!$scope.item.faktor4) {
-                    toastr.warning("Harap pilih Faktor 4 (Analisa)", " Simpan Gagal");
-                    return false;
-                }
-                if (!$scope.item.faktor5) {
-                    toastr.warning("Harap pilih Faktor 5 (Pedoman)", " Simpan Gagal");
-                    return false;
-                }
-                if (!$scope.item.faktor7) {
-                    toastr.warning("Harap pilih Faktor 7 (Wewenang)", " Simpan Gagal");
-                    return false;
-                }
-                if (!$scope.item.faktor8) {
-                    toastr.warning("Harap pilih Faktor 8 (Harta)", " Simpan Gagal");
-                    return false;
-                }
-                if (!$scope.item.faktor9) {
-                    toastr.warning("Harap pilih Faktor 9 (Peran Jabatan)", " Simpan Gagal");
-                    return false;
-                }
-                if (!$scope.item.faktor10) {
-                    toastr.warning("Harap pilih Faktor 10 (Pobabilitas Resiko)", " Simpan Gagal");
-                    return false;
-                }
-
                 return true
             }
 
@@ -264,7 +263,6 @@ define(['initialize'], function (initialize) {
                     faktor3: $scope.item.faktor3,
                     faktor4: $scope.item.faktor4,
                     faktor5: $scope.item.faktor5,
-                    // faktor6: $scope.item.faktor6,
                     faktor7: $scope.item.faktor7,
                     faktor8: $scope.item.faktor8,
                     faktor9: $scope.item.faktor9,
@@ -278,9 +276,7 @@ define(['initialize'], function (initialize) {
                     bulan: $scope.selectedBulan.id,
                     totalNilai: totalNilai
                 }
-                console.log(dataSave);
 
-                // sdm/save-evaluasi-jabatan
                 ManageSdmNew.saveData(dataSave, "sdm/save-evaluasi-jabatan").then(function (e) {
                     $scope.temp = "";
                     $scope.refresh();
@@ -311,9 +307,7 @@ define(['initialize'], function (initialize) {
                     return;
                 }
 
-                // toastr.info("Harap tunggu sedang menghitung total Nilai Jabatan")
                 $rootScope.doneLoad = false;
-                // var arrayFaktor = [];
 
                 let dataSave = {
                     faktorA: getListFaktor($scope.listFaktorA, $scope.item.faktorA.id),
@@ -340,56 +334,7 @@ define(['initialize'], function (initialize) {
                     faktor9: $scope.item.faktor9,
                     faktor10: $scope.item.faktor10,
                     jabatan: $scope.data
-                    // "ruangan": $scope.data.ruangan,
-                    // "pegawai": {
-                    //     "id": $scope.data.pegawai.id
-                    // },
-                    // jabatan: {
-                    //     id: $scope.data
-                    // }
                 }
-
-                // arrayFaktor.push({
-                //     faktorA: getListFaktor($scope.listFaktorA, $scope.item.faktorA.id),
-                //     faktorB: getListFaktor($scope.listFaktorB, $scope.item.faktorB.id),
-                //     faktorC: getListFaktor($scope.listFaktorC, $scope.item.faktorC.id),
-                //     faktorD: getListFaktor($scope.listFaktorD, $scope.item.faktorD.id),
-                //     faktorE: getListFaktor($scope.listFaktorE, $scope.item.faktorE.id),
-                //     faktorF: getListFaktor($scope.listFaktorF, $scope.item.faktorF.id),
-                //     faktorG: getListFaktor($scope.listFaktorG, $scope.item.faktorG.id),
-                //     faktorH: getListFaktor($scope.listFaktorH, $scope.item.faktorH.id),
-                //     faktorI: getListFaktor($scope.listFaktorI, $scope.item.faktorI.id),
-                //     faktorJ: getListFaktor($scope.listFaktorJ, $scope.item.faktorJ.id),
-                //     faktorK: getListFaktor($scope.listFaktorK, $scope.item.faktorK.id),
-                //     faktorL: getListFaktor($scope.listFaktorL, $scope.item.faktorL.id),
-
-                //     faktor1: $scope.item.faktor1,
-                //     faktor2: $scope.item.faktor2,
-                //     faktor3: $scope.item.faktor3,
-                //     faktor4: $scope.item.faktor4,
-                //     faktor5: $scope.item.faktor5,
-                //     faktor6: $scope.item.faktor6,
-                //     faktor7: $scope.item.faktor7,
-                //     faktor8: $scope.item.faktor8,
-                //     faktor9: $scope.item.faktor9,
-                //     faktor10: $scope.item.faktor10,
-                //     jabatan: $scope.data
-                //     // "ruangan": $scope.data.ruangan,
-                //     // "pegawai": {
-                //     //     "id": $scope.data.pegawai.id
-                //     // },
-                //     // jabatan: {
-                //     //     id: $scope.data
-                //     // }
-                // });
-
-
-                // if (arrayFaktor[0] === undefined || arrayFaktor[0] === null) {
-
-                //     return;
-                // }
-
-                console.log(dataSave);
 
                 ManageSdmNew.saveData(dataSave, "sdm/hitung-grade-evaluasi-jabatan/").then(function (e) {
 
@@ -398,8 +343,8 @@ define(['initialize'], function (initialize) {
                     if (totalNilai < $scope.data.kelompokJabatan.nilaiTerendah || totalNilai > $scope.data.kelompokJabatan.nilaiTertinggi) {
                         $scope.isSimpanDisabled = true;
 
-                        if (totalNilai < $scope.data.kelompokJabatan.nilaiTerendah) toastr.info("Total Perhitungan Jabatan Kurang dari Nilai Terendah Jabatan");
-                        if (totalNilai > $scope.data.kelompokJabatan.nilaiTerendah) toastr.info("Total Perhitungan Jabatan Lebih dari Nilai Terendah Jabatan");
+                        if (totalNilai < $scope.data.kelompokJabatan.nilaiTerendah) toastr.info("Total Perhitungan Nilai Jabatan Kurang dari Batas Bawah");
+                        if (totalNilai > $scope.data.kelompokJabatan.nilaiTertinggi) toastr.info("Total Perhitungan Nilai Jabatan Lebih dari Batas Atas");
                     } else {
                         $scope.isSimpanDisabled = false;
                     }
@@ -426,87 +371,16 @@ define(['initialize'], function (initialize) {
                 if ($scope.selectedBulan === undefined || $scope.selectedTahun === undefined || ($scope.data !== undefined && $scope.data.ruangan === undefined)) {
                     return;
                 }
-                // if ($scope.data.ruangan.id + "" + $scope.selectedTahun.id + "" + $scope.selectedBulan.id === $scope.temp)
-                //     return;
                 $rootScope.doneLoad = false;
                 $scope.listData = [];
-                // $scope.temp = $scope.data.ruangan.id + "" + $scope.selectedTahun.id + "" + $scope.selectedBulan.id;
                 $rootScope.doneLoad = false;
                 $q.all([
                     manageSdm.getOrderList("sdm/get-list-master-evaluasi?tahun=" + $scope.selectedTahun.id + "&bulan=" + $scope.selectedBulan.name),
-                    // findPegawai.getPegawaiRuangan($scope.data.ruangan.id),
                     findPegawai.getDataEvaluasi($scope.data.ruangan.id, $scope.selectedTahun.id, $scope.selectedBulan.name)
                 ]).then(function (data) {
                     //Data Pegawai
                     var arr = [];
                     $rootScope.doneLoad = true;
-                    // for (var key in data[1].data.data.data) {
-                    //     var element = data[1].data.data.data[key];
-                    //     // Data Sesuai data evaluasi
-                    //     for (var i in data[2].data.data.items) {
-                    //         var subElement = data[2].data.data.items[i];
-                    //         if (subElement.pegawaiId == element.idPegawai) {
-                    //             element.faktor1 = subElement.faktor1;
-                    //             element.faktor2 = subElement.faktor2;
-                    //             element.faktor3 = subElement.faktor3;
-                    //             element.faktor4 = subElement.faktor4;
-                    //             element.faktor5 = subElement.faktor5;
-                    //             element.faktor6 = subElement.faktor6;
-                    //             element.faktor7 = subElement.faktor7;
-                    //             element.faktor8 = subElement.faktor8;
-                    //             element.faktor9 = subElement.faktor9;
-                    //             element.faktor10 = subElement.faktor10;
-
-                    //             element.faktorA = subElement.faktorA;
-                    //             element.faktorB = subElement.faktorB;
-                    //             element.faktorC = subElement.faktorC;
-                    //             element.faktorD = subElement.faktorD;
-                    //             element.faktorE = subElement.faktorE;
-                    //             element.faktorF = subElement.faktorF;
-                    //             element.faktorG = subElement.faktorG;
-                    //             element.faktorH = subElement.faktorH;
-                    //             element.faktorI = subElement.faktorI;
-                    //             element.faktorJ = subElement.faktorJ;
-                    //             element.faktorK = subElement.faktorK;
-                    //             element.faktorL = subElement.faktorL;
-                    //             element.noRec = subElement.noRec;
-                    //         }
-                    //     }
-
-                    //     //Ambil dari data master apabila tidak ditemukan dari data evaluasi
-                    //     for (var y in data[0].data.data.data) {
-                    //         var masterElement = data[0].data.data.data[y];
-                    //         if (element.faktor1 == undefined) {
-                    //             if (element.idJabatanInternal == masterElement.jabatanId) {
-                    //                 element.faktor1 = masterElement.faktor1;
-                    //                 element.faktor2 = masterElement.faktor2;
-                    //                 element.faktor3 = masterElement.faktor3;
-                    //                 element.faktor4 = masterElement.faktor4;
-                    //                 element.faktor5 = masterElement.faktor5;
-                    //                 element.faktor6 = masterElement.faktor6;
-                    //                 element.faktor7 = masterElement.faktor7;
-                    //                 element.faktor8 = masterElement.faktor8;
-                    //                 element.faktor9 = masterElement.faktor9;
-                    //                 element.faktor10 = masterElement.faktor10;
-
-                    //                 element.faktorA = masterElement.faktorA;
-                    //                 element.faktorB = masterElement.faktorB;
-                    //                 element.faktorC = masterElement.faktorC;
-                    //                 element.faktorD = masterElement.faktorD;
-                    //                 element.faktorE = masterElement.faktorE;
-                    //                 element.faktorF = masterElement.faktorF;
-                    //                 element.faktorG = masterElement.faktorG;
-                    //                 element.faktorH = masterElement.faktorH;
-                    //                 element.faktorI = masterElement.faktorI;
-                    //                 element.faktorJ = masterElement.faktorJ;
-                    //                 element.faktorK = masterElement.faktorK;
-                    //                 element.faktorL = masterElement.faktorL;
-                    //                 //element.noRec = masterElement.noRec;
-                    //             }
-                    //         }
-                    //     }
-                    //     arr.push(element);
-                    // }
 
                     $scope.listData = arr;
 

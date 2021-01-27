@@ -3,8 +3,6 @@
         <md-toolbar md-scroll-shrink class="shadow">
             <div class="md-toolbar-tools">Evaluasi Jabatan</div>
         </md-toolbar>
-        <!-- <div class="panel-heading"><label class='title' c-label item="item" c-label-text="Evaluasi Jabatan"
-                real></label></div> -->
         <div class="panel-body">
             <div class="grid_12">
                 <div class="grid_3">
@@ -32,33 +30,6 @@
                             k-data-text-field="'id'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'"
                             k-data-source="listTahun" disabled />
                     </div>
-                    <!-- <div class="grid_12" style="padding-top:10px">
-                        <md-content>
-                            <md-toolbar layout="row" class="md-hue-3">
-                                <div class="md-toolbar-tools">
-                                    <span>Nama Pegawai</span>
-                                </div>
-                            </md-toolbar>
-                            <input style="width: 100%;" kendo-combo-box k-ng-model="data.jabatan"
-                                k-data-text-field="'namaJabatan'" k-filter="'contains'" k-data-value-field="'id'"
-                                k-data-source="listJabatan" />
-                            <input c-text-box type="input" class="k-textbox" ng-model="namaPegawai" />
-                            <md-list flex>
-                                <md-list-item class="md-3-line" ng-repeat="current in listPegawai|filter:namaPegawai" ng-click="choose(current)">
-                                    <img ng-show="current===item" src="stylesheets/Check.png" class="md-avatar" />
-                                    <div class="md-list-item-text" layout="column">
-                                        <h3 style="color:black">{{ current.namaLengkap }}</h3>
-                                    </div>
-                                </md-list-item>
-                            </md-list>
-                        </md-content>
-                    </div>
-                    <div class="grid_12">
-                        <label c-label item="item" c-label-text="Ruangan"></label>
-                        <input style="width: 100%;" kendo-combo-box k-ng-model="data.ruangan"
-                            k-data-text-field="'namaRuangan'" k-filter="'contains'" k-minLength="'3'"
-                            k-data-value-field="'id'" k-data-source="ruangans" />
-                    </div> -->
                 </div>
                 <div class="grid_9">
                     <div class="grid_4">
@@ -72,28 +43,28 @@
                         <label class="c-label">2. Manajerial </label>
                         <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor2"
                             k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'"
-                            k-data-source="listFaktor['Faktor 2']" k-auto-bind="'false'" />
+                            k-data-source="listFaktor2" k-auto-bind="'false'" />
 
                     </div>
                     <div class="grid_4">
                         <label class="c-label">3. Komunikasi</label>
                         <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor3"
                             k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'"
-                            k-data-source="listFaktor['Faktor 3']" k-auto-bind="'false'" />
+                            k-data-source="listFaktor3" k-auto-bind="'false'" />
 
                     </div>
                     <div class="grid_4">
                         <label class="c-label">4. Analisa</label>
                         <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor4"
                             k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'"
-                            k-data-source="listFaktor['Faktor 4']" k-auto-bind="'false'" />
+                            k-data-source="listFaktor4" k-auto-bind="'false'" />
 
                     </div>
                     <div class="grid_4">
                         <label class="c-label">5. Pedoman</label>
                         <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor5"
                             k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'"
-                            k-data-source="listFaktor['Faktor 5']" k-auto-bind="'false'" />
+                            k-data-source="listFaktor5" k-auto-bind="'false'" />
 
                     </div>
 
@@ -101,21 +72,21 @@
                         <label class="c-label">7. Wewenang </label>
                         <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor7"
                             k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'"
-                            k-data-source="listFaktor['Faktor 7']" k-auto-bind="'false'" />
+                            k-data-source="listFaktor7" k-auto-bind="'false'" />
 
                     </div>
                     <div class="grid_4">
                         <label class="c-label">8. Harta</label>
                         <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor8"
                             k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'"
-                            k-data-source="listFaktor['Faktor 8']" k-auto-bind="'false'" />
+                            k-data-source="listFaktor8" k-auto-bind="'false'" />
 
                     </div>
                     <div class="grid_4">
                         <label class="c-label">9. Peran Jabatan</label>
                         <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor9"
                             k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'"
-                            k-data-source="listFaktor['Faktor 9']" k-auto-bind="'false'" />
+                            k-data-source="listFaktor9" k-auto-bind="'false'" />
 
                     </div>
 
@@ -123,7 +94,7 @@
                         <label class="c-label">10. Probabilitas Resiko</label>
                         <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor10"
                             k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'"
-                            k-data-source="listFaktor['Faktor 10']" k-auto-bind="'false'" />
+                            k-data-source="listFaktor10" k-auto-bind="'false'" />
 
                     </div>
 
@@ -236,29 +207,21 @@
                     </div>
                     <!-- Total Hitung-->
                     <div class="grid_3">
-                        <label c-label item="item" c-label-text="Nilai Terendah Jabatan"></label>
+                        <label c-label item="item" c-label-text="batasBawah"></label>
                         <input c-text-box type="input" class="k-textbox" ng-model="data.kelompokJabatan.nilaiTerendah"
                             disabled="disabled" />
                     </div>
                     <div class="grid_3">
-                        <label c-label item="item" c-label-text="Nilai Tertinggi Jabatan"></label>
+                        <label c-label item="item" c-label-text="batasAtas"></label>
                         <input c-text-box type="input" class="k-textbox" ng-model="data.kelompokJabatan.nilaiTertinggi"
                             disabled="disabled" />
                     </div>
                     <div class="grid_3">
-                        <label c-label item="item" c-label-text="Total Perhitangan Nilai Jabatan"></label>
+                        <label c-label item="item" c-label-text="totalPerhitunganNilaiJabatan"></label>
                         <input c-text-box type="input" class="k-textbox" ng-model="totalNilaiJabatan"
                             disabled="disabled" />
 
                     </div>
-                    <!-- <div class="grid_3">
-                        <label c-label item="item" c-label-text="Grade"></label>
-                        <input c-text-box type="input" class="k-textbox" ng-model="grade" disabled="disabled" />
-                    </div>
-                    <div class="grid_4">
-                        <label c-label item="item" c-label-text="Keterangan"></label>
-                        <input c-text-box type="input" class="k-textbox" ng-model="detailGrade" disabled="disabled" />
-                    </div> -->
                     <div class="grid_12">
                         <div class="grid_12 " style="float:left;" ng-hide="isHide">
                             <div class="grid_3">
@@ -268,62 +231,33 @@
                                 <md-button ng-show="!isLoading" class="md-raised md-primary" ng-click="Hitung()">
                                     <span>Hitung</span>
                                 </md-button>
-                                <!-- <c-button ng-show="!isLoading" class="success" style="width: 100%; font-size: 24px; padding:0px; margin:0px;" item="item" size="36" position=" 'right'" is-validate click="Hitung">
-                                    <span class="title">Hitung</span>
-                                </c-button> -->
                             </div>
                             <div ng-hide='isNext' class="grid_3" style="float:right">
                                 <md-button class="md-raised md-primary" ng-click="Save()"
                                     ng-disabled="isSimpanDisabled">
                                     <span>Simpan</span>
                                 </md-button>
-                                <!-- <c-button ng-show="!isLoading" class="success"
-                                    style="width: 100%; font-size: 24px; padding:0px; margin:0px;" item="item" size="36"
-                                    position=" 'right'" is-validate click="Save">
-                                    <span class="title">Simpan</span>
-                                </c-button> -->
                             </div>
 
                             <div ng-show='isNext' class="grid_3" style="float:right;">
                                 <md-button ng-show="!isLoading" class="md-raised md-primary" ng-click="Next()">
                                     <span>Selanjutnya</span>
                                 </md-button>
-                                <!-- <c-button ng-show="!isLoading"
-                                    style="width: 100%; font-size: 24px; padding:0px; margin:0px;" item="item" size="36"
-                                    position=" 'right'" click="Next">
-                                    <span class="title">Selanjutnya</span>
-                                </c-button> -->
                             </div>
                             <div ng-show='isNext' class="grid_3" style="float:right;">
                                 <md-button ng-show="!isLoading" class="md-raised md-primary" is-back>
                                     <span>Kembali</span>
                                 </md-button>
-                                <!-- <c-button ng-show="!isLoading"
-                                    style="width: 100%; font-size: 24px; padding:0px; margin:0px;" item="item" size="36"
-                                    position=" 'right'" is-back>
-                                    <span class="title">Kembali</span>
-                                </c-button> -->
                             </div>
                             <div ng-hide='isNext' class="grid_3" style="float:right">
                                 <md-button ng-show="!isLoading" class="md-raised md-danger" ng-click="Back()">
                                     <span>Batal</span>
                                 </md-button>
-
-                                <!-- <c-button ng-show="!isLoading"
-                                    style="width: 100%; font-size: 24px; padding:0px; margin:0px;" item="item" size="36"
-                                    position=" 'right'" class="cancel" click="Back">
-                                    <span class="title">Batal</span>
-                                </c-button> -->
                             </div>
                             <div ng-show='isReport' class="grid_3" style="float:right;">
                                 <md-button ng-show="!isLoading" class="md-raised md-primary" ng-click="cetak()">
                                     <span>Cetak</span>
                                 </md-button>
-                                <!-- <c-button ng-show="!isLoading"
-                                    style="width: 100%; font-size: 24px; padding:0px; margin:0px;" item="item" size="36"
-                                    position="'right'" is-validate click="cetak">
-                                    <span class="title">Cetak</span>
-                                </c-button> -->
                             </div>
 
 
