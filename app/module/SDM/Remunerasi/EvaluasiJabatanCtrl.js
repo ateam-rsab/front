@@ -338,7 +338,7 @@ define(['initialize'], function (initialize) {
                     faktor8: $scope.item.faktor8,
                     faktor9: $scope.item.faktor9,
                     faktor10: $scope.item.faktor10,
-                    jabatan: $scope.data
+                    jabatan: $scope.data.jabatan
                 }
 
                 ManageSdmNew.saveData(dataSave, "sdm/hitung-grade-evaluasi-jabatan/").then(function (e) {
@@ -363,8 +363,8 @@ define(['initialize'], function (initialize) {
                         $scope.isSimpanDisabled = false;
                     }
 
-                    // $scope.grade = e.data.data.grade ? e.data.data.grade : "-";
-                    // $scope.detailGrade = e.data.data.detailGrade ? e.data.data.detailGrade : "-";
+                    $scope.grade = e.data.data.grade ? e.data.data.grade : "-";
+                    $scope.detailGrade = e.data.data.detailGrade ? e.data.data.detailGrade : "-";
 
                 });
                 $rootScope.doneLoad = true;
