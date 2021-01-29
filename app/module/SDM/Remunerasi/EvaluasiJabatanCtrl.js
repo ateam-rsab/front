@@ -17,19 +17,23 @@ define(['initialize'], function (initialize) {
                 });
             });
 
-            // ManageSdmNew.getListData("service/list-generic/?view=Jabatan&select=id,namaJabatan,kelompokJabatanId&criteria=statusEnabled,kdJabatan&values=true,ANJAB").then((res) => {
-            //     $scope.listJabatan = res.data;
-            // })
-
-            // $scope.getDataKelompokJabatan = () => {
-            //     ManageSdmNew.getListData("service/list-generic/?view=NilaiKelompokJabatan&select=id,detailKelompokJabatan,nilaiTerendah,nilaiTertinggi&criteria=statusEnabled,kelompokJabatanId&values=true," + $scope.data.jabatan.kelompokJabatanId).then((res) => {
-            //         $scope.listKelompokJabatan = res.data;
-            //     })
-            // }
-
-            ManageSdmNew.getListData("jabatan/get-list-jabatan-anjab").then((res) => {
-                $scope.listJabatan = res.data.data;
+            ManageSdmNew.getListData("jabatan/get-list-unit-kerja-anjab").then((res) => {
+                var listUK = []
+                for (let i = 0; i < res.data.data.data.length; i++) {
+                    var unitKerja = {
+                        id: i + 1,
+                        name: res.data.data.data[i]
+                    }
+                    listUK.push(unitKerja)
+                }
+                $scope.listUnitKerja = listUK
             })
+
+            $scope.getDataJabatan = () => {
+                ManageSdmNew.getListData("jabatan/get-list-jabatan-anjab-by-unit-kerja?unitKerja=" + $scope.data.unitKerja.name).then((res) => {
+                    $scope.listJabatan = res.data.data;
+                })
+            }
 
             $scope.getRuangan = function (employee) {
                 if (!employee) return;
@@ -142,10 +146,6 @@ define(['initialize'], function (initialize) {
                     toastr.warning("Harap pilih Jabatan", "Simpan Gagal");
                     return false;
                 }
-                // if (!$scope.data.kelompokJabatan) {
-                //     toastr.warning("Harap pilih Kelompok Jabatan", "Simpan Gagal");
-                //     return false;
-                // }
 
                 if (!$scope.item.faktor1) {
                     toastr.warning("Harap pilih Faktor 1 (Komtek)", " Simpan Gagal");
@@ -272,9 +272,6 @@ define(['initialize'], function (initialize) {
                     jabatan: {
                         id: $scope.data.jabatan.id
                     },
-                    // grade: {
-                    //     id: $scope.data.kelompokJabatan.id
-                    // },
                     tahun: $scope.selectedTahun.id.toString(),
                     statusEnabled: true,
                     kdProfile: 0,
@@ -338,7 +335,7 @@ define(['initialize'], function (initialize) {
                     faktor8: $scope.item.faktor8,
                     faktor9: $scope.item.faktor9,
                     faktor10: $scope.item.faktor10,
-                    jabatan: $scope.data
+                    jabatan: $scope.data.jabatan
                 }
 
                 ManageSdmNew.saveData(dataSave, "sdm/hitung-grade-evaluasi-jabatan/").then(function (e) {
@@ -363,8 +360,8 @@ define(['initialize'], function (initialize) {
                         $scope.isSimpanDisabled = false;
                     }
 
-                    // $scope.grade = e.data.data.grade ? e.data.data.grade : "-";
-                    // $scope.detailGrade = e.data.data.detailGrade ? e.data.data.detailGrade : "-";
+                    $scope.grade = e.data.data.grade ? e.data.data.grade : "-";
+                    $scope.detailGrade = e.data.data.detailGrade ? e.data.data.detailGrade : "-";
 
                 });
                 $rootScope.doneLoad = true;
