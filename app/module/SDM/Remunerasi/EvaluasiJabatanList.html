@@ -7,18 +7,18 @@
             <div class="grid_12">
                 <div class="grid_3">
                     <div class="grid_12" style="margin-top: 1.5%;">
+                        <label class="c-label">Unit Kerja</label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="data.unitKerja"
+                            k-data-text-field="'name'" k-filter="'contains'" k-data-value-field="'id'"
+                            k-data-source="listUnitKerja" k-on-change="getDataJabatan()" />
+                    </div>
+                    <div class="grid_12" style="margin-top: 3.25%;">
                         <label class="c-label">Jabatan</label>
                         <input style="width: 100%;" kendo-combo-box k-ng-model="data.jabatan"
                             k-data-text-field="'namaJabatan'" k-filter="'contains'" k-data-value-field="'id'"
                             k-data-source="listJabatan" />
                     </div>
-                    <!-- <div class="grid_12">
-                        <span c-label c-label-text="Kelompok Jabatan" />
-                        <input style="width: 100%;" kendo-combo-box k-ng-model="data.kelompokJabatan"
-                            k-data-text-field="'detailKelompokJabatan'" k-filter="'contains'" k-data-value-field="'id'"
-                            k-data-source="listKelompokJabatan" />
-                    </div> -->
-                    <div class="grid_12" style="margin-top: 3.25%;">
+                    <div class="grid_12" style="margin-top: 3%;">
                         <label class="c-label">Bulan</label>
                         <input required style="width: 100%;" kendo-combo-box k-ng-model="selectedBulan"
                             k-data-text-field="'name'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'"
