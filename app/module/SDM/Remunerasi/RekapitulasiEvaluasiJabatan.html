@@ -1,0 +1,15 @@
+<style>
+    .d {
+        background-color: #2f2f2f;
+    }
+</style>
+<md-toolbar md-scroll-shrink class="shadow">
+    <div class="md-toolbar-tools">Rekapitulasi Evaluasi Jabatan</div>
+</md-toolbar>
+
+<div class="grid_12">
+    <div id="kGrid" kendo-grid k-data-source="dataSourceRekapitulasi" k-selectable="'row'"
+        ng-click="klikGrid(dataSelected)" k-options="optSourceRekapitulasi" k-scrollable="'true'" k-pageable="'true'"
+        k-sortable="'true'" k-ng-model="dataSelected">
+    </div>
+</div>
