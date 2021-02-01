@@ -17,15 +17,21 @@ define(['initialize'], function (initialize) {
                 });
             });
 
-            ManageSdmNew.getListData("service/list-generic/?view=Jabatan&select=id,namaJabatan,kelompokJabatanId&criteria=statusEnabled,kdJabatan&values=true,ANJAB").then((res) => {
-
-                $scope.listJabatan = res.data;
+            ManageSdmNew.getListData("jabatan/get-list-unit-kerja-anjab").then((res) => {
+                var listUK = []
+                for (let i = 0; i < res.data.data.data.length; i++) {
+                    var unitKerja = {
+                        id: i + 1,
+                        name: res.data.data.data[i]
+                    }
+                    listUK.push(unitKerja)
+                }
+                $scope.listUnitKerja = listUK
             })
 
-            $scope.getDataKelompokJabatan = () => {
-                ManageSdmNew.getListData("service/list-generic/?view=NilaiKelompokJabatan&select=id,detailKelompokJabatan,nilaiTerendah,nilaiTertinggi&criteria=statusEnabled,kelompokJabatanId&values=true," + $scope.data.jabatan.kelompokJabatanId).then((res) => {
-
-                    $scope.listKelompokJabatan = res.data;
+            $scope.getDataJabatan = () => {
+                ManageSdmNew.getListData("jabatan/get-list-jabatan-anjab-by-unit-kerja?unitKerja=" + $scope.data.unitKerja.name).then((res) => {
+                    $scope.listJabatan = res.data.data;
                 })
             }
 
@@ -138,10 +144,6 @@ define(['initialize'], function (initialize) {
             let validate = () => {
                 if (!$scope.data.jabatan) {
                     toastr.warning("Harap pilih Jabatan", "Simpan Gagal");
-                    return false;
-                }
-                if (!$scope.data.kelompokJabatan) {
-                    toastr.warning("Harap pilih Kelompok Jabatan", "Simpan Gagal");
                     return false;
                 }
 
@@ -333,19 +335,28 @@ define(['initialize'], function (initialize) {
                     faktor8: $scope.item.faktor8,
                     faktor9: $scope.item.faktor9,
                     faktor10: $scope.item.faktor10,
-                    jabatan: $scope.data
+                    jabatan: $scope.data.jabatan
                 }
 
                 ManageSdmNew.saveData(dataSave, "sdm/hitung-grade-evaluasi-jabatan/").then(function (e) {
-
-                    $scope.totalNilaiJabatan = Math.ceil(e.data.data.result);
                     totalNilai = Math.ceil(e.data.data.result);
-                    if (totalNilai < $scope.data.kelompokJabatan.nilaiTerendah || totalNilai > $scope.data.kelompokJabatan.nilaiTertinggi) {
+                    if (totalNilai < $scope.data.jabatan.nilaiTerendah || totalNilai > $scope.data.jabatan.nilaiTertinggi) {
                         $scope.isSimpanDisabled = true;
 
-                        if (totalNilai < $scope.data.kelompokJabatan.nilaiTerendah) toastr.info("Total Perhitungan Nilai Jabatan Kurang dari Batas Bawah");
-                        if (totalNilai > $scope.data.kelompokJabatan.nilaiTertinggi) toastr.info("Total Perhitungan Nilai Jabatan Lebih dari Batas Atas");
+                        if (totalNilai < $scope.data.jabatan.nilaiTerendah) {
+                            $scope.totalNilaiJabatan = 0;
+                            toastr.info("Total Perhitungan Nilai Jabatan Kurang dari Batas Bawah");
+                        }
+
+                        if (totalNilai > $scope.data.jabatan.nilaiTertinggi) {
+                            $scope.totalNilaiJabatan = 0;
+                            toastr.info("Total Perhitungan Nilai Jabatan Lebih dari Batas Atas");
+                        }
                     } else {
+                        if ($scope.data.jabatan.nilaiTerendah <= totalNilai
+                            && totalNilai <= $scope.data.jabatan.nilaiTertinggi) {
+                            $scope.totalNilaiJabatan = Math.ceil(e.data.data.result);
+                        }
                         $scope.isSimpanDisabled = false;
                     }
 

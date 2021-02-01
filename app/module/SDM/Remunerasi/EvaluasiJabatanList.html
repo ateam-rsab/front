@@ -6,26 +6,26 @@
         <div class="panel-body">
             <div class="grid_12">
                 <div class="grid_3">
-                    <div class="grid_12">
-                        <span c-label c-label-text="Jabatan" />
+                    <div class="grid_12" style="margin-top: 1.5%;">
+                        <label class="c-label">Unit Kerja</label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="data.unitKerja"
+                            k-data-text-field="'name'" k-filter="'contains'" k-data-value-field="'id'"
+                            k-data-source="listUnitKerja" k-on-change="getDataJabatan()" />
+                    </div>
+                    <div class="grid_12" style="margin-top: 3.25%;">
+                        <label class="c-label">Jabatan</label>
                         <input style="width: 100%;" kendo-combo-box k-ng-model="data.jabatan"
                             k-data-text-field="'namaJabatan'" k-filter="'contains'" k-data-value-field="'id'"
-                            k-data-source="listJabatan" k-on-change="getDataKelompokJabatan()" />
+                            k-data-source="listJabatan" />
                     </div>
-                    <div class="grid_12">
-                        <span c-label c-label-text="Kelompok Jabatan" />
-                        <input style="width: 100%;" kendo-combo-box k-ng-model="data.kelompokJabatan"
-                            k-data-text-field="'detailKelompokJabatan'" k-filter="'contains'" k-data-value-field="'id'"
-                            k-data-source="listKelompokJabatan" />
-                    </div>
-                    <div class="grid_12">
-                        <span c-label c-label-text="Bulan" />
+                    <div class="grid_12" style="margin-top: 3%;">
+                        <label class="c-label">Bulan</label>
                         <input required style="width: 100%;" kendo-combo-box k-ng-model="selectedBulan"
                             k-data-text-field="'name'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'"
                             k-data-source="listMonth" disabled />
                     </div>
-                    <div class="grid_12">
-                        <span c-label c-label-text="Tahun" />
+                    <div class="grid_12" style="margin-top: 3%;">
+                        <label class="c-label">Tahun</label>
                         <input required style="width: 100%;" kendo-combo-box k-ng-model="selectedTahun"
                             k-data-text-field="'id'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'"
                             k-data-source="listTahun" disabled />
@@ -206,21 +206,28 @@
                         </md-radio-group>
                     </div>
                     <!-- Total Hitung-->
-                    <div class="grid_3">
+                    <div class="grid_2">
                         <label c-label item="item" c-label-text="batasBawah"></label>
-                        <input c-text-box type="input" class="k-textbox" ng-model="data.kelompokJabatan.nilaiTerendah"
+                        <input c-text-box type="input" class="k-textbox" ng-model="data.jabatan.nilaiTerendah"
                             disabled="disabled" />
                     </div>
-                    <div class="grid_3">
+                    <div class="grid_2">
                         <label c-label item="item" c-label-text="batasAtas"></label>
-                        <input c-text-box type="input" class="k-textbox" ng-model="data.kelompokJabatan.nilaiTertinggi"
+                        <input c-text-box type="input" class="k-textbox" ng-model="data.jabatan.nilaiTertinggi"
                             disabled="disabled" />
                     </div>
-                    <div class="grid_3">
-                        <label c-label item="item" c-label-text="totalPerhitunganNilaiJabatan"></label>
+                    <div class="grid_2">
+                        <label c-label item="item" c-label-text="nilaiJabatan"></label>
                         <input c-text-box type="input" class="k-textbox" ng-model="totalNilaiJabatan"
                             disabled="disabled" />
-
+                    </div>
+                    <div class="grid_2">
+                        <label c-label item="item" c-label-text="Grade"></label>
+                        <input c-text-box type="input" class="k-textbox" ng-model="grade" disabled="disabled" />
+                    </div>
+                    <div class="grid_4">
+                        <label c-label item="item" c-label-text="Kelompok Jabatan"></label>
+                        <input c-text-box type="input" class="k-textbox" ng-model="detailGrade" disabled="disabled" />
                     </div>
                     <div class="grid_12">
                         <div class="grid_12 " style="float:left;" ng-hide="isHide">
