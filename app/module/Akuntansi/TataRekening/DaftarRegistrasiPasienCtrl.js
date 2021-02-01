@@ -106,6 +106,11 @@ define(['initialize'], function (initialize) {
 						"template": "<span class='style-left'>#: namapasien #</span>"
 					},
 					{
+						"field": "usia",
+						"title": "Usia Pasien",
+						"width": "150px"
+					},
+					{
 						"field": "namaruangan",
 						"title": "Nama Ruangan",
 						"width": "150px",
@@ -212,6 +217,12 @@ define(['initialize'], function (initialize) {
 						+ '&jmlRows=' + jmlRows),
 				]).then(function (data) {
 					$scope.isRouteLoading = false;
+					for (var i = 0; i < data[0].data.length; i++) { 
+
+						let dataUsia = dateHelper.CountAge(new Date(data[0].data[i].tgllahir), new Date(data[0].data[i].tglregistrasi))
+						data[0].data[i].usia = dataUsia.year + " Thn " + dataUsia.month + " Bln " + dataUsia.day + " Hr";
+						
+					}
 					// $scope.dataDaftarPasienPulang = data[0].data;
 					$scope.dataDaftarPasienPulang = new kendo.data.DataSource({
 						data: data[0].data,

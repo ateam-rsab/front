@@ -22,14 +22,14 @@ init();
 
 
 ///colom tabel
-,
-{
-	"title" : "Action",
-	"width" : "200px",
-	"template" : "<button class='btnEdit' ng-click='enableData()'>Enable</button>"+
-"<button class='btnHapus' ng-click='disableData()'>Disable</button>"
-}
-];
+// ,
+// {
+// 	"title" : "Action",
+// 	"width" : "200px",
+// 	"template" : "<button class='btnEdit' ng-click='enableData()'>Enable</button>"+
+// "<button class='btnHapus' ng-click='disableData()'>Disable</button>"
+// }
+// ];
 $scope.mainGridOptions = { 
  pageable: true,
  columns: $scope.columnJenisDiet,

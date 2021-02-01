@@ -512,47 +512,84 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.simpanDataPasienDenganKomorbid = () => {
-                let url = $scope.riwayatPasien.value === 1 ? "send-pasien-dirawat-komorbid/" + $scope.tanggalPasienMasuk ? DateHelper.formatDate($scope.tanggalPasienMasuk, "YYYY-MM-DD") : $scope.tanggalPasienMasuk : "send-pasien-dirawat-tanpa-komorbid/" + $scope.tanggalPasienMasuk ? DateHelper.formatDate($scope.tanggalPasienMasuk, "YYYY-MM-DD") : $scope.tanggalPasienMasuk;
+                let urlPasienDirawat = $scope.riwayatPasien.value === 1 ? "send-pasien-dirawat-komorbid/" : "send-pasien-dirawat-tanpa-komorbid/";
                 let dataSave = {
                     tanggal: $scope.tanggalPasienMasuk ? DateHelper.formatDate($scope.tanggalPasienMasuk, "YYYY-MM-DD") : new Date(),
-                    icu_dengan_ventilator_suspect_l: $scope.icuDenganVentilatorSuspectL,
-                    icu_dengan_ventilator_suspect_p: $scope.icuDenganVentilatorSuspectP,
-                    icu_dengan_ventilator_confirm_l: $scope.icuDenganVentilatorKonfirmL,
-                    icu_dengan_ventilator_confirm_p: $scope.icuDenganVentilatorKonfirmP,
-                    icu_tanpa_ventilator_suspect_l: $scope.icuTanpaVentilatorSuspectL,
-                    icu_tanpa_ventilator_suspect_p: $scope.icuTanpaVentilatorSuspectP,
-                    icu_tanpa_ventilator_confirm_l: $scope.icuTanpaVentilatorKonfirmL,
-                    icu_tanpa_ventilator_confirm_p: $scope.icuTanpaVentilatorKonfirmP,
-                    icu_tekanan_negatif_dengan_ventilator_suspect_l: $scope.icuTekananNegatifDenganVentilatorSuspectL,
-                    icu_tekanan_negatif_dengan_ventilator_suspect_p: $scope.icuTekananNegatifDenganVentilatorSuspectP,
-                    icu_tekanan_negatif_dengan_ventilator_confim_l: $scope.icuTekananNegatifDenganVentilatorKonfirmL,
-                    icu_tekanan_negatif_dengan_ventilator_confim_p: $scope.icuTekananNegatifDenganVentilatorKonfirmP,
-                    icu_tekanan_negatif_tanpa_ventilator_suspect_l: $scope.icuTekananNegatifTanpaVentilatorSuspectL,
-                    icu_tekanan_negatif_tanpa_ventilator_suspect_p: $scope.icuTekananNegatifTanpaVentilatorSuspectP,
-                    icu_tekanan_negatif_tanpa_ventilator_confim_l: $scope.icuTekananNegatifTanpaVentilatorKonfirmL,
-                    icu_tekanan_negatif_tanpa_ventilator_confim_p: $scope.icuTekananNegatifTanpaVentilatorKonfirmP,
-                    isolasi_tekanan_negatif_suspect_l: $scope.isolasiTekananNegatifSuspectL,
-                    isolasi_tekanan_negatif_suspect_p: $scope.isolasiTekananNegatifSuspectP,
-                    isolasi_tekanan_negatif_confirm_l: $scope.isolasiTekananNegatifKonfirmL,
-                    isolasi_tekanan_negatif_confirm_p: $scope.isolasiTekananNegatifKonfirmP,
-                    isolasi_tanpa_tekanan_negatif_suspect_l: $scope.isolasiTanpaTekananNegatifSuspectL,
-                    isolasi_tanpa_tekanan_negatif_suspect_p: $scope.isolasiTanpaTekananNegatifSuspectP,
-                    isolasi_tanpa_tekanan_negatif_confirm_l: $scope.isolasiTanpaTekananNegatifKonfirmL,
-                    isolasi_tanpa_tekanan_negatif_confirm_p: $scope.isolasiTanpaTekananNegatifKonfirmP,
-                    nicu_khusus_covid_suspect_l: $scope.nicuKhususCovidSuspectL,
-                    nicu_khusus_covid_suspect_p: $scope.nicuKhususCovidSuspectP,
-                    nicu_khusus_covid_confirm_l: $scope.nicuKhususCovidKonfirmL,
-                    nicu_khusus_covid_confirm_p: $scope.nicuKhususCovidKonfirmP,
-                    picu_khusus_covid_suspect_l: $scope.picuKhususCovidSuspectL,
-                    picu_khusus_covid_suspect_p: $scope.picuKhususCovidSuspectP,
-                    picu_khusus_covid_confirm_l: $scope.picuKhususCovidKonfirmL,
-                    picu_khusus_covid_confirm_p: $scope.picuKhususCovidKonfirmP
+                    icu_dengan_ventilator_suspect_l: $scope.icuDenganVentilatorSuspectL ? $scope.icuDenganVentilatorSuspectL : 0,
+                    icu_dengan_ventilator_suspect_p: $scope.icuDenganVentilatorSuspectP ? $scope.icuDenganVentilatorSuspectP : 0,
+                    icu_dengan_ventilator_confirm_l: $scope.icuDenganVentilatorKonfirmL ? $scope.icuDenganVentilatorKonfirmL : 0,
+                    icu_dengan_ventilator_confirm_p: $scope.icuDenganVentilatorKonfirmP ? $scope.icuDenganVentilatorKonfirmP : 0,
+                    icu_tanpa_ventilator_suspect_l: $scope.icuTanpaVentilatorSuspectL ? $scope.icuTanpaVentilatorSuspectL : 0,
+                    icu_tanpa_ventilator_suspect_p: $scope.icuTanpaVentilatorSuspectP ? $scope.icuTanpaVentilatorSuspectP : 0,
+                    icu_tanpa_ventilator_confirm_l: $scope.icuTanpaVentilatorKonfirmL ? $scope.icuTanpaVentilatorKonfirmL : 0,
+                    icu_tanpa_ventilator_confirm_p: $scope.icuTanpaVentilatorKonfirmP ? $scope.icuTanpaVentilatorKonfirmP : 0,
+                    icu_tekanan_negatif_dengan_ventilator_suspect_l: $scope.icuTekananNegatifDenganVentilatorSuspectL ? $scope.icuTekananNegatifDenganVentilatorSuspectL : 0,
+                    icu_tekanan_negatif_dengan_ventilator_suspect_p: $scope.icuTekananNegatifDenganVentilatorSuspectP ? $scope.icuTekananNegatifDenganVentilatorSuspectP : 0,
+                    icu_tekanan_negatif_dengan_ventilator_confirm_l: $scope.icuTekananNegatifDenganVentilatorKonfirmL ? $scope.icuTekananNegatifDenganVentilatorKonfirmL : 0,
+                    icu_tekanan_negatif_dengan_ventilator_confirm_p: $scope.icuTekananNegatifDenganVentilatorKonfirmP ? $scope.icuTekananNegatifDenganVentilatorKonfirmP : 0,
+                    icu_tekanan_negatif_tanpa_ventilator_suspect_l: $scope.icuTekananNegatifTanpaVentilatorSuspectL ? $scope.icuTekananNegatifTanpaVentilatorSuspectL : 0,
+                    icu_tekanan_negatif_tanpa_ventilator_suspect_p: $scope.icuTekananNegatifTanpaVentilatorSuspectP ? $scope.icuTekananNegatifTanpaVentilatorSuspectP : 0,
+                    icu_tekanan_negatif_tanpa_ventilator_confirm_l: $scope.icuTekananNegatifTanpaVentilatorKonfirmL ? $scope.icuTekananNegatifTanpaVentilatorKonfirmL : 0,
+                    icu_tekanan_negatif_tanpa_ventilator_confirm_p: $scope.icuTekananNegatifTanpaVentilatorKonfirmP ? $scope.icuTekananNegatifTanpaVentilatorKonfirmP : 0,
+                    isolasi_tekanan_negatif_suspect_l: $scope.isolasiTekananNegatifSuspectL ? $scope.isolasiTekananNegatifSuspectL : 0,
+                    isolasi_tekanan_negatif_suspect_p: $scope.isolasiTekananNegatifSuspectP ? $scope.isolasiTekananNegatifSuspectP : 0,
+                    isolasi_tekanan_negatif_confirm_l: $scope.isolasiTekananNegatifKonfirmL ? $scope.isolasiTekananNegatifKonfirmL : 0,
+                    isolasi_tekanan_negatif_confirm_p: $scope.isolasiTekananNegatifKonfirmP ? $scope.isolasiTekananNegatifKonfirmP : 0,
+                    isolasi_tanpa_tekanan_negatif_suspect_l: $scope.isolasiTanpaTekananNegatifSuspectL ? $scope.isolasiTanpaTekananNegatifSuspectL : 0,
+                    isolasi_tanpa_tekanan_negatif_suspect_p: $scope.isolasiTanpaTekananNegatifSuspectP ? $scope.isolasiTanpaTekananNegatifSuspectP : 0,
+                    isolasi_tanpa_tekanan_negatif_confirm_l: $scope.isolasiTanpaTekananNegatifKonfirmL ? $scope.isolasiTanpaTekananNegatifKonfirmL : 0,
+                    isolasi_tanpa_tekanan_negatif_confirm_p: $scope.isolasiTanpaTekananNegatifKonfirmP ? $scope.isolasiTanpaTekananNegatifKonfirmP : 0,
+                    nicu_khusus_covid_suspect_l: $scope.nicuKhususCovidSuspectL ? $scope.nicuKhususCovidSuspectL : 0,
+                    nicu_khusus_covid_suspect_p: $scope.nicuKhususCovidSuspectP ? $scope.nicuKhususCovidSuspectP : 0,
+                    nicu_khusus_covid_confirm_l: $scope.nicuKhususCovidKonfirmL ? $scope.nicuKhususCovidKonfirmL : 0,
+                    nicu_khusus_covid_confirm_p: $scope.nicuKhususCovidKonfirmP ? $scope.nicuKhususCovidKonfirmP : 0,
+                    picu_khusus_covid_suspect_l: $scope.picuKhususCovidSuspectL ? $scope.picuKhususCovidSuspectL : 0,
+                    picu_khusus_covid_suspect_p: $scope.picuKhususCovidSuspectP ? $scope.picuKhususCovidSuspectP : 0,
+                    picu_khusus_covid_confirm_l: $scope.picuKhususCovidKonfirmL ? $scope.picuKhususCovidKonfirmL : 0,
+                    picu_khusus_covid_confirm_p: $scope.picuKhususCovidKonfirmP ? $scope.picuKhususCovidKonfirmP : 0,
                 }
-                managePhp.saveDataBridgingRSOnline(url, dataSave).then(res => {
+                managePhp.saveDataBridgingRSOnline(urlPasienDirawat + ($scope.tanggalPasienMasuk ? DateHelper.formatDate($scope.tanggalPasienMasuk, "YYYY-MM-DD") : $scope.tanggalPasienMasuk), dataSave).then(res => {
                     $scope.isRouteLoading = false;
                     getDataPasienDirawat();
+                    $scope.resetFormPasienDirawat();
                 })
 
+            }
+
+            $scope.resetFormPasienDirawat = () => {
+                $scope.tanggalPasienMasuk = new Date();
+                $scope.icuDenganVentilatorSuspectL = "";
+                $scope.icuDenganVentilatorSuspectP = "";
+                $scope.icuDenganVentilatorKonfirmL = "";
+                $scope.icuDenganVentilatorKonfirmP = "";
+                $scope.icuTanpaVentilatorSuspectL = "";
+                $scope.icuTanpaVentilatorSuspectP = "";
+                $scope.icuTanpaVentilatorKonfirmL = "";
+                $scope.icuTanpaVentilatorKonfirmP = "";
+                $scope.icuTekananNegatifDenganVentilatorSuspectL = "";
+                $scope.icuTekananNegatifDenganVentilatorSuspectP = "";
+                $scope.icuTekananNegatifDenganVentilatorKonfirmL = "";
+                $scope.icuTekananNegatifDenganVentilatorKonfirmP = "";
+                $scope.icuTekananNegatifTanpaVentilatorSuspectL = "";
+                $scope.icuTekananNegatifTanpaVentilatorSuspectP = "";
+                $scope.icuTekananNegatifTanpaVentilatorKonfirmL = "";
+                $scope.icuTekananNegatifTanpaVentilatorKonfirmP = "";
+                $scope.isolasiTekananNegatifSuspectL = "";
+                $scope.isolasiTekananNegatifSuspectP = "";
+                $scope.isolasiTekananNegatifKonfirmL = "";
+                $scope.isolasiTekananNegatifKonfirmP = "";
+                $scope.isolasiTanpaTekananNegatifSuspectL = "";
+                $scope.isolasiTanpaTekananNegatifSuspectP = "";
+                $scope.isolasiTanpaTekananNegatifKonfirmL = "";
+                $scope.isolasiTanpaTekananNegatifKonfirmP = "";
+                $scope.nicuKhususCovidSuspectL = "";
+                $scope.nicuKhususCovidSuspectP = "";
+                $scope.nicuKhususCovidKonfirmL = "";
+                $scope.nicuKhususCovidKonfirmP = "";
+                $scope.picuKhususCovidSuspectL = "";
+                $scope.picuKhususCovidSuspectP = "";
+                $scope.picuKhususCovidKonfirmL = "";
+                $scope.picuKhususCovidKonfirmP = "";
             }
             // #endregion PASIEN DIRAWAT
 
@@ -719,35 +756,35 @@ define(['initialize'], function (initialize) {
 
             $scope.simpanRekapPasienKeluar = () => {
                 let data = {
-                    tanggal: $scope.tanggalPasienMasuk ? DateHelper.formatDate($scope.tanggalPasienMasuk, "YYYY-MM-DD") : new Date(),
-                    sembuh: $scope.sembuh,
-                    discarded: $scope.discarded ? $scope.discarded : 0,
-                    meninggal_komorbid: $scope.meninggalKomorbid ? $scope.meninggalKomorbid : 0,
-                    meninggal_tanpa_komorbid: $scope.meninggalTanpaKomorbid ? $scope.meninggalTanpaKomorbid : 0,
-                    meninggal_prob_pre_komorbid: $scope.meninggalProbPreKomorbid ? $scope.meninggalProbPreKomorbid : 0,
-                    meninggal_prob_neo_komorbid: $scope.meninggalProbNeoKomorbid ? $scope.meninggalProbNeoKomorbid : 0,
-                    meninggal_prob_bayi_komorbid: $scope.meninggalProbBayiKomorbid ? $scope.meninggalProbBayiKomorbid : 0,
-                    meninggal_prob_balita_komorbid: $scope.meninggalProbBalitaKomorbid ? $scope.meninggalProbBalitaKomorbid : 0,
-                    meninggal_prob_anak_komorbid: $scope.meninggalProbAnakKomorbid ? $scope.meninggalProbAnakKomorbid : 0,
-                    meninggal_prob_remaja_komorbid: $scope.meninggalProbRemajaKomorbid ? $scope.meninggalProbRemajaKomorbid : 0,
-                    meninggal_prob_dws_komorbid: $scope.meninggalProbDwsKomorbid ? $scope.meninggalProbDwsKomorbid : 0,
-                    meninggal_prob_lansia_komorbid: $scope.meninggalProbLansiaKomorbid ? $scope.meninggalProbLansiaKomorbid : 0,
-                    meninggal_prob_pre_tanpa_komorbid: $scope.meninggalProbPreTanpaKomorbid ? $scope.meninggalProbPreTanpaKomorbid : 0,
-                    meninggal_prob_neo_tanpa_komorbid: $scope.meninggalProbNeoTanpaKomorbid ? $scope.meninggalProbNeoTanpaKomorbid : 0,
-                    meninggal_prob_bayi_tanpa_komorbid: $scope.meninggalProbBayiTanpaKomorbid ? $scope.meninggalProbBayiTanpaKomorbid : 0,
-                    meninggal_prob_balita_tanpa_komorbid: $scope.meninggalProbBalitaTanpaKomorbid ? $scope.meninggalProbBalitaTanpaKomorbid : 0,
-                    meninggal_prob_anak_tanpa_komorbid: $scope.meninggalProbAnakTanpaKomorbid ? $scope.meninggalProbAnakTanpaKomorbid : 0,
-                    meninggal_prob_remaja_tanpa_komorbid: $scope.meninggalProbRemajaTanpaKomorbid ? $scope.meninggalProbRemajaTanpaKomorbid : 0,
-                    meninggal_prob_dws_tanpa_komorbid: $scope.meninggalProbDwsTanpaKomorbid ? $scope.meninggalProbDwsTanpaKomorbid : 0,
-                    meninggal_prob_lansia_tanpa_komorbid: $scope.meninggalProbLansiaTanpaKomorbid ? $scope.meninggalProbLansiaTanpaKomorbid : 0,
-                    meninggal_disarded_komorbid: $scope.meninggal_disarded_komorbid ? $scope.meninggal_disarded_komorbid : 0,
-                    meninggal_discarded_tanpa_komorbid: $scope.meninggalDiscardedTanpaKomorbid ? $scope.meninggalDiscardedTanpaKomorbid : 0,
-                    dirujuk: $scope.dirujuk ? $scope.dirujuk : 0,
-                    isman: $scope.isman ? $scope.isman : 0,
-                    aps: $scope.aps ? $scope.aps : 0
+                    tanggal: $scope.tanggalPasienMasuk ? DateHelper.formatDate($scope.tanggalPasienMasuk, "YYYY-MM-DD") : DateHelper.formatDate(new Date(), "YYYY-MM-DD"),
+                    sembuh: $scope.sembuh ? $scope.sembuh : "0",
+                    discarded: $scope.discarded ? $scope.discarded : "0",
+                    meninggal_komorbid: $scope.meninggalKomorbid ? $scope.meninggalKomorbid : "0",
+                    meninggal_tanpa_komorbid: $scope.meninggalTanpaKomorbid ? $scope.meninggalTanpaKomorbid : "0",
+                    meninggal_prob_pre_komorbid: $scope.meninggalProbPreKomorbid ? $scope.meninggalProbPreKomorbid : "0",
+                    meninggal_prob_neo_komorbid: $scope.meninggalProbNeoKomorbid ? $scope.meninggalProbNeoKomorbid : "0",
+                    meninggal_prob_bayi_komorbid: $scope.meninggalProbBayiKomorbid ? $scope.meninggalProbBayiKomorbid : "0",
+                    meninggal_prob_balita_komorbid: $scope.meninggalProbBalitaKomorbid ? $scope.meninggalProbBalitaKomorbid : "0",
+                    meninggal_prob_anak_komorbid: $scope.meninggalProbAnakKomorbid ? $scope.meninggalProbAnakKomorbid : "0",
+                    meninggal_prob_remaja_komorbid: $scope.meninggalProbRemajaKomorbid ? $scope.meninggalProbRemajaKomorbid : "0",
+                    meninggal_prob_dws_komorbid: $scope.meninggalProbDwsKomorbid ? $scope.meninggalProbDwsKomorbid : "0",
+                    meninggal_prob_lansia_komorbid: $scope.meninggalProbLansiaKomorbid ? $scope.meninggalProbLansiaKomorbid : "0",
+                    meninggal_prob_pre_tanpa_komorbid: $scope.meninggalProbPreTanpaKomorbid ? $scope.meninggalProbPreTanpaKomorbid : "0",
+                    meninggal_prob_neo_tanpa_komorbid: $scope.meninggalProbNeoTanpaKomorbid ? $scope.meninggalProbNeoTanpaKomorbid : "0",
+                    meninggal_prob_bayi_tanpa_komorbid: $scope.meninggalProbBayiTanpaKomorbid ? $scope.meninggalProbBayiTanpaKomorbid : "0",
+                    meninggal_prob_balita_tanpa_komorbid: $scope.meninggalProbBalitaTanpaKomorbid ? $scope.meninggalProbBalitaTanpaKomorbid : "0",
+                    meninggal_prob_anak_tanpa_komorbid: $scope.meninggalProbAnakTanpaKomorbid ? $scope.meninggalProbAnakTanpaKomorbid : "0",
+                    meninggal_prob_remaja_tanpa_komorbid: $scope.meninggalProbRemajaTanpaKomorbid ? $scope.meninggalProbRemajaTanpaKomorbid : "0",
+                    meninggal_prob_dws_tanpa_komorbid: $scope.meninggalProbDwsTanpaKomorbid ? $scope.meninggalProbDwsTanpaKomorbid : "0",
+                    meninggal_prob_lansia_tanpa_komorbid: $scope.meninggalProbLansiaTanpaKomorbid ? $scope.meninggalProbLansiaTanpaKomorbid : "0",
+                    meninggal_disarded_komorbid: $scope.meninggalDiscardedKomorbid ? $scope.meninggalDiscardedKomorbid : "0",
+                    meninggal_discarded_tanpa_komorbid: $scope.meninggalDiscardedTanpaKomorbid ? $scope.meninggalDiscardedTanpaKomorbid : "0",
+                    dirujuk: $scope.dirujuk ? $scope.dirujuk : "0",
+                    isman: $scope.isman ? $scope.isman : "0",
+                    aps: $scope.aps ? $scope.aps : "0"
                 }
 
-                managePhp.saveDataBridgingRSOnline("send-pasien-keluar/" + $scope.tanggalPasienMasuk ? DateHelper.formatDate($scope.tanggalPasienMasuk, "YYYY-MM-DD") : new Date(), data).then(res => {
+                managePhp.saveDataBridgingRSOnline("send-pasien-keluar/" + ($scope.tanggalPasienMasuk ? DateHelper.formatDate($scope.tanggalPasienMasuk, "YYYY-MM-DD") : new Date()), data).then(res => {
                     $scope.isRouteLoading = false;
                     getDataRekapPasienKeluar();
                 })
@@ -756,6 +793,7 @@ define(['initialize'], function (initialize) {
             // #endregion Pasien Keluar
 
             // #region Tempat Tidur
+            $scope.showUpdateBtnTT = false;
             let getDataTempatTidur = () => {
                 $scope.isRouteLoading = true;
                 $scope.optGroupTempatTidur = {
@@ -824,6 +862,45 @@ define(['initialize'], function (initialize) {
                 let dataSave = {
                     id_tt: $scope.referensiTempatTidur.kode_tt,
                     ruang: $scope.namaRuangan ? $scope.namaRuangan : "",
+                    jumlah_ruang: $scope.jmlRuangan ? $scope.jmlRuangan : "0",
+                    jumlah: $scope.jumlah ? $scope.jumlah : "0",
+                    terpakai: $scope.terpakai ? $scope.terpakai : "0",
+                    prepare: $scope.prepare ? $scope.prepare : "0",
+                    prepare_plan: $scope.prepare_plan ? $scope.prepare_plan : "0",
+                    kosong: $scope.kosong ? $scope.kosong : "0",
+                    covid: $scope.covid ? $scope.covid : "0",
+                }
+
+                managePhp.saveDataBridgingRSOnline("send-add-tempat-tidur", dataSave).then(res => {
+                    $scope.isRouteLoading = false;
+                    getDataTempatTidur();
+                    $scope.batalInputTempatTidur();
+                })
+            }
+
+            $scope.klikGridTempatTidur = (data) => {
+                $scope.referensiTempatTidur = {
+                    kode_tt: data.id_tt
+                }
+
+                $scope.showUpdateBtnTT = true;
+
+                $scope.namaRuangan = data.ruang;
+                $scope.jmlRuangan = data.jumlah_ruang;
+                $scope.jumlah = data.jumlah;
+                $scope.terpakai = data.terpakai;
+                $scope.prepare = data.prepare;
+                $scope.prepare_plan = data.prepare_plan;
+                $scope.kosong = data.kosongkosong;
+                $scope.covid = data.covid;
+                console.log(data)
+            }
+
+            $scope.updateDataTempatTidur = () => {
+                $scope.isRouteLoading = true;
+                let dataSave = {
+                    id_tt: $scope.referensiTempatTidur.kode_tt,
+                    ruang: $scope.namaRuangan ? $scope.namaRuangan : "",
                     jumlah_ruang: $scope.jmlRuangan ? $scope.jmlRuangan : 0,
                     jumlah: $scope.jumlah ? $scope.jumlah : 0,
                     terpakai: $scope.terpakai ? $scope.terpakai : 0,
@@ -833,15 +910,32 @@ define(['initialize'], function (initialize) {
                     covid: $scope.covid ? $scope.covid : 0,
                 }
 
-                managePhp.saveDataBridgingRSOnline("send-add-tempat-tidur", dataSave).then(res => {
+                console.log(dataSave);
+                // /send-update-tempat-tidur
+
+                managePhp.updateDataBridgingRSOnline('send-update-tempat-tidur', dataSave).then(res => {
                     $scope.isRouteLoading = false;
                     getDataTempatTidur();
                 })
             }
 
+            $scope.batalInputTempatTidur = () => {
+                $scope.showUpdateBtnTT = false;
+                $scope.referensiTempatTidur = null;
+                $scope.namaRuangan = null;
+                $scope.jmlRuangan = null;
+                $scope.jumlah = null;
+                $scope.terpakai = null;
+                $scope.prepare = null;
+                $scope.prepare_plan = null;
+                $scope.kosong = null;
+                $scope.covid = null;
+            }
+
             // #endregion Tempat Tidur
 
             //#region Data SDM
+            $scope.showUpdateBtnSDM = false;
             let getDataSDM = () => {
                 $scope.isRouteLoading = true;
                 $scope.optGroupDataSDM = {
@@ -901,10 +995,47 @@ define(['initialize'], function (initialize) {
                     getDataSDM();
                 })
             }
+
+            $scope.klikGridSDM = (data) => {
+                $scope.showUpdateBtnSDM = true;
+                $scope.referensiSDM = {
+                    id_kebutuhan: data.id_kebutuhan,
+                    kebutuhan: data.kebutuhan
+                }
+                $scope.jumlahEksistingSDM = data.jumlah;
+                $scope.jumlahSDM = data.jumlah_diterima;
+                $scope.jumlahDiterimaSDM = data.jumlah_eksisting;
+            }
+
+            $scope.batalInputSDM = () => {
+                $scope.showUpdateBtnSDM = false;
+                $scope.referensiSDM = null;
+                $scope.jumlahEksistingSDM = null;
+                $scope.jumlahSDM = null;
+                $scope.jumlahDiterimaSDM = null;
+            }
+
+            $scope.updateDataSDM = () => {
+                $scope.isRouteLoading = true;
+                let dataSave = {
+                    id_kebutuhan: $scope.referensiSDM.id_kebutuhan,
+                    jumlah_eksisting: $scope.jumlahEksistingSDM ? $scope.jumlahEksistingSDM : 0,
+                    jumlah: $scope.jumlahSDM ? $scope.jumlahSDM : 0,
+                    jumlah_diterima: $scope.jumlahDiterimaSDM ? $scope.jumlahDiterimaSDM : 0,
+                }
+
+                console.log(dataSave);
+                // /send-update-tempat-tidur
+
+                managePhp.updateDataBridgingRSOnline('send-update-ketersediaan-sdm', dataSave).then(res => {
+                    $scope.isRouteLoading = false;
+                    getDataSDM();
+                });
+            }
             //#endregion
 
             //#region Data ALKSES & APD
-
+            $scope.showUpdateBtnAlkes = false;
             let getDataAlkesApd = () => {
                 $scope.isRouteLoading = true;
                 $scope.optGroupAlkes = {
@@ -949,6 +1080,7 @@ define(['initialize'], function (initialize) {
             }
             getDataAlkesApd();
 
+
             $scope.simpanDataAlkes = () => {
                 $scope.isRouteLoading = true;
                 let dataSave = {
@@ -965,6 +1097,39 @@ define(['initialize'], function (initialize) {
                 })
                 // localhost:7878/service-bridging-integerasi-covid/send-ketersediaan-apd
 
+            }
+
+            $scope.klikGridAlkes = (data) => {
+                $scope.showUpdateBtnSDM = true;
+                $scope.referensiAlkes = {
+                    id_kebutuhan: data.id_kebutuhan,
+                    kebutuhan: data.kebutuhan
+                }
+                $scope.jumlahEksistingDA = data.jumlah;
+                $scope.jumlahDA = data.jumlah_diterima;
+                $scope.jumlahDiterimaDA = data.jumlah_eksisting;
+            }
+
+            $scope.batalInputAlkes = () => {
+                $scope.referensiAlkes = null;
+                $scope.jumlahEksistingDA = null;
+                $scope.jumlahDA = null;
+                $scope.jumlahDiterimaDA = null;
+            }
+
+            $scope.updateDataAlkes = () => {
+                $scope.isRouteLoading = true;
+                let dataSave = {
+                    id_kebutuhan: $scope.referensiAlkes.id_kebutuhan,
+                    jumlah_eksisting: $scope.jumlahEksistingDA ? $scope.jumlahEksistingDA : 0,
+                    jumlah: $scope.jumlahDA ? $scope.jumlahDA : 0,
+                    jumlah_diterima: $scope.jumlahDiterimaDA ? $scope.jumlahDiterimaDA : 0,
+                }
+
+                managePhp.updateDataBridgingRSOnline('send-update-ketersediaan-apd', dataSave).then(res => {
+                    $scope.isRouteLoading = false;
+                    getDataAlkesApd();
+                });
             }
 
             //#endregion

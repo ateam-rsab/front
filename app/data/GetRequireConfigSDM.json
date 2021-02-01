@@ -797,6 +797,14 @@
       "urlDep": "module/SDM/MonitoringPoinDokterCtrl"
     },
     {
+      "nameDep": "RekapitulasiEvaluasiJabatanCtrl",
+      "urlDep": "module/SDM/Remunerasi/RekapitulasiEvaluasiJabatanCtrl"
+    },
+    {
+      "nameDep": "RiwayatEvaluasiJabatanCtrl",
+      "urlDep": "module/SDM/Remunerasi/RiwayatEvaluasiJabatanCtrl"
+    },
+    {
       "nameDep": "EvaluasiJabatanCtrl",
       "urlDep": "module/SDM/Remunerasi/EvaluasiJabatanCtrl"
     },

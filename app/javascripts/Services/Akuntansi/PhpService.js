@@ -213,6 +213,12 @@
          }, data)
        },
 
+       updateDataBridgingRSOnline: function(url, data) {
+        return r.put({
+          url:baseURLBridgingRSOnline + url
+        }, data)
+       },
+
        deleteDataBridgingRSOnline: function (url, data) {
          return r.delete({
            url: baseURLBridgingRSOnline + url

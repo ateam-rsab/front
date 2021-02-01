@@ -499,6 +499,10 @@
                             {
                                 "name": "Evaluasi Jabatan",
                                 "link": "#/EvaluasiJabatan"
+                            },
+                            {
+                                "name": "Rekapitulasi Evaluasi Jabatan",
+                                "link": "#/RekapitulasiEvaluasiJabatan"
                             }
                         ]
                     },

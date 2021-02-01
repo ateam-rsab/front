@@ -17,7 +17,7 @@
             <div class="grid_12">
                 <div class="grid_2">
                     <span class="label-input">Tanggal</span>
-                    <input style="width: 100%" kendo-date-picker k-ng-model="tanggalPasienMasuk" 
+                    <input style="width: 100%" kendo-date-picker k-ng-model="tanggalPasienMasuk"
                         data-k-format="'yyyy-MM-dd'" />
                 </div>
 
@@ -101,7 +101,7 @@
             </div>
 
             <div class="grid_2">
-                <md-button ng-show="!isLoading" class="md-raised md-primary" ng-click="simpanRekapPasienMasuk()">
+                <md-button class="md-raised md-primary" ng-click="simpanRekapPasienMasuk()">
                     <span>Simpan</span>
                 </md-button>
             </div>
@@ -120,7 +120,7 @@
             <div class="grid_12">
                 <div class="grid_2">
                     <span class="label-input">Tanggal</span>
-                    <input style="width: 100%" kendo-date-picker k-ng-model="tanggalPasienMasuk" 
+                    <input style="width: 100%" kendo-date-picker k-ng-model="tanggalPasienMasuk"
                         data-k-format="'yyyy-MM-dd'" />
                 </div>
                 <div class="grid_2">
@@ -328,7 +328,13 @@
 
             <div class="grid_12">
                 <div class="grid_2">
-                    <md-button ng-show="!isLoading" class="md-raised md-primary"
+                    <md-button class="md-raised md-danger"
+                        ng-click="resetFormPasienDirawat()">
+                        <span>Batal</span>
+                    </md-button>
+                </div>
+                <div class="grid_2">
+                    <md-button class="md-raised md-primary"
                         ng-click="simpanDataPasienDenganKomorbid()">
                         <span>Simpan</span>
                     </md-button>
@@ -353,7 +359,7 @@
             <div class="grid_12">
                 <div class="grid_2">
                     <span class="label-input">Tanggal</span>
-                    <input style="width: 100%" kendo-date-picker k-ng-model="tanggalPasienMasuk" 
+                    <input style="width: 100%" kendo-date-picker k-ng-model="tanggalPasienMasuk"
                         data-k-format="'yyyy-MM-dd'" />
                 </div>
 
@@ -371,7 +377,7 @@
 
             <div class="grid_2">
                 <span class="label-input">Meninggal Komorbid</span>
-                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="meninggaKomorbid" />
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="meninggalKomorbid" />
             </div>
 
             <div class="grid_2">
@@ -505,7 +511,7 @@
 
             <div class="grid_12">
                 <div class="grid_2">
-                    <md-button ng-show="!isLoading" class="md-raised md-primary" ng-click="simpanRekapPasienKeluar()">
+                    <md-button class="md-raised md-primary" ng-click="simpanRekapPasienKeluar()">
                         <span>Simpan</span>
                     </md-button>
                 </div>
@@ -564,12 +570,23 @@
             </div>
             <div class="grid_2">
                 <span class="label-input">Covid</span>
-                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="Covid" />
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="covid" />
             </div>
 
             <div class="grid_12">
                 <div class="grid_2">
-                    <md-button ng-show="!isLoading" class="md-raised md-primary" ng-click="simpanDataTempatTidur()">
+                    <md-button class="md-raised md-danger" ng-click="batalInputTempatTidur()">
+                        <span>Batal</span>
+                    </md-button>
+                </div>
+
+                <div class="grid_2" ng-show="showUpdateBtnTT">
+                    <md-button class="md-raised md-primary" ng-click="updateDataTempatTidur()">
+                        <span>Update</span>
+                    </md-button>
+                </div>
+                <div class="grid_2" ng-show="!showUpdateBtnTT">
+                    <md-button  class="md-raised md-primary" ng-click="simpanDataTempatTidur()">
                         <span>Simpan</span>
                     </md-button>
                 </div>
@@ -578,8 +595,8 @@
 
             <div class="grid_12">
                 <div id="kGrid" kendo-grid k-data-source="dataSourceTempatTidur" k-selectable="'row'"
-                    k-options="optGroupTempatTidur" k-scrollable="'true'" k-pageable="'true'" k-sortable="'true'"
-                    k-ng-model="dataSelected">
+                    ng-click="klikGridTempatTidur(dataSelected)" k-options="optGroupTempatTidur" k-scrollable="'true'"
+                    k-pageable="'true'" k-sortable="'true'" k-ng-model="dataSelected">
                 </div>
             </div>
 
@@ -613,14 +630,25 @@
 
             <div class="grid_12">
                 <div class="grid_2">
-                    <md-button ng-show="!isLoading" class="md-raised md-primary" ng-click="simpanDataSDM()">
+                    <md-button class="md-raised md-danger" ng-click="batalInputSDM()">
+                        <span>Batal</span>
+                    </md-button>
+                </div>
+
+                <div class="grid_2" ng-show="showUpdateBtnSDM">
+                    <md-button class="md-raised md-primary" ng-click="updateDataSDM()">
+                        <span>Update</span>
+                    </md-button>
+                </div>
+                <div class="grid_2" ng-show="!showUpdateBtnSDM">
+                    <md-button class="md-raised md-primary" ng-click="simpanDataSDM()">
                         <span>Simpan</span>
                     </md-button>
                 </div>
             </div>
 
             <div class="grid_12">
-                <div id="kGrid" kendo-grid k-data-source="dataSourceSDM" k-selectable="'row'"
+                <div id="kGrid" kendo-grid k-data-source="dataSourceSDM" k-selectable="'row'" ng-click="klikGridSDM(dataSelected)" 
                     k-options="optGroupDataSDM" k-scrollable="'true'" k-pageable="'true'" k-sortable="'true'"
                     k-ng-model="dataSelected">
                 </div>
@@ -655,14 +683,25 @@
 
             <div class="grid_12">
                 <div class="grid_2">
-                    <md-button ng-show="!isLoading" class="md-raised md-primary" ng-click="simpanDataAlkes()">
+                    <md-button class="md-raised md-danger" ng-click="batalInputAlkes()">
+                        <span>Batal</span>
+                    </md-button>
+                </div>
+
+                <div class="grid_2" ng-show="showUpdateBtnAlkes">
+                    <md-button class="md-raised md-primary" ng-click="updateDataAlkes()">
+                        <span>Update</span>
+                    </md-button>
+                </div>
+                <div class="grid_2" ng-show="!showUpdateBtnAlkes">
+                    <md-button class="md-raised md-primary" ng-click="simpanDataAlkes()">
                         <span>Simpan</span>
                     </md-button>
                 </div>
             </div>
 
             <div class="grid_12">
-                <div id="kGrid" kendo-grid k-data-source="dataSourceAlkes" k-selectable="'row'"
+                <div id="kGrid" kendo-grid k-data-source="dataSourceAlkes" k-selectable="'row'" ng-click="klikGridAlkes(dataSelected)"
                     k-options="optGroupAlkes" k-scrollable="'true'" k-pageable="'true'" k-sortable="'true'"
                     k-ng-model="dataSelected">
                 </div>

@@ -4548,6 +4548,54 @@
     ]
   },
   {
+    "name": "RekapitulasiEvaluasiJabatan",
+    "url": "/RekapitulasiEvaluasiJabatan",
+    "templateurl": "module/SDM/Remunerasi/RekapitulasiEvaluasiJabatan.html",
+    "controller": "RekapitulasiEvaluasiJabatanCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      }
+    ]
+  },
+  {
+    "name": "RiwayatEvaluasiJabatan",
+    "url": "/RiwayatEvaluasiJabatan",
+    "templateurl": "module/SDM/Remunerasi/RiwayatEvaluasiJabatan.html",
+    "controller": "RiwayatEvaluasiJabatanCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      }
+    ]
+  },
+  {
     "name": "EvaluasiJabatanCtrl",
     "url": "/EvaluasiJabatan",
     "templateurl": "module/SDM/Remunerasi/EvaluasiJabatanList.html",
