@@ -27,28 +27,28 @@ define(['initialize'], function (initialize) {
                 scrollable: true,
                 columns: [{
                     field: "tglHitungFormatted",
-                    title: "<h3>Tanggal<br>Perhitungan</h3>",
+                    title: "<h3>Tanggal<br>Evaluasi</h3>",
                     width: "170px",
                 }, {
-                    field: "periodePerhitungan",
-                    title: "<h3>Periode<br>Perhitungan</h3>",
+                    field: "unitKerja",
+                    title: "<h3>Unit<br>Kerja</h3>",
                     width: "100px",
                 }, {
                     field: "namaJabatan",
                     title: "<h3>Jabatan</h3>",
                     width: "170px",
                 }, {
-                    field: "kelompokJabatan",
-                    title: "<h3>Kelompok Jabatan</h3>",
-                    width: "170px",
-                }, {
                     field: "nilaiJabatan",
                     title: "<h3>Nilai<br>Jabatan</h3>",
-                    width: "70px",
+                    width: "90px",
                 }, {
                     field: "grade",
                     title: "<h3>Grade</h3>",
-                    width: "70px",
+                    width: "80px",
+                }, {
+                    field: "kelompokJabatan",
+                    title: "<h3>Kelompok Jabatan</h3>",
+                    width: "170px",
                 }, {
                     // field: "",
                     title: "<h3>Faktor Penimbang</h3>",
@@ -125,7 +125,7 @@ define(['initialize'], function (initialize) {
                             field: "fl",
                             title: "<h3>L</h3>",
                             width: "70px",
-                        }, ]
+                        },]
                     }, {
                         field: "f7",
                         title: "<h3>7</h3>",
@@ -142,16 +142,16 @@ define(['initialize'], function (initialize) {
                         field: "f10",
                         title: "<h3>10</h3>",
                         width: "70px",
-                    }, ]
-                }, ]
+                    },]
+                },]
             }
 
             let init = () => {
                 ManageSdmNew.getListData('sdm/get-histori-evaluasi-jabatan').then(res => {
-                    console.log(res);
+                    // console.log(res);
                 })
                 ManageSdmNew.getListData("sdm/get-all-evaluasi-jabatan").then((res) => {
-                    console.log(res);
+                    // console.log(res);
 
                     // res.data.data
 
@@ -174,15 +174,17 @@ define(['initialize'], function (initialize) {
                         //push single row for every record
                         rows.push({
                             cells: [{
-                                value: data[i].periodePerhitungan
+                                value: data[i].tglHitungFormatted
+                            }, {
+                                value: data[i].unitKerja
                             }, {
                                 value: data[i].namaJabatan
-                            }, {
-                                value: data[i].kelompokJabatan
                             }, {
                                 value: data[i].nilaiJabatan
                             }, {
                                 value: data[i].grade
+                            }, {
+                                value: data[i].kelompokJabatan
                             }, {
                                 value: data[i].f1
                             }, {
@@ -225,23 +227,26 @@ define(['initialize'], function (initialize) {
                                 value: data[i].f9
                             }, {
                                 value: data[i].f10
-                            }, ]
+                            },]
                         })
                     }
-                    console.log(rows);
+                    // console.log(rows);
                     var workbook = new kendo.ooxml.Workbook({
                         sheets: [{
                             // freezePane: {
                             //     rowSplit: 1
                             // },
-                            mergedCells: ["A1:A3", "B1:B3", "C1:C3", "D1:D3", "E1:E3",
-                                "F1:Z1", // faktor
-                                "F2:F3", "G2:G3", "H2:H3", "I2:I3", "J2:J3", // 1-5
-                                "K2:V2", // 6
-                                "W2:W3", "X2:X3", "Y2:Y3", "Z2:Z3" // 7-10
+                            mergedCells: ["A1:A3", "B1:B3", "C1:C3", "D1:D3", "E1:E3", "F1:F3",
+                                "G1:AA1", // faktor
+                                "G2:G3", "H2:H3", "I2:I3", "J2:J3", "K2:K3", // 1-5
+                                "L2:W2", // 6
+                                "X2:X3", "Y2:Y3", "Z2:Z3", "AA2:AA3" // 7-10
                             ],
                             columns: [
                                 // Column settings (width)
+                                {
+                                    autoWidth: true
+                                },
                                 {
                                     autoWidth: true
                                 },
@@ -319,7 +324,28 @@ define(['initialize'], function (initialize) {
                             // Rows of the sheet
                             rows: [{
                                 cells: [{
-                                    value: "Periode Perhitungan",
+                                    value: "Tanggal Evaluasi",
+                                    textAlign: "center",
+                                    verticalAlign: "center",
+                                    background: "#d3e0ea",
+                                    borderRight: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderTop: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderLeft: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderBottom: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                }, {
+                                    value: "Unit Kerja",
                                     textAlign: "center",
                                     verticalAlign: "center",
                                     background: "#d3e0ea",
@@ -341,27 +367,6 @@ define(['initialize'], function (initialize) {
                                     },
                                 }, {
                                     value: "Jabatan",
-                                    textAlign: "center",
-                                    verticalAlign: "center",
-                                    background: "#d3e0ea",
-                                    borderRight: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderTop: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderLeft: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderBottom: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                }, {
-                                    value: "Kelompok Jabatan",
                                     textAlign: "center",
                                     verticalAlign: "center",
                                     background: "#d3e0ea",
@@ -424,6 +429,27 @@ define(['initialize'], function (initialize) {
                                         size: 1
                                     },
                                 }, {
+                                    value: "Kelompok Jabatan",
+                                    textAlign: "center",
+                                    verticalAlign: "center",
+                                    background: "#d3e0ea",
+                                    borderRight: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderTop: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderLeft: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderBottom: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                }, {
                                     value: "Faktor Penimbang",
                                     textAlign: "center",
                                     background: "#d3e0ea",
@@ -443,32 +469,10 @@ define(['initialize'], function (initialize) {
                                         color: "#f2f2f2f",
                                         size: 1
                                     },
-                                }, ]
+                                },]
                             }, {
                                 cells: [{
                                     value: "1",
-                                    textAlign: "center",
-                                    verticalAlign: "center",
-                                    index: 5,
-                                    background: "#1687a7",
-                                    borderRight: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderTop: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderLeft: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderBottom: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                }, {
-                                    value: "2",
                                     textAlign: "center",
                                     verticalAlign: "center",
                                     index: 6,
@@ -490,7 +494,7 @@ define(['initialize'], function (initialize) {
                                         size: 1
                                     },
                                 }, {
-                                    value: "3",
+                                    value: "2",
                                     textAlign: "center",
                                     verticalAlign: "center",
                                     index: 7,
@@ -512,7 +516,7 @@ define(['initialize'], function (initialize) {
                                         size: 1
                                     },
                                 }, {
-                                    value: "4",
+                                    value: "3",
                                     textAlign: "center",
                                     verticalAlign: "center",
                                     index: 8,
@@ -534,7 +538,7 @@ define(['initialize'], function (initialize) {
                                         size: 1
                                     },
                                 }, {
-                                    value: "5",
+                                    value: "4",
                                     textAlign: "center",
                                     verticalAlign: "center",
                                     index: 9,
@@ -556,10 +560,32 @@ define(['initialize'], function (initialize) {
                                         size: 1
                                     },
                                 }, {
-                                    value: "6",
+                                    value: "5",
                                     textAlign: "center",
                                     verticalAlign: "center",
                                     index: 10,
+                                    background: "#1687a7",
+                                    borderRight: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderTop: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderLeft: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderBottom: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                }, {
+                                    value: "6",
+                                    textAlign: "center",
+                                    verticalAlign: "center",
+                                    index: 11,
                                     background: "#1687a7",
                                     borderRight: {
                                         color: "#f2f2f2f",
@@ -581,7 +607,7 @@ define(['initialize'], function (initialize) {
                                     value: "7",
                                     textAlign: "center",
                                     verticalAlign: "center",
-                                    index: 22,
+                                    index: 23,
                                     background: "#1687a7",
                                     borderRight: {
                                         color: "#f2f2f2f",
@@ -603,7 +629,7 @@ define(['initialize'], function (initialize) {
                                     value: "8",
                                     textAlign: "center",
                                     verticalAlign: "center",
-                                    index: 23,
+                                    index: 24,
                                     background: "#1687a7",
                                     borderRight: {
                                         color: "#f2f2f2f",
@@ -625,7 +651,7 @@ define(['initialize'], function (initialize) {
                                     value: "9",
                                     textAlign: "center",
                                     verticalAlign: "center",
-                                    index: 24,
+                                    index: 25,
                                     background: "#1687a7",
                                     borderRight: {
                                         color: "#f2f2f2f",
@@ -647,7 +673,7 @@ define(['initialize'], function (initialize) {
                                     value: "10",
                                     textAlign: "center",
                                     verticalAlign: "center",
-                                    index: 25,
+                                    index: 26,
                                     background: "#1687a7",
                                     borderRight: {
                                         color: "#f2f2f2f",
@@ -665,12 +691,12 @@ define(['initialize'], function (initialize) {
                                         color: "#f2f2f2f",
                                         size: 1
                                     },
-                                }, ]
+                                },]
                             }, {
                                 cells: [{
                                     value: "A",
                                     textAlign: "center",
-                                    index: 10,
+                                    index: 11,
                                     background: "#276678",
                                     borderRight: {
                                         color: "#f2f2f2f",
@@ -708,7 +734,7 @@ define(['initialize'], function (initialize) {
                                         color: "#f2f2f2f",
                                         size: 1
                                     },
-                                    index: 11
+                                    index: 12
                                 }, {
                                     value: "C",
                                     textAlign: "center",
@@ -729,7 +755,7 @@ define(['initialize'], function (initialize) {
                                         color: "#f2f2f2f",
                                         size: 1
                                     },
-                                    index: 12
+                                    index: 13
                                 }, {
                                     value: "D",
                                     textAlign: "center",
@@ -750,7 +776,7 @@ define(['initialize'], function (initialize) {
                                         color: "#f2f2f2f",
                                         size: 1
                                     },
-                                    index: 13
+                                    index: 14
                                 }, {
                                     value: "E",
                                     textAlign: "center",
@@ -771,7 +797,7 @@ define(['initialize'], function (initialize) {
                                         color: "#f2f2f2f",
                                         size: 1
                                     },
-                                    index: 14
+                                    index: 15
                                 }, {
                                     value: "F",
                                     textAlign: "center",
@@ -792,7 +818,7 @@ define(['initialize'], function (initialize) {
                                         color: "#f2f2f2f",
                                         size: 1
                                     },
-                                    index: 15
+                                    index: 16
                                 }, {
                                     value: "G",
                                     textAlign: "center",
@@ -813,7 +839,7 @@ define(['initialize'], function (initialize) {
                                         color: "#f2f2f2f",
                                         size: 1
                                     },
-                                    index: 16
+                                    index: 17
                                 }, {
                                     value: "H",
                                     textAlign: "center",
@@ -834,7 +860,7 @@ define(['initialize'], function (initialize) {
                                         color: "#f2f2f2f",
                                         size: 1
                                     },
-                                    index: 17
+                                    index: 18
                                 }, {
                                     value: "I",
                                     textAlign: "center",
@@ -855,7 +881,7 @@ define(['initialize'], function (initialize) {
                                         color: "#f2f2f2f",
                                         size: 1
                                     },
-                                    index: 18
+                                    index: 19
                                 }, {
                                     value: "J",
                                     textAlign: "center",
@@ -876,7 +902,7 @@ define(['initialize'], function (initialize) {
                                         color: "#f2f2f2f",
                                         size: 1
                                     },
-                                    index: 19
+                                    index: 20
                                 }, {
                                     value: "K",
                                     textAlign: "center",
@@ -897,7 +923,7 @@ define(['initialize'], function (initialize) {
                                         color: "#f2f2f2f",
                                         size: 1
                                     },
-                                    index: 20
+                                    index: 21
                                 }, {
                                     value: "L",
                                     textAlign: "center",
@@ -918,8 +944,8 @@ define(['initialize'], function (initialize) {
                                         color: "#f2f2f2f",
                                         size: 1
                                     },
-                                    index: 21
-                                }, ]
+                                    index: 22
+                                },]
                             }, ...rows]
                         }]
                     });
