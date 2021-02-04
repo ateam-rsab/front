@@ -709,7 +709,7 @@ define(['initialize'], function (initialize) {
                     objectpegawaispkfk: $scope.item.pegawaiConfirm.id,
                     nokontrakspk: $scope.item.noSPK,
                     rekananfk: $scope.item.rekanan.id,
-                    // tglkontrak: moment($scope.item.tglKontrak).format('YYYY-MM-DD HH:mm:ss'),
+                    tglkontrak: moment($scope.item.tglKontrak).format('YYYY-MM-DD HH:mm:ss'),
                     mengetahuifk: $scope.item.mengetahui.id,
                     nipPns: $scope.item.nip,
                     total: TotTotal,

@@ -94,6 +94,17 @@ span.errorCuti {
 		</div>
 		<div class="grid_2">
 			<div class="grid_12">
+				<label c-label item="item">No Order</label>
+			</div>
+			<div class="clear"></div>
+
+			<div class="grid_12">
+				<input c-text-box type="input" filter="" class="k-textbox"
+					ng-model="item.noOrder" />
+			</div>
+		</div>
+		<!-- <div class="grid_2">
+			<div class="grid_12">
 				<label c-label item="item" c-label-text="Jenis Diet"></label>
 			</div>
 			<div class="clear"></div>
@@ -103,8 +114,8 @@ span.errorCuti {
 					k-data-text-field="'jenisdiet'" k-data-value-field="'id'"
 					k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisDiet" />
 			</div>
-		</div>
-		<div class="grid_1">
+		</div> -->
+		<!-- <div class="grid_1">
 			<div class="grid_12">
 				<label c-label item="item" c-label-text="Jenis Waktu"></label>
 			</div>
@@ -116,7 +127,7 @@ span.errorCuti {
 					k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisWaktu"
 					/>
 			</div>
-		</div>
+		</div> -->
 
 		<div class="grid_4">
 			<div class="grid_12">
@@ -195,18 +206,8 @@ span.errorCuti {
 	<div class="clear"></div>
 
 	<div class="grid_12">
-		<div class="grid_2">
-			<div class="grid_12">
-				<label c-label item="item">No Order</label>
-			</div>
-			<div class="clear"></div>
-
-			<div class="grid_12">
-				<input c-text-box type="input" filter="" class="k-textbox"
-					ng-model="item.noOrder" />
-			</div>
-		</div>
-		<div class="grid_1">
+		
+		<!-- <div class="grid_1">
 			<div class="grid_12">
 				<label c-label item="item">No Reg</label>
 			</div>
@@ -243,8 +244,8 @@ span.errorCuti {
 		<div class="grid_4">
 		</div>
 		<div class="grid_2" style="margin-top: 22px">
-			<!-- <button class="c-button success"  ng-show="!isLoading"  ng-click="Edit()">Edit Order</button> -->
-		</div>
+			<button class="c-button success"  ng-show="!isLoading"  ng-click="Edit()">Edit Order</button>
+		</div> -->
 
 
 		<div class="grid_12" style="margin-top:60px">
@@ -255,10 +256,6 @@ span.errorCuti {
 	<div ng-hide="isCalling" class="grid_12">
 		<div class="grid_3">
 			<md-button class="md-raised md-primary" ng-click="Edit()">Edit Order</md-button>
-			<!-- <c-button style="width: 100%; font-size: 24px; padding:0px, margin:0px;"
-				item="item" size="36" position="'right'" is-validate click="Edit">
-				<span class="title">Edit Order</span>
-			</c-button> -->
 		</div>
 
 	</div>
