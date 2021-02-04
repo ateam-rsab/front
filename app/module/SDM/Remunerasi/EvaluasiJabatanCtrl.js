@@ -142,6 +142,11 @@ define(['initialize'], function (initialize) {
             $scope.selectedTahun = $scope.listTahun[$scope.listTahun.length - 1];
 
             let validate = () => {
+                if (!$scope.data.unitKerja) {
+                    toastr.warning("Harap pilih Unit Kerja", "Simpan Gagal");
+                    return false;
+                }
+
                 if (!$scope.data.jabatan) {
                     toastr.warning("Harap pilih Jabatan", "Simpan Gagal");
                     return false;

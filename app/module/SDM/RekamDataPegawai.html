@@ -394,24 +394,27 @@
                         k-on-open="win2visible = true" k-on-close="ji.idGridInternalJabatan = null">
                         <div class="panel panel-default container_12" style="padding: 0px 10px;">
                             <div class="grid_12">
-                                <div class="grid_6">
-                                    <input type="radio" name="jenisKonsul" id="joe" class="k-radio"
-                                        ng-model="item.analisaJabatan" value="ANJAB"
-                                        ng-click="getDataJabatan(ji.jenisJabatan.id)">
-                                    <label class="k-radio-label" style="font-weight: bolder;" for="joe">Analisa
-                                        Jabatan</label>
+                                <!-- Kode Remunerasi -->
+                                <div class="grid_4" style="margin-top: 1%;">
+                                    <label c-label item="item" c-label-text="KodeRemun"></label>
                                 </div>
-                                <div class="grid_6">
-                                    <input type="radio" name="jenisKonsul" id="cito" class="k-radio"
-                                        ng-model="item.analisaJabatan" value="NONANJAB"
+                                <div class="grid_3">
+                                    <input type="radio" name="jenisKonsul" id="joe" class="k-radio"
+                                        ng-model="ji.analisaJabatan" value="ANJAB"
                                         ng-click="getDataJabatan(ji.jenisJabatan.id)">
-                                    <label class="k-radio-label" style="font-weight: bolder;" for="cito">Non-Analisa
-                                        Jabatan</label>
+                                    <label class="k-radio-label" style="font-weight: bolder;" for="joe">Anjab</label>
+                                </div>
+                                <div class="grid_3">
+                                    <input type="radio" name="jenisKonsul" id="cito" class="k-radio"
+                                        ng-model="ji.analisaJabatan" value="NONANJAB"
+                                        ng-click="getDataJabatan(ji.jenisJabatan.id)">
+                                    <label class="k-radio-label" style="font-weight: bolder;"
+                                        for="cito">Non-Anjab</label>
                                 </div>
                             </div>
                             <div class="grid_12">
                                 <!-- Jenis Jabatan -->
-                                <div class="grid_4">
+                                <div class="grid_4" style="margin-top: 1.5%;">
                                     <label c-label item="item" c-label-text="JenisJabatan"></label>
                                 </div>
                                 <div class="clear"></div>
@@ -422,7 +425,7 @@
                                         k-on-change="getDataJabatan(ji.jenisJabatan.id)" />
                                 </div>
                                 <!-- Jabatan -->
-                                <div class="grid_4">
+                                <div class="grid_4" style="margin-top: 1.5%;">
                                     <label c-label item="item" c-label-text="Jabatan"></label>
                                 </div>
                                 <div class="clear"></div>
@@ -436,9 +439,8 @@
                             </div>
                             <!-- Unit Kerja -->
                             <div class="grid_12">
-                                <!-- <div class="grid_11"> -->
-                                <div class="grid_4">
-                                    <label c-label item="item" c-label-text="Unit Kerja"></label>
+                                <div class="grid_4" style="margin-top: 1.5%;">
+                                    <label c-label item="item" c-label-text="UnitKerja"></label>
                                 </div>
                                 <div class="clear"></div>
                                 <div class="grid_8">
@@ -452,8 +454,8 @@
                             <!-- Sub unit -->
                             <div class="grid_12">
                                 <!-- <div class="grid_11"> -->
-                                <div class="grid_4">
-                                    <label c-label item="item" c-label-text="Sub Unit"></label>
+                                <div class="grid_4" style="margin-top: 1.5%;">
+                                    <label c-label item="item" c-label-text="SubUnit"></label>
                                 </div>
                                 <div class="clear"></div>
                                 <div class="grid_8">
@@ -465,7 +467,7 @@
                                 <!-- </div> -->
                             </div>
                             <!-- Atasan Langsung -->
-                            <div class="grid_4" style="margin: 6px 0 0 0;">
+                            <div class="grid_4" style="margin-top: 1.5%;">
                                 <label c-label item="item" c-label-text="AtasanLangsung"></label>
                             </div>
                             <div class="grid_8">
@@ -479,7 +481,7 @@
                             </div>
                             <div class="clearfix"></div>
                             <!-- Atasan Pejabat Penilai -->
-                            <div class="grid_4" style="margin: 6px 0 0 0;">
+                            <div class="grid_4" style="margin-top: 1.5%;">
                                 <label c-label item="item" c-label-text="AtasanPejabatPenilai"></label>
                             </div>
                             <div class="grid_8">
@@ -630,7 +632,7 @@
                             <input style="width: 100%;" kendo-combo-box k-ng-model="item.detailKelompokJabatan"
                                 k-data-text-field="'detailKelompokJabatan'" k-data-value-field="'id'"
                                 k-filter="'contains'" k-auto-bind="false" k-data-source="ListDetilKelompokJabatan"
-                                k-on-change="getGradeJabatan(item.detailKelompokJabatan)" ng-disabled="isSimpan" />
+                                ng-disabled="isSimpan" />
                         </div>
                     </div>
                     <!-- Pangkat dan Golongan-->
