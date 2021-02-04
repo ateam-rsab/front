@@ -186,22 +186,22 @@ define(['initialize'], function (initialize) {
 				if (dataSelect.statCheckbox) {
 					var tglMenu = moment(dataSelect.tglmenu).format('YYYY-MM-DD');
 					var arrTgl = tglMenu.split('-');
-					// manageServicePhp.getDataTableTransaksi("gizi/get-produk-menudiet?jenisDietId="
-					// 	+ dataSelect.objectjenisdietfk
-					// 	+ "&kelasId=" + dataSelect.objectkelasfk
-					// 	+ "&siklusKe=" + arrTgl[2]
-					// 	+ "&jenisWaktuId=" + dataSelect.objectjeniswaktufk
-					// 	+ "&norec_op=" + dataSelect.norec_op
-					// 	+ "&norec_pd=" + dataSelect.norec_pd
-					// ).then(function (e) {
-					// 	var result = e.data.data
-					// 	result.forEach(function (res) {
-					// 		dataMenuSiklus.push(res)
+					manageServicePhp.getDataTableTransaksi("gizi/get-produk-menudiet?jenisDietId="
+						+ dataSelect.objectjenisdietfk
+						+ "&kelasId=" + dataSelect.objectkelasfk
+						+ "&siklusKe=" + arrTgl[2]
+						+ "&jenisWaktuId=" + dataSelect.objectjeniswaktufk
+						+ "&norec_op=" + dataSelect.norec_op
+						+ "&norec_pd=" + dataSelect.norec_pd
+					).then(function (e) {
+						var result = e.data.data
+						result.forEach(function (res) {
+							dataMenuSiklus.push(res)
 
-					// 	})
-					// 	console.log(JSON.stringify(dataMenuSiklus));
+						})
+						console.log(JSON.stringify(dataMenuSiklus));
 
-					// })
+					})
 				} else {
 					for (var i = dataMenuSiklus.length - 1; i >= 0; i--)
 						if (dataMenuSiklus[i].norec_op === dataSelect.norec_op) {
