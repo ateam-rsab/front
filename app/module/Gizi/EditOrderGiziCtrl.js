@@ -560,14 +560,15 @@ define(['initialize'], function (initialize) {
 
 			}
 			$scope.Save = function () {
-				if ($scope.item.jenisDiet == undefined) {
-					toastr.error('Jenis Diet belum di pilih !')
-					return
-				}
-				if ($scope.item.kategoriDiet == undefined) {
-					toastr.error('Kategori Diet belum di pilih !')
-					return
-				}
+				// if ($scope.item.jenisDiet == undefined) {
+				// 	toastr.error('Jenis Diet belum di pilih !')
+				// 	return
+				// }
+				
+				// if ($scope.item.kategoriDiet == undefined) {
+				// 	toastr.error('Kategori Diet belum di pilih !')
+				// 	return
+				// }
 				// if ($scope.item.jenisWaktu == undefined) {
 				// 	toastr.error('Jenis Waktu belum di pilih !')
 				// 	return
