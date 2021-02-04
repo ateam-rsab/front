@@ -8,10 +8,13 @@ define(['initialize'], function (initialize) {
 
 			$scope.item.tglMenu = $scope.now
 			$scope.item.tglOrder = $scope.now
-			var norecSO = ''
-			var data2 = []
+			let norecSO = ''
+			let data2 = []
 			loadCombo();
 			loadCache();
+
+			$scope.showEditInput = false;
+			$scope.isOrderSusu = false;
 
 			function loadCache() {
 				var cacheGet = cacheHelper.get('cacheEditOrderGizi');
@@ -25,9 +28,18 @@ define(['initialize'], function (initialize) {
 					data.pegawai = cacheGet.pegawaiorder
 					if (cacheGet.details.length > 0)
 						data.tglMenu = cacheGet.details[0].tglmenu
-					data.jenisWaktu = { id: cacheGet.objectjeniswaktufk, jeniswaktu: cacheGet.jeniswaktu }
-					data.jenisDiet = { id: cacheGet.objectjenisdietfk, jenisdiet: cacheGet.jenisdiet }
-					data.kategoriDiet = { id: cacheGet.objectkategorydietfk, kategorydiet: cacheGet.kategorydiet }
+					data.jenisWaktu = {
+						id: cacheGet.objectjeniswaktufk,
+						jeniswaktu: cacheGet.jeniswaktu
+					}
+					data.jenisDiet = {
+						id: cacheGet.objectjenisdietfk,
+						jenisdiet: cacheGet.jenisdiet
+					}
+					data.kategoriDiet = {
+						id: cacheGet.objectkategorydietfk,
+						kategorydiet: cacheGet.kategorydiet
+					}
 					data2 = cacheGet.details;
 
 					init();
@@ -37,7 +49,6 @@ define(['initialize'], function (initialize) {
 					init()
 				}
 			}
-
 
 			function init() {
 				$scope.isRouteLoading = true;
@@ -61,8 +72,6 @@ define(['initialize'], function (initialize) {
 			}
 
 			function loadDataPasien() {
-
-
 				$q.all([
 					manageServicePhp.getDataTableTransaksi("gizi/get-daftar-pasien"),
 				]).then(function (data) {
@@ -86,29 +95,162 @@ define(['initialize'], function (initialize) {
 
 			}
 
+			$scope.klikGrid = (data) => {
+				$scope.isOrderSusu = data.jenisorder === "Order Susu" ? true : false;
+				$scope.showEditInput = true;
+
+				$scope.item.jenisDiet = {
+					jenisdiet: data.jenisdiet,
+					id: data.objectjenisdietfk,
+				}
+
+				$scope.item.kategoriDiet = {
+					kategorydiet: data.kategorydiet,
+					id: data.objectkategorydietfk,
+				}
+				$scope.item.cc = data.cc;
+				$scope.item.volume = data.volume;
+			}
+
+			$scope.editData = (data) => {
+				let indexDataEdit = data2.findIndex(x => x.jenisorder === data.jenisorder)
+				console.log(indexDataEdit);
+
+				for (let i = 0; i < data2.length; i++) {
+					if (data2[i].jenisorder === data.jenisorder) {
+						let dataEdit = {
+							cc: $scope.item.cc,
+							jenisdiet: $scope.item.jenisDiet.jenisdiet,
+							kategorydiet: $scope.item.kategoriDiet.kategorydiet,
+							volume: $scope.item.volume,
+							objectjenisdietfk: $scope.item.jenisDiet.id,
+							objectkategorydietfk: $scope.item.kategoriDiet.id,
+
+							jeniskelamin: data2[i].jeniskelamin,
+							jenisorder: data2[i].jenisorder,
+							jeniswaktu: data2[i].jeniswaktu,
+							keterangan: data2[i].keterangan,
+							namakelas: data2[i].namakelas,
+							namapasien: data2[i].namapasien,
+							no: data2[i].no,
+							nocm: data2[i].nocm,
+							nocmfk: data2[i].nocmfk,
+							nokirim: data2[i].nokirim,
+							noorder: data2[i].noorder,
+							norec_op: data2[i].norec_op,
+							norec_pd: data2[i].norec_pd,
+							noregistrasi: data2[i].noregistrasi,
+							objectjeniswaktufk: data2[i].objectjeniswaktufk,
+							objectkelasfk: data2[i].objectkelasfk,
+							objectruanganlastfk: data2[i].objectruanganlastfk,
+							parent: data2[i].parent,
+							qtyproduk: data2[i].qtyproduk,
+							ruanganasal: data2[i].ruanganasal,
+							strukorderfk: data2[i].strukorderfk,
+							tgllahir: data2[i].tgllahir,
+							tglmenu: data2[i].tglmenu,
+							tglorder: data2[i].tglorder,
+							tglregistrasi: data2[i].tglregistrasi,
+						}
+
+						data2[i] = dataEdit;
+
+						$scope.dataSource = new kendo.data.DataSource({
+							data: data2
+						});
+					}
+				}
+
+
+			}
+
+			$scope.resetEdit = () => {
+				$scope.showEditInput = false;
+				$scope.item.jenisDiet = null;
+				$scope.item.kategoriDiet = null;
+				$scope.item.cc = "";
+				$scope.item.volume = "";
+			}
+
 			$scope.columnGrid = {
-				toolbar: [
-					{
-						name: "add", text: "Tambah",
-						template: '<button ng-click="Tambah()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah</button>'
-					},
-				],
+				// toolbar: [{
+				// 	name: "add",
+				// 	text: "Tambah",
+				// 	template: '<button ng-click="Tambah()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah</button>'
+				// }, ],
 				pageable: true,
 				scrollable: true,
-				columns: [
-					{ field: "no", title: "No", width: 25, "attributes": { align: "left" } },
-					{ field: "tglregistrasi", title: "Tgl Registrasi", width: 100, "attributes": { align: "left" } },
-					{ field: "noregistrasi", title: "No Registrasi", width: 80, "attributes": { align: "left" } },
-					{ field: "nocm", title: "No RM", width: 60, "attributes": { align: "left" } },
-					{ field: "namapasien", title: "Nama Pasien", width: 120, "attributes": { align: "left" } },
-					{ field: "ruanganasal", title: "Ruangan", width: 100, "attributes": { align: "left" } },
-					{ field: "namakelas", title: "Kelas", width: 80, "attributes": { align: "left" } },
-					{
+				columns: [{
+						field: "no",
+						title: "No",
+						width: 25,
+						"attributes": {
+							align: "left"
+						}
+					}, {
+						field: "tglregistrasi",
+						title: "Tgl Registrasi",
+						width: 100,
+						"attributes": {
+							align: "left"
+						}
+					}, {
+						field: "noregistrasi",
+						title: "No Registrasi",
+						width: 80,
+						"attributes": {
+							align: "left"
+						}
+					}, {
+						field: "nocm",
+						title: "No RM",
+						width: 60,
+						"attributes": {
+							align: "left"
+						}
+					}, {
+						field: "namapasien",
+						title: "Nama Pasien",
+						width: 120,
+						"attributes": {
+							align: "left"
+						}
+					}, {
+						field: "ruanganasal",
+						title: "Ruangan",
+						width: 100,
+						"attributes": {
+							align: "left"
+						}
+					}, {
+						field: "namakelas",
+						title: "Kelas",
+						width: 80,
+						"attributes": {
+							align: "left"
+						}
+					}, {
+						field: "jenisdiet",
+						title: "Jenis Diet",
+						width: "80px",
+					}, {
+						field: "jenisorder",
+						title: "Jenis Order",
+						width: "80px",
+					}, {
+						field: "volume",
+						title: "Frekuensi",
+						width: "80px",
+					}, {
+						field: "cc",
+						title: "CC",
+						width: "80px",
+					}, {
 						"command": [{
-							text: "Hapus",
-							click: hapusData,
-							imageClass: "k-icon k-delete"
-						},
+								text: "Hapus",
+								click: hapusData,
+								imageClass: "k-icon k-delete"
+							},
 							// {
 							// 	text: "Edit",
 							// 	click: editData,
@@ -121,9 +263,11 @@ define(['initialize'], function (initialize) {
 
 				]
 			};
+
 			$scope.formatTanggal = function (tanggal) {
 				return moment(tanggal).format('DD-MMM-YYYY HH:mm');
 			}
+
 			$scope.columnGridPasien = [
 				// {
 				// 	"template": "<input type='checkbox' class='checkbox' ng-click='onClick($event)' />",
@@ -186,6 +330,7 @@ define(['initialize'], function (initialize) {
 					"width": "80px",
 					"template": "<span class='style-left'>#:  namakelas #</span>"
 				},
+
 				// {
 				// 	"field": "kelompokpasien",
 				// 	"title": "Tipe Pembayaran",
@@ -230,7 +375,6 @@ define(['initialize'], function (initialize) {
 				}
 			}
 
-
 			$scope.Tambah = function () {
 				$scope.norecAP = undefined;
 				loadDataPasien();
@@ -238,24 +382,22 @@ define(['initialize'], function (initialize) {
 
 				var actions = $scope.popUps.options.actions;
 				actions.splice(actions.indexOf("Close"), 1);
-				$scope.popUps.setOptions({ actions: actions });
+				$scope.popUps.setOptions({
+					actions: actions
+				});
 			}
-
-
 
 			function hapusData(e) {
 				e.preventDefault();
-				var grid = this;
 				var row = $(e.currentTarget).closest("tr");
 				var tr = $(e.target).closest("tr");
 				var dataItem = this.dataItem(tr);
+				var grid = this;
 
-				if (dataItem != undefined) {
+				if (!dataItem) {
 					for (var i = data2.length - 1; i >= 0; i--) {
 						if (data2[i].no == dataItem.no) {
 							data2.splice(i, 1);
-
-
 						}
 					}
 					for (var i = 0; i < data2.length; i++) {
@@ -303,6 +445,7 @@ define(['initialize'], function (initialize) {
 					applyFilter("namakelas", newVal)
 				}
 			})
+
 			function applyFilter(filterField, filterValue) {
 				var dataGrid = $("#kGrid").data("kendoGrid");
 				var currFilterObject = dataGrid.dataSource.filter();
@@ -425,45 +568,89 @@ define(['initialize'], function (initialize) {
 				// }
 				$scope.tombolSimpanVis = true;
 
-				var objSave = {
-					"norec_so": norecSO,
-					"tglnow": new moment($scope.item.tglOrder).format('YYYY-MM-DD HH:mm:ss'),
-					"tglorder": new moment($scope.item.tglMenu).format('YYYY-MM-DD'),
-					"objectjenisdietfk": $scope.item.jenisDiet.id,
-					"objectkategorydietfk": $scope.item.kategoriDiet.id,
-					"objectjeniswaktufk": $scope.item.jenisWaktu.id,
-					"jenisorder": data2[0].jenisorder,
-					"details": data2,
-					"qtyproduk": data2.length,
+				// var objSave = {
+				// 	"norec_so": norecSO,
+				// 	"tglnow": new moment($scope.item.tglOrder).format('YYYY-MM-DD HH:mm:ss'),
+				// 	"tglorder": new moment($scope.item.tglMenu).format('YYYY-MM-DD'),
+				// 	"objectjenisdietfk": $scope.item.jenisDiet.id,
+				// 	"objectkategorydietfk": $scope.item.kategoriDiet.id,
+				// 	"objectjeniswaktufk": $scope.item.jenisWaktu.id,
+				// 	"jenisorder": data2[0].jenisorder,
+				// 	"details": data2,
+				// 	"qtyproduk": data2.length,
+				// }
+
+				let dataSave = {
+					strukorder: {
+						norec_so: "",
+						tglnow: dateHelper.formatDate(new Date(), "YYYY-DD-MM HH:mm:ss"),
+						tglorder: dateHelper.formatDate($scope.item.tglOrder, "YYYY-DD-MM HH:mm:ss"),
+						objectjeniswaktufk: null,
+						details: [],
+						qtyproduk: 1
+					}
 				}
 
 				for (let i = 0; i < data2.length; i++) {
-					objSave.details[i]['jenisdiet'] = $scope.item.jenisDiet.jenisdiet;
-					objSave.details[i]['objectjenisdietfk'] = $scope.item.jenisDiet.id;
-
-					objSave.details[i]['objectkategorydietfk'] = $scope.item.kategoriDiet.kategorydiet;
-					objSave.details[i]['objectkategorydietfk'] = $scope.item.kategoriDiet.id;
-					// let data = {
-					// 	"nocmfk": data2[i].nocmfk,
-					// 	"norec_pd": data2[i].norec_pd,
-					// 	"objectkelasfk": data2[i].objectkelasfk,
-					// 	"objectruanganlastfk": data2[i].objectruanganlastfk,
-					// 	"objectjenisdietfk": data2[i].objectjenisdietfk,
-					// 	"objectkategorydietfk": data2[i].objectkategorydietfk,
-					// 	"volume": data2[i].cc,
-					// 	"cc": data2[i].cc,
-					// 	"objectjenisdietfk": $scope.item.jenisDiet,
-					// 	"objectkategorydietfk": $scope.item.kategoriDiet,
-					// 	"keterangan": data2[i].keterangan,
-					// 	// item.jenisDiet
-					// }
-					// objSave.details.push(data);
+					dataSave.strukorder.details.push({
+						tglregistrasi: data2[i].tglregistrasi,
+						jenisorder: data2[i].jenisorder,
+						nocmfk: data2[i].nocmfk,
+						nocm: data2[i].nocm,
+						noregistrasi: data2[i].noregistrasi,
+						namaruangan: data2[i].namaruangan,
+						namapasien: data2[i].namapasien,
+						kelompokpasien: data2[i].kelompokpasien,
+						namakelas: data2[i].namakelas,
+						jeniskelamin: data2[i].jeniskelamin,
+						namadokter: data2[i].namadokter,
+						norec_pd: data2[i].norec_pd,
+						norecorder: data2[i].norec_op,
+						keteranganlainnya_quo: data2[i].keteranganlainnya_quo,
+						tglpulang: data2[i].tglpulang,
+						statuspasien: data2[i].statuspasien,
+						tgllahir: data2[i].tgllahir,
+						objectruanganlastfk: data2[i].objectruanganlastfk,
+						objectkelasfk: data2[i].objectkelasfk,
+						statusorder: data2[i].statusorderfk,
+						statCheckbox: true,
+						umur: data2[i].umur,
+						keterangan: data2[i].keterangan,
+						volume: data2[i].volume,
+						cc: data2[i].cc,
+						objectjenisdietfk: data2[i].objectjenisdietfk,
+						objectkategorydietfk: data2[i].objectkategorydietfk
+					})
 				}
-				var data = {
-					"strukorder": objSave
-				}
 
-				manageServicePhp.saveOrderGizi(data).then(function (result) {
+				// for (let i = 0; i < data2.length; i++) {
+				// 	objSave.details[i]['jenisdiet'] = $scope.item.jenisDiet.jenisdiet;
+				// 	objSave.details[i]['objectjenisdietfk'] = $scope.item.jenisDiet.id;
+
+				// 	objSave.details[i]['objectkategorydietfk'] = $scope.item.kategoriDiet.kategorydiet;
+				// 	objSave.details[i]['objectkategorydietfk'] = $scope.item.kategoriDiet.id;
+				// 	// let data = {
+				// 	// 	"nocmfk": data2[i].nocmfk,
+				// 	// 	"norec_pd": data2[i].norec_pd,
+				// 	// 	"objectkelasfk": data2[i].objectkelasfk,
+				// 	// 	"objectruanganlastfk": data2[i].objectruanganlastfk,
+				// 	// 	"objectjenisdietfk": data2[i].objectjenisdietfk,
+				// 	// 	"objectkategorydietfk": data2[i].objectkategorydietfk,
+				// 	// 	"volume": data2[i].cc,
+				// 	// 	"cc": data2[i].cc,
+				// 	// 	"objectjenisdietfk": $scope.item.jenisDiet,
+				// 	// 	"objectkategorydietfk": $scope.item.kategoriDiet,
+				// 	// 	"keterangan": data2[i].keterangan,
+				// 	// 	// item.jenisDiet
+				// 	// }
+				// 	// objSave.details.push(data);
+				// }
+				// var data = {
+				// 	"strukorder": objSave
+				// }
+				console.log(dataSave)
+
+				manageServicePhp.saveOrderGizi(dataSave).then(function (result) {
 					if (result.status == 201) {
 						$scope.tombolSimpanVis = false;
 						$scope.selectedData = [];
@@ -474,11 +661,10 @@ define(['initialize'], function (initialize) {
 				})
 			}
 
-			$scope.Back = function() {
+			$scope.Back = function () {
 				window.history.back();
 			}
 
 		}
 	]);
 });
-
