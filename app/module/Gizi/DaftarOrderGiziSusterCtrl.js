@@ -72,60 +72,17 @@ define(['initialize'], function (initialize) {
 			$scope.SearchData = function () {
 				loadData()
 			}
+
 			function loadData() {
 				dataMenuSiklus = [];
 				$scope.isRouteLoading = true;
 				var tglAwal = moment($scope.item.periodeAwal).format('YYYY-MM-DD HH:mm:ss');
 				var tglAkhir = moment($scope.item.periodeAkhir).format('YYYY-MM-DD HH:mm:ss');
 
-				var reg = ""
-				if ($scope.item.noReg != undefined) {
-					var reg = "&noreg=" + $scope.item.noReg
-				}
-				var rm = ""
-				if ($scope.item.noRm != undefined) {
-					var rm = "&norm=" + $scope.item.noRm
-				}
-				var nm = ""
-				if ($scope.item.nama != undefined) {
-					var nm = "&nama=" + $scope.item.nama
-				}
-				var ins = ""
-				if ($scope.item.instalasi != undefined) {
-					var ins = "&deptId=" + $scope.item.instalasi.id
-				}
-				var rg = ""
-				if ($scope.item.ruangan != undefined) {
-					var rg = "&ruangId=" + $scope.item.ruangan.id
-				}
-				var kp = ""
-				if ($scope.item.kelompokpasien != undefined) {
-					var kp = "&kelId=" + $scope.item.kelompokpasien.id
-				}
-				var dk = ""
-				if ($scope.item.dokter != undefined) {
-					var dk = "&dokId=" + $scope.item.dokter.id
-				}
-				var noorder = ""
-				if ($scope.item.noOrder != undefined) {
-					noorder = "&noorder=" + $scope.item.noOrder
-				}
-				var jenisDietId = ""
-				if ($scope.item.jenisDiets != undefined) {
-					jenisDietId = "&jenisDietId=" + $scope.item.jenisDiets.id
-				}
-				var jenisWaktuId = ""
-				if ($scope.item.jenisWaktu != undefined) {
-					jenisWaktuId = "&jenisWaktuId=" + $scope.item.jenisWaktu.id
-				}
-
-
-
+				// http://192.168.12.3:5555/simrs_harkit/service/transaksi/gizi/get-daftar-order-gizi2?tglAwal=2021-02-01 00:00:00&tglAkhir=2021-02-03 09:03:00&ruangId=65&noorder=G2102000007
 				manageServicePhp.getDataTableTransaksi("gizi/get-daftar-order-gizi2?" +
-					"tglAwal=" + tglAwal +
-					"&tglAkhir=" + tglAkhir +
-					reg + rm + nm + ins + rg + kp + dk + noorder
-					+ jenisDietId + jenisWaktuId)
+						"tglAwal=" + tglAwal +
+						"&tglAkhir=" + tglAkhir + "&ruangId=" + ($scope.item.ruangan ? $scope.item.ruangan.id : '') + "&noorder=" + ($scope.item.noOrder ? $scope.item.noOrder : ""))
 					.then(function (data) {
 						$scope.isRouteLoading = false;
 						var result = data.data.data
@@ -148,56 +105,34 @@ define(['initialize'], function (initialize) {
 
 			};
 
-			$scope.columnGrid = [
+			$scope.columnGrid = [{
+				"field": "no",
+				"title": "No",
+				"width": "20px",
+			}, {
+				"field": "tglorder",
+				"title": "Tgl Order",
+				"width": "80px",
+				"template": "<span class='style-left'>{{formatTanggal('#: tglorder #')}}</span>"
+			}, {
+				"field": "noorder",
+				"title": "No Order",
+				"width": "100px"
+			}, {
+				"field": "pegawaiorder",
+				"title": "Pengorder",
+				"width": "100px",
+				"template": "<span class='style-left'>#: pegawaiorder #</span>"
+			}, {
+				"field": "ruanganasal",
+				"title": "Ruangan Asal",
+				"width": "100px"
+			}, {
+				"field": "ruangantujuan",
+				"title": "Ruangan Tujuan",
+				"width": "100px"
+			}];
 
-				{
-					"field": "no",
-					"title": "No",
-					"width": "20px",
-				},
-				{
-					"field": "tglorder",
-					"title": "Tgl Order",
-					"width": "80px",
-					"template": "<span class='style-left'>{{formatTanggal('#: tglorder #')}}</span>"
-				},
-				{
-					"field": "noorder",
-					"title": "No Order",
-					"width": "100px"
-				},
-
-				{
-					"field": "jenisdiet",
-					"title": "Jenis Diet",
-					"width": "100px"
-				},
-
-				{
-					"field": "kategorydiet",
-					"title": "Kategory Diet",
-					"width": "100px"
-				},
-
-				{
-					"field": "jeniswaktu",
-					"title": "Jenis Waktu",
-					"width": "100px"
-				},
-				{
-					"field": "pegawaiorder",
-					"title": "Pengorder",
-					"width": "100px",
-					"template": "<span class='style-left'>#: pegawaiorder #</span>"
-				},
-
-				{
-					"field": "ruangantujuan",
-					"title": "Ruangan Tujuan",
-					"width": "100px"
-				},
-
-			];
 			$scope.data2 = function (dataItem) {
 				for (var i = 0; i < dataItem.details.length; i++) {
 					dataItem.details[i].no = i + 1
@@ -210,8 +145,7 @@ define(['initialize'], function (initialize) {
 					}),
 
 					selectable: true,
-					columns: [
-						{
+					columns: [{
 							"field": "tglmenu",
 							"title": "Tgl Menu",
 							"width": "50px",
@@ -241,8 +175,15 @@ define(['initialize'], function (initialize) {
 							"field": "namakelas",
 							"title": "Kelas",
 							"width": "50px",
-						},
-						{
+						}, {
+							"field": "jenisorder",
+							"title": "Jenis Order",
+							"width": "50px",
+						}, {
+							"field": "keterangan",
+							"title": "Keterangan",
+							"width": "50px",
+						}, {
 							"field": "nokirim",
 							"title": "No Kirim",
 							"width": "80px",
@@ -251,10 +192,10 @@ define(['initialize'], function (initialize) {
 
 						{
 							"command": [{
-								text: "Hapus",
-								click: hapusOrder,
-								imageClass: "k-icon k-delete"
-							}
+									text: "Hapus",
+									click: hapusOrder,
+									imageClass: "k-icon k-delete"
+								}
 								// ,{
 								// 	text: "Edit", 
 								// 	click: editOrder, 
@@ -269,6 +210,7 @@ define(['initialize'], function (initialize) {
 					]
 				}
 			};
+
 			function hapusOrder(e) {
 				e.preventDefault();
 				var dataItem = this.dataItem($(e.currentTarget).closest("tr"));

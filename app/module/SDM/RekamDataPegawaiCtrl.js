@@ -663,6 +663,19 @@ define(['initialize'], function (initialize) {
                 return isPrimaryExist;
             }
 
+            $scope.getEvaluasiJabatanPegawaiBaru = () => {
+                let listJabatanSelected = [];
+                for (let i = 0; i < $scope.dataSourceJabatanInternal._data.length; i++) {
+                    listJabatanSelected.push($scope.dataSourceJabatanInternal._data[i].jabatan.id);
+                }
+                listJabatanSelected = JSON.stringify(listJabatanSelected).replace(/[\[\]']+/g,"")
+                ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-evaluasi-jabatan-pegawai-baru?listJabatanId=" + listJabatanSelected).then(res => {
+
+                    $scope.item.grade = res.data.data.data.data.grade;
+                })
+            }
+            // $scope.getEvaluasiJabatanPegawaiBaru();
+
             $scope.simpanJabatanInternal = function () {
                 // Jika dia pegawai baru 
                 if ($scope.isNewData) {
@@ -680,6 +693,8 @@ define(['initialize'], function (initialize) {
                         pejabatPenilaiDireksi: $scope.ji.pejabatPenilaiDireksi,
                         kdJabatan: $scope.item.analisaJabatan
                     })
+
+                    $scope.getEvaluasiJabatanPegawaiBaru();
 
                     $scope.popUpJabatan.close();
                     return;
@@ -2276,6 +2291,33 @@ define(['initialize'], function (initialize) {
                 return dataChanged;
             }
 
+            $scope.getTempJabatanInternal = () => {
+
+                if ($scope.isNewData) {
+                    // newModel.mappingJabatan = [];
+                    let tempData = [];
+                    let dataGridJabIn = $scope.dataSourceJabatanInternal._data
+
+                    for (let i = 0; i < dataGridJabIn.length; i++) {
+                        tempData.push({
+                            jabatan: dataGridJabIn[i].jabatan,
+                            jenisJabatan: dataGridJabIn[i].jenisJabatan,
+                            pejabatPenilai: dataGridJabIn[i].pejabatPenilai,
+                            atasanLangsung: dataGridJabIn[i].atasanLangsung,
+                            unitKerjaPegawai: dataGridJabIn[i].unitKerjaPegawai,
+                            subUnitKerjaPegawai: dataGridJabIn[i].subUnitKerjaPegawai,
+                            isCanCreateJadwal: dataGridJabIn[i].isCanCreateJadwal,
+                            isPrimary: dataGridJabIn[i].isPrimary,
+                            isMonitoring: dataGridJabIn[i].isMonitoring,
+                            statusEnabled: dataGridJabIn[i].statusEnabled,
+                        })
+                    }
+
+                    console.log(tempData);
+                    return tempData;
+                }
+            }
+
             $scope.saveDataIndetitasPegawai = function () {
                 var listRawRequired = [
                     "item.kedudukan|k-ng-model|Kedudukan pegawai",
@@ -2440,7 +2482,7 @@ define(['initialize'], function (initialize) {
                         }
 
                         if ($scope.isNewData) {
-                            newModel.mappingJabatan = getTempJabatanInternal();
+                            newModel.mappingJabatan = $scope.getTempJabatanInternal();
                         }
 
                         ManageSdmNew.saveData(newModel, "sdm/save-rekam-data-pegawai").then(function (dat) {
@@ -2487,33 +2529,6 @@ define(['initialize'], function (initialize) {
                     ModelItem.showMessages(isValid.messages);
                 }
             };
-
-            $scope.getTempJabatanInternal = () => {
-
-                if ($scope.isNewData) {
-                    // newModel.mappingJabatan = [];
-                    let tempData = [];
-                    let dataGridJabIn = $scope.dataSourceJabatanInternal._data
-
-                    for (let i = 0; i < dataGridJabIn.length; i++) {
-                        tempData.push({
-                            jabatan: dataGridJabIn[i].jabatan,
-                            jenisJabatan: dataGridJabIn[i].jenisJabatan,
-                            pejabatPenilai: dataGridJabIn[i].pejabatPenilai,
-                            atasanLangsung: dataGridJabIn[i].atasanLangsung,
-                            unitKerjaPegawai: dataGridJabIn[i].unitKerjaPegawai,
-                            subUnitKerjaPegawai: dataGridJabIn[i].subUnitKerjaPegawai,
-                            isCanCreateJadwal: dataGridJabIn[i].isCanCreateJadwal,
-                            isPrimary: dataGridJabIn[i].isPrimary,
-                            isMonitoring: dataGridJabIn[i].isMonitoring,
-                            statusEnabled: dataGridJabIn[i].statusEnabled,
-                        })
-                    }
-
-                    console.log(tempData);
-                    return tempData;
-                }
-            }
 
             $scope.ubahDataPegawai = function () {
                 if ($scope.item.noSip) {
