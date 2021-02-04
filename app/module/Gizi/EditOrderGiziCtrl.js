@@ -6,10 +6,10 @@ define(['initialize'], function (initialize) {
 			$scope.now = new Date();
 			$scope.isRouteLoading = false;
 
-			$scope.item.tglMenu = $scope.now
-			$scope.item.tglOrder = $scope.now
-			let norecSO = ''
-			let data2 = []
+			$scope.item.tglMenu = $scope.now;
+			$scope.item.tglOrder = $scope.now;
+			let norecSO = '';
+			let data2 = [];
 			loadCombo();
 			loadCache();
 
@@ -113,7 +113,12 @@ define(['initialize'], function (initialize) {
 			}
 
 			$scope.editData = (data) => {
-				let indexDataEdit = data2.findIndex(x => x.jenisorder === data.jenisorder)
+				let dataTemp = [];
+				for (let i = 0; i < data2.length; i++) {
+					dataTemp.push(data2[i]);
+				}
+
+				let indexDataEdit = dataTemp.findIndex(x => x.jenisorder === data.jenisorder);
 				console.log(indexDataEdit);
 
 				for (let i = 0; i < data2.length; i++) {
@@ -158,10 +163,11 @@ define(['initialize'], function (initialize) {
 						$scope.dataSource = new kendo.data.DataSource({
 							data: data2
 						});
+
+						
 					}
 				}
-
-
+				$scope.resetEdit();
 			}
 
 			$scope.resetEdit = () => {
@@ -622,32 +628,6 @@ define(['initialize'], function (initialize) {
 						objectkategorydietfk: data2[i].objectkategorydietfk
 					})
 				}
-
-				// for (let i = 0; i < data2.length; i++) {
-				// 	objSave.details[i]['jenisdiet'] = $scope.item.jenisDiet.jenisdiet;
-				// 	objSave.details[i]['objectjenisdietfk'] = $scope.item.jenisDiet.id;
-
-				// 	objSave.details[i]['objectkategorydietfk'] = $scope.item.kategoriDiet.kategorydiet;
-				// 	objSave.details[i]['objectkategorydietfk'] = $scope.item.kategoriDiet.id;
-				// 	// let data = {
-				// 	// 	"nocmfk": data2[i].nocmfk,
-				// 	// 	"norec_pd": data2[i].norec_pd,
-				// 	// 	"objectkelasfk": data2[i].objectkelasfk,
-				// 	// 	"objectruanganlastfk": data2[i].objectruanganlastfk,
-				// 	// 	"objectjenisdietfk": data2[i].objectjenisdietfk,
-				// 	// 	"objectkategorydietfk": data2[i].objectkategorydietfk,
-				// 	// 	"volume": data2[i].cc,
-				// 	// 	"cc": data2[i].cc,
-				// 	// 	"objectjenisdietfk": $scope.item.jenisDiet,
-				// 	// 	"objectkategorydietfk": $scope.item.kategoriDiet,
-				// 	// 	"keterangan": data2[i].keterangan,
-				// 	// 	// item.jenisDiet
-				// 	// }
-				// 	// objSave.details.push(data);
-				// }
-				// var data = {
-				// 	"strukorder": objSave
-				// }
 				console.log(dataSave)
 
 				manageServicePhp.saveOrderGizi(dataSave).then(function (result) {
