@@ -41,6 +41,7 @@ define(['initialize'], function (initialize) {
 						kategorydiet: cacheGet.kategorydiet
 					}
 					data2 = cacheGet.details;
+					$scope.norec_so = cacheGet.norec_so;
 
 					init();
 					// var cacheGet = undefined;
@@ -564,7 +565,7 @@ define(['initialize'], function (initialize) {
 				// 	toastr.error('Jenis Diet belum di pilih !')
 				// 	return
 				// }
-				
+
 				// if ($scope.item.kategoriDiet == undefined) {
 				// 	toastr.error('Kategori Diet belum di pilih !')
 				// 	return
@@ -589,7 +590,7 @@ define(['initialize'], function (initialize) {
 
 				let dataSave = {
 					strukorder: {
-						norec_so: "",
+						norec_so: $scope.norec_so,
 						tglnow: dateHelper.formatDate(new Date(), "YYYY-DD-MM HH:mm:ss"),
 						tglorder: dateHelper.formatDate($scope.item.tglOrder, "YYYY-DD-MM HH:mm:ss"),
 						objectjeniswaktufk: null,
