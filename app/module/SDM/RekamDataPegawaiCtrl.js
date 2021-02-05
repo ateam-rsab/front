@@ -2360,6 +2360,8 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.saveDataIndetitasPegawai = function () {
+                $scope.isRouteLoading = true;
+
                 var listRawRequired = [
                     "item.kedudukan|k-ng-model|Kedudukan pegawai",
                     "item.kategoryPegawai|k-ng-model|Kategori pegawai",
