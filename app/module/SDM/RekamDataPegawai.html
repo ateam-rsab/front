@@ -381,7 +381,7 @@
                             </div>
                             <div class="grid_4">
                                 <input c-text-box type="input" placeholder="Nilai Jabatan" filter="'varchar'"
-                                    class="k-textbox" ng-model="item.nilaiJabatan" ng-disabled="isSimpan" />
+                                    class="k-textbox" ng-model="item.nilaiJabatan" disabled />
                             </div>
                             <div class="grid_4">
                                 <input c-text-box type="input" placeholder="Grade" filter="'varchar'" class="k-textbox"
@@ -540,7 +540,6 @@
                         </div>
                     </div>
                 </div>
-                <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
                 <!-- <div class="grid_12 borderBox containerBorderBox">
                         <div class="grid_12">
                             <div class="panel-header panel-white"><span class="title" c-translate>Jabatan Internal / Struktural </span></div>
@@ -632,7 +631,7 @@
                             <input style="width: 100%;" kendo-combo-box k-ng-model="item.detailKelompokJabatan"
                                 k-data-text-field="'detailKelompokJabatan'" k-data-value-field="'id'"
                                 k-filter="'contains'" k-auto-bind="false" k-data-source="ListDetilKelompokJabatan"
-                                ng-disabled="isSimpan" />
+                                disabled />
                         </div>
                     </div>
                     <!-- Pangkat dan Golongan-->
@@ -1070,7 +1069,7 @@
         </div>
     </div>
 </div>
-
+<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
 
 <div kendo-window="confirmDialog" k-title="'Hapus Data Pegawai'" k-width="400" k-visible="false">
     <p class="text-center">Apakah anda yakin ingin menghapus data ini?</p>
