@@ -77,7 +77,7 @@ define(['initialize'], function (initialize) {
                     {
                         field: "rincianKegiatan",
                         title: "Rincian Kegiatan",
-                        width: "63%",
+                        width: "60%",
                         filterable: {
                             mode: "cell"
                         }
@@ -88,7 +88,7 @@ define(['initialize'], function (initialize) {
                         width: "10%",
                         filterable: false
                     },
-                    { command: [{ name: "edit", text: "Edit" }, { text: "Mapping", click: showDetails }, { text: "Hapus", click: hapusData }], title: "&nbsp;", width: "17%" }
+                    { command: [{ name: "edit", text: "Edit" }, { text: "Mapping", click: showDetails }, { text: "Hapus", click: hapusData }], title: "&nbsp;", width: "20%" }
                 ],
                 pageable: true,
                 scrollable: false,
