@@ -12,129 +12,127 @@ define(['initialize'], function (initialize) {
             });
             $scope.gridJabatanInternal = {
                 toolbar: [{
-                        name: "create",
-                        text: "Buat Jabatan Internal Baru",
-                        template: '<button ng-click="createNewJabatanInternal()" id="btnCreateNewJabatan" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah Jabatan</button>'
-                    },
-                    {
-                        name: "pengaturanBawahan",
-                        text: "Pengaturan Bawahan",
-                        template: '<button ng-click="pengaturanBawahan()" class="k-button k-button-icontext"><span class="k-icon k-i-gear"></span>Pengaturan Bawahan</button>'
-                    }
+                    name: "create",
+                    text: "Buat Jabatan Internal Baru",
+                    template: '<button ng-click="createNewJabatanInternal()" id="btnCreateNewJabatan" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah Jabatan</button>'
+                },
+                {
+                    name: "pengaturanBawahan",
+                    text: "Pengaturan Bawahan",
+                    template: '<button ng-click="pengaturanBawahan()" class="k-button k-button-icontext"><span class="k-icon k-i-gear"></span>Pengaturan Bawahan</button>'
+                }
                 ],
                 pageable: true,
                 // scrollable: true,
                 columns: [{
-                        field: "jenisJabatan",
-                        title: "<h3 class='small-font'>Jenis<br>Jabatan</h3>",
-                        width: "100px",
-                        template: "#if(jenisJabatan) { # #= jenisJabatan.jenisJabatan # #} else { #-# } #",
+                    field: "kdJabatan",
+                    title: "<h3 class='small-font'>Kode<br/>Remun</h3>",
+                    width: "90px"
+                }, {
+                    field: "jenisJabatan",
+                    title: "<h3 class='small-font'>Jenis<br>Jabatan</h3>",
+                    width: "100px",
+                    template: "#if(jenisJabatan) { # #= jenisJabatan.jenisJabatan # #} else { #-# } #",
+                },
+                {
+                    field: "jabatan",
+                    title: "<h3 class='small-font'>Jabatan</h3>",
+                    width: "120px",
+                    template: "#if(jabatan) { # #= jabatan.namaJabatan # #} else { #-# } #",
+                },
+                {
+                    field: "unitKerjaPegawai",
+                    title: "<h3 class='small-font'>Unit Kerja</h3>",
+                    width: "150px",
+                    template: "#if(unitKerjaPegawai) { # #= unitKerjaPegawai.name # #} else { #-# } #",
+                }, // editor: unitDropDownEditor, template: "#= unitKerja.name #"},
+                {
+                    field: "subUnitKerjaPegawai",
+                    title: "<h3 class='small-font'>Sub<br>Unit Kerja</h3>",
+                    width: "150px",
+                    template: "#if(subUnitKerjaPegawai) { # #= subUnitKerjaPegawai.name # #} else { #-# } #",
+                },
+                {
+                    field: "atasanLangsung",
+                    title: "<h3 class='small-font'>Atasan<br>Langsung</h3>",
+                    width: "150px",
+                    template: "#if(!atasanLangsungDireksi) { # #= atasanLangsung.namaLengkap # #} else { # #=atasanLangsungDireksi# # } #"
+                },
+                {
+                    field: "pejabatPenilai",
+                    title: "<h3 class='small-font'>Atasan<br>Pejabat Penilai</h3>",
+                    width: "150px",
+                    template: "#if(!pejabatPenilaiDireksi) { # #= pejabatPenilai.namaLengkap # #} else { # #=pejabatPenilaiDireksi# # } #"
+                },
+                {
+                    field: "atasanLangsungDireksi",
+                    title: "<h3 class='small-font'>Atasan<br>Langsung</h3>",
+                    width: "150px",
+                    hidden: true
+                },
+                {
+                    field: "pejabatPenilaiDireksi",
+                    title: "<h3 class='small-font'>Pejabat<br>Penilai</h3>",
+                    width: "150px",
+                    hidden: true
+                },
+                {
+                    field: "isPrimary",
+                    title: "<h3 class='small-font'>Jabatan Utama</h3>",
+                    width: "70px",
+                    template: "#if(isPrimary) { #Ya# } else { #Tidak# } #",
+                    attributes: {
+                        style: "text-align:center;valign=middle"
                     },
-                    {
-                        field: "jabatan",
-                        title: "<h3 class='small-font'>Jabatan</h3>",
-                        width: "150px",
-                        template: "#if(jabatan) { # #= jabatan.namaJabatan # #} else { #-# } #",
+                },
+                {
+                    field: "isMonitoring",
+                    title: "<h3 class='small-font'>Akses<br/>Monitoring</h3>",
+                    width: "80px",
+                    template: "#if(isMonitoring) { #Ya# } else { #Tidak# } #",
+                    attributes: {
+                        style: "text-align:center;valign=middle"
                     },
-                    {
-                        field: "unitKerjaPegawai",
-                        title: "<h3 class='small-font'>Unit Kerja</h3>",
-                        width: "200px",
-                        template: "#if(unitKerjaPegawai) { # #= unitKerjaPegawai.name # #} else { #-# } #",
-                    }, // editor: unitDropDownEditor, template: "#= unitKerja.name #"},
-                    {
-                        field: "subUnitKerjaPegawai",
-                        title: "<h3 class='small-font'>Sub<br>Unit Kerja</h3>",
-                        width: "150px",
-                        template: "#if(subUnitKerjaPegawai) { # #= subUnitKerjaPegawai.name # #} else { #-# } #",
+                },
+                {
+                    field: "isCanCreateJadwal",
+                    title: "<h3 class='small-font'>Membuat Jadwal</h3>",
+                    width: "70px",
+                    template: "#if(isCanCreateJadwal) { #Ya# } else { #Tidak# } #",
+                    attributes: {
+                        style: "text-align:center;valign=middle"
                     },
-                    {
-                        field: "atasanLangsung",
-                        title: "<h3 class='small-font'>Atasan<br>Langsung</h3>",
-                        width: "150px",
-                        template: "#if(!atasanLangsungDireksi) { # #= atasanLangsung.namaLengkap # #} else { # #=atasanLangsungDireksi# # } #"
-                    },
-                    {
-                        field: "pejabatPenilai",
-                        title: "<h3 class='small-font'>Atasan<br>Pejabat Penilai</h3>",
-                        width: "150px",
-                        template: "#if(!pejabatPenilaiDireksi) { # #= pejabatPenilai.namaLengkap # #} else { # #=pejabatPenilaiDireksi# # } #"
-                    },
-                    {
-                        field: "atasanLangsungDireksi",
-                        title: "<h3 class='small-font'>Atasan<br>Langsung</h3>",
-                        width: "150px",
-                        hidden: true
-                    },
-                    {
-                        field: "pejabatPenilaiDireksi",
-                        title: "<h3 class='small-font'>Pejabat<br>Penilai</h3>",
-                        width: "150px",
-                        hidden: true
-                    },
-                    {
-                        field: "kdJabatan",
-                        title: "<h3 class='small-font'>Kode Jabatan<br>Penilai</h3>",
-                        width: "150px",
-                        // hidden: true
-                    },
-                    {
-                        field: "isPrimary",
-                        title: "<h3 class='small-font'>Jabatan Utama</h3>",
-                        width: "70px",
-                        template: "#if(isPrimary) { #Ya# } else { #Tidak# } #",
+                },
+                {
+                    command: [{
+                        text: "Edit",
+                        // width: "40px",
+                        align: "center",
                         attributes: {
-                            style: "text-align:center;valign=middle"
+                            align: "center"
                         },
-                    },
-                    {
-                        field: "isMonitoring",
-                        title: "<h3 class='small-font'>Monitoring</h3>",
-                        width: "80px",
-                        template: "#if(isMonitoring) { #Ya# } else { #Tidak# } #",
+                        click: editDataJabatanInternal,
+                        imageClass: "k-icon k-i-pencil"
+                    }, {
+                        text: "Hapus",
+                        // width: "40px",
+                        align: "center",
                         attributes: {
-                            style: "text-align:center;valign=middle"
+                            align: "center"
                         },
+                        click: hapusDataJabatanInternal,
+                        imageClass: "k-icon k-delete"
+                    }],
+                    title: "",
+                    width: "170px",
+                    attributes: {
+                        style: "text-align:center;valign=middle"
                     },
-                    {
-                        field: "isCanCreateJadwal",
-                        title: "<h3 class='small-font'>Membuat Jadwal</h3>",
-                        width: "100px",
-                        template: "#if(isCanCreateJadwal) { #Ya# } else { #Tidak# } #",
-                        attributes: {
-                            style: "text-align:center;valign=middle"
-                        },
-                    },
-                    {
-                        command: [{
-                            text: "Edit",
-                            // width: "40px",
-                            align: "center",
-                            attributes: {
-                                align: "center"
-                            },
-                            click: editDataJabatanInternal,
-                            imageClass: "k-icon k-i-pencil"
-                        }, {
-                            text: "Hapus",
-                            // width: "40px",
-                            align: "center",
-                            attributes: {
-                                align: "center"
-                            },
-                            click: hapusDataJabatanInternal,
-                            imageClass: "k-icon k-delete"
-                        }],
-                        title: "",
-                        width: "170px",
-                        attributes: {
-                            style: "text-align:center;valign=middle"
-                        },
-                    }
+                }
                 ],
             };
             $scope.isNewData = !$state.params.idPegawai || $state.params.idPegawai === "" ? true : false
-            console.log("New Data?", $scope.isNewData)
+            // console.log("New Data?", $scope.isNewData)
             if ($scope.dataLogin.id == 320263) {
                 $scope.isAdmin = true;
             } else {
@@ -158,22 +156,22 @@ define(['initialize'], function (initialize) {
             $scope.item = {};
             $scope.ji = {};
             $scope.dataYesOrNo = [{
-                    name: 'Ya',
-                    id: 1
-                },
-                {
-                    name: 'Tidak',
-                    id: 2
-                }
+                name: 'Ya',
+                id: 1
+            },
+            {
+                name: 'Tidak',
+                id: 2
+            }
             ]
             $scope.listOfGolonganRhesus = [{
-                    name: '+',
-                    id: 1
-                },
-                {
-                    name: '-',
-                    id: 2
-                }
+                name: '+',
+                id: 1
+            },
+            {
+                name: '-',
+                id: 2
+            }
             ]
             var getPangkatDanGolongan = function () {
                 ManageSdmNew.getListData('pegawai/get-all-pangkat-golongan').then(function (res) {
@@ -450,7 +448,7 @@ define(['initialize'], function (initialize) {
             };
 
             function showMe(e) {
-                console.log(e);
+                // console.log(e);
             }
 
             $scope.pengaturanBawahan = function () {
@@ -554,7 +552,7 @@ define(['initialize'], function (initialize) {
                                 $scope.getGolonganPangkat($scope.item.pangkat);
                             }
                             $scope.isRouteLoading = false;
-                            console.log($scope.item.isMenanggung)
+                            // console.log($scope.item.isMenanggung)
                         }
                     }, function (error) {
                         $scope.isRouteLoading = false;
@@ -573,7 +571,7 @@ define(['initialize'], function (initialize) {
             $scope.loadDataGridJabatanInternal = function () {
                 if ($state.params.idPegawai) {
                     ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-map-by-pegawai/" + $state.params.idPegawai).then(function (data) {
-                        console.log("data jabatan internal => ", data);
+                        // console.log("data jabatan internal => ", data);
                         $scope.dataSourceJabatanInternal = new kendo.data.DataSource({
                             data: data.data.data,
                             pageSize: 5
@@ -639,6 +637,20 @@ define(['initialize'], function (initialize) {
                     .cancel('Tidak');
                 $mdDialog.show(confirm).then(function () {
                     ManageSdmNew.saveData(dataSave, "map-pegawai-jabatan-unitkerja/hapus-map").then(function (res) {
+                        var isEmptyModel = _.isEmpty(res.data.data.data[1]);
+                        if (!isEmptyModel) {
+                            $scope.item.detailKelompokJabatan = {
+                                id: res.data.data.data[1].idDetailKelompokJabatan,
+                                detailKelompokJabatan: res.data.data.data[1].detailKelompokJabatan
+                            }
+                            $scope.item.nilaiJabatan = res.data.data.data[1].nilaiJabatan
+                            $scope.item.grade = res.data.data.data[1].grade
+                        } else {
+                            $scope.item.detailKelompokJabatan = undefined
+                            $scope.item.nilaiJabatan = ""
+                            $scope.item.grade = ""
+                        }
+
                         $scope.isRouteLoading = true;
                         $scope.popUpJabatan.close();
                         e.preventDefault();
@@ -668,10 +680,18 @@ define(['initialize'], function (initialize) {
                 for (let i = 0; i < $scope.dataSourceJabatanInternal._data.length; i++) {
                     listJabatanSelected.push($scope.dataSourceJabatanInternal._data[i].jabatan.id);
                 }
-                listJabatanSelected = JSON.stringify(listJabatanSelected).replace(/[\[\]']+/g,"")
+                listJabatanSelected = JSON.stringify(listJabatanSelected).replace(/[\[\]']+/g, "")
                 ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-evaluasi-jabatan-pegawai-baru?listJabatanId=" + listJabatanSelected).then(res => {
+                    var isEmptyModel = _.isEmpty(res.data.data.data);
+                    if (!isEmptyModel) {
+                        $scope.item.nilaiJabatan = res.data.data.data.nilaiJabatan;
+                        $scope.item.grade = res.data.data.data.grade;
+                        $scope.item.detailKelompokJabatan = {
+                            id: res.data.data.data.idDetailKelompokJabatan,
+                            detailKelompokJabatan: res.data.data.data.detailKelompokJabatan
+                        }
+                    }
 
-                    $scope.item.grade = res.data.data.data.data.grade;
                 })
             }
             // $scope.getEvaluasiJabatanPegawaiBaru();
@@ -691,7 +711,7 @@ define(['initialize'], function (initialize) {
                         isCanCreateJadwal: $scope.ji.isCanCreateJadwal,
                         atasanLangsungDireksi: $scope.ji.atasanLangsungDireksi,
                         pejabatPenilaiDireksi: $scope.ji.pejabatPenilaiDireksi,
-                        kdJabatan: $scope.item.analisaJabatan
+                        kdJabatan: $scope.ji.analisaJabatan
                     })
 
                     $scope.getEvaluasiJabatanPegawaiBaru();
@@ -711,6 +731,10 @@ define(['initialize'], function (initialize) {
 
                 for (var key in newModel[0]) {
                     if (newModel[0].hasOwnProperty(key)) {
+                        if (key.indexOf('analisaJabatan') >= 0) {
+                            delete newModel[0][key];
+                        }
+
                         if (key.indexOf('subUnitKerjaPegawai') >= 0) {
                             if (newModel[0][key] === null) {
                                 delete newModel[0][key];
@@ -799,6 +823,20 @@ define(['initialize'], function (initialize) {
                 // }
                 // dataSave.subUnitKerjaPegawai = {}
                 ManageSdmNew.saveData(newModel, "map-pegawai-jabatan-unitkerja/save-map").then(function (res) {
+                    var isEmptyModel = _.isEmpty(res.data.data.data[1]);
+                    if (!isEmptyModel) {
+                        $scope.item.detailKelompokJabatan = {
+                            id: res.data.data.data[1].idDetailKelompokJabatan,
+                            detailKelompokJabatan: res.data.data.data[1].detailKelompokJabatan
+                        }
+                        $scope.item.nilaiJabatan = res.data.data.data[1].nilaiJabatan
+                        $scope.item.grade = res.data.data.data[1].grade
+                    } else {
+                        $scope.item.detailKelompokJabatan = undefined
+                        $scope.item.nilaiJabatan = ""
+                        $scope.item.grade = ""
+                    }
+
                     $scope.isRouteLoading = true;
                     $scope.idGridInternalJabatan = null;
                     $scope.popUpJabatan.close();
@@ -841,6 +879,9 @@ define(['initialize'], function (initialize) {
                     return
                 }
                 clearPop();
+                if (dataItem.kdJabatan) {
+                    $scope.ji.analisaJabatan = dataItem.kdJabatan
+                }
                 if ($scope.item.detailKelompokJabatan) {
                     if ($scope.item.detailKelompokJabatan.detailKelompokJabatan.toUpperCase() === 'DIREKTUR UTAMA (DIRUT)' ||
                         $scope.item.detailKelompokJabatan.detailKelompokJabatan.toUpperCase() === 'DIREKTUR UTAMA' ||
@@ -906,6 +947,7 @@ define(['initialize'], function (initialize) {
                 $scope.isNotDirut = true;
                 $scope.isDireksi = false;
                 $scope.isStaff = true;
+                $scope.ji.analisaJabatan = null;
                 $scope.ji.jabatan = "";
                 $scope.ji.jenisJabatan = '';
                 $scope.ji.pejabatPenilai = '';
@@ -1133,9 +1175,9 @@ define(['initialize'], function (initialize) {
                     ManageSdmNew.saveData(dataDelete, 'pegawai/save-riwayat-jabatan').then(function (res) {
                         $scope.loadDataRiwayatJabatan();
                     });
-                    console.warn('Masuk sini pak eko');
+                    // console.warn('Masuk sini pak eko');
                 }, function () {
-                    console.error('Tidak jadi hapus');
+                    // console.error('Tidak jadi hapus');
                 });
             }
 
@@ -1286,35 +1328,35 @@ define(['initialize'], function (initialize) {
                 pageable: true,
                 scrollable: true,
                 columns: [{
-                        "field": "no",
-                        "title": "<h3>No</h3>",
-                        "width": "5%"
-                    },
-                    {
-                        "field": "namaLengkap",
-                        "title": "<h3>Nama</h3>",
-                        "width": "20%"
-                    },
-                    {
-                        "field": "hubunganKeluarga",
-                        "title": "<h3>Status</h3>",
-                        "width": "20%"
-                    },
-                    {
-                        "field": "tanggungan",
-                        "title": "<h3>Tertanggung</h3>",
-                        "width": "20%"
-                    },
-                    {
-                        "field": "tglLahir",
-                        "title": "<h3>Tanggal Lahir</h3>",
-                        "width": "20%"
-                    },
-                    {
-                        "field": "namaPekerjaan",
-                        "title": "<h3>Pekerjaan</h3>",
-                        "width": "20%"
-                    }
+                    "field": "no",
+                    "title": "<h3>No</h3>",
+                    "width": "5%"
+                },
+                {
+                    "field": "namaLengkap",
+                    "title": "<h3>Nama</h3>",
+                    "width": "20%"
+                },
+                {
+                    "field": "hubunganKeluarga",
+                    "title": "<h3>Status</h3>",
+                    "width": "20%"
+                },
+                {
+                    "field": "tanggungan",
+                    "title": "<h3>Tertanggung</h3>",
+                    "width": "20%"
+                },
+                {
+                    "field": "tglLahir",
+                    "title": "<h3>Tanggal Lahir</h3>",
+                    "width": "20%"
+                },
+                {
+                    "field": "namaPekerjaan",
+                    "title": "<h3>Pekerjaan</h3>",
+                    "width": "20%"
+                }
                 ]
             };
 
@@ -1419,15 +1461,15 @@ define(['initialize'], function (initialize) {
 
                 $scope.columnGrid = {
                     toolbar: [{
-                            name: "create",
-                            text: "Buat Riwayat Jabatan",
-                            template: '<button ng-click="createNewRiwayatJabatan()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Buat Riwayat</button>'
-                        },
-                        {
-                            text: "export",
-                            name: "Export detail",
-                            template: '<button ng-click="exportDataJabatan()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
-                        }
+                        name: "create",
+                        text: "Buat Riwayat Jabatan",
+                        template: '<button ng-click="createNewRiwayatJabatan()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Buat Riwayat</button>'
+                    },
+                    {
+                        text: "export",
+                        name: "Export detail",
+                        template: '<button ng-click="exportDataJabatan()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
+                    }
                     ],
                     sortable: false,
                     reorderable: true,
@@ -1437,62 +1479,62 @@ define(['initialize'], function (initialize) {
                     resizable: true,
                     selectable: 'row',
                     columns: [{
-                            field: "noSk",
-                            title: "<h3>No SK</h3>",
-                            width: "100px"
-                        },
-                        {
-                            field: "tglSk",
-                            title: "<h3>Tanggal SK</h3>",
-                            width: "100px",
-                            template: "#= kendo.toString(new Date(tglSk), \"dd-MM-yyyy\") #"
-                        },
-                        {
-                            field: "jenisJabatan",
-                            title: "<h3>Jenis Jabatan</h3>",
-                            width: "200px"
-                        },
-                        {
-                            field: "namaJabatan",
-                            title: "<h3>Nama Jabatan</h3>",
-                            width: "200px"
-                        },
-                        {
-                            field: "ttdPegawaiSk",
-                            title: "<h3>Nama Tertanda SK</h3>",
-                            width: "200px"
-                        },
-                        {
-                            field: "ttdJabatanSk",
-                            title: "<h3>Jabatan Tertanda</h3>",
-                            width: "200px"
-                        },
-                        {
-                            command: [{
-                                text: "Edit",
-                                width: "40px",
-                                align: "center",
-                                attributes: {
-                                    align: "center"
-                                },
-                                click: changeRowJabatan,
-                                imageClass: "k-icon k-i-pencil"
-                            }, {
-                                text: "Hapus",
-                                width: "40px",
-                                align: "center",
-                                attributes: {
-                                    align: "center"
-                                },
-                                click: removeRowJabatan,
-                                imageClass: "k-icon k-delete"
-                            }],
-                            title: "",
-                            width: "150px",
+                        field: "noSk",
+                        title: "<h3>No SK</h3>",
+                        width: "100px"
+                    },
+                    {
+                        field: "tglSk",
+                        title: "<h3>Tanggal SK</h3>",
+                        width: "100px",
+                        template: "#= kendo.toString(new Date(tglSk), \"dd-MM-yyyy\") #"
+                    },
+                    {
+                        field: "jenisJabatan",
+                        title: "<h3>Jenis Jabatan</h3>",
+                        width: "200px"
+                    },
+                    {
+                        field: "namaJabatan",
+                        title: "<h3>Nama Jabatan</h3>",
+                        width: "200px"
+                    },
+                    {
+                        field: "ttdPegawaiSk",
+                        title: "<h3>Nama Tertanda SK</h3>",
+                        width: "200px"
+                    },
+                    {
+                        field: "ttdJabatanSk",
+                        title: "<h3>Jabatan Tertanda</h3>",
+                        width: "200px"
+                    },
+                    {
+                        command: [{
+                            text: "Edit",
+                            width: "40px",
+                            align: "center",
                             attributes: {
-                                style: "text-align:center;valign=middle"
+                                align: "center"
                             },
-                        }
+                            click: changeRowJabatan,
+                            imageClass: "k-icon k-i-pencil"
+                        }, {
+                            text: "Hapus",
+                            width: "40px",
+                            align: "center",
+                            attributes: {
+                                align: "center"
+                            },
+                            click: removeRowJabatan,
+                            imageClass: "k-icon k-delete"
+                        }],
+                        title: "",
+                        width: "150px",
+                        attributes: {
+                            style: "text-align:center;valign=middle"
+                        },
+                    }
                     ],
                 };
 
@@ -1503,50 +1545,49 @@ define(['initialize'], function (initialize) {
                 var tempDataExport = [];
                 var rows = [{
                     cells: [{
-                            value: "No. SK"
-                        },
-                        {
-                            value: "Tanggal SK"
-                        },
-                        {
-                            value: "Jenis Jabatan"
-                        },
-                        {
-                            value: "Nama Jabatan"
-                        },
-                        {
-                            value: "Jabatan Tertanda"
-                        },
-                        {
-                            value: "Nama Tertanda SK"
-                        }
+                        value: "No. SK"
+                    },
+                    {
+                        value: "Tanggal SK"
+                    },
+                    {
+                        value: "Jenis Jabatan"
+                    },
+                    {
+                        value: "Nama Jabatan"
+                    },
+                    {
+                        value: "Jabatan Tertanda"
+                    },
+                    {
+                        value: "Nama Tertanda SK"
+                    }
                     ]
                 }];
                 tempDataExport = $scope.dataSourceRiwayatJabatan;
                 tempDataExport.fetch(function () {
-                    // debugger;
                     var data = this.data();
                     for (var i = 0; i < data.length; i++) {
                         //push single row for every record
                         rows.push({
                             cells: [{
-                                    value: data[i].noSk
-                                },
-                                {
-                                    value: data[i].tglSk
-                                },
-                                {
-                                    value: data[i].jenisJabatan
-                                },
-                                {
-                                    value: data[i].namaJabatan
-                                },
-                                {
-                                    value: data[i].ttdJabatanSk
-                                },
-                                {
-                                    value: data[i].ttdPegawaiSk
-                                }
+                                value: data[i].noSk
+                            },
+                            {
+                                value: data[i].tglSk
+                            },
+                            {
+                                value: data[i].jenisJabatan
+                            },
+                            {
+                                value: data[i].namaJabatan
+                            },
+                            {
+                                value: data[i].ttdJabatanSk
+                            },
+                            {
+                                value: data[i].ttdPegawaiSk
+                            }
                             ]
                         })
                     }
@@ -1623,7 +1664,7 @@ define(['initialize'], function (initialize) {
             $scope.getDataJabatan = function (id) {
                 $("#idComboDataJabatan").data("kendoComboBox").value("");
                 if (!id) return;
-                ManageSdmNew.getListData("sdm/get-all-jabatan-by-jenis-jabatan?idJenisJabatan=" + id + "&kdJabatan=" + $scope.item.analisaJabatan, true).then(function (res) {
+                ManageSdmNew.getListData("sdm/get-all-jabatan-by-jenis-jabatan?idJenisJabatan=" + id + "&kdJabatan=" + $scope.ji.analisaJabatan, true).then(function (res) {
                     $scope.listJabatanByJenisJabatan = res.data;
                     $scope.listJabatanByJenisJabatanInternal = [];
                     res.data.data.forEach(function (e) {
@@ -1704,15 +1745,15 @@ define(['initialize'], function (initialize) {
             $scope.initRiwayatPendidikan = function () {
                 $scope.columnGridPendidikan = {
                     toolbar: [{
-                            name: "create",
-                            text: "Buat Riwayat Jabatan",
-                            template: '<button ng-click="createNewPendidikan()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Buat Riwayat</button>'
-                        },
-                        {
-                            text: "export",
-                            name: "Export detail",
-                            template: '<button ng-click="exportDataPendidikan()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
-                        }
+                        name: "create",
+                        text: "Buat Riwayat Jabatan",
+                        template: '<button ng-click="createNewPendidikan()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Buat Riwayat</button>'
+                    },
+                    {
+                        text: "export",
+                        name: "Export detail",
+                        template: '<button ng-click="exportDataPendidikan()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
+                    }
                     ],
                     sortable: false,
                     reorderable: true,
@@ -1722,68 +1763,68 @@ define(['initialize'], function (initialize) {
                     resizable: true,
                     selectable: 'row',
                     columns: [{
-                            field: "pendidikan",
-                            title: "<h3>Pendidikan</h3>",
-                            width: "100px"
-                        },
-                        {
-                            field: "namaTempatPendidikan",
-                            title: "<h3>Nama Institusi</h3>",
-                            width: "150px"
-                        },
-                        {
-                            field: "jurusan",
-                            title: "<h3>Jurusan</h3>",
-                            width: "150px"
-                        },
-                        {
-                            field: "tglLulus",
-                            title: "<h3>Tanggal Kelulusan</h3>",
-                            width: "100px"
-                        },
-                        {
-                            field: "nilaiIPK",
-                            title: "<h3>IPK</h3>",
-                            width: "75px"
-                        },
-                        {
-                            field: "noIjazah",
-                            title: "<h3>No Ijazah</h3>",
-                            width: "100px"
-                        },
-                        {
-                            field: "tglIjazah",
-                            title: "<h3>Tanggal Ijazah</h3>",
-                            width: "100px"
-                        },
-                        {
-                            command: [{
-                                    text: "Edit",
-                                    width: "40px",
-                                    align: "center",
-                                    attributes: {
-                                        align: "center"
-                                    },
-                                    click: changeRowPendidikan,
-                                    imageClass: "k-icon k-i-pencil"
-                                },
-                                {
-                                    text: "Hapus",
-                                    width: "40px",
-                                    align: "center",
-                                    attributes: {
-                                        align: "center"
-                                    },
-                                    click: removeRowPendidikan,
-                                    imageClass: "k-icon k-delete"
-                                }
-                            ],
-                            title: "",
-                            width: "150px",
+                        field: "pendidikan",
+                        title: "<h3>Pendidikan</h3>",
+                        width: "100px"
+                    },
+                    {
+                        field: "namaTempatPendidikan",
+                        title: "<h3>Nama Institusi</h3>",
+                        width: "150px"
+                    },
+                    {
+                        field: "jurusan",
+                        title: "<h3>Jurusan</h3>",
+                        width: "150px"
+                    },
+                    {
+                        field: "tglLulus",
+                        title: "<h3>Tanggal Kelulusan</h3>",
+                        width: "100px"
+                    },
+                    {
+                        field: "nilaiIPK",
+                        title: "<h3>IPK</h3>",
+                        width: "75px"
+                    },
+                    {
+                        field: "noIjazah",
+                        title: "<h3>No Ijazah</h3>",
+                        width: "100px"
+                    },
+                    {
+                        field: "tglIjazah",
+                        title: "<h3>Tanggal Ijazah</h3>",
+                        width: "100px"
+                    },
+                    {
+                        command: [{
+                            text: "Edit",
+                            width: "40px",
+                            align: "center",
                             attributes: {
-                                style: "text-align:center;valign=middle"
+                                align: "center"
                             },
+                            click: changeRowPendidikan,
+                            imageClass: "k-icon k-i-pencil"
+                        },
+                        {
+                            text: "Hapus",
+                            width: "40px",
+                            align: "center",
+                            attributes: {
+                                align: "center"
+                            },
+                            click: removeRowPendidikan,
+                            imageClass: "k-icon k-delete"
                         }
+                        ],
+                        title: "",
+                        width: "150px",
+                        attributes: {
+                            style: "text-align:center;valign=middle"
+                        },
+                    }
                     ],
                 };
 
@@ -1801,26 +1842,26 @@ define(['initialize'], function (initialize) {
                 var tempDataExport = [];
                 var rows = [{
                     cells: [{
-                            value: "Nama Institusi"
-                        },
-                        {
-                            value: "Pendidikan"
-                        },
-                        {
-                            value: "Jurusan"
-                        },
-                        {
-                            value: "Tanggal Kelulusan"
-                        },
-                        {
-                            value: "IPK"
-                        },
-                        {
-                            value: "No. Ijazah"
-                        },
-                        {
-                            value: "Tangga Ijazah"
-                        }
+                        value: "Nama Institusi"
+                    },
+                    {
+                        value: "Pendidikan"
+                    },
+                    {
+                        value: "Jurusan"
+                    },
+                    {
+                        value: "Tanggal Kelulusan"
+                    },
+                    {
+                        value: "IPK"
+                    },
+                    {
+                        value: "No. Ijazah"
+                    },
+                    {
+                        value: "Tangga Ijazah"
+                    }
                     ]
                 }];
                 tempDataExport = $scope.dataSourcePendidikan;
@@ -1830,26 +1871,26 @@ define(['initialize'], function (initialize) {
                         //push single row for every record
                         rows.push({
                             cells: [{
-                                    value: data[i].namaTempatPendidikan
-                                },
-                                {
-                                    value: data[i].pendidikan
-                                },
-                                {
-                                    value: data[i].jurusan
-                                },
-                                {
-                                    value: data[i].tglLulus
-                                },
-                                {
-                                    value: data[i].nilaiIPK
-                                },
-                                {
-                                    value: data[i].noIjazah
-                                },
-                                {
-                                    value: data[i].tglIjazah
-                                },
+                                value: data[i].namaTempatPendidikan
+                            },
+                            {
+                                value: data[i].pendidikan
+                            },
+                            {
+                                value: data[i].jurusan
+                            },
+                            {
+                                value: data[i].tglLulus
+                            },
+                            {
+                                value: data[i].nilaiIPK
+                            },
+                            {
+                                value: data[i].noIjazah
+                            },
+                            {
+                                value: data[i].tglIjazah
+                            },
                             ]
                         })
                     }
@@ -2035,27 +2076,27 @@ define(['initialize'], function (initialize) {
                     selectable: "row",
                     pageable: true,
                     columns: [{
-                            field: "tanggal",
-                            title: "<h3>Tanggal</h3>",
-                            width: "7%",
-                            template: "#= kendo.toString(new Date(tanggal), \"dd/MM/yyyy\") #"
-                        },
-                        {
-                            field: "tanggal",
-                            title: "<h3>Jam</h3>",
-                            width: "4%",
-                            template: "#= kendo.toString(new Date(tanggal), \"HH:mm\") #"
-                        },
-                        {
-                            field: "perubahan",
-                            title: "<h3>Perubahan</h3>",
-                            width: "64%"
-                        },
-                        {
-                            field: "petugas",
-                            title: "<h3>Petugas</h3>",
-                            width: "20%"
-                        },
+                        field: "tanggal",
+                        title: "<h3>Tanggal</h3>",
+                        width: "7%",
+                        template: "#= kendo.toString(new Date(tanggal), \"dd/MM/yyyy\") #"
+                    },
+                    {
+                        field: "tanggal",
+                        title: "<h3>Jam</h3>",
+                        width: "4%",
+                        template: "#= kendo.toString(new Date(tanggal), \"HH:mm\") #"
+                    },
+                    {
+                        field: "perubahan",
+                        title: "<h3>Perubahan</h3>",
+                        width: "64%"
+                    },
+                    {
+                        field: "petugas",
+                        title: "<h3>Petugas</h3>",
+                        width: "20%"
+                    },
                         // {command: [{text: "Detil", click: showDetailPerubahan}], title: "&nbsp;", width: "6%"}
                     ]
                 }
@@ -2118,10 +2159,10 @@ define(['initialize'], function (initialize) {
                 $scope.dataSourceRiwayatAnak = [];
                 $scope.columnGridAnak = {
                     toolbar: [{
-                            name: "create",
-                            text: "Buat Riwayat Jabatan",
-                            template: '<button ng-click="createNewRiwayatJabatan()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Buat Riwayat</button>'
-                        },
+                        name: "create",
+                        text: "Buat Riwayat Jabatan",
+                        template: '<button ng-click="createNewRiwayatJabatan()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Buat Riwayat</button>'
+                    },
                         // {
                         //     text: "export",
                         //     name:"Export detail",
@@ -2136,61 +2177,61 @@ define(['initialize'], function (initialize) {
                     resizable: true,
                     selectable: 'row',
                     columns: [{
-                            // field: "noSk",
-                            title: "<h3>Nama</h3>",
-                            width: "100px"
-                        },
-                        {
-                            // field: "tglSk",
-                            title: "<h3>Hubungan</h3>",
-                            width: "100px"
-                        },
-                        {
-                            // field: "jenisJabatan",
-                            title: "<h3>Tanggal<br>Lahir</h3>",
-                            width: "200px"
-                        },
-                        {
-                            // field: "namaJabatan",
-                            title: "<h3>Jenis<br>Kelamin</h3>",
-                            width: "200px"
-                        },
-                        {
-                            // field: "ttdJabatanSk",
-                            title: "<h3>Pekerjaan</h3>",
-                            width: "200px"
-                        },
-                        {
-                            // field: "ttdPegawaiSk",
-                            title: "<h3>Tanggal<br>Surat Kuliah</h3>",
-                            width: "200px"
-                        },
-                        {
-                            command: [{
-                                text: "Edit",
-                                width: "40px",
-                                align: "center",
-                                attributes: {
-                                    align: "center"
-                                },
-                                click: changeRowJabatan,
-                                imageClass: "k-icon k-i-pencil"
-                            }, {
-                                text: "Hapus",
-                                width: "40px",
-                                align: "center",
-                                attributes: {
-                                    align: "center"
-                                },
-                                click: removeRowJabatan,
-                                imageClass: "k-icon k-delete"
-                            }],
-                            title: "",
-                            width: "150px",
+                        // field: "noSk",
+                        title: "<h3>Nama</h3>",
+                        width: "100px"
+                    },
+                    {
+                        // field: "tglSk",
+                        title: "<h3>Hubungan</h3>",
+                        width: "100px"
+                    },
+                    {
+                        // field: "jenisJabatan",
+                        title: "<h3>Tanggal<br>Lahir</h3>",
+                        width: "200px"
+                    },
+                    {
+                        // field: "namaJabatan",
+                        title: "<h3>Jenis<br>Kelamin</h3>",
+                        width: "200px"
+                    },
+                    {
+                        // field: "ttdJabatanSk",
+                        title: "<h3>Pekerjaan</h3>",
+                        width: "200px"
+                    },
+                    {
+                        // field: "ttdPegawaiSk",
+                        title: "<h3>Tanggal<br>Surat Kuliah</h3>",
+                        width: "200px"
+                    },
+                    {
+                        command: [{
+                            text: "Edit",
+                            width: "40px",
+                            align: "center",
                             attributes: {
-                                style: "text-align:center;valign=middle"
+                                align: "center"
                             },
-                        }
+                            click: changeRowJabatan,
+                            imageClass: "k-icon k-i-pencil"
+                        }, {
+                            text: "Hapus",
+                            width: "40px",
+                            align: "center",
+                            attributes: {
+                                align: "center"
+                            },
+                            click: removeRowJabatan,
+                            imageClass: "k-icon k-delete"
+                        }],
+                        title: "",
+                        width: "150px",
+                        attributes: {
+                            style: "text-align:center;valign=middle"
+                        },
+                    }
                     ],
                 };
             }
@@ -2247,7 +2288,7 @@ define(['initialize'], function (initialize) {
                 if (typeof tgl === 'object') {
                     tgl = dateHelper.formatDate(tgl, 'DD-MM-YYYY');
                 }
-                console.log(tgl);
+                // console.log(tgl);
                 let tempTgl = tgl.split('-');
                 if (parseInt(tempTgl[0]) < 10) {
                     day = '0' + tempTgl[0];
@@ -2274,7 +2315,7 @@ define(['initialize'], function (initialize) {
                                 // console.log(key)
                             }
                             if (newData[key] !== oldData[key]) {
-                                console.log(key)
+                                // console.log(key)
                                 dataChanged[key] = newData[key];
                             }
                         } else if (newData.hasOwnProperty(key)) {
@@ -2313,12 +2354,14 @@ define(['initialize'], function (initialize) {
                         })
                     }
 
-                    console.log(tempData);
+                    // console.log(tempData);
                     return tempData;
                 }
             }
 
             $scope.saveDataIndetitasPegawai = function () {
+                $scope.isRouteLoading = true;
+
                 var listRawRequired = [
                     "item.kedudukan|k-ng-model|Kedudukan pegawai",
                     "item.kategoryPegawai|k-ng-model|Kategori pegawai",

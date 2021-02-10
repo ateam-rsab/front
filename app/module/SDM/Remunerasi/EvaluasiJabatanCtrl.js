@@ -10,6 +10,7 @@ define(['initialize'], function (initialize) {
             $scope.grade = "";
             $scope.detailGrade = "";
             $scope.isSimpanDisabled = true;
+            $scope.pegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
 
             modelItem.getDataDummyGeneric('Ruangan').then(function (e) {
                 $scope.ruangans = _.sortBy(e, function (i) {
@@ -142,6 +143,11 @@ define(['initialize'], function (initialize) {
             $scope.selectedTahun = $scope.listTahun[$scope.listTahun.length - 1];
 
             let validate = () => {
+                if (!$scope.data.unitKerja) {
+                    toastr.warning("Harap pilih Unit Kerja", "Simpan Gagal");
+                    return false;
+                }
+
                 if (!$scope.data.jabatan) {
                     toastr.warning("Harap pilih Jabatan", "Simpan Gagal");
                     return false;
@@ -276,7 +282,10 @@ define(['initialize'], function (initialize) {
                     statusEnabled: true,
                     kdProfile: 0,
                     bulan: $scope.selectedBulan.id,
-                    totalNilai: totalNilai
+                    totalNilai: totalNilai,
+                    pegawaiEntri: {
+                        id: $scope.pegawaiLogin.id
+                    }
                 }
 
                 ManageSdmNew.saveData(dataSave, "sdm/save-evaluasi-jabatan").then(function (e) {
