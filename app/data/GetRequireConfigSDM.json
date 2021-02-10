@@ -369,6 +369,10 @@
       "urlDep": "module/SDM/MasterJabatanCtrl"
     },
     {
+      "nameDep": "MasterAnggaranRemunerasiCtrl",
+      "urlDep": "module/SDM/MasterAnggaranRemunerasiCtrl"
+    },
+    {
       "nameDep": "DaftarJadwalKredensialCtrl",
       "urlDep": "module/SDM/DaftarJadwalKredensialCtrl"
     },
