@@ -719,6 +719,7 @@ define(['initialize'], function (initialize) {
 						$scope.noKirim = e.data.nokirim.norec
 						var dataz = {};
 						$scope.showLabel = true;
+						$scope.tutup();
 						loadData();
 						$scope.selectedOnCheck = [];
 						dataMenuSiklus = [];
@@ -732,8 +733,6 @@ define(['initialize'], function (initialize) {
 				$scope.batal();
 				$scope.popUpMenu.close();
 			}
-
-
 
 			// $scope.showCetak = function () {
 

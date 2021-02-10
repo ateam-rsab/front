@@ -19,46 +19,43 @@
 					<div class="grid_12">
 						<label c-label item="item">Tanggal Order</label>
 						<input style="width: 100%" k-ng-model="item.tglOrder" kendo-datetimepicker k-max="now"
-							placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" />
+							placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm"
+							disabled />
 					</div>
 				</div>
-				<div class="grid_3">
+				<div class="grid_2">
 					<div class="grid_12">
 						<label c-label item="item">Ruangan Tujuan</label>
 						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.ruanganTujuan"
 							disabled />
 					</div>
 				</div>
-				<div class="grid_3">
+				<div class="grid_2">
 					<div class="grid_12">
 						<label c-label item="item">Pengorder</label>
 						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.pegawai" disabled />
 					</div>
 				</div>
-				<!-- <div class="grid_2">
-						<div class="grid_12">
-							<label c-label item="item">Keterangan</label>
-							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.keterangan" disabled="" />
-						</div>
-					</div> -->
-			</div>
-			<div class="grid_12">
-				<div class="grid_3">
+				<div class="grid_2">
 					<div class="grid_12">
 						<label c-label item="item">Tanggal Menu</label>
 						<input style="width:100%" kendo-date-picker k-value="now" k-ng-model="item.tglMenu"
-							k-format="'dd-MM-yyyy'" />
+							k-format="'dd-MM-yyyy'" ng-disabled="!showEditInput" />
 					</div>
 				</div>
-				<div class="grid_3">
+			</div>
+
+			<div class="grid_12" ng-show="showEditInput">
+				<!-- <div class="grid_2">
 					<div class="grid_12">
 						<label c-label item="item">Jenis Waktu</label>
 						<input style="width: 100%;" kendo-combo-box k-data-source="listJenisWaktu"
 							k-ng-model="item.jenisWaktu" k-data-text-field="'jeniswaktu'" k-filter="'contains'"
 							k-data-value-field="'id'" k-auto-bind="false" />
 					</div>
-				</div>
-				<div class="grid_3">
+				</div> -->
+
+				<div class="grid_2">
 					<div class="grid_12">
 						<label c-label item="item">Jenis Diet</label>
 						<input style="width: 100%;" kendo-combo-box k-data-source="listJenisDiet"
@@ -66,7 +63,8 @@
 							k-data-value-field="'id'" k-auto-bind="false" />
 					</div>
 				</div>
-				<div class="grid_3">
+
+				<div class="grid_2">
 					<div class="grid_12">
 						<label c-label item="item">Kategori Diet</label>
 						<input style="width: 100%;" kendo-combo-box k-data-source="listKategoriDiet"
@@ -74,6 +72,30 @@
 							k-data-value-field="'id'" k-auto-bind="false" />
 
 					</div>
+				</div>
+
+				<div class="grid_2" ng-show="isOrderSusu">
+					<div class="grid_12">
+						<label c-label item="item">Frekuensi</label>
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.volume" />
+					</div>
+				</div>
+
+				<div class="grid_2" ng-show="isOrderSusu">
+					<div class="grid_12">
+						<label c-label item="item">CC</label>
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.cc"/>
+					</div>
+				</div>
+			</div>
+
+			<div class="grid_12" ng-show="showEditInput">
+				<div class="grid_8"></div>
+				<div class="grid_2">
+					<md-button ng-show="!isLoading" class="md-raised medium-button md-warn" ng-click="resetEdit()">Batal</md-button>
+				</div>
+				<div class="grid_2">
+					<md-button ng-show="!isLoading" class="md-raised medium-button md-primary" ng-click="editData(dataSelected)">Edit</md-button>
 				</div>
 			</div>
 

@@ -3,6 +3,15 @@
         "name": "Master Data SDM",
         "children": [
             {
+                "name": "Master Remunerasi",
+                "children": [
+                    {
+                        "name": "Master Anggaran Remunerasi",
+                        "link": "#/MasterAnggaranRemunerasi"
+                    }
+                ]
+            },
+            {
                 "name": "Master Uraian Tugas Pegawai",
                 "link": "#/MappingUraianTugas"
             },

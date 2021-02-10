@@ -2512,6 +2512,26 @@
     ]
   },
   {
+    "name": "MasterAnggaranRemunerasi",
+    "url": "/MasterAnggaranRemunerasi",
+    "templateurl": "module/SDM/MasterAnggaranRemunerasi.html",
+    "controller": "MasterAnggaranRemunerasiCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      }
+    ]
+  },
+  {
     "name": "MasterJabatanRev",
     "url": "/MasterJabatanRev",
     "templateurl": "module/SDM/MasterJabatanRev.html",
