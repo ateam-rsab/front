@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
 	'use strict';
-	initialize.controller('UbahPasswordCtrl', ['$q', '$rootScope', '$scope', '$window', 'ManageSarprasPhp', 'ModelItem', '$http', 'ManageSarpras',
-		function ($q, $rootScope, $scope, $window, manageSarprasPhp, modelItem, $http, manageSarpras) {
+	initialize.controller('UbahPasswordCtrl', ['$q', '$rootScope', '$scope', '$window', 'ManageSarprasPhp', 'ModelItem', '$http', 'ManageSarpras', '$timeout',
+		function ($q, $rootScope, $scope, $window, manageSarprasPhp, modelItem, $http, manageSarpras, $timeout) {
 			$scope.item = {};
 			$scope.dataVOloaded = true;
 			$scope.now = new Date();
@@ -56,7 +56,7 @@ define(['initialize'], function (initialize) {
 
 				//save to java katasandi column
 				manageSarpras.saveLoginUser(objSave).then(function (je) {
-				},error => {
+				}, error => {
 					alert('Nama user sudah digunakan!')
 				});
 
@@ -65,16 +65,16 @@ define(['initialize'], function (initialize) {
 					if (pe.data.messages == 'Sukses') {
 						// jika sukses save to java 
 						// manageSarpras.saveLoginUser(objSave).then(function (je) {
-							// if (je.data.messages['label-success'] === "SUKSES") {
-								toastr.info('Silahkan login ulang');
-								$timeout(function() {
-									// localStorage.clear();
-									// $window.location.replace('Logout');
-									$rootScope.doLogout();
-								}, 500);
-								
-							// }
-							// $scope.isLogout = e.data.messages['label-success'] === "SUKSES" ? true : false;
+						// if (je.data.messages['label-success'] === "SUKSES") {
+						toastr.info('Silahkan login ulang');
+						$timeout(function () {
+							// localStorage.clear();
+							// $window.location.replace('Logout');
+							$rootScope.doLogout();
+						}, 500);
+
+						// }
+						// $scope.isLogout = e.data.messages['label-success'] === "SUKSES" ? true : false;
 						// });
 					}
 				});
