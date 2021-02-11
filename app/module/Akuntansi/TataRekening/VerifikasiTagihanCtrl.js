@@ -80,6 +80,11 @@ define(['initialize'], function(initialize) {
 			    var isValid = modelItemAkuntansi.setValidation($scope, listRawRequired);
 			    
 			    if(isValid.status){
+					if (isDiskonRSAB && $scope.item.totalKlaim > item.billing/2) {
+						toastr.warning("Total Klaim tidak boleh lebih besar dari 50% Total Billing!")	
+						return
+					}
+
 			    	manageTataRekening.saveVerifikasiTagihan($scope.item)
 					.then(function(e) {
 						$scope.SaveLogUser();
