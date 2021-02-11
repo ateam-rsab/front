@@ -1,8 +1,11 @@
 <div ng-show="dataVOloaded">
-	<div class="grid_12">			
-		<div class="grid_12 headerBox">
-			<h1 style="color: white;"><b>Daftar Produk</b></h1>
-		</div>
+	<div class="grid_12">
+		<md-toolbar md-scroll-shrink class="shadow">
+			<div class="md-toolbar-tools">Daftar Produk</div>
+		</md-toolbar>
+		<!-- <div class="headerBox">
+			<h1 style="color: white;"><b></b></h1>
+		</div> -->
 		<div class="grid_12">
 			<div class="grid_6">
 				<div class="grid_4">
@@ -72,8 +75,12 @@
 				</div>
 			</div>
 			
-			<div class="grid_1" style="margin-top: 5px;">
-				<button class="c-button" style="margin-top: 22px" ng-click="cariFilter()">Cari</button>
+			<div class="grid_1" style="margin-top: 27px;">
+				<md-button class="md-raised md-primary medium-button" ng-click="cariFilter()">
+					<span style="margin-right: 5px;">Cari</span>
+					<i class="fa fa-search"></i>
+				</md-button>
+				<!-- <button class="c-button" style="margin-top: 22px" ng-click="cariFilter()">Cari</button> -->
 			</div>
 		</div>
 		<div class="grid_12">
@@ -81,7 +88,7 @@
 				<p>Produk</p>
 			</div> -->
 			<!-- grid table -->
-			<div class="grid_12 borderBox">
+			<div class="grid_12">
 				<kendo-grid options="mainGridOptions"  k-data-source="dataSource" k-ng-model="current" ng-click="klik(current)">
 				</kendo-grid>
 			</div>
@@ -90,17 +97,29 @@
 					
 		<div class="grid_12">
 			<div class="grid_2">
-				<button class="c-button" ng-click="KelBPJS()">Kelompok Produk BPJS</button>
+				<!-- <button class="c-button" ng-click="KelBPJS()">Kelompok Produk BPJS</button> -->
+				<md-button class="md-raised md-primary" ng-click="KelBPJS()">
+					<span>Kelompok Produk BPJS</span>
+				</md-button>
 			</div>
 			<div class="grid_4"></div>
 			<div class="grid_2">
-				<button class="c-button" ng-click="cetak()">Cetak</button>
+				<!-- <button class="c-button" ng-click="cetak()">Cetak</button> -->
+				<md-button class="md-raised md-primary" ng-click="KelBPJS()">
+					<span>Cetak</span>
+				</md-button>
 			</div>
 			<div class="grid_2">
-				<button class="c-button" ng-click="edit()">Ubah</button>
+				<!-- <button class="c-button" ng-click="edit()">Ubah</button> -->
+				<md-button class="md-raised md-primary" ng-click="edit()">
+					<span>Edit</span>
+				</md-button>
 			</div>
 			<div class="grid_2" >
-				<button class="c-button" ng-click="tambah()">Tambah</button>
+				<!-- <button class="c-button" ng-click="tambah()">Tambah</button> -->
+				<md-button class="md-raised md-primary" ng-click="tambah()">
+					<span>Tambah</span>
+				</md-button>
 			</div>
 		</div>
 	</div>

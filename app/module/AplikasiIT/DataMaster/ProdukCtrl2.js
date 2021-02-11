@@ -6,6 +6,7 @@ define(['initialize'], function (initialize) {
 			$scope.dataVOloaded = true;
 			$scope.now = new Date();
 			$scope.pegawai = JSON.parse(localStorage.getItem('pegawai'));
+
 			var init = function () {
 				// //debugger;
 				//   ManageLogistikPhp.getDataTableMaster("produk/list-produk/100",true).then(function(e) {
@@ -21,9 +22,13 @@ define(['initialize'], function (initialize) {
 				// 		autoSync: true
 				// 	});
 				// });
-
-
-				$scope.listDataStatus = [{ id: 1, status: 'Aktif' }, { id: 2, status: 'Tidak Aktif' }]
+				$scope.listDataStatus = [{
+					id: 1,
+					status: 'Aktif'
+				}, {
+					id: 2,
+					status: 'Tidak Aktif'
+				}]
 				var chacePeriode = cacheHelper.get('ProdukCtrl2');
 				if (chacePeriode != undefined) {
 					////debugger;;
@@ -121,18 +126,30 @@ define(['initialize'], function (initialize) {
 							model: {
 								id: "id",
 								fields: {
-									kdproduk: { editable: false, type: "number" },
-									kdbarcode: { editable: false, type: "number" },
-									deskripsiproduk: { editable: false, type: "string" },
-									namaproduk: { editable: false, type: "string" }
+									kdproduk: {
+										editable: false,
+										type: "number"
+									},
+									kdbarcode: {
+										editable: false,
+										type: "number"
+									},
+									deskripsiproduk: {
+										editable: false,
+										type: "string"
+									},
+									namaproduk: {
+										editable: false,
+										type: "string"
+									}
 								}
 							}
 						},
 						pageSize: 20,
 					});
 				})
-				var chacePeriode = $scope.item.kdProdukScr + "~" + $scope.item.namaProdukScr + "~" + $scope.item.kdProdukInternScr
-					+ "~" + $scope.item.kdBarcodeScr + "~" + $scope.item.kodeBmnScr;
+				var chacePeriode = $scope.item.kdProdukScr + "~" + $scope.item.namaProdukScr + "~" + $scope.item.kdProdukInternScr +
+					"~" + $scope.item.kdBarcodeScr + "~" + $scope.item.kodeBmnScr;
 				cacheHelper.set('ProdukCtrl2', chacePeriode);
 			}
 
@@ -187,10 +204,9 @@ define(['initialize'], function (initialize) {
 					if ($scope.item.idx == undefined) {
 						alert("Pilih 1 Data Untuk di edit!!")
 					} else {
-						$state.go("Produk",
-							{
-								idx: $scope.item.idx
-							})
+						$state.go("Produk", {
+							idx: $scope.item.idx
+						})
 					}
 				} else {
 					alert("Tidak punya akses!")
@@ -208,62 +224,121 @@ define(['initialize'], function (initialize) {
 			}
 
 
-			$scope.columnProduk = [
-				{
-					"field": "id",
-					"title": "Id",
-					"width": "100px",
-				},
-				{
-					"field": "status",
-					"title": "Status",
-					"width": "100px",
-				},
-				{
-					"field": "namaproduk",
-					"title": "Nama Produk",
-					"width": "300px",
-
-				},
-				{
-					"field": "kdproduk",
-					"title": "Kd Produk",
-					"width": "100px",
-				},
-				{
-					"field": "kdbarcode",
-					"title": "kd Barcode",
-					"width": "100px",
-				},
-				{
-					"field": "detailjenisproduk",
-					"title": "Detail Jenis",
-					"width": "150px",
-				},
-				// {
-				// 	"title" : "Action",
-				// 	"width" : "140px",
-				// 	"template" : "<button class='btnEdit' ng-click='enableData()'>Enable</button>"+
-				// 	"<button class='btnHapus' ng-click='disableData()'>Disable</button>"
-				// }
-				// {
-				//     "command": [
-				//         { text: "Enabled", click: enableData, imageClass: "k-icon k-update" },
-				//         { text: "Disabled", click: disableData, imageClass: "k-icon k-i-close" }
-				//     ],
-				//     title: "",
-				//     width: "150px",
-				// }
-			];
+			$scope.columnProduk = [{
+				"field": "id",
+				"title": "Id",
+				"width": "100px",
+			}, {
+				"field": "status",
+				"title": "Status",
+				"width": "100px",
+			}, {
+				"field": "namaproduk",
+				"title": "Nama Produk",
+				"width": "300px",
+			}, {
+				"field": "kdproduk",
+				"title": "Kd Produk",
+				"width": "100px",
+			}, {
+				"field": "kdbarcode",
+				"title": "kd Barcode",
+				"width": "100px",
+			}, {
+				"field": "detailjenisproduk",
+				"title": "Detail Jenis",
+				"width": "150px",
+			}];
+			
 			$scope.mainGridOptions = {
+				toolbar: [{
+					text: "export",
+					name: "Export detail",
+					template: '<button ng-click="exportData()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
+				}, ],
 				pageable: true,
 				columns: $scope.columnProduk,
 				editable: "popup",
 				selectable: "row",
 				scrollable: false
 			};
+
 			$scope.KelBPJS = function () {
 				$state.go('KelompokProdukBPJS')
+			}
+
+			$scope.exportData = () => {
+				var tempDataExport = [];
+				var rows = [{
+					cells: [{
+						value: "ID"
+					}, {
+						value: "Status"
+					}, {
+						value: "Nama Produk"
+					}, {
+						value: "Kode Produk"
+					}, {
+						value: "Kode Barcode"
+					}, {
+						value: "Detail Jenis"
+					}]
+				}];
+
+				tempDataExport = $scope.dataSource;
+				tempDataExport.fetch(function () {
+					var data = this.data();
+					console.log(data);
+					for (var i = 0; i < data.length; i++) {
+						//push single row for every record
+						rows.push({
+							cells: [{
+								value: data[i].id
+							}, {
+								value: data[i].status
+							}, {
+								value: data[i].namaproduk
+							}, {
+								value: data[i].kdproduk
+							}, {
+								value: data[i].kdbarcode
+							}, {
+								value: data[i].detailjenisproduk
+							}]
+						})
+					}
+					var workbook = new kendo.ooxml.Workbook({
+						sheets: [{
+							freezePane: {
+								rowSplit: 1
+							},
+							columns: [{
+								autoWidth: true
+							}, {
+								autoWidth: true
+							}, {
+								autoWidth: true
+							}, {
+								autoWidth: true
+							}, {
+								autoWidth: true
+							}, {
+								autoWidth: true
+							}, ],
+							// Title of the sheet
+							title: "Daftar Produk",
+							// Rows of the sheet
+							rows: rows
+						}]
+					});
+					//save the file as Excel file with extension xlsx
+					kendo.saveAs({
+						dataURI: workbook.toDataURL(),
+						fileName: "daftar-produk.xlsx"
+					});
+				});
+
+
 			}
 
 		}

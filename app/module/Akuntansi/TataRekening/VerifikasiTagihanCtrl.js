@@ -10,6 +10,7 @@ define(['initialize'], function(initialize) {
 			$scope.showKelengkapanDokumen = false;
 			$scope.item = {};
 			$scope.tombolSaveIlang =true;
+			$scope.isDiskonRSAB = false;
 
 			$scope.dataParams = JSON.parse($state.params.dataPasien);
 
@@ -19,6 +20,8 @@ define(['initialize'], function(initialize) {
 			.then(function(data) {
 
 				if (data[0].statResponse){
+					$scope.isDiskonRSAB = (data[0].kelompokPasienID === 3 || data[0].kelompokPasienID === 5) && data[0].rekananID === 2905;
+
 					$scope.item = data[0];
 					if(data[0].needDokument)
 					{

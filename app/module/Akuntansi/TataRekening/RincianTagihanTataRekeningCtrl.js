@@ -3,6 +3,8 @@ define(['initialize'], function (initialize) {
 	initialize.controller('RincianTagihanTataRekeningCtrl', ['$sce', '$state', '$q', '$rootScope', '$scope', '$window', 'ModelItemAkuntansi', 'ManageTataRekening', 'ManageKasir', 'ManagePasien', '$mdDialog',
 		function ($sce, $state, $q, $rootScope, $scope, window, modelItemAkuntansi, manageTataRekening, manageKasir, managePasien, $mdDialog) {
 			$scope.now = new Date();
+			$scope.isDPJP = false;
+			$scope.isDPJPNull = false;
 
 			$scope.dataParams = JSON.parse($state.params.dataPasien);
 			// debugger;
@@ -26,7 +28,6 @@ define(['initialize'], function (initialize) {
 			var dibayar = 0
 			var verifTotal = 0
 
-
 			$scope.isRouteLoading = false;
 			var norec_ppd = ''
 			var norec_pp = ''
@@ -46,6 +47,16 @@ define(['initialize'], function (initialize) {
 			var data2 = [];
 			var dataTampil = 'layanan';
 			//$scope.Pegawai=modelItemAkuntansi.getPegawai();
+
+			manageTataRekening.getDataTableTransaksi("tatarekening/get-komponenharga-pelayanan?norec_pp=201c91f0-5abe-11eb-bc2b-9fd36d22").then(function (data) {
+
+				if (!data.data.dpjp[0].idPegawai) {
+					$scope.isDPJPNull = false;
+					return
+				}
+				$scope.isDPJPNull = true;
+				$scope.isDPJP = $scope.dataPegawai.id == data.data.dpjp[0].idPegawai;
+			});
 
 			LoadData();
 			let validateUser = null;
@@ -124,7 +135,7 @@ define(['initialize'], function (initialize) {
 			}
 
 			$scope.submitRubahPassword = () => {
-				if($scope.item.confPasswordBaru !== $scope.item.passwordBaru) {
+				if ($scope.item.confPasswordBaru !== $scope.item.passwordBaru) {
 					toastr.error("Konfirmasi Password Salah");
 					return;
 				}
@@ -710,6 +721,14 @@ define(['initialize'], function (initialize) {
 			})
 
 			$scope.UpdateDiskon = function () {
+				if(!$scope.isDPJPNull) { 
+					toastr.warning("Harap isi DPJP terlebih dahulu","DPJP Masih Kosong");
+					return;
+				}
+				if(!$scope.isDPJP) {
+					toastr.warning("Anda tidak memiliki hak akses untuk memberikan Diskon!");
+					return;
+				}
 				if (strukfk != " / ") {
 					alert('Sudah di Verifikasi Tatarekening tidak bisa diskon!')
 					return
@@ -1822,9 +1841,16 @@ define(['initialize'], function (initialize) {
 						pageSize: 10
 					})
 				});
+
 			}
 			$scope.klikKomponen = function (dataSelectedKomponen) {
-				if (dataSelectedKomponen.komponenharga != "Jasa Sarana") {
+				// https://smart.rsabhk.co.id:2222/simrs_harkit/service/transaksi/tatarekening/get-komponenharga-pelayanan?norec_pp=81ee50b0-523b-11eb-928a-8708f11e
+				// " + $scope.dataSelected.norec
+
+				if (dataSelectedKomponen.komponenharga === "Jasa Medis / Operator") {
+					$scope.DiskonKM = false;
+					$scope.item.persenDiscount = "100";
+				} else {
 					// $scope.button = false;
 					// $scope.billing = false;
 					// $scope.cetak = false;
@@ -1839,8 +1865,6 @@ define(['initialize'], function (initialize) {
 					norec_pp = dataSelectedKomponen.norec_pp
 					strukfk = $scope.dataSelected.strukfk
 					hargasatuan = dataSelectedKomponen.hargasatuan
-				} else {
-					$scope.DiskonKM = false;
 				}
 			}
 

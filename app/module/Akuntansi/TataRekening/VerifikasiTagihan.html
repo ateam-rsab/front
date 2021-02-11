@@ -1,12 +1,12 @@
 <div ng-show="dataVOloaded">
 
 	<div ng-hide="pageCetak">
-		<div class="grid_12 headerBox">
-			<h1 style="color: white;"><b>Verifikasi Tagihan</b></h1>
-		</div>
+		<md-toolbar md-scroll-shrink class="shadow">
+			<div class="md-toolbar-tools">Verifikasi Tagihan</div>
+		</md-toolbar>
 		<div class="clear"></div>
 
-		<br/>
+		<br />
 
 		<!-- -->
 		<div class="grid_12">
@@ -22,7 +22,8 @@
 					<div class="clear"></div>
 
 					<div class="grid_12">
-						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noCm" ng-disabled="true"/>
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noCm"
+							ng-disabled="true" />
 					</div>
 				</div>
 
@@ -34,7 +35,8 @@
 					<div class="clear"></div>
 
 					<div class="grid_12">
-						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noRegistrasi" ng-disabled="true"/>
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noRegistrasi"
+							ng-disabled="true" />
 					</div>
 				</div>
 				<div class="clear"></div>
@@ -47,7 +49,8 @@
 					<div class="clear"></div>
 
 					<div class="grid_12">
-						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaPasien" ng-disabled="true"/>
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaPasien"
+							ng-disabled="true" />
 					</div>
 				</div>
 
@@ -59,7 +62,8 @@
 					<div class="clear"></div>
 
 					<div class="grid_12">
-						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kelasRawat" ng-disabled="true"/>
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kelasRawat"
+							ng-disabled="true" />
 					</div>
 				</div>
 				<div class="grid_3">
@@ -69,7 +73,8 @@
 					<div class="clear"></div>
 
 					<div class="grid_12">
-						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.penjamin" ng-disabled="true"/>
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.penjamin"
+							ng-disabled="true" />
 					</div>
 				</div>
 				<div class="clear"></div>
@@ -82,7 +87,8 @@
 					<div class="clear"></div>
 
 					<div class="grid_12">
-						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.tglPulang" ng-disabled="true"/>
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.tglPulang"
+							ng-disabled="true" />
 					</div>
 				</div>
 
@@ -94,7 +100,8 @@
 					<div class="clear"></div>
 
 					<div class="grid_12">
-						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noAsuransi" ng-disabled="true"/>
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noAsuransi"
+							ng-disabled="true" />
 					</div>
 				</div>
 				<div class="clear"></div>
@@ -107,7 +114,8 @@
 					<div class="clear"></div>
 
 					<div class="grid_12">
-						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jenisPasien" ng-disabled="true"/>
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jenisPasien"
+							ng-disabled="true" />
 					</div>
 				</div>
 
@@ -119,7 +127,8 @@
 					<div class="clear"></div>
 
 					<div class="grid_12">
-						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kelasPenjamin" ng-disabled="true"/>
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kelasPenjamin"
+							ng-disabled="true" />
 					</div>
 				</div>
 				<div class="clear"></div>
@@ -127,7 +136,7 @@
 		</div>
 		<div class="clear"></div>
 
-		<br/>
+		<br />
 
 		<!-- -->
 		<div class="grid_12">
@@ -143,7 +152,8 @@
 					<div class="clear"></div>
 
 					<div class="grid_12" style="margin-top: 10px">
-						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.billing" ng-disabled="true" ng-show="showBilling"/>
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.billing"
+							ng-disabled="true" ng-show="showBilling" />
 						{{item.billing | currency: "Rp. "}}
 					</div>
 				</div>
@@ -156,7 +166,8 @@
 					<div class="clear"></div>
 
 					<div class="grid_12" style="margin-top: 10px">
-						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlahBayar" ng-disabled="true" ng-show="showBilling"/>
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlahBayar"
+							ng-disabled="true" ng-show="showBilling" />
 						{{item.jumlahBayar | currency: "Rp. "}}
 					</div>
 				</div>
@@ -170,7 +181,8 @@
 					<div class="clear"></div>
 
 					<div class="grid_12">
-						<input c-text-box type="input" class="k-textbox" ng-model="item.totalKlaim" ng-show="showTtlKlaim"/>
+						<input c-text-box type="input" class="k-textbox" ng-model="item.totalKlaim"
+							ng-show="showTtlKlaim" ng-disabled="isRSAB"/>
 						<div class="grid_12" ng-show="showTtlKlaim2">
 							{{item.totalKlaim | currency: "Rp. "}}
 						</div>
@@ -198,7 +210,8 @@
 					<div class="clear"></div>
 
 					<div class="grid_12" style="margin-top: 10px">
-						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.deposit" ng-disabled="true" ng-show="showBilling"/>
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.deposit"
+							ng-disabled="true" ng-show="showBilling" />
 						{{item.deposit | currency: "Rp. "}}
 					</div>
 				</div>
@@ -209,9 +222,9 @@
 		</div>
 		<div class="clear"></div>
 
-		<br/>
+		<br />
 
-		
+
 		<!-- <div class="grid_12" style="margin-bottom: 20px" ng-show="showKelengkapanDokumen">
 			<div class="grid_12 headerBox containerBorderBox" style="padding:0px">
 				<p>Kelengkapan Dokumen</p>
@@ -244,7 +257,7 @@
 			<div class="pdf-header">
 				<p class="judul">Kwintansi Pembayaran</p>
 				<p class="periode">Tanggal : {{nowFormated}}</p>
-				<br/>
+				<br />
 			</div>
 
 			<div class="pdf-body">
@@ -259,7 +272,7 @@
 
 		</div>
 	</div>
-	
+
 
 	<!-- <div class="grid_12" style="margin-top:30px">
 		<div ng-include='"../app/module/Shared/Keuangan/TemplateButtonTataRekening"'></div>
