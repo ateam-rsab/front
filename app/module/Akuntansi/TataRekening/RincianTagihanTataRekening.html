@@ -1006,7 +1006,7 @@
 					</div>
 					<div class="grid_12">
 						<input c-text-box filter="numeric" style="text-align: right" class="k-textbox"
-							ng-model="item.persenDiscount" />
+							ng-model="item.persenDiscount" disabled/>
 					</div>
 				</div>
 				<div class="grid_4">
@@ -1022,7 +1022,7 @@
 			<div class="pull-right" style="margin-top:4%">
 				<!-- validateUserDiskon() -->
 				<!-- UpdateDiskon() -->
-				<button class="k-button" ng-click="validateUserDiskon()" ng-show="DiskonKM">Update</button>
+				<button class="k-button" ng-click="UpdateDiskon()" ng-show="DiskonKM">Update</button>
 				<button class="k-button" ng-click="BatalDiskon()">Tutup</button>
 			</div>
 		</div>
