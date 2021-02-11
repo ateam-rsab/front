@@ -9,6 +9,7 @@ define(['initialize'], function (initialize) {
             $scope.time = "";
             $scope.isRouteLoading = false;
             $scope.data.isWFH = true;
+            $scope.isNotEditable = false;
             $scope.dataPegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
 
             let getDataHistory = function () {
@@ -45,6 +46,7 @@ define(['initialize'], function (initialize) {
                 getDataHistory();
                 ManageSdmNew.getListData('sdm/get-jadwal-pegawai?idPegawai=' + $scope.dataPegawaiLogin.id).then((res) => {
                     $scope.data = res.data.data;
+                    checkEditableWFH()
                 });
 
                 $scope.ip = getIPAddr();
@@ -134,6 +136,7 @@ define(['initialize'], function (initialize) {
                 }
                 ManageSdmNew.saveData(data, 'sdm/save-presensi-pegawai/').then((res) => {
                     getDataHistory();
+                    assignToNotEditable()
                 })
             }
 
@@ -176,6 +179,25 @@ define(['initialize'], function (initialize) {
 
             function getDecimal(n) {
                 return (n - Math.floor(n));
+            }
+
+            function checkEditableWFH() {
+                if ($scope.data && $scope.dataHistoriPresensi.options.data) {
+                    if ($scope.data.jadwal !== "-"
+                        && !$scope.data.jadwal.contains("Malam")
+                        && $scope.dataHistoriPresensi.options.data.length > 0) {
+                        $scope.isNotEditable = true
+                    }
+                }
+            }
+
+            function assignToNotEditable() {
+                if ($scope.data) {
+                    if ($scope.data.jadwal !== "-"
+                        && !$scope.data.jadwal.contains("Malam")) {
+                        $scope.isNotEditable = true
+                    }
+                }
             }
         }
     ]);
