@@ -89,10 +89,16 @@ define(['initialize'], function (initialize) {
                 let http = new XMLHttpRequest();
 
                 http.onreadystatechange = () => {
+                    console.log(http.readyState, http.status, http.statusText);
+                    if(http.status === 0 && http.readyState === 1) {
+                        toastr.info("Jaringan anda bermasalah");
+                    }
                     if (http.readyState == 4 && http.status === 200) {
                         dataIP = JSON.parse(http.responseText);
                     }
+                    
                 }
+
                 http.open("GET", "http://www.geoplugin.net/json.gp", false);
                 http.send();
 
