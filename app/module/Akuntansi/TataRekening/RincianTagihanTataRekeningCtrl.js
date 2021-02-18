@@ -634,7 +634,7 @@ define(['initialize'], function (initialize) {
 			}
 			$scope.klikDetail = function (data) {
 				debugger;
-				if (data.komponenharga != "Jasa Sarana") {
+				if (data.komponenharga == "Jasa Medis / Operator") {
 					$scope.button = false;
 					$scope.billing = false;
 					$scope.cetak = false;
@@ -643,13 +643,13 @@ define(['initialize'], function (initialize) {
 					$scope.DiskonKM = true;
 					$scope.label = data.komponenharga;
 					$scope.item.komponenDis = data.hargasatuan;
-					$scope.item.persenDiscount = "";
-					$scope.item.diskonKomponen = "";
+					$scope.item.persenDiscount = "100";
+					$scope.item.diskonKomponen = ((parseFloat($scope.item.komponenDis)) * $scope.item.persenDiscount) / 100
 					norec_ppd = data.norec
 					norec_pp = data.norec_pp
 					strukfk = data.strukfk
 					hargasatuan = data.hargasatuan
-				} else if (data.komponenharga == "Jasa Sarana") {
+				} else if (data.komponenharga != "Jasa Medis / Operator") {
 					$scope.button = true;
 					$scope.billing = true;
 					$scope.cetak = true;
@@ -669,6 +669,14 @@ define(['initialize'], function (initialize) {
 			})
 
 			$scope.UpdateDiskon = function () {
+				if ($scope.dpjp == null) {
+					alert('Mohon untuk mengisi dokter DPJP terlebih dahulu di Detail Registrasi!')
+					return
+				} else if ($scope.dpjp != $scope.dataPegawai.id) {
+					alert($scope.dataPegawai.namaLengkap + ' bukan dokter DPJP untuk tindakan ini / tidak memiliki akses diskon!')
+					return
+				}
+
 				if (strukfk != " / ") {
 					alert('Sudah di Verifikasi Tatarekening tidak bisa diskon!')
 					return
@@ -1779,10 +1787,11 @@ define(['initialize'], function (initialize) {
 						data: data.data.data,
 						pageSize: 10
 					})
+					$scope.dpjp = data.data.dpjp[0].idPegawai
 				});
 			}
 			$scope.klikKomponen = function (dataSelectedKomponen) {
-				if (dataSelectedKomponen.komponenharga != "Jasa Sarana") {
+				if (dataSelectedKomponen.komponenharga == "Jasa Medis / Operator") {
 					// $scope.button = false;
 					// $scope.billing = false;
 					// $scope.cetak = false;
@@ -1791,8 +1800,8 @@ define(['initialize'], function (initialize) {
 					$scope.DiskonKM = true;
 					$scope.label = dataSelectedKomponen.komponenharga;
 					$scope.item.komponenDis = dataSelectedKomponen.hargasatuan;
-					$scope.item.persenDiscount = "";
-					$scope.item.diskonKomponen = "";
+					$scope.item.persenDiscount = "100";
+					$scope.item.diskonKomponen = ((parseFloat($scope.item.komponenDis)) * $scope.item.persenDiscount) / 100
 					norec_ppd = dataSelectedKomponen.norec
 					norec_pp = dataSelectedKomponen.norec_pp
 					strukfk = $scope.dataSelected.strukfk
