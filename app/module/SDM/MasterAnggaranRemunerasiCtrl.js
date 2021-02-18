@@ -40,7 +40,7 @@ define(['initialize'], function (initialize) {
                     field: "nilaiJabatan",
                     title: "<h3>Nilai Jabatan</h3>",
                     width: 70,
-                    footerTemplate: "<span>{{totalNilaiJabatan}}</span>"
+                    footerTemplate: "Total: <span>{{totalNilaiJabatan}}</span>"
                 }]
             };
 
