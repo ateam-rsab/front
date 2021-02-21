@@ -1,8 +1,8 @@
 define(['initialize'], function (initialize) {
 	'use strict';
-	initialize.controller('VerifikasiTagihanCtrl', ['$state', '$q', '$rootScope', '$scope', 'ModelItemAkuntansi', 'ManageTataRekening',
-		function ($state, $q, $rootScope, $scope, modelItemAkuntansi, manageTataRekening) {
-
+	initialize.controller('VerifikasiTagihanCtrl', ['$state', '$q', '$rootScope', '$scope', 'ModelItemAkuntansi', 'ManageTataRekening', 'ManageSdmNew', '$mdDialog',
+		function ($state, $q, $rootScope, $scope, modelItemAkuntansi, manageTataRekening, manageSdmNew, $mdDialog) {
+			$scope.isRouteLoading = true
 			$scope.dataVOloaded = true;
 			$scope.now = new Date();
 			$scope.nowFormated = moment($scope.now).format('DD-MM-YYYY');
@@ -42,7 +42,7 @@ define(['initialize'], function (initialize) {
 							}
 						}
 					}
-
+					$scope.isRouteLoading = false
 				});
 
 			// function showButton(){
@@ -69,7 +69,8 @@ define(['initialize'], function (initialize) {
 				});
 			}
 
-			$scope.Save = function () {
+			$scope.Save = function (e) {
+				$scope.isRouteLoading = true
 				$scope.tombolSaveIlang = false;
 				var listRawRequired = [
 					"item.totalKlaim|ng-model|Total klaim",
@@ -79,22 +80,53 @@ define(['initialize'], function (initialize) {
 				var isValid = modelItemAkuntansi.setValidation($scope, listRawRequired);
 
 				if (isValid.status) {
-					if (isDiskonRSAB && $scope.item.totalKlaim > item.billing / 2) {
-						toastr.warning("Total Klaim tidak boleh lebih besar dari 50% Total Billing!")
-						return
+					if ($scope.isDiskonRSAB) {
+						if ($scope.item.totalKlaim > $scope.item.billing / 2) {
+							$scope.isRouteLoading = false
+							$scope.tombolSaveIlang = true
+							toastr.warning("Total Klaim diskon karyawan tidak boleh lebih besar dari 50% Total Billing!")
+							return
+						} else {
+							$scope.isRouteLoading = false
+							var confirm = $mdDialog.confirm()
+								.title('Konfirmasi Klaim Diskon Karyawan')
+								.textContent('Klaim diskon karyawan sebesar ' + formatRupiah($scope.item.totalKlaim, "Rp"))
+								.ariaLabel('Lucky day')
+								.targetEvent(e)
+								.ok('OK')
+								.cancel('Cancel');
+							$mdDialog.show(confirm).then(function () {
+								$scope.isRouteLoading = true
+								manageSdmNew.getListData("pelayanan/klaim-diskon-karyawan?noRegistrasi=" + $scope.item.noRegistrasi + "&totalKlaim=" + $scope.item.totalKlaim)
+									.then(function (e) {
+										$scope.SaveLogUser();
+										window.history.back();
+										$scope.isRouteLoading = false
+										$scope.tombolSaveIlang = true;
+									});
+							}, function () {
+								// error function
+								$scope.isRouteLoading = false
+								$scope.tombolSaveIlang = true
+							});
+						}
+					} else {
+						manageTataRekening.saveVerifikasiTagihan($scope.item)
+							.then(function (e) {
+								$scope.SaveLogUser();
+								window.history.back();
+								$scope.isRouteLoading = false
+								$scope.tombolSaveIlang = true;
+							}, function () {
+								$scope.isRouteLoading = false
+								$scope.tombolSaveIlang = true;
+							});
 					}
-
-					manageTataRekening.saveVerifikasiTagihan($scope.item)
-						.then(function (e) {
-							$scope.SaveLogUser();
-							window.history.back();
-							$scope.tombolSaveIlang = true;
-						}, function () {
-
-						});
 				}
 				else {
-					modelItemAkuntansi.showMessages(isValid.messages);
+					$scope.isRouteLoading = false
+					$scope.tombolSaveIlang = true
+					modelItemAkuntansi.showMessages(isValid.messages)
 				}
 			}
 			$scope.SaveLogUser = function () {

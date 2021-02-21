@@ -182,7 +182,7 @@
 
 					<div class="grid_12">
 						<input c-text-box type="input" class="k-textbox" ng-model="item.totalKlaim"
-							ng-show="showTtlKlaim" ng-disabled="isRSAB" />
+							ng-show="showTtlKlaim" />
 						<div class="grid_12" ng-show="showTtlKlaim2">
 							{{item.totalKlaim | currency: "Rp. "}}
 						</div>
@@ -278,3 +278,4 @@
 		<div ng-include='"../app/module/Shared/Keuangan/TemplateButtonTataRekening"'></div>
 	</div> -->
 </div>
+<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
