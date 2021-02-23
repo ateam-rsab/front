@@ -256,6 +256,10 @@
       {
         "module": "TataRekeningService",
         "define": "TataRekeningService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
       }
     ]
   },

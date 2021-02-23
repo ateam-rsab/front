@@ -10,24 +10,25 @@
 </div>
 
 <div class="grid_12" style="margin: 10px 0;">
-    <div class="grid_6">
-        <label><strong>Anggaran Remunerasi</strong></label>
+    <div class="grid_6" style="text-align: right; margin-top: 10px;">
+        <label><strong>Anggaran Remunerasi (/tahun)</strong></label>
     </div>
-    <div class="grid_6">
-        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.anggaranRemunerasi"
-            ng-change="changeAnggaran()" />
-    </div>
-
-    <div class="grid_6"></div>
-    <div class="grid_6">
-        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.pir" disabled />
+    <div class="grid_5">
+        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.anggaranRemunerasi" ng-change="changeAnggaran()"/>
     </div>
 
-    <div class="grid_6">
-        <label><strong>PIR</strong></label>
+    <div class="grid_6" style="text-align: right; margin-top: 10px;">
+        <label><strong>Anggaran Remunerasi (/bulan)</strong></label>
     </div>
-    <div class="grid_6">
-        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.pirHitungan" disabled />
+    <div class="grid_5">
+        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.pir" disabled/>
+    </div>
+
+    <div class="grid_6" style="text-align: right; margin-top: 10px;">
+        <label><strong>Poin Indeks Rupiah (PIR)</strong></label>
+    </div>
+    <div class="grid_5">
+        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.pirHitungan" disabled/>
     </div>
 </div>
 

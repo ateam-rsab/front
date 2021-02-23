@@ -287,8 +287,8 @@
                 k-pageable="'true'" -->
 			<div class="grid_12">
 				<div kendo-grid id="grid" k-data-source="dataRincianTagihan" k-groupable="'true'" k-selectable="'row'"
-					k-pageable="'true'" k-columns="columnRincianTagihan" k-sortable="'true'"
-					k-ng-model="dataSelected" ng-click="klik(dataSelected)">
+					k-pageable="'true'" k-columns="columnRincianTagihan" k-sortable="'true'" k-ng-model="dataSelected"
+					ng-click="klik(dataSelected)">
 					<!-- <div k-detail-template>
 						<kendo-tabstrip>
 							<div>
@@ -893,7 +893,7 @@
 <!-- Popup rubah password -->
 <div kendo-window="popupRubahPassword" k-title="'Rubah Password Diskon'" k-width="500" k-visible="false"
 	k-on-open="win2visible= true" k-on-close="win2visible= false">
-	
+
 	<div class="panel panel-default container_12" style="padding: 0px 10px;">
 		<div class="grid_12">
 			<div class="grid_10">
@@ -938,7 +938,7 @@
 <!-- popup masukkan password -->
 <div kendo-window="popUpPassword" k-title="'Masukkan Password'" k-width="500" k-visible="false"
 	k-on-open="win2visible= true" k-on-close="win2visible= false">
-	
+
 	<div class="panel panel-default container_12" style="padding: 0px 10px;">
 		<input c-text-box type="password" filter="" class="k-textbox" ng-model="item.passwordUserDiskon" />
 	</div>
@@ -1006,7 +1006,7 @@
 					</div>
 					<div class="grid_12">
 						<input c-text-box filter="numeric" style="text-align: right" class="k-textbox"
-							ng-model="item.persenDiscount" disabled/>
+							ng-model="item.persenDiscount" />
 					</div>
 				</div>
 				<div class="grid_4">

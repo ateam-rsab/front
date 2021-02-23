@@ -271,7 +271,7 @@ define(['initialize'], function (initialize) {
             }
             let pegawais = JSON.parse(localStorage.getItem('pegawai'))
 
-            manageSdmNew.getListData("/map-pegawai-jabatan-unitkerja/get-unit-by-pegawai-jadwal/" + pegawais.id).then(function (res) {
+            manageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-unit-by-pegawai-jadwal/" + pegawais.id).then(function (res) {
                 $scope.listUnitKerja = res.data.data;
                 for (var i = $scope.listUnitKerja.length - 1; i >= 0; i--) {
                     if (!$scope.listUnitKerja[i].isCanCreateJadwal) {

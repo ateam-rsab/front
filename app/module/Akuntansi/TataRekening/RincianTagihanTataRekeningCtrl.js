@@ -3,16 +3,12 @@ define(['initialize'], function (initialize) {
 	initialize.controller('RincianTagihanTataRekeningCtrl', ['$sce', '$state', '$q', '$rootScope', '$scope', '$window', 'ModelItemAkuntansi', 'ManageTataRekening', 'ManageKasir', 'ManagePasien', '$mdDialog',
 		function ($sce, $state, $q, $rootScope, $scope, window, modelItemAkuntansi, manageTataRekening, manageKasir, managePasien, $mdDialog) {
 			$scope.now = new Date();
-			$scope.isDPJP = false;
-			$scope.isDPJPNull = false;
 
 			$scope.dataParams = JSON.parse($state.params.dataPasien);
 			// debugger;
 			$scope.showBilling = false;
 			//$scope.urlBilling = $sce.trustAsResourceUrl(manageTataRekening.openPageBilling($scope.dataParams.noRegistrasi));
 
-			$scope.isUserAud = false;
-			$scope.isAuthenticated = false;
 			$scope.dataUserLogin = JSON.parse(localStorage.getItem('datauserlogin'));
 			$scope.dataPegawai = JSON.parse(localStorage.getItem('pegawai'))
 			$scope.item = {};
@@ -27,6 +23,7 @@ define(['initialize'], function (initialize) {
 
 			var dibayar = 0
 			var verifTotal = 0
+
 
 			$scope.isRouteLoading = false;
 			var norec_ppd = ''
@@ -48,16 +45,6 @@ define(['initialize'], function (initialize) {
 			var dataTampil = 'layanan';
 			//$scope.Pegawai=modelItemAkuntansi.getPegawai();
 
-			manageTataRekening.getDataTableTransaksi("tatarekening/get-komponenharga-pelayanan?norec_pp=201c91f0-5abe-11eb-bc2b-9fd36d22").then(function (data) {
-
-				if (!data.data.dpjp[0].idPegawai) {
-					$scope.isDPJPNull = false;
-					return
-				}
-				$scope.isDPJPNull = true;
-				$scope.isDPJP = $scope.dataPegawai.id == data.data.dpjp[0].idPegawai;
-			});
-
 			LoadData();
 			let validateUser = null;
 			let currentUser = {
@@ -70,90 +57,51 @@ define(['initialize'], function (initialize) {
 				namaPegawai: 'Marini Dewi Hasianna, S.AB',
 				username: 'marini.dewi',
 				idPegawai: 1104,
-				password: "tespassword"
+				password: "tionde"
 			}, {
 				namaPegawai: 'Yulita, S.Kep, Ners',
 				username: 'yulita',
 				idPegawai: 969,
-				password: "tespassword"
+				password: "cerabl"
 			}, {
 				namaPegawai: 'Ni Nengah Kusumawati, S.Kep, Ners',
 				username: 'ni.nengah.kusumawati',
 				idPegawai: 536,
-				password: "tespassword"
+				password: "onombo"
 			}, {
 				namaPegawai: 'Azizud Dermawan, Amd.RS',
 				username: 'azizud',
 				idPegawai: 78,
-				password: "tespassword"
+				password: "rsisdu"
 			}, {
 				namaPegawai: 'Sari Asri, S.Kep, Ners',
 				username: 'sari.asri',
 				idPegawai: 704,
-				password: "tespassword"
+				password: "fasoni"
 			}, {
 				namaPegawai: 'Musirwan, S.Kep, Ners',
 				username: 'musirwan',
 				idPegawai: 502,
-				password: "tespassword"
+				password: "liblet"
 			}, {
 				namaPegawai: 'dr. Abdul Mun\'Im, Sp.AN',
 				username: 'abdul.munim',
 				idPegawai: 10,
-				password: "tespassword"
+				password: "ogymat"
 			}, {
 				namaPegawai: 'Nurhasanah, Amd.Keb, SST',
 				username: 'nurhasanah.04.06',
 				idPegawai: 566,
-				password: "tespassword"
+				password: "gripto"
 			}, {
 				namaPegawai: 'dr. Eva Fahmiah',
 				username: 'eva.fahmiah',
 				idPegawai: 234,
-				password: "tespassword"
-			}];
-
-			$scope.showPopupRubahPasswordDiskon = () => {
-				$scope.popupRubahPassword.open().center();
-			}
-
-			$scope.closePopupRubahPasswordDiskon = () => {
-				$scope.item.passwordBaru = '';
-				$scope.item.passwordLama = '';
-				$scope.item.confPasswordBaru = '';
-				$scope.popupRubahPassword.close();
-			}
-
-			$scope.checkAuthUser = () => {
-				let dataAuth = {
-					idPegawai: `${$scope.dataPegawai.id}`,
-					password: $scope.item.passwordLama
-				}
-				manageTataRekening.postDataExpress('aud/auth-aud', dataAuth).then((data) => {
-					$scope.isAuthenticated = data.data;
-				});
-			}
-
-			$scope.submitRubahPassword = () => {
-				if ($scope.item.confPasswordBaru !== $scope.item.passwordBaru) {
-					toastr.error("Konfirmasi Password Salah");
-					return;
-				}
-
-				let dataChangePassword = {
-					"newPassword": $scope.item.passwordBaru,
-					"lastPassword": $scope.item.passwordLama
-				};
-				manageTataRekening.postDataExpress('aud/change-password?idPegawai=' + $scope.dataPegawai.id, dataChangePassword).then((data) => {
-					$scope.closePopupRubahPasswordDiskon();
-				});
-			}
+				password: "roshwe"
+			}]
 
 			function LoadData() {
 				$scope.isRouteLoading = true;
-				manageTataRekening.getItemExpress("aud/get-user-auth?idPegawai=" + $scope.dataPegawai.id).then((data) => {
-					$scope.isUserAud = data;
-				})
 				manageKasir.getDataTableTransaksi("akutansi/get-tgl-posting", true).then(function (dat) {
 					tgltgltgltgl = dat.data.mindate[0].max
 					tglkpnaja = dat.data.datedate
@@ -183,8 +131,8 @@ define(['initialize'], function (initialize) {
 					}
 					manageTataRekening.saveakomodasitea(objSave).then(function (data) {
 						$q.all([
-								modelItemAkuntansi.getDataTableTransaksi("tatarekening/detail-tagihan/" + $scope.dataParams.noRegistrasi + '?jenisdata=layanan&idruangan=' + $scope.item.ruang2.id)
-							])
+							modelItemAkuntansi.getDataTableTransaksi("tatarekening/detail-tagihan/" + $scope.dataParams.noRegistrasi + '?jenisdata=layanan&idruangan=' + $scope.item.ruang2.id)
+						])
 							.then(function (data) {
 
 								if (data[0].statResponse) {
@@ -239,8 +187,8 @@ define(['initialize'], function (initialize) {
 
 									manageKasir.getDataTableTransaksi("tatarekening/get-sudah-verif?noregistrasi=" +
 										$scope.item.noRegistrasi, true).then(function (dat) {
-										$scope.item.statusVerif = dat.data.status
-									});
+											$scope.item.statusVerif = dat.data.status
+										});
 								}
 
 							});
@@ -275,8 +223,8 @@ define(['initialize'], function (initialize) {
 				});
 
 				$q.all([
-						modelItemAkuntansi.getDataTableTransaksi("tatarekening/detail-tagihan/" + $scope.dataParams.noRegistrasi + '?jenisdata=resep&idruangan=' + $scope.item.ruang2.id)
-					])
+					modelItemAkuntansi.getDataTableTransaksi("tatarekening/detail-tagihan/" + $scope.dataParams.noRegistrasi + '?jenisdata=resep&idruangan=' + $scope.item.ruang2.id)
+				])
 					.then(function (data) {
 
 						if (data[0].statResponse) {
@@ -455,8 +403,8 @@ define(['initialize'], function (initialize) {
 
 				// manageTataRekening.saveakomodasitea(objSave).then(function(data){
 				$q.all([
-						modelItemAkuntansi.getDataTableTransaksi("tatarekening/detail-tagihan/" + $scope.item.noRegistrasi + '?jenisdata=layanan' + strRUanganFilter)
-					])
+					modelItemAkuntansi.getDataTableTransaksi("tatarekening/detail-tagihan/" + $scope.item.noRegistrasi + '?jenisdata=layanan' + strRUanganFilter)
+				])
 					.then(function (data) {
 
 						if (data[0].statResponse) {
@@ -538,12 +486,12 @@ define(['initialize'], function (initialize) {
 					var objSave = {
 						noregistrasi: $scope.item.noRegistrasi
 					}
-					manageTataRekening.postJurnalAkuntansi(objSave).then(function (data) {})
+					manageTataRekening.postJurnalAkuntansi(objSave).then(function (data) { })
 
 					manageTataRekening.saveakomodasitea(objSave).then(function (data) {
 						$q.all([
-								modelItemAkuntansi.getDataTableTransaksi("tatarekening/detail-tagihan/" + $scope.item.noRegistrasi + '?jenisdata=layanan&idruangan=' + $scope.item.ruang2.id)
-							])
+							modelItemAkuntansi.getDataTableTransaksi("tatarekening/detail-tagihan/" + $scope.item.noRegistrasi + '?jenisdata=layanan&idruangan=' + $scope.item.ruang2.id)
+						])
 							.then(function (data) {
 
 								if (data[0].statResponse) {
@@ -592,8 +540,8 @@ define(['initialize'], function (initialize) {
 
 									manageKasir.getDataTableTransaksi("tatarekening/get-sudah-verif?noregistrasi=" +
 										$scope.item.noRegistrasi, true).then(function (dat) {
-										$scope.item.statusVerif = dat.data.status
-									});
+											$scope.item.statusVerif = dat.data.status
+										});
 								}
 
 							});
@@ -686,7 +634,7 @@ define(['initialize'], function (initialize) {
 			}
 			$scope.klikDetail = function (data) {
 				debugger;
-				if (data.komponenharga != "Jasa Sarana") {
+				if (data.komponenharga == "Jasa Medis / Operator") {
 					$scope.button = false;
 					$scope.billing = false;
 					$scope.cetak = false;
@@ -695,13 +643,13 @@ define(['initialize'], function (initialize) {
 					$scope.DiskonKM = true;
 					$scope.label = data.komponenharga;
 					$scope.item.komponenDis = data.hargasatuan;
-					$scope.item.persenDiscount = "";
-					$scope.item.diskonKomponen = "";
+					$scope.item.persenDiscount = "100";
+					$scope.item.diskonKomponen = ((parseFloat($scope.item.komponenDis)) * $scope.item.persenDiscount) / 100
 					norec_ppd = data.norec
 					norec_pp = data.norec_pp
 					strukfk = data.strukfk
 					hargasatuan = data.hargasatuan
-				} else if (data.komponenharga == "Jasa Sarana") {
+				} else if (data.komponenharga != "Jasa Medis / Operator") {
 					$scope.button = true;
 					$scope.billing = true;
 					$scope.cetak = true;
@@ -721,14 +669,14 @@ define(['initialize'], function (initialize) {
 			})
 
 			$scope.UpdateDiskon = function () {
-				if(!$scope.isDPJPNull) { 
-					toastr.warning("Harap isi DPJP terlebih dahulu","DPJP Masih Kosong");
-					return;
+				if ($scope.dpjp == null) {
+					alert('Mohon untuk mengisi dokter DPJP terlebih dahulu di Detail Registrasi!')
+					return
+				} else if ($scope.dpjp != $scope.dataPegawai.id) {
+					alert($scope.dataPegawai.namaLengkap + ' bukan dokter DPJP untuk tindakan ini / tidak memiliki akses diskon!')
+					return
 				}
-				if(!$scope.isDPJP) {
-					toastr.warning("Anda tidak memiliki hak akses untuk memberikan Diskon!");
-					return;
-				}
+
 				if (strukfk != " / ") {
 					alert('Sudah di Verifikasi Tatarekening tidak bisa diskon!')
 					return
@@ -1280,26 +1228,26 @@ define(['initialize'], function (initialize) {
 				});
 				// $scope.isRouteLoading=true;
 				manageTataRekening.getDataTableTransaksi("pelayananpetugas/get-petugasbypelayananpasien?norec_pp=" + $scope.dataSelected.norec).
-				then(function (data) {
-					$scope.sourceDokterPelaksana = data.data.data;
-					// $scope.isRouteLoading=false;
+					then(function (data) {
+						$scope.sourceDokterPelaksana = data.data.data;
+						// $scope.isRouteLoading=false;
 
-				});
+					});
 			}
 
 
 			$scope.columnDokters = [{
-					field: "jenispetugaspe",
-					title: "Jenis Pelaksana",
-					width: "100px",
-					// template: "#= jenisPetugas.jenisPelaksana #"
-				},
-				{
-					field: "namalengkap",
-					title: "Nama Pegawai",
-					width: "200px",
-					// template: multiSelectArrayToString
-				}
+				field: "jenispetugaspe",
+				title: "Jenis Pelaksana",
+				width: "100px",
+				// template: "#= jenisPetugas.jenisPelaksana #"
+			},
+			{
+				field: "namalengkap",
+				title: "Nama Pegawai",
+				width: "200px",
+				// template: multiSelectArrayToString
+			}
 			];
 			$scope.simpanDokterPelaksana = function () {
 				if ($scope.model.jenisPelaksana == undefined || $scope.model.jenisPelaksana == "") {
@@ -1802,7 +1750,6 @@ define(['initialize'], function (initialize) {
 
 				if ($scope.item.passwordUserDiskon === validateUser.password) {
 					$scope.UpdateDiskon();
-					$scope.item.passwordUserDiskon = "";
 					$scope.popUpPassword.close();
 				} else {
 					$scope.item.passwordUserDiskon = '';
@@ -1840,17 +1787,11 @@ define(['initialize'], function (initialize) {
 						data: data.data.data,
 						pageSize: 10
 					})
+					$scope.dpjp = data.data.dpjp[0].idPegawai
 				});
-
 			}
 			$scope.klikKomponen = function (dataSelectedKomponen) {
-				// https://smart.rsabhk.co.id:2222/simrs_harkit/service/transaksi/tatarekening/get-komponenharga-pelayanan?norec_pp=81ee50b0-523b-11eb-928a-8708f11e
-				// " + $scope.dataSelected.norec
-
-				if (dataSelectedKomponen.komponenharga === "Jasa Medis / Operator") {
-					$scope.DiskonKM = false;
-					$scope.item.persenDiscount = "100";
-				} else {
+				if (dataSelectedKomponen.komponenharga == "Jasa Medis / Operator") {
 					// $scope.button = false;
 					// $scope.billing = false;
 					// $scope.cetak = false;
@@ -1859,38 +1800,40 @@ define(['initialize'], function (initialize) {
 					$scope.DiskonKM = true;
 					$scope.label = dataSelectedKomponen.komponenharga;
 					$scope.item.komponenDis = dataSelectedKomponen.hargasatuan;
-					$scope.item.persenDiscount = "";
-					$scope.item.diskonKomponen = "";
+					$scope.item.persenDiscount = "100";
+					$scope.item.diskonKomponen = ((parseFloat($scope.item.komponenDis)) * $scope.item.persenDiscount) / 100
 					norec_ppd = dataSelectedKomponen.norec
 					norec_pp = dataSelectedKomponen.norec_pp
 					strukfk = $scope.dataSelected.strukfk
 					hargasatuan = dataSelectedKomponen.hargasatuan
+				} else {
+					$scope.DiskonKM = false;
 				}
 			}
 
 
 			$scope.columnKomponens = [{
-					"field": "komponenharga",
-					"title": "Komponen",
-					"width": "100px",
-				},
-				{
-					"field": "jumlah",
-					"title": "Jumlah",
-					"width": "50px"
-				},
-				{
-					"field": "hargasatuan",
-					"title": "Harga Satuan",
-					"width": "80px",
-					"template": "<span class='style-right'>{{formatRupiah('#: hargasatuan #', '')}}</span>"
-				},
-				{
-					"field": "hargadiscount",
-					"title": "Diskon",
-					"width": "80px",
-					"template": "<span class='style-right'>{{formatRupiah('#: hargadiscount #', '')}}</span>"
-				}
+				"field": "komponenharga",
+				"title": "Komponen",
+				"width": "100px",
+			},
+			{
+				"field": "jumlah",
+				"title": "Jumlah",
+				"width": "50px"
+			},
+			{
+				"field": "hargasatuan",
+				"title": "Harga Satuan",
+				"width": "80px",
+				"template": "<span class='style-right'>{{formatRupiah('#: hargasatuan #', '')}}</span>"
+			},
+			{
+				"field": "hargadiscount",
+				"title": "Diskon",
+				"width": "80px",
+				"template": "<span class='style-right'>{{formatRupiah('#: hargadiscount #', '')}}</span>"
+			}
 
 			];
 			// **end ShowKomponen
@@ -2037,16 +1980,16 @@ define(['initialize'], function (initialize) {
 			function loadListTindakanTakTerklaim() {
 				manageTataRekening.getDataTableTransaksi("tatarekening/detail-tindakan-takterklaim?noregistrasi=" +
 					$scope.dataParams.noRegistrasi).then(function (data) {
-					data2 = data.data.data
-					var total = 0;
-					for (var i = 0; i < data2.length; i++) {
-						total = parseFloat(total) + parseFloat(data2[i].total);
-					}
-					$scope.item.TotalTakterklaim = parseFloat(total).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
-					$scope.sourceTindakan = new kendo.data.DataSource({
-						data: data2
+						data2 = data.data.data
+						var total = 0;
+						for (var i = 0; i < data2.length; i++) {
+							total = parseFloat(total) + parseFloat(data2[i].total);
+						}
+						$scope.item.TotalTakterklaim = parseFloat(total).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+						$scope.sourceTindakan = new kendo.data.DataSource({
+							data: data2
+						});
 					});
-				});
 			}
 
 			$scope.ListTindakanTakTerklaim = function () {
@@ -2188,66 +2131,66 @@ define(['initialize'], function (initialize) {
 			}
 
 			$scope.columnTindakan = [{
-					"template": "<input type='checkbox' class='checkbox' ng-click='onClickSatu($event)' />",
-					"width": 40
-				},
-				{
-					"field": "tglPelayanan",
-					"title": "Tanggal",
-					"width": "100px",
-					"template": "<span class='style-left'>{{formatTanggal('#: tglPelayanan #')}}</span>"
-					// "template": "#= new moment(new Date(tglPelayanan)).format('DD-MM-YYYY HH:mm') #",
-				},
-				{
-					"field": "namaPelayanan",
-					"title": "Nama Pelayanan",
-					"width": "200px",
-				},
-				{
-					"field": "kelasTindakan",
-					"title": "Kelas",
-					"width": "100px",
-				},
-				{
-					"field": "dokter",
-					"title": "Dokter",
-					"width": "170px",
-				},
-				{
-					"field": "ruanganTindakan",
-					"title": "Ruangan",
-					"width": "200px",
-				},
-				{
-					"field": "jumlah",
-					"title": "Qty",
-					"width": "50px",
-					"template": "<span class='style-right'>#: jumlah #</span>"
-				},
-				{
-					"field": "harga",
-					"title": "Harga",
-					"width": "120px",
-					"template": "<span class='style-right'>{{formatRupiah('#: harga #', '')}}</span>"
-				},
-				{
-					"field": "diskon",
-					"title": "Harga Diskon",
-					"width": "120px",
-					"template": "<span class='style-right'>{{formatRupiah('#: diskon #', '')}}</span>"
-				},
-				{
-					"field": "jasa",
-					"title": "Jasa",
-					"width": "70px",
-					"template": "<span class='style-right'>{{formatRupiah('#: jasa #', '')}}</span>"
-				},
-				{
-					"field": "total",
-					"title": "Total",
-					"width": "120px",
-					"template": "<span class='style-right'>{{formatRupiah('#: total #', '')}}</span>"
-				}
+				"template": "<input type='checkbox' class='checkbox' ng-click='onClickSatu($event)' />",
+				"width": 40
+			},
+			{
+				"field": "tglPelayanan",
+				"title": "Tanggal",
+				"width": "100px",
+				"template": "<span class='style-left'>{{formatTanggal('#: tglPelayanan #')}}</span>"
+				// "template": "#= new moment(new Date(tglPelayanan)).format('DD-MM-YYYY HH:mm') #",
+			},
+			{
+				"field": "namaPelayanan",
+				"title": "Nama Pelayanan",
+				"width": "200px",
+			},
+			{
+				"field": "kelasTindakan",
+				"title": "Kelas",
+				"width": "100px",
+			},
+			{
+				"field": "dokter",
+				"title": "Dokter",
+				"width": "170px",
+			},
+			{
+				"field": "ruanganTindakan",
+				"title": "Ruangan",
+				"width": "200px",
+			},
+			{
+				"field": "jumlah",
+				"title": "Qty",
+				"width": "50px",
+				"template": "<span class='style-right'>#: jumlah #</span>"
+			},
+			{
+				"field": "harga",
+				"title": "Harga",
+				"width": "120px",
+				"template": "<span class='style-right'>{{formatRupiah('#: harga #', '')}}</span>"
+			},
+			{
+				"field": "diskon",
+				"title": "Harga Diskon",
+				"width": "120px",
+				"template": "<span class='style-right'>{{formatRupiah('#: diskon #', '')}}</span>"
+			},
+			{
+				"field": "jasa",
+				"title": "Jasa",
+				"width": "70px",
+				"template": "<span class='style-right'>{{formatRupiah('#: jasa #', '')}}</span>"
+			},
+			{
+				"field": "total",
+				"title": "Total",
+				"width": "120px",
+				"template": "<span class='style-right'>{{formatRupiah('#: total #', '')}}</span>"
+			}
 			];
 
 		}
