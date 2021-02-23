@@ -1,0 +1,89 @@
+<style>
+    .mt-progress-bar {
+        border: 1px solid #38c4b2;
+        border-radius: .25em;
+        height: 24px;
+        /* margin-bottom: 2em; */
+        width: 100%;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .mt-progress-bar:hover, .mt-progress-bar[value]::-webkit-progress-value:hover {
+        background-color: #07ffd6;
+    }
+
+    .mt-progress-bar::-webkit-progress-bar {
+        background-color: #fff;
+        border-radius: .25em;
+    }
+
+    /* determinate progress bar */
+    .mt-progress-bar[value] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+
+    .mt-progress-bar-value {}
+
+    .mt-progress-bar[value]::-moz-progress-bar {
+        background-color: #99f3e7;
+        border-radius: .25em;
+    }
+
+    .mt-progress-bar[value]::-webkit-progress-value {
+        background-color: #99f3e7;
+        border-radius: .25em;
+    }
+
+    progress.mt-progress-bar:before {
+        content: attr(data-label);
+        font-size: 1em;
+        vertical-align: 0;
+
+        /*Position text over the progress bar */
+        position: absolute;
+        /* left: 10px; */
+        top: 5px;
+        right: 10px;
+        font-weight: bolder;
+    }
+</style>
+
+<md-toolbar md-scroll-shrink class="shadow">
+    <div class="md-toolbar-tools">Dashboard Pencatatan Kinerja</div>
+</md-toolbar>
+
+<div class="grid_12">
+
+    <md-card>
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">Muhammad Refel Hidayatullah</span>
+                <span class="md-subhead">Programmer Ulung</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            <progress id="headProgress" class="mt-progress-bar" max="100" value="87" data-label="Rp. 9.243.459, 00" ng-click="detail()"></progress>
+            <hr>
+            <div class="grid_12">
+                <span>Kuantitas</span>
+                <progress class="mt-progress-bar" max="100" value="79" data-label="79%"></progress>
+            </div>
+
+            <div class="grid_12">
+                <span>Kualitas</span>
+                <progress class="mt-progress-bar" max="100" value="50" data-label="50%"></progress>
+            </div>
+
+            <div class="grid_12">
+                <span>Perilaku</span>
+
+                <progress class="mt-progress-bar" max="100" value="87" data-label="87%">
+                </progress>
+            </div>
+        </md-card-content>
+    </md-card>
+
+</div>

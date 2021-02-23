@@ -371,6 +371,9 @@
     {
       "nameDep": "MasterAnggaranRemunerasiCtrl",
       "urlDep": "module/SDM/MasterAnggaranRemunerasiCtrl"
+    }, {
+      "nameDep": "MasterIndikatorKinerjaCtrl",
+      "urlDep": "module/SDM/MasterIndikatorKinerjaCtrl"
     },
     {
       "nameDep": "DaftarJadwalKredensialCtrl",
@@ -803,6 +806,10 @@
     {
       "nameDep": "RekapitulasiEvaluasiJabatanCtrl",
       "urlDep": "module/SDM/Remunerasi/RekapitulasiEvaluasiJabatanCtrl"
+    },
+    {
+      "nameDep": "DashboardPencatatanKinerjaCtrl",
+      "urlDep": "module/SDM/Remunerasi/DashboardPencatatanKinerjaCtrl"
     },
     {
       "nameDep": "RiwayatEvaluasiJabatanCtrl",

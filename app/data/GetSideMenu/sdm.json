@@ -1,16 +1,33 @@
 [
     {
-        "name": "Master Data SDM",
-        "children": [
+        "name": "Aplikasi Remunerasi",
+        "children": [ 
             {
-                "name": "Master Remunerasi",
+                "name": "Master",
                 "children": [
                     {
                         "name": "Master Anggaran Remunerasi",
                         "link": "#/MasterAnggaranRemunerasi"
+                    }, {
+                        "name": "Master Indikator Kinerja",
+                        "link": "#/MasterIndikatorKinerja"
                     }
                 ]
-            },
+            }, {
+                "name": "Transaksi",
+                "children": [ 
+                    {
+                        "name": "Dashboard Pencatatan Kinerja",
+                        "link": "#/DashboardPencatatanKinerja"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Master Data SDM",
+        "children": [
+            
             {
                 "name": "Master Uraian Tugas Pegawai",
                 "link": "#/MappingUraianTugas"

@@ -513,6 +513,10 @@
       "urlDep": "module/Laboratorium/DaftarPasienLaboratoriumCtrl"
     },
     {
+      "nameDep": "DashboardAntrianPasienLabCtrl",
+      "urlDep": "module/Laboratorium/DashboardAntrianPasienLabCtrl"
+    },
+    {
       "nameDep": "TransaksiPelayananLaboratoriumCtrl",
       "urlDep": "module/Laboratorium/TransaksiPelayananLaboratoriumCtrl"
     },

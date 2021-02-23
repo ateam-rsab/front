@@ -2530,6 +2530,25 @@
         "define": "SdmService"
       }
     ]
+  }, {
+    "name": "MasterIndikatorKinerja",
+    "url": "/MasterIndikatorKinerja",
+    "templateurl": "module/SDM/MasterIndikatorKinerja.html",
+    "controller": "MasterIndikatorKinerjaCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      }
+    ]
   },
   {
     "name": "MasterJabatanRev",
@@ -4572,6 +4591,30 @@
     "url": "/RekapitulasiEvaluasiJabatan",
     "templateurl": "module/SDM/Remunerasi/RekapitulasiEvaluasiJabatan.html",
     "controller": "RekapitulasiEvaluasiJabatanCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      }
+    ]
+  },
+  {
+    "name": "DashboardPencatatanKinerja",
+    "url": "/DashboardPencatatanKinerja",
+    "templateurl": "module/SDM/Remunerasi/DashboardPencatatanKinerja.html",
+    "controller": "DashboardPencatatanKinerjaCtrl",
     "deps": [
       {
         "module": "Services",

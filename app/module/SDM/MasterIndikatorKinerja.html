@@ -1,0 +1,63 @@
+<style>
+    md-checkbox.md-checked.green .md-icon {
+        background-color: #38c4b2;
+    }
+</style>
+
+<md-toolbar md-scroll-shrink class="shadow">
+    <div class="md-toolbar-tools">Master Indikator Kinerja</div>
+</md-toolbar>
+<div class="grid_12">
+    <div kendo-grid k-data-source="dataSourceMasterKinerja" k-selectable="'row'" options="optGridMasterKinerja"
+        k-ng-model="selectedData"></div>
+</div>
+
+<div kendo-window="popupTambah" k-title="'Tambah Data Master Indikator Kinerja '" k-width="800" k-visible="false"
+    k-on-open="win2visible= true" k-on-close="win2visible= false">
+    <div class="panel panel-default container_12" style="padding: 0px 10px;">
+
+        <md-card>
+            <div class="grid_12">
+                <div class="grid_6">
+                    <label><strong>Jenis Indikator</strong></label>
+                    <input kendo-combo-box k-ng-model="item.jenisIndikator" k-data-text-field="'jenisIndikator'"
+                        k-data-value-field="'id'" k-data-source="listJenisIndikator" />
+                </div>
+                <div class="grid_6">
+                    <label><strong>Satuan Indikator</strong></label>
+                    <input kendo-combo-box k-ng-model="item.satuanIndikator" k-data-text-field="'satuanIndikator'"
+                        k-data-value-field="'id'" k-data-source="listDataSatuanIndikator" />
+                </div>
+
+                <div class="grid_6">
+                    <label><strong>Nama Indikator</strong></label>
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaIndikator" />
+                </div>
+
+                <div class="grid_6">
+                    <!-- <input type="checkbox" id="eq1" class="k-checkbox" checked="checked"> -->
+                    <md-checkbox ng-model="item.statusVerif" aria-label="verified" style="margin-top:24px"
+                        class="green">
+                        Status Verifikasi
+                    </md-checkbox>
+                </div>
+            </div>
+        </md-card>
+
+        <div class="k-edit-buttons k-state-default" style="margin-top:10px">
+            <div class="grid_8"></div>
+            <div class="grid_2">
+                <md-button class="md-raised md-warn medium-button" ng-click="closePopUp()">
+                    <span style="margin-right: 5px;">Batal</span>
+                    <i class="fa fa-close"></i>
+                </md-button>
+            </div>
+            <div class="grid_2">
+                <md-button class="md-raised md-primary medium-button" ng-click="simpanData('save')">
+                    <span style="margin-right: 5px;">Simpan</span>
+                    <i class="fa fa-save"></i>
+                </md-button>
+            </div>
+        </div>
+    </div>
+</div>

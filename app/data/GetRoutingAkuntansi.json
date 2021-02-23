@@ -2524,6 +2524,26 @@
     ]
   },
   {
+    "name": "DashboardAntrianPasienLab",
+    "url": "/DashboardAntrianPasienLab",
+    "templateurl": "module/Laboratorium/DashboardAntrianPasienLab.html",
+    "controller": "DashboardAntrianPasienLabCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
+      }
+    ]
+  },
+  {
     "name": "TransaksiPelayananLaboratorium",
     "url": "/TransaksiPelayananLaboratorium",
     "templateurl": "module/Laboratorium/TransaksiPelayananLaboratorium.html",

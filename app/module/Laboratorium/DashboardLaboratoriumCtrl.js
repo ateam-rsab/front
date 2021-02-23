@@ -110,7 +110,6 @@ define(['initialize'], function(initialize, pasienServices) {
             $scope.refresh = function() {
                 $scope.isLoading = true;
                 findPasienLaboratorium.getListPatient('', dateHelper.formatDate(new Date(), 'YYYY-MM-DD 00:00:00'), dateHelper.formatDate(new Date(), 'YYYY-MM-DD HH:mm:59'), $scope.noCm, ModelItem.getPegawai()).then(function(e) {
-                    debugger;
                     var data = e.data.data;
                     $scope.isLoading = false;
                     var count = _.filter(data, function(e) {

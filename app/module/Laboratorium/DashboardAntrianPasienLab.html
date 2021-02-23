@@ -1,0 +1,116 @@
+<style>
+    body {
+        font-family: "lato", sans-serif;
+    }
+
+    .container-antrian {
+        margin-top: 10px;
+        /* margin-top: 10px;
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 10px;
+        padding-right: 10px; */
+    }
+
+    .responsive-table-antrian li {
+        border-radius: 3px;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+    }
+
+    .responsive-table-antrian li.table-row {
+        margin-bottom: 10px;
+    }
+
+    .responsive-table-antrian .table-header {
+        background-color: #545454;
+        color: #fff;
+        font-size: 14px;
+        font-weight: bolder;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+    }
+
+    .responsive-table-antrian .table-row {
+        font-weight: 600;
+        background-color: #bbfcbf;
+        box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+    }
+
+    .responsive-table-antrian .col-1 {
+        flex-basis: 10%;
+    }
+
+    .responsive-table-antrian .col-2 {
+        flex-basis: 40%;
+    }
+
+    .responsive-table-antrian .col-3 {
+        flex-basis: 25%;
+    }
+
+    .responsive-table-antrian .col-4 {
+        flex-basis: 25%;
+    }
+
+    ul,
+    li {
+        padding: 10px;
+    }
+
+    @media all and (max-width: 767px) {
+        .responsive-table-antrian .table-header {
+            display: none;
+        }
+
+        .responsive-table-antrian li {
+            display: block;
+        }
+
+        .responsive-table-antrian .col {
+            flex-basis: 100%;
+        }
+
+        .responsive-table-antrian .col {
+            display: flex;
+            padding: 10px 0;
+        }
+
+        .responsive-table-antrian .col:before {
+            color: #6c7a89;
+            /* padding-right: 10px; */
+            content: attr(data-label);
+            flex-basis: 50%;
+            text-align: right;
+        }
+    }
+</style>
+
+<div class="container-antrian">
+    <ul class="responsive-table-antrian">
+        <li class="table-header">
+            <div class="col col-1">No. Antrian</div>
+            <div class="col col-1">Tanggal Order</div>
+            <div class="col col-4">Nama Pasien</div>
+            <div class="col col-3">No. Rekam Medis</div>
+            <div class="col col-3">No. Registrasi</div>
+        </li>
+        <li class="table-row" ng-repeat="data in dataPasienAntrian">
+            <div class="col col-1" data-label="No. Antrian">{{$index + 1}}</div>
+            <div class="col col-1" data-label="Tanggal Order">{{data.tglorder}}</div>
+            <div class="col col-4" data-label="Nama Pasien">{{data.namapasien}}</div>
+            <div class="col col-3" data-label="No. Rekam Medis">{{data.nocm}}</div>
+            <div class="col col-3" data-label="No. Registrasi">{{data.noregistrasi}}</div>
+        </li>
+        <!-- <li class="table-row">
+            <div class="col col-1" data-label="No. Antrian">2</div>
+            <div class="col col-1" data-label="Tanggal Order">Hari ini</div>
+            <div class="col col-4" data-label="Nama Pasien">Asma K. Fatima</div>
+            <div class="col col-3" data-label="No. Rekam Medis">200300</div>
+            <div class="col col-3" data-label="No. Registrasi">000812321</div>
+        </li> -->
+    </ul>
+</div>

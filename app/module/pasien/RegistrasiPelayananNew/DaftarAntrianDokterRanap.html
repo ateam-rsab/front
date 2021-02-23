@@ -90,7 +90,8 @@
                         k-sortable="'true'"
                         k-pageable="'true'"
                         k-columns="ColumnPasien"
-                        ng-click="klikGrid(item)">
+                        ng-click="klikGrid(item)"
+                        >
                     </div>
 
                 </div>
@@ -115,44 +116,11 @@
                 ng-click="rekamMedisElektronik()">
                 Pengkajian Medis
             </md-button>
-            <!-- <c-button style="width: 100%; padding:0px;margin:0px;"
-                ng-click="rekamMedisElektronik()" position="'right'">
-                <span class="title">Pengkajian Medis</span>
-            </c-button> -->
         </div>
-        <!-- <div class="grid_3">
-            <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="inputTindakanDokter()" position="'right'">
-                <span class="title">Input Tindakan</span>
-            </c-button>
-        </div> -->
-        <!--  <div class="grid_3">
-            <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="detailOrder()" position="'right'">
-                <span class="title">Rincian</span>
-            </c-button>
-        </div> -->
-        <!-- <div class="grid_3">
-            <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="resep()" position="'right'">
-                <span class="title">Resep Elektronik</span>
-            </c-button>
-        </div>
-        <div class="grid_3">
-            <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="laboratorium()" position="'right'">
-                <span class="title">Penunjang Laboratorium</span>
-            </c-button>
-        </div>
-        <div class="grid_3">
-            <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="radiologi()" position="'right'">
-                <span class="title">Penunjang Radiologi</span>
-            </c-button>
-        </div> -->
         <div class="grid_3">
             <md-button class="md-raised md-primary" ng-click="Detail()">
                 Rincian
             </md-button>
-            <!-- <c-button style="width: 100%; padding:0px; margin:0px;"
-                ng-click="Detail()" position="'right'">
-                <span class="title">Rincian</span>
-            </c-button> -->
         </div>
         <div class="grid_3">
             <md-button class="md-raised md-primary" ng-click="konsul()"
@@ -160,12 +128,13 @@
                 <span style="margin-right: 10px;">Konsultasi</span>
                 <span class="button-badge">{{lengthKonsul}}</span>
             </md-button>
-            <!-- <c-button style="width: 100%; padding:0px;margin:0px;"
-                ng-click="konsul()" position="'right'">
-                <span class="title">Konsultasi <a style="color:white"
-                        ng-show="showNotif"><span class="notif">{{lengthKonsul}}</span>
-                    </a></span>
-            </c-button> -->
+        </div>
+
+        <div class="grid_3">
+            <md-button class="md-raised md-button md-primary smart-button-warn"
+                ng-click="cetakSEPPasien()">
+                Cetak SEP
+            </md-button>
         </div>
         <!-- <div class="grid_3">
             <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="pengkajianMedis()" position="'right'">
@@ -295,10 +264,6 @@
             k-width="1200" k-height="450" k-visible="false"
             k-on-open="win2visible= true" k-on-close="win2visible= false">
             <div class="view">
-                <!-- <div style="width: 200px">
-                    <label><strong>Dokter Konsultasi</strong></label>
-                    <p style="text-decoration: underline">{{item.namalengkap}}</p>
-                </div> -->
                 <div>
                     <label><strong>Jenis Konsultasi</strong></label>
                     <p style="text-decoration: underline">{{item.jeniskonsultasi}}</p>

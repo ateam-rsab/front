@@ -139,6 +139,21 @@ define(['initialize'], function(initialize) {
                 $scope.winKonsul.center().open();
             }
 
+            $scope.cetakSEPPasien = () => {
+                console.log($scope.item);
+                if(!$scope.item.norec_pd) {
+                    toastr.info("Harap pilih Pasien!");
+                    return;
+                }
+
+                if($scope.item.kelompokpasien !== "BPJS") {
+                    toastr.info("Bukan Pasien BPJS!");
+                    return;
+                }
+
+                window.open("http://172.16.44.33:7777/service-reporting/cetak-sep/" + $scope.item.norec_pd, "_blank", "fullscreen=yes");
+            }
+
             $scope.SearchEnter = function () {
                 loadData()
             }
