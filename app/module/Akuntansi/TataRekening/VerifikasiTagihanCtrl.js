@@ -7,7 +7,7 @@ define(['initialize'], function (initialize) {
 			$scope.now = new Date();
 			$scope.nowFormated = moment($scope.now).format('DD-MM-YYYY');
 			$scope.pageCetak = false;
-			$scope.showKelengkapanDokumen = false;gi
+			$scope.showKelengkapanDokumen = false; gi
 			$scope.item = {};
 			$scope.tombolSaveIlang = true;
 			$scope.isDiskonRSAB = false;
@@ -99,10 +99,18 @@ define(['initialize'], function (initialize) {
 								$scope.isRouteLoading = true
 								manageSdmNew.getListData("pelayanan/klaim-diskon-karyawan?noRegistrasi=" + $scope.item.noRegistrasi + "&totalKlaim=" + $scope.item.totalKlaim)
 									.then(function (e) {
-										$scope.SaveLogUser();
-										window.history.back();
-										$scope.isRouteLoading = false
-										$scope.tombolSaveIlang = true;
+										//set nol kembali karena klaim ke diri sendiri bukan ke penjamin/ pihak ketiga
+										$scope.item.totalKlaim = 0;
+										manageTataRekening.saveVerifikasiTagihan($scope.item)
+											.then(function (e) {
+												$scope.SaveLogUser();
+												window.history.back();
+												$scope.isRouteLoading = false
+												$scope.tombolSaveIlang = true;
+											}, function () {
+												$scope.isRouteLoading = false
+												$scope.tombolSaveIlang = true;
+											});
 									});
 							}, function () {
 								// error function

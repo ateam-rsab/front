@@ -16,17 +16,17 @@ define(['initialize'], function (initialize) {
                     title: "<h3>Jenis Indikator</h3>",
                     width: 70
                 }, {
-                    field: "satuanIndikator",
-                    title: "<h3>Satuan Indikator</h3>",
-                    width: 150
-                }, {
                     field: "namaIndikator",
                     title: "<h3>Nama Indikator</h3>",
-                    width: 120
+                    width: 150
+                }, {
+                    field: "satuanIndikator",
+                    title: "<h3>Satuan Indikator</h3>",
+                    width: 70
                 }, {
                     field: "statusVerifikasi",
                     title: "<h3>Status</h3>",
-                    width: 120
+                    width: 70
                 }, {
                     command: [{
                         text: "Edit",
@@ -87,7 +87,7 @@ define(['initialize'], function (initialize) {
                     $scope.reset();
                     console.error('Tidak jadi hapus');
                 });
-                
+
             }
 
             $scope.item.statusVerif = true;
