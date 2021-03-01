@@ -11,6 +11,7 @@ define(['initialize'], function (initialize) {
 			$scope.item = {};
 			$scope.tombolSaveIlang = true;
 			$scope.isDiskonRSAB = false;
+			$scope.isDiskonKaryawanKeluargaInti = false;
 
 			$scope.dataParams = JSON.parse($state.params.dataPasien);
 
@@ -20,7 +21,7 @@ define(['initialize'], function (initialize) {
 				.then(function (data) {
 
 					if (data[0].statResponse) {
-						$scope.isDiskonRSAB = (data[0].kelompokPasienID === 3 || data[0].kelompokPasienID === 5) && data[0].rekananID === 2905;
+						$scope.isDiskonRSAB = data[0].kelompokPasienID === 1;
 
 						$scope.item = data[0];
 						if (data[0].needDokument) {
@@ -80,17 +81,17 @@ define(['initialize'], function (initialize) {
 				var isValid = modelItemAkuntansi.setValidation($scope, listRawRequired);
 
 				if (isValid.status) {
-					if ($scope.isDiskonRSAB) {
+					if ($scope.isDiskonRSAB && $scope.isDiskonKaryawanKeluargaInti) {
 						if ($scope.item.totalKlaim > $scope.item.billing / 2) {
 							$scope.isRouteLoading = false
 							$scope.tombolSaveIlang = true
-							toastr.warning("Total Klaim diskon karyawan tidak boleh lebih besar dari 50% Total Billing!")
+							toastr.warning("Total diskon karyawan/ keluarga inti tidak boleh lebih besar dari 50% Total Billing!")
 							return
 						} else {
 							$scope.isRouteLoading = false
 							var confirm = $mdDialog.confirm()
-								.title('Konfirmasi Klaim Diskon Karyawan')
-								.textContent('Klaim diskon karyawan sebesar ' + formatRupiah($scope.item.totalKlaim, "Rp"))
+								.title('Konfirmasi Diskon Karyawan/ Keluarga Inti')
+								.textContent('Diskon karyawan/ keluarga inti sebesar ' + formatRupiah($scope.item.totalKlaim, "Rp"))
 								.ariaLabel('Lucky day')
 								.targetEvent(e)
 								.ok('OK')
@@ -101,6 +102,7 @@ define(['initialize'], function (initialize) {
 									.then(function (e) {
 										//set nol kembali karena klaim ke diri sendiri bukan ke penjamin/ pihak ketiga
 										$scope.item.totalKlaim = 0;
+										$scope.item.isDiskon = $scope.isDiskonKaryawanKeluargaInti
 										manageTataRekening.saveVerifikasiTagihan($scope.item)
 											.then(function (e) {
 												$scope.SaveLogUser();
@@ -190,6 +192,19 @@ define(['initialize'], function (initialize) {
 			$scope.$watch('item.totalKlaim', function (newValue, oldValue) {
 				$scope.item.jumlahBayar = $scope.item.billing - newValue - $scope.item.deposit;
 			});
+
+			$scope.toogleClick = function (ev) {
+				var checked = ev.target.checked;
+				var inputId = ev.currentTarget.id;
+				if (inputId.indexOf("diskon") >= 0 && checked) {
+					$scope.showTtlKlaim = true
+					$scope.showTtlKlaim2 = false
+				} else {
+					$scope.showTtlKlaim = false
+					$scope.showTtlKlaim2 = true
+					$scope.item.totalKlaim = 0
+				}
+			};
 		}
 	]);
 });
