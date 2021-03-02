@@ -22,6 +22,9 @@
                     },  {
                         "name": "Skoring Tindakan Medis",
                         "link": "#/SkoringTindakanMedis"
+                    }, {
+                        "name": "Kontrak Kinerja Individu",
+                        "link": "#/KontrakKinerjaIndividu"
                     }
                 ]
             }

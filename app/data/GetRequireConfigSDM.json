@@ -816,6 +816,10 @@
       "urlDep": "module/SDM/Remunerasi/SkoringTindakanMedisCtrl"
     },
     {
+      "nameDep": "KontrakKinerjaIndividuCtrl",
+      "urlDep": "module/SDM/Remunerasi/KontrakKinerjaIndividuCtrl"
+    },
+    {
       "nameDep": "RiwayatEvaluasiJabatanCtrl",
       "urlDep": "module/SDM/Remunerasi/RiwayatEvaluasiJabatanCtrl"
     },

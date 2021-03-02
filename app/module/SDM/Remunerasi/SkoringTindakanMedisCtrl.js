@@ -164,7 +164,7 @@ define(['initialize'], function (initialize) {
                 let dataSave = {
                     detailProduk: $scope.item.detailTindakan,
                     skor: parseInt($scope.item.skor),
-                    statusVerifikasi: $scope.item.statusVerif,
+                    statusVerifikasi: $scope.item.statusVerif? true : false,
                     tanggalMulaiBerlaku: dateHelper.toTimeStamp($scope.item.tglBerlaku),
                     produk: {
                         id: $scope.item.namaProduk.id
