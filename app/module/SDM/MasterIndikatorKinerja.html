@@ -20,12 +20,12 @@
             <div class="grid_12">
                 <div class="grid_6">
                     <label><strong>Jenis Indikator</strong></label>
-                    <input kendo-combo-box k-ng-model="item.jenisIndikator" k-data-text-field="'jenisIndikator'"
+                    <input kendo-combo-box k-filter="'contains'" k-ng-model="item.jenisIndikator" k-data-text-field="'jenisIndikator'"
                         k-data-value-field="'id'" k-data-source="listJenisIndikator" />
                 </div>
                 <div class="grid_6">
                     <label><strong>Satuan Indikator</strong></label>
-                    <input kendo-combo-box k-ng-model="item.satuanIndikator" k-data-text-field="'satuanIndikator'"
+                    <input kendo-combo-box k-filter="'contains'" k-ng-model="item.satuanIndikator" k-data-text-field="'satuanIndikator'"
                         k-data-value-field="'id'" k-data-source="listDataSatuanIndikator" />
                 </div>
 

@@ -19,6 +19,9 @@
                     {
                         "name": "Dashboard Pencatatan Kinerja",
                         "link": "#/DashboardPencatatanKinerja"
+                    },  {
+                        "name": "Skoring Tindakan Medis",
+                        "link": "#/SkoringTindakanMedis"
                     }
                 ]
             }

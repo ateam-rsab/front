@@ -812,6 +812,10 @@
       "urlDep": "module/SDM/Remunerasi/DashboardPencatatanKinerjaCtrl"
     },
     {
+      "nameDep": "SkoringTindakanMedisCtrl",
+      "urlDep": "module/SDM/Remunerasi/SkoringTindakanMedisCtrl"
+    },
+    {
       "nameDep": "RiwayatEvaluasiJabatanCtrl",
       "urlDep": "module/SDM/Remunerasi/RiwayatEvaluasiJabatanCtrl"
     },

@@ -29952,6 +29952,10 @@
       {
         "module": "LoginServices",
         "define": "LoginService"
+      }, 
+      {
+        "module": "PhpService",
+        "define": "PhpService"
       }
     ]
   },

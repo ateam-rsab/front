@@ -607,26 +607,31 @@ define(['initialize'], function (initialize) {
 			}
 
 			$scope.Tracer = function () {
-				if ($scope.dataPasienSelected.noregistrasi != undefined) {
-					// var fixUrlLaporan = cetakHelper.open("reporting/lapTracer?noRegistrasi=" + $scope.item.pasienDaftar.noRegistrasi);
-					// window.open(fixUrlLaporan, '', 'width=800,height=600')
+				console.log($scope.dataPasienSelected);
+				// http://192.168.12.3:5555/simrs_harkit/service/transaksi/dokumenrm/kirim-status-tracing?norec=63781930-2932-11eb-9d8b-7d339826
+				manageTataRekening.postData("dokumenrm/kirim-status-tracing?norec=" + $scope.dataPasienSelected.norec).then(res => {
+					console.log(res);
+				})
+				// if ($scope.dataPasienSelected.noregistrasi != undefined) {
+				// 	// var fixUrlLaporan = cetakHelper.open("reporting/lapTracer?noRegistrasi=" + $scope.item.pasienDaftar.noRegistrasi);
+				// 	// window.open(fixUrlLaporan, '', 'width=800,height=600')
 
-					//##save identifikasi tracer
-					manageTataRekening.getDataTableTransaksi("operator/identifikasi-tracer?norec_pd=" +
-						$scope.dataPasienSelected.norec
-					).then(function (data) {
-						var datas = data.data;
-					})
-					//##end
+				// 	//##save identifikasi tracer
+				// 	manageTataRekening.getDataTableTransaksi("operator/identifikasi-tracer?norec_pd=" +
+				// 		$scope.dataPasienSelected.norec
+				// 	).then(function (data) {
+				// 		var datas = data.data;
+				// 	})
+				// 	//##end
 
-					//cetakan langsung service VB6 by grh    
-					var client = new HttpClient();
-					client.get('http://127.0.0.1:1237/printvb/Pendaftaran?cetak-tracer=1&norec=' + $scope.dataPasienSelected.noregistrasi + '&view=false', function (response) {
-						// do something with response
-					});
+				// 	//cetakan langsung service VB6 by grh    
+				// 	var client = new HttpClient();
+				// 	client.get('http://127.0.0.1:1237/printvb/Pendaftaran?cetak-tracer=1&norec=' + $scope.dataPasienSelected.noregistrasi + '&view=false', function (response) {
+				// 		// do something with response
+				// 	});
 
 
-				}
+				// }
 			}
 
 			$scope.CetakSEP = function () {
