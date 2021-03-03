@@ -585,7 +585,7 @@ define(['initialize'], function (initialize) {
 
             function hapusDataJabatanInternal(e) {
                 e.preventDefault();
-                if (!$scope.isEdit) {
+                if (!$scope.isEdit && !$scope.isNewData) {
                     toastr.warning('Tidak bisa menghapus jabatan');
                     return
                 }
@@ -874,7 +874,7 @@ define(['initialize'], function (initialize) {
                 var tr = $(e.target).closest("tr");
                 var dataItem = this.dataItem(tr);
                 $scope.getDataJabatan(dataItem.jenisJabatan.id);
-                if (!$scope.isEdit) {
+                if (!$scope.isEdit && !$scope.isNewData) {
                     toastr.warning('Tidak bisa merubah jabatan');
                     return
                 }

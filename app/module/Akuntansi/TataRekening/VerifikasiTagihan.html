@@ -144,8 +144,15 @@
 				<p></p>
 			</div>
 			<div class="grid_12 borderBox containerBorderBox">
+				<div class="grid_12" style="margin-bottom: 10px; margin-left: 10px;" ng-show="isDiskonRSAB">
+					<input type="checkbox" class="k-checkbox" name="diskon" id="diskon"
+						ng-model="isDiskonKaryawanKeluargaInti" ng-click="toogleClick($event)">
+					<label c-label item="item" class="k-checkbox-label" for="diskon">Diskon Karyawan/ Keluarga Inti
+						Karyawan</label>
+				</div>
+
 				<!-- TotalBilling -->
-				<div class="grid_6">
+				<div class="grid_6" style="margin-top: 10px;">
 					<div class="grid_12">
 						<label c-label item="item" c-label-text="TotalBilling"></label>
 					</div>
@@ -175,8 +182,11 @@
 
 				<!-- TotalKlaim -->
 				<div class="grid_6">
-					<div class="grid_12">
+					<div class="grid_12" ng-hide="isDiskonKaryawanKeluargaInti">
 						<label c-label item="item" c-label-text="TotalKlaim"></label>
+					</div>
+					<div class="grid_12" ng-show="isDiskonKaryawanKeluargaInti">
+						<label c-label item="item" c-label-text="Diskon"></label>
 					</div>
 					<div class="clear"></div>
 

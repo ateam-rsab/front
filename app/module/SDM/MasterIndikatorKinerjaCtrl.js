@@ -16,17 +16,17 @@ define(['initialize'], function (initialize) {
                     title: "<h3>Jenis Indikator</h3>",
                     width: 70
                 }, {
-                    field: "satuanIndikator",
-                    title: "<h3>Satuan Indikator</h3>",
-                    width: 150
-                }, {
                     field: "namaIndikator",
                     title: "<h3>Nama Indikator</h3>",
-                    width: 120
+                    width: 150
+                }, {
+                    field: "satuanIndikator",
+                    title: "<h3>Satuan Indikator</h3>",
+                    width: 70
                 }, {
                     field: "statusVerifikasi",
                     title: "<h3>Status</h3>",
-                    width: 120
+                    width: 70
                 }, {
                     command: [{
                         text: "Edit",
@@ -87,7 +87,7 @@ define(['initialize'], function (initialize) {
                     $scope.reset();
                     console.error('Tidak jadi hapus');
                 });
-                
+
             }
 
             $scope.item.statusVerif = true;
@@ -144,9 +144,16 @@ define(['initialize'], function (initialize) {
                     dataSave.id = $scope.item.idMasterKinerja;
                 }
 
-                ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-master-indikator-kinerja").then(res => {
-                    getDataMaster();
-                    $scope.closePopUp();
+                ManageSdmNew.getListData("iki-remunerasi/get-duplicate-indikator-kinerja?idIndikator=" + ($scope.item.idMasterKinerja ? $scope.item.idMasterKinerja : "") + "&namaIndikator=" + $scope.item.namaIndikator).then(rs1 => {
+                    if (rs1.data.data.length > 0) {
+                        toastr.warning("Indikator kinerja sudah tersedia!")
+                        return
+                    } else {
+                        ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-master-indikator-kinerja").then(rs2 => {
+                            getDataMaster();
+                            $scope.closePopUp();
+                        })
+                    }
                 })
             }
 
