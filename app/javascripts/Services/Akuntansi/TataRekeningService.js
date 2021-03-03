@@ -49,7 +49,8 @@
               }, {
                 jumlahBayar: data.jumlahBayar,
                 totalKlaim: data.totalKlaim,
-                jumlahPiutang: data.jumlahPiutang
+                jumlahPiutang: data.jumlahPiutang,
+                isDiskon: data.isDiskon
               })
              },
              saveUnVerifikasiTagihan: function(data){

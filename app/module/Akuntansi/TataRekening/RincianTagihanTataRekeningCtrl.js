@@ -668,6 +668,11 @@ define(['initialize'], function (initialize) {
 				}
 			})
 
+			$scope.SetDiskonNol = function () {
+				$scope.item.persenDiscount = "0";
+				$scope.item.diskonKomponen = ((parseFloat($scope.item.komponenDis)) * $scope.item.persenDiscount) / 100
+			}
+
 			$scope.UpdateDiskon = function () {
 				if ($scope.dpjp == null) {
 					alert('Mohon untuk mengisi dokter DPJP terlebih dahulu di Detail Registrasi!')
@@ -1791,12 +1796,18 @@ define(['initialize'], function (initialize) {
 				});
 			}
 			$scope.klikKomponen = function (dataSelectedKomponen) {
+				$scope.isBatalDiskon = false;
 				if (dataSelectedKomponen.komponenharga == "Jasa Medis / Operator") {
 					// $scope.button = false;
 					// $scope.billing = false;
 					// $scope.cetak = false;
 					// $scope.dtTanggal = false;
 					// $scope.FilterData = false;
+					if (dataSelectedKomponen.hargadiscount > 0) {
+						$scope.isBatalDiskon = true;
+					} else {
+						$scope.isBatalDiskon = false;
+					}
 					$scope.DiskonKM = true;
 					$scope.label = dataSelectedKomponen.komponenharga;
 					$scope.item.komponenDis = dataSelectedKomponen.hargasatuan;
@@ -1806,6 +1817,7 @@ define(['initialize'], function (initialize) {
 					norec_pp = dataSelectedKomponen.norec_pp
 					strukfk = $scope.dataSelected.strukfk
 					hargasatuan = dataSelectedKomponen.hargasatuan
+
 				} else {
 					$scope.DiskonKM = false;
 				}
