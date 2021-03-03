@@ -144,9 +144,16 @@ define(['initialize'], function (initialize) {
                     dataSave.id = $scope.item.idMasterKinerja;
                 }
 
-                ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-master-indikator-kinerja").then(res => {
-                    getDataMaster();
-                    $scope.closePopUp();
+                ManageSdmNew.getListData("iki-remunerasi/get-duplicate-indikator-kinerja?idIndikator=" + ($scope.item.idMasterKinerja ? $scope.item.idMasterKinerja : "") + "&namaIndikator=" + $scope.item.namaIndikator).then(rs1 => {
+                    if (rs1.data.data.length > 0) {
+                        toastr.warning("Indikator kinerja sudah tersedia!")
+                        return
+                    } else {
+                        ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-master-indikator-kinerja").then(rs2 => {
+                            getDataMaster();
+                            $scope.closePopUp();
+                        })
+                    }
                 })
             }
 
