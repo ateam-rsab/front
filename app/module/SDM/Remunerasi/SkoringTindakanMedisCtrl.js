@@ -28,7 +28,7 @@ define(['initialize'], function (initialize) {
                 }, {
                     field: "skor",
                     title: "<h3>Skor</h3>",
-                    width: 150
+                    width: 50
                 }, {
                     field: "tglMulaiBerlaku",
                     title: "<h3>Tanggal Berlaku</h3>",
