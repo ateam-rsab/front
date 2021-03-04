@@ -35,9 +35,9 @@ define(['initialize'], function (initialize) {
                     console.log(dataSorted);
                     $scope.dataPasienAntrian = dataSorted;
                 })
-                // setTimeout(() => {
-                //     init();
-                // }, intervalTime)
+                setTimeout(() => {
+                    init();
+                }, intervalTime)
             }
             init();
 
