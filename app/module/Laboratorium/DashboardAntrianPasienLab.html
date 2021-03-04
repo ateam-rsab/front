@@ -93,24 +93,22 @@
     <ul class="responsive-table-antrian">
         <li class="table-header">
             <div class="col col-1">No. Antrian</div>
-            <div class="col col-1">Tanggal Order</div>
+            <!-- <div class="col col-1">Tanggal Order</div> -->
             <div class="col col-4">Nama Pasien</div>
             <div class="col col-3">No. Rekam Medis</div>
             <div class="col col-3">No. Registrasi</div>
         </li>
+
         <li class="table-row" ng-repeat="data in dataPasienAntrian">
-            <div class="col col-1" data-label="No. Antrian">{{$index + 1}}</div>
-            <div class="col col-1" data-label="Tanggal Order">{{data.tglorder}}</div>
-            <div class="col col-4" data-label="Nama Pasien">{{data.namapasien}}</div>
-            <div class="col col-3" data-label="No. Rekam Medis">{{data.nocm}}</div>
-            <div class="col col-3" data-label="No. Registrasi">{{data.noregistrasi}}</div>
+            
+            <div class="col col-1" ng-if="!data.message" data-label="No. Antrian">{{$index + 1}}</div>
+            <div class="col col-4" data-label="Nama Pasien">{{data.namaPasien}}</div>
+
+            
+
+            <div class="col col-3" data-label="No. Rekam Medis">{{data.noCm}}</div>
+            <div class="col col-4" ng-if="data.message" data-label="Tanggal Order">{{data.message}}</div>
+            <div class="col col-3" data-label="No. Registrasi">{{data.noRegistrasi}}</div>
         </li>
-        <!-- <li class="table-row">
-            <div class="col col-1" data-label="No. Antrian">2</div>
-            <div class="col col-1" data-label="Tanggal Order">Hari ini</div>
-            <div class="col col-4" data-label="Nama Pasien">Asma K. Fatima</div>
-            <div class="col col-3" data-label="No. Rekam Medis">200300</div>
-            <div class="col col-3" data-label="No. Registrasi">000812321</div>
-        </li> -->
     </ul>
 </div>

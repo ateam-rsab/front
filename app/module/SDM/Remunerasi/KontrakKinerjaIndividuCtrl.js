@@ -32,7 +32,7 @@ define(['initialize'], function (initialize) {
                 pageable: true,
                 scrollable: true,
                 columns: [{
-                    field: "bulan",
+                    field: "bulanFormatted",
                     title: "<h3>Bulan</h3>",
                     width: 100
                 }, {
@@ -83,6 +83,11 @@ define(['initialize'], function (initialize) {
                 $scope.isRouteLoading = true;
                 ManageSdmNew.getListData("iki-remunerasi/get-kontrak-kinerja?pegawaiId=" + ($scope.item.pegawai ? $scope.item.pegawai.id : "") + "&jabatanId=" + ($scope.item.jabatan ? $scope.item.jabatan.id : "") + "&bulan=" + ($scope.item.srcBulan ? dateHelper.toTimeStamp($scope.item.srcBulan) : new Date())).then((res) => {
 
+                    for(let i = 0; i < res.data.data.length; i++) {
+                        if(res.data.data[i].bulan) {
+                            res.data.data[i].bulanFormatted = dateHelper.formatDate(res.data.data[i].bulan, "MMM, YYYY");
+                        }
+                    }
                     $scope.dataSourceKontrakKinerja = new kendo.data.DataSource({
                         data: res.data.data,
                         pageSize: 10
@@ -92,7 +97,6 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.init = () => {
-                // $scope.getAllData();
                 ManageSdmNew.getListData("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true&order=namaLengkap:asc").then((res) => {
                     $scope.listPegawai = res.data;
                 })

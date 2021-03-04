@@ -90,7 +90,6 @@ define(['initialize'], function (initialize) {
 				if ($scope.item.ruangan != undefined) {
 					ruangan = $scope.item.ruangan.id
 				}
-
 				modelItemAkuntansi.getDataTableTransaksi("humas/get-daftar-jadwal-dokter?" +
 					"tglAwal=" + tglAwal +
 					"&tglAkhir=" + tglAkhir +
@@ -105,59 +104,6 @@ define(['initialize'], function (initialize) {
 						}],
 						// pageSize: 10,
 					});
-					for (var i = 0; i < datas.length; i++) {
-						datas[i].no = i + 1
-						var datap = {
-							"id": datas[i].no,
-							"title": datas[i].namaruangan + ' ' + ':' + ' ' + datas[i].namalengkap,
-							// "pegawaiid": datas[i].pegawaiid,
-							"namalengkap": datas[i].namalengkap,
-							// "ruanganid": datas[i].ruanganid,
-							"namaruangan": datas[i].namaruangan,
-							// "tanggaljadwal": datas[i].tanggaljadwal,
-							"start": datas[i].start,
-							"end": datas[i].end,
-							// "startepoch": '\/date(' +  datas[i].startepoch + ')\/',
-							// "endpoch": '\/date(' + datas[i].endpoch + ')\/',
-							// "Description": "Jadwal Dokter",
-							// "StartTimezone": null,
-							// "EndTimezone": null,
-							// "RecurrenceRule": null,
-							// "RecurrenceID": null,
-							// "RecurrenceException": null,
-							// "IsAllDay": false
-						}
-						datatemp.push(datap);
-					}
-
-					$scope.schedulerOptions = {
-						date: new Date(Awal),
-						// startTime: new Date(Awal),
-						height: 600,
-						views: [
-							"agenda",
-							{
-								type: "month",
-								selected: true,
-								allDaySlot: false
-							},
-							{
-								selectedDateFormat: "{0:dd-MM-yyyy}"
-							}
-						],
-						// eventTemplate: "<span class='custom-event'>{{dataItem.title}}</span>",
-						// allDayEventTemplate: "<div class='custom-all-day-event'>{{dataItem.title}}</div>",
-						// timezone: "Indonesia/Jakarta",
-						dataSource: datatemp,
-						// resources: [
-						//        {
-						//            field: "namaruangan",
-						//            dataSource: datatemp,
-						//            title: "namaruangan"
-						//        }
-						// ]
-					};
-					$scope.isRouteLoading = false;
 				});
 			}
 
@@ -180,20 +126,36 @@ define(['initialize'], function (initialize) {
 			];
 
 			$scope.getData = () => {
-				if(!$scope.item.dokter) {
-					toastr.warning("Harap isi nama Dokter");
-					return;
-				}
+				// if (!$scope.item.dokter) {
+				// 	toastr.warning("Harap isi nama Dokter");
+				// 	return;
+				// }
 				var datatemp = [];
-				let bln = new Date($scope.item.bulan).getMonth(), thn = new Date($scope.item.bulan).getFullYear()
+				let bln = new Date($scope.item.bulan).getMonth(),
+					thn = new Date($scope.item.bulan).getFullYear()
 
-				$scope.isRouteLoading = true;
+				$scope.isRouteLoading = false;
+
+				$.ajax({
+					url: "http://192.168.12.3:5775/kehadiranpasien-service/get-jml-pasien-dokter?X-AUTH-TOKEN=234567890kjdsfkjf&idDokter=" + ($scope.item.dokter ? $scope.item.dokter.id : "") + "&idRuangan=" + ($scope.item.ruangan ? $scope.item.ruangan.id : "") + "&bulan=" + ($scope.item.bulan ? bln + 1 : "") + "&tahun=" + ($scope.item.bulan ? thn : ""),
+					method: "GET",
+					success: (data) => {
+						console.log(data);
+						$scope.jmlPasienDokter = data;
+					}
+				})
 
 				modelItemAkuntansi.getDataTableTransaksi('humas/get-data-jadwal?bulan=' + ($scope.item.bulan ? bln + 1 : "") + '&tahun=' + ($scope.item.bulan ? thn : "") + '&ruangan=' + ($scope.item.ruangan ? $scope.item.ruangan.id : "") + '&dokterId=' + ($scope.item.dokter ? $scope.item.dokter.id : "")).then(data => {
-				// modelItemAkuntansi.getDataTableTransaksi('humas/get-data-jadwal?bulan=1&tahun=2021&ruangan=&dokterId=480').then(data => {
-					// let datas = data;
-					// console.log(data.length);
 					for (var i = 0; i < data.length; i++) {
+
+						for (let ii = 0; ii < $scope.jmlPasienDokter.length; ii++) {
+							if (data[i].jampraktek === $scope.jmlPasienDokter[ii].jamPraktik) {
+								data[i].sisaQuota = $scope.jmlPasienDokter[ii].sisaQuota;
+								data[i].jmlAktivasi = $scope.jmlPasienDokter[ii].jmlAktivasi;
+								data[i].jmlDaftar = $scope.jmlPasienDokter[ii].jmlDaftar;
+							}
+						}
+
 						let listJamPraktek = data[i].jampraktek.split('-');
 						let tglPraktik = dateHelper.formatDate(data[i].tglpraktik, 'YYYY-MM-DD');
 
@@ -204,7 +166,11 @@ define(['initialize'], function (initialize) {
 						data[i].no = i + 1
 						datatemp.push({
 							"id": data[i].no,
-							"title": data[i].namaruangan + ' ' + ':' + ' ' + data[i].namalengkap,
+							"title": data[i].namaruangan + ' ' + ':' + ' ' + data[i].namalengkap ,
+							"quota":data[i].quota,
+							"sisaQuota":data[i].sisaQuota,
+							"jmlAktivasi":data[i].jmlAktivasi,
+							"jmlDaftar":data[i].jmlDaftar,
 							// "pegawaiid": datas[i].pegawaiid,
 							"namalengkap": data[i].namalengkap,
 							// "ruanganid": datas[i].ruanganid,
@@ -214,7 +180,7 @@ define(['initialize'], function (initialize) {
 							"end": end,
 							// "startepoch": '\/date(' +  datas[i].startepoch + ')\/',
 							// "endpoch": '\/date(' + datas[i].endpoch + ')\/',
-							// "Description": "Jadwal Dokter",
+							"Description": "Jadwal Dokter",
 							// "StartTimezone": null,
 							// "EndTimezone": null,
 							// "RecurrenceRule": null,
@@ -224,8 +190,13 @@ define(['initialize'], function (initialize) {
 						});
 					}
 
+					console.log("combined => ", data);
+
 					$scope.schedulerOptions = {
 						date: new Date(Awal),
+						messages: {
+							event:"Jadwal Dokter"
+						},
 						// startTime: new Date(Awal),
 						height: 600,
 						views: [
@@ -242,8 +213,11 @@ define(['initialize'], function (initialize) {
 								selectedDateFormat: "{0:dd-MM-yyyy}"
 							}
 						],
-						// eventTemplate: "<span class='custom-event'>{{dataItem.title}}</span>",
-						// allDayEventTemplate: "<div class='custom-all-day-event'>{{dataItem.title}}</div>",
+						eventTemplate: `<span class='custom-event'>Quota : {{dataItem.quota}}</span>
+										<span class='custom-event'>Jumlah Aktivasi : {{dataItem.jmlAktivasi}}</span>
+										<span class='custom-event'>Jumlah Daftar : {{dataItem.jmlDaftar}}</span>
+										<span class='custom-event'>Sisa Quota : {{dataItem.sisaQuota}}</span>`,
+						// allDayEventTemplate: "<div class='custom-all-day-event'>{{dataItem.quota}}</div>",
 						// timezone: "Indonesia/Jakarta",
 						dataSource: datatemp,
 						resources: [{
@@ -253,44 +227,44 @@ define(['initialize'], function (initialize) {
 						}]
 					};
 
-					$scope.dataJadwalDokter.senin = [];
-					$scope.dataJadwalDokter.selasa = [];
-					$scope.dataJadwalDokter.rabu = [];
-					$scope.dataJadwalDokter.kamis = [];
-					$scope.dataJadwalDokter.jumat = [];
-					$scope.dataJadwalDokter.sabtu = [];
-					$scope.dataJadwalDokter.minggu = [];
+					// $scope.dataJadwalDokter.senin = [];
+					// $scope.dataJadwalDokter.selasa = [];
+					// $scope.dataJadwalDokter.rabu = [];
+					// $scope.dataJadwalDokter.kamis = [];
+					// $scope.dataJadwalDokter.jumat = [];
+					// $scope.dataJadwalDokter.sabtu = [];
+					// $scope.dataJadwalDokter.minggu = [];
 
-					for (let i in data) {
-						// data[i].namahari = data[i].namahari.toLowerCase();
-						// console.log(i, data[i]);
+					// for (let i in data) {
+					// 	// data[i].namahari = data[i].namahari.toLowerCase();
+					// 	// console.log(i, data[i]);
 
-						switch (data[i].namahari) {
-							case "SENIN":
-								$scope.dataJadwalDokter.senin.push(data[i]);
-								break;
-							case "SELASA":
-								$scope.dataJadwalDokter.selasa.push(data[i]);
-								break;
-							case "RABU":
-								$scope.dataJadwalDokter.rabu.push(data[i]);
-								break;
-							case "KAMIS":
-								$scope.dataJadwalDokter.kamis.push(data[i]);
-								break;
-							case "JUMAT":
-								$scope.dataJadwalDokter.jumat.push(data[i]);
-								break;
-							case "SABTU":
-								$scope.dataJadwalDokter.sabtu.push(data[i]);
-								break;
-							case "MINGGU":
-								$scope.dataJadwalDokter.minggu.push(data[i]);
-								break;
-							default:
-								break;
-						}
-					}
+					// 	switch (data[i].namahari) {
+					// 		case "SENIN":
+					// 			$scope.dataJadwalDokter.senin.push(data[i]);
+					// 			break;
+					// 		case "SELASA":
+					// 			$scope.dataJadwalDokter.selasa.push(data[i]);
+					// 			break;
+					// 		case "RABU":
+					// 			$scope.dataJadwalDokter.rabu.push(data[i]);
+					// 			break;
+					// 		case "KAMIS":
+					// 			$scope.dataJadwalDokter.kamis.push(data[i]);
+					// 			break;
+					// 		case "JUMAT":quota
+					// 			$scope.dataJadwalDokter.jumat.push(data[i]);
+					// 			break;
+					// 		case "SABTU":
+					// 			$scope.dataJadwalDokter.sabtu.push(data[i]);
+					// 			break;
+					// 		case "MINGGU":
+					// 			$scope.dataJadwalDokter.minggu.push(data[i]);
+					// 			break;
+					// 		default:
+					// 			break;
+					// 	}
+					// }
 
 					// $scope.dataGrid = new kendo.data.DataSource({
 					// 	data: res,

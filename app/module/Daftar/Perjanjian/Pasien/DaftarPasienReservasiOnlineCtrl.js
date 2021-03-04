@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('DaftarPasienReservasiOnlineCtrl', ['CacheHelper', '$rootScope', '$scope', 'ModelItem', '$state', 'FindPasien', 'DateHelper', 'socket', 'ManageAkuntansi', '$http',
-        function (cacheHelper, $rootScope, $scope, ModelItem, $state, findPasien, dateHelper, socket, manageAkuntansi, $http) {
+    initialize.controller('DaftarPasienReservasiOnlineCtrl', ['CacheHelper', '$rootScope', '$scope', 'ModelItem', '$state', 'FindPasien', 'DateHelper', 'socket', 'ManageAkuntansi', '$http', '$mdDialog',
+        function (cacheHelper, $rootScope, $scope, ModelItem, $state, findPasien, dateHelper, socket, manageAkuntansi, $http, $mdDialog) {
             $scope.isRouteLoading = false;
             $scope.dataVOloaded = false;
             $rootScope.isOpen = true;
@@ -17,9 +17,14 @@ define(['initialize'], function (initialize) {
             //     $scope.from = cacheHelper.get('tglAwalPerjanjian');
             // if (cacheHelper.get('tglAkhirPerjanjian') !== undefined)
             //     $scope.until = cacheHelper.get('tglAkhirPerjanjian');
-            $scope.listStatus = [
-                { id: 1, nama: 'Confirm' },//#
-                { id: 2, nama: 'Reservasi' },
+            $scope.listStatus = [{
+                    id: 1,
+                    nama: 'Confirm'
+                }, //#
+                {
+                    id: 2,
+                    nama: 'Reservasi'
+                },
             ]
 
             $scope.kodeReservasi = '';
@@ -27,8 +32,7 @@ define(['initialize'], function (initialize) {
             $scope.columnResevasi = {
                 pageable: true,
                 scrollable: true,
-                columns: [
-                    {
+                columns: [{
                         field: "noreservasi",
                         title: "<h3>Kode<br> Reservasi</h3>",
                         width: 100
@@ -69,9 +73,15 @@ define(['initialize'], function (initialize) {
                         width: 100
                     },
                     {
-                        command: [
-                            { text: "Konfirmasi", click: confirm }
-                        ], width: 130, align: "center",
+                        command: [{
+                            text: "Konfirmasi",
+                            click: confirm
+                        }, {
+                            text: "Batal",
+                            click: batal
+                        }],
+                        width: 130,
+                        align: "center",
                         attributes: {
                             align: "center"
                         },
@@ -126,7 +136,7 @@ define(['initialize'], function (initialize) {
 
 
             $scope.Page = {
-                refresh: true//,
+                refresh: true //,
                 //pageSizes: true//,
                 //buttonCount: 5
             }
@@ -163,13 +173,13 @@ define(['initialize'], function (initialize) {
                     namapasienpm = $scope.namaPasien;
                     namapasienapr = $scope.namaPasien;
                 }
-                manageAkuntansi.getDataTableTransaksi("pelayanan/get-data-pasien-reservasi?"
-                    + "tglAwal=" + tglAwal
-                    + "&tglAkhir=" + tglAkhir
-                    + "&kdReservasi=" + $scope.kodeReservasi
-                    + "&statusRev=" + status
-                    + "&namapasienpm=" + $scope.namaPasien
-                    + "&namapasienapr=" + $scope.namaPasien
+                manageAkuntansi.getDataTableTransaksi("pelayanan/get-data-pasien-reservasi?" +
+                    "tglAwal=" + tglAwal +
+                    "&tglAkhir=" + tglAkhir +
+                    "&kdReservasi=" + $scope.kodeReservasi +
+                    "&statusRev=" + status +
+                    "&namapasienpm=" + $scope.namaPasien +
+                    "&namapasienapr=" + $scope.namaPasien
                 ).then(function (data) {
                     $scope.isRouteLoading = false;
                     $scope.listPasien = new kendo.data.DataSource({
@@ -180,8 +190,7 @@ define(['initialize'], function (initialize) {
                         serverPaging: false,
                         schema: {
                             model: {
-                                fields: {
-                                }
+                                fields: {}
                             }
                         }
                     });
@@ -192,7 +201,6 @@ define(['initialize'], function (initialize) {
             function confirm(e) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-                console.log(dataItem);
                 if (dataItem.nocm) {
                     let data = {
                         "noreservasi": dataItem.noreservasi,
@@ -237,6 +245,32 @@ define(['initialize'], function (initialize) {
                     });
                 }
 
+            }
+
+            function batal(e) {
+                e.preventDefault();
+                var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+
+                let data = {
+                    "noreservasi": dataItem.noreservasi,
+                }
+
+                var confirm = $mdDialog.confirm()
+                    .title('Apakah anda yakin membatalkan Reservasi dengan No. Rekam Medis ' + dataItem.nocm + '?')
+                    .ariaLabel('Lucky day')
+                    .targetEvent(e)
+                    .ok('Ya')
+                    .cancel('Tidak');
+                $mdDialog.show(confirm).then(function () {
+                    // http://192.168.12.3:5555/simrs_harkit/service/transaksi/pelayanan/batal-data-status-reservasi
+                    manageAkuntansi.postpost(data, "pelayanan/batal-data-status-reservasi").then((res) => {
+                        LoadData();
+                        console.log(res);
+                    })
+                    
+                }, function () {
+                    console.error('Tidak jadi batal');
+                });
             }
 
             $scope.reconfirm = function () {
