@@ -6,14 +6,20 @@ define(['initialize'], function (initialize) {
             let paramTgl = {};
             let tglAwal = new Date();
             let tglAkhir = new Date();
-            $scope.dataPasienAntrian = [];
+            // $scope.dataPasienAntrian = [];
+
+            function filterDuplicateData(data, key) {
+                return [...new Map(data.map(x => [key(x), x])).values()]
+            }
 
             let init = () => {
                 tglAwal = dateHelper.formatDate(tglAwal.setHours(0, 0, 0, 0), "YYYY-MM-DD HH:mm:ss");
                 tglAkhir = dateHelper.formatDate(tglAkhir.setHours(23, 59, 0, 0), "YYYY-MM-DD HH:mm:ss");
-
-                manageLogistikPhp.getDataTableTransaksi("lab-radiologi/get-dashboard?tglAwal=" + tglAwal + "&tglAkhir=" + tglAkhir).then(res => { 
-                    console.log(res);
+                manageLogistikPhp.getDataTableTransaksi("lab-radiologi/get-dashboard?tglAwal=" + tglAwal + "&tglAkhir=" + tglAkhir).then(res => {
+                    let dataFiltered = filterDuplicateData(res.data.dataPasienOrder, it => it.noRegistrasi);
+                    $scope.dataPasienAntrian = dataFiltered;
+                    console.log(dataFiltered);
+                    
                 })
                 // setInterval(() => {
                 //     init();
