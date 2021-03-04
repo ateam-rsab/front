@@ -213,7 +213,10 @@ define(['initialize'], function (initialize) {
 								selectedDateFormat: "{0:dd-MM-yyyy}"
 							}
 						],
-						eventTemplate: "<span class='custom-event'>{{dataItem.quota}} | {{dataItem.jmlAktivasi}} | {{dataItem.jmlDaftar}} | {{dataItem.sisaQuota}}</span> ",
+						eventTemplate: `<span class='custom-event'>Quota : {{dataItem.quota}}</span>
+										<span class='custom-event'>Jumlah Aktivasi : {{dataItem.jmlAktivasi}}</span>
+										<span class='custom-event'>Jumlah Daftar : {{dataItem.jmlDaftar}}</span>
+										<span class='custom-event'>Sisa Quota : {{dataItem.sisaQuota}}</span>`,
 						// allDayEventTemplate: "<div class='custom-all-day-event'>{{dataItem.quota}}</div>",
 						// timezone: "Indonesia/Jakarta",
 						dataSource: datatemp,

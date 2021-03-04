@@ -436,7 +436,7 @@ define(['initialize'], function (initialize) {
                     alert("Qty harus di isi!")
                     return;
                 }
-                if ($scope.item.ruangantujuan == undefined) {
+                if (!$scope.item.ruangantujuan) {
                     alert("Pilih Ruangan Tujuan terlebih dahulu!!")
                     return;
                 }
