@@ -74,23 +74,29 @@ define(['initialize'], function (initialize) {
                 $scope.item.namaIndikator = dataItem.namaIndikator;
                 $scope.item.statusVerif = dataItem.isStatusVerifikasi;
                 $scope.item.idMasterKinerja = dataItem.id;
-                var confirm = $mdDialog.confirm()
-                    .title('Apakah anda yakin menghapus Indikator Kinerja?')
-                    .ariaLabel('Lucky day')
-                    .targetEvent(e)
-                    .ok('Ya')
-                    .cancel('Tidak');
-                $mdDialog.show(confirm).then(function () {
-                    // $scope.item.idMasterKinerja = dataItem.id;
-                    $scope.simpanData('delete');
-                }, function () {
-                    $scope.reset();
-                    console.error('Tidak jadi hapus');
-                });
-
+                ManageSdmNew.getListData("iki-remunerasi/cek-kontrak-kinerja?indikatorId=" + dataItem.id).then(rs1 => {
+                    if (rs1.data.data.length > 0) {
+                        toastr.warning("Indikator kinerja sudah dipakai dalam kontrak kinerja, tidak bisa hapus!")
+                        return
+                    } else {
+                        var confirm = $mdDialog.confirm()
+                            .title('Apakah anda yakin menghapus Indikator Kinerja?')
+                            .ariaLabel('Lucky day')
+                            .targetEvent(e)
+                            .ok('Ya')
+                            .cancel('Tidak');
+                        $mdDialog.show(confirm).then(function () {
+                            // $scope.item.idMasterKinerja = dataItem.id;
+                            $scope.simpanData('delete');
+                        }, function () {
+                            $scope.reset();
+                            console.error('Tidak jadi hapus');
+                        });
+                    }
+                })
             }
 
-            $scope.item.statusVerif = true;
+            $scope.item.statusVerif = false;
             $scope.listJenisIndikator = [{
                 "id": 1,
                 "jenisIndikator": "Kuantitas"

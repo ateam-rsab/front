@@ -104,7 +104,7 @@ define(['initialize'], function (initialize) {
             $scope.init();
 
             $scope.getIndikatorKerja = (id) => {
-                ManageSdmNew.getListData("service/list-generic/?view=IndikatorKinerja&select=id,namaIndikator&criteria=jenisIndikator,statusEnabled&values=" + id + ",true&order=namaIndikator:asc").then((res) => {
+                ManageSdmNew.getListData("service/list-generic/?view=IndikatorKinerja&select=id,namaIndikator&criteria=jenisIndikator,statusEnabled,statusVerifikasi&values=" + id + ",true,true&order=namaIndikator:asc").then((res) => {
                     $scope.listIndikatorKinerja = res.data;
                 })
             }
