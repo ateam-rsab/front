@@ -15,7 +15,7 @@ define(['initialize'], function (initialize) {
 				var dataActivityPegawai = [];
 				$q.all([
 					ManageSdmNew.getListData("sdm/get-activity-pegawai?tanggal=&idPegawai=", true),
-					IPSRSService.getFieldListData("Pegawai&select=id,namaLengkap", true)
+					IPSRSService.getFieldListData("Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true&order=namaLengkap:asc", true)
 				]).then(function (data) {
 					activityPegawai = data[0].data.data;
 					pegawai = data[1].data;
@@ -121,7 +121,7 @@ define(['initialize'], function (initialize) {
 					var idPegawai = $scope.item.pegawai ? $scope.item.pegawai.id : ""
 					$q.all([
 						ManageSdmNew.getListData("sdm/get-activity-pegawai?tanggal=" + tanggalKejadian + "&idPegawai=" + idPegawai, true),
-						IPSRSService.getFieldListData("Pegawai&select=id,namaLengkap", true)
+						IPSRSService.getFieldListData("Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true&order=namaLengkap:asc", true)
 					]).then(function (data) {
 						activityPegawai = data[0].data.data;
 						pegawai = data[1].data;
