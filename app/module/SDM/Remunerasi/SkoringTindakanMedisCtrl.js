@@ -58,7 +58,10 @@ define(['initialize'], function (initialize) {
 
             $scope.getAllData = () => {
                 $scope.isRouteLoading = true;
-                ManageSdmNew.getListData("iki-remunerasi/get-all-skoring-tindakan-medis").then((res) => {
+                // http://192.168.12.3:8080/jasamedika-sdm/iki-remunerasi/get-all-skoring-tindakan-medis?kelompokKerjaId=185&produkId=402794&detailProduk=dan&tglMulaiBerlaku=1614618000000&isStatusVerifikasi=false
+
+                // http://192.168.12.3:8080/jasamedika-sdm/iki-remunerasi/get-all-skoring-tindakan-medis?kelompokKerjaId=185&produkId=15223&detailProduk=dan&tglMulaiBerlaku=1614618000000&isStatusVerifikasi=false
+                ManageSdmNew.getListData("iki-remunerasi/get-all-skoring-tindakan-medis?kelompokKerjaId=" + ($scope.item.srcKelompokKerja ? $scope.item.srcKelompokKerja.id : "") + "&produkId=" + ($scope.item.srcNamaProduk ? $scope.item.srcNamaProduk.id : "") + "&detailProduk=" + ($scope.item.srcDetailTindakan ? $scope.item.srcDetailTindakan : "") + "&tglMulaiBerlaku=" + ($scope.item.srcTglBerlaku ? dateHelper.toTimeStamp($scope.item.srcTglBerlaku) : "") + "&isStatusVerifikasi=" + ($scope.item.srcStatusVerif ? $scope.item.srcStatusVerif : "")).then((res) => {
                     $scope.dataSourceSkoring = new kendo.data.DataSource({
                         data: res.data.data,
                         pageSize: 20
@@ -69,10 +72,11 @@ define(['initialize'], function (initialize) {
 
             let init = () => {
                 $scope.getAllData();
-
-                ManageSdmNew.getListData("service/list-generic/?view=Produk&select=id,namaProduk&criteria=statusEnabled&values=true&order=id:asc").then((res) => {
-                    // $scope.listNamaProduk = res.data;
+                ManageSdmNew.getListData("service/list-generic/?view=SubUnitKerjaPegawai&select=id,name&criteria=statusEnabled,unitKerjaId,name&values=true,(58;59;60;61;62;63),KK&order=name:asc").then((res) => {
+                    $scope.listKKMedis = res.data;
                 });
+
+                // http://192.168.12.3:8080/jasamedika-sdm/service/list-generic/?view=SubUnitKerjaPegawai&select=id,name&criteria=statusEnabled,unitKerjaId,name&values=true,(58;59;60;61;62;63),KK&order=name:asc
 
                 ManageSdmNew.getListData("service/list-generic/?view=Departemen&select=id,namaDepartemen&criteria=statusEnabled&values=true&order=id:asc").then((res) => {
                     console.log(res);
@@ -131,7 +135,7 @@ define(['initialize'], function (initialize) {
             function editData(e) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-                
+
                 $scope.item.namaProduk = {
                     id: dataItem.produkId,
                     namaProduk: dataItem.namaProduk
@@ -140,7 +144,7 @@ define(['initialize'], function (initialize) {
                     id: dataItem.unitKerjaId,
                     name: dataItem.unitKerja
                 }
-                $scope.getDataKelompokKerja();
+                $scope.getDataKelompokKerja(dataItem.unitKerjaId);
                 $scope.item.kelompokKerja = {
                     id: dataItem.kelompokKerjaId,
                     name: dataItem.kelompokKerja
@@ -159,12 +163,11 @@ define(['initialize'], function (initialize) {
 
             $scope.saveData = (method) => {
                 let statusEnabled = method === 'save' || method === 'update';
-                // id: 12239
-                // namaProduk: "Konsultasi Dokter Spesialis R"
+
                 let dataSave = {
                     detailProduk: $scope.item.detailTindakan,
                     skor: parseInt($scope.item.skor),
-                    statusVerifikasi: $scope.item.statusVerif? true : false,
+                    statusVerifikasi: $scope.item.statusVerif ? true : false,
                     tanggalMulaiBerlaku: dateHelper.toTimeStamp($scope.item.tglBerlaku),
                     produk: {
                         id: $scope.item.namaProduk.id
@@ -187,23 +190,23 @@ define(['initialize'], function (initialize) {
                 })
             }
 
-            $scope.getDataKelompokKerja = () => {
+            $scope.getDataKelompokKerja = (id) => {
                 $scope.item.kelompokKerja = null;
-                ManageSdmNew.getListData("service/list-generic/?view=SubUnitKerjaPegawai&select=id,name&criteria=unitKerjaId,statusEnabled&values=" + $scope.item.unitKerja.id + ",true&order=id:asc").then((res) => {
+                ManageSdmNew.getListData("service/list-generic/?view=SubUnitKerjaPegawai&select=id,name&criteria=unitKerjaId,statusEnabled&values=" + id + ",true&order=id:asc").then((res) => {
                     $scope.listKelompokKerja = res.data;
                 });
             }
 
-            $scope.getDataRuangan = () => {
+            $scope.getDataRuangan = (id) => {
                 $scope.item.namaProduk = null;
-                ManageSdmNew.getListData("service/list-generic/?view=Ruangan&select=id,namaRuangan&criteria=departemenId,statusEnabled&values=" + $scope.item.departemen.id + ",true&order=id:asc").then((res) => {
+                ManageSdmNew.getListData("service/list-generic/?view=Ruangan&select=id,namaRuangan&criteria=departemenId,statusEnabled&values=" + id + ",true&order=id:asc").then((res) => {
                     $scope.listRuangan = res.data;
                 });
             }
 
-            $scope.getProduk = () => {
+            $scope.getProduk = (id) => {
                 $scope.item.namaProduk = null;
-                ManageSdmNew.getListData("iki-remunerasi/get-daftar-input-tindakan?ruanganId=" + $scope.item.ruangan.id).then((res) => {
+                ManageSdmNew.getListData("iki-remunerasi/get-daftar-input-tindakan?ruanganId=" + id).then((res) => {
                     $scope.listNamaProduk = res.data.data;
                 });
             }

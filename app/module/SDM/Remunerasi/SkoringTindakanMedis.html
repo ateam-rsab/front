@@ -9,6 +9,61 @@
 </md-toolbar>
 
 <div class="grid_12">
+    <div class="grid_3">
+        <label><strong>Departemen</strong></label>
+        <input kendo-combo-box k-filter="'contains'" k-ng-model="item.srcDepartemen"
+            k-data-text-field="'namaDepartemen'" k-data-value-field="'id'" k-data-source="listDepartemen"
+            k-on-change="getDataRuangan(item.srcDepartemen.id)" />
+    </div>
+    <div class="grid_3">
+        <label><strong>Ruangan</strong></label>
+        <input kendo-combo-box k-filter="'contains'" k-ng-model="item.srcRuangan" k-data-text-field="'namaRuangan'"
+            k-data-value-field="'id'" k-data-source="listRuangan" k-on-change="getProduk(item.srcRuangan.id)" />
+    </div>
+    <div class="grid_3">
+        <label><strong>Nama Produk</strong></label>
+        <input kendo-combo-box k-filter="'contains'" k-ng-model="item.srcNamaProduk" k-data-text-field="'namaProduk'"
+            k-data-value-field="'id'" k-data-source="listNamaProduk" />
+    </div>
+    <!-- <div class="grid_3">
+        <label><strong>Unit Kerja</strong></label>
+        <input kendo-combo-box k-filter="'contains'" k-ng-model="item.srcUnitKerja" k-data-text-field="'name'"
+            k-data-value-field="'id'" k-data-source="listUnitKerjKSM"
+            k-on-change="getDataKelompokKerja(item.srcUnitKerja.id)" />
+    </div> -->
+    <div class="grid_3">
+        <label><strong>Kelompok Kerja</strong></label>
+        <input kendo-combo-box k-filter="'contains'" k-ng-model="item.srcKelompokKerja" k-data-text-field="'name'"
+            k-data-value-field="'id'" k-data-source="listKKMedis" />
+    </div>
+
+    <div class="grid_2">
+        <label><strong>Tanggal Berlaku</strong></label>
+        <input style="width: 100%;" k-ng-model="item.srcTglBerlaku" kendo-date-picker placeholer="dd-mm-yyyy"
+            k-format="'dd-MM-yyyy'" />
+    </div>
+
+    <div class="grid_4">
+        <label><strong>Detail Tindakan</strong></label>
+        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.srcDetailTindakan" />
+    </div>
+
+    <div class="grid_1">
+        <!-- <input type="checkbox" id="eq1" class="k-checkbox" checked="checked"> -->
+        <md-checkbox ng-model="item.srcStatusVerif" aria-label="verified" style="margin-top:24px" class="green">
+            Status Verifikasi
+        </md-checkbox>
+    </div>
+
+    <div class="grid_1" style="margin-top: 19px;">
+        <md-button class="md-raised md-primary medium-button" ng-click="getAllData()">
+            <span style="margin-right: 5px;">Cari</span>
+            <i class="fa fa-search"></i>
+        </md-button>
+    </div>
+</div>
+
+<div class="grid_12">
     <div kendo-grid k-data-source="dataSourceSkoring" k-selectable="'row'" options="optGridSkoringTindakan"
         k-ng-model="selectedData"></div>
 </div>
@@ -21,45 +76,49 @@
             <div class="grid_12">
                 <div class="grid_4">
                     <label><strong>Departemen</strong></label>
-                    <input kendo-combo-box k-filter="'contains'" k-ng-model="item.departemen" k-data-text-field="'namaDepartemen'"
-                        k-data-value-field="'id'" k-data-source="listDepartemen" k-on-change="getDataRuangan()"/>
+                    <input kendo-combo-box k-filter="'contains'" k-ng-model="item.departemen"
+                        k-data-text-field="'namaDepartemen'" k-data-value-field="'id'" k-data-source="listDepartemen"
+                        k-on-change="getDataRuangan(item.departemen.id)" />
                 </div>
                 <div class="grid_4">
                     <label><strong>Ruangan</strong></label>
-                    <input kendo-combo-box k-filter="'contains'" k-ng-model="item.ruangan" k-data-text-field="'namaRuangan'"
-                        k-data-value-field="'id'" k-data-source="listRuangan" k-on-change="getProduk()" />
+                    <input kendo-combo-box k-filter="'contains'" k-ng-model="item.ruangan"
+                        k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-data-source="listRuangan"
+                        k-on-change="getProduk(item.ruangan.id)" />
                 </div>
                 <div class="grid_4">
                     <label><strong>Nama Produk</strong></label>
-                    <input kendo-combo-box k-filter="'contains'" k-ng-model="item.namaProduk" k-data-text-field="'namaProduk'"
-                        k-data-value-field="'id'" k-data-source="listNamaProduk" />
+                    <input kendo-combo-box k-filter="'contains'" k-ng-model="item.namaProduk"
+                        k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-data-source="listNamaProduk" />
                 </div>
                 <div class="grid_6">
                     <label><strong>Unit Kerja</strong></label>
                     <input kendo-combo-box k-filter="'contains'" k-ng-model="item.unitKerja" k-data-text-field="'name'"
-                        k-data-value-field="'id'" k-data-source="listUnitKerjKSM" k-on-change="getDataKelompokKerja()"/>
+                        k-data-value-field="'id'" k-data-source="listUnitKerjKSM"
+                        k-on-change="getDataKelompokKerja(item.unitKerja.id)" />
                 </div>
                 <div class="grid_6">
                     <label><strong>Kelompok Kerja</strong></label>
-                    <input kendo-combo-box k-filter="'contains'" k-ng-model="item.kelompokKerja" k-data-text-field="'name'"
-                        k-data-value-field="'id'" k-data-source="listKelompokKerja" />
+                    <input kendo-combo-box k-filter="'contains'" k-ng-model="item.kelompokKerja"
+                        k-data-text-field="'name'" k-data-value-field="'id'" k-data-source="listKelompokKerja" />
                 </div>
 
                 <div class="grid_6">
                     <label><strong>Tanggal Berlaku</strong></label>
-                    <input style="width: 100%;" k-ng-model="item.tglBerlaku"  kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                    <input style="width: 100%;" k-ng-model="item.tglBerlaku" kendo-date-picker placeholer="dd-mm-yyyy"
+                        k-format="'dd-MM-yyyy'" />
                 </div>
+
                 <div class="grid_6">
                     <label><strong>Skor</strong></label>
                     <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.skor" />
                 </div>
-
-                <div class="grid_8">
+                <div class="grid_9">
                     <label><strong>Detail Tindakan</strong></label>
                     <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.detailTindakan" />
                 </div>
 
-                <div class="grid_4">
+                <div class="grid_3">
                     <!-- <input type="checkbox" id="eq1" class="k-checkbox" checked="checked"> -->
                     <md-checkbox ng-model="item.statusVerif" aria-label="verified" style="margin-top:24px"
                         class="green">

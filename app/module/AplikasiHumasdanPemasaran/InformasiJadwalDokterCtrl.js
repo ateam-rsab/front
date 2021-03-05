@@ -130,6 +130,7 @@ define(['initialize'], function (initialize) {
 				// 	toastr.warning("Harap isi nama Dokter");
 				// 	return;
 				// }
+				
 				var datatemp = [];
 				let bln = new Date($scope.item.bulan).getMonth(),
 					thn = new Date($scope.item.bulan).getFullYear()
@@ -190,8 +191,6 @@ define(['initialize'], function (initialize) {
 						});
 					}
 
-					console.log("combined => ", data);
-
 					$scope.schedulerOptions = {
 						date: new Date(Awal),
 						messages: {
@@ -226,7 +225,8 @@ define(['initialize'], function (initialize) {
 							title: "namaruangan"
 						}]
 					};
-
+					// $scope.schedulerOptions.dataSource = datatemp;
+					// $scope.schedulerOptions.dataSource.read();
 					// $scope.dataJadwalDokter.senin = [];
 					// $scope.dataJadwalDokter.selasa = [];
 					// $scope.dataJadwalDokter.rabu = [];

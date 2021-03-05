@@ -196,7 +196,6 @@ define(['initialize'], function (initialize) {
                     })
                 }
 
-                console.log(tempDataGrid);
                 data2 = tempDataGrid;
                 $scope.dataGridOrder = new kendo.data.DataSource({
                     data: tempDataGrid,
