@@ -138,7 +138,8 @@ define(['initialize'], function (initialize) {
             $scope.columnGrid = [{
                 "field": "jam",
                 "title": "<h3>Jam</h3>",
-                "width": "30px"
+                "width": "30px",
+                attributes: { style: "text-align:center" }
             }, {
                 "field": "statusPresensi",
                 "title": "<h3>Status<br/>Presensi</h3>",

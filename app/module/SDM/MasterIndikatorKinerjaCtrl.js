@@ -110,7 +110,7 @@ define(['initialize'], function (initialize) {
 
             $scope.getDataMaster = () => {
                 $scope.isRouteLoading = true;
-                ManageSdmNew.getListData("iki-remunerasi/get-master-indikator-kinerja?jenisIndikatorId=" +  ($scope.item.srcJenisIndikator ? $scope.item.srcJenisIndikator.id : "") + "&namaIndikator=" + ($scope.item.srcNamaIndikator ? $scope.item.srcNamaIndikator.toLowerCase() : "") + "&isStatusVerifikasi=" + ($scope.item.srcStatusVerif ? $scope.item.srcStatusVerif : false)).then((res) => {
+                ManageSdmNew.getListData("iki-remunerasi/get-master-indikator-kinerja?jenisIndikatorId=" + ($scope.item.srcJenisIndikator ? $scope.item.srcJenisIndikator.id : "") + "&namaIndikator=" + ($scope.item.srcNamaIndikator ? $scope.item.srcNamaIndikator.toLowerCase() : "") + "&isStatusVerifikasi=" + ($scope.item.srcStatusVerif ? $scope.item.srcStatusVerif : false)).then((res) => {
                     $scope.isRouteLoading = false;
                     $scope.dataSourceMasterKinerja = new kendo.data.DataSource({
                         data: res.data.data,
@@ -137,8 +137,8 @@ define(['initialize'], function (initialize) {
             }
 
             let checkDuplicateData = () => {
-                ManageSdmNew.getListData("iki-remunerasi/get-duplicate-indikator-kinerja?idIndikator=" + ($scope.item.idMasterKinerja ? $scope.item.idMasterKinerja : "") + "&namaIndikator=" + $scope.item.namaIndikator).then(rs1 => {
-                    if (rs1.data.data.length > 0) {
+                ManageSdmNew.getListData("iki-remunerasi/get-duplicate-indikator-kinerja?idIndikator=" + ($scope.item.idMasterKinerja ? $scope.item.idMasterKinerja : "") + "&namaIndikator=" + $scope.item.namaIndikator).then(res => {
+                    if (res.data.data.length > 0) {
                         toastr.warning("Indikator kinerja sudah tersedia!");
                         return false;
                     }
@@ -165,7 +165,7 @@ define(['initialize'], function (initialize) {
                 }
 
                 if (checkDuplicateData()) {
-                    ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-master-indikator-kinerja").then(rs2 => {
+                    ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-master-indikator-kinerja").then(res => {
                         $scope.getDataMaster();
                         $scope.closePopUp();
                     })
