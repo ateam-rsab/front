@@ -211,6 +211,7 @@ define(['initialize'], function(initialize, pasienServices) {
             }
 
             socket.on('DaftarAntrian', function(data) {
+                console.log("DaftarAntrianRadiologi => ", data)
                 if ($scope.isLoading === false)
                     $scope.refresh();
             });

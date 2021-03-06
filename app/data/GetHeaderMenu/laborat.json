@@ -3,6 +3,10 @@
     "link": "#/RekamMedik",
     "shortcut": "ctrl+1"
 }, {
+    "caption": "Dashboard Antrian",
+    "link": "#/DashboardAntrianPasienLab",
+    "shortcut": "ctrl+1"
+}, {
     "caption": "Layanan Medik",
     "link": "#/LayananMedik",
     "shortcut": "ctrl+1"

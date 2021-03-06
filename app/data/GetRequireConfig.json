@@ -2681,6 +2681,10 @@
       "urlDep": "module/AplikasiHumasdanPemasaran/InformasiJadwalDokterCtrl"
     },
     {
+      "nameDep": "InformasiJadwalDokterV2Ctrl",
+      "urlDep": "module/AplikasiHumasdanPemasaran/InformasiJadwalDokterV2Ctrl"
+    },
+    {
       "nameDep": "ProsedurLayananCtrl",
       "urlDep": "module/AplikasiHumasdanPemasaran/ProsedurLayananCtrl"
     },

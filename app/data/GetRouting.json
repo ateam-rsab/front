@@ -18848,6 +18848,30 @@
     ]
   },
   {
+    "name": "InformasiJadwalDokterV2",
+    "url": "/InformasiJadwalDokterV2",
+    "templateurl": "module/AplikasiHumasdanPemasaran/InformasiJadwalDokterV2.html",
+    "controller": "InformasiJadwalDokterV2Ctrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SarprasService",
+        "define": "SarprasService"
+      },
+      {
+        "module": "AkuntansiService",
+        "define": "AkuntansiService"
+      }
+    ]
+  },
+  {
     "name": "Riwayat",
     "url": "/Riwayat/:id",
     "templateurl": "module/AplikasiK3/Riwayat.html",

@@ -108,8 +108,10 @@ define(['initialize'], function (initialize) {
                 "jenisIndikator": "Perilaku"
             }];
 
-            let getDataMaster = () => {
-                ManageSdmNew.getListData("iki-remunerasi/get-master-indikator-kinerja").then((res) => {
+            $scope.getDataMaster = () => {
+                $scope.isRouteLoading = true;
+                ManageSdmNew.getListData("iki-remunerasi/get-master-indikator-kinerja?jenisIndikatorId=" +  ($scope.item.srcJenisIndikator ? $scope.item.srcJenisIndikator.id : "") + "&namaIndikator=" + ($scope.item.srcNamaIndikator ? $scope.item.srcNamaIndikator.toLowerCase() : "") + "&isStatusVerifikasi=" + ($scope.item.srcStatusVerif ? $scope.item.srcStatusVerif : false)).then((res) => {
+                    $scope.isRouteLoading = false;
                     $scope.dataSourceMasterKinerja = new kendo.data.DataSource({
                         data: res.data.data,
                         pageSize: 10
@@ -118,7 +120,7 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.init = () => {
-                getDataMaster();
+                $scope.getDataMaster();
                 ManageSdmNew.getListData("service/list-generic/?view=SatuanIndikator&select=id,satuanIndikator&criteria=statusEnabled&values=true&order=id:asc").then((res) => {
                     $scope.listDataSatuanIndikator = res.data;
                 })
@@ -134,6 +136,17 @@ define(['initialize'], function (initialize) {
                 $scope.popupTambah.close();
             }
 
+            let checkDuplicateData = () => {
+                ManageSdmNew.getListData("iki-remunerasi/get-duplicate-indikator-kinerja?idIndikator=" + ($scope.item.idMasterKinerja ? $scope.item.idMasterKinerja : "") + "&namaIndikator=" + $scope.item.namaIndikator).then(rs1 => {
+                    if (rs1.data.data.length > 0) {
+                        toastr.warning("Indikator kinerja sudah tersedia!");
+                        return false;
+                    }
+
+                    return true;
+                })
+            }
+
             $scope.simpanData = (method) => {
                 let statusEnabled = method === 'save' || method === 'update';
                 let dataSave = {
@@ -146,22 +159,22 @@ define(['initialize'], function (initialize) {
                     statusVerifikasi: $scope.item.statusVerif,
                     jenisIndikator: $scope.item.jenisIndikator.id
                 }
+
                 if ($scope.item.idMasterKinerja) {
                     dataSave.id = $scope.item.idMasterKinerja;
                 }
 
-                ManageSdmNew.getListData("iki-remunerasi/get-duplicate-indikator-kinerja?idIndikator=" + ($scope.item.idMasterKinerja ? $scope.item.idMasterKinerja : "") + "&namaIndikator=" + $scope.item.namaIndikator).then(rs1 => {
-                    if (rs1.data.data.length > 0) {
-                        toastr.warning("Indikator kinerja sudah tersedia!")
-                        return
-                    } else {
-                        ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-master-indikator-kinerja").then(rs2 => {
-                            getDataMaster();
-                            $scope.closePopUp();
-                        })
-                    }
-                })
+                if (checkDuplicateData()) {
+                    ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-master-indikator-kinerja").then(rs2 => {
+                        $scope.getDataMaster();
+                        $scope.closePopUp();
+                    })
+                }
+
+
             }
+
+
 
             $scope.reset = () => {
                 $scope.item.jenisIndikator = null;
