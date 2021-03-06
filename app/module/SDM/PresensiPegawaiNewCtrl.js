@@ -9,7 +9,8 @@ define(['initialize'], function (initialize) {
             $scope.time = "";
             $scope.isRouteLoading = false;
             $scope.data.isWFH = true;
-            $scope.isDisblePresensi = true;
+            $scope.isDisablePresensi = true;
+            $scope.isNotEditable = false;
             $scope.dataPegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
             $scope.userLocation = {};
 
@@ -39,7 +40,7 @@ define(['initialize'], function (initialize) {
                 context.drawImage(video, 0, 0, 400, 350);
                 $scope.canvasDataURL = canvas.toDataURL().replace("image/png", "image/jpg");
                 // console.log(imageDataURL);
-                $scope.isDisblePresensi = false;
+                $scope.isDisablePresensi = false;
             }
 
             function getDecimal(n) {
@@ -116,6 +117,7 @@ define(['initialize'], function (initialize) {
                 getDataHistory();
                 ManageSdmNew.getListData('sdm/get-jadwal-pegawai?idPegawai=' + $scope.dataPegawaiLogin.id).then((res) => {
                     $scope.data = res.data.data;
+                    checkEditableWFH()
                 });
 
                 $scope.ip = getIPAddr();
@@ -148,6 +150,9 @@ define(['initialize'], function (initialize) {
                 let http = new XMLHttpRequest();
 
                 http.onreadystatechange = () => {
+                    if (http.status === 0 && http.readyState === 1) {
+                        toastr.info("Jaringan anda bermasalah");
+                    }
                     if (http.readyState == 4 && http.status === 200) {
                         dataIP = http.responseText;
                     }
@@ -176,7 +181,27 @@ define(['initialize'], function (initialize) {
 
                 ManageSdmNew.saveData(data, 'sdm/save-presensi-pegawai/').then((res) => {
                     getDataHistory();
+                    assignToNotEditable()
                 })
+            }
+
+            function checkEditableWFH() {
+                if ($scope.data && $scope.dataHistoriPresensi.options.data) {
+                    if ($scope.data.jadwal !== "-"
+                        && !$scope.data.jadwal.contains("Malam")
+                        && $scope.dataHistoriPresensi.options.data.length > 0) {
+                        $scope.isNotEditable = true
+                    }
+                }
+            }
+
+            function assignToNotEditable() {
+                if ($scope.data) {
+                    if ($scope.data.jadwal !== "-"
+                        && !$scope.data.jadwal.contains("Malam")) {
+                        $scope.isNotEditable = true
+                    }
+                }
             }
         }
     ]);

@@ -4,173 +4,175 @@
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
     crossorigin="anonymous"></script> -->
-    <style>
-        .container-presensi {
-            display: flex;
-            /* justify-content: center; */
-        }
-    
-        #mapid {
-            height: 20em;
-        }
-    
-        .label-name {
-            display: block;
-            font-size: .8em;
-            font-weight: 800;
-        }
-    
-        .label-content {
-            font-size: 1.2em;
-            text-decoration: underline;
-            font-weight: bolder;
-        }
-    
-        md-card {
-            width: 100%;
-        }
-    
-        md-card-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-    
-        md-card-content div {
-            margin: 10px 0;
-        }
-    
-        #wifi-icon {
-            color: green;
-        }
-    
-        #xlabel {
-            color: red;
-        }
-    
-        #date-part, #time-part {
-            font-size: 15px;
-            font-weight: bolder;
-        }
-    
-        md-card-content.capture {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-    
-        .capture canvas {
-            margin-top: 10px;
-            margin-top: 10px;
-            height: 480px;
-            width: 400px;
-        }
-    
-        @media (max-device-width: 600px) {
-            /* md-toolbar {
+<style>
+    .container-presensi {
+        display: flex;
+        /* justify-content: center; */
+    }
+
+    #mapid {
+        height: 20em;
+    }
+
+    .label-name {
+        display: block;
+        font-size: .8em;
+        font-weight: 800;
+    }
+
+    .label-content {
+        font-size: 1.2em;
+        text-decoration: underline;
+        font-weight: bolder;
+    }
+
+    md-card {
+        width: 100%;
+    }
+
+    md-card-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    md-card-content div {
+        margin: 10px 0;
+    }
+
+    #wifi-icon {
+        color: green;
+    }
+
+    #xlabel {
+        color: red;
+    }
+
+    #date-part,
+    #time-part {
+        font-size: 15px;
+        font-weight: bolder;
+    }
+
+    md-card-content.capture {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .capture canvas {
+        margin-top: 10px;
+        margin-top: 10px;
+        height: 480px;
+        width: 400px;
+    }
+
+    @media (max-device-width: 600px) {
+        /* md-toolbar {
                 font-size: 1em;
             }
     
             md-card {
                 width: 100%;
             } */
-    
+
         .capture canvas {
-                margin-top: 10px;
-                margin-top: 10px;
-                height: 700px;
-                width: 50%;
-            }
-    
-            div.container-presensi {
-                display: block;
-    
-            }
+            margin-top: 10px;
+            margin-top: 10px;
+            height: 700px;
+            width: 50%;
         }
-    </style>
-    
-    <md-toolbar md-scroll-shrink class="shadow">
-        <div class="md-toolbar-tools">Presensi Pegawai</div>
-    </md-toolbar>
-    
-    <div class="container-presensi">
-        <md-card>
-            <md-card-content class="capture">
-                <video id="video" width="400" height="400" autoplay></video>
-                <!-- <button ng-click="showImageCapture()">Snap Photo</button> -->
-                <md-button class="md-raised md-primary" ng-click="showImageCapture()"
-                    style="width: 20%;height: 80px;margin-bottom: 10px;">
-                    <!-- <span style="margin-right: 5px;">Capture</span> -->
-                    <i style="font-size: 25px;" class="fa fa-camera"></i>
-                </md-button>
-                <canvas id="canvas" width="400" height="400"></canvas>
-            </md-card-content>
-        </md-card>
-    
-        <md-card>
-            <md-card-content>
-                <div id="mapid"></div>
-                <!-- <div>
+
+        div.container-presensi {
+            display: block;
+
+        }
+    }
+</style>
+
+<md-toolbar md-scroll-shrink class="shadow">
+    <div class="md-toolbar-tools">Presensi Pegawai</div>
+</md-toolbar>
+
+<div class="container-presensi">
+    <md-card>
+        <md-card-content class="capture">
+            <video id="video" width="400" height="400" autoplay></video>
+            <!-- <button ng-click="showImageCapture()">Snap Photo</button> -->
+            <md-button class="md-raised md-primary" ng-click="showImageCapture()"
+                style="width: 20%;height: 80px;margin-bottom: 10px;">
+                <!-- <span style="margin-right: 5px;">Capture</span> -->
+                <i style="font-size: 25px;" class="fa fa-camera"></i>
+            </md-button>
+            <canvas id="canvas" width="400" height="400"></canvas>
+        </md-card-content>
+    </md-card>
+
+    <md-card>
+        <md-card-content>
+            <div id="mapid"></div>
+            <!-- <div>
                     <label class="label-name">Akurasi : </label>
                     <label class="label-content">{{userLocation.akurasi}} m</label>
                 </div> -->
-                <div style="float: right">
-                    <i id="wifi-icon" class="fa fa-wifi"></i>
-                    <label id="xlabel" class="label-content" ng-hide="isRSABNet">{{strJenisJaringan}}</label>
-                    <label class="label-content" ng-show="isRSABNet">{{strJenisJaringan}}</label>
-                </div>
-                <div>
-                    <label class="label-name">Nama Lengkap Pegawai : </label>
-                    <label class="label-content">{{data.namaLengkap ? data.namaLengkap : "-"}}</label>
-                </div>
-    
-                <div>
-                    <label class="label-name">ID Finger : </label>
-                    <label class="label-content">{{data.idFinger ? data.idFinger : "-"}}</label>
-                </div>
-    
-                <div>
-                    <label class="label-name">Jadwal : </label>
-                    <label class="label-content">{{data.jadwal ? data.jadwal : "-"}}</label>
-                </div>
-                <!-- <div>
+            <div style="float: right">
+                <i id="wifi-icon" class="fa fa-wifi"></i>
+                <label id="xlabel" class="label-content" ng-hide="isRSABNet">{{strJenisJaringan}}</label>
+                <label class="label-content" ng-show="isRSABNet">{{strJenisJaringan}}</label>
+            </div>
+            <div>
+                <label class="label-name">Nama Lengkap Pegawai : </label>
+                <label class="label-content">{{data.namaLengkap ? data.namaLengkap : "-"}}</label>
+            </div>
+
+            <div>
+                <label class="label-name">ID Finger : </label>
+                <label class="label-content">{{data.idFinger ? data.idFinger : "-"}}</label>
+            </div>
+
+            <div>
+                <label class="label-name">Jadwal : </label>
+                <label class="label-content">{{data.jadwal ? data.jadwal : "-"}}</label>
+            </div>
+            <!-- <div>
                     <label class="label-name">Work From Home (WFH) : </label>
                     <label class="label-content">{{data.isWFH ? 'Ya' : 'Tidak'}}</label>
                 </div> -->
-    
-                <div>
-                    <div class="grid_4">
-                        <div id="date-part"></div>
-                        <div id="time-part"></div>
-                        <!-- <input kendo-time-picker ng-model="str" k-ng-model="tanggalPresensi" k-format="'HH:mm'"
+
+            <div>
+                <div class="grid_4">
+                    <div id="date-part"></div>
+                    <div id="time-part"></div>
+                    <!-- <input kendo-time-picker ng-model="str" k-ng-model="tanggalPresensi" k-format="'HH:mm'"
                             style="width: 100%;" disabled> -->
-                    </div>
-                    <div class="grid_4" style="margin-top: 20px;">
-                        <input type="checkbox" class="k-checkbox" name="wfh" id="wfh" ng-model="data.isWFH">
-                        <label c-label item="item" class="k-checkbox-label" for="wfh">Work From Home (WFH)</label>
-                    </div>
-                    <div class="grid_2" style="margin-top: 17px;">
-                        <md-button class="md-raised md-primary medium-button" ng-click="savePresensi()" ng-disabled="isDisblePresensi">
-                            <span style="margin-right: 5px;">Simpan</span>
-                            <i class="fa fa-save"></i>
-                        </md-button>
-                    </div>
-    
                 </div>
-    
-                <div class="grid_12">
-                    <fieldset class="borderBox">
-                        <legend>History Jam Presensi</legend>
-                        <div kendo-grid k-data-source="dataHistoriPresensi" k-selectable="'row'" k-pageable="'true'"
-                            k-sortable="'true'" options="optHistoryPresensi" k-ng-model="dataSelected">
-                        </div>
-                    </fieldset>
+                <div class="grid_4" style="margin-top: 20px;">
+                    <input type="checkbox" class="k-checkbox" name="wfh" id="wfh" ng-model="data.isWFH"
+                        ng-disabled="isNotEditable">
+                    <label c-label item="item" class="k-checkbox-label" for="wfh">Work From Home (WFH)</label>
                 </div>
-    
-            </md-card-content>
-        </md-card>
-    </div>
-    
-    <div ng-include=' "../app/module/Shared/TemplateLoading" '></div>
-    
+                <div class="grid_2" style="margin-top: 17px;">
+                    <md-button class="md-raised md-primary medium-button" ng-click="savePresensi()"
+                        ng-disabled="isDisablePresensi">
+                        <span style="margin-right: 5px;">Simpan</span>
+                        <i class="fa fa-save"></i>
+                    </md-button>
+                </div>
+
+            </div>
+
+            <div class="grid_12">
+                <fieldset class="borderBox">
+                    <legend>History Jam Presensi</legend>
+                    <div kendo-grid k-data-source="dataHistoriPresensi" k-selectable="'row'" k-pageable="'true'"
+                        k-sortable="'true'" options="optHistoryPresensi" k-ng-model="dataSelected">
+                    </div>
+                </fieldset>
+            </div>
+
+        </md-card-content>
+    </md-card>
+</div>
+
+<div ng-include=' "../app/module/Shared/TemplateLoading" '></div>
