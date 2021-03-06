@@ -21,7 +21,7 @@ define(['initialize'], function (initialize) {
                             tempData.push({
                                 jam: res.data.data[i].tr_time,
                                 statusPresensi: res.data.data[i].processtatus,
-                                statusInternet: res.data.data[i].ip_addr,
+                                statusInternet: res.data.data[i].ip_addr
                             });
                         }
                     }

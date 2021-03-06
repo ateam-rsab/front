@@ -20,10 +20,12 @@ define(['initialize'], function (initialize) {
                 $scope.isRouteLoading = true;
                 let tempData = [];
                 ManageSdmNew.getListData('sdm/get-histori-presensi-pegawai?idPegawai=' + $scope.dataPegawaiLogin.id).then((res) => {
-                    if (res.data.data.data) {
-                        for (let i = 0; i < res.data.data.data.length; i++) {
+                    if (res.data.data) {
+                        for (let i = 0; i < res.data.data.length; i++) {
                             tempData.push({
-                                jam: res.data.data.data[i]
+                                jam: res.data.data[i].tr_time,
+                                statusPresensi: res.data.data[i].processtatus,
+                                statusInternet: res.data.data[i].ip_addr
                             });
                         }
                     }
@@ -136,7 +138,16 @@ define(['initialize'], function (initialize) {
             $scope.columnGrid = [{
                 "field": "jam",
                 "title": "<h3>Jam</h3>",
-                "width": "150px"
+                "width": "30px"
+            }, {
+                "field": "statusPresensi",
+                "title": "<h3>Status<br/>Presensi</h3>",
+                "width": "20px",
+                attributes: { style: "text-align:center" }
+            }, {
+                "field": "statusInternet",
+                "title": "<h3>Status Internet</h3>",
+                "width": "100px"
             }];
 
             $scope.optHistoryPresensi = {
