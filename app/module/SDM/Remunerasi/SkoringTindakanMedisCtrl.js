@@ -7,22 +7,12 @@ define(['initialize'], function (initialize) {
             $scope.isEdit = false;
             var userLogin = JSON.parse(localStorage.getItem('datauserlogin'));
             var pegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
-            // if (listStaff.includes(pegawaiLogin.id)) {
-            //     $scope.isHapusGranted = false
-            //     $scope.isVerifHidden = true
-            // } else if (listHead.includes(pegawaiLogin.id)) {
-            //     $scope.isHapusGranted = true
-            //     $scope.isVerifHidden = false
-            // } else {
-            //     $scope.isHapusGranted = false
-            //     $scope.isVerifHidden = true
-            // }
             $scope.listStatusVerif = [{
-                id: 1,
-                statusVerif: "Terverifikasi"
-            }, {
                 id: 0,
                 statusVerif: "Belum Terverifikasi"
+            }, {
+                id: 1,
+                statusVerif: "Terverifikasi"
             }]
 
             $scope.optGridSkoringTindakan = {
@@ -78,8 +68,15 @@ define(['initialize'], function (initialize) {
 
             $scope.getAllData = () => {
                 $scope.isRouteLoading = true;
+                var listKK = []
 
-                ManageSdmNew.getListData("iki-remunerasi/get-all-skoring-tindakan-medis?kelompokKerjaId=" + ($scope.item.srcKelompokKerja ? $scope.item.srcKelompokKerja.id : "") + "&namaProduk=" + ($scope.item.srcNamaProduk ? $scope.item.srcNamaProduk.namaProduk : "") + "&detailProduk=" + ($scope.item.srcDetailTindakan ? $scope.item.srcDetailTindakan : "") + "&tglMulaiBerlaku=" + ($scope.item.srcTglBerlaku ? dateHelper.toTimeStamp($scope.item.srcTglBerlaku) : "") + "&isStatusVerifikasi=" + ($scope.item.srcStatusVerif ? ($scope.item.srcStatusVerif.id == 1 ? true : false) : "")).then((res) => {
+                if ($scope.item.srcKelompokKerja) {
+                    listKK.push($scope.item.srcKelompokKerja.id)
+                } else {
+                    listKK = $scope.listKk
+                }
+
+                ManageSdmNew.getListData("iki-remunerasi/get-all-skoring-tindakan-medis?listKelompokKerjaId=" + listKK + "&namaProduk=" + ($scope.item.srcNamaProduk ? $scope.item.srcNamaProduk.namaProduk : "") + "&detailProduk=" + ($scope.item.srcDetailTindakan ? $scope.item.srcDetailTindakan : "") + "&tglMulaiBerlaku=" + ($scope.item.srcTglBerlaku ? dateHelper.toTimeStamp($scope.item.srcTglBerlaku) : "") + "&isStatusVerifikasi=" + ($scope.item.srcStatusVerif ? ($scope.item.srcStatusVerif.id == 1 ? true : false) : "")).then((res) => {
                     $scope.dataSourceSkoring = new kendo.data.DataSource({
                         data: res.data.data,
                         pageSize: 20
@@ -89,18 +86,39 @@ define(['initialize'], function (initialize) {
             }
 
             let init = () => {
-                $scope.getAllData();
-                ManageSdmNew.getListData("service/list-generic/?view=SubUnitKerjaPegawai&select=id,name&criteria=statusEnabled,unitKerjaId,name&values=true,(58;59;60;61;62;63),KK&order=name:asc").then((res) => {
-                    $scope.listKKMedis = res.data;
+                ManageSdmNew.getListData("iki-remunerasi/get-akses-skoring-tindakan-medis?pegawaiId=" + pegawaiLogin.id).then((res) => {
+                    var listUK = ""
+                    if (!_.isEmpty(res.data.data)) {
+                        $scope.listId = res.data.data.listId
+                        $scope.listKk = res.data.data.listKk
+                        listUK = res.data.data.listId.join(";")
+                        if (res.data.data.isStaf) {
+                            $scope.isVerifHidden = true
+                            $scope.isHapusGranted = false
+                        } else if (res.data.data.isAtasan || res.data.data.isSuperuser) {
+                            $scope.isVerifHidden = false
+                            $scope.isHapusGranted = true
+                        }
+                    } else {
+                        $scope.listId = [58, 59, 60, 61, 62, 63, 82]
+                        $scope.listKk = []
+                        listUK = "58;59;60;61;62;63;82"
+                    }
+
+                    $scope.getAllData();
+
+                    ManageSdmNew.getListData("service/list-generic/?view=UnitKerjaPegawai&select=id,name&criteria=id,statusEnabled&values=(" + listUK + "),true&order=name:asc").then((rsUK) => {
+                        $scope.listUnitKerjKSM = rsUK.data;
+                    });
+
+                    ManageSdmNew.getListData("service/list-generic/?view=SubUnitKerjaPegawai&select=id,name&criteria=statusEnabled,unitKerjaId,name&values=true,(" + listUK + "),KK&order=name:asc").then((rsSK) => {
+                        $scope.listKKMedis = rsSK.data;
+                    });
                 });
 
                 ManageSdmNew.getListData("service/list-generic/?view=Departemen&select=id,namaDepartemen&criteria=statusEnabled,id&values=true,(3;16;18;24;25;26;27;28;35)&order=namaDepartemen:asc").then((res) => {
                     // console.log(res);
                     $scope.listDepartemen = res.data;
-                });
-
-                ManageSdmNew.getListData("service/list-generic/?view=UnitKerjaPegawai&select=id,name&criteria=id,statusEnabled&values=(58;59;60;61;62;63),true&order=name:asc").then((res) => {
-                    $scope.listUnitKerjKSM = res.data;
                 });
             }
 
@@ -118,16 +136,18 @@ define(['initialize'], function (initialize) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
 
-                // if (!$scope.isHapusGranted) {
-                //     if (dataItem.isStatusVerifikasi) {
-                //         toastr.warning("Mapping skor sudah terverifikasi")
-                //         return
-                //     } else {
-                //         toastr.warning("Tidak memiliki akses!")
-                //         return
-                //     }
-                // } else 
-                if (dataItem.isStatusVerifikasi) {
+                if (!$scope.listId.includes(dataItem.unitKerjaId)) {
+                    toastr.warning("Tidak memiliki akses menghapus data!")
+                    return
+                } else if (!$scope.isHapusGranted) {
+                    if (dataItem.isStatusVerifikasi) {
+                        toastr.warning("Mapping skor sudah terverifikasi")
+                        return
+                    } else {
+                        toastr.warning("Tidak memiliki akses menghapus data!")
+                        return
+                    }
+                } else if (dataItem.isStatusVerifikasi) {
                     toastr.warning("Mapping skor sudah terverifikasi")
                     return
                 }
@@ -171,6 +191,11 @@ define(['initialize'], function (initialize) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
                 var listProduk = []
+
+                if (!$scope.listId.includes(dataItem.unitKerjaId)) {
+                    toastr.warning("Tidak memiliki akses mengubah data!")
+                    return
+                }
 
                 $scope.isEdit = true
                 $scope.item.namaProduk = {
