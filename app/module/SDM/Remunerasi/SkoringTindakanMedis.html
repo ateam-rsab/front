@@ -74,7 +74,13 @@
                             k-on-change="getProduk(item.ruangan.id)" />
                     </div>
                 </div>
-                <div class="grid_12" style="margin-left: 6px; width: 98.5%;">
+                <div class="grid_12" style="margin-left: 6px; width: 98.5%;" ng-hide="isEdit">
+                    <label><strong>Tindakan</strong></label>
+                    <input kendo-combo-box k-filter="'contains'" k-ng-model="item.namaProduk"
+                        k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-data-source="listNamaProduk"
+                        ng-disabled="isEdit" />
+                </div>
+                <div class="grid_12" style="margin-top: 6px; margin-left: 6px; width: 98.5%;" ng-show="isEdit">
                     <label><strong>Tindakan</strong></label>
                     <input kendo-combo-box k-filter="'contains'" k-ng-model="item.namaProduk"
                         k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-data-source="listNamaProduk"
@@ -83,11 +89,13 @@
                 <div class="grid_12">
                     <div class="grid_9">
                         <label><strong>Rincian Tindakan</strong></label>
-                        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.detailTindakan" />
+                        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.detailTindakan"
+                            ng-disabled="isVerifStaf" />
                     </div>
                     <div class="grid_3">
                         <label><strong>Skor</strong></label>
-                        <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.skor" />
+                        <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.skor"
+                            ng-disabled="isVerifStaf" />
                     </div>
                 </div>
                 <div class="grid_12">
@@ -95,19 +103,20 @@
                         <label><strong>Unit Kerja</strong></label>
                         <input kendo-combo-box k-filter="'contains'" k-ng-model="item.unitKerja"
                             k-data-text-field="'name'" k-data-value-field="'id'" k-data-source="listUnitKerjKSM"
-                            k-on-change="getDataKelompokKerja(item.unitKerja.id)" />
+                            k-on-change="getDataKelompokKerja(item.unitKerja.id)" ng-disabled="isVerifStaf" />
                     </div>
                     <div class="grid_6">
                         <label><strong>Kelompok Kerja</strong></label>
                         <input kendo-combo-box k-filter="'contains'" k-ng-model="item.kelompokKerja"
-                            k-data-text-field="'name'" k-data-value-field="'id'" k-data-source="listKelompokKerja" />
+                            k-data-text-field="'name'" k-data-value-field="'id'" k-data-source="listKelompokKerja"
+                            ng-disabled="isVerifStaf" />
                     </div>
                 </div>
                 <div class="grid_12">
                     <div class="grid_6">
                         <label><strong>Tanggal Berlaku</strong></label>
                         <input style="width: 100%;" k-ng-model="item.tglBerlaku" kendo-date-picker
-                            placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                            placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" ng-disabled="isVerifStaf" />
                     </div>
                     <div class="grid_6" ng-hide="isVerifHidden">
                         <!-- <input type="checkbox" id="eq1" class="k-checkbox" checked="checked"> -->

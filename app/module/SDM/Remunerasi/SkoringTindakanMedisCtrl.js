@@ -5,6 +5,7 @@ define(['initialize'], function (initialize) {
             $scope.item = {};
             $scope.isRouteLoading = false;
             $scope.isEdit = false;
+            $scope.isVerifStaf = false
             var userLogin = JSON.parse(localStorage.getItem('datauserlogin'));
             var pegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
             $scope.listStatusVerif = [{
@@ -91,6 +92,10 @@ define(['initialize'], function (initialize) {
                     if (!_.isEmpty(res.data.data)) {
                         $scope.listId = res.data.data.listId
                         $scope.listKk = res.data.data.listKk
+                        $scope.isStaf = res.data.data.isStaf
+                        $scope.isAtasan = res.data.data.isAtasan
+                        $scope.isSuperuser = res.data.data.isSuperuser
+
                         listUK = res.data.data.listId.join(";")
                         if (res.data.data.isStaf) {
                             $scope.isVerifHidden = true
@@ -199,6 +204,9 @@ define(['initialize'], function (initialize) {
                 }
 
                 $scope.isEdit = true
+                if (dataItem.isStatusVerifikasi && $scope.isStaf) {
+                    $scope.isVerifStaf = true
+                }
                 $scope.item.namaProduk = {
                     id: dataItem.produkId,
                     namaProduk: dataItem.namaProduk
@@ -227,39 +235,53 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.saveData = (method) => {
-                let statusEnabled = method === 'save' || method === 'update';
+                var listRawRequired = [
+                    "item.tglBerlaku|ng-model|Tanggal Berlaku",
+                    "item.kelompokKerja|ng-model|Kelompok Kerja",
+                    "item.skor|ng-model|Skor",
+                    "item.detailTindakan|ng-model|Rincian Tindakan",
+                    "item.namaProduk|k-ng-model|Tindakan"
+                ];
 
-                let dataSave = {
-                    detailProduk: $scope.item.detailTindakan,
-                    skor: parseInt($scope.item.skor),
-                    statusVerifikasi: $scope.item.statusVerif ? true : false,
-                    tanggalMulaiBerlaku: dateHelper.toTimeStamp($scope.item.tglBerlaku),
-                    produk: {
-                        id: $scope.item.namaProduk.id
-                    },
-                    kelompokKerja: {
-                        id: $scope.item.kelompokKerja.id
-                    },
-                    kdProfile: 0,
-                    statusEnabled: statusEnabled,
-                    loginUserId: userLogin.id
-                }
+                var isValid = modelItem.setValidation($scope, listRawRequired);
+                if (isValid.status) {
+                    let statusEnabled = method === 'save' || method === 'update';
 
-                if ($scope.norecData) {
-                    dataSave.noRec = $scope.norecData;
-                }
-                // console.table(dataSave);
-
-                ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=" + ($scope.norecData ? $scope.norecData : "") + "&namaProduk=" + $scope.item.namaProduk.namaProduk + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + $scope.item.detailTindakan + "&skor=" + $scope.item.skor).then(res => {
-                    if (res.data.data.length > 0) {
-                        toastr.warning("Data mapping skoring sudah tersedia!");
-                    } else {
-                        ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-skoring-tindakan-medis").then(res => {
-                            $scope.getAllData();
-                            $scope.closePopUp();
-                        })
+                    let dataSave = {
+                        detailProduk: $scope.item.detailTindakan,
+                        skor: parseInt($scope.item.skor),
+                        statusVerifikasi: $scope.item.statusVerif ? true : false,
+                        tanggalMulaiBerlaku: dateHelper.toTimeStamp($scope.item.tglBerlaku),
+                        produk: {
+                            id: $scope.item.namaProduk.id
+                        },
+                        kelompokKerja: {
+                            id: $scope.item.kelompokKerja.id
+                        },
+                        kdProfile: 0,
+                        statusEnabled: statusEnabled,
+                        loginUserId: userLogin.id
                     }
-                })
+
+                    if ($scope.norecData) {
+                        dataSave.noRec = $scope.norecData;
+                    }
+                    // console.table(dataSave);
+
+                    ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=" + ($scope.norecData ? $scope.norecData : "") + "&namaProduk=" + $scope.item.namaProduk.namaProduk + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + $scope.item.detailTindakan + "&skor=" + $scope.item.skor).then(res => {
+                        if (res.data.data.length > 0) {
+                            toastr.warning("Data mapping skoring sudah tersedia!");
+                        } else {
+                            ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-skoring-tindakan-medis").then(res => {
+                                $scope.getAllData();
+                                $scope.closePopUp();
+                            })
+                        }
+                    })
+                } else {
+                    $scope.isRouteLoading = false;
+                    modelItem.showMessages(isValid.messages);
+                }
             }
 
             $scope.getDataKelompokKerja = (id) => {
