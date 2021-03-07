@@ -127,6 +127,7 @@ define(['initialize'], function (initialize) {
             $scope.tambahData = () => {
                 $scope.reset();
                 $scope.isEdit = false
+                $scope.listRuangan = []
                 $scope.listNamaProduk = []
                 $scope.listKelompokKerja = []
                 $scope.popupTambah.open().center();
@@ -288,6 +289,8 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.reset = () => {
+                $scope.item.departemen = null
+                $scope.item.ruangan = null
                 $scope.item.unitKerja = null;
                 $scope.item.namaProduk = null;
                 $scope.item.kelompokKerja = null;

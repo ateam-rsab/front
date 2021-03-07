@@ -8,6 +8,10 @@
         "link": "#/DaftarPasienVedika"
     },
     {
+        "name": "Skoring Tindakan Medis",
+        "link": "#/SkoringTindakanMedis"
+    },
+    {
         "name": "Setting",
         "children": [
             {

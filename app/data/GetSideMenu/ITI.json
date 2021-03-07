@@ -2513,6 +2513,10 @@
                 "link": "#/InputLemburPegawaiUnitKerja"
             },
             {
+                "name": "Skoring Tindakan Medis",
+                "link": "#/SkoringTindakanMedis"
+            },
+            {
                 "name": "Verifikasi Uraian Tugas Bawahan",
                 "link": "#/VerifikasiUraianTugasPegawaiLogin"
             },
