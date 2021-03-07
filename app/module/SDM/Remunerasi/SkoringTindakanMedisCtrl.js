@@ -206,6 +206,8 @@ define(['initialize'], function (initialize) {
                 $scope.isEdit = true
                 if (dataItem.isStatusVerifikasi && $scope.isStaf) {
                     $scope.isVerifStaf = true
+                } else {
+                    $scope.isVerifStaf = false
                 }
                 $scope.item.namaProduk = {
                     id: dataItem.produkId,
