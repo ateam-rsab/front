@@ -132,6 +132,7 @@ define(['initialize'], function (initialize) {
             $scope.tambahData = () => {
                 $scope.reset();
                 $scope.isEdit = false
+                $scope.isVerifStaf = false
                 $scope.listRuangan = []
                 $scope.listNamaProduk = []
                 $scope.listKelompokKerja = []
