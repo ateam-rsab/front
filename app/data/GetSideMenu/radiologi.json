@@ -12,6 +12,10 @@
         "link": "#/DaftarPasienRadiologi"
     },
     {
+        "name": "Daftar Pasien Pulang",
+        "link": "#/DaftarPasienPulang"
+    },
+    {
         "name": "RIS Report",
         "link": "#/RisReport"
     },
