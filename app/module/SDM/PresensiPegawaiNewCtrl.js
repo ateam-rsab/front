@@ -49,7 +49,7 @@ define(['initialize'], function (initialize) {
                     $scope.canvasDataURL = canvas.toDataURL().replace("image/png", "image/jpg");
                     $scope.isDisablePresensi = false;
                 }, function () {
-                    toastr.warning("Kamera tidak terdeteksi, silakan gunakan HP/ PC dengan akses kamera dari browser yang telah diizinkan!")
+                    alert("Kamera tidak terdeteksi, silakan gunakan HP/ PC dengan akses kamera dari browser yang telah diizinkan!")
                     return
                 });
             }
