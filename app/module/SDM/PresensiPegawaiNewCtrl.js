@@ -49,7 +49,7 @@ define(['initialize'], function (initialize) {
                     $scope.canvasDataURL = canvas.toDataURL().replace("image/png", "image/jpg");
                     $scope.isDisablePresensi = false;
                 }, function () {
-                    alert("Kamera tidak terdeteksi, silakan gunakan HP/ PC dengan akses kamera dari browser yang telah diizinkan!")
+                    alert("Kamera tidak terdeteksi, silakan gunakan Smartphone/ PC dengan akses kamera yang diizinkan untuk laman presensi ini!")
                     return
                 });
             }
@@ -131,7 +131,7 @@ define(['initialize'], function (initialize) {
                     checkEditableWFH()
                 });
 
-                $scope.ip = getIPAddr();
+                // $scope.ip = getIPAddr();
                 var listProviders = ['43.225.67.209', '103.116.203.81', '103.116.203.82', '103.116.203.83', '103.116.203.84', '103.116.203.85', '103.116.203.86', '103.116.203.87', '103.116.203.88', '103.116.203.89', '103.116.203.90', '103.116.203.91', '103.116.203.92', '103.116.203.93', '103.116.203.94', '103.116.203.95', '103.247.219.149']
                 if ($scope.ip !== undefined) {
                     if (listProviders.includes($scope.ip)) {
