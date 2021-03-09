@@ -11,23 +11,25 @@
 <div class="grid_12">
     <div class="grid_2">
         <label><strong>Jenis Indikator</strong></label>
-        <input kendo-combo-box k-filter="'contains'" k-ng-model="item.srcJenisIndikator" k-data-text-field="'jenisIndikator'"
-            k-data-value-field="'id'" k-data-source="listJenisIndikator" />
+        <input kendo-combo-box k-filter="'contains'" k-ng-model="item.srcJenisIndikator"
+            k-data-text-field="'jenisIndikator'" k-data-value-field="'id'" k-data-source="listJenisIndikator" />
     </div>
-
     <div class="grid_4">
         <label><strong>Nama Indikator</strong></label>
         <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.srcNamaIndikator" />
     </div>
-
-    <div class="grid_1">
+    <div class="grid_2">
+        <label><strong>Status Verifikasi</strong></label>
+        <input kendo-combo-box k-filter="'contains'" k-ng-model="item.srcStatusVerif" k-data-text-field="'statusVerif'"
+            k-data-value-field="'id'" k-data-source="listStatusVerif" />
+    </div>
+    <!-- <div class="grid_1">
         <md-checkbox ng-model="item.srcStatusVerif" aria-label="verified" style="margin-top:24px"
             class="green">
             Status Verifikasi
         </md-checkbox>
-    </div>
-
-    <div class="grid_1" style="margin-top: 19px;">
+    </div> -->
+    <div class="grid_1" style="margin-top: 1.6em;">
         <md-button class="md-raised md-primary medium-button" ng-click="getDataMaster()">
             <span style="margin-right: 5px;">Cari</span>
             <i class="fa fa-search"></i>
@@ -48,25 +50,25 @@
             <div class="grid_12">
                 <div class="grid_6">
                     <label><strong>Jenis Indikator</strong></label>
-                    <input kendo-combo-box k-filter="'contains'" k-ng-model="item.jenisIndikator" k-data-text-field="'jenisIndikator'"
-                        k-data-value-field="'id'" k-data-source="listJenisIndikator" />
+                    <input kendo-combo-box k-filter="'contains'" k-ng-model="item.jenisIndikator"
+                        k-data-text-field="'jenisIndikator'" k-data-value-field="'id'"
+                        k-data-source="listJenisIndikator" ng-disabled="isEdit" />
                 </div>
                 <div class="grid_6">
                     <label><strong>Satuan Indikator</strong></label>
-                    <input kendo-combo-box k-filter="'contains'" k-ng-model="item.satuanIndikator" k-data-text-field="'satuanIndikator'"
-                        k-data-value-field="'id'" k-data-source="listDataSatuanIndikator" />
+                    <input kendo-combo-box k-filter="'contains'" k-ng-model="item.satuanIndikator"
+                        k-data-text-field="'satuanIndikator'" k-data-value-field="'id'"
+                        k-data-source="listDataSatuanIndikator" ng-disabled="isEdit" />
                 </div>
-
-                <div class="grid_6">
+                <div class="grid_10">
                     <label><strong>Nama Indikator</strong></label>
-                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaIndikator" />
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaIndikator"
+                        ng-disabled="isEdit" />
                 </div>
-
-                <div class="grid_6">
-                    <!-- <input type="checkbox" id="eq1" class="k-checkbox" checked="checked"> -->
+                <div class="grid_2">
                     <md-checkbox ng-model="item.statusVerif" aria-label="verified" style="margin-top:24px"
                         class="green">
-                        Status Verifikasi
+                        Verifikasi
                     </md-checkbox>
                 </div>
             </div>

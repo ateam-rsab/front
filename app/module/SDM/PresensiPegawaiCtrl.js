@@ -51,12 +51,17 @@ define(['initialize'], function (initialize) {
 
                 $scope.ip = getIPAddr();
                 var listProviders = ['43.225.67.209', '103.116.203.81', '103.116.203.82', '103.116.203.83', '103.116.203.84', '103.116.203.85', '103.116.203.86', '103.116.203.87', '103.116.203.88', '103.116.203.89', '103.116.203.90', '103.116.203.91', '103.116.203.92', '103.116.203.93', '103.116.203.94', '103.116.203.95', '103.247.219.149']
-                if (listProviders.includes($scope.ip)) {
-                    $scope.strJenisJaringan = "Jaringan Internet RSAB"
-                    $scope.isRSABNet = true
+                if ($scope.ip !== undefined) {
+                    if (listProviders.includes($scope.ip)) {
+                        $scope.strJenisJaringan = "Jaringan Internet RSAB"
+                        $scope.isRSABNet = true
+                    } else {
+                        $scope.strJenisJaringan = "Bukan Jaringan Internet RSAB"
+                        $scope.isRSABNet = false
+                    }
                 } else {
-                    $scope.strJenisJaringan = "Bukan Jaringan Internet RSAB"
-                    $scope.isRSABNet = false
+                    $scope.strJenisJaringan = "Jaringan Tidak Terdeteksi"
+                    $scope.isRSABNet = true
                 }
             }
 
@@ -92,13 +97,13 @@ define(['initialize'], function (initialize) {
 
                 http.onreadystatechange = () => {
                     console.log(http.readyState, http.status, http.statusText);
-                    if(http.status === 0 && http.readyState === 1) {
+                    if (http.status === 0 && http.readyState === 1) {
                         toastr.info("Jaringan anda bermasalah");
                     }
                     if (http.readyState == 4 && http.status === 200) {
                         dataIP = JSON.parse(http.responseText);
                     }
-                    
+
                 }
 
                 http.open("GET", "http://www.geoplugin.net/json.gp", false);
