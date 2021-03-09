@@ -252,7 +252,7 @@ define(['initialize'], function (initialize) {
 
                     let dataSave = {
                         detailProduk: $scope.item.detailTindakan,
-                        skor: parseInt($scope.item.skor),
+                        skor: parseFloat($scope.item.skor),
                         statusVerifikasi: $scope.item.statusVerif ? true : false,
                         tanggalMulaiBerlaku: dateHelper.toTimeStamp($scope.item.tglBerlaku),
                         produk: {
@@ -272,7 +272,7 @@ define(['initialize'], function (initialize) {
                     // console.table(dataSave);
 
                     ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=" + ($scope.norecData ? $scope.norecData : "") + "&namaProduk=" + $scope.item.namaProduk.namaProduk + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + $scope.item.detailTindakan + "&skor=" + $scope.item.skor).then(res => {
-                        if (res.data.data.length > 0) {
+                        if (res.data.data.length > 0 && method != 'delete') {
                             toastr.warning("Data mapping skoring sudah tersedia!");
                         } else {
                             ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-skoring-tindakan-medis").then(res => {
