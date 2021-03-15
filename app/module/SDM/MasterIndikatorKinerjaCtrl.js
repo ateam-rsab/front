@@ -3,6 +3,7 @@ define(['initialize'], function (initialize) {
     initialize.controller('MasterIndikatorKinerjaCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', '$state', 'NamaAsuransi', 'ManageSdm', 'ManageSdmNew', '$timeout', '$mdDialog',
         function ($q, $rootScope, $scope, ModelItem, $state, NamaAsuransi, ManageSdm, ManageSdmNew, $timeout, $mdDialog) {
             $scope.item = {};
+            $scope.isDuplicated = false
             $scope.optGridMasterKinerja = {
                 toolbar: [{
                     text: "export",
@@ -177,17 +178,15 @@ define(['initialize'], function (initialize) {
                         dataSave.id = $scope.item.idMasterKinerja;
                     }
 
-                    ManageSdmNew.getListData("iki-remunerasi/get-duplicate-indikator-kinerja?idIndikator=" + ($scope.item.idMasterKinerja ? $scope.item.idMasterKinerja : "") + "&namaIndikator=" + $scope.item.namaIndikator).then(res => {
-                        if (res.data.data.length > 0) {
-                            toastr.warning("Indikator kinerja sudah tersedia!");
-                            return;
-                        } else {
-                            ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-master-indikator-kinerja").then(res => {
-                                $scope.getDataMaster();
-                                $scope.closePopUp();
-                            })
-                        }
-                    })
+                    if ($scope.isDuplicated) {
+                        toastr.warning("Indikator kinerja sudah tersedia!")
+                        return
+                    } else {
+                        ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-master-indikator-kinerja").then(res => {
+                            $scope.getDataMaster();
+                            $scope.closePopUp();
+                        })
+                    }
                 } else {
                     $scope.isRouteLoading = false;
                     ModelItem.showMessages(isValid.messages);
@@ -201,6 +200,15 @@ define(['initialize'], function (initialize) {
                 $scope.item.statusVerif = null;
                 $scope.item.idMasterKinerja = null;
             }
+
+            $scope.$watch('item.namaIndikator', function (e) {
+                if (!e) return;
+                ManageSdmNew.getListData("iki-remunerasi/get-duplicate-indikator-kinerja?idIndikator=" + ($scope.item.idMasterKinerja ? $scope.item.idMasterKinerja : "") + "&namaIndikator=" + encodeURIComponent($scope.item.namaIndikator).replace(/%20/g, "+")).then(res => {
+                    if (res.data.data.length > 0) {
+                        $scope.isDuplicated = true
+                    }
+                })
+            })
         }
     ]);
 });
