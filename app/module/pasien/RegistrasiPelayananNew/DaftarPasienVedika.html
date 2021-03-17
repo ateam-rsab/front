@@ -81,12 +81,17 @@
     </div>
     <div class="grid_12">
         <div class="grid_3">
-            <c-button style="width: 100%; padding:0px;margin:0px;"
-                ng-click="rekamMedisElektronik()" position="'right'">
-                <span class="title">Pengkajian Medis</span>
-            </c-button>
+            <md-button class="md-raised md-button md-primary smart-button-warn"
+                ng-click="rekamMedisElektronik()">
+                Pengkajian Medis
+            </md-button>
         </div>
-        
+        <div class="grid_3">
+            <md-button class="md-raised md-button md-primary smart-button-warn"
+                ng-click="cetakSEPPasien()">
+                Cetak SEP
+            </md-button>
+        </div>
     </div>
    
     <div class="grid_12" style="margin-top:60px">

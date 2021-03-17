@@ -138,7 +138,7 @@ define(['initialize'], function (initialize) {
                 }
 
                 if(!$scope.item.kamar) {
-                    toastr.warning("Harap pilih Kamar!");
+                    toastr.error("Harap pilih Kamar!", "Gagal");
                     return;
                 }
                 var statusKeluarId = "";

@@ -1,8 +1,10 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('MasterIndikatorKinerjaCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', '$state', 'NamaAsuransi', 'ManageSdm', 'ManageSdmNew', '$timeout', '$mdDialog',
-        function ($q, $rootScope, $scope, ModelItem, $state, NamaAsuransi, ManageSdm, ManageSdmNew, $timeout, $mdDialog) {
+    initialize.controller('MasterIndikatorKinerjaCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', '$state', 'NamaAsuransi', 'ManageSdm', 'ManageSdmNew', '$timeout', '$mdDialog', "DateHelper",
+        function ($q, $rootScope, $scope, ModelItem, $state, NamaAsuransi, ManageSdm, ManageSdmNew, $timeout, $mdDialog, dateHelper) {
             $scope.item = {};
+            $scope.mapping = {};
+            let dataLogin = JSON.parse(localStorage.getItem("datauserlogin"));
             $scope.optGridMasterKinerja = {
                 toolbar: [{
                     text: "export",
@@ -33,14 +35,39 @@ define(['initialize'], function (initialize) {
                         click: editData,
                         imageClass: "k-icon k-i-pencil"
                     }, {
+                        text: "Mapping",
+                        click: mapping,
+                        imageClass: "k-icon k-i-pencil"
+                    }, {
                         text: "Hapus",
                         click: hapusData,
                         imageClass: "k-icon k-i-pencil"
                     }],
                     title: "",
-                    width: 50
+                    width: 120
                 }],
             };
+
+            $scope.onChangeTab = (data) => {
+                console.log(data);
+                switch (data) {
+                    case 2:
+                        // $scope.getDataMapping()
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            function mapping(e) {
+                e.preventDefault();
+                var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+
+                console.log(dataItem);
+                $scope.mapping = dataItem;
+                $scope.popUpMapping.open().center();
+
+            }
 
             function editData(e) {
                 e.preventDefault();
@@ -123,9 +150,23 @@ define(['initialize'], function (initialize) {
                 $scope.getDataMaster();
                 ManageSdmNew.getListData("service/list-generic/?view=SatuanIndikator&select=id,satuanIndikator&criteria=statusEnabled&values=true&order=id:asc").then((res) => {
                     $scope.listDataSatuanIndikator = res.data;
-                })
+                });
+
+                ManageSdmNew.getListData("service/list-generic/?view=JenisJabatan&select=id,jenisJabatan&criteria=statusEnabled,id&values=true,!0").then((res) => {
+                    console.log(res)
+                    $scope.listJenisJabatan = res.data;
+
+                });
             }
             $scope.init();
+
+            $scope.getJabatan = (id) => {
+                $scope.mapping.jabatan = null;
+                $scope.mapping.srcJabatan = null;
+                ManageSdmNew.getListData("service/list-generic/?view=Jabatan&select=id,namaJabatan&criteria=statusEnabled,kdJabatan,jenisJabatanId&values=true,ANJAB," + id).then((res) => {
+                    $scope.listJabatan = res;
+                })
+            }
 
             $scope.tambahData = () => {
                 $scope.popupTambah.open().center();
@@ -166,7 +207,7 @@ define(['initialize'], function (initialize) {
 
                 if (checkDuplicateData()) {
                     ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-master-indikator-kinerja").then(res => {
-                        $scope.getDataMaster();
+
                         $scope.closePopUp();
                     })
                 }
@@ -174,7 +215,32 @@ define(['initialize'], function (initialize) {
 
             }
 
+            $scope.simpanDataMapping = (method) => {
+                let statusEnabled = method === 'save' || method === 'update';
+                let dataSave = {
+                    indikatorKinerja: {
+                        id: $scope.mapping.id
+                    },
+                    jabatan: {
+                        id: $scope.mapping.jabatan.id
+                    },
+                    loginUserId: dataLogin.id,
+                    tanggalMulaiBerlaku: dateHelper.toTimeStamp($scope.mapping.tglBerlaku),
+                    kdProfile: 0,
+                    statusEnabled: statusEnabled,
 
+                }
+
+                if(!statusEnabled) {
+                    dataSave.noRec = $scope.norecDataMapping;
+                }
+
+                ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-mapping-indikator-jabatan").then(res => {
+                    if(!statusEnabled) $scope.getDataMapping();
+                    $scope.closePopUpMapping();
+                })
+
+            }
 
             $scope.reset = () => {
                 $scope.item.jenisIndikator = null;
@@ -183,6 +249,98 @@ define(['initialize'], function (initialize) {
                 $scope.item.statusVerif = false;
                 $scope.item.idMasterKinerja = null;
             }
+
+            // #region mapping
+
+            $scope.optGridMappingKinerja = {
+
+                pageable: true,
+                scrollable: true,
+                columns: [{
+                    field: "namaIndikator",
+                    title: "<h3>Nama Indikator</h3>",
+                    width: 150
+                }, {
+                    field: "satuanIndikator",
+                    title: "<h3>Satuan Indikator</h3>",
+                    width: 70
+                }, {
+                    field: "tglBerlakuFormatted",
+                    title: "<h3>Tanggal Berlaku</h3>",
+                    width: 70
+                }, {
+                    command: [{
+                        text: "Hapus",
+                        click: confirmHapus,
+                        imageClass: "k-icon k-i-pencil"
+                    }],
+                    title: "",
+                    width: 50
+                }],
+            }
+
+            function confirmHapus(e) {
+                e.preventDefault();
+                var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                $scope.norecDataMapping = dataItem.noRec;
+                $scope.mapping = {
+                    id: dataItem.indikatorId,
+                    jabatan: {
+                        id: $scope.mapping.srcJabatan.id
+                    },
+                }
+
+                var confirm = $mdDialog.confirm()
+                    .title('Apakah anda yakin menghapus data?')
+                    .ariaLabel('Lucky day')
+                    .targetEvent(e)
+                    .ok('Ya')
+                    .cancel('Tidak');
+
+                $mdDialog.show(confirm).then(function () {
+                    $scope.simpanDataMapping('delete');
+                }, function () {
+                    reset();
+                    // console.error('Tidak jadi hapus');
+                });
+
+                // $scope.hapusDataMapping(dataItem);
+            }
+
+            $scope.getDataMapping = () => {
+                ManageSdmNew.getListData("iki-remunerasi/get-mapping-indikator-jabatan?jabatanId=" + ($scope.mapping.srcJabatan ? $scope.mapping.srcJabatan.id : 2122)).then((res) => {
+
+                    $scope.dataSourceMappingKinerja = {
+                        kualitas: new kendo.data.DataSource({
+                            data: res.data.data.Kualitas,
+                            pageSize: 5
+                        }),
+                        kuantitas: new kendo.data.DataSource({
+                            data: res.data.data.Kuantitas,
+                            pageSize: 5
+                        }),
+                        perilaku: new kendo.data.DataSource({
+                            data: res.data.data.Perilaku,
+                            pageSize: 5
+                        }),
+                    }
+                })
+            }
+            // $scope.getDataMapping();
+
+            let reset = () => {
+                $scope.mapping = null;
+            }
+
+            $scope.closePopUpMapping = () => {
+                reset()
+                $scope.popUpMapping.close();
+            }
+
+
+            // #endregion mapping
+
+
         }
     ]);
 });

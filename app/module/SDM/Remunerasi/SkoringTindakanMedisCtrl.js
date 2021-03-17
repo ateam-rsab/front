@@ -5,6 +5,7 @@ define(['initialize'], function (initialize) {
             $scope.item = {};
             $scope.isRouteLoading = false;
             $scope.isEdit = false;
+            // $scope.regexDecimal = /^(\d{1,13})(?:,\d{1,2})?$/;
             $scope.isVerifStaf = false
             var userLogin = JSON.parse(localStorage.getItem('datauserlogin'));
             var pegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
@@ -15,6 +16,12 @@ define(['initialize'], function (initialize) {
                 id: 1,
                 statusVerif: "Terverifikasi"
             }]
+
+            $('#idSkor').on('change, keyup', function () {
+                var currentInput = $(this).val();
+                var fixedInput = currentInput.replace(/[A-Za-z!@#$%^&*()]/g, '');
+                $(this).val(fixedInput);
+            });
 
             $scope.optGridSkoringTindakan = {
                 toolbar: [{
@@ -252,7 +259,7 @@ define(['initialize'], function (initialize) {
 
                     let dataSave = {
                         detailProduk: $scope.item.detailTindakan,
-                        skor: parseInt($scope.item.skor),
+                        skor: parseFloat($scope.item.skor),
                         statusVerifikasi: $scope.item.statusVerif ? true : false,
                         tanggalMulaiBerlaku: dateHelper.toTimeStamp($scope.item.tglBerlaku),
                         produk: {

@@ -23,6 +23,21 @@ define(['initialize'], function (initialize) {
             loadData();
             postRensarWTRJ();
 
+            $scope.cetakSEPPasien = () => {
+                console.log($scope.item);
+                if (!$scope.dataPasienSelected.norec_pd) {
+                    toastr.info("Harap pilih Pasien!");
+                    return;
+                }
+
+                if ($scope.dataPasienSelected.kelompokpasien !== "BPJS") {
+                    toastr.info("Bukan Pasien BPJS!");
+                    return;
+                }
+
+                window.open("http://172.16.44.33:7777/service-reporting/cetak-sep/" + $scope.dataPasienSelected.norec_pd, "_blank", "fullscreen=yes");
+            }
+
             function postRensarWTRJ() {
                 manageSarprasPhp.saveDataTransaksi('rensar/post-waktu-tunggu-rj')
                     .then(function (res) {
@@ -219,12 +234,6 @@ define(['initialize'], function (initialize) {
                         "field": "kelompokpasien",
                         "title": "Tipe Pembayaran",
                         "title": "<h3>Tipe<br> Pembayaran</h3>",
-                        "width": "80px"
-                    },
-                    {
-                        "field": "statuspanggil",
-                        "title": "Status Panggil",
-                        "title": "<h3>Status Panggil</h3>",
                         "width": "80px"
                     },
                     // {

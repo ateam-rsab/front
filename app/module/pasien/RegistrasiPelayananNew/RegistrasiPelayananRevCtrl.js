@@ -11,7 +11,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
             var norecAPD = '';
             var noCM = '';
             var isRegisOnline = '';
-            var ruanganLog= ''
+            var ruanganLog = ''
             $scope.isSimpanAsuransi = true;
             $scope.isNext = true;
             $scope.item = {};
@@ -22,23 +22,23 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
             $scope.model.tglPelayanan = $scope.now;
 
             manageServicePhp.getDataTableTransaksi("registrasipasien/get-pasienbynocm?noCm=" + $scope.currentNoCm)
-            .then(function (e) {
-                $scope.isRouteLoading = false;
-                $scope.item.pasien = e.data.data[0];
-                $scope.item.nocmfk = e.data.data[0].nocmfk;
-                var parameterBayi = $scope.item.pasien.namapasien;
-                if (parameterBayi.indexOf('By Ny') >= 0) {
-                    $scope.item.tglRegistrasi = new Date($scope.item.pasien.tgllahir);
+                .then(function (e) {
+                    $scope.isRouteLoading = false;
+                    $scope.item.pasien = e.data.data[0];
+                    $scope.item.nocmfk = e.data.data[0].nocmfk;
+                    var parameterBayi = $scope.item.pasien.namapasien;
+                    if (parameterBayi.indexOf('By Ny') >= 0) {
+                        $scope.item.tglRegistrasi = new Date($scope.item.pasien.tgllahir);
 
-                    $scope.model.rawatInap = true;
-                    $scope.cekRawatInap($scope.model.rawatInap);
-                    // $scope.pasienBayi = true;
-                }
-                //  else {
-                //     $scope.item.tglRegistrasi = $scope.now;
-                // }
+                        $scope.model.rawatInap = true;
+                        $scope.cekRawatInap($scope.model.rawatInap);
+                        // $scope.pasienBayi = true;
+                    }
+                    //  else {
+                    //     $scope.item.tglRegistrasi = $scope.now;
+                    // }
 
-            });
+                });
             loadPertama();
 
 
@@ -57,29 +57,42 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                     // $scope.sourceRekanan= dat.data.rekanan;
                     $scope.sourceKelasDitanggung = dat.data.kelas;
                     $scope.sourceAsalRujukan = dat.data.asalrujukan;
-                    $scope.model.namaPenjamin = { id: dat.data.kelompokpasien[1].id, kelompokpasien: dat.data.kelompokpasien[1].kelompokpasien }
+                    $scope.model.namaPenjamin = {
+                        id: dat.data.kelompokpasien[1].id,
+                        kelompokpasien: dat.data.kelompokpasien[1].kelompokpasien
+                    }
                     // $scope.model.institusiAsalPasien={id:dat.data.rekanan[689].id,namarekanan:dat.data.rekanan[689].namarekanan}
-                    $scope.model.hubunganPeserta = { id: dat.data.hubunganpeserta[2].id, hubunganpeserta: dat.data.hubunganpeserta[2].hubunganpeserta }
-                    $scope.model.asalRujukan = { id: dat.data.asalrujukan[3].id, asalrujukan: dat.data.asalrujukan[3].asalrujukan }
+                    $scope.model.hubunganPeserta = {
+                        id: dat.data.hubunganpeserta[2].id,
+                        hubunganpeserta: dat.data.hubunganpeserta[2].hubunganpeserta
+                    }
+                    $scope.model.asalRujukan = {
+                        id: dat.data.asalrujukan[3].id,
+                        asalrujukan: dat.data.asalrujukan[3].asalrujukan
+                    }
                 });
+
             function loadPertama() {
 
                 var cacheRegisOnline = cacheHelper.get('CacheRegisOnline');
                 if (cacheRegisOnline != undefined) {
                     var arrOnline = cacheRegisOnline[0];
-                    $scope.item.tglRegistrasi = $scope.now ;//arrOnline.tanggalreservasi,
+                    $scope.item.tglRegistrasi = $scope.now; //arrOnline.tanggalreservasi,
                     $scope.item.ruangan = {
                         id: arrOnline.objectruanganfk,
                         namaruangan: arrOnline.namaruangan
                     }
-                    $scope.item.dokter = { id: arrOnline.objectpegawaifk, namalengkap: arrOnline.dokter }
+                    $scope.item.dokter = {
+                        id: arrOnline.objectpegawaifk,
+                        namalengkap: arrOnline.dokter
+                    }
                     isRegisOnline = 'Registrasi Online'
-                    
+
                 }
                 cacheHelper.set('CacheRegisOnline', undefined);
 
                 var cacheOnlineBaru = cacheHelper.get('CacheRegisOnlineBaru');
-                if(cacheOnlineBaru!= undefined){
+                if (cacheOnlineBaru != undefined) {
                     isRegisOnline = 'Registrasi Online'
                 }
                 cacheHelper.set('CacheRegisOnlineBaru', undefined);
@@ -96,21 +109,22 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                     $scope.cacheNoRegistrasi = noRegistrasis;
                     //jika cache ada get riwayat pasien
                     getPasienByNorecPD();
-                   
+
                 }
                 $scope.isRouteLoading = true;
-                
+
                 var tglReg = moment($scope.item.tglRegistrasi).format('YYYY-MM-DD');
-                manageServicePhp.getDataTableTransaksi("registrasipasien/cek-pasien-daftar-duakali?nocm="
-                    + $scope.currentNoCm
-                    + "&tglregistrasi="
-                    + tglReg)
+                manageServicePhp.getDataTableTransaksi("registrasipasien/cek-pasien-daftar-duakali?nocm=" +
+                        $scope.currentNoCm +
+                        "&tglregistrasi=" +
+                        tglReg)
                     .then(function (res) {
                         $scope.CekPasienDaftar = res.data.data;
                     })
 
 
             };
+
             function getPasienByNorecPD() {
                 manageServicePhp.getDataTableTransaksi("registrasipasien/get-pasienbynorec-pd?norecPD=" + norecPD + "&norecAPD=" + norecAPD)
                     .then(function (his) {
@@ -120,31 +134,64 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                             $scope.cekRawatInap($scope.model.rawatInap);
                             $scope.pasienBayi = true;
                         }
-                        $scope.item.tglRegistrasi = new Date( his.data.data[0].tglregistrasi),
+                        $scope.item.tglRegistrasi = new Date(his.data.data[0].tglregistrasi),
                             $scope.item.ruangan = {
                                 id: his.data.data[0].objectruanganlastfk,
                                 namaruangan: his.data.data[0].namaruangan,
                                 objectdepartemenfk: his.data.data[0].objectdepartemenfk
                             }
-                        var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+                        var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
                         var dateNow = new Date();
                         var dateRegis = new Date($scope.item.tglRegistrasi);
-                        var diffDays = Math.round(Math.abs((dateNow.getTime() - dateRegis.getTime())/(oneDay)))
-                        if (diffDays >= 1){
+                        var diffDays = Math.round(Math.abs((dateNow.getTime() - dateRegis.getTime()) / (oneDay)))
+                        if (diffDays >= 1) {
                             $scope.disableTgl = true
                         }
-                        ruanganLog = his.data.data[0].namaruangan    
-                        $scope.item.kelas = { id: his.data.data[0].objectkelasfk, namakelas: his.data.data[0].namakelas }
-                        $scope.listKamar = ([{ id: his.data.data[0].objectkamarfk, namakamar: his.data.data[0].namakamar }])
-                        $scope.item.kamar = { id: his.data.data[0].objectkamarfk, namakamar: his.data.data[0].namakamar }
-                        $scope.listNoBed = ([{ id: his.data.data[0].objecttempattidurfk, reportdisplay: his.data.data[0].reportdisplay }])
-                        $scope.item.nomorTempatTidur = { id: his.data.data[0].objecttempattidurfk, reportdisplay: his.data.data[0].reportdisplay }
-                        $scope.item.asalRujukan = { id: his.data.data[0].objectasalrujukanfk, asalrujukan: his.data.data[0].asalrujukan }
-                        $scope.item.kelompokPasien = { id: his.data.data[0].objectkelompokpasienlastfk, kelompokpasien: his.data.data[0].kelompokpasien }
-                        $scope.item.rekanan = { id: his.data.data[0].objectrekananfk, namarekanan: his.data.data[0].namarekanan }
-                        $scope.listJenisPelayanan = ([{ id: parseInt(his.data.data[0].objectjenispelayananfk), jenispelayanan: his.data.data[0].jenispelayanan }])
-                        $scope.item.jenisPasien = { id: parseInt(his.data.data[0].objectjenispelayananfk), jenispelayanan: his.data.data[0].jenispelayanan }
-                        $scope.item.dokter = { id: his.data.data[0].objectpegawaifk, namalengkap: his.data.data[0].dokter }
+                        ruanganLog = his.data.data[0].namaruangan
+                        $scope.item.kelas = {
+                            id: his.data.data[0].objectkelasfk,
+                            namakelas: his.data.data[0].namakelas
+                        }
+                        $scope.listKamar = ([{
+                            id: his.data.data[0].objectkamarfk,
+                            namakamar: his.data.data[0].namakamar
+                        }])
+                        $scope.item.kamar = {
+                            id: his.data.data[0].objectkamarfk,
+                            namakamar: his.data.data[0].namakamar
+                        }
+                        $scope.listNoBed = ([{
+                            id: his.data.data[0].objecttempattidurfk,
+                            reportdisplay: his.data.data[0].reportdisplay
+                        }])
+                        $scope.item.nomorTempatTidur = {
+                            id: his.data.data[0].objecttempattidurfk,
+                            reportdisplay: his.data.data[0].reportdisplay
+                        }
+                        $scope.item.asalRujukan = {
+                            id: his.data.data[0].objectasalrujukanfk,
+                            asalrujukan: his.data.data[0].asalrujukan
+                        }
+                        $scope.item.kelompokPasien = {
+                            id: his.data.data[0].objectkelompokpasienlastfk,
+                            kelompokpasien: his.data.data[0].kelompokpasien
+                        }
+                        $scope.item.rekanan = {
+                            id: his.data.data[0].objectrekananfk,
+                            namarekanan: his.data.data[0].namarekanan
+                        }
+                        $scope.listJenisPelayanan = ([{
+                            id: parseInt(his.data.data[0].objectjenispelayananfk),
+                            jenispelayanan: his.data.data[0].jenispelayanan
+                        }])
+                        $scope.item.jenisPasien = {
+                            id: parseInt(his.data.data[0].objectjenispelayananfk),
+                            jenispelayanan: his.data.data[0].jenispelayanan
+                        }
+                        $scope.item.dokter = {
+                            id: his.data.data[0].objectpegawaifk,
+                            namalengkap: his.data.data[0].dokter
+                        }
 
                         $scope.isInputAsuransi = true;
                         $scope.isNext = false;
@@ -251,17 +298,27 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                         if (e.kelompokpasien == 'Umum/Pribadi') {
                             $scope.item.rekanan = '';
                             $scope.nonUmum = false;
-                            $scope.item.jenisPasien = { id: $scope.listJenisPelayanan[0].id, jenispelayanan: $scope.listJenisPelayanan[0].jenispelayanan }
-                        }
-                        else if (e.kelompokpasien == 'BPJS') {
-                            $scope.item.rekanan = { id: $scope.listRekanan[0].id, namarekanan: $scope.listRekanan[0].namarekanan };
+                            $scope.item.jenisPasien = {
+                                id: $scope.listJenisPelayanan[0].id,
+                                jenispelayanan: $scope.listJenisPelayanan[0].jenispelayanan
+                            }
+                        } else if (e.kelompokpasien == 'BPJS') {
+                            $scope.item.rekanan = {
+                                id: $scope.listRekanan[0].id,
+                                namarekanan: $scope.listRekanan[0].namarekanan
+                            };
                             $scope.nonUmum = true;
-                            $scope.item.jenisPasien = { id: $scope.listJenisPelayanan[1].id, jenispelayanan: $scope.listJenisPelayanan[1].jenispelayanan }
+                            $scope.item.jenisPasien = {
+                                id: $scope.listJenisPelayanan[1].id,
+                                jenispelayanan: $scope.listJenisPelayanan[1].jenispelayanan
+                            }
 
-                        }
-                        else {
+                        } else {
                             $scope.nonUmum = true;
-                            $scope.item.jenisPasien = { id: $scope.listJenisPelayanan[0].id, jenispelayanan: $scope.listJenisPelayanan[0].jenispelayanan }
+                            $scope.item.jenisPasien = {
+                                id: $scope.listJenisPelayanan[0].id,
+                                jenispelayanan: $scope.listJenisPelayanan[0].jenispelayanan
+                            }
                             // delete $scope.item.rekanan;
 
                         }
@@ -269,9 +326,10 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                     })
             });
 
-            $scope.ListAsuransi = [
-                { "id": "1", "name": "No. SEP Otomatis" }
-            ];
+            $scope.ListAsuransi = [{
+                "id": "1",
+                "name": "No. SEP Otomatis"
+            }];
 
 
             $scope.noCm = $state.params.noCm;
@@ -281,8 +339,8 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                 $scope.model.rawatGabung = data;
             }
             $scope.formatJam24 = {
-                format: "dd-MM-yyyy HH:mm",	//set date format
-                timeFormat: "HH:mm",		//set drop down time format to 24 hours
+                format: "dd-MM-yyyy HH:mm", //set date format
+                timeFormat: "HH:mm", //set drop down time format to 24 hours
             };
             // $scope.jenisPasiens = [{
             //     id: 1, name: "Reguler"
@@ -296,28 +354,28 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
             $scope.showFind = true;
             $scope.showTindakan = false;
             $scope.dataModelGrid = [];
-            $scope.Save = function(){
-              if (norecPD == '') {
-                    if( $scope.item.kelompokPasien &&  $scope.item.kelompokPasien.id == 1){
-                      manageServicePhp.getDataTableTransaksi("registrasipasien/cek-pasien-bayar/"+
-                              $scope.noCm ).then(function (x) {
-                         if(x.data.status == false && moment(x.data.tglregistrasi).format('YYYY-MM-DD') != moment($scope.now).format('YYYY-MM-DD')){
-                             toastr.error('Pasien belum bayar !' ,'Warning')
-                             return
-                         }else{
-                             $scope.lanjutDaftar()
-                         }
-                     })  
-                    }else{
-                         $scope.lanjutDaftar()
+
+            $scope.Save = function () {
+                if (norecPD == '') {
+                    if ($scope.item.kelompokPasien && $scope.item.kelompokPasien.id == 1) {
+                        manageServicePhp.getDataTableTransaksi("registrasipasien/cek-pasien-bayar/" +
+                            $scope.noCm).then(function (x) {
+                            if (x.data.status == false && moment(x.data.tglregistrasi).format('YYYY-MM-DD') != moment($scope.now).format('YYYY-MM-DD')) {
+                                toastr.error('Pasien belum bayar !', 'Warning')
+                                return
+                            } else {
+                                $scope.lanjutDaftar()
+                            }
+                        })
+                    } else {
+                        $scope.lanjutDaftar()
                     }
-                }else{
-                     $scope.lanjutDaftar()
+                } else {
+                    $scope.lanjutDaftar()
                 }
 
             }
             $scope.lanjutDaftar = function () {
-
 
                 if (norecPD == '') {
                     if ($scope.CekPasienDaftar.length > 0 && $scope.CekPasienDaftar[0].objectruanganlastfk == $scope.item.ruangan.id) {
@@ -339,8 +397,6 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
             }
 
             $scope.SimpanRegistrasi = function () {
-
-
                 var kelasId = "";
                 if ($scope.item.kelas == undefined || $scope.item.kelas == "") {
                     kelasId = null;
@@ -366,12 +422,16 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                     kamarIds = $scope.item.kamar.id;
 
 
-                var nomorTempatTidurs = "";
-                if ($scope.item.nomorTempatTidur == undefined || $scope.item.nomorTempatTidur == "") {
-                    nomorTempatTidurs = null;
-                } else
-                    nomorTempatTidurs = $scope.item.nomorTempatTidur.id;
+                // var nomorTempatTidurs = "";
+                // if ($scope.item.nomorTempatTidur == undefined || $scope.item.nomorTempatTidur == "") {
+                //     nomorTempatTidurs = null;
+                // } else
+                //     nomorTempatTidurs = $scope.item.nomorTempatTidur.id;
 
+                if($scope.model.rawatInap && !$scope.item.nomorTempatTidur) {
+                    toastr.error("Harap isi Nomor Tempat Tidur", "Gagal");
+                    return;
+                }
 
                 var noRegistrasi = "";
                 if ($scope.model.noRegistrasi == undefined || $scope.model.noRegistrasi == "") {
@@ -429,7 +489,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                     noregistrasi: noRegistrasizz,
                     norec_pd: norec_PasienDaftar,
                     israwatinap: isRawatInap,
-                    statusschedule : isRegisOnline,
+                    statusschedule: isRegisOnline,
 
                 }
                 var antrianpasiendiperiksa = {
@@ -439,7 +499,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                     objectkelasfk: kelasId,
                     objectpegawaifk: dokterId,
                     objectkamarfk: kamarIds,
-                    nobed: nomorTempatTidurs,
+                    nobed: $scope.item.nomorTempatTidur.id,
                     objectdepartemenfk: $scope.item.ruangan.objectdepartemenfk,
                     objectasalrujukanfk: $scope.item.asalRujukan.id,
                     israwatgabung: $scope.model.rawatGabung === true ? 1 : 0,
@@ -458,22 +518,21 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                     $scope.model.noRegistrasi = e.data.dataPD.noregistrasi;
                     $scope.model.norec_pd = e.data.dataPD.norec;
 
-                    var cachePasienDaftar = $scope.model.norec_pd
-                        + "~" + $scope.model.noRegistrasi
-                        + "~" + $scope.resultAPD.norec;
+                    var cachePasienDaftar = $scope.model.norec_pd +
+                        "~" + $scope.model.noRegistrasi +
+                        "~" + $scope.resultAPD.norec;
                     // + "~" + $scope.currentNoCm;
                     cacheHelper.set('CacheRegistrasiPasien', cachePasienDaftar);
 
                     if (e.data.status == 201) {
                         if (norecPD != '') {
-                            $scope.saveLogging('Edit Registrasi','norec Pasien Daftar',
-							norecPD ,ruanganLog)
-                        }else{
+                            $scope.saveLogging('Edit Registrasi', 'norec Pasien Daftar',
+                                norecPD, ruanganLog)
+                        } else {
                             //##log Pasien Daftar
-                            manageServicePhp.getDataTableTransaksi("logging/save-log-pendaftaran-pasien?norec_pd="
-                            + $scope.model.norec_pd).then(function (x) {
-                            })
-                        //## end log    
+                            manageServicePhp.getDataTableTransaksi("logging/save-log-pendaftaran-pasien?norec_pd=" +
+                                $scope.model.norec_pd).then(function (x) {})
+                            //## end log    
                         }
                         $scope.isNext = false;
                         $scope.isBatal = true;
@@ -492,30 +551,30 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                         }
 
                     }
-                   
-                }, function(error) {
-                        // throw error;
-                        $scope.isSimpan = false;
-                        $scope.isBatal = false;
+
+                }, function (error) {
+                    // throw error;
+                    $scope.isSimpan = false;
+                    $scope.isBatal = false;
                 })
             }
             // end Save Function
             $scope.updateNoreg = function () {
-                manageServicePhp.getDataTableTransaksi("registrasipasien/update-noregistrasi?norec_pd="
-                    + $scope.model.norec_pd).then(function (x) {
-                        debugger
-                    })
+                manageServicePhp.getDataTableTransaksi("registrasipasien/update-noregistrasi?norec_pd=" +
+                    $scope.model.norec_pd).then(function (x) {
+                    debugger
+                })
             }
-            $scope.saveLogging=function(jenis,referensi,noreff,ket){
-				manageServicePhp.getDataTableTransaksi("logging/save-log-all?jenislog="+ jenis
-					+ "&referensi="+referensi
-					+ "&noreff="+noreff
-					+ "&keterangan="+ ket
-					).then(function(data) {
-		
-			    }) 
-			}
-            
+            $scope.saveLogging = function (jenis, referensi, noreff, ket) {
+                manageServicePhp.getDataTableTransaksi("logging/save-log-all?jenislog=" + jenis +
+                    "&referensi=" + referensi +
+                    "&noreff=" + noreff +
+                    "&keterangan=" + ket
+                ).then(function (data) {
+
+                })
+            }
+
 
             // $scope.now = new Date();
             $scope.model.generateNoSEP = false;
@@ -547,8 +606,8 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                     if (qty !== undefined) {
 
                         //##save identifikasi label pasien
-                        manageServicePhp.getDataTableTransaksi("operator/identifikasi-label?norec_pd="
-                            + $scope.cacheNorecPD + '&islabel=' + qtyhasil
+                        manageServicePhp.getDataTableTransaksi("operator/identifikasi-label?norec_pd=" +
+                            $scope.cacheNorecPD + '&islabel=' + qtyhasil
                         ).then(function (data) {
                             var datas = data.data;
                         })
@@ -600,8 +659,8 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
             $scope.cetakBuktiLayanan = function () {
                 if ($scope.item != undefined) {
                     //##save identifikasibuktiLayanan
-                    manageServicePhp.getDataTableTransaksi("operator/identifikasi-buktiLayanan?norec_pd="
-                        + $scope.cacheNorecPD
+                    manageServicePhp.getDataTableTransaksi("operator/identifikasi-buktiLayanan?norec_pd=" +
+                        $scope.cacheNorecPD
                     ).then(function (data) {
                         var datas = data.data;
                     })
@@ -622,8 +681,8 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
             $scope.CetakSumList = function () {
                 if ($scope.item != undefined) {
                     //##save identifikasi summary list
-                    manageServicePhp.getDataTableTransaksi("operator/identifikasi-sum-list?norec_pd="
-                        + $scope.cacheNorecPD
+                    manageServicePhp.getDataTableTransaksi("operator/identifikasi-sum-list?norec_pd=" +
+                        $scope.cacheNorecPD
                     ).then(function (data) {
                         var datas = data.data;
                     })
@@ -645,8 +704,8 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                 if ($scope.cacheNoRegistrasi != undefined && $scope.item.kelompokPasien.kelompokpasien !== "Umum/Pribadi") {
 
                     //##save identifikasi sep
-                    manageServicePhp.getDataTableTransaksi("operator/identifikasi-sep?norec_pd="
-                        + $scope.cacheNorecPD
+                    manageServicePhp.getDataTableTransaksi("operator/identifikasi-sep?norec_pd=" +
+                        $scope.cacheNorecPD
                     ).then(function (data) {
                         var datas = data.data;
                     })
@@ -668,8 +727,8 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                 if ($scope.item != undefined) {
 
                     //##save identifikasi tracer
-                    manageServicePhp.getDataTableTransaksi("operator/identifikasi-tracer?norec_pd="
-                        + $scope.cacheNorecPD
+                    manageServicePhp.getDataTableTransaksi("operator/identifikasi-tracer?norec_pd=" +
+                        $scope.cacheNorecPD
                     ).then(function (data) {
                         var datas = data.data;
                     })
@@ -689,8 +748,8 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                 if ($scope.item != undefined) {
 
                     //##save identifikasi kartu pasien
-                    manageServicePhp.getDataTableTransaksi("operator/identifikasi-kartu-pasien?norec_pd="
-                        + $scope.cacheNorecPD
+                    manageServicePhp.getDataTableTransaksi("operator/identifikasi-kartu-pasien?norec_pd=" +
+                        $scope.cacheNorecPD
                     ).then(function (data) {
                         var datas = data.data;
                     })
@@ -708,8 +767,16 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                 }
             }
             $scope.sourceJenisDiagnosisPrimer = [{
-                "statusEnabled": true, "namaExternal": "Diagnosa Awal", "kdProfile": 0, "qJenisDiagnosa": 5,
-                "reportDisplay": "Diagnosa Pasca Bedah", "jenisDiagnosa": "Diagnosa Awal", "id": 5, "kodeExternal": "05", "kdJenisDiagnosa": 5, "noRec": "5                               "
+                "statusEnabled": true,
+                "namaExternal": "Diagnosa Awal",
+                "kdProfile": 0,
+                "qJenisDiagnosa": 5,
+                "reportDisplay": "Diagnosa Pasca Bedah",
+                "jenisDiagnosa": "Diagnosa Awal",
+                "id": 5,
+                "kodeExternal": "05",
+                "kdJenisDiagnosa": 5,
+                "noRec": "5                               "
             }]
             $scope.ringkasanInOut = function () {
                 if ($scope.item != undefined) {
@@ -729,8 +796,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
 
             $scope.cetakBro = function () {
                 var client = new HttpClient();
-                client.get('http://127.0.0.1:1237/printvb/Pendaftaran?cetak-lembarmasukkeluar-byNorec=1&norec=' + $scope.cacheNorecAPD + '&view=false', function (response) {
-                });
+                client.get('http://127.0.0.1:1237/printvb/Pendaftaran?cetak-lembarmasukkeluar-byNorec=1&norec=' + $scope.cacheNorecAPD + '&view=false', function (response) {});
             }
             $scope.cetakRMK = function () {
                 var norReg = ""
@@ -759,8 +825,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                 var keterangan = "";
                 if ($scope.item.keteranganDiagnosis == undefined) {
                     keterangan = "-"
-                }
-                else {
+                } else {
                     keterangan = $scope.item.keteranganDiagnosis;
                 }
 
@@ -808,16 +873,15 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
             $scope.inputPemakaianAsuransi = function () {
                 if ($scope.resultPD != undefined) {
                     // $state.go('PemakaianAsuransi', {
-                        $state.go('PemakaianAsuransiV1', {
+                    $state.go('PemakaianAsuransiV1', {
                         norecPD: $scope.resultPD.norec,
                         norecAPD: $scope.resultAPD.norec,
                     });
                     var cacheSet = undefined;
                     cacheHelper.set('CachePemakaianAsuransi', cacheSet);
-                }
-                else {
+                } else {
                     $state.go('PemakaianAsuransiV1', {
-                    // $state.go('PemakaianAsuransi', {
+                        // $state.go('PemakaianAsuransi', {
                         norecPD: $scope.cacheNorecPD,
                         norecAPD: $scope.cacheNorecAPD,
                     });
@@ -851,8 +915,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                         norecAPD: $scope.resultAPD.norec
 
                     });
-                }
-                else {
+                } else {
                     $state.go('InputTindakanPendaftaran', {
                         norecPD: $scope.cacheNorecPD,
                         norecAPD: $scope.cacheNorecAPD
@@ -867,8 +930,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                         norecAPD: $scope.resultAPD.norec
 
                     });
-                }
-                else {
+                } else {
                     $state.go('InputTindakanPelayananRev', {
                         norecPD: $scope.cacheNorecPD,
                         norecAPD: $scope.cacheNorecAPD

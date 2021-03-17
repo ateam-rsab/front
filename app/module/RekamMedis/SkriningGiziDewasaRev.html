@@ -253,6 +253,16 @@
                                 <td class="tg-yw4l nilai" colspan="2">{{dataForm.totalSkorMST}}</td>
                             </tr>
                         </table>
+
+                        <div class="grid_12" ng-if="showInputGangguanMetabolisme">
+                            <div class="grid_2">
+                                <strong>Gangguan Metabolisme</strong>
+                            </div>
+                            <div class="grid_10">
+                                <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.gangguanMetabolisme" />
+                            </div>
+                            
+                        </div>
                     </div>
                     <div ng-include='"
                         ../app/module/Shared/TemplateButtonSimpan"

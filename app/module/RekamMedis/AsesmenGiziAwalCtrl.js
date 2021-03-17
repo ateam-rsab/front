@@ -12,8 +12,7 @@ define(['initialize'], function (initialize) {
 			$scope.showInput = false;
 			$scope.item = {};
 			// $scope.item.number = ["1", "2", "3", "4", "5"]
-			$scope.listJenisPasien = [
-				{
+			$scope.listJenisPasien = [{
 					name: 'Anak',
 					id: 1
 				},
@@ -31,8 +30,7 @@ define(['initialize'], function (initialize) {
 				// }
 			}
 
-			$scope.yesOrNo = [
-				{
+			$scope.yesOrNo = [{
 					id: 1,
 					name: 'Ya'
 				},
@@ -42,8 +40,7 @@ define(['initialize'], function (initialize) {
 				},
 			];
 
-			$scope.listOfAlergiMakanan = [
-				{
+			$scope.listOfAlergiMakanan = [{
 					name: 'Telur',
 					key: 'telur',
 					id: 1,
@@ -80,8 +77,7 @@ define(['initialize'], function (initialize) {
 				},
 			]
 
-			$scope.listOfRisikoMalnutrisi = [
-				{
+			$scope.listOfRisikoMalnutrisi = [{
 					id: 122,
 					name: 'Risiko Ringan (Nilai Strong Kids 0)'
 				},
@@ -95,8 +91,7 @@ define(['initialize'], function (initialize) {
 				}
 			];
 
-			$scope.listOfRisikoMalnutrisiDewasa = [
-				{
+			$scope.listOfRisikoMalnutrisiDewasa = [{
 					id: 11,
 					name: 'Risiko Ringan (Nilai MST 0)'
 				},
@@ -145,13 +140,13 @@ define(['initialize'], function (initialize) {
 				$scope.item.umurPasien = umur.split(' ')
 				$scope.item.umurPasien.forEach(function (el) {
 					let temp = '';
-					if(el !== '') {
-						temp = el.replace(/\D/g,'');
+					if (el !== '') {
+						temp = el.replace(/\D/g, '');
 						$scope.dataUmur.push(temp);
-					}					
+					}
 				})
-				
-				if(parseInt($scope.dataUmur[0]) > 17) {
+
+				if (parseInt($scope.dataUmur[0]) > 17) {
 					$scope.isDewasa = true;
 				} else {
 					$scope.isDewasa = false;
@@ -166,21 +161,49 @@ define(['initialize'], function (initialize) {
 				$scope.item.noRegistrasi = $scope.cache[0];
 				$scope.optGridAsesmenGizi = {
 					toolbar: [{
-						name: "create", text: "Input Baru",
+						name: "create",
+						text: "Input Baru",
 						template: '<button ng-click="inputBaru()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah</button>'
 					}],
 					pageable: true,
 					scrollable: true,
-					columns: [
-						{ field: "tglinput", title: "<h3>Tanggal/Jam</h3>", width: 100 },
-						{ field: "namalengkap", title: "<h3>Dokter Penanggung <br>Jawab Pelayanan</h3>", width: 150 },
-						{ field: "pegawaiasal", title: "<h3>Ahli Gizi</h3>", template: '# if( pegawaiasal==null) {# - # } else {# #= pegawaiasal # #} #', "width": "120px" },
-						{ field: "namaruangan", title: "<h3>Ruangan</h3>", width: 120 },
-						{ field: "noregistrasi", title: "<h3>No Registrasi</h3>", width: 100 },
+					columns: [{
+							field: "tglinput",
+							title: "<h3>Tanggal/Jam</h3>",
+							width: 100
+						},
 						{
-							command: [
-								{ text: "Detail", click: showDetailAsesmenGizi, imageClass: "k-icon k-i-pencil" },
-							], title: "", width: 90, attributes: { style: "text-align:center;valign=middle" }
+							field: "namalengkap",
+							title: "<h3>Dokter Penanggung <br>Jawab Pelayanan</h3>",
+							width: 150
+						},
+						{
+							field: "pegawaiasal",
+							title: "<h3>Ahli Gizi</h3>",
+							template: '# if( pegawaiasal==null) {# - # } else {# #= pegawaiasal # #} #',
+							"width": "120px"
+						},
+						{
+							field: "namaruangan",
+							title: "<h3>Ruangan</h3>",
+							width: 120
+						},
+						{
+							field: "noregistrasi",
+							title: "<h3>No Registrasi</h3>",
+							width: 100
+						},
+						{
+							command: [{
+								text: "Detail",
+								click: showDetailAsesmenGizi,
+								imageClass: "k-icon k-i-pencil"
+							}, ],
+							title: "",
+							width: 90,
+							attributes: {
+								style: "text-align:center;valign=middle"
+							}
 						}
 					]
 				};
@@ -188,17 +211,44 @@ define(['initialize'], function (initialize) {
 				$scope.optGridAsesmenGiziNotVerif = {
 					pageable: true,
 					scrollable: true,
-					columns: [
-						{ field: "tglinput", title: "<h3>Tanggal/Jam</h3>", width: 100 },
+					columns: [{
+							field: "tglinput",
+							title: "<h3>Tanggal/Jam</h3>",
+							width: 100
+						},
 						// { field: "namalengkap", title: "<h3>Dokter Penanggung <br>Jawab Pelayanan</h3>", width: 150 },
-						{ field: "pegawaiasal", title: "<h3>Ahli Gizi</h3>", width: 100 },
-						{ field: "namaruangan", title: "<h3>Ruangan</h3>", width: 120 },
-						{ field: "noregistrasi", title: "<h3>No Registrasi</h3>", width: 100 },
 						{
-							command: [
-								{ text: "Detail", click: showDetailAsesmenGizi, imageClass: "k-icon k-i-pencil" },
-								{ text: "Verifikasi Dokter", click: verif, imageClass: "k-icon k-i-pencil" },
-							], title: "", width: 90, attributes: { style: "text-align:center;valign=middle" }
+							field: "pegawaiasal",
+							title: "<h3>Ahli Gizi</h3>",
+							width: 100
+						},
+						{
+							field: "namaruangan",
+							title: "<h3>Ruangan</h3>",
+							width: 120
+						},
+						{
+							field: "noregistrasi",
+							title: "<h3>No Registrasi</h3>",
+							width: 100
+						},
+						{
+							command: [{
+									text: "Detail",
+									click: showDetailAsesmenGizi,
+									imageClass: "k-icon k-i-pencil"
+								},
+								{
+									text: "Verifikasi Dokter",
+									click: verif,
+									imageClass: "k-icon k-i-pencil"
+								},
+							],
+							title: "",
+							width: 90,
+							attributes: {
+								style: "text-align:center;valign=middle"
+							}
 						}
 					]
 				}
@@ -267,10 +317,16 @@ define(['initialize'], function (initialize) {
 				let dataAlergi = [];
 				dataTempMakanan = [];
 				$.each($('.cbAlergi:checked'), function () {
-					dataTempMakanan.unshift({ value: $(this).val(), checked: true })
+					dataTempMakanan.unshift({
+						value: $(this).val(),
+						checked: true
+					})
 				});
 				$.each($('.cbAlergi:not(:checked)'), function () {
-					dataTempMakanan.unshift({ value: $(this).val(), checked: false })
+					dataTempMakanan.unshift({
+						value: $(this).val(),
+						checked: false
+					})
 				});
 
 				for (let i = 0; i < $scope.listOfAlergiMakanan.length; i++) {
@@ -288,44 +344,45 @@ define(['initialize'], function (initialize) {
 
 				let umur = `${$scope.item.umur ? $scope.item.umur : 0} tahun ${$scope.item.bulan ? $scope.item.bulan : 0} bulan`;
 				let dataSave = {
-					"diagnosa": $scope.item.diagnosaMedis,
-					"norec": $scope.item.norecGizi ? $scope.item.norecGizi : '',
-					"noregistrasifk": $scope.cache[7],
-					"pegawaifk": $scope.isDokter ? $scope.dataLogin.id : null,
-					"pegawaiasalfk": $scope.isDokter ? $scope.item.pegawaiFk : $scope.dataLogin.id,
-					"ruanganfk": $scope.cache[11],
-					"pasienfk": $scope.cache[0],
-					"risiko_malutrisi": $scope.item.risikoMalnutrisi,
-					"kondisi_khusus": $scope.item.pasienKondisiKhusus,
-					"alergi_1": dataAlergi[0].checked ? 'Ya' : 'Tidak',
-					"alergi_2": dataAlergi[1].checked ? 'Ya' : 'Tidak',
-					"alergi_3": dataAlergi[2].checked ? 'Ya' : 'Tidak',
-					"alergi_4": dataAlergi[3].checked ? 'Ya' : 'Tidak',
-					"alergi_5": dataAlergi[4].checked ? 'Ya' : 'Tidak',
-					"alergi_6": dataAlergi[5].checked ? 'Ya' : 'Tidak',
-					"alergi_7": dataAlergi[6].checked ? 'Ya' : 'Tidak',
-					"diet": $scope.item.preskripsiDiet,
-					"tindak_lanjut": $scope.item.tindakLanjut,
-					"antro_umur": umur,
-					"isverifikasi": $scope.isDokter ? true : false,
-					"antro_bb": $scope.item.beratBadan,
-					"antro_tb": $scope.item.tb,
-					"antro_status_gizi": $scope.item.statusGizi,
-					"antro_tb_u": $scope.item.tbU,
-					"antro_bb_tb": $scope.item.bbtb,
-					"biokimia": $scope.item.biokimia,
-					"klinis_fisik": $scope.item.klinisFisik,
-					"riwayat_diet": $scope.item.riwayatDiet,
-					"riwayat_personal": $scope.item.riwayatPersonal,
-					"diagnosis_gizi": $scope.item.diagnosisGizi,
-					"intervensi_gizi": $scope.item.intervensiGizi,
-					"monitoring": $scope.item.monitoring,
-					"monitoring_ket": $scope.item.ketMonitoring,
-					"lila":$scope.item.lila, 
-					"lila_u":$scope.item.lilau, 
-					"jenis_pasien": $scope.isDewasa ? 'Dewasa' : 'Anak'
+					diagnosa: $scope.item.diagnosaMedis,
+					norec: $scope.item.norecGizi ? $scope.item.norecGizi : '',
+					noregistrasifk: $scope.cache[7],
+					pegawaifk: $scope.isDokter ? $scope.dataLogin.id : null,
+					pegawaiasalfk: $scope.isDokter ? $scope.item.pegawaiFk : $scope.dataLogin.id,
+					ruanganfk: $scope.cache[11],
+					pasienfk: $scope.cache[0],
+					risiko_malutrisi: $scope.item.risikoMalnutrisi,
+					kondisi_khusus: $scope.item.pasienKondisiKhusus,
+					alergi_1: dataAlergi[0].checked ? 'Ya' : 'Tidak',
+					alergi_2: dataAlergi[1].checked ? 'Ya' : 'Tidak',
+					alergi_3: dataAlergi[2].checked ? 'Ya' : 'Tidak',
+					alergi_4: dataAlergi[3].checked ? 'Ya' : 'Tidak',
+					alergi_5: dataAlergi[4].checked ? 'Ya' : 'Tidak',
+					alergi_6: dataAlergi[5].checked ? 'Ya' : 'Tidak',
+					alergi_7: dataAlergi[6].checked ? 'Ya' : 'Tidak',
+					diet: $scope.item.preskripsiDiet,
+					tindak_lanjut: $scope.item.tindakLanjut,
+					antro_umur: umur,
+					isverifikasi: $scope.isDokter ? true : false,
+					antro_bb: $scope.item.beratBadan,
+					antro_tb: $scope.item.tb,
+					antro_status_gizi: $scope.item.statusGizi,
+					antro_tb_u: $scope.item.tbU,
+					antro_bb_tb: $scope.item.bbtb,
+					biokimia: $scope.item.biokimia,
+					klinis_fisik: $scope.item.klinisFisik,
+					riwayat_diet: $scope.item.riwayatDiet,
+					riwayat_personal: $scope.item.riwayatPersonal,
+					diagnosis_gizi: $scope.item.diagnosisGizi,
+					intervensi_gizi: $scope.item.intervensiGizi,
+					monitoring: $scope.item.monitoring,
+					monitoring_ket: $scope.item.ketMonitoring,
+					lila: $scope.item.lila,
+					imt:$scope.item.imt,
+					lila_u: $scope.item.lilau,
+					jenis_pasien: $scope.isDewasa ? 'Dewasa' : 'Anak'
 				}
-				// debugger;
+				
 				console.log(dataSave);
 				ManagePhp.postData(dataSave, `rekam-medis/post-asesmen-gizi-awal/save`).then(function (res) {
 					initPage();

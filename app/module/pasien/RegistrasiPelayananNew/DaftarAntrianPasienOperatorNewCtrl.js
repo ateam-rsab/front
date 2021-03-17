@@ -259,7 +259,8 @@ define(['initialize'], function (initialize) {
             };
             $scope.cetakGelang = function () {
                 if ($scope.item != undefined) {
-                    var fixUrlLaporan = cetakHelper.open("registrasi-pelayanan/gelangPasien?id=" + $scope.item.nocmfk);
+                    var fixUrlLaporan = "http://192.168.12.4:7777/service-reporting/gelang-pasien/" + $scope.item.noregistrasi;
+                    // var fixUrlLaporan = cetakHelper.open("registrasi-pelayanan/gelangPasien?id=" + $scope.item.nocmfk);
                     $window.open(fixUrlLaporan, '', 'width=800,height=600')
                 }
             }

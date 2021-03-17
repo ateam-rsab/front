@@ -6,6 +6,7 @@ define(['initialize'], function (initialize) {
             let paramTgl = {};
 
             // $scope.dataPasienAntrian = [];
+            $('#header').hide();
 
             function filterDuplicateData(data, key) {
                 return [...new Map(data.map(x => [key(x), x])).values()]
@@ -29,11 +30,17 @@ define(['initialize'], function (initialize) {
             let init = () => {
                 let tglAwal = dateHelper.formatDate(new Date().setHours(0, 0, 0, 0), "YYYY-MM-DD HH:mm:ss");
                 let tglAkhir = dateHelper.formatDate(new Date().setHours(23, 59, 0, 0), "YYYY-MM-DD HH:mm:ss");
+                
                 manageLogistikPhp.getDataTableTransaksi("lab-radiologi/get-dashboard?tglAwal=" + tglAwal + "&tglAkhir=" + tglAkhir).then(res => {
                     let dataFiltered = filterDuplicateData(res.data.dataPasienOrder, it => it.noRegistrasi);
                     let dataSorted = dataFiltered.sort(dynamicSort("tglOrder"));
                     console.log(dataSorted);
+
                     $scope.dataPasienAntrian = dataSorted;
+
+                    for(let i = 0; i < $scope.dataPasienAntrian.length; i++) {
+                        $scope.dataPasienAntrian[i].jamOrder = dateHelper.formatDate($scope.dataPasienAntrian[i].tglOrder, "HH:mm:ss")
+                    }
                 })
                 setTimeout(() => {
                     init();

@@ -45,10 +45,14 @@
             <div class="grid_2" ng-hide="israwatinap || isRawatJalan &&
                 isNeonatal || isRawatJalan && isAnak || isRawatJalan &&
                 isDewasa">
-                <a class="n1 green" ng-class="{'active': activeMenuDashboardPAP
+                <md-button class="md-raised md-primary medium-button"
+                    ng-click="navigasiPap('RekamMedis.MenuPengkajian.PerencanaanPulang')">
+                    <span>Perencanaan Pulang</span>
+                </md-button>
+                <!-- <a class="n1 green" ng-class="{'active': activeMenuDashboardPAP
                     == 'RekamMedis.MenuPengkajian.PerencanaanPulang'}"
                     data-ng-click="navigasiPap('RekamMedis.MenuPengkajian.PerencanaanPulang')">Perencanaan
-                    Pulang</a>
+                    Pulang</a> -->
             </div>
         </div>
     </div>
