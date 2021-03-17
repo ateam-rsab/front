@@ -8,35 +8,6 @@
     }
 </style>
 
-<div class="grid_12">
-    <div class="grid_2">
-        <label><strong>Jenis Indikator</strong></label>
-        <input kendo-combo-box k-filter="'contains'" k-ng-model="item.srcJenisIndikator"
-            k-data-text-field="'jenisIndikator'" k-data-value-field="'id'" k-data-source="listJenisIndikator" />
-    </div>
-    <div class="grid_4">
-        <label><strong>Nama Indikator</strong></label>
-        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.srcNamaIndikator" />
-    </div>
-    <div class="grid_2">
-        <label><strong>Status Verifikasi</strong></label>
-        <input kendo-combo-box k-filter="'contains'" k-ng-model="item.srcStatusVerif" k-data-text-field="'statusVerif'"
-            k-data-value-field="'id'" k-data-source="listStatusVerif" />
-    </div>
-    <!-- <div class="grid_1">
-        <md-checkbox ng-model="item.srcStatusVerif" aria-label="verified" style="margin-top:24px"
-            class="green">
-            Status Verifikasi
-        </md-checkbox>
-    </div> -->
-    <div class="grid_1" style="margin-top: 1.6em;">
-        <md-button class="md-raised md-primary medium-button" ng-click="getDataMaster()">
-            <span style="margin-right: 5px;">Cari</span>
-            <i class="fa fa-search"></i>
-        </md-button>
-    </div>
-</div>
-
 <md-tabs class="md-primary" md-center-tabs md-dynamic-height md-selected="tabPegawai">
     <md-tab label="Master Indikator Kinerja" md-on-select="onChangeTab(1)">
 
@@ -46,19 +17,22 @@
                 <input kendo-combo-box k-filter="'contains'" k-ng-model="item.srcJenisIndikator"
                     k-data-text-field="'jenisIndikator'" k-data-value-field="'id'" k-data-source="listJenisIndikator" />
             </div>
-
             <div class="grid_4">
                 <label><strong>Nama Indikator</strong></label>
                 <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.srcNamaIndikator" />
             </div>
-
             <div class="grid_2">
-                <md-checkbox ng-model="item.srcStatusVerif" aria-label="verified" style="margin-top:24px" class="green">
+                <label><strong>Status Verifikasi</strong></label>
+                <input kendo-combo-box k-filter="'contains'" k-ng-model="item.srcStatusVerif"
+                    k-data-text-field="'statusVerif'" k-data-value-field="'id'" k-data-source="listStatusVerif" />
+            </div>
+            <!-- <div class="grid_1">
+                <md-checkbox ng-model="item.srcStatusVerif" aria-label="verified" style="margin-top:24px"
+                    class="green">
                     Status Verifikasi
                 </md-checkbox>
-            </div>
-
-            <div class="grid_1" style="margin-top: 19px;">
+            </div> -->
+            <div class="grid_1" style="margin-top: 1.6em;">
                 <md-button class="md-raised md-primary medium-button" ng-click="getDataMaster()">
                     <span style="margin-right: 5px;">Cari</span>
                     <i class="fa fa-search"></i>
@@ -86,7 +60,7 @@
                     k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-data-source="listJabatan" />
             </div>
 
-            <div class="grid_1" style="margin-top: 19px;">
+            <div class="grid_1" style="margin-top: 1.6em;">
                 <md-button class="md-raised md-primary medium-button" ng-click="getDataMapping()">
                     <span style="margin-right: 5px;">Cari</span>
                     <i class="fa fa-search"></i>
