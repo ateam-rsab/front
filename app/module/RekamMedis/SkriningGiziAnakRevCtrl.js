@@ -208,7 +208,7 @@ define(['initialize'], function (initialize) {
 							var temp = {
 								"id": 66,
 								"idParent": 4,
-								"descNilai": '1',
+								"descNilai": '2',
 								"value": true
 							}
 							$scope.arrSkriningGiziAnak.push(temp)

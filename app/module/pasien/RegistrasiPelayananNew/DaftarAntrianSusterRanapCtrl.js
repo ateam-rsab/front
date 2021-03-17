@@ -26,6 +26,21 @@ define(['initialize'], function (initialize) {
                 loadData()
             }
 
+            $scope.cetakSEPPasien = () => {
+                console.log($scope.item);
+                if (!$scope.item.norec_pd) {
+                    toastr.info("Harap pilih Pasien!");
+                    return;
+                }
+
+                if ($scope.item.kelompokpasien !== "BPJS") {
+                    toastr.info("Bukan Pasien BPJS!");
+                    return;
+                }
+
+                window.open("http://172.16.44.33:7777/service-reporting/cetak-sep/" + $scope.item.norec_pd, "_blank", "fullscreen=yes");
+            }
+
             manageSarprasPhp.getDataTableTransaksi("pasien/get-dokters-combos", false).then(function (data) {
                 $scope.listDokter = data.data.dokter;
             });
@@ -50,56 +65,72 @@ define(['initialize'], function (initialize) {
                         field: "noregistrasi",
                         title: "<h3>No Registrasi</h3>",
                         width: 100,
-                        headerAttributes: { style: "text-align : center" },
+                        headerAttributes: {
+                            style: "text-align : center"
+                        },
                         filterable: true
                     },
                     {
                         field: "nocm",
                         title: "<h3>No RM</h3>",
                         width: 80,
-                        headerAttributes: { style: "text-align : center" },
+                        headerAttributes: {
+                            style: "text-align : center"
+                        },
                         filterable: true
                     },
                     {
                         field: "namapasien",
                         title: "<h3>Nama Pasien</h3>",
                         width: 150,
-                        headerAttributes: { style: "text-align : center" },
+                        headerAttributes: {
+                            style: "text-align : center"
+                        },
                         filterable: true
                     },
                     {
                         field: "tglorder",
                         title: "<h3>Tanggal</h3>",
                         width: 120,
-                        headerAttributes: { style: "text-align : center" },
+                        headerAttributes: {
+                            style: "text-align : center"
+                        },
                         filterable: true
                     },
                     {
                         field: "ruanganasal",
                         title: "<h3>Ruangan Asal</h3>",
                         width: 120,
-                        headerAttributes: { style: "text-align : center" },
+                        headerAttributes: {
+                            style: "text-align : center"
+                        },
                         filterable: true
                     },
                     {
                         field: "ruangantujuan",
                         title: "<h3>Ruangan Tujuan</h3>",
                         width: 150,
-                        headerAttributes: { style: "text-align : center" },
+                        headerAttributes: {
+                            style: "text-align : center"
+                        },
                         filterable: true
                     },
                     {
                         field: "pengonsul",
                         title: "<h3>Dokter<br> Asal</h3>",
                         width: 120,
-                        headerAttributes: { style: "text-align : center" },
+                        headerAttributes: {
+                            style: "text-align : center"
+                        },
                         filterable: true
                     },
                     {
                         field: "namalengkap",
                         title: "<h3>Dokter<br> Tujuan</h3>",
                         width: 120,
-                        headerAttributes: { style: "text-align : center" },
+                        headerAttributes: {
+                            style: "text-align : center"
+                        },
                         filterable: true,
                         // template: "#if(!namalengkap) { # <button class='k-button'>Tambah Dokter</button> # } else { # #:namalengkap# # } #",
                         template: "#if(!namalengkap) { #-# } else { # #:namalengkap# # } #",
@@ -107,8 +138,7 @@ define(['initialize'], function (initialize) {
                     // { field: "keteranganorder", title: "Keterangan", width: 120, headerAttributes: { style: "text-align : center" }},
                     // { field: "status", title: "Status", width: 120, headerAttributes: { style: "text-align : center" }},
                     {
-                        command: [
-                            {
+                        command: [{
                                 name: "Detail",
                                 text: "Detail",
                                 click: verif
@@ -121,7 +151,9 @@ define(['initialize'], function (initialize) {
                         ],
                         title: "&nbsp;",
                         width: 120,
-                        attributes: { style: "text-align:center;valign=middle" }
+                        attributes: {
+                            style: "text-align:center;valign=middle"
+                        }
                     }
                 ],
             };
@@ -171,11 +203,11 @@ define(['initialize'], function (initialize) {
             function edit(e) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-                
+
                 $scope.edit = dataItem;
-                $scope.item.dokter ={
-                    namalengkap:dataItem.namalengkap,
-                    id:dataItem.pegawaifk
+                $scope.item.dokter = {
+                    namalengkap: dataItem.namalengkap,
+                    id: dataItem.pegawaifk
                 }
                 console.log($scope.item.dokter);
 
@@ -251,8 +283,8 @@ define(['initialize'], function (initialize) {
                     manageSarprasPhp.getDataTableTransaksi("dokter/get-daftar-antrian-ranap?" +
                         "&norm=" + nocm +
                         "&noreg=" + noRegistrasi +
-                        "&nama=" + nama
-                        + ruangId),
+                        "&nama=" + nama +
+                        ruangId),
                 ]).then(function (data) {
                     $scope.isRouteLoading = false;
                     var datas = data[0].data;
@@ -271,8 +303,7 @@ define(['initialize'], function (initialize) {
                         serverPaging: false,
                         schema: {
                             model: {
-                                fields: {
-                                }
+                                fields: {}
                             }
                         }
                     });
@@ -298,7 +329,8 @@ define(['initialize'], function (initialize) {
                     {
                         field: "namaruangan",
                         aggregate: "count"
-                    }]
+                    }
+                ]
             };
             $scope.aggregate = [
                 // {
@@ -308,9 +340,9 @@ define(['initialize'], function (initialize) {
                 {
                     field: "namaruangan",
                     aggregate: "count"
-                }]
-            $scope.ColumnPasien = [
-                {
+                }
+            ]
+            $scope.ColumnPasien = [{
                     "field": "no",
                     "title": "No",
                     "width": "20px",
@@ -372,7 +404,8 @@ define(['initialize'], function (initialize) {
                     title: "Nama Ruangan",
                     aggregates: ["count"],
                     groupHeaderTemplate: "Ruangan #= value # (Jumlah: #= count#)"
-                }];
+                }
+            ];
 
             $scope.Page = {
                 refresh: true,
@@ -914,7 +947,7 @@ define(['initialize'], function (initialize) {
                         if ($scope.item.ruanganLast != undefined) {
                             $state.go('PindahPulangPasien', {
                                 norecPD: $scope.item.norec_pd,
-                                norecAPD: $scope.item.norec_apd  
+                                norecAPD: $scope.item.norec_apd
                             });
                             var CachePindah = $scope.item.ruanganLast
                             cacheHelper.set('CachePindah', CachePindah);
@@ -1049,9 +1082,9 @@ define(['initialize'], function (initialize) {
                 // }
             }
             $scope.formatJam24 = {
-                value: new Date(),			//set default value
-                format: "dd-MM-yyyy HH:mm",	//set date format
-                timeFormat: "HH:mm",		//set drop down time format to 24 hours
+                value: new Date(), //set default value
+                format: "dd-MM-yyyy HH:mm", //set date format
+                timeFormat: "HH:mm", //set drop down time format to 24 hours
             }
             $scope.Detail = function () {
                 if ($scope.item.noregistrasi != undefined) {
@@ -1113,14 +1146,14 @@ define(['initialize'], function (initialize) {
                     window.messageContainer.error(objValid.msg);
                 }
             }
-           
+
 
             // **** Kejadian pasien jatuh
-            $scope.dialog ={
-                tglJatuh :   $scope.now 
+            $scope.dialog = {
+                tglJatuh: $scope.now
             }
-            $scope.pasienJatuh = function(){
-                if(!$scope.item.norec_pd){
+            $scope.pasienJatuh = function () {
+                if (!$scope.item.norec_pd) {
                     toastr.error('Pilih data dulu')
                     return
                 }
@@ -1128,26 +1161,26 @@ define(['initialize'], function (initialize) {
                 $scope.dialog.namapasien = $scope.item.namapasien
                 $scope.dialog.norec_pd = $scope.item.norec_pd
                 $scope.dialog.nocmfk = $scope.item.nocmfk
-              
+
                 $scope.dialogPasienJatuh.center().open()
             }
-            $scope.simpanJatuh = function(data){
+            $scope.simpanJatuh = function (data) {
                 var objsave = {
-                    "norec" :  "",
-                    "statusenabled" : true,
-                    "nocmfk" :    $scope.dialog.nocmfk,
-                    "noregistrasifk" :    $scope.dialog.norec_pd,
-                    "jumlah" :    $scope.dialog.jumlah != undefined?   $scope.dialog.jumlah: 0 ,
-                    "tgljatuh" :  moment(data.tglJatuh).format('YYYY-MM-DD HH:mm'),
-                    "keterangan" :  data.keterangan != undefined?data.keterangan : '-',
+                    "norec": "",
+                    "statusenabled": true,
+                    "nocmfk": $scope.dialog.nocmfk,
+                    "noregistrasifk": $scope.dialog.norec_pd,
+                    "jumlah": $scope.dialog.jumlah != undefined ? $scope.dialog.jumlah : 0,
+                    "tgljatuh": moment(data.tglJatuh).format('YYYY-MM-DD HH:mm'),
+                    "keterangan": data.keterangan != undefined ? data.keterangan : '-',
                 }
-                manageSarprasPhp.saveDataTransaksi('rensar/save-pasien-jatuh',objsave ).then(function(e){
-                    $scope.dialog ={}
+                manageSarprasPhp.saveDataTransaksi('rensar/save-pasien-jatuh', objsave).then(function (e) {
+                    $scope.dialog = {}
                 })
             }
 
-            $scope.serahTerimaPasien = function() {
-                if(!$scope.item.norec_apd) {
+            $scope.serahTerimaPasien = function () {
+                if (!$scope.item.norec_apd) {
                     toastr.warning('Anda belum memilih nama pasien');
                 } else {
                     $state.go('SerahTerimaPasien', {
@@ -1176,7 +1209,7 @@ define(['initialize'], function (initialize) {
                     });
                 });
             }
-            
+
         }
 
     ]);

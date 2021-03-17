@@ -5,6 +5,7 @@ define(['initialize'], function (initialize) {
             $scope.item = {};
             $scope.isRouteLoading = false;
             $scope.isEdit = false;
+            // $scope.regexDecimal = /^(\d{1,13})(?:,\d{1,2})?$/;
             $scope.isVerifStaf = false
             $scope.isDuplicated = false
             var userLogin = JSON.parse(localStorage.getItem('datauserlogin'));
@@ -16,6 +17,12 @@ define(['initialize'], function (initialize) {
                 id: 1,
                 statusVerif: "Terverifikasi"
             }]
+
+            $('#idSkor').on('change, keyup', function () {
+                var currentInput = $(this).val();
+                var fixedInput = currentInput.replace(/[A-Za-z!@#$%^&*()]/g, '');
+                $(this).val(fixedInput);
+            });
 
             $scope.optGridSkoringTindakan = {
                 toolbar: [{

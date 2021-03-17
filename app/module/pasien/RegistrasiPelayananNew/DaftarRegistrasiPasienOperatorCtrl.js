@@ -181,6 +181,15 @@ define(['initialize'], function (initialize) {
 						"title": "No SEP",
 						"width": "150px",
 						"template": "<span class='style-center'>#: nosep #</span>"
+					}, {
+						command: [
+							{
+								text: "Cetak SEP",
+								click: cetakSEP,
+								imageClass: "k-icon k-i-excel"
+							}
+						],
+						width: "100px",
 					}
 					// {
 					// 	"field": "statuspasien",
@@ -189,6 +198,19 @@ define(['initialize'], function (initialize) {
 					// }				
 				]
 			};
+
+			function cetakSEP(e) {
+				e.preventDefault();
+				var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+				console.log(dataItem);
+
+				if(!dataItem.nosep) {
+					toastr.error("Bukan kelompok pasien BPJS", "Gagal Cetak");
+					return;
+				}
+
+				window.open("http://172.16.44.33:7777/service-reporting/cetak-sep/" + dataItem.norec , "_blank", "fullscreen=yes");
+			}
 
 
 			$scope.SearchData = function () {
@@ -601,7 +623,8 @@ define(['initialize'], function (initialize) {
 
 			$scope.GelangPasien = function () {
 				if ($scope.dataPasienSelected.nocmfk != undefined) {
-					var fixUrlLaporan = cetakHelper.open("registrasi-pelayanan/gelangPasien?id=" + $scope.dataPasienSelected.nocmfk);
+					// http://192.168.12.4:7777/service-reporting/gelang-pasien/2103007612
+					var fixUrlLaporan = "http://192.168.12.4:7777/service-reporting/gelang-pasien/" + $scope.dataPasienSelected.noregistrasi; // cetakHelper.open("registrasi-pelayanan/gelangPasien?id=" + $scope.dataPasienSelected.nocmfk);
 					window.open(fixUrlLaporan, '', 'width=800,height=600')
 				}
 			}

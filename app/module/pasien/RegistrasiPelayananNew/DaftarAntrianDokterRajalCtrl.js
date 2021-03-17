@@ -28,14 +28,29 @@ define(['initialize'], function (initialize) {
             loadData();
             postRensarWTRJ();
             loadKonsul();
+
             function postRensarWTRJ() {
                 manageSarprasPhp.saveDataTransaksi('rensar/post-waktu-tunggu-rj')
-                    .then(function (res) {
-                    })
+                    .then(function (res) {})
             }
             // loadData()
             $scope.SearchEnter = function () {
                 loadData()
+            }
+
+            $scope.cetakSEPPasien = () => {
+                console.log($scope.dataPasienSelected);
+                if (!$scope.item.norec_pd) {
+                    toastr.info("Harap pilih Pasien!");
+                    return;
+                }
+
+                if ($scope.item.kelompokpasien !== "BPJS") {
+                    toastr.info("Bukan Pasien BPJS!");
+                    return;
+                }
+
+                window.open("http://172.16.44.33:7777/service-reporting/cetak-sep/" + $scope.item.norec_pd, "_blank", "fullscreen=yes");
             }
 
             function loadCombo() {
@@ -95,8 +110,8 @@ define(['initialize'], function (initialize) {
                         "&tglAkhir=" + tglAkhir +
                         "&norm=" + nocm +
                         "&noreg=" + noRegistrasi +
-                        "&nama=" + nama
-                        + dokId + ruangId),
+                        "&nama=" + nama +
+                        dokId + ruangId),
                 ]).then(function (data) {
                     $scope.isRouteLoading = false;
                     var datas = data[0].data;
@@ -120,8 +135,7 @@ define(['initialize'], function (initialize) {
                         serverPaging: false,
                         schema: {
                             model: {
-                                fields: {
-                                }
+                                fields: {}
                             }
                         }
                     });
@@ -129,6 +143,7 @@ define(['initialize'], function (initialize) {
                     cacheHelper.set('DaftarAntrianDokterRajalCtrl', chacePeriode);
                 });
             }
+
             function loadKonsul() {
                 ManagePhp.getData("rekam-medis/get-order-konsul?dokterid=" + $scope.dataLogin.id).then(function (e) {
                     var res = e.data.data
@@ -149,7 +164,10 @@ define(['initialize'], function (initialize) {
                 // $scope.item.periodeAwal = dateHelper.setJamAwal(new Date());
                 // $scope.item.periodeAkhir = $scope.now;
                 if (dataPasienSelected != undefined) {
-                    $scope.item.pilihDokter = { id: dataPasienSelected.objectpegawaifk, namalengkap: dataPasienSelected.namadokter }
+                    $scope.item.pilihDokter = {
+                        id: dataPasienSelected.objectpegawaifk,
+                        namalengkap: dataPasienSelected.namadokter
+                    }
                 }
             }
 
@@ -164,7 +182,8 @@ define(['initialize'], function (initialize) {
                     {
                         field: "namaruangan",
                         aggregate: "count"
-                    }]
+                    }
+                ]
             };
             $scope.aggregate = [
                 // {
@@ -174,11 +193,16 @@ define(['initialize'], function (initialize) {
                 {
                     field: "namaruangan",
                     aggregate: "count"
-                }]
+                }
+            ]
             var onDataBound = function () {
                 $('td').each(function () {
-                    if ($(this).text() == '-') { $(this).addClass('red') }
-                    if ($(this).text() == 'Selesai') { $(this).addClass('green') }
+                    if ($(this).text() == '-') {
+                        $(this).addClass('red')
+                    }
+                    if ($(this).text() == 'Selesai') {
+                        $(this).addClass('green')
+                    }
 
                 })
             }
@@ -186,8 +210,7 @@ define(['initialize'], function (initialize) {
             $scope.mainGridOptions = {
                 scrollable: true,
                 dataBound: onDataBound,
-                columns: [
-                    {
+                columns: [{
                         "field": "no",
                         "title": "No",
                         "title": "<h3>No</h3>",
@@ -771,7 +794,10 @@ define(['initialize'], function (initialize) {
                     alert("Pilih Pasien Dahulu!!!")
                     return;
                 } else {
-                    $scope.item.pilihDokter = { id: $scope.dataPasienSelected.objectpegawaifk, namalengkap: $scope.dataPasienSelected.namadokter }
+                    $scope.item.pilihDokter = {
+                        id: $scope.dataPasienSelected.objectpegawaifk,
+                        namalengkap: $scope.dataPasienSelected.namadokter
+                    }
                     $scope.winDialogss.center().open();
                 }
             }
@@ -1153,9 +1179,9 @@ define(['initialize'], function (initialize) {
                 // }
             }
             $scope.formatJam24 = {
-                value: new Date(),			//set default value
-                format: "dd-MM-yyyy HH:mm",	//set date format
-                timeFormat: "HH:mm",		//set drop down time format to 24 hours
+                value: new Date(), //set default value
+                format: "dd-MM-yyyy HH:mm", //set date format
+                timeFormat: "HH:mm", //set drop down time format to 24 hours
             }
             $scope.toogleKlikDiagnosa = function () {
                 $scope.klikDiagnosa = !$scope.klikDiagnosa;
@@ -1221,7 +1247,9 @@ define(['initialize'], function (initialize) {
             }
             $scope.gridDiagnosa = {
                 columns: [{
-                    "field": "rowNumber", title: "#", "width": 40
+                    "field": "rowNumber",
+                    title: "#",
+                    "width": 40
                 }, {
                     "field": "jenisDiagnosis.jenisDiagnosa",
                     "title": "Jenis Diagnosis",
@@ -1248,7 +1276,9 @@ define(['initialize'], function (initialize) {
             }
             $scope.gridDiagnosaBaru = {
                 columns: [{
-                    "field": "rowNumber", title: "#", "width": 40
+                    "field": "rowNumber",
+                    title: "#",
+                    "width": 40
                 }, {
                     "field": "jenisDiagnosis.jenisDiagnosa",
                     "title": "Jenis Diagnosis",
@@ -1466,6 +1496,7 @@ define(['initialize'], function (initialize) {
                 loadGridKonsul();
                 $scope.winKonsul.center().open();
             }
+
             function loadGridKonsul() {
                 ManagePhp.getData("rekam-medis/get-order-konsul?dokterid=" + $scope.dataLogin.id).then(function (e) {
                     var result = e.data.data
@@ -1493,17 +1524,88 @@ define(['initialize'], function (initialize) {
                 scrollable: true,
                 columns: [
                     // { field: "rowNumber", title: "#", width: 40, width: 40, attributes: { style: "text-align:right; padding-right: 15px;"}, hideMe: true},
-                    { field: "no", title: "No", width: 40, headerAttributes: { style: "text-align : center" } },
-                    { field: "noregistrasi", title: "No Registrasi", width: 100, headerAttributes: { style: "text-align : center" } },
-                    { field: "nocm", title: "No RM", width: 80, headerAttributes: { style: "text-align : center" } },
-                    { field: "namapasien", title: "Nama Pasien", width: 150, headerAttributes: { style: "text-align : center" } },
-                    { field: "tglorder", title: "Tanggal", width: 120, headerAttributes: { style: "text-align : center" } },
-                    { field: "ruanganasal", title: "Ruangan Asal", width: 120, headerAttributes: { style: "text-align : center" } },
-                    { field: "ruangantujuan", title: "Ruangan Tujuan", width: 150, headerAttributes: { style: "text-align : center" } },
-                    { field: "pengonsul", title: "Dokter<br> Pengonsul", width: 120, headerAttributes: { style: "text-align : center" } },
+                    {
+                        field: "no",
+                        title: "No",
+                        width: 40,
+                        headerAttributes: {
+                            style: "text-align : center"
+                        }
+                    },
+                    {
+                        field: "noregistrasi",
+                        title: "No Registrasi",
+                        width: 100,
+                        headerAttributes: {
+                            style: "text-align : center"
+                        }
+                    },
+                    {
+                        field: "nocm",
+                        title: "No RM",
+                        width: 80,
+                        headerAttributes: {
+                            style: "text-align : center"
+                        }
+                    },
+                    {
+                        field: "namapasien",
+                        title: "Nama Pasien",
+                        width: 150,
+                        headerAttributes: {
+                            style: "text-align : center"
+                        }
+                    },
+                    {
+                        field: "tglorder",
+                        title: "Tanggal",
+                        width: 120,
+                        headerAttributes: {
+                            style: "text-align : center"
+                        }
+                    },
+                    {
+                        field: "ruanganasal",
+                        title: "Ruangan Asal",
+                        width: 120,
+                        headerAttributes: {
+                            style: "text-align : center"
+                        }
+                    },
+                    {
+                        field: "ruangantujuan",
+                        title: "Ruangan Tujuan",
+                        width: 150,
+                        headerAttributes: {
+                            style: "text-align : center"
+                        }
+                    },
+                    {
+                        field: "pengonsul",
+                        title: "Dokter<br> Pengonsul",
+                        width: 120,
+                        headerAttributes: {
+                            style: "text-align : center"
+                        }
+                    },
                     // { field: "keteranganorder", title: "Keterangan", width: 120, headerAttributes: { style: "text-align : center" }},
-                    { field: "status", title: "Status", width: 120, headerAttributes: { style: "text-align : center" } },
-                    { command: [{ name: "edit", text: "Verifikasi", click: verif }], title: "&nbsp;", width: 120 }
+                    {
+                        field: "status",
+                        title: "Status",
+                        width: 120,
+                        headerAttributes: {
+                            style: "text-align : center"
+                        }
+                    },
+                    {
+                        command: [{
+                            name: "edit",
+                            text: "Verifikasi",
+                            click: verif
+                        }],
+                        title: "&nbsp;",
+                        width: 120
+                    }
                 ],
             };
 
@@ -1528,7 +1630,7 @@ define(['initialize'], function (initialize) {
                     "saran": $scope.item.saran,
                     "diagnosis": $scope.item.diagnosa
                 }
-                
+
                 ManagePhp.postData2('rekam-medis/save-konsul-from-order', dataKonsul).then(function (e) {
                     $scope.winDescription.close();
                     $scope.winKonsul.close();
@@ -1569,15 +1671,14 @@ define(['initialize'], function (initialize) {
             }
             //#save Log Konsul
             $scope.saveLogKonsul = function () {
-                manageTataRekening.getDataTableTransaksi("logging/save-log-konsul?norec_pd="
-                    + $scope.item.norec_pd
-                    + "&dokterfk="
-                    + $scope.konsul.namaDokter.id
-                    + "&kelasfk="
-                    + 6
-                    + "&objectruangantujuanfk="
-                    + $scope.konsul.ruangan.id).then(function (data) {
-                    })
+                manageTataRekening.getDataTableTransaksi("logging/save-log-konsul?norec_pd=" +
+                    $scope.item.norec_pd +
+                    "&dokterfk=" +
+                    $scope.konsul.namaDokter.id +
+                    "&kelasfk=" +
+                    6 +
+                    "&objectruangantujuanfk=" +
+                    $scope.konsul.ruangan.id).then(function (data) {})
             }
         }
 

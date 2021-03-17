@@ -1,6 +1,8 @@
 <style>
+    html,
     body {
         font-family: "lato", sans-serif;
+        overflow: hidden;
     }
 
     .container-antrian {
@@ -93,8 +95,8 @@
     <ul class="responsive-table-antrian">
         <li class="table-header">
             <div class="col col-1">No. Antrian</div>
-            <!-- <div class="col col-1">Tanggal Order</div> -->
-            <div class="col col-4">Nama Pasien</div>
+            <div class="col col-1">Jam Order</div>
+            <div class="col col-3">Nama Pasien</div>
             <div class="col col-3">No. Rekam Medis</div>
             <div class="col col-3">No. Registrasi</div>
         </li>
@@ -102,8 +104,8 @@
         <li class="table-row" ng-repeat="data in dataPasienAntrian">
             
             <div class="col col-1" ng-if="!data.message" data-label="No. Antrian">{{$index + 1}}</div>
-            <div class="col col-4" data-label="Nama Pasien">{{data.namaPasien}}</div>
-
+            <div class="col col-1" ng-if="!data.message" data-label="Jam Order">{{data.jamOrder}}</div>
+            <div class="col col-3" data-label="Nama Pasien">{{data.namaPasien}}</div>
             
 
             <div class="col col-3" data-label="No. Rekam Medis">{{data.noCm}}</div>
