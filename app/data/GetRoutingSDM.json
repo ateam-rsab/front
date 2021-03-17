@@ -2530,7 +2530,8 @@
         "define": "SdmService"
       }
     ]
-  }, {
+  },
+  {
     "name": "MasterIndikatorKinerja",
     "url": "/MasterIndikatorKinerja",
     "templateurl": "module/SDM/MasterIndikatorKinerja.html",
@@ -5267,34 +5268,10 @@
     ]
   },
   {
-    "name": "PresensiPegawaiNew",
-    "url": "/PresensiPegawaiNew",
-    "templateurl": "module/SDM/PresensiPegawaiNew.html",
-    "controller": "PresensiPegawaiNewCtrl",
-    "deps": [
-      {
-        "module": "Services",
-        "define": "Service"
-      },
-      {
-        "module": "LoginServices",
-        "define": "LoginService"
-      },
-      {
-        "module": "SdmService",
-        "define": "SdmService"
-      },
-      {
-        "module": "PhpService",
-        "define": "PhpService"
-      }
-    ]
-  },
-  {
     "name": "PresensiPegawai",
     "url": "/PresensiPegawai",
-    "templateurl": "module/SDM/PresensiPegawai.html",
-    "controller": "PresensiPegawaiCtrl",
+    "templateurl": "module/SDM/PresensiPegawaiNew.html",
+    "controller": "PresensiPegawaiNewCtrl",
     "deps": [
       {
         "module": "Services",
