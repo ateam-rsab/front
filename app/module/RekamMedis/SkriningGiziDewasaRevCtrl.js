@@ -308,6 +308,11 @@ define(['initialize'], function (initialize) {
 							if ($scope.dataSkrining[i].objectfk == "SGD-000010") {
 								$scope.noRecMstDua = $scope.dataSkrining[i].norec;
 								$scope.dataMstDua = $scope.dataSkrining[i].nilai;
+								console.log("data skrining => ", $scope.dataSkrining[i]);
+
+								$scope.showInputGangguanMetabolisme = $scope.dataSkrining[i].nilai === "66";
+								$scope.item.gangguanMetabolisme = $scope.dataSkrining[i].keterangan_mst;
+								
 							}
 							if ($scope.dataSkrining[i].objectfk == "SGD-000011") {
 								$scope.noRecMstTiga = $scope.dataSkrining[i].norec;

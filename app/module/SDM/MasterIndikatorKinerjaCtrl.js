@@ -51,7 +51,7 @@ define(['initialize'], function (initialize) {
             $scope.onChangeTab = (data) => {
                 console.log(data);
                 switch (data) {
-                    case 2:
+                    case 3:
                         // $scope.getDataMapping()
                         break;
                     default:
@@ -165,6 +165,16 @@ define(['initialize'], function (initialize) {
                 $scope.mapping.srcJabatan = null;
                 ManageSdmNew.getListData("service/list-generic/?view=Jabatan&select=id,namaJabatan&criteria=statusEnabled,kdJabatan,jenisJabatanId&values=true,ANJAB," + id).then((res) => {
                     $scope.listJabatan = res;
+
+                    $scope.listGridJabatan = res.data;
+                    for (let i = 0; i < $scope.listGridJabatan.length; i++) {
+                        $scope.listGridJabatan[i].statCheckbox = false;
+                    }
+
+                    // $scope.dataSourceJabatan = new kendo.data.DataSource({
+                    //     data: res.data,
+                    //     pageSize: 100
+                    // })
                 })
             }
 
@@ -231,12 +241,12 @@ define(['initialize'], function (initialize) {
 
                 }
 
-                if(!statusEnabled) {
+                if (!statusEnabled) {
                     dataSave.noRec = $scope.norecDataMapping;
                 }
 
                 ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-mapping-indikator-jabatan").then(res => {
-                    if(!statusEnabled) $scope.getDataMapping();
+                    if (!statusEnabled) $scope.getDataMapping();
                     $scope.closePopUpMapping();
                 })
 
@@ -276,6 +286,24 @@ define(['initialize'], function (initialize) {
                     }],
                     title: "",
                     width: 50
+                }],
+            }
+
+            $scope.optGridJabatan = {
+                pageable: true,
+                scrollable: true,
+                columns: [{
+                    "title": "<input type='checkbox' class='checkbox' ng-click='selectUnselectAllRow()' />",
+                    template: "# if (statCheckbox) { #" +
+                        "<input type='checkbox' class='checkbox' ng-click='selectRow(dataItem)' checked />" +
+                        "# } else { #" +
+                        "<input type='checkbox' class='checkbox' ng-click='selectRow(dataItem)' />" +
+                        "# } #",
+                    width: "50px"
+                }, {
+                    field: "namaJabatan",
+                    title: "<h3>Nama Jabatan</h3>",
+                    // width: 150
                 }],
             }
 
@@ -326,7 +354,57 @@ define(['initialize'], function (initialize) {
                     }
                 })
             }
-            // $scope.getDataMapping();
+
+            $scope.getMasterIndikator = (id) => {
+                if(!id) return;
+                
+                ManageSdmNew.getListData("service/list-generic/?view=IndikatorKinerja&select=id,namaIndikator&criteria=statusEnabled,jenisIndikator&values=true," + id + "&order=namaIndikator:asc").then((res) => { 
+                    $scope.listMasterIndikator = res.data;
+                })
+            }
+
+            $scope.getAllJabatan = () => {
+                if(!$scope.mapping.srcNamaIndikator.id) {
+                    toastr.warning("Gagal menampilkan data", "Perhatian!");
+                    return;
+                }
+                ManageSdmNew.getListData("iki-remunerasi/set-mapping-indikator-jabatan?indikatorId=" + $scope.mapping.srcNamaIndikator.id).then((res) => { 
+                    console.log(res);
+                });
+            }
+
+            $scope.selectRow = function (dataItem) {
+                var dataSelect = _.find($scope.dataSourceJabatan._data, function (data) {
+                    return data.noRec == dataItem.noRec;
+                });
+
+                if (dataSelect.statCheckbox) {
+                    dataSelect.statCheckbox = false;
+                } else {
+                    dataSelect.statCheckbox = true;
+                }
+            }
+
+            var isCheckAll = false
+            $scope.selectUnselectAllRow = function () {
+                var tempData = $scope.dataSourceJabatan._data;
+
+                if (isCheckAll) {
+                    isCheckAll = false;
+                    for (var i = 0; i < tempData.length; i++) {
+                        tempData[i].statCheckbox = false;
+                    }
+                } else {
+                    isCheckAll = true;
+                    for (var i = 0; i < tempData.length; i++) {
+                        tempData[i].statCheckbox = true;
+                    }
+                }
+                $scope.dataSourceJabatan = new kendo.data.DataSource({
+                    data: tempData,
+                    pageSizeP: 100
+                })
+            }
 
             let reset = () => {
                 $scope.mapping = null;

@@ -13,7 +13,7 @@
 </md-toolbar> -->
 
 <md-tabs class="md-primary" md-center-tabs md-dynamic-height md-selected="tabPegawai">
-    <md-tab label="Master Indikator Kinerja" md-on-select="onChangeTab(1)">
+    <md-tab label="Daftar Master Indikator Kinerja" md-on-select="onChangeTab(1)">
 
         <div class="grid_12">
             <div class="grid_2">
@@ -46,8 +46,43 @@
                 k-ng-model="selectedData"></div>
         </div>
     </md-tab>
-
     <md-tab label="Mapping Indikator Kinerja" md-on-select="onChangeTab(2)">
+
+        <div class="grid_12">
+            <div class="grid_4">
+                <label><strong>Jenis Indikator</strong></label>
+                <input kendo-combo-box k-filter="'contains'" k-ng-model="mapping.srcJenisIndikator"
+                    k-data-text-field="'jenisIndikator'" k-data-value-field="'id'"
+                    k-data-source="listJenisIndikator" k-on-change="getMasterIndikator(mapping.srcJenisIndikator.id)"/>
+            </div>
+
+            <div class="grid_4">
+                <label><strong>Nama Indikator</strong></label>
+                <input kendo-combo-box k-filter="'contains'" k-ng-model="mapping.srcNamaIndikator"
+                    k-data-text-field="'namaIndikator'" k-data-value-field="'id'"
+                    k-data-source="listMasterIndikator"/>
+            </div>
+
+            <div class="grid_1" style="margin-top: 19px;">
+                <md-button class="md-raised md-primary medium-button" ng-click="getAllJabatan()">
+                    <span style="margin-right: 5px;">Cari</span>
+                    <i class="fa fa-search"></i>
+                </md-button>
+            </div>
+            <!-- <div class="grid_4">
+                <label><strong>Jenis Jabatan</strong></label>
+                <input kendo-combo-box k-filter="'contains'" k-ng-model="mapping.srcJenisJabatan"
+                    k-data-text-field="'jenisJabatan'" k-data-value-field="'id'"
+                    k-data-source="listJenisJabatan" k-on-change="getJabatan(mapping.srcJenisJabatan.id)"/>
+            </div> -->
+        </div>
+       
+        <div class="grid_12">
+            <div kendo-grid k-data-source="dataSourceJabatan" k-selectable="'row'" options="optGridJabatan"
+                k-ng-model="selectedData"></div>
+        </div>
+    </md-tab>
+    <md-tab label="Daftar Mapping Indikator Kinerja" md-on-select="onChangeTab(3)">
 
         <div class="grid_12">
             <div class="grid_4">
