@@ -39,10 +39,19 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.showImageCapture = () => {
-                context.drawImage(video, 0, 0, 400, 350);
-                $scope.canvasDataURL = canvas.toDataURL().replace("image/png", "image/jpg");
-                // console.log(imageDataURL);
-                $scope.isDisablePresensi = false;
+                navigator.getMedia = (navigator.getUserMedia ||
+                    navigator.webkitGetUserMedia ||
+                    navigator.mozGetUserMedia ||
+                    navigator.msGetUserMedia);
+
+                navigator.getMedia({ video: true }, function () {
+                    context.drawImage(video, 0, 0, 400, 350);
+                    $scope.canvasDataURL = canvas.toDataURL().replace("image/png", "image/jpg");
+                    $scope.isDisablePresensi = false;
+                }, function () {
+                    alert("Kamera tidak terdeteksi, silakan gunakan Smartphone/ PC dengan akses kamera yang diizinkan untuk laman presensi ini!")
+                    return
+                });
             }
 
             function getDecimal(n) {
@@ -122,14 +131,19 @@ define(['initialize'], function (initialize) {
                     checkEditableWFH()
                 });
 
-                $scope.ip = getIPAddr();
+                // $scope.ip = getIPAddr();
                 var listProviders = ['43.225.67.209', '103.116.203.81', '103.116.203.82', '103.116.203.83', '103.116.203.84', '103.116.203.85', '103.116.203.86', '103.116.203.87', '103.116.203.88', '103.116.203.89', '103.116.203.90', '103.116.203.91', '103.116.203.92', '103.116.203.93', '103.116.203.94', '103.116.203.95', '103.247.219.149']
-                if (listProviders.includes($scope.ip)) {
-                    $scope.strJenisJaringan = "Jaringan Internet RSAB"
-                    $scope.isRSABNet = true
+                if ($scope.ip !== undefined) {
+                    if (listProviders.includes($scope.ip)) {
+                        $scope.strJenisJaringan = "Jaringan Internet RSAB"
+                        $scope.isRSABNet = true
+                    } else {
+                        $scope.strJenisJaringan = "Bukan Jaringan Internet RSAB"
+                        $scope.isRSABNet = false
+                    }
                 } else {
-                    $scope.strJenisJaringan = "Bukan Jaringan Internet RSAB"
-                    $scope.isRSABNet = false
+                    $scope.strJenisJaringan = "Jaringan Tidak Terdeteksi"
+                    $scope.isRSABNet = true
                 }
             }
 

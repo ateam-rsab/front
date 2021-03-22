@@ -10,58 +10,100 @@ define(['initialize'], function (initialize) {
             $scope.mainGridOptions = {
                 scrollable: true,
                 columns: [{
-                        "field": "no",
-                        "title": "No",
-                        "title": "<h3>No</h3>",
-                        "width": "10px",
-                    },
-                    {
-                        "field": "bulan",
-                        "title": "<h3>Bulan</h3>",
-                        "width": "40px",
-                    },
-                    {
-                        "field": "bor",
-                        "title": "<h3>BOR(%)</h3>",
-                        "template": "<p style='text-align:right'>{{ '#: bor #' }}</p>",
-                        "width": "40px",
-                    },
-                    {
-                        "field": "alos",
-                        "title": "<h3>ALOS(hari)</h3>",
-                        "template": "<p style='text-align:right'>{{ '#: alos #' }}</p>",
-                        "width": "40px",
-                    },
-                    {
-                        "field": "bto",
-                        "title": "<h3>BTO</h3>",
-                        "template": "<p style='text-align:right'>{{ '#: bto #' }}</p>",
-                        "width": "40px",
-                        "aggregates": ["sum"],
-                        "footerTemplate": "Total: <span>{{totalBTO}}</span>",
-                        "footerAttributes": {
-                            "class": "table-footer-cell",
-                            "style": "text-align: right;"
-                        }
-                    },
-                    {
-                        "field": "toi",
-                        "title": "<h3>TOI(hari)</h3>",
-                        "template": "<p style='text-align:right'>{{ '#: toi #' }}</p>",
-                        "width": "40px",
-                    },
-                    {
-                        "field": "toi",
-                        "title": "<h3>GDR(‰)</h3>",
-                        "template": "<p style='text-align:right'>{{ '#: gdr #' }}</p>",
-                        "width": "40px",
-                    },
-                    {
-                        "field": "toi",
-                        "title": "<h3>NDR(‰)</h3>",
-                        "template": "<p style='text-align:right'>{{ '#: ndr #' }}</p>",
-                        "width": "40px",
+                    "field": "no",
+                    "title": "No",
+                    "title": "<h3>No</h3>",
+                    "width": "20px",
+                },
+                {
+                    "field": "bulan",
+                    "title": "<h3>Bulan</h3>",
+                    "width": "40px",
+                },
+                {
+                    "field": "totalBed",
+                    "title": "<h3>Tempat<br/>Tidur</h3>",
+                    "template": "<p style='text-align:right'>{{ '#: totalBed #' }}</p>",
+                    "width": "40px",
+                },
+                {
+                    "field": "totalBedPeriod",
+                    "title": "<h3>Tempat<br/>Tidur<br/>x Hari</h3>",
+                    "template": "<p style='text-align:right'>{{ '#: totalBedPeriod #' }}</p>",
+                    "width": "40px",
+                },
+                {
+                    "field": "totalLos",
+                    "title": "<h3>LOS</h3>",
+                    "template": "<p style='text-align:right'>{{ '#: totalLos #' }}</p>",
+                    "width": "40px",
+                },
+                {
+                    "field": "totalLosPulang",
+                    "title": "<h3>LOS<br/>Pasien<br/>Pulang</h3>",
+                    "template": "<p style='text-align:right'>{{ '#: totalLosPulang #' }}</p>",
+                    "width": "40px",
+                },
+                {
+                    "field": "totalPasPulang",
+                    "title": "<h3>Pasien<br/>Pulang</h3>",
+                    "template": "<p style='text-align:right'>{{ '#: totalPasPulang #' }}</p>",
+                    "width": "40px",
+                },
+                {
+                    "field": "totalPasienMeninggal",
+                    "title": "<h3>Pasien<br/>Meninggal</h3>",
+                    "template": "<p style='text-align:right'>{{ '#: totalPasienMeninggal #' }}</p>",
+                    "width": "40px",
+                },
+                {
+                    "field": "totalPasienMeninggal48Jam",
+                    "title": "<h3>Pasien<br/>Meninggal<br/>Lebih<br/>2 Hari</h3>",
+                    "template": "<p style='text-align:right'>{{ '#: totalPasienMeninggal48Jam #' }}</p>",
+                    "width": "40px",
+                },
+                {
+                    "field": "bor",
+                    "title": "<h3>BOR(%)</h3>",
+                    "template": "<p style='text-align:right'>{{ '#: bor #' }}</p>",
+                    "width": "40px",
+                },
+                {
+                    "field": "alos",
+                    "title": "<h3>ALOS(hari)</h3>",
+                    "template": "<p style='text-align:right'>{{ '#: alos #' }}</p>",
+                    "width": "40px",
+                },
+                {
+                    "field": "bto",
+                    "title": "<h3>BTO</h3>",
+                    "template": "<p style='text-align:right'>{{ '#: bto #' }}</p>",
+                    "width": "40px",
+                    "aggregates": ["sum"],
+                    "footerTemplate": "Total: <span>{{totalBTO}}</span>",
+                    "footerAttributes": {
+                        "class": "table-footer-cell",
+                        "style": "text-align: right;"
                     }
+                },
+                {
+                    "field": "toi",
+                    "title": "<h3>TOI(hari)</h3>",
+                    "template": "<p style='text-align:right'>{{ '#: toi #' }}</p>",
+                    "width": "40px",
+                },
+                {
+                    "field": "toi",
+                    "title": "<h3>GDR(‰)</h3>",
+                    "template": "<p style='text-align:right'>{{ '#: gdr #' }}</p>",
+                    "width": "40px",
+                },
+                {
+                    "field": "toi",
+                    "title": "<h3>NDR(‰)</h3>",
+                    "template": "<p style='text-align:right'>{{ '#: ndr #' }}</p>",
+                    "width": "40px",
+                }
                 ]
             }
 

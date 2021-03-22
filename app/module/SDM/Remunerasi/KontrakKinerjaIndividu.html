@@ -9,7 +9,7 @@
 </md-toolbar>
 
 <div class="grid_12">
-    <div class="grid_2">
+    <div class="grid_1">
         <label><strong>Bulan</strong></label>
         <input style="width: 100%;" k-ng-model="item.srcBulan" k-options="monthSelectorOptions" kendo-date-picker
             placeholer="mm-yyyy" k-format="'MM-yyyy'" />
@@ -24,7 +24,7 @@
         <input kendo-combo-box k-filter="'contains'" k-ng-model="item.jabatan" k-data-text-field="'namaJabatan'"
             k-data-value-field="'id'" k-data-source="listJabatan" />
     </div>
-    <div class="grid_1" style="margin-top: 20px;">
+    <div class="grid_1" style="margin-top: 1.6em;">
         <md-button class="md-raised md-primary medium-button" ng-click="getAllData()">
             <span style="margin-right: 5px;">Cari</span>
             <i class="fa fa-search"></i>
@@ -136,7 +136,8 @@
                     <label><strong>Jenis Indikator Kinerja</strong></label>
                     <input kendo-combo-box k-filter="'contains'" k-ng-model="indikator.jenisIndikator"
                         k-data-text-field="'jenisIndikator'" k-data-value-field="'id'"
-                        k-data-source="listJenisIndikator" k-on-change="getIndikatorKerja(indikator.jenisIndikator.id)" />
+                        k-data-source="listJenisIndikator"
+                        k-on-change="getIndikatorKerja(indikator.jenisIndikator.id)" />
                 </div>
                 <div class="grid_3">
                     <label><strong>Indikator Kinerja</strong></label>

@@ -6,7 +6,7 @@ define(['initialize'], function (initialize) {
             $scope.item = {};
             $scope.indikator = {};
             let dataLogin = JSON.parse(localStorage.getItem('pegawai'));
-            $scope.item.srcBulan = new Date();
+            $scope.item.srcBulan = "";
 
             $scope.listJenisIndikator = [{
                 "id": 1,
@@ -34,31 +34,35 @@ define(['initialize'], function (initialize) {
                 columns: [{
                     field: "bulanFormatted",
                     title: "<h3>Bulan</h3>",
+                    width: 70
+                }, {
+                    field: "namaPegawai",
+                    title: "<h3>Pegawai</h3>",
                     width: 100
                 }, {
                     field: "namaJabatan",
                     title: "<h3>Jabatan</h3>",
-                    width: 100
-                }, {
-                    field: "namaIndikator",
-                    title: "<h3>Indikator</h3>",
                     width: 150
                 }, {
                     field: "jenisIndikator",
-                    title: "<h3>Jenis Indikator</h3>",
-                    width: 150
+                    title: "<h3>Jenis<br/>Indikator</h3>",
+                    width: 70
+                }, {
+                    field: "namaIndikator",
+                    title: "<h3>Indikator</h3>",
+                    width: 200
                 }, {
                     field: "bobot",
                     title: "<h3>Bobot</h3>",
-                    width: 70
+                    width: 50
                 }, {
                     field: "target",
                     title: "<h3>Target</h3>",
-                    width: 70
+                    width: 50
                 }, {
                     field: "statusVerifikasi",
                     title: "<h3>Status</h3>",
-                    width: 120
+                    width: 80
                 }, {
                     command: [{
                         text: "Edit",
@@ -81,10 +85,10 @@ define(['initialize'], function (initialize) {
 
             $scope.getAllData = () => {
                 $scope.isRouteLoading = true;
-                ManageSdmNew.getListData("iki-remunerasi/get-kontrak-kinerja?pegawaiId=" + ($scope.item.pegawai ? $scope.item.pegawai.id : "") + "&jabatanId=" + ($scope.item.jabatan ? $scope.item.jabatan.id : "") + "&bulan=" + ($scope.item.srcBulan ? dateHelper.toTimeStamp($scope.item.srcBulan) : new Date())).then((res) => {
+                ManageSdmNew.getListData("iki-remunerasi/get-kontrak-kinerja?pegawaiId=" + ($scope.item.pegawai ? $scope.item.pegawai.id : "") + "&jabatanId=" + ($scope.item.jabatan ? $scope.item.jabatan.id : "") + "&bulan=" + ($scope.item.srcBulan ? dateHelper.toTimeStamp($scope.item.srcBulan) : "")).then((res) => {
 
-                    for(let i = 0; i < res.data.data.length; i++) {
-                        if(res.data.data[i].bulan) {
+                    for (let i = 0; i < res.data.data.length; i++) {
+                        if (res.data.data[i].bulan) {
                             res.data.data[i].bulanFormatted = dateHelper.formatDate(res.data.data[i].bulan, "MMM, YYYY");
                         }
                     }
@@ -104,7 +108,10 @@ define(['initialize'], function (initialize) {
                 ManageSdmNew.getListData("service/list-generic/?view=SatuanIndikator&select=id,satuanIndikator&criteria=statusEnabled&values=true&order=id:asc").then((res) => {
                     $scope.listDataSatuanIndikator = res.data;
                 })
+
+                $scope.getAllData()
             }
+
             $scope.init();
 
             $scope.getIndikatorKerja = (id) => {

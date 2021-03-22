@@ -16,7 +16,7 @@ define(['initialize'], function (initialize) {
 				periodeRekap: $scope.now,
 			};
 			var idPgw = 0;
-			if (userLogin.kdUser === 'admin.it') {
+			if (userLogin.id === 28253) {
 				$scope.isIT = false;
 			} else {
 				$scope.isIT = true;
