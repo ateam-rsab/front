@@ -421,6 +421,7 @@ define(['initialize'], function (initialize) {
 				$scope.item.lila = dataItem.lila;
 				$scope.item.lila = dataItem.lila;
 				$scope.item.lilau = dataItem.lila_u;
+				$scope.item.imt = dataItem.imt;
 				if ($scope.item.tindakLanjut === "Perlu Asuhan Gizi (Lanjutkan ke Asesmen Gizi)") {
 					$scope.showGiziLanjutan = true;
 				} else {

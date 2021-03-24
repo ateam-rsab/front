@@ -131,8 +131,14 @@ define(['initialize'], function(initialize) {
 						"title": "No Verif",
 						"width":"80px",
 						"template": '# if( nostruk==null) {# - # } else {# #= nostruk # #} #'
-					
-					},
+					}, {
+						command: [{
+							text: "Cetak SEP",
+							click: cetakSEP,
+							imageClass: "k-icon k-i-excel"
+						}],
+						width: "120px",
+					}
 					
 				],
 	            sortable: {
@@ -146,8 +152,20 @@ define(['initialize'], function(initialize) {
 	                    display: "Menampilkan {0} - {1} data dari {2} data"
 	                  }
 	            }
-	        }
+			}
+			
+			function cetakSEP(e) {
+				e.preventDefault();
+				var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+				console.log(dataItem);
 
+				if(dataItem.kelompokpasien !== "BPJS") {
+					toastr.error("Bukan kelompok pasien BPJS", "Gagal Cetak");
+					return;
+				}
+
+				window.open("http://172.16.44.33:7777/service-reporting/cetak-sep/" + dataItem.norec , "_blank", "fullscreen=yes");
+			}
 
 			$scope.SearchData = function(){
 				loadData()

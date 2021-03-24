@@ -50,7 +50,6 @@ define(['initialize'], function (initialize) {
             };
 
             $scope.onChangeTab = (data) => {
-                console.log(data);
                 switch (data) {
                     case 3:
                         // $scope.getDataMapping()
@@ -169,7 +168,7 @@ define(['initialize'], function (initialize) {
                 });
 
                 ManageSdmNew.getListData("service/list-generic/?view=JenisJabatan&select=id,jenisJabatan&criteria=statusEnabled,id&values=true,!0").then((res) => {
-                    console.log(res)
+                    // console.log(res)
                     $scope.listJenisJabatan = res.data;
 
                 });
@@ -184,7 +183,7 @@ define(['initialize'], function (initialize) {
 
                     $scope.listGridJabatan = res.data;
                     for (let i = 0; i < $scope.listGridJabatan.length; i++) {
-                        $scope.listGridJabatan[i].statCheckbox = false;
+                        $scope.listGridJabatan[i].statusPilih = false;
                     }
 
                     // $scope.dataSourceJabatan = new kendo.data.DataSource({
@@ -321,7 +320,7 @@ define(['initialize'], function (initialize) {
                 scrollable: true,
                 columns: [{
                     "title": "<input type='checkbox' class='checkbox' ng-click='selectUnselectAllRow()' />",
-                    template: "# if (statCheckbox) { #" +
+                    template: "# if (statusPilih) { #" +
                         "<input type='checkbox' class='checkbox' ng-click='selectRow(dataItem)' checked />" +
                         "# } else { #" +
                         "<input type='checkbox' class='checkbox' ng-click='selectRow(dataItem)' />" +
@@ -380,51 +379,243 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.getMasterIndikator = (id) => {
-                if(!id) return;
-                
-                ManageSdmNew.getListData("service/list-generic/?view=IndikatorKinerja&select=id,namaIndikator&criteria=statusEnabled,jenisIndikator&values=true," + id + "&order=namaIndikator:asc").then((res) => { 
+                if (!id) return;
+
+                ManageSdmNew.getListData("service/list-generic/?view=IndikatorKinerja&select=id,namaIndikator&criteria=statusEnabled,jenisIndikator&values=true," + id + "&order=namaIndikator:asc").then((res) => {
                     $scope.listMasterIndikator = res.data;
                 })
             }
 
             $scope.getAllJabatan = () => {
-                if(!$scope.mapping.srcNamaIndikator.id) {
+                if (!$scope.mapping.srcNamaIndikator.id) {
                     toastr.warning("Gagal menampilkan data", "Perhatian!");
                     return;
                 }
-                ManageSdmNew.getListData("iki-remunerasi/set-mapping-indikator-jabatan?indikatorId=" + $scope.mapping.srcNamaIndikator.id).then((res) => { 
-                    console.log(res);
+
+                ManageSdmNew.getListData("iki-remunerasi/set-mapping-indikator-jabatan?indikatorId=" + $scope.mapping.srcNamaIndikator.id).then((res) => {
+                    let lengthDataPilih = 0;
+                    for (let i = 0; i < res.data.data.length; i++) {
+                        if (res.data.data[i].statusPilih) {
+                            lengthDataPilih++;
+                            // console.log(res.data.data[i]);
+                            console.log("Data terpilih => " + lengthDataPilih);
+                        }
+                    }
+
+                    toastr.info(`Ditemukan data ${lengthDataPilih} terpilih`, "Info");
+
+                    $scope.dataSourceJabatan = new kendo.data.DataSource({
+                        data: res.data.data,
+                        pageSize: 100
+                    })
                 });
+            }
+
+            $scope.confirmSimpanBanyakMapping = () => {
+                let gridMapping = $("#gridConfirmMapping").data("kendoGrid");
+                // gridMapping.hideColumn(0);
+                $scope.showTanggalBerlaku = true;
+                let dataTerpilih = [];
+                if (!dataTerpilih) {
+                    toastr.warning("Harap pilih data terlebih dahulu!", "Perhatian!");
+                    return;
+                }
+
+                for (let i = 0; i < $scope.dataSourceJabatan._data.length; i++) {
+                    if ($scope.dataSourceJabatan._data[i].statusPilih) {
+                        dataTerpilih.push($scope.dataSourceJabatan._data[i]);
+                    }
+                }
+
+                $scope.dataSourceConfirmMapping = new kendo.data.DataSource({
+                    data: dataTerpilih,
+                    pageSize: 100
+                });
+
+                $scope.popupConfirmMapping.open().center();
+            }
+
+            $scope.simpanDataMappingBanyak = () => {
+
+                let dataSave = [],
+                    dataSource = $scope.dataSourceConfirmMapping._data;
+                console.log($scope.dataSourceConfirmMapping._data);
+
+                for (let i = 0; i < dataSource.length; i++) {
+                    dataSource[i].tglBerlaku = dateHelper.formatDate(dataSource[i].tglBerlaku, "YYYY-MM-DD");
+
+
+                    let temp = {
+                        indikatorKinerja: {
+                            id: $scope.mapping.srcNamaIndikator.id
+                        },
+                        jabatan: {
+                            id: dataSource[i].jabatanId
+                        },
+                        tanggalMulaiBerlaku: dateHelper.toTimeStamp(dataSource[i].tglBerlaku),
+                        kdProfile: 0,
+                        statusEnabled: true
+                    }
+
+                    if (dataSource[i].noRec && !dataSource[i].statusPilih) {
+                        temp.noRec = dataSource[i].noRec;
+                        temp.statusEnabled = dataSource[i].statusPilih;
+                    }
+                    dataSave.push(temp);
+
+                }
+
+                console.log(dataSave);
+                ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-mapping-indikator-all-jabatan?loginUserId=" + dataLogin.id).then(res => {
+                    $scope.popupConfirmMapping.close();
+                })
+
+            }
+
+            $scope.simpanTanggalBerlaku = () => {
+                let dataSource = $scope.dataSourceConfirmMapping._data;
+                for (let i = 0; i < dataSource.length; i++) {
+                    dataSource[i].tglBerlaku = $scope.mapping.tglBerlakuBanyak;
+                }
+
+                $scope.dataSourceConfirmMapping = new kendo.data.DataSource({
+                    data: dataSource,
+                    pageSize: 100
+                })
+            }
+
+            $scope.optConfirmMapping = {
+                filterable: false,
+                sortable: true,
+                autoBind: true,
+                navigatable: true,
+                pageable: true,
+                editable: {
+                    mode: 'inline'
+                },
+                columns: [{
+                    "title": "<input type='checkbox' class='checkbox' ng-click='selectUnselectAllMappingRow()' />",
+                    template: "# if (statusPilih) { #" +
+                        "<input type='checkbox' class='checkbox' ng-click='selectRowMapping(dataItem)' checked />" +
+                        "# } else { #" +
+                        "<input type='checkbox' class='checkbox' ng-click='selectRowMapping(dataItem)' />" +
+                        "# } #",
+                    width: "5%"
+                }, {
+                    field: "jenisJabatan",
+                    title: "<h3>Jenis Jabatan</h3>",
+                    editable: false,
+                    width: "20%"
+                }, {
+                    field: "namaJabatan",
+                    title: "<h3>Nama Jabatan</h3>",
+                    editable: false,
+                    width: "60%"
+                }, {
+                    field: "tglBerlaku",
+                    title: "<h3>Tanggal Berlaku</h3>",
+                    editable: true,
+                    format: "{0:yyyy-MM-dd}",
+                    editor: dateTimeEditor,
+                    width: "15%"
+                }]
+            }
+
+            function dateTimeEditor(container, options) {
+                console.log(options);
+                let isEdit = options.model.tglBerlaku === null;
+                if (isEdit) {
+                    $('<input data-text-field="' + options.field + '" data-value-field="' + options.field + '" data-bind="value:' + options.field + '" data-format="' + options.format + '"value="' + options.model.tglBerlaku + '"/>')
+                        .appendTo(container)
+                        .kendoDateTimePicker({});
+                } else {
+                    $('<input c-text-box type="input" class="k-textbox" ng-disabled="true" value="' + options.model.tglBerlaku + '"/>').appendTo(container);
+                }
+
+            }
+
+            $scope.showDataDeleting = () => {
+                let gridMapping = $("#gridConfirmMapping").data("kendoGrid");
+
+                // gridMapping.showColumn(0);
+                $scope.showTanggalBerlaku = false;
+
+                let dataTerpilih = [];
+                if (!dataTerpilih) {
+                    toastr.warning("Harap pilih data terlebih dahulu!", "Perhatian!");
+                    return;
+                }
+
+                for (let i = 0; i < $scope.dataSourceJabatan._data.length; i++) {
+                    if ($scope.dataSourceJabatan._data[i].statusPilih) {
+                        dataTerpilih.push($scope.dataSourceJabatan._data[i]);
+                    }
+                }
+
+                console.log(dataTerpilih);
+                $scope.dataSourceConfirmMapping = new kendo.data.DataSource({
+                    data: dataTerpilih,
+                    pageSize: 100,
+                });
+
+                $scope.popupConfirmMapping.open().center();
             }
 
             $scope.selectRow = function (dataItem) {
-                var dataSelect = _.find($scope.dataSourceJabatan._data, function (data) {
-                    return data.noRec == dataItem.noRec;
+                let dataSelect = _.find($scope.dataSourceJabatan._data, (data) => {
+                    return data.jabatanId == dataItem.jabatanId;
                 });
 
-                if (dataSelect.statCheckbox) {
-                    dataSelect.statCheckbox = false;
-                } else {
-                    dataSelect.statCheckbox = true;
-                }
+                dataSelect.statusPilih = !dataSelect.statusPilih;
             }
 
-            var isCheckAll = false
+            var isCheckAll = false;
             $scope.selectUnselectAllRow = function () {
                 var tempData = $scope.dataSourceJabatan._data;
 
                 if (isCheckAll) {
                     isCheckAll = false;
                     for (var i = 0; i < tempData.length; i++) {
-                        tempData[i].statCheckbox = false;
+                        tempData[i].statusPilih = false;
                     }
                 } else {
                     isCheckAll = true;
                     for (var i = 0; i < tempData.length; i++) {
-                        tempData[i].statCheckbox = true;
+                        tempData[i].statusPilih = true;
                     }
                 }
+
+                console.log(tempData);
                 $scope.dataSourceJabatan = new kendo.data.DataSource({
+                    data: tempData,
+                    pageSizeP: 100
+                })
+            }
+
+            var isCheckAllMapping = false;
+            $scope.selectRowMapping = function (dataItem) {
+                let dataSelect = _.find($scope.dataSourceConfirmMapping._data, (data) => {
+                    return data.jabatanId == dataItem.jabatanId;
+                });
+
+                dataSelect.statusPilih = !dataSelect.statusPilih;
+            }
+
+            $scope.selectUnselectAllRowMapping = function () {
+                var tempData = $scope.dataSourceConfirmMapping._data;
+
+                if (isCheckAllMapping) {
+                    isCheckAllMapping = false;
+                    for (var i = 0; i < tempData.length; i++) {
+                        tempData[i].statusPilih = false;
+                    }
+                } else {
+                    isCheckAllMapping = true;
+                    for (var i = 0; i < tempData.length; i++) {
+                        tempData[i].statusPilih = true;
+                    }
+                }
+                $scope.dataSourceConfirmMapping = new kendo.data.DataSource({
                     data: tempData,
                     pageSizeP: 100
                 })

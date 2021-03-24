@@ -21,6 +21,7 @@ define(['initialize'], function (initialize) {
 			// loadData();
 			getSisrute()
 			postKunjunganYankes()
+
 			function loadCombo() {
 				var chacePeriode = cacheHelper.get('DaftarRegistrasiPasienCtrl');
 				if (chacePeriode != undefined) {
@@ -77,12 +78,15 @@ define(['initialize'], function (initialize) {
 						// color:"#ffffff"
 					}];
 
-					sheet.rows.splice(0, 0, { cells: myHeaders, type: "header", height: 70 });
+					sheet.rows.splice(0, 0, {
+						cells: myHeaders,
+						type: "header",
+						height: 70
+					});
 				},
 				selectable: 'row',
 				pageable: true,
-				columns:
-					[{
+				columns: [{
 						"field": "tglregistrasi",
 						"title": "Tgl Registrasi",
 						"width": "80px",
@@ -163,14 +167,35 @@ define(['initialize'], function (initialize) {
 						"title": "No SEP",
 						"width": "150px",
 						"template": '# if( nosep==null) {# - # } else {# #= nosep # #} #'
+					},
+					{
+						command: [{
+							text: "Cetak SEP",
+							click: cetakSEP,
+							imageClass: "k-icon k-i-excel"
+						}],
+						width: "120px",
 					}
-					]
+				]
 			};
 
+			function cetakSEP(e) {
+				e.preventDefault();
+				var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+				console.log(dataItem);
+
+				if(dataItem.kelompokpasien !== "BPJS") {
+					toastr.error("Bukan kelompok pasien BPJS", "Gagal Cetak");
+					return;
+				}
+
+				window.open("http://172.16.44.33:7777/service-reporting/cetak-sep/" + dataItem.norec , "_blank", "fullscreen=yes");
+			}
 
 			$scope.SearchData = function () {
 				loadData()
 			}
+
 			function loadData() {
 				$scope.isRouteLoading = true;
 				var tglAwal = moment($scope.item.periodeAwal).format('YYYY-MM-DD HH:mm:ss');
@@ -213,15 +238,15 @@ define(['initialize'], function (initialize) {
 					manageTataRekening.getDataTableTransaksi("tatarekening/get-daftar-registrasi-pasien?" +
 						"tglAwal=" + tglAwal +
 						"&tglAkhir=" + tglAkhir +
-						reg + rm + nm + ins + rg + kp + dk
-						+ '&jmlRows=' + jmlRows),
+						reg + rm + nm + ins + rg + kp + dk +
+						'&jmlRows=' + jmlRows),
 				]).then(function (data) {
 					$scope.isRouteLoading = false;
-					for (var i = 0; i < data[0].data.length; i++) { 
+					for (var i = 0; i < data[0].data.length; i++) {
 
 						let dataUsia = dateHelper.CountAge(new Date(data[0].data[i].tgllahir), new Date(data[0].data[i].tglregistrasi))
 						data[0].data[i].usia = dataUsia.year + " Thn " + dataUsia.month + " Bln " + dataUsia.day + " Hr";
-						
+
 					}
 					// $scope.dataDaftarPasienPulang = data[0].data;
 					$scope.dataDaftarPasienPulang = new kendo.data.DataSource({
@@ -231,8 +256,7 @@ define(['initialize'], function (initialize) {
 						serverPaging: false,
 						schema: {
 							model: {
-								fields: {
-								}
+								fields: {}
 							}
 						}
 					});
@@ -251,7 +275,10 @@ define(['initialize'], function (initialize) {
 			}
 			$scope.PasienPulang = function () {
 				// debugger;
-				if (!$scope.dataPasienSelected) { toastr.error("Harap pilih pasien terlebih dahulu!"); return; }
+				if (!$scope.dataPasienSelected) {
+					toastr.error("Harap pilih pasien terlebih dahulu!");
+					return;
+				}
 				if ($scope.dataPasienSelected.tglpulang != undefined) {
 					window.messageContainer.error("Pasien Sudah Dipulangkan!!!");
 					return;
@@ -259,18 +286,18 @@ define(['initialize'], function (initialize) {
 				if ($scope.dataPasienSelected == undefined) {
 					toastr.error('Pilih Data Pasien dulu', 'Caution');
 				} else {
-					manageTataRekening.getDataTableTransaksi('registrasi/get-norec-apd?noreg=' + $scope.dataPasienSelected.noregistrasi
-						+ '&ruangId=' + $scope.dataPasienSelected.ruanganid).then(function (e) {
-							if (e.data.length > 0) {
-								$state.go('PindahPulangPasien', {
-									norecPD: $scope.dataPasienSelected.norec,
-									norecAPD: e.data[0].norec_apd
-								});
-								var CachePindah = $scope.dataPasienSelected.ruanganid
-								cacheHelper.set('CachePindah', CachePindah);
-							}
+					manageTataRekening.getDataTableTransaksi('registrasi/get-norec-apd?noreg=' + $scope.dataPasienSelected.noregistrasi +
+						'&ruangId=' + $scope.dataPasienSelected.ruanganid).then(function (e) {
+						if (e.data.length > 0) {
+							$state.go('PindahPulangPasien', {
+								norecPD: $scope.dataPasienSelected.norec,
+								norecAPD: e.data[0].norec_apd
+							});
+							var CachePindah = $scope.dataPasienSelected.ruanganid
+							cacheHelper.set('CachePindah', CachePindah);
+						}
 
-						})
+					})
 
 				}
 				// var tglpulang = moment($scope.item.tanggalPulang).format('YYYY-MM-DD HH:mm:ss');
@@ -305,13 +332,15 @@ define(['initialize'], function (initialize) {
 
 			$scope.klikGrid = function (dataPasienSelected) {
 				if (dataPasienSelected != undefined) {
-					$scope.item.namaDokter = { id: dataPasienSelected.pgid, namalengkap: dataPasienSelected.namadokter }
+					$scope.item.namaDokter = {
+						id: dataPasienSelected.pgid,
+						namalengkap: dataPasienSelected.namadokter
+					}
 				}
 			}
 			$scope.simpan = function () {
 				// debugger;
-				var objSave =
-				{
+				var objSave = {
 					norec: $scope.dataPasienSelected.norec,
 					objectpegawaifk: $scope.item.namaDokter.id
 				}
@@ -329,8 +358,7 @@ define(['initialize'], function (initialize) {
 				})
 
 				/* update dokter pelayanan pasien yang kosong dokternya */
-				var objPost =
-				{
+				var objPost = {
 					"noregistrasi": $scope.dataPasienSelected.noregistrasi,
 					"objectpegawaifk": $scope.item.namaDokter.id
 				}
@@ -528,10 +556,10 @@ define(['initialize'], function (initialize) {
 			$scope.saveLogInputSep = function () {
 				var jenisLog = 'Input SEP'
 				var referensi = 'Norec Pemakaian Asuransi'
-				manageTataRekening.getDataTableTransaksi("logging/save-log-all?jenislog="
-					+ jenisLog + "&referensi=" + referensi
-					+ "&noreff=" + $scope.dataPasienSelected.norec_pa
-					+ "&keterangan=" + $scope.item.noSep
+				manageTataRekening.getDataTableTransaksi("logging/save-log-all?jenislog=" +
+					jenisLog + "&referensi=" + referensi +
+					"&noreff=" + $scope.dataPasienSelected.norec_pa +
+					"&keterangan=" + $scope.item.noSep
 				).then(function (data) {
 					$scope.item.noPeserta = "";
 					$scope.item.noSep = "";
@@ -552,33 +580,34 @@ define(['initialize'], function (initialize) {
 					toastr.error('Pilih data terlebuh dahulu!');
 					return;
 				}
-				manageTataRekening.getDataTableTransaksi('registrasipasien/get-apd?noregistrasi=' + $scope.dataPasienSelected.noregistrasi
-					+ '&objectruanganlastfk=' + $scope.dataPasienSelected.ruanganid).then(function (e) {
-						if (e.data.data.length > 0) {
+				manageTataRekening.getDataTableTransaksi('registrasipasien/get-apd?noregistrasi=' + $scope.dataPasienSelected.noregistrasi +
+					'&objectruanganlastfk=' + $scope.dataPasienSelected.ruanganid).then(function (e) {
+					if (e.data.data.length > 0) {
 
-							var arrrStr = {
-								0: $scope.dataPasienSelected.nocm,
-								1: $scope.dataPasienSelected.namapasien,
-								2: $scope.dataPasienSelected.jeniskelamin,
-								3: $scope.dataPasienSelected.noregistrasi,
-								// 4: $scope.dataPasienSelected.umur,
-								5: $scope.dataPasienSelected.kelompokpasien,
-								6: $scope.dataPasienSelected.tglregistrasi,
-								7: e.data.data[0].norec_apd,
-								8: $scope.dataPasienSelected.norec,
-								// 9: $scope.dataPasienSelected.objectkelasfk,
-								// 10: $scope.dataPasienSelected.namakelas,
-								11: $scope.dataPasienSelected.ruanganid,
-								12: $scope.dataPasienSelected.namaruangan
-							}
-							cacheHelper.set('cacheRekamMedis', arrrStr);
-							$state.go('ResumeMedisRI', {
-								noRec: e.data.data[0].norec_apd
-							})
+						var arrrStr = {
+							0: $scope.dataPasienSelected.nocm,
+							1: $scope.dataPasienSelected.namapasien,
+							2: $scope.dataPasienSelected.jeniskelamin,
+							3: $scope.dataPasienSelected.noregistrasi,
+							// 4: $scope.dataPasienSelected.umur,
+							5: $scope.dataPasienSelected.kelompokpasien,
+							6: $scope.dataPasienSelected.tglregistrasi,
+							7: e.data.data[0].norec_apd,
+							8: $scope.dataPasienSelected.norec,
+							// 9: $scope.dataPasienSelected.objectkelasfk,
+							// 10: $scope.dataPasienSelected.namakelas,
+							11: $scope.dataPasienSelected.ruanganid,
+							12: $scope.dataPasienSelected.namaruangan
 						}
-					})
+						cacheHelper.set('cacheRekamMedis', arrrStr);
+						$state.go('ResumeMedisRI', {
+							noRec: e.data.data[0].norec_apd
+						})
+					}
+				})
 
 			}
+
 			function postKunjunganYankes() {
 				let status = false
 				var tanggal = moment(new Date()).format('YYYY-MM-DD')
@@ -598,7 +627,7 @@ define(['initialize'], function (initialize) {
 													"tanggal": moment(new Date()).format('YYYY-MM-DD'),
 													"kunjungan_rj": datt.data.rawat_jalan,
 													"kunjungan_igd": datt.data.igd,
-													"pasien_ri": datt.masihDirawat// result.data.rawat_inap,
+													"pasien_ri": datt.masihDirawat // result.data.rawat_inap,
 												}
 											}
 
@@ -627,7 +656,7 @@ define(['initialize'], function (initialize) {
 											"tanggal": moment(new Date()).format('YYYY-MM-DD'),
 											"kunjungan_rj": result.data.rawat_jalan,
 											"kunjungan_igd": result.data.igd,
-											"pasien_ri": result.masihDirawat// result.data.rawat_inap,
+											"pasien_ri": result.masihDirawat // result.data.rawat_inap,
 										}
 									}
 
@@ -646,6 +675,7 @@ define(['initialize'], function (initialize) {
 					})
 
 			}
+
 			function getSisrute() {
 				// debugger
 				var now = moment(new Date()).format('YYYY-MM-DD')
@@ -659,6 +689,7 @@ define(['initialize'], function (initialize) {
 				})
 			}
 			postRujukanYankes()
+
 			function postRujukanYankes() {
 				// debugger
 				let status = false
@@ -679,8 +710,7 @@ define(['initialize'], function (initialize) {
 								manageTataRekening.postData('yankes/update-rujukan', jsonSave)
 									.then(function (response) {
 										console.log('Update Yankes Rujukan')
-									}, error => {
-									});
+									}, error => {});
 								break
 							}
 						}
@@ -700,8 +730,7 @@ define(['initialize'], function (initialize) {
 						manageTataRekening.postData('yankes/insert-rujukan', da)
 							.then(function (response) {
 								console.log('Insert Yankes Rujukan')
-							}, error => {
-							});
+							}, error => {});
 					}
 				})
 

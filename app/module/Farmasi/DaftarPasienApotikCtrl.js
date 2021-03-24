@@ -178,6 +178,13 @@ define(['initialize'], function (initialize) {
                     "field": "tglpulang",
                     "title": "Tgl Pulang",
                     "width": "100px",
+                }, {
+                    command: [{
+                        text: "Cetak SEP",
+                        click: cetakSEP,
+                        imageClass: "k-icon k-i-excel"
+                    }],
+                    width: "120px",
                 }
             ];
             // $scope.mainGridOptions = { 
@@ -190,6 +197,20 @@ define(['initialize'], function (initialize) {
             $scope.formatRupiah = function (value, currency) {
                 return currency + " " + parseFloat(value).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
             }
+
+            function cetakSEP(e) {
+				e.preventDefault();
+				var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+				console.log(dataItem);
+
+				if(dataItem.kelompokpasien !== "BPJS") {
+					toastr.error("Bukan kelompok pasien BPJS", "Gagal Cetak");
+					return;
+				}
+
+				window.open("http://172.16.44.33:7777/service-reporting/cetak-sep/" + dataItem.norec , "_blank", "fullscreen=yes");
+			}
+
             $scope.formatTanggal = function (tanggal) {
                 return moment(tanggal).format('DD/MM/YYYY');
             }

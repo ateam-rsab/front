@@ -9,6 +9,7 @@
 </style>
 
 <md-tabs class="md-primary" md-center-tabs md-dynamic-height md-selected="tabPegawai">
+    <!-- Tab 1 -->
     <md-tab label="Daftar Master Indikator Kinerja" md-on-select="onChangeTab(1)">
 
         <div class="grid_12">
@@ -45,20 +46,20 @@
                 k-ng-model="selectedData"></div>
         </div>
     </md-tab>
+    <!-- Tab 2 -->
     <md-tab label="Mapping Indikator Kinerja" md-on-select="onChangeTab(2)">
         <div class="grid_12">
-            <div class="grid_4">
+            <div class="grid_2">
                 <label><strong>Jenis Indikator</strong></label>
                 <input kendo-combo-box k-filter="'contains'" k-ng-model="mapping.srcJenisIndikator"
-                    k-data-text-field="'jenisIndikator'" k-data-value-field="'id'"
-                    k-data-source="listJenisIndikator" k-on-change="getMasterIndikator(mapping.srcJenisIndikator.id)"/>
+                    k-data-text-field="'jenisIndikator'" k-data-value-field="'id'" k-data-source="listJenisIndikator"
+                    k-on-change="getMasterIndikator(mapping.srcJenisIndikator.id)" />
             </div>
 
             <div class="grid_4">
                 <label><strong>Nama Indikator</strong></label>
                 <input kendo-combo-box k-filter="'contains'" k-ng-model="mapping.srcNamaIndikator"
-                    k-data-text-field="'namaIndikator'" k-data-value-field="'id'"
-                    k-data-source="listMasterIndikator"/>
+                    k-data-text-field="'namaIndikator'" k-data-value-field="'id'" k-data-source="listMasterIndikator" />
             </div>
 
             <div class="grid_1" style="margin-top: 19px;">
@@ -67,19 +68,31 @@
                     <i class="fa fa-search"></i>
                 </md-button>
             </div>
-            <!-- <div class="grid_4">
-                <label><strong>Jenis Jabatan</strong></label>
-                <input kendo-combo-box k-filter="'contains'" k-ng-model="mapping.srcJenisJabatan"
-                    k-data-text-field="'jenisJabatan'" k-data-value-field="'id'"
-                    k-data-source="listJenisJabatan" k-on-change="getJabatan(mapping.srcJenisJabatan.id)"/>
-            </div> -->
         </div>
-       
+
         <div class="grid_12">
             <div kendo-grid k-data-source="dataSourceJabatan" k-selectable="'row'" options="optGridJabatan"
                 k-ng-model="selectedData"></div>
         </div>
+
+        <div class="grid_12" style="margin-top: 19px;">
+            <div class="grid_2">
+                <md-button class="md-raised md-primary" ng-click="confirmSimpanBanyakMapping()">
+                    <span style="margin-right: 5px;">Simpan</span>
+                    <i class="fa fa-save"></i>
+                </md-button>
+            </div>
+
+            <!-- <div class="grid_2">
+                <md-button class="md-raised md-danger" ng-click="showDataDeleting()">
+                    <span style="margin-right: 5px;">Hapus</span>
+                    <i class="fa fa-trash"></i>
+                </md-button>
+            </div> -->
+        </div>
     </md-tab>
+
+    <!-- Tab 3 -->
     <md-tab label="Daftar Mapping Indikator Kinerja" md-on-select="onChangeTab(3)">
 
         <div class="grid_12">
@@ -229,4 +242,55 @@
         </div>
     </div>
 </div>
+
+<div kendo-window="popupConfirmMapping" k-title="'Mapping Indikator Kinerja'" k-width="1000" k-visible="false"
+    k-on-open="win2visible2 = true" k-on-close="win2visible2 = false">
+    <div class="panel panel-default container_12" style="padding: 0px 10px;">
+
+        <div class="grid_12" ng-show="showTanggalBerlaku">
+            <div class="grid_4">
+                <md-checkbox ng-model="mapping.statusVerif" aria-label="verified" style="margin-top:24px"
+                    class="green">
+                    Tanggal Berlaku untuk semua
+                </md-checkbox>
+            </div>
+
+            <div class="grid_4" ng-show="mapping.statusVerif" >
+                <label><strong>Tanggal Berlaku</strong></label>
+                    <input style="width: 100%;" k-ng-model="mapping.tglBerlakuBanyak" kendo-date-picker
+                        placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"/>
+            </div>
+
+            <div class="grid_3" style="margin-top: 21px;" ng-show="mapping.statusVerif">
+                <md-button class="md-raised md-primary medium-button" ng-click="simpanTanggalBerlaku()">
+                    <span style="margin-right: 5px;">Simpan Tanggal Berlaku</span>
+                    <i class="fa fa-save"></i>
+                </md-button>
+            </div>
+        </div>
+
+        <div class="grid_12">
+            <div kendo-grid id="gridConfirmMapping" k-data-source="dataSourceConfirmMapping" k-selectable="'row'" options="optConfirmMapping" editable="true"></div>
+        </div>
+        
+
+        <div class="k-edit-buttons k-state-default" style="margin-top:10px">
+            <div class="grid_8"></div>
+            <div class="grid_2">
+                <md-button class="md-raised md-warn medium-button" ng-click="popupConfirmMapping.close()">
+                    <span style="margin-right: 5px;">Batal</span>
+                    <i class="fa fa-close"></i>
+                </md-button>
+            </div>
+            <div class="grid_2">
+                <md-button class="md-raised md-primary medium-button" ng-click="simpanDataMappingBanyak()">
+                    <span style="margin-right: 5px;">Simpan</span>
+                    <i class="fa fa-save"></i>
+                </md-button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 <div ng-include='"../app/module/Shared/TemplateLoading"'></div>

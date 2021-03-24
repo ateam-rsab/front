@@ -192,7 +192,8 @@ define(['initialize'], function (initialize) {
                         objectruangantujuanfk: $scope.item.ruangantujuan.id,
                         produkfk: $scope.selectedDataProduk[i].id,
                         qtyproduk: $scope.selectedDataProduk[i].jmlLayanan,
-                        pemeriksaanluar: $scope.selectedDataProduk[i].checkedPemeriksaanLuar
+                        pemeriksaanluar: $scope.selectedDataProduk[i].checkedPemeriksaanLuar,
+                        catatanOrder: $scope.selectedDataProduk[i].catatan
                     })
                 }
 
@@ -324,6 +325,10 @@ define(['initialize'], function (initialize) {
                 {
                     "field": "qtyproduk",
                     "title": "Qty",
+                    "width": "40px",
+                }, {
+                    "field": "catatanOrder",
+                    "title": "Catatan",
                     "width": "40px",
                 }
             ];

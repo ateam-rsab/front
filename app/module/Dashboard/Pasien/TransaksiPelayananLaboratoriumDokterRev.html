@@ -255,7 +255,7 @@
             <span ng-repeat="data in listFilters" ng-click="filterPelayanan(data)">{{data}}</span>
 
             <md-button class="md-raised md-primary medium-button" ng-click="filterPelayanan('')">
-                <span>Reset</span>
+                Reset
             </md-button>
         </div>
 
@@ -290,16 +290,12 @@
             </div>
 
             <div class="grid_4" ng-repeat="data in listLayanan track by $index" ng-if="!isLoading">
-                <md-card style="height: 200px;">
+                <md-card style="height: 300px;">
                     <md-card-title>
                         <md-checkbox style="display: flex;align-items: center;" ng-checked="data.checked"
                             ng-click="updateSelectedData(data, $index)">
                             {{ data.namaproduk }}
                         </md-checkbox>
-                        <!-- <md-checkbox style="display: flex;align-items: center;" ng-checked="data.checkedPemeriksaanLuar"
-                            ng-click="updateDataPemeriksaanLuar(data, $index)">
-                            Pemeriksaan Luar
-                        </md-checkbox> -->
                     </md-card-title>
                     <md-card-content>
                         <label style="display: block; margin-bottom: 10px;">
@@ -311,6 +307,11 @@
                         <input type="number" min="1" class="k-textbox" ng-disabled="!data.checked"
                             ng-model="data.jmlLayanan">
                     </md-card-content>
+
+                    <md-card-footer>
+                        <label>Catatan</label>
+                        <textarea class="k-textbox" ng-model="data.catatan"></textarea>
+                    </md-card-footer>
                 </md-card>
             </div>
 

@@ -1,10 +1,12 @@
 <style>
     fieldset.noborder {
-        border:none;
+        border: none;
     }
+
     .fieldlist li {
         margin-top: 10px
     }
+
     .btnSimpan {
         background-color: #306fa7;
         border-color: #306fa7;
@@ -23,8 +25,8 @@
             </strong>
         </md-card-title>
         <md-card-content>
-            <div kendo-grid id="gridDataPegawai" k-data-source="dataAsesmenGizi"
-                options="optGridAsesmenGizi" style="padding:10px;"></div>
+            <div kendo-grid id="gridDataPegawai" k-data-source="dataAsesmenGizi" options="optGridAsesmenGizi"
+                style="padding:10px;"></div>
         </md-card-content>
     </md-card>
     <!-- <div class="panel-body grid_12">
@@ -44,8 +46,7 @@
             </strong>
         </md-card-title>
         <md-card-content>
-            <div kendo-grid id="gridDataPegawai"
-                k-data-source="dataAsesmenGiziUnverif"
+            <div kendo-grid id="gridDataPegawai" k-data-source="dataAsesmenGiziUnverif"
                 options="optGridAsesmenGiziNotVerif" style="padding:10px;"></div>
         </md-card-content>
     </md-card>
@@ -79,8 +80,7 @@
                             <strong>Diagnosa Medis</strong>
                         </legend>
                         <div class="grid_8">
-                            <input c-text-box class="k-textbox"
-                                ng-model="item.diagnosaMedis" />
+                            <input c-text-box class="k-textbox" ng-model="item.diagnosaMedis" />
                         </div>
                     </fieldset>
                 </div>
@@ -98,24 +98,18 @@
                         <ul class="fieldlist" ng-show="isDewasa">
                             <li ng-repeat="risiko in
                                 listOfRisikoMalnutrisiDewasa">
-                                <input type="radio" name="RisikoMalnutrisi"
-                                    ng-model="item.risikoMalnutrisi"
-                                    value="{{risiko.name}}"
-                                    id="{{risiko.id}}" class="rbRisikoMalnutrisi
+                                <input type="radio" name="RisikoMalnutrisi" ng-model="item.risikoMalnutrisi"
+                                    value="{{risiko.name}}" id="{{risiko.id}}" class="rbRisikoMalnutrisi
                                     k-radio">
-                                <label class="k-radio-label"
-                                    for="{{risiko.id}}">{{risiko.name}}</label>
+                                <label class="k-radio-label" for="{{risiko.id}}">{{risiko.name}}</label>
                             </li>
                         </ul>
                         <ul class="fieldlist" ng-show="!isDewasa">
                             <li ng-repeat="risiko in listOfRisikoMalnutrisi">
-                                <input type="radio" name="RisikoMalnutrisi"
-                                    ng-model="item.risikoMalnutrisi"
-                                    value="{{risiko.name}}"
-                                    id="{{risiko.id}}" class="rbRisikoMalnutrisi
+                                <input type="radio" name="RisikoMalnutrisi" ng-model="item.risikoMalnutrisi"
+                                    value="{{risiko.name}}" id="{{risiko.id}}" class="rbRisikoMalnutrisi
                                     k-radio">
-                                <label class="k-radio-label"
-                                    for="{{risiko.id}}">{{risiko.name}}</label>
+                                <label class="k-radio-label" for="{{risiko.id}}">{{risiko.name}}</label>
                             </li>
                         </ul>
                     </fieldset>
@@ -128,13 +122,10 @@
                         </legend>
                         <ul class="fieldlist">
                             <li ng-repeat="kondisi in yesOrNo">
-                                <input type="radio" name="PasienKondisiKhusus"
-                                    ng-model="item.pasienKondisiKhusus"
-                                    value="{{kondisi.name}}"
-                                    id="{{kondisi.name}}" class="k-radio
+                                <input type="radio" name="PasienKondisiKhusus" ng-model="item.pasienKondisiKhusus"
+                                    value="{{kondisi.name}}" id="{{kondisi.name}}" class="k-radio
                                     rbPasienKondisiKhusus">
-                                <label class="k-radio-label"
-                                    for="{{kondisi.name}}">{{kondisi.name}}</label>
+                                <label class="k-radio-label" for="{{kondisi.name}}">{{kondisi.name}}</label>
                             </li>
                         </ul>
                     </fieldset>
@@ -151,13 +142,10 @@
 
                         <ul class="fieldlist">
                             <li ng-repeat="list in listOfAlergiMakanan">
-                                <input type="checkbox" id="{{list.key}}"
-                                    name="alergiMakanan"
-                                    ng-click="getItemMakanan($event, list)"
-                                    value="{{list.name}}"
+                                <input type="checkbox" id="{{list.key}}" name="alergiMakanan"
+                                    ng-click="getItemMakanan($event, list)" value="{{list.name}}"
                                     class="k-checkbox cbAlergi">
-                                <label class="k-checkbox-label"
-                                    for="{{list.key}}">{{list.name}}</label>
+                                <label class="k-checkbox-label" for="{{list.key}}">{{list.name}}</label>
                             </li>
                         </ul>
                     </fieldset>
@@ -170,24 +158,20 @@
                         </legend>
                         <ul class="fieldlist">
                             <li>
-                                <input type="radio" name="perskripsiDiet"
-                                    ng-model="item.preskripsiDiet"
-                                    value="Makan Biasa"
-                                    id="makanBiasa" class="k-radio"
+                                <input type="radio" name="perskripsiDiet" ng-model="item.preskripsiDiet"
+                                    value="Makan Biasa" id="makanBiasa" class="k-radio"
                                     ng-click="showDietKhusus(false)">
                                 <label class="k-radio-label" for="makanBiasa">Makan
                                     Biasa</label>
                             </li>
                             <li>
-                                <input type="radio" name="perskripsiDiet"
-                                    ng-click="showDietKhusus(true)"
+                                <input type="radio" name="perskripsiDiet" ng-click="showDietKhusus(true)"
                                     id="dietKhusus" class="k-radio">
                                 <label class="k-radio-label" for="dietKhusus">Diet
                                     Khusus</label>
                             </li>
                             <li ng-show="isDietKhusus">
-                                <input c-text-box class="k-textbox"
-                                    ng-model="item.preskripsiDiet">
+                                <input c-text-box class="k-textbox" ng-model="item.preskripsiDiet">
                             </li>
                         </ul>
                     </fieldset>
@@ -203,23 +187,15 @@
                         </legend>
                         <ul class="fieldlist">
                             <li>
-                                <input type="radio" name="tindakLanjut"
-                                    id="perluAsuhanGizi" class="k-radio"
-                                    value="Perlu Asuhan Gizi (Lanjutkan ke
-                                    Asesmen Gizi)" ng-model="item.tindakLanjut"
-                                    ng-click="isPerluLanjutan(true)">
-                                <label class="k-radio-label"
-                                    for="perluAsuhanGizi">Perlu Asuhan Gizi
-                                    (Lanjutkan ke Asesmen Gizi)</label>
+                                <input type="radio" name="tindakLanjut" id="perluAsuhanGizi" class="k-radio" 
+                                value="Perlu Asuhan Gizi (Lanjutkan ke Asesmen Gizi)" ng-model="item.tindakLanjut" ng-click="isPerluLanjutan(true)">
+                                <label class="k-radio-label" for="perluAsuhanGizi">Perlu Asuhan Gizi (Lanjutkan ke Asesmen Gizi)</label>
                             </li>
                             <li>
-                                <input type="radio" name="tindakLanjut"
-                                    value="Belum Perlu Asuhan Gizi"
-                                    ng-click="isPerluLanjutan(false)"
-                                    ng-model="item.tindakLanjut"
-                                    id="belumPerluAsuhan" class="k-radio">
-                                <label class="k-radio-label"
-                                    for="belumPerluAsuhan">Belum Perlu Asuhan
+                                <input type="radio" name="tindakLanjut" value="Belum Perlu Asuhan Gizi"
+                                    ng-click="isPerluLanjutan(false)" ng-model="item.tindakLanjut" id="belumPerluAsuhan"
+                                    class="k-radio">
+                                <label class="k-radio-label" for="belumPerluAsuhan">Belum Perlu Asuhan
                                     Gizi</label>
                             </li>
                         </ul>
@@ -244,7 +220,7 @@
                             <!-- <div class="grid_8">
                             <input c-text-box class="k-textbox"
                                 ng-model="item.antropometri" /> -->
-                        </div>
+                    </div>
                     </fieldset>
                 </div>
 
@@ -256,17 +232,13 @@
                         </label>
                     </div>
                     <div class="grid_1">
-                        <input c-text-box class="k-textbox" id="iptTahun"
-                            disabled
-                            ng-model="item.umur" />
+                        <input c-text-box class="k-textbox" id="iptTahun" disabled ng-model="item.umur" />
                     </div>
                     <div class="grid_1" style="margin-top: 10px">
                         <label>tahun</label>
                     </div>
                     <div class="grid_1">
-                        <input c-text-box class="k-textbox" id="iptBulan"
-                            disabled
-                            ng-model="item.bulan" />
+                        <input c-text-box class="k-textbox" id="iptBulan" disabled ng-model="item.bulan" />
                     </div>
                     <div class="grid_1" style="margin-top: 10px">
                         <label>bulan</label>
@@ -281,8 +253,7 @@
                         </label>
                     </div>
                     <div class="grid_3">
-                        <input c-text-box class="k-textbox"
-                            ng-model="item.statusGizi" />
+                        <input c-text-box class="k-textbox" ng-model="item.statusGizi" />
                     </div>
                     <!-- </div> -->
 
@@ -295,43 +266,48 @@
                         </label>
                     </div>
                     <div class="grid_1">
-                        <input c-text-box class="k-textbox"
-                            ng-model="item.beratBadan" />
+                        <input c-text-box class="k-textbox" ng-model="item.beratBadan" />
                     </div>
+
                     <div class="grid_1" style="margin-top: 10px">
                         <label>
                             <strong>kg</strong>
                         </label>
                     </div>
                     <div class="grid_3"></div>
-                    <div ng-show="isDewasa">
-                        <div class="grid_2" style="margin-top: 10px">
+                    <!-- ng-show="isDewasa" -->
+                    <!-- <div class="grid_12"> -->
+                    <div class="grid_6">
+                        <div class="grid_3" style="margin-top: 10px">
                             <label>
                                 <strong>Index Masa Tubuh:</strong>
                             </label>
                         </div>
-                        <div class="grid_2">
-                            <input c-text-box class="k-textbox"
-                                ng-model="item.tbU" />
+                        <div class="grid_3">
+                            <input c-text-box class="k-textbox" ng-model="item.imt" />
                         </div>
                         <div class="grid_1" style="margin-top: 10px">
                             <label>
                                 <strong>Kg / m2</strong>
                             </label>
                         </div>
-                    </div>
-                    <div ng-show="!isDewasa">
-                        <div class="grid_1" style="margin-top: 10px">
-                            <label>
-                                <strong>TB / U:</strong>
-                            </label>
+
+                        <div ng-show="!isDewasa">
+                            <div class="grid_2" style="margin-top: 10px">
+                                <label>
+                                    <strong>TB / U:</strong>
+                                </label>
+                            </div>
+                            <div class="grid_3">
+                                <input c-text-box class="k-textbox" ng-model="item.tbU" />
+                            </div>
                         </div>
-                        <div class="grid_1"></div>
-                        <div class="grid_1">
-                            <input c-text-box class="k-textbox"
-                                ng-model="item.tbU" />
-                        </div>
                     </div>
+
+
+                    <!-- </div> -->
+
+
                 </div>
                 <div class="grid_12">
                     <div class="grid_1" style="margin-top: 10px">
@@ -340,8 +316,7 @@
                         </label>
                     </div>
                     <div class="grid_1">
-                        <input c-text-box class="k-textbox"
-                            ng-model="item.tb" />
+                        <input c-text-box class="k-textbox" ng-model="item.tb" />
                     </div>
                     <div class="grid_1" style="margin-top: 10px">
                         <label>
@@ -357,8 +332,7 @@
                         </div>
                         <div class="grid_1"></div>
                         <div class="grid_1">
-                            <input c-text-box class="k-textbox"
-                                ng-model="item.bbtb" />
+                            <input c-text-box class="k-textbox" ng-model="item.bbtb" />
                         </div>
                     </div>
                     <!-- <div class="grid_3"></div> -->
@@ -370,8 +344,7 @@
                             </label>
                         </div>
                         <div class="grid_1">
-                            <input c-text-box class="k-textbox"
-                                ng-model="item.lila" />
+                            <input c-text-box class="k-textbox" ng-model="item.lila" />
                         </div>
                         <div class="grid_1" style="margin-top: 10px">
                             <label>
@@ -386,13 +359,12 @@
                         </div>
                         <div class="grid_1"></div>
                         <div class="grid_1">
-                            <input c-text-box class="k-textbox"
-                                ng-model="item.lilau" />
+                            <input c-text-box class="k-textbox" ng-model="item.lilau" />
                         </div>
                     </div>
                 </div>
 
-                <div class="grid_12">
+                <!-- <div class="grid_12">
                     <div class="grid_1" style="margin-top: 10px">
                         <label>
                             <strong>IMT:</strong>
@@ -408,7 +380,7 @@
                         </label>
                     </div>
                     <div class="grid_3"></div>
-                </div>
+                </div> -->
 
                 <div class="grid_12">
                     <div style="margin:10px">
@@ -443,8 +415,7 @@
                             <strong>Riwayat Personal</strong>
                         </label>
                         <textarea class="k-textbox" style="height: 76px; width:
-                            100%; resize: none;"
-                            ng-model="item.riwayatPersonal"></textarea>
+                            100%; resize: none;" ng-model="item.riwayatPersonal"></textarea>
                     </div>
                 </div>
             </div>
@@ -471,8 +442,7 @@
             </md-toolbar>
             <div class="grid_12">
                 <div style="margin: 10px">
-                    <textarea class="k-textbox"
-                        style="height: 150px; width:100%;resize: none;"
+                    <textarea class="k-textbox" style="height: 150px; width:100%;resize: none;"
                         ng-model="item.intervensiGizi"></textarea>
                 </div>
             </div>
@@ -488,21 +458,16 @@
                     min-height:166px">
                     <ul class="fieldlist">
                         <li>
-                            <input type="radio" name="monitoring"
-                                value="Pasien dipantau oleh dietisien"
-                                ng-model="item.monitoring"
-                                id="pasienDipantau" class="k-radio">
+                            <input type="radio" name="monitoring" value="Pasien dipantau oleh dietisien"
+                                ng-model="item.monitoring" id="pasienDipantau" class="k-radio">
                             <label class="k-radio-label" for="pasienDipantau">
                                 Pasien dipantau oleh dietisien
                             </label>
                         </li>
                         <li>
-                            <input type="radio" name="monitoring"
-                                ng-model="item.monitoring"
-                                value="Mohon dikonsulkan untuk rawat bersama
+                            <input type="radio" name="monitoring" ng-model="item.monitoring" value="Mohon dikonsulkan untuk rawat bersama
                                 dengan Sp.A(K) & Penyakit Metabolik / Sp.GK
-                                karena"
-                                id="mohonDikonsulkan" class="k-radio">
+                                karena" id="mohonDikonsulkan" class="k-radio">
                             <label class="k-radio-label" for="mohonDikonsulkan">
                                 Mohon dikonsulkan untuk rawat bersama dengan
                                 Sp.A(K)
@@ -510,17 +475,14 @@
                             </label>
                         </li>
                         <li>
-                            <input type="radio" name="monitoring"
-                                ng-model="item.monitoring"
-                                value="Nutrisi Parental"
+                            <input type="radio" name="monitoring" ng-model="item.monitoring" value="Nutrisi Parental"
                                 id="nutrisiParental" class="k-radio">
                             <label class="k-radio-label" for="nutrisiParental">
                                 Nutrisi Parental
                             </label>
                         </li>
                         <li>
-                            <input type="radio" name="monitoring"
-                                ng-model="item.monitoring" value="Lainnya"
+                            <input type="radio" name="monitoring" ng-model="item.monitoring" value="Lainnya"
                                 id="lainnya" class="k-radio">
                             <label class="k-radio-label" for="lainnya">
                                 Lainnya
@@ -546,8 +508,7 @@
             </div>
             <div class="grid_2" style="margin-top: 22px">
                 <md-button class="md-raised
-                    md-warn"
-                    ng-click="Batal()">
+                    md-warn" ng-click="Batal()">
                     <span style="margin-right:5px;">Batal</span>
                     <i class="fa fa-close"></i>
                 </md-button>
@@ -556,8 +517,7 @@
             </div>
             <div class="grid_2" style="margin-top: 22px">
                 <md-button class="md-raised
-                    md-primary"
-                    ng-click="saveDataAsesmen()">
+                    md-primary" ng-click="saveDataAsesmen()">
                     <span style="margin-right:5px;">{{txtSimpan}}</span>
                     <i class="fa fa-save"></i>
                 </md-button>
