@@ -318,6 +318,16 @@ define(['initialize'], function (initialize) {
             $scope.optGridJabatan = {
                 pageable: true,
                 scrollable: true,
+                filterable: {
+                    extra: false,
+                    operators: {
+                        string: {
+                            startswith: "Dimulai dengan",
+                            contains: "mengandung kata",
+                            neq: "Tidak mengandung kata"
+                        }
+                    }
+                },
                 columns: [{
                     "title": "<input id='headCheckbox' type='checkbox' class='checkbox' ng-click='selectUnselectAllRow()' />",
                     template: "# if (statusPilih) { #" +
@@ -329,6 +339,7 @@ define(['initialize'], function (initialize) {
                 }, {
                     field: "namaJabatan",
                     title: "<h3>Nama Jabatan</h3>",
+                    filterable: true
                     // width: 150
                 }],
             }
@@ -400,7 +411,7 @@ define(['initialize'], function (initialize) {
                             lengthDataPilih++;
                         }
                     }
-                    
+                    $("#headCheckbox").prop("checked", false);
                     if(lengthDataPilih === res.data.data.length) $("#headCheckbox").prop("checked", true);
                     toastr.info(`Ditemukan data ${lengthDataPilih} terpilih`, "Info");
                     
@@ -408,8 +419,6 @@ define(['initialize'], function (initialize) {
                         data: res.data.data,
                         pageSize: 100
                     })
-                    
-                    // 
                     
                 });
             }
@@ -592,7 +601,7 @@ define(['initialize'], function (initialize) {
                 console.log(tempData);
                 $scope.dataSourceJabatan = new kendo.data.DataSource({
                     data: tempData,
-                    pageSizeP: 100
+                    pageSize: 100
                 })
             }
 

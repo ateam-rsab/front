@@ -20,15 +20,18 @@ define(['initialize'], function (initialize) {
             }];
 
             $scope.optGridKontrakKinerja = {
-                toolbar: [{
-                    text: "export",
-                    name: "Tambah",
-                    template: '<button ng-click="tambahData()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-plus"></span>Tambah Data</button>'
-                }, {
-                    text: "export",
-                    name: "Tambah",
-                    template: '<button ng-click="tambahIndikator()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-plus"></span>Pengajuan Indikator</button>'
-                }],
+                toolbar: [
+                    // {
+                    //     text: "export",
+                    //     name: "Tambah",
+                    //     template: '<button ng-click="tambahData()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-plus"></span>Tambah Data</button>'
+                    // },
+                    // {
+                    //     text: "export",
+                    //     name: "Tambah",
+                    //     template: '<button ng-click="tambahIndikator()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-plus"></span>Pengajuan Indikator</button>'
+                    // }
+                ],
                 pageable: true,
                 scrollable: true,
                 columns: [{
@@ -74,17 +77,17 @@ define(['initialize'], function (initialize) {
             $scope.getAllData = () => {
                 let pageSize = 20;
 
-                if(!$scope.item.srcBulan) {
+                if (!$scope.item.srcBulan) {
                     toastr.info("Harap pilih Bulan terlebih dahulu");
                     return;
                 }
 
-                if(!$scope.item.pegawai) {
+                if (!$scope.item.pegawai) {
                     toastr.info("Harap pilih Pegawai terlebih dahulu");
                     return;
                 }
 
-                if(!$scope.item.jabatan) {
+                if (!$scope.item.jabatan) {
                     toastr.info("Harap pilih Jabatan Pegawai terlebih dahulu");
                     return;
                 }
@@ -196,7 +199,7 @@ define(['initialize'], function (initialize) {
             $scope.simpanData = (method) => {
                 let statusEnabled = method === 'save' || method === 'update';
                 let dataSave = {
-                    bulan: dateHelper.toTimeStamp($scope.item.bulan),
+                    bulan: dateHelper.toTimeStamp($scope.item.srcBulan),
                     target: $scope.item.target,
                     bobot: $scope.item.bobot,
                     statusVerifikasi: $scope.item.statusVerif ? true : false,
@@ -235,16 +238,16 @@ define(['initialize'], function (initialize) {
                 $scope.item.target = dataItem.target;
                 $scope.item.bobot = dataItem.bobot;
                 $scope.item.statusVerif = dataItem.isStatusVerifikasi;
-                $scope.item.pegawai = {
-                    id: dataItem.idPegawai,
-                    namaLengkap: dataItem.namaPegawai
-                }
-                $scope.item.jabatan = {
-                    id: dataItem.idJabatan,
-                    namaJabatan: dataItem.namaJabatan
-                }
+                // $scope.item.pegawai = {
+                //     id: dataItem.idPegawai,
+                //     namaLengkap: dataItem.namaPegawai
+                // }
+                // $scope.item.jabatan = {
+                //     id: dataItem.idJabatan,
+                //     namaJabatan: dataItem.namaJabatan
+                // }
                 $scope.item.indikatorKerja = {
-                    id: dataItem.idIndikator,
+                    id: dataItem.indikatorId,
                     namaIndikator: dataItem.namaIndikator
                 }
 
