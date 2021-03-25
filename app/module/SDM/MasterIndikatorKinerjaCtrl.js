@@ -411,7 +411,7 @@ define(['initialize'], function (initialize) {
                             lengthDataPilih++;
                         }
                     }
-                    
+                    $("#headCheckbox").prop("checked", false);
                     if(lengthDataPilih === res.data.data.length) $("#headCheckbox").prop("checked", true);
                     toastr.info(`Ditemukan data ${lengthDataPilih} terpilih`, "Info");
                     
@@ -419,8 +419,6 @@ define(['initialize'], function (initialize) {
                         data: res.data.data,
                         pageSize: 100
                     })
-                    
-                    // 
                     
                 });
             }
