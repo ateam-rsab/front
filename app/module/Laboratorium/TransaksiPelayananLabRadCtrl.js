@@ -196,7 +196,7 @@ define(['initialize'], function(initialize) {
                         data.objectruanganfk = namaRuanganFk
                         data.objectruangantujuanfk = $scope.item.ruangantujuan.id
                         data.objectkelasfk=  $scope.item.kelas.id
-
+                        data.catatanOrder = "", // catatan hanya untuk dokter
                         data2[i] = data;
                         $scope.dataGridOrder = new kendo.data.DataSource({
                             data: data2
@@ -212,7 +212,8 @@ define(['initialize'], function(initialize) {
                         qtyproduk:parseFloat($scope.item.qty),
                         objectruanganfk:namaRuanganFk,
                         objectruangantujuanfk:$scope.item.ruangantujuan.id,
-                        objectkelasfk: $scope.item.kelas.id
+                        objectkelasfk: $scope.item.kelas.id,
+                        catatanOrder: "", // catatan hanya untuk dokter
                     }
                 data2.push(data)
                 // $scope.dataGrid.add($scope.dataSelected)
@@ -285,7 +286,7 @@ define(['initialize'], function(initialize) {
             $scope.CmdOrderPelayanan = true;
             $scope.OrderPelayanan = false;
         }
-        $scope.Simpan= function(){
+        $scope.Simpan = function(){
             if ($scope.item.ruangantujuan == undefined) {
                     alert("Pilih Ruangan Tujuan terlebih dahulu!!")
                     return
