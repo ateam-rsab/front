@@ -131,11 +131,11 @@ define(['initialize'], function(initialize) {
         //     "width" : "80px",
         //     "template": "<span class='style-right'>{{formatRupiah('#: total #', '')}}</span>"
         // },
-        // {
-        //     "field": "nostruk",
-        //     "title": "No Struk",
-        //     "width" : "80px"
-        // }
+        {
+            "field": "catatan",
+            "title": "Catatan",
+            "width" : "100px"
+        }
         ];
 
         $scope.columnGridOrder = [

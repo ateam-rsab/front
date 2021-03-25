@@ -71,7 +71,7 @@
         </div>
 
         <div class="grid_12">
-            <div kendo-grid k-data-source="dataSourceJabatan" k-selectable="'row'" options="optGridJabatan"
+            <div kendo-grid id="idGridJabatanAll" k-data-source="dataSourceJabatan" k-selectable="'row'" options="optGridJabatan"
                 k-ng-model="selectedData"></div>
         </div>
 
@@ -198,8 +198,8 @@
                         disabled />
                 </div>
                 <div class="grid_6">
-                    <label><strong>Satuan Indikator</strong></label>
-                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="mapping.satuanIndikator"
+                    <label><strong>Nama Indikator</strong></label>
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="mapping.namaIndikator"
                         disabled />
 
                 </div>

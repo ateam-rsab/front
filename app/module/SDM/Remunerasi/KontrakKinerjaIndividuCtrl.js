@@ -32,25 +32,13 @@ define(['initialize'], function (initialize) {
                 pageable: true,
                 scrollable: true,
                 columns: [{
-                    field: "bulanFormatted",
-                    title: "<h3>Bulan</h3>",
-                    width: 70
-                }, {
-                    field: "namaPegawai",
-                    title: "<h3>Pegawai</h3>",
-                    width: 100
-                }, {
-                    field: "namaJabatan",
-                    title: "<h3>Jabatan</h3>",
-                    width: 150
-                }, {
-                    field: "jenisIndikator",
-                    title: "<h3>Jenis<br/>Indikator</h3>",
-                    width: 70
-                }, {
                     field: "namaIndikator",
                     title: "<h3>Indikator</h3>",
                     width: 200
+                }, {
+                    field: "satuanIndikator",
+                    title: "<h3>Satuan Indikator</h3>",
+                    width: 50
                 }, {
                     field: "bobot",
                     title: "<h3>Bobot</h3>",
@@ -84,18 +72,39 @@ define(['initialize'], function (initialize) {
             };
 
             $scope.getAllData = () => {
+                let pageSize = 20;
+
+                if(!$scope.item.srcBulan) {
+                    toastr.info("Harap pilih Bulan terlebih dahulu");
+                    return;
+                }
+
+                if(!$scope.item.pegawai) {
+                    toastr.info("Harap pilih Pegawai terlebih dahulu");
+                    return;
+                }
+
+                if(!$scope.item.jabatan) {
+                    toastr.info("Harap pilih Jabatan Pegawai terlebih dahulu");
+                    return;
+                }
                 $scope.isRouteLoading = true;
                 ManageSdmNew.getListData("iki-remunerasi/get-kontrak-kinerja?pegawaiId=" + ($scope.item.pegawai ? $scope.item.pegawai.id : "") + "&jabatanId=" + ($scope.item.jabatan ? $scope.item.jabatan.id : "") + "&bulan=" + ($scope.item.srcBulan ? dateHelper.toTimeStamp($scope.item.srcBulan) : "")).then((res) => {
 
-                    for (let i = 0; i < res.data.data.length; i++) {
-                        if (res.data.data[i].bulan) {
-                            res.data.data[i].bulanFormatted = dateHelper.formatDate(res.data.data[i].bulan, "MMM, YYYY");
-                        }
+                    $scope.dataSourceKontrakKinerja = {
+                        kualitas: new kendo.data.DataSource({
+                            data: res.data.data.Kualitas,
+                            pageSize: pageSize
+                        }),
+                        kuantitas: new kendo.data.DataSource({
+                            data: res.data.data.Kuantitas,
+                            pageSize: pageSize
+                        }),
+                        perilaku: new kendo.data.DataSource({
+                            data: res.data.data.Perilaku,
+                            pageSize: pageSize
+                        })
                     }
-                    $scope.dataSourceKontrakKinerja = new kendo.data.DataSource({
-                        data: res.data.data,
-                        pageSize: 10
-                    })
                     $scope.isRouteLoading = false;
                 })
             }
@@ -103,13 +112,13 @@ define(['initialize'], function (initialize) {
             $scope.init = () => {
                 ManageSdmNew.getListData("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true&order=namaLengkap:asc").then((res) => {
                     $scope.listPegawai = res.data;
-                })
+                });
 
                 ManageSdmNew.getListData("service/list-generic/?view=SatuanIndikator&select=id,satuanIndikator&criteria=statusEnabled&values=true&order=id:asc").then((res) => {
                     $scope.listDataSatuanIndikator = res.data;
-                })
+                });
 
-                $scope.getAllData()
+
             }
 
             $scope.init();

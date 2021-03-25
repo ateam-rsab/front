@@ -528,7 +528,10 @@ define(['initialize'], function (initialize) {
 				getTotalSkrining();
 			}
 			$scope.cekSkorMST = function (data, stat) {
-				$scope.showInputGangguanMetabolisme = data.id === 2 && stat.nama === "Ya";
+				if(data.id === 2) {
+					$scope.showInputGangguanMetabolisme = !$scope.showInputGangguanMetabolisme;
+				}
+				// $scope.showInputGangguanMetabolisme = data.id === 2 && stat.nama === "Ya";
 
 
 				// if(data.id === 2 && stat.nama === "Ya") {

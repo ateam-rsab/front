@@ -32,16 +32,34 @@
     </div>
 </div>
 
-<div class="grid_12">
+<!-- <div class="grid_12">
     <div kendo-grid k-data-source="dataSourceKontrakKinerja" k-selectable="'row'" options="optGridKontrakKinerja"
         k-ng-model="selectedData"></div>
+</div> -->
+
+<div class="grid_12">
+    <h3>Kualitas</h3>
+    <div kendo-grid k-data-source="dataSourceKontrakKinerja.kualitas" k-selectable="'row'"
+        options="optGridKontrakKinerja" k-ng-model="selectedData"></div>
+</div>
+
+<div class="grid_12">
+    <h3>Kuantitas</h3>
+    <div kendo-grid k-data-source="dataSourceKontrakKinerja.kuantitas" k-selectable="'row'"
+        options="optGridKontrakKinerja" k-ng-model="selectedData"></div>
+</div>
+
+<div class="grid_12">
+    <h3>Perilaku</h3>
+    <div kendo-grid k-data-source="dataSourceKontrakKinerja.perilaku" k-selectable="'row'"
+        options="optGridKontrakKinerja" k-ng-model="selectedData"></div>
 </div>
 <div kendo-window="popupTambah" k-title="'Tambah Data Kontrak Kinerja'" k-width="1200" k-visible="false"
     k-on-open="win2visible= true" k-on-close="win2visible= false">
     <div class="panel panel-default container_12" style="padding: 0px 10px;">
 
         <md-card>
-            <div class="grid_12">
+            <!-- <div class="grid_12">
                 <div class="grid_4">
                     <label><strong>Pegawai</strong></label>
                     <input kendo-combo-box k-filter="'contains'" k-ng-model="item.pegawai"
@@ -53,26 +71,25 @@
                     <input kendo-combo-box k-filter="'contains'" k-ng-model="item.jabatan"
                         k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-data-source="listJabatan" />
                 </div>
-            </div>
+            </div> -->
 
             <div class="grid_12">
-                <div class="grid_2">
+                <!-- <div class="grid_2">
                     <label><strong>Bulan</strong></label>
                     <input style="width: 100%;" k-options="monthSelectorOptions" k-ng-model="item.bulan"
                         kendo-date-picker placeholer="mm-yyyy" k-format="'MM-yyyy'" />
-                </div>
+                </div> -->
 
-                <div class="grid_3">
+                <!-- <div class="grid_3">
                     <label><strong>Jenis Indikator Kinerja</strong></label>
                     <input kendo-combo-box k-filter="'contains'" k-ng-model="item.jenisIndikator"
                         k-data-text-field="'jenisIndikator'" k-data-value-field="'id'"
                         k-data-source="listJenisIndikator" k-on-change="getIndikatorKerja(item.jenisIndikator.id)" />
-                </div>
-                <div class="grid_3">
+                </div> -->
+                <div class="grid_6">
                     <label><strong>Indikator Kinerja</strong></label>
-                    <input kendo-combo-box k-filter="'contains'" k-ng-model="item.indikatorKerja"
-                        k-data-text-field="'namaIndikator'" k-data-value-field="'id'"
-                        k-data-source="listIndikatorKinerja" />
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.indikatorKerja.namaIndikator" />
+                    <!-- <input c-textbox  k-ng-model="item.indikatorKerja" disabled/> -->
                 </div>
 
                 <div class="grid_1">

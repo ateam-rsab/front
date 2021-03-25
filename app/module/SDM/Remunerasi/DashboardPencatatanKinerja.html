@@ -9,7 +9,8 @@
         cursor: pointer;
     }
 
-    .mt-progress-bar:hover, .mt-progress-bar[value]::-webkit-progress-value:hover {
+    .mt-progress-bar:hover,
+    .mt-progress-bar[value]::-webkit-progress-value:hover {
         background-color: #07ffd6;
     }
 
@@ -49,6 +50,15 @@
         right: 10px;
         font-weight: bolder;
     }
+
+    h5 {
+        font-size: 15px;
+    }
+
+    h4,
+    h5 {
+        margin: 10px 0;
+    }
 </style>
 
 <md-toolbar md-scroll-shrink class="shadow">
@@ -60,30 +70,186 @@
     <md-card>
         <md-card-title>
             <md-card-title-text>
-                <span class="md-headline">Muhammad Refel Hidayatullah</span>
-                <span class="md-subhead">Programmer Ulung</span>
+                <span class="md-headline">{{dataLogin.namaLengkap}}</span>
+                <span class="md-subhead" ng-if="showIsSingleJabatan">{{dataSingleJabatan}}</span>
+                <div class="grid_6" ng-if="!showIsSingleJabatan">
+                    <input kendo-combo-box k-filter="'contains'" k-ng-model="item.jabatan"
+                        k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-data-source="listJabatan" k-on-change="getDataDashboard()"/>
+                </div>
+                <!-- <span class="md-subhead">{{dataLogin.jabatanInternal.namaJabatan}}</span> -->
             </md-card-title-text>
         </md-card-title>
+
         <md-card-content>
-            <progress id="headProgress" class="mt-progress-bar" max="100" value="87" data-label="Rp. 9.243.459, 00" ng-click="detail()"></progress>
+            <progress id="headProgress" class="mt-progress-bar" max="100" value="{{dataDashboard.persenCapaianDibulatkan}}"
+                data-label="{{dataDashboard.rupiahCapaianFormat}}/{{dataDashboard.rupiahTargetFormat}}"></progress>
             <hr>
+
             <div class="grid_12">
-                <span>Kuantitas</span>
-                <progress class="mt-progress-bar" max="100" value="79" data-label="79%"></progress>
+                <h5>Kuantitas</h5>
+                <progress class="mt-progress-bar" max="100" value="{{dataDetailDashboardKinerja.persentaseCapaianKuntitas}}"
+                    data-label="{{dataDetailDashboardKinerja.persentaseCapaianKuntitas}}%"></progress>
+                <div class="grid_1">
+                    <md-button class="md-raised md-primary medium-button" ng-click="detailData('kuantitas')"
+                        ng-if="!showDetailKuantitas">
+                        <span style="margin-right: 5px;">Detail</span>
+                        <i class="fa fa-info-circle"></i>
+                    </md-button>
+
+                    <md-button class="md-raised md-danger medium-button" ng-click="detailData('kuantitas')"
+                        ng-if="showDetailKuantitas">
+                        <span style="margin-right: 5px;">Tutup</span>
+                        <i class="fa fa-close"></i>
+                    </md-button>
+                </div>
+
+                <!-- detail kuantitas -->
+                <hr>
+                <div class="grid_12" ng-if="showDetailKuantitas">
+                    <div class="grid_6" ng-repeat="kuantitas in dataDetailDashboardKinerja.kuantitas.data">
+                        <span>{{kuantitas.namaIndikator}}</span>
+                        <div class="grid_11">
+                            <progress class="mt-progress-bar" max="100" value="{{kuantitas.persenCapaianDibulatkan}}"
+                                data-label="{{kuantitas.persenCapaianDibulatkan}}%"></progress>
+                        </div>
+                        <div class="grid_1">
+                            <md-button class="md-raised md-primary medium-button" ng-click="addData(kuantitas)">
+                                <i class="fa fa-plus"></i>
+                            </md-button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="grid_12">
-                <span>Kualitas</span>
-                <progress class="mt-progress-bar" max="100" value="50" data-label="50%"></progress>
+                <h5>Kualitas</h5>
+                <progress class="mt-progress-bar" max="100" value="{{dataDetailDashboardKinerja.persentaseCapaianKualitas}}" data-label="{{dataDetailDashboardKinerja.persentaseCapaianKualitas}}%"></progress>
+                <div class="grid_1">
+
+                    <md-button class="md-raised md-danger medium-button" ng-click="detailData('kualitas')"
+                        ng-if="showDetailKualitas">
+                        <span style="margin-right: 5px;">Tutup</span>
+                        <i class="fa fa-close"></i>
+                    </md-button>
+
+                    <md-button class="md-raised md-primary medium-button" ng-click="detailData('kualitas')"
+                        ng-if="!showDetailKualitas">
+                        <span style="margin-right: 5px;">Detail</span>
+                        <i class="fa fa-info-circle"></i>
+                    </md-button>
+                </div>
+
+                <!-- detail kualitas -->
+                <hr>
+                <div class="grid_12" ng-if="showDetailKualitas">
+                    <div class="grid_6" ng-repeat="kualitas in dataDetailDashboardKinerja.kualitas.data">
+                        <span>{{kualitas.namaIndikator}}</span>
+                        <div class="grid_11">
+                            <progress class="mt-progress-bar" max="100" value="{{kualitas.persenCapaianDibulatkan}}"
+                                data-label="{{kualitas.persenCapaianDibulatkan}}%"></progress>
+                        </div>
+                        <div class="grid_1">
+                            <md-button class="md-raised md-primary medium-button" ng-click="addData(kualitas)">
+                                <i class="fa fa-plus"></i>
+                            </md-button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="grid_12">
-                <span>Perilaku</span>
-
-                <progress class="mt-progress-bar" max="100" value="87" data-label="87%">
+                <h5>Perilaku</h5>
+                <progress class="mt-progress-bar" max="100" value="{{dataDetailDashboardKinerja.persentaseCapaianPerilaku}}" data-label="{{dataDetailDashboardKinerja.persentaseCapaianPerilaku}}%">
                 </progress>
+                <div class="grid_1">
+
+                    <md-button class="md-raised md-danger medium-button" ng-click="detailData('perilaku')"
+                        ng-if="showDetailPerilaku">
+                        <span style="margin-right: 5px;">Tutup</span>
+                        <i class="fa fa-close"></i>
+                    </md-button>
+
+                    <md-button class="md-raised md-primary medium-button" ng-click="detailData('perilaku')"
+                        ng-if="!showDetailPerilaku">
+                        <span style="margin-right: 5px;">Detail</span>
+                        <i class="fa fa-info-circle"></i>
+                    </md-button>
+                </div>
+
+                <!-- detail perilaku -->
+                <hr>
+                <div class="grid_12" ng-if="showDetailPerilaku">
+                    <div class="grid_6" ng-repeat="perilaku in dataDetailDashboardKinerja.perilaku.data">
+                        <span>{{perilaku.namaIndikator}}</span>
+                        <div class="grid_11">
+                            <progress class="mt-progress-bar" max="100" value="{{perilaku.persenCapaianDibulatkan}}"
+                                data-label="{{perilaku.persenCapaianDibulatkan}}%"></progress>
+                        </div>
+
+                        <div class="grid_1">
+                            <md-button class="md-raised md-primary medium-button" ng-click="addData(perilaku)">
+                                <i class="fa fa-plus"></i>
+                            </md-button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </md-card-content>
     </md-card>
 
+</div>
+
+<div kendo-window="popupAdd" k-title="'Tambah Data'" k-width="1200" k-visible="false" k-on-open="win2visible= true"
+    k-on-close="win2visible= false">
+    <div class="panel panel-default container_12" style="padding: 0px 10px;">
+
+        <md-card>
+            <md-card-body style="padding: 10px;">
+                <h5>{{labelData}}</h5>
+                <div class="grid_12">
+                    <div class="grid_12">
+                        <label><strong>Kegiatan</strong></label>
+                        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaKegiatan" />
+                    </div>
+
+                    <div class="grid_12">
+                        <div class="grid_10">
+                            <label><strong>Hasil</strong></label>
+                            <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.hasilKegiatan" />
+                        </div>
+                        <div class="grid_2" style="margin-top: 25px;">
+                            <label><strong>{{dataAdd.satuanIndikator}}</strong></label>
+                        </div>
+                    </div>
+
+                    <div class="grid_12">
+                        <label><strong>Catatan</strong></label>
+                        <textarea c-text-box ng-model="item.catatanKegiatan" rows="10"></textarea>
+                    </div>
+                </div>
+            </md-card-body>
+        </md-card>
+
+        <div class="k-edit-buttons k-state-default" style="margin-top:10px">
+            <div class="grid_6"></div>
+            <div class="grid_2">
+                <md-button class="md-raised md-warn medium-button" ng-click="closepopUp()">
+                    <span style="margin-right: 5px;">Batal</span>
+                    <i class="fa fa-close"></i>
+                </md-button>
+            </div>
+            <div class="grid_2">
+                <md-button class="md-raised md-warn medium-button" ng-click="resetForm()">
+                    <span style="margin-right: 5px;">Reset</span>
+                    <i class="fa fa-refresh"></i>
+                </md-button>
+            </div>
+            <div class="grid_2">
+                <md-button class="md-raised md-primary medium-button" ng-click="simpanData()">
+                    <span style="margin-right: 5px;">Simpan</span>
+                    <i class="fa fa-save"></i>
+                </md-button>
+            </div>
+        </div>
+    </div>
 </div>

@@ -319,7 +319,7 @@ define(['initialize'], function (initialize) {
                 pageable: true,
                 scrollable: true,
                 columns: [{
-                    "title": "<input type='checkbox' class='checkbox' ng-click='selectUnselectAllRow()' />",
+                    "title": "<input id='headCheckbox' type='checkbox' class='checkbox' ng-click='selectUnselectAllRow()' />",
                     template: "# if (statusPilih) { #" +
                         "<input type='checkbox' class='checkbox' ng-click='selectRow(dataItem)' checked />" +
                         "# } else { #" +
@@ -394,20 +394,23 @@ define(['initialize'], function (initialize) {
 
                 ManageSdmNew.getListData("iki-remunerasi/set-mapping-indikator-jabatan?indikatorId=" + $scope.mapping.srcNamaIndikator.id).then((res) => {
                     let lengthDataPilih = 0;
+                    $scope.statusPilih
                     for (let i = 0; i < res.data.data.length; i++) {
                         if (res.data.data[i].statusPilih) {
                             lengthDataPilih++;
-                            // console.log(res.data.data[i]);
-                            console.log("Data terpilih => " + lengthDataPilih);
                         }
                     }
-
+                    
+                    if(lengthDataPilih === res.data.data.length) $("#headCheckbox").prop("checked", true);
                     toastr.info(`Ditemukan data ${lengthDataPilih} terpilih`, "Info");
-
+                    
                     $scope.dataSourceJabatan = new kendo.data.DataSource({
                         data: res.data.data,
                         pageSize: 100
                     })
+                    
+                    // 
+                    
                 });
             }
 
@@ -571,6 +574,7 @@ define(['initialize'], function (initialize) {
 
             var isCheckAll = false;
             $scope.selectUnselectAllRow = function () {
+            
                 var tempData = $scope.dataSourceJabatan._data;
 
                 if (isCheckAll) {
