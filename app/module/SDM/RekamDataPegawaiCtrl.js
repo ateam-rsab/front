@@ -938,6 +938,7 @@ define(['initialize'], function (initialize) {
                 $scope.ji.isCanCreateJadwal = dataItem.isCanCreateJadwal;
                 $scope.ji.isMonitoring = dataItem.isMonitoring;
                 $scope.changeCB();
+                $scope.getJabatan($scope.ji.jabatan)
                 $scope.popUpJabatan.center().open();
             }
 

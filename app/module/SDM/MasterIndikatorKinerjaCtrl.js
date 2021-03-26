@@ -392,7 +392,7 @@ define(['initialize'], function (initialize) {
             $scope.getMasterIndikator = (id) => {
                 if (!id) return;
 
-                ManageSdmNew.getListData("service/list-generic/?view=IndikatorKinerja&select=id,namaIndikator&criteria=statusEnabled,jenisIndikator&values=true," + id + "&order=namaIndikator:asc").then((res) => {
+                ManageSdmNew.getListData("service/list-generic/?view=IndikatorKinerja&select=id,namaIndikator&criteria=statusEnabled,statusVerifikasi,jenisIndikator&values=true,true," + id + "&order=namaIndikator:asc").then((res) => {
                     $scope.listMasterIndikator = res.data;
                 })
             }
