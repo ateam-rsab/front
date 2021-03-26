@@ -816,6 +816,10 @@
       "urlDep": "module/SDM/Remunerasi/SkoringTindakanMedisCtrl"
     },
     {
+      "nameDep": "VerifikasiCatatanKegiatanHarianCtrl",
+      "urlDep": "module/SDM/Remunerasi/VerifikasiCatatanKegiatanHarianCtrl"
+    },
+    {
       "nameDep": "KontrakKinerjaIndividuCtrl",
       "urlDep": "module/SDM/Remunerasi/KontrakKinerjaIndividuCtrl"
     },

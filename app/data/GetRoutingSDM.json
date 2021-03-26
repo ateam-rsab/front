@@ -4684,6 +4684,30 @@
     ]
   },
   {
+    "name": "VerifikasiCatatanKegiatanHarian",
+    "url": "/VerifikasiCatatanKegiatanHarian",
+    "templateurl": "module/SDM/Remunerasi/VerifikasiCatatanKegiatanHarian.html",
+    "controller": "VerifikasiCatatanKegiatanHarianCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      }
+    ]
+  },
+  {
     "name": "RiwayatEvaluasiJabatan",
     "url": "/RiwayatEvaluasiJabatan",
     "templateurl": "module/SDM/Remunerasi/RiwayatEvaluasiJabatan.html",
