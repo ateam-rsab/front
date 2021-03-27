@@ -156,7 +156,7 @@ define(['initialize'], function (initialize) {
             $scope.init();
 
             $scope.changeAnggaran = () => {
-                $scope.item.pir = Math.ceil($scope.item.anggaranRemunerasi / 13);
+                $scope.item.pir = Math.ceil($scope.item.anggaranRemunerasi * 0.85 / 13);
                 $scope.item.pirHitungan = Math.ceil($scope.item.pir / $scope.totalNilaiJabatan);
                 $scope.item.pirUnformatted = $scope.item.pir;
                 $scope.item.pirHitunganUnformatted = $scope.item.pirHitungan;
