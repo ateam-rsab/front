@@ -9,10 +9,7 @@
         cursor: pointer;
     }
 
-    .mt-progress-bar:hover,
-    .mt-progress-bar[value]::-webkit-progress-value:hover {
-        background-color: #07ffd6;
-    }
+
 
     .mt-progress-bar::-webkit-progress-bar {
         background-color: #fff;
@@ -37,6 +34,36 @@
         background-color: #99f3e7;
         border-radius: .25em;
     }
+
+    .mt-progress-bar[value].blue::-webkit-progress-value {
+        background-color: #3498db;
+    }
+
+    .mt-progress-bar[value].egg-blue::-webkit-progress-value {
+        background-color: #7069be;
+    }
+
+    .mt-progress-bar[value].blue-sky::-webkit-progress-value {
+        background-color: #43D1C9;
+    }
+
+    .mt-progress-bar:hover,
+    .mt-progress-bar[value]::-webkit-progress-value:hover {
+        background-color: #07ffd6;
+    }
+
+    .mt-progress-bar[value].blue::-webkit-progress-value:hover {
+        background-color: #8ec4e8;
+    }
+
+    .mt-progress-bar[value].egg-blue::-webkit-progress-value:hover {
+        background-color: #a09dbf;
+    }
+
+    .mt-progress-bar[value].blue-sky::-webkit-progress-value:hover {
+        background-color: #73cbc7;
+    }
+
 
     progress.mt-progress-bar:before {
         content: attr(data-label);
@@ -74,21 +101,27 @@
                 <span class="md-subhead" ng-if="showIsSingleJabatan">{{dataSingleJabatan}}</span>
                 <div class="grid_6" ng-if="!showIsSingleJabatan">
                     <input kendo-combo-box k-filter="'contains'" k-ng-model="item.jabatan"
-                        k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-data-source="listJabatan" k-on-change="getDataDashboard()"/>
+                        k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-data-source="listJabatan"
+                        k-on-change="getDataDashboard()" />
                 </div>
                 <!-- <span class="md-subhead">{{dataLogin.jabatanInternal.namaJabatan}}</span> -->
             </md-card-title-text>
         </md-card-title>
 
         <md-card-content>
-            <progress id="headProgress" class="mt-progress-bar" max="100" value="{{dataDashboard.persenCapaianDibulatkan}}"
+            <progress id="headProgress" class="mt-progress-bar" max="100"
+                value="{{dataDashboard.persenCapaianDibulatkan}}"
                 data-label="{{dataDashboard.rupiahCapaianFormat}}/{{dataDashboard.rupiahTargetFormat}}"></progress>
             <hr>
 
             <div class="grid_12">
-                <h5>Kuantitas</h5>
-                <progress class="mt-progress-bar" max="100" value="{{dataDetailDashboardKinerja.persentaseCapaianKuntitas}}"
-                    data-label="{{dataDetailDashboardKinerja.persentaseCapaianKuntitas}}%"></progress>
+                <h5 style="color: #3498db; font-weight: bolder;">Kuantitas</h5>
+                <div class="grid_11">
+                    <progress class="mt-progress-bar blue" max="100"
+                        value="{{dataDetailDashboardKinerja.persentaseCapaianPerilaku}}"
+                        data-label="{{dataDetailDashboardKinerja.persentaseCapaianKuntitas}}%"></progress>
+                </div>
+
                 <div class="grid_1">
                     <md-button class="md-raised md-primary medium-button" ng-click="detailData('kuantitas')"
                         ng-if="!showDetailKuantitas">
@@ -109,7 +142,8 @@
                     <div class="grid_6" ng-repeat="kuantitas in dataDetailDashboardKinerja.kuantitas.data">
                         <span>{{kuantitas.namaIndikator}}</span>
                         <div class="grid_11">
-                            <progress class="mt-progress-bar" max="100" value="{{kuantitas.persenCapaianDibulatkan}}"
+                            <progress class="mt-progress-bar blue" max="100"
+                                value="{{kuantitas.persenCapaianDibulatkan}}"
                                 data-label="{{kuantitas.persenCapaianDibulatkan}}%"></progress>
                         </div>
                         <div class="grid_1">
@@ -122,8 +156,13 @@
             </div>
 
             <div class="grid_12">
-                <h5>Kualitas</h5>
-                <progress class="mt-progress-bar" max="100" value="{{dataDetailDashboardKinerja.persentaseCapaianKualitas}}" data-label="{{dataDetailDashboardKinerja.persentaseCapaianKualitas}}%"></progress>
+                <h5 style="color: #7069be;font-weight: bolder;">Kualitas</h5>
+                <div class="grid_11">
+                    <progress class="mt-progress-bar egg-blue" max="100"
+                        value="{{dataDetailDashboardKinerja.persentaseCapaianKualitas}}"
+                        data-label="{{dataDetailDashboardKinerja.persentaseCapaianKualitas}}%"></progress>
+                </div>
+
                 <div class="grid_1">
 
                     <md-button class="md-raised md-danger medium-button" ng-click="detailData('kualitas')"
@@ -145,7 +184,8 @@
                     <div class="grid_6" ng-repeat="kualitas in dataDetailDashboardKinerja.kualitas.data">
                         <span>{{kualitas.namaIndikator}}</span>
                         <div class="grid_11">
-                            <progress class="mt-progress-bar" max="100" value="{{kualitas.persenCapaianDibulatkan}}"
+                            <progress class="mt-progress-bar egg-blue" max="100"
+                                value="{{kualitas.persenCapaianDibulatkan}}"
                                 data-label="{{kualitas.persenCapaianDibulatkan}}%"></progress>
                         </div>
                         <div class="grid_1">
@@ -158,9 +198,14 @@
             </div>
 
             <div class="grid_12">
-                <h5>Perilaku</h5>
-                <progress class="mt-progress-bar" max="100" value="{{dataDetailDashboardKinerja.persentaseCapaianPerilaku}}" data-label="{{dataDetailDashboardKinerja.persentaseCapaianPerilaku}}%">
-                </progress>
+                <h5 style="color: #43D1C9; font-weight: bolder;">Perilaku</h5>
+                <div class="grid_11">
+                    <progress class="mt-progress-bar blue-sky" max="100"
+                        value="{{dataDetailDashboardKinerja.persentaseCapaianPerilaku}}"
+                        data-label="{{dataDetailDashboardKinerja.persentaseCapaianPerilaku}}%">
+                    </progress>
+                </div>
+
                 <div class="grid_1">
 
                     <md-button class="md-raised md-danger medium-button" ng-click="detailData('perilaku')"

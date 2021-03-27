@@ -66,8 +66,8 @@ define(['initialize'], function (initialize) {
 
             $scope.getDataCatatanKegiatan = () => {
                 $scope.isRouteLoading = true;
-                // let URL = "iki-remunerasi/get-catatan-kegiatan-harian?pegawaiId=" + ($scope.item.srcPegawai ? $scope.item.srcPegawai.id : "") + "&jabatanId=" + ($scope.item.srcJabatan ? $scope.item.srcJabatan.id : "") + "&bulan=" + ($scope.item.srcBulan ? dateHelper.toTimeStamp($scope.item.srcBulan) : '')
-                let URL = "iki-remunerasi/get-catatan-kegiatan-harian?pegawaiId=1316&jabatanId=2122&bulan=1614531600000"
+                let URL = "iki-remunerasi/get-catatan-kegiatan-harian?pegawaiId=" + ($scope.item.srcPegawai ? $scope.item.srcPegawai.id : "") + "&jabatanId=" + ($scope.item.srcJabatan ? $scope.item.srcJabatan.id : "") + "&bulan=" + ($scope.item.srcBulan ? dateHelper.toTimeStamp($scope.item.srcBulan) : '')
+                // let URL = "iki-remunerasi/get-catatan-kegiatan-harian?pegawaiId=1316&jabatanId=2122&bulan=1614531600000"
 
                 ManageSdmNew.getListData(URL).then((res) => {
                     $scope.dataSource = new kendo.data.DataSource({
@@ -94,7 +94,7 @@ define(['initialize'], function (initialize) {
                     noRec: data.noRec
                 }
 
-                ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-kontrak-kinerja").then(res => {
+                ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-working-record").then(res => {
                     $scope.getDataCatatanKegiatan();
                 })
             }
