@@ -33,18 +33,18 @@
     </div>
 </div>
 
-<div class="grid_4">
-    <md-button class="md-raised md-primary medium-button" ng-click="simpanAllAnggaran()">
-        <span style="margin-right: 5px;">Simpan Anggaran Remunerasi</span>
-        <i class="fa fa-save"></i>
-    </md-button>
-</div>
-
 <div class="grid_12">
     <md-subheader class="md-primary">Plafon</md-subheader>
     <div kendo-grid k-data-source="dataPlafon" k-selectable="'row'" options="optGridPlafon"
         k-ng-model="selectedDataPlafon">
     </div>
+</div>
+
+<div class="grid_2">
+    <md-button class="md-raised md-primary medium-button" ng-click="simpanAllAnggaran()">
+        <span style="margin-right: 5px;">Simpan</span>
+        <i class="fa fa-save"></i>
+    </md-button>
 </div>
 
 <div kendo-window="popUp" k-title="'Edit Data Plafon'" k-width="800" k-visible="false" k-on-open="win2visible= true"

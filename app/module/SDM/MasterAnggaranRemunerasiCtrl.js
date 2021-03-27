@@ -57,7 +57,6 @@ define(['initialize'], function (initialize) {
                     title: "<h3>Gaji Honorarium</h3>",
                     width: 150
                 }, {
-                    // field: "Insentif",
                     title: "<h3>Insentif</h3>",
                     columns: [{
                         field: "minInsentifFormatted",
@@ -87,7 +86,7 @@ define(['initialize'], function (initialize) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
 
-                console.log(dataItem);
+                $scope.edit.noRec = dataItem.noRec;
                 $scope.edit.grade = dataItem.grade;
                 $scope.edit.gaji = dataItem.gajiHonorarium;
                 $scope.edit.minInsentif = dataItem.minInsentif;
@@ -104,7 +103,6 @@ define(['initialize'], function (initialize) {
                             style: 'currency',
                             currency: 'IDR'
                         });
-                        // res.data.data[i].gradeFormatted = res.data.data[i].grade.toLocaleString('id-ID', {style: 'currency', currency: 'IDR'});
                         res.data.data[i].maxInsentifFormatted = res.data.data[i].maxInsentif.toLocaleString('id-ID', {
                             style: 'currency',
                             currency: 'IDR'
@@ -127,17 +125,30 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.init = () => {
-                ManageSdmNew.getListData("sdm/get-penempatan-evaluasi-jabatan").then(res => {
-                    for (let i in res.data.data) {
-                        $scope.totalNilaiJabatan += res.data.data[i].nilaiJabatan;
+                $q.all([
+                    ManageSdmNew.getListData("sdm/get-penempatan-evaluasi-jabatan"),
+                    ManageSdmNew.getListData("sdm/get-anggaran-remunerasi-tahun-ini")
+                ]).then(function (res) {
+                    for (let i in res[0].data.data) {
+                        $scope.totalNilaiJabatan += res[0].data.data[i].nilaiJabatan;
 
                     }
-                    $scope.item.pirHitungan = 0 + "/" + $scope.totalNilaiJabatan;
+                    $scope.item.anggaranRemunerasi = res[1].data.data.anggaranTahun
+                    $scope.item.pir = res[1].data.data.anggaranBulan.toLocaleString('id-ID', {
+                        style: 'currency',
+                        currency: 'IDR'
+                    })
+                    $scope.item.pirHitungan = (res[1].data.data.anggaranBulan / $scope.totalNilaiJabatan).toLocaleString('id-ID', {
+                        style: 'currency',
+                        currency: 'IDR'
+                    })
                     $scope.dataSourcePenempatanEvaluasiJabatan = new kendo.data.DataSource({
-                        data: res.data.data,
+                        data: res[0].data.data,
                         pageSize: 10
                     });
-                });
+                }, (error) => {
+                    throw (error);
+                })
 
                 $scope.getDataPlafon();
 
@@ -151,9 +162,9 @@ define(['initialize'], function (initialize) {
                 $scope.item.pirHitunganUnformatted = $scope.item.pirHitungan;
 
                 let pirFormatted = $scope.item.pir.toLocaleString('id-ID', {
-                        style: 'currency',
-                        currency: 'IDR'
-                    }),
+                    style: 'currency',
+                    currency: 'IDR'
+                }),
                     pirHitunganFormatted = $scope.item.pirHitungan.toLocaleString('id-ID', {
                         style: 'currency',
                         currency: 'IDR'
@@ -169,6 +180,24 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.simpanEdit = () => {
+                let anggaran = {
+                    tahun: DateHelper.toTimeStamp(new Date),
+                    totalNilaiJabatan: $scope.totalNilaiJabatan,
+                    anggaranRemunTahun: $scope.item.anggaranRemunerasi,
+                    anggaranRemunBulan: $scope.item.pirUnformatted,
+                    poinIndeksRupiah: $scope.item.pirHitunganUnformatted,
+                    grade: {
+                        id: $scope.edit.grade
+                    },
+                    gajiHonorarium: $scope.edit.gaji,
+                    minInsentif: $scope.edit.minInsentif,
+                    maxInsentif: $scope.edit.maxInsentif,
+                    maxTotalRemunerasi: $scope.edit.totalRemunerasi,
+                    kdProfile: 0,
+                    statusEnabled: true,
+                    loginUserId: dataLogin.id,
+                    noRec: $scope.edit.noRec
+                }
 
                 let data = {
                     grade: $scope.edit.grade,
@@ -177,16 +206,20 @@ define(['initialize'], function (initialize) {
                     maxInsentif: $scope.edit.maxInsentif,
                     maxTotalRemunerasi: $scope.edit.totalRemunerasi,
                 }
-                ManageSdmNew.saveData(data, "sdm/save-plafon-remunerasi").then(res => {
+
+                $q.all([
+                    ManageSdmNew.saveData(anggaran, "iki-remunerasi/save-anggaran-remunerasi"),
+                    ManageSdmNew.saveData(data, "sdm/save-plafon-remunerasi")
+                ]).then(function (res) {
                     $scope.getDataPlafon();
                     $scope.closePopUp();
-
+                }, (error) => {
+                    throw (error);
                 })
             }
 
             $scope.simpanAllAnggaran = () => {
                 let dataSource = $scope.dataPlafon._data;
-                console.log(dataSource);
                 let dataSave = []
 
                 for (let i = 0; i < dataSource.length; i++) {
@@ -195,7 +228,7 @@ define(['initialize'], function (initialize) {
                         totalNilaiJabatan: $scope.totalNilaiJabatan,
                         anggaranRemunTahun: $scope.item.anggaranRemunerasi,
                         anggaranRemunBulan: $scope.item.pirUnformatted,
-                        poinindeksrupiah: $scope.item.pirHitunganUnformatted,
+                        poinIndeksRupiah: $scope.item.pirHitunganUnformatted,
                         grade: {
                             id: dataSource[i].grade
                         },
@@ -205,9 +238,9 @@ define(['initialize'], function (initialize) {
                         maxTotalRemunerasi: dataSource[i].maxTotalRemunerasi,
                         kdProfile: 0,
                         statusEnabled: true
-                    }, )
+                    })
                 }
-                // http://192.168.12.3:8080/jasamedika-sdm/iki-remunerasi/save-all-anggaran-remunerasi?loginUserId=29999
+
                 ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-all-anggaran-remunerasi?loginUserId=" + dataLogin.id).then(res => { })
             }
         }
