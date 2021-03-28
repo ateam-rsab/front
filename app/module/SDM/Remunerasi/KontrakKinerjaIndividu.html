@@ -30,86 +30,53 @@
             <i class="fa fa-search"></i>
         </md-button>
     </div>
-
-    <div class="grid_1" style="margin-top: 1.6em;">
+    <div class="grid_2" style="margin-top: 1.6em;">
         <md-button class="md-raised md-primary medium-button" ng-click="tambahIndikator()">
-            <span style="margin-right: 5px;">Pengajuan Indikator</span>
+            <span style="margin-right: 5px;">Ajukan Kontrak Kinerja</span>
             <i class="fa fa-file"></i>
         </md-button>
     </div>
 </div>
 
-<!-- <div class="grid_12">
-    <div kendo-grid k-data-source="dataSourceKontrakKinerja" k-selectable="'row'" options="optGridKontrakKinerja"
-        k-ng-model="selectedData"></div>
-</div> -->
-
 <div class="grid_12">
-    <h3>Kualitas</h3>
-    <div kendo-grid k-data-source="dataSourceKontrakKinerja.kualitas" k-selectable="'row'"
-        options="optGridKontrakKinerja" k-ng-model="selectedData"></div>
-</div>
-
-<div class="grid_12">
-    <h3>Kuantitas</h3>
+    <h3>Kuantitas (40%)</h3>
     <div kendo-grid k-data-source="dataSourceKontrakKinerja.kuantitas" k-selectable="'row'"
         options="optGridKontrakKinerja" k-ng-model="selectedData"></div>
 </div>
 
 <div class="grid_12">
-    <h3>Perilaku</h3>
+    <h3>Kualitas (30%)</h3>
+    <div kendo-grid k-data-source="dataSourceKontrakKinerja.kualitas" k-selectable="'row'"
+        options="optGridKontrakKinerja" k-ng-model="selectedData"></div>
+</div>
+
+<div class="grid_12">
+    <h3>Perilaku (30%)</h3>
     <div kendo-grid k-data-source="dataSourceKontrakKinerja.perilaku" k-selectable="'row'"
         options="optGridKontrakKinerja" k-ng-model="selectedData"></div>
 </div>
-<div kendo-window="popupTambah" k-title="'Tambah Data Kontrak Kinerja'" k-width="1200" k-visible="false"
+
+<div kendo-window="popupTambah" k-title="'Input Data Kontrak Kinerja'" k-width="1200" k-visible="false"
     k-on-open="win2visible= true" k-on-close="win2visible= false">
     <div class="panel panel-default container_12" style="padding: 0px 10px;">
-
         <md-card>
-            <!-- <div class="grid_12">
-                <div class="grid_4">
-                    <label><strong>Pegawai</strong></label>
-                    <input kendo-combo-box k-filter="'contains'" k-ng-model="item.pegawai"
-                        k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-data-source="listPegawai"
-                        k-on-change="getJabatanByIdPegawai()" />
-                </div>
-                <div class="grid_4">
-                    <label><strong>Jabatan</strong></label>
-                    <input kendo-combo-box k-filter="'contains'" k-ng-model="item.jabatan"
-                        k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-data-source="listJabatan" />
-                </div>
-            </div> -->
-
             <div class="grid_12">
-                <!-- <div class="grid_2">
-                    <label><strong>Bulan</strong></label>
-                    <input style="width: 100%;" k-options="monthSelectorOptions" k-ng-model="item.bulan"
-                        kendo-date-picker placeholer="mm-yyyy" k-format="'MM-yyyy'" />
-                </div> -->
-
-                <!-- <div class="grid_3">
-                    <label><strong>Jenis Indikator Kinerja</strong></label>
-                    <input kendo-combo-box k-filter="'contains'" k-ng-model="item.jenisIndikator"
-                        k-data-text-field="'jenisIndikator'" k-data-value-field="'id'"
-                        k-data-source="listJenisIndikator" k-on-change="getIndikatorKerja(item.jenisIndikator.id)" />
-                </div> -->
                 <div class="grid_6">
                     <label><strong>Indikator Kinerja</strong></label>
-                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.indikatorKerja.namaIndikator" />
-                    <!-- <input c-textbox  k-ng-model="item.indikatorKerja" disabled/> -->
+                    <input c-text-box type="input" filter="" class="k-textbox"
+                        ng-model="item.indikatorKerja.namaIndikator" ng-disabled="isNotEditable" />
                 </div>
-
                 <div class="grid_1">
                     <label><strong>Target</strong></label>
-                    <input c-text-box type="input" filter="numeric" class="k-textbox" ng-model="item.target" />
+                    <input c-text-box type="input" filter="numeric" class="k-textbox" ng-model="item.target"
+                        ng-disabled="isNotEditable" />
                 </div>
                 <div class="grid_1">
                     <label><strong>Bobot</strong></label>
-                    <input c-text-box type="input" filter="numeric" class="k-textbox" ng-model="item.bobot" />
+                    <input c-text-box type="input" filter="numeric" class="k-textbox" ng-model="item.bobot"
+                        ng-disabled="isNotEditable" />
                 </div>
-
-                <div class="grid_2">
-                    <!-- <input type="checkbox" id="eq1" class="k-checkbox" checked="checked"> -->
+                <div class="grid_2" ng-show="isVerifGranted">
                     <md-checkbox ng-model="item.statusVerif" aria-label="verified" style="margin-top:24px"
                         class="green">
                         Status Verifikasi
@@ -136,11 +103,9 @@
     </div>
 </div>
 
-
 <div kendo-window="popupTambahIndikator" k-title="'Tambah Data Kontrak Kinerja'" k-width="1200" k-visible="false"
     k-on-open="win2visible= true" k-on-close="win2visible= false">
     <div class="panel panel-default container_12" style="padding: 0px 10px;">
-
         <md-card>
             <div class="grid_12">
                 <div class="grid_2">
@@ -148,7 +113,6 @@
                     <input style="width: 100%;" k-options="monthSelectorOptions" k-ng-model="indikator.bulan"
                         kendo-date-picker placeholer="mm-yyyy" k-format="'MM-yyyy'" />
                 </div>
-
                 <div class="grid_4">
                     <label><strong>Jabatan</strong></label>
                     <input kendo-combo-box k-filter="'contains'" k-ng-model="indikator.jabatan"
@@ -186,13 +150,6 @@
                     <label><strong>Bobot</strong></label>
                     <input c-text-box type="input" filter="numeric" class="k-textbox" ng-model="indikator.bobot" />
                 </div>
-
-                <!-- <div class="grid_2">
-                    <md-checkbox ng-model="indikator.statusVerif" aria-label="verified" style="margin-top:24px"
-                        class="green">
-                        Status Verifikasi
-                    </md-checkbox>
-                </div> -->
             </div>
         </md-card>
 
@@ -219,4 +176,5 @@
         </div>
     </div>
 </div>
+
 <div ng-include='"../app/module/Shared/TemplateLoading"'></div>

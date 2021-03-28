@@ -64,6 +64,7 @@ define(['initialize'], function (initialize) {
                 for (var i = 0; i < res[2].data.data.data.length; i++) {
                     if (res[2].data.data.data[i] == ModelItem.getPegawai().id) {
                         $scope.isPegawaiSDM = true;
+                        break
                     }
                 };
                 $scope.isBebasValidasi = false;
