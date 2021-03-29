@@ -259,6 +259,7 @@ define(['initialize'], function (initialize) {
 
                     if ($scope.isDuplicated) {
                         toastr.warning("Indikator kinerja sudah tersedia!")
+                        $scope.isDuplicated = false
                         return
                     } else {
                         ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-master-indikator-kinerja").then(res => {

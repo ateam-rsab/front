@@ -1735,7 +1735,7 @@ define(['initialize'], function (initialize) {
                     }).then(function () {
                         $q.all([
                             ManageSdmNew.getListData("sdm/get-pegawai-atasan?id=" + dataItem.pegwaiId + "&idJabatan=" + dataItem.jabatanCetak.id),
-                            ManageSdm.getItem("service/list-generic/?view=Pegawai&select=id,namaLengkap,golonganPegawaiId&criteria=statusEnabled,id&values=true,(" + dataItem.pegwaiId + ")", true)
+                            ManageSdmNew.getListData("service/list-generic/?view=Pegawai&select=id,namaLengkap,golonganPegawaiId&criteria=statusEnabled,id&values=true,(" + dataItem.pegwaiId + ")", true)
                         ]).then(function (res) {
                             $scope.showAtasanDirut = false;
                             if (dataItem.jabatanCetak && res[1].data[0]) {
@@ -1831,7 +1831,7 @@ define(['initialize'], function (initialize) {
 
                 $q.all([
                     ManageSdmNew.getListData("sdm/get-pegawai-atasan?id=" + $scope.pegawai.id + "&idJabatan=" + e.id),
-                    ManageSdm.getItem("service/list-generic/?view=Pegawai&select=id,namaLengkap,golonganPegawaiId&criteria=statusEnabled,id&values=true,(" + $scope.pegawai.id + ")", true)
+                    ManageSdmNew.getListData("service/list-generic/?view=Pegawai&select=id,namaLengkap,golonganPegawaiId&criteria=statusEnabled,id&values=true,(" + $scope.pegawai.id + ")", true)
                 ]).then(function (res) {
                     $scope.showAtasanDirut = false;
                     if ($scope.currentData.jabatanCetak && res[1].data[0]) {

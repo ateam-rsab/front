@@ -314,6 +314,23 @@
         ]
     },
     {
+        "name": "Aplikasi Remunerasi",
+        "children": [
+            {
+                "name": "Kontrak Kinerja Individu",
+                "link": "#/KontrakKinerjaIndividu"
+            },
+            {
+                "name": "Verifikasi Catatan Kegiatan Harian",
+                "link": "#/VerifikasiCatatanKegiatanHarian"
+            }
+        ]
+    },
+    {
+        "name": "Dashboard Pencatatan Kinerja",
+        "link": "#/DashboardPencatatanKinerja"
+    },
+    {
         "name": "Aplikasi IT",
         "children": [
             {

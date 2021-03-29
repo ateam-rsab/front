@@ -164,10 +164,6 @@
                 "link": "#/InputLemburPegawaiUnitKerja"
             },
             {
-                "name": "Skoring Tindakan Medis",
-                "link": "#/SkoringTindakanMedis"
-            },
-            {
                 "name": "Verifikasi Uraian Tugas Bawahan",
                 "link": "#/VerifikasiUraianTugasPegawaiLogin"
             },
@@ -197,6 +193,27 @@
                 ]
             }
         ]
+    },
+    {
+        "name": "Aplikasi Remunerasi",
+        "children": [
+            {
+                "name": "Skoring Tindakan Medis",
+                "link": "#/SkoringTindakanMedis"
+            },
+            {
+                "name": "Kontrak Kinerja Individu",
+                "link": "#/KontrakKinerjaIndividu"
+            },
+            {
+                "name": "Verifikasi Catatan Kegiatan Harian",
+                "link": "#/VerifikasiCatatanKegiatanHarian"
+            }
+        ]
+    },
+    {
+        "name": "Dashboard Pencatatan Kinerja",
+        "link": "#/DashboardPencatatanKinerja"
     },
     {
         "name": "Aplikasi IT",

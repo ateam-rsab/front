@@ -144,26 +144,25 @@
                 "name": "Daftar Pemakaian Stok Ruangan",
                 "link": "#/DaftarPemakaianStokRuangan"
             }
-
         ]
     },
     {
         "name": "Penerimaan Barang Suplier",
         "children": [
-           {
-              "name": "Daftar Penerimaan Barang Supplier",
-              "link": "#/DaftarPenerimaanBarangSuplier"
-           },
-           {
-              "name": "Penerimaan Barang",
-              "link": "#/PenerimaanBarangSuplier"
-           },
-           {
-              "name": "Daftar Pemesanan Barang",
-              "link": "#/DaftarPemesananBarang"
-           }
+            {
+                "name": "Daftar Penerimaan Barang Supplier",
+                "link": "#/DaftarPenerimaanBarangSuplier"
+            },
+            {
+                "name": "Penerimaan Barang",
+                "link": "#/PenerimaanBarangSuplier"
+            },
+            {
+                "name": "Daftar Pemesanan Barang",
+                "link": "#/DaftarPemesananBarang"
+            }
         ]
-     },
+    },
     {
         "name": "SDM",
         "children": [
@@ -216,6 +215,23 @@
                 "link": "#/VerifikasiUraianTugasPegawaiLogin"
             }
         ]
+    },
+    {
+        "name": "Aplikasi Remunerasi",
+        "children": [
+            {
+                "name": "Kontrak Kinerja Individu",
+                "link": "#/KontrakKinerjaIndividu"
+            },
+            {
+                "name": "Verifikasi Catatan Kegiatan Harian",
+                "link": "#/VerifikasiCatatanKegiatanHarian"
+            }
+        ]
+    },
+    {
+        "name": "Dashboard Pencatatan Kinerja",
+        "link": "#/DashboardPencatatanKinerja"
     },
     {
         "name": "Tata Usaha",
