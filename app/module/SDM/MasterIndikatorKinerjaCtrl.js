@@ -216,8 +216,9 @@ define(['initialize'], function (initialize) {
 
             $scope.tambahData = () => {
                 $scope.isEdit = false
+                $scope.reset()
 
-                if ($scope.isPegawaiSDM) {
+                if ($scope.isPegawaiSDM && dataLogin.id != 29999) {
                     $scope.isChangeVerifyGranted = true
                 } else {
                     $scope.isChangeVerifyGranted = false
