@@ -371,7 +371,8 @@
     {
       "nameDep": "MasterAnggaranRemunerasiCtrl",
       "urlDep": "module/SDM/MasterAnggaranRemunerasiCtrl"
-    }, {
+    },
+    {
       "nameDep": "MasterIndikatorKinerjaCtrl",
       "urlDep": "module/SDM/MasterIndikatorKinerjaCtrl"
     },
@@ -808,20 +809,8 @@
       "urlDep": "module/SDM/Remunerasi/RekapitulasiEvaluasiJabatanCtrl"
     },
     {
-      "nameDep": "DashboardPencatatanKinerjaCtrl",
-      "urlDep": "module/SDM/Remunerasi/DashboardPencatatanKinerjaCtrl"
-    },
-    {
       "nameDep": "SkoringTindakanMedisCtrl",
       "urlDep": "module/SDM/Remunerasi/SkoringTindakanMedisCtrl"
-    },
-    {
-      "nameDep": "VerifikasiCatatanKegiatanHarianCtrl",
-      "urlDep": "module/SDM/Remunerasi/VerifikasiCatatanKegiatanHarianCtrl"
-    },
-    {
-      "nameDep": "KontrakKinerjaIndividuCtrl",
-      "urlDep": "module/SDM/Remunerasi/KontrakKinerjaIndividuCtrl"
     },
     {
       "nameDep": "RiwayatEvaluasiJabatanCtrl",
@@ -834,6 +823,18 @@
     {
       "nameDep": "MasterEvaluasiJabatanCtrl",
       "urlDep": "module/SDM/Remunerasi/MasterEvaluasiJabatanCtrl"
+    },
+    {
+      "nameDep": "DashboardPencatatanKinerjaCtrl",
+      "urlDep": "module/SDM/Remunerasi/DashboardPencatatanKinerjaCtrl"
+    },
+    {
+      "nameDep": "KontrakKinerjaIndividuCtrl",
+      "urlDep": "module/SDM/Remunerasi/KontrakKinerjaIndividuCtrl"
+    },
+    {
+      "nameDep": "VerifikasiCatatanKegiatanHarianCtrl",
+      "urlDep": "module/SDM/Remunerasi/VerifikasiCatatanKegiatanHarianCtrl"
     },
     {
       "nameDep": "SimulasiPendapatanCtrl",

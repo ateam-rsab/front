@@ -4612,10 +4612,10 @@
     ]
   },
   {
-    "name": "DashboardPencatatanKinerja",
-    "url": "/DashboardPencatatanKinerja",
-    "templateurl": "module/SDM/Remunerasi/DashboardPencatatanKinerja.html",
-    "controller": "DashboardPencatatanKinerjaCtrl",
+    "name": "RiwayatEvaluasiJabatan",
+    "url": "/RiwayatEvaluasiJabatan",
+    "templateurl": "module/SDM/Remunerasi/RiwayatEvaluasiJabatan.html",
+    "controller": "RiwayatEvaluasiJabatanCtrl",
     "deps": [
       {
         "module": "Services",
@@ -4640,6 +4640,54 @@
     "url": "/SkoringTindakanMedis",
     "templateurl": "module/SDM/Remunerasi/SkoringTindakanMedis.html",
     "controller": "SkoringTindakanMedisCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      }
+    ]
+  },
+  {
+    "name": "EvaluasiJabatanCtrl",
+    "url": "/EvaluasiJabatan",
+    "templateurl": "module/SDM/Remunerasi/EvaluasiJabatanList.html",
+    "controller": "EvaluasiJabatanCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      }
+    ]
+  },
+  {
+    "name": "MasterEvaluasiJabatanCtrl",
+    "url": "/MasterEvaluasiJabatan",
+    "templateurl": "module/SDM/Remunerasi/MasterEvaluasiJabatanList.html",
+    "controller": "MasterEvaluasiJabatanCtrl",
     "deps": [
       {
         "module": "Services",
@@ -4708,58 +4756,10 @@
     ]
   },
   {
-    "name": "RiwayatEvaluasiJabatan",
-    "url": "/RiwayatEvaluasiJabatan",
-    "templateurl": "module/SDM/Remunerasi/RiwayatEvaluasiJabatan.html",
-    "controller": "RiwayatEvaluasiJabatanCtrl",
-    "deps": [
-      {
-        "module": "Services",
-        "define": "Service"
-      },
-      {
-        "module": "LoginServices",
-        "define": "LoginService"
-      },
-      {
-        "module": "SdmService",
-        "define": "SdmService"
-      },
-      {
-        "module": "PegawaiService",
-        "define": "PegawaiService"
-      }
-    ]
-  },
-  {
-    "name": "EvaluasiJabatanCtrl",
-    "url": "/EvaluasiJabatan",
-    "templateurl": "module/SDM/Remunerasi/EvaluasiJabatanList.html",
-    "controller": "EvaluasiJabatanCtrl",
-    "deps": [
-      {
-        "module": "Services",
-        "define": "Service"
-      },
-      {
-        "module": "LoginServices",
-        "define": "LoginService"
-      },
-      {
-        "module": "SdmService",
-        "define": "SdmService"
-      },
-      {
-        "module": "PegawaiService",
-        "define": "PegawaiService"
-      }
-    ]
-  },
-  {
-    "name": "MasterEvaluasiJabatanCtrl",
-    "url": "/MasterEvaluasiJabatan",
-    "templateurl": "module/SDM/Remunerasi/MasterEvaluasiJabatanList.html",
-    "controller": "MasterEvaluasiJabatanCtrl",
+    "name": "DashboardPencatatanKinerja",
+    "url": "/DashboardPencatatanKinerja",
+    "templateurl": "module/SDM/Remunerasi/DashboardPencatatanKinerja.html",
+    "controller": "DashboardPencatatanKinerjaCtrl",
     "deps": [
       {
         "module": "Services",

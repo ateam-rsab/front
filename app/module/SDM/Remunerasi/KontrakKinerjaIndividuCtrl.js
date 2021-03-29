@@ -236,7 +236,6 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.closePopUp = () => {
-                // $scope.reset();
                 $scope.popupTambah.close();
             }
 
@@ -285,14 +284,6 @@ define(['initialize'], function (initialize) {
                 $scope.item.target = dataItem.target;
                 $scope.item.bobot = dataItem.bobot;
                 $scope.item.statusVerif = dataItem.isStatusVerifikasi;
-                // $scope.item.pegawai = {
-                //     id: dataItem.idPegawai,
-                //     namaLengkap: dataItem.namaPegawai
-                // }
-                // $scope.item.jabatan = {
-                //     id: dataItem.idJabatan,
-                //     namaJabatan: dataItem.namaJabatan
-                // }
                 $scope.item.indikatorKerja = {
                     id: dataItem.indikatorId,
                     namaIndikator: dataItem.namaIndikator
@@ -309,9 +300,6 @@ define(['initialize'], function (initialize) {
                     .cancel('Tidak');
                 $mdDialog.show(confirm).then(function () {
                     $scope.simpanData('delete');
-                }, function () {
-                    // $scope.reset();
-                    // console.error('Tidak jadi hapus');
                 });
             }
 
@@ -321,8 +309,6 @@ define(['initialize'], function (initialize) {
                 $scope.item.target = null;
                 $scope.item.bobot = null;
                 $scope.item.statusVerif = false;
-                // $scope.item.pegawai = null;
-                // $scope.item.jabatan = null;
                 $scope.item.indikatorKerja = null;
             }
         }

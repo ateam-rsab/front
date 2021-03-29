@@ -1424,10 +1424,18 @@ define(['initialize'], function (initialize) {
                 var isValid = ModelItem.setValidation($scope, listRawRequired);
                 if (isValid.status) {
                     var idKaRuangan = data.kepalaRuangan ? data.kepalaRuangan.id : "";
-                    if (data.isCutiLuarNegeri == "1") {
-                        var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCutiLuarNegeri?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + (data.atasanLangsung ? data.atasanLangsung.id : "") + "&idAtasan2=" + (data.pejabatPenilai ? data.pejabatPenilai.id : "") + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + (data.jabatanAtasanLangsung ? data.jabatanAtasanLangsung.id : "") + "&idJabatanAtasan2=" + (data.jabatanPejabatPenilai ? data.jabatanPejabatPenilai.id : ""));
+                    if ($scope.isGolonganPembina) {
+                        if (data.isCutiLuarNegeri == "1") {
+                            var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCutiLuarNegeriPembina?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + (data.atasanLangsung ? data.atasanLangsung.id : "") + "&idAtasan2=" + (data.pejabatPenilai ? data.pejabatPenilai.id : "") + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + (data.jabatanAtasanLangsung ? data.jabatanAtasanLangsung.id : "") + "&idJabatanAtasan2=" + (data.jabatanPejabatPenilai ? data.jabatanPejabatPenilai.id : "") + "&atasanDireksi=" + (data.atasanDirut ? data.atasanDirut : ""));
+                        } else {
+                            var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCutiPembina?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + (data.atasanLangsung ? data.atasanLangsung.id : "") + "&idAtasan2=" + (data.pejabatPenilai ? data.pejabatPenilai.id : "") + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + (data.jabatanAtasanLangsung ? data.jabatanAtasanLangsung.id : "") + "&idJabatanAtasan2=" + (data.jabatanPejabatPenilai ? data.jabatanPejabatPenilai.id : "") + "&atasanDireksi=" + (data.atasanDirut ? data.atasanDirut : ""));
+                        }
                     } else {
-                        var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCuti?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + (data.atasanLangsung ? data.atasanLangsung.id : "") + "&idAtasan2=" + (data.pejabatPenilai ? data.pejabatPenilai.id : "") + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + (data.jabatanAtasanLangsung ? data.jabatanAtasanLangsung.id : "") + "&idJabatanAtasan2=" + (data.jabatanPejabatPenilai ? data.jabatanPejabatPenilai.id : ""));
+                        if (data.isCutiLuarNegeri == "1") {
+                            var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCutiLuarNegeri?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + (data.atasanLangsung ? data.atasanLangsung.id : "") + "&idAtasan2=" + (data.pejabatPenilai ? data.pejabatPenilai.id : "") + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + (data.jabatanAtasanLangsung ? data.jabatanAtasanLangsung.id : "") + "&idJabatanAtasan2=" + (data.jabatanPejabatPenilai ? data.jabatanPejabatPenilai.id : ""));
+                        } else {
+                            var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCuti?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + (data.atasanLangsung ? data.atasanLangsung.id : "") + "&idAtasan2=" + (data.pejabatPenilai ? data.pejabatPenilai.id : "") + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + (data.jabatanAtasanLangsung ? data.jabatanAtasanLangsung.id : "") + "&idJabatanAtasan2=" + (data.jabatanPejabatPenilai ? data.jabatanPejabatPenilai.id : ""));
+                        }
                     }
 
                     window.open(urlLaporan, "halamanCetakDua");
@@ -1476,10 +1484,18 @@ define(['initialize'], function (initialize) {
                     } else if (data.statusPegawai === "Cuti Alasan Penting") {
                         var idKaRuangan = data.kepalaRuangan ? data.kepalaRuangan.id : "";
                         var urlSuratIzinSementara = cetakHelper.openURLReporting("reporting/suratIzinSementara?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + (data.atasanLangsung ? data.atasanLangsung.id : (data.pejabatPenilai ? data.pejabatPenilai.id : "")) + "&idAtasan2=" + (data.pejabatPenilai ? data.pejabatPenilai.id : "") + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + (data.jabatanAtasanLangsung ? data.jabatanAtasanLangsung.id : (data.jabatanPejabatPenilai ? data.jabatanPejabatPenilai.id : "")) + "&idJabatanAtasan2=" + (data.jabatanPejabatPenilai ? data.jabatanPejabatPenilai.id : ""));
-                        if (data.isCutiLuarNegeri == "1") {
-                            var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCutiLuarNegeri?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + (data.atasanLangsung ? data.atasanLangsung.id : "") + "&idAtasan2=" + (data.pejabatPenilai ? data.pejabatPenilai.id : "") + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + (data.jabatanAtasanLangsung ? data.jabatanAtasanLangsung.id : "") + "&idJabatanAtasan2=" + (data.jabatanPejabatPenilai ? data.jabatanPejabatPenilai.id : ""));
+                        if ($scope.isGolonganPembina) {
+                            if (data.isCutiLuarNegeri == "1") {
+                                var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCutiLuarNegeriPembina?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + (data.atasanLangsung ? data.atasanLangsung.id : "") + "&idAtasan2=" + (data.pejabatPenilai ? data.pejabatPenilai.id : "") + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + (data.jabatanAtasanLangsung ? data.jabatanAtasanLangsung.id : "") + "&idJabatanAtasan2=" + (data.jabatanPejabatPenilai ? data.jabatanPejabatPenilai.id : "") + "&atasanDireksi=" + (data.atasanDirut ? data.atasanDirut : ""));
+                            } else {
+                                var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCutiPembina?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + (data.atasanLangsung ? data.atasanLangsung.id : "") + "&idAtasan2=" + (data.pejabatPenilai ? data.pejabatPenilai.id : "") + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + (data.jabatanAtasanLangsung ? data.jabatanAtasanLangsung.id : "") + "&idJabatanAtasan2=" + (data.jabatanPejabatPenilai ? data.jabatanPejabatPenilai.id : "") + "&atasanDireksi=" + (data.atasanDirut ? data.atasanDirut : ""));
+                            }
                         } else {
-                            var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCuti?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + (data.atasanLangsung ? data.atasanLangsung.id : "") + "&idAtasan2=" + (data.pejabatPenilai ? data.pejabatPenilai.id : "") + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + (data.jabatanAtasanLangsung ? data.jabatanAtasanLangsung.id : "") + "&idJabatanAtasan2=" + (data.jabatanPejabatPenilai ? data.jabatanPejabatPenilai.id : ""));
+                            if (data.isCutiLuarNegeri == "1") {
+                                var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCutiLuarNegeri?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + (data.atasanLangsung ? data.atasanLangsung.id : "") + "&idAtasan2=" + (data.pejabatPenilai ? data.pejabatPenilai.id : "") + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + (data.jabatanAtasanLangsung ? data.jabatanAtasanLangsung.id : "") + "&idJabatanAtasan2=" + (data.jabatanPejabatPenilai ? data.jabatanPejabatPenilai.id : ""));
+                            } else {
+                                var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCuti?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + (data.atasanLangsung ? data.atasanLangsung.id : "") + "&idAtasan2=" + (data.pejabatPenilai ? data.pejabatPenilai.id : "") + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + (data.jabatanAtasanLangsung ? data.jabatanAtasanLangsung.id : "") + "&idJabatanAtasan2=" + (data.jabatanPejabatPenilai ? data.jabatanPejabatPenilai.id : ""));
+                            }
                         }
                         $scope.winDialog.close();
                         delete $scope.currentData.pegawai1;
@@ -1503,17 +1519,25 @@ define(['initialize'], function (initialize) {
                         }
                     } else if (data.statusPegawai === "Tugas Luar") {
                         var idKaRuangan = data.kepalaRuangan ? data.kepalaRuangan.id : "";
-                        var urlLaporan = cetakHelper.openURLReporting("reporting/suratTugas?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + data.atasanLangsung.id + "&idAtasan2=" + data.pejabatPenilai.id + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + data.jabatanAtasanLangsung.id + "&idJabatanAtasan2=" + data.jabatanPejabatPenilai.id);
+                        var urlLaporan = cetakHelper.openURLReporting("reporting/suratTugas?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + (data.atasanLangsung ? data.atasanLangsung.id : "") + "&idAtasan2=" + (data.pejabatPenilai ? data.pejabatPenilai.id : "") + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + (data.jabatanAtasanLangsung ? data.jabatanAtasanLangsung.id : ""))
                         $scope.winDialog.close();
                         delete $scope.currentData.pegawai1;
                         delete $scope.currentData.pegawai2;
                         window.open(urlLaporan, "halamanCetak", "width=800, height=600");
                     } else {
                         var idKaRuangan = data.kepalaRuangan ? data.kepalaRuangan.id : "";
-                        if (data.isCutiLuarNegeri == "1") {
-                            var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCutiLuarNegeri?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + (data.atasanLangsung ? data.atasanLangsung.id : "") + "&idAtasan2=" + (data.pejabatPenilai ? data.pejabatPenilai.id : "") + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + (data.jabatanAtasanLangsung ? data.jabatanAtasanLangsung.id : "") + "&idJabatanAtasan2=" + (data.jabatanPejabatPenilai ? data.jabatanPejabatPenilai.id : ""));
+                        if ($scope.isGolonganPembina) {
+                            if (data.isCutiLuarNegeri == "1") {
+                                var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCutiLuarNegeriPembina?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + (data.atasanLangsung ? data.atasanLangsung.id : "") + "&idAtasan2=" + (data.pejabatPenilai ? data.pejabatPenilai.id : "") + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + (data.jabatanAtasanLangsung ? data.jabatanAtasanLangsung.id : "") + "&idJabatanAtasan2=" + (data.jabatanPejabatPenilai ? data.jabatanPejabatPenilai.id : "") + "&atasanDireksi=" + (data.atasanDirut ? data.atasanDirut : ""));
+                            } else {
+                                var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCutiPembina?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + (data.atasanLangsung ? data.atasanLangsung.id : "") + "&idAtasan2=" + (data.pejabatPenilai ? data.pejabatPenilai.id : "") + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + (data.jabatanAtasanLangsung ? data.jabatanAtasanLangsung.id : "") + "&idJabatanAtasan2=" + (data.jabatanPejabatPenilai ? data.jabatanPejabatPenilai.id : "") + "&atasanDireksi=" + (data.atasanDirut ? data.atasanDirut : ""));
+                            }
                         } else {
-                            var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCuti?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + (data.atasanLangsung ? data.atasanLangsung.id : "") + "&idAtasan2=" + (data.pejabatPenilai ? data.pejabatPenilai.id : "") + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + (data.jabatanAtasanLangsung ? data.jabatanAtasanLangsung.id : "") + "&idJabatanAtasan2=" + (data.jabatanPejabatPenilai ? data.jabatanPejabatPenilai.id : ""));
+                            if (data.isCutiLuarNegeri == "1") {
+                                var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCutiLuarNegeri?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + (data.atasanLangsung ? data.atasanLangsung.id : "") + "&idAtasan2=" + (data.pejabatPenilai ? data.pejabatPenilai.id : "") + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + (data.jabatanAtasanLangsung ? data.jabatanAtasanLangsung.id : "") + "&idJabatanAtasan2=" + (data.jabatanPejabatPenilai ? data.jabatanPejabatPenilai.id : ""));
+                            } else {
+                                var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCuti?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + (data.atasanLangsung ? data.atasanLangsung.id : "") + "&idAtasan2=" + (data.pejabatPenilai ? data.pejabatPenilai.id : "") + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + (data.jabatanAtasanLangsung ? data.jabatanAtasanLangsung.id : "") + "&idJabatanAtasan2=" + (data.jabatanPejabatPenilai ? data.jabatanPejabatPenilai.id : ""));
+                            }
                         }
                         $scope.winDialog.close();
                         delete $scope.currentData.pegawai1;
@@ -1709,32 +1733,52 @@ define(['initialize'], function (initialize) {
                     }, function (error) {
                         throw error;
                     }).then(function () {
-                        ManageSdmNew.getListData("sdm/get-pegawai-atasan?id=" + dataItem.pegwaiId + "&idJabatan=" + dataItem.jabatanCetak.id).then(function (res) {
-                            if (dataItem.jabatanCetak) {
-                                if (dataItem.jabatanCetak.levelJabatan > 3) {
-                                    if (res.data.data.length > 0) {
-                                        dataItem.atasanLangsung = undefined
-                                        dataItem.pejabatPenilai = {
-                                            id: res.data.data[0].idAtasanPejabatPenilai,
-                                            namaLengkap: res.data.data[0].namaAtasanPejabatPenilai
-                                        }
-                                    }
-                                    $scope.showPejabatPenilai = true;
-                                    $scope.hideAtasanLangsung = true;
-                                } else {
-                                    if (res.data.data.length > 0) {
+                        $q.all([
+                            ManageSdmNew.getListData("sdm/get-pegawai-atasan?id=" + dataItem.pegwaiId + "&idJabatan=" + dataItem.jabatanCetak.id),
+                            ManageSdm.getItem("service/list-generic/?view=Pegawai&select=id,namaLengkap,golonganPegawaiId&criteria=statusEnabled,id&values=true,(" + dataItem.pegwaiId + ")", true)
+                        ]).then(function (res) {
+                            $scope.showAtasanDirut = false;
+                            if (dataItem.jabatanCetak && res[1].data[0]) {
+                                if (res[1].data[0].golonganPegawaiId < 6 && res[1].data[0].golonganPegawaiId != null) {
+                                    $scope.isGolonganPembina = true
+                                    if (res[0].data.data.length > 0) {
                                         dataItem.atasanLangsung = {
-                                            id: res.data.data[0].idAtasanLangsung,
-                                            namaLengkap: res.data.data[0].namaAtasanLangsung
+                                            id: res[0].data.data[0].idAtasanLangsung,
+                                            namaLengkap: res[0].data.data[0].namaAtasanLangsung
                                         };
                                         dataItem.pejabatPenilai = undefined
                                     }
-                                    $scope.showPejabatPenilai = false;
+                                    // Pengajuan cuti oleh dirut
+                                    if (dataItem.jabatanCetak.id == 896) {
+                                        $scope.showPejabatPenilai = false;
+                                        $scope.showAtasanDirut = true;
+
+                                        $scope.hideAtasanLangsung = true;
+                                        dataItem.atasanLangsung = undefined
+                                    } else {
+                                        $scope.showPejabatPenilai = false;
+                                        $scope.hideAtasanLangsung = false;
+                                    }
+                                } else {
+                                    $scope.isGolonganPembina = false
+                                    if (res[0].data.data.length > 0) {
+                                        dataItem.atasanLangsung = {
+                                            id: res[0].data.data[0].idAtasanLangsung,
+                                            namaLengkap: res[0].data.data[0].namaAtasanLangsung
+                                        };
+                                        dataItem.pejabatPenilai = {
+                                            id: res[0].data.data[0].idAtasanPejabatPenilai,
+                                            namaLengkap: res[0].data.data[0].namaAtasanPejabatPenilai
+                                        }
+                                    }
+                                    $scope.showPejabatPenilai = true;
                                     $scope.hideAtasanLangsung = false;
                                 }
                             }
 
                             $scope.loadWindow(dataItem);
+                        }, (error) => {
+                            throw (error);
                         })
                     })
                 } else {
@@ -1785,30 +1829,50 @@ define(['initialize'], function (initialize) {
             $scope.$watch('currentData.jabatanCetak', function (e) {
                 if (!e) return;
 
-                ManageSdmNew.getListData("sdm/get-pegawai-atasan?id=" + $scope.pegawai.id + "&idJabatan=" + e.id).then(function (res) {
-                    if ($scope.currentData.jabatanCetak) {
-                        if ($scope.currentData.jabatanCetak.levelJabatan > 3) {
-                            if (res.data.data.length > 0) {
-                                $scope.currentData.atasanLangsung = undefined;
-                                $scope.currentData.pejabatPenilai = {
-                                    id: res.data.data[0].idAtasanPejabatPenilai,
-                                    namaLengkap: res.data.data[0].namaAtasanPejabatPenilai
-                                }
-                            }
-                            $scope.showPejabatPenilai = true;
-                            $scope.hideAtasanLangsung = true;
-                        } else {
-                            if (res.data.data.length > 0) {
+                $q.all([
+                    ManageSdmNew.getListData("sdm/get-pegawai-atasan?id=" + $scope.pegawai.id + "&idJabatan=" + e.id),
+                    ManageSdm.getItem("service/list-generic/?view=Pegawai&select=id,namaLengkap,golonganPegawaiId&criteria=statusEnabled,id&values=true,(" + $scope.pegawai.id + ")", true)
+                ]).then(function (res) {
+                    $scope.showAtasanDirut = false;
+                    if ($scope.currentData.jabatanCetak && res[1].data[0]) {
+                        if (res[1].data[0].golonganPegawaiId < 6 && res[1].data[0].golonganPegawaiId != null) {
+                            $scope.isGolonganPembina = true
+                            if (res[0].data.data.length > 0) {
                                 $scope.currentData.atasanLangsung = {
-                                    id: res.data.data[0].idAtasanLangsung,
-                                    namaLengkap: res.data.data[0].namaAtasanLangsung
+                                    id: res[0].data.data[0].idAtasanLangsung,
+                                    namaLengkap: res[0].data.data[0].namaAtasanLangsung
                                 };
                                 $scope.currentData.pejabatPenilai = undefined;
                             }
-                            $scope.showPejabatPenilai = false;
+                            // Pengajuan cuti oleh dirut
+                            if ($scope.currentData.jabatanCetak.id == 896) {
+                                $scope.showPejabatPenilai = false;
+                                $scope.showAtasanDirut = true;
+
+                                $scope.hideAtasanLangsung = true;
+                                $scope.currentData.atasanLangsung = undefined
+                            } else {
+                                $scope.showPejabatPenilai = false;
+                                $scope.hideAtasanLangsung = false;
+                            }
+                        } else {
+                            $scope.isGolonganPembina = false
+                            if (res[0].data.data.length > 0) {
+                                $scope.currentData.atasanLangsung = {
+                                    id: res[0].data.data[0].idAtasanLangsung,
+                                    namaLengkap: res[0].data.data[0].namaAtasanLangsung
+                                };
+                                $scope.currentData.pejabatPenilai = {
+                                    id: res[0].data.data[0].idAtasanPejabatPenilai,
+                                    namaLengkap: res[0].data.data[0].namaAtasanPejabatPenilai
+                                }
+                            }
+                            $scope.showPejabatPenilai = true;
                             $scope.hideAtasanLangsung = false;
                         }
                     }
+                }, (error) => {
+                    throw (error);
                 })
             })
 

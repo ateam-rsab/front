@@ -668,27 +668,6 @@ define(['initialize'], function (initialize) {
                 }
             }
 
-            // $scope.showDataDeleting = () => {
-            //     let gridMapping = $("#gridConfirmMapping").data("kendoGrid");
-            //     $scope.showTanggalBerlaku = false;
-            //     let dataTerpilih = [];
-            //     if (!dataTerpilih) {
-            //         toastr.warning("Harap pilih data terlebih dahulu!", "Perhatian!");
-            //         return;
-            //     }
-            //     for (let i = 0; i < $scope.dataSourceJabatan._data.length; i++) {
-            //         if ($scope.dataSourceJabatan._data[i].statusPilih) {
-            //             dataTerpilih.push($scope.dataSourceJabatan._data[i]);
-            //         }
-            //     }
-            //     console.log(dataTerpilih);
-            //     $scope.dataSourceConfirmMapping = new kendo.data.DataSource({
-            //         data: dataTerpilih,
-            //         pageSize: 100,
-            //     });
-            //     $scope.popupConfirmMapping.open().center();
-            // }
-
             $scope.selectRow = function (dataItem) {
                 let dataSelect = _.find($scope.dataSourceJabatan._data, (data) => {
                     return data.jabatanId == dataItem.jabatanId;
