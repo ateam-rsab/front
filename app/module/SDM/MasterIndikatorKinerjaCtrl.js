@@ -259,7 +259,6 @@ define(['initialize'], function (initialize) {
 
                     if ($scope.isDuplicated) {
                         toastr.warning("Indikator kinerja sudah tersedia!")
-                        $scope.isDuplicated = false
                         return
                     } else {
                         ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-master-indikator-kinerja").then(res => {
@@ -315,6 +314,8 @@ define(['initialize'], function (initialize) {
                 ManageSdmNew.getListData("iki-remunerasi/get-duplicate-indikator-kinerja?idIndikator=" + ($scope.item.idMasterKinerja ? $scope.item.idMasterKinerja : "") + "&namaIndikator=" + encodeURIComponent($scope.item.namaIndikator).replace(/%20/g, "+")).then(res => {
                     if (res.data.data.length > 0) {
                         $scope.isDuplicated = true
+                    } else {
+                        $scope.isDuplicated = false
                     }
                 })
             })
