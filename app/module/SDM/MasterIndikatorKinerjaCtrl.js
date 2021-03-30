@@ -65,6 +65,11 @@ define(['initialize'], function (initialize) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
 
+                if (!dataItem.isStatusVerifikasi) {
+                    toastr.warning("Indikator belum terverifikasi!","Peringatan")
+                    return
+                }
+
                 // console.log(dataItem);
                 $scope.mapping = dataItem;
                 $scope.popUpMapping.open().center();
@@ -84,7 +89,7 @@ define(['initialize'], function (initialize) {
 
                 if (dataLogin.id == 29999 && dataItem.isStatusVerifikasi) {
                     $scope.isChangeVerifyGranted = true
-                } else if ($scope.isPegawaiSDM && dataLogin.id != 29999 && !dataItem.isStatusVerifikasi) {
+                } else if ($scope.isPegawaiSDM) {
                     $scope.isChangeVerifyGranted = true
                 } else {
                     $scope.isChangeVerifyGranted = false
@@ -181,7 +186,7 @@ define(['initialize'], function (initialize) {
 
             $scope.init = () => {
                 $q.all([
-                    ManageSdmNew.getListData("service/list-generic/?view=SatuanIndikator&select=id,satuanIndikator&criteria=statusEnabled&values=true&order=satuanIndikator:asc"),
+                    ManageSdmNew.getListData("service/list-generic/?view=SatuanIndikator&select=id,satuanIndikator&criteria=statusEnabled,id&values=true,!1&order=satuanIndikator:asc"),
                     ManageSdmNew.getListData("service/list-generic/?view=JenisJabatan&select=id,jenisJabatan&criteria=statusEnabled,id&values=true,!0"),
                     ManageSdmNew.getListData("pegawai/get-pegawai-sdm-for-cred")
                 ]).then(function (res) {
