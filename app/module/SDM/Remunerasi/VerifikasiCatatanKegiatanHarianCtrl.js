@@ -52,7 +52,7 @@ define(['initialize'], function (initialize) {
                     }],
                 }
 
-                ManageSdmNew.getListData("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true&order=namaLengkap:asc").then((res) => {
+                ManageSdmNew.getListData("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled,id&values=true,(1;10;14)&order=namaLengkap:asc").then((res) => {
                     $scope.listPegawai = res.data;
                 });
             }
@@ -115,6 +115,12 @@ define(['initialize'], function (initialize) {
                     // console.error('Tidak jadi verif');
                 });
             }
+
+            $scope.$watch('item.srcPegawai', function (e) {
+                if (!e) return;
+
+                $scope.item.srcJabatan = null
+            })
         }
     ])
 });

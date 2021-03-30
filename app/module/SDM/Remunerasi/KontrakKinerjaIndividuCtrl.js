@@ -311,6 +311,12 @@ define(['initialize'], function (initialize) {
                 $scope.item.statusVerif = false;
                 $scope.item.indikatorKerja = null;
             }
+
+            $scope.$watch('item.pegawai', function (e) {
+                if (!e) return;
+
+                $scope.item.jabatan = null
+            })
         }
     ])
 });
