@@ -2402,10 +2402,6 @@
         "name": "SDM",
         "children": [
             {
-                "name": "Presensi Pegawai",
-                "link": "#/PresensiPegawai"
-            },
-            {
                 "name": "Data Pegawai Mitra",
                 "children": [
                     {

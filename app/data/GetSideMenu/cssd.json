@@ -325,15 +325,6 @@
         ]
     },
     {
-        "name": "Aplikasi IT",
-        "children": [
-            {
-                "name": "Permintaan Perbaikan dari Ruangan",
-                "link": "#/RevPermintaanPerbaikandariRuanganITNew"
-            }
-        ]
-    },
-    {
         "name": "Aplikasi Remunerasi",
         "children": [
             {
@@ -349,6 +340,15 @@
     {
         "name": "Dashboard Pencatatan Kinerja",
         "link": "#/DashboardPencatatanKinerja"
+    },
+    {
+        "name": "Aplikasi IT",
+        "children": [
+            {
+                "name": "Permintaan Perbaikan dari Ruangan",
+                "link": "#/RevPermintaanPerbaikandariRuanganITNew"
+            }
+        ]
     },
     {
         "name": "IP3RS",

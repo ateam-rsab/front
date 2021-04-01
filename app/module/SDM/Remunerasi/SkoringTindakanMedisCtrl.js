@@ -38,7 +38,7 @@ define(['initialize'], function (initialize) {
                     width: 120
                 }, {
                     field: "namaProduk",
-                    title: "<h3>Tindakan</h3>",
+                    title: "<h3>Acuan Tindakan<br/>Pelayanan</h3>",
                     width: 150
                     // }, {
                     //     field: "unitKerja",
@@ -46,7 +46,7 @@ define(['initialize'], function (initialize) {
                     //     width: 150
                 }, {
                     field: "detailProduk",
-                    title: "<h3>Rincian Tindakan</h3>",
+                    title: "<h3>Tindakan Untuk<br/>Skoring</h3>",
                     width: 170
                 }, {
                     field: "skor",

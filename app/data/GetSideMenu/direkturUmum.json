@@ -1344,6 +1344,23 @@
         ]
     },
     {
+        "name": "Aplikasi Remunerasi",
+        "children": [
+            {
+                "name": "Kontrak Kinerja Individu",
+                "link": "#/KontrakKinerjaIndividu"
+            },
+            {
+                "name": "Verifikasi Catatan Kegiatan Harian",
+                "link": "#/VerifikasiCatatanKegiatanHarian"
+            }
+        ]
+    },
+    {
+        "name": "Dashboard Pencatatan Kinerja",
+        "link": "#/DashboardPencatatanKinerja"
+    },
+    {
         "name": "Tata Usaha",
         "children": [
             {
@@ -1396,57 +1413,6 @@
                 "link": "#/VerifikasiTerima"
             }
         ]
-    },
-    {
-        "name": "Aplikasi Remunerasi",
-        "children": [
-            {
-                "name": "Master",
-                "children": [
-                    {
-                        "name": "Evaluasi Jabatan",
-                        "link": "#/EvaluasiJabatan"
-                    },
-                    {
-                        "name": "Rekapitulasi Evaluasi Jabatan",
-                        "link": "#/RekapitulasiEvaluasiJabatan"
-                    },
-                    {
-                        "name": "Master Anggaran Remunerasi",
-                        "link": "#/MasterAnggaranRemunerasi"
-                    },
-                    {
-                        "name": "Master Satuan Indikator",
-                        "link": "#/MasterSatuanIndikator"
-                    },
-                    {
-                        "name": "Master Indikator Kinerja",
-                        "link": "#/MasterIndikatorKinerja"
-                    }
-                ]
-            },
-            {
-                "name": "Transaksi",
-                "children": [
-                    {
-                        "name": "Skoring Tindakan Medis",
-                        "link": "#/SkoringTindakanMedis"
-                    },
-                    {
-                        "name": "Kontrak Kinerja Individu",
-                        "link": "#/KontrakKinerjaIndividu"
-                    },
-                    {
-                        "name": "Verifikasi Catatan Kegiatan Harian",
-                        "link": "#/VerifikasiCatatanKegiatanHarian"
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "name": "Dashboard Pencatatan Kinerja",
-        "link": "#/DashboardPencatatanKinerja"
     },
     {
         "name": "Setting",

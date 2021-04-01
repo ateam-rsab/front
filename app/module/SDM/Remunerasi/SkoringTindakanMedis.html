@@ -21,14 +21,14 @@
             k-data-value-field="'id'" k-data-source="listRuangan" k-on-change="getProduk(item.srcRuangan.id)" />
     </div>
     <div class="grid_4">
-        <label><strong>Tindakan</strong></label>
+        <label><strong>Acuan Tindakan Pelayanan</strong></label>
         <input kendo-combo-box k-filter="'contains'" k-ng-model="item.srcNamaProduk" k-data-text-field="'namaProduk'"
             k-data-value-field="'id'" k-data-source="listNamaProduk" />
     </div>
 </div>
 <div class="grid_12">
     <div class="grid_5">
-        <label><strong>Rincian Tindakan</strong></label>
+        <label><strong>Tindakan Untuk Skoring</strong></label>
         <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.srcDetailTindakan" />
     </div>
     <div class="grid_3">
@@ -75,20 +75,20 @@
                     </div>
                 </div>
                 <div class="grid_12" style="margin-left: 6px; width: 98.5%;" ng-hide="isEdit">
-                    <label><strong>Tindakan</strong></label>
+                    <label><strong>Acuan Tindakan Pelayanan</strong></label>
                     <input kendo-combo-box k-filter="'contains'" k-ng-model="item.namaProduk"
                         k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-data-source="listNamaProduk"
                         ng-disabled="isEdit" />
                 </div>
                 <div class="grid_12" style="margin-top: 6px; margin-left: 6px; width: 98.5%;" ng-show="isEdit">
-                    <label><strong>Tindakan</strong></label>
+                    <label><strong>Acuan Tindakan Pelayanan</strong></label>
                     <input kendo-combo-box k-filter="'contains'" k-ng-model="item.namaProduk"
                         k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-data-source="listNamaProduk"
                         ng-disabled="isEdit" />
                 </div>
                 <div class="grid_12">
                     <div class="grid_9">
-                        <label><strong>Rincian Tindakan</strong></label>
+                        <label><strong>Tindakan Untuk Skoring</strong></label>
                         <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.detailTindakan"
                             ng-disabled="isVerifStaf" />
                     </div>
