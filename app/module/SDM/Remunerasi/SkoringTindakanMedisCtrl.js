@@ -279,7 +279,7 @@ define(['initialize'], function (initialize) {
                     }
                     // console.table(dataSave);
 
-                    if ($scope.isDuplicated) {
+                    if ($scope.isDuplicated && method != 'delete') {
                         toastr.warning("Data mapping skoring sudah tersedia!")
                         return
                     } else {
