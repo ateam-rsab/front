@@ -53,9 +53,9 @@ define(['initialize'], function (initialize) {
                 //     objectruanganlastfk = CachePindah;
                 //     $scope.cacheruanganLast=objectruanganlastfk;
                 manageServicePhp.getDataTableTransaksi("pindahpasien/get-pasien-bynorec/" +
-                        $state.params.norecPD +
-                        "/" +
-                        $state.params.norecAPD)
+                    $state.params.norecPD +
+                    "/" +
+                    $state.params.norecAPD)
                     .then(function (e) {
                         $scope.isRouteLoading = false;
                         $scope.item.pasien = e.data[0];
@@ -63,11 +63,26 @@ define(['initialize'], function (initialize) {
                 //   }
             }
 
+            /**
+             * 
+             * @param {*} id adalah id ruangan yang dipilih
+             * 
+             * @return daftar kelas dengan perubahan :
+             * 1. per bulan April 2021 Kelas VIP A dan VIP B tidak dapat dipilih lagi karena sudah gabung menjadi VIP saja
+             */
             $scope.pilihRuangan = function (id) {
                 var ruanganId = id;
                 manageServicePhp.getDataTableTransaksi("registrasipasien/get-kelasbyruangan?idRuangan=" + ruanganId)
                     .then(function (dat) {
-                        $scope.listKelas = dat.data.kelas;
+                        var tempListKelas = []
+                        for (let i = 0; i < dat.data.kelas.length; i++) {
+                            if (dat.data.kelas[i].id != 5 && dat.data.kelas[i].id != 8) {
+                                tempListKelas.push(dat.data.kelas[i])
+                            }
+
+                        }
+
+                        $scope.listKelas = tempListKelas;
                     });
             }
 
@@ -110,7 +125,7 @@ define(['initialize'], function (initialize) {
                 } else if ($scope.item.statusKeluar.id === 2) {
                     $scope.SavePindah()
                 } else {
-                    
+
                     var confirm = $mdDialog.confirm()
                         .title('Peringatan')
                         .textContent('Pastikan PELAYANAN sudah di Input semua ! Lanjut Simpan? ')
@@ -132,12 +147,12 @@ define(['initialize'], function (initialize) {
                 }
             }
             $scope.SavePindah = function () {
-                if(!$scope.item.kelas) {
+                if (!$scope.item.kelas) {
                     toastr.warning("Harap pilih Kelas!");
                     return;
                 }
 
-                if(!$scope.item.kamar) {
+                if (!$scope.item.kamar) {
                     toastr.error("Harap pilih Kamar!", "Gagal");
                     return;
                 }
@@ -256,7 +271,7 @@ define(['initialize'], function (initialize) {
                 //##save Logging user
                 manageServicePhp.getDataTableTransaksi("logging/save-log-pindah-ruangan?norec_apd=" +
                     $scope.resultAPD.norec
-                ).then(function (data) {})
+                ).then(function (data) { })
                 //##end 
             }
 
@@ -360,7 +375,7 @@ define(['initialize'], function (initialize) {
                 //##save Logging user
                 manageServicePhp.getDataTableTransaksi("logging/save-log-pulang-pasien?norec_pd=" +
                     $scope.currentNorecPD
-                ).then(function (data) {})
+                ).then(function (data) { })
                 //##end 
 
 
@@ -371,7 +386,7 @@ define(['initialize'], function (initialize) {
                 if (bool === true) {
                     if ($scope.item.pasien.id_ibu != undefined) {
                         manageServicePhp.getDataTableTransaksi("pindahpasien/get-kamar-ruangan-ibu?id_ibu=" + $scope.item.pasien.id_ibu +
-                                "&nocm=" + $scope.item.pasien.nocm)
+                            "&nocm=" + $scope.item.pasien.nocm)
                             .then(function (dat) {
                                 if (dat.data.length > 0) {
                                     $scope.listKamar = []
