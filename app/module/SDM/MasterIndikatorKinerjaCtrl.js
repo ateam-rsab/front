@@ -4,6 +4,7 @@ define(['initialize'], function (initialize) {
         function ($q, $rootScope, $scope, ModelItem, $state, NamaAsuransi, ManageSdm, ManageSdmNew, $timeout, $mdDialog, dateHelper) {
             $scope.item = {};
             $scope.isDuplicated = false
+            $scope.isDuplicatedMapping = false
             $scope.isChangeVerifyGranted = false;
             $scope.mapping = {};
             let dataLogin = JSON.parse(localStorage.getItem("datauserlogin"));
@@ -66,7 +67,7 @@ define(['initialize'], function (initialize) {
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
 
                 if (!dataItem.isStatusVerifikasi) {
-                    toastr.warning("Indikator belum terverifikasi!","Peringatan")
+                    toastr.warning("Indikator belum terverifikasi!", "Peringatan")
                     return
                 }
 
@@ -299,11 +300,15 @@ define(['initialize'], function (initialize) {
                     dataSave.noRec = $scope.norecDataMapping;
                 }
 
-                ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-mapping-indikator-jabatan").then(res => {
-                    if (!statusEnabled) $scope.getDataMapping();
-                    $scope.closePopUpMapping();
-                })
-
+                if ($scope.isDuplicatedMapping && method != 'delete') {
+                    toastr.warning("Mapping indikator kinerja sudah tersedia!")
+                    return
+                } else {
+                    ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-mapping-indikator-jabatan").then(res => {
+                        if (!statusEnabled) $scope.getDataMapping();
+                        $scope.closePopUpMapping();
+                    })
+                }
             }
 
             $scope.reset = () => {
@@ -322,6 +327,30 @@ define(['initialize'], function (initialize) {
                         $scope.isDuplicated = true
                     } else {
                         $scope.isDuplicated = false
+                    }
+                })
+            })
+
+            $scope.$watch('mapping.jabatan', function (e) {
+                if (!e) return;
+
+                ManageSdmNew.getListData("iki-remunerasi/get-duplicate-indikator-jabatan?indikatorId=" + $scope.mapping.id + "&jabatanId=" + $scope.mapping.jabatan.id + "&tglBerlaku=" + dateHelper.toTimeStamp($scope.mapping.tglBerlaku)).then(res => {
+                    if (res.data.data.length > 0) {
+                        $scope.isDuplicatedMapping = true
+                    } else {
+                        $scope.isDuplicatedMapping = false
+                    }
+                })
+            })
+
+            $scope.$watch('mapping.tglBerlaku', function (e) {
+                if (!e) return;
+
+                ManageSdmNew.getListData("iki-remunerasi/get-duplicate-indikator-jabatan?indikatorId=" + $scope.mapping.id + "&jabatanId=" + $scope.mapping.jabatan.id + "&tglBerlaku=" + dateHelper.toTimeStamp($scope.mapping.tglBerlaku)).then(res => {
+                    if (res.data.data.length > 0) {
+                        $scope.isDuplicatedMapping = true
+                    } else {
+                        $scope.isDuplicatedMapping = false
                     }
                 })
             })

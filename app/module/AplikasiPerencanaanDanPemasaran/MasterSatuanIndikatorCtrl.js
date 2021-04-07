@@ -16,7 +16,7 @@ define(['initialize'], function (initialize) {
 					var satuanIndikator = {
 						"no": i,
 						"satuanIndikator": e.satuanIndikator,
-						"statusEnabled": e.statusEnabled ? "Tidak" : "Ya"
+						"statusEnabled": e.statusEnabled ? "Aktif" : "Tidak aktif"
 					}
 					data[i - 1] = satuanIndikator
 					i++;
@@ -43,7 +43,7 @@ define(['initialize'], function (initialize) {
 					"width": "300px"
 				}, {
 					"field": "statusEnabled",
-					"title": "<h3 align=center>Status Hapus</h3>",
+					"title": "<h3 align=center>Status</h3>",
 					"width": "300px"
 				}
 				]
@@ -70,7 +70,7 @@ define(['initialize'], function (initialize) {
 							var satuanIndikator = {
 								"no": i,
 								"satuanIndikator": e.satuanIndikator,
-								"statusEnabled": e.statusEnabled ? "Tidak" : "Ya"
+								"statusEnabled": e.statusEnabled ? "Aktif" : "Tidak Aktif"
 							}
 							data[i - 1] = satuanIndikator
 							i++;
