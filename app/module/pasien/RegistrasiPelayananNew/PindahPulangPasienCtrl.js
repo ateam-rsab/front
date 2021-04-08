@@ -76,7 +76,7 @@ define(['initialize'], function (initialize) {
                     .then(function (dat) {
                         var tempListKelas = []
                         for (let i = 0; i < dat.data.kelas.length; i++) {
-                            if (dat.data.kelas[i].id != 5 && dat.data.kelas[i].id != 8) {
+                            if (dat.data.kelas[i].id != 21) {
                                 tempListKelas.push(dat.data.kelas[i])
                             }
 
