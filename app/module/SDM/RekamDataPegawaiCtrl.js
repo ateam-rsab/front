@@ -24,111 +24,113 @@ define(['initialize'], function (initialize) {
                 ],
                 pageable: true,
                 // scrollable: true,
-                columns: [{
-                    field: "kdJabatan",
-                    title: "<h3 class='small-font'>Kode<br/>Remun</h3>",
-                    width: "90px"
-                }, {
-                    field: "jenisJabatan",
-                    title: "<h3 class='small-font'>Jenis<br>Jabatan</h3>",
-                    width: "100px",
-                    template: "#if(jenisJabatan) { # #= jenisJabatan.jenisJabatan # #} else { #-# } #",
-                },
-                {
-                    field: "jabatan",
-                    title: "<h3 class='small-font'>Jabatan</h3>",
-                    width: "120px",
-                    template: "#if(jabatan) { # #= jabatan.namaJabatan # #} else { #-# } #",
-                },
-                {
-                    field: "unitKerjaPegawai",
-                    title: "<h3 class='small-font'>Unit Kerja</h3>",
-                    width: "150px",
-                    template: "#if(unitKerjaPegawai) { # #= unitKerjaPegawai.name # #} else { #-# } #",
-                }, // editor: unitDropDownEditor, template: "#= unitKerja.name #"},
-                {
-                    field: "subUnitKerjaPegawai",
-                    title: "<h3 class='small-font'>Sub<br>Unit Kerja</h3>",
-                    width: "150px",
-                    template: "#if(subUnitKerjaPegawai) { # #= subUnitKerjaPegawai.name # #} else { #-# } #",
-                },
-                {
-                    field: "atasanLangsung",
-                    title: "<h3 class='small-font'>Atasan<br>Langsung</h3>",
-                    width: "150px",
-                    template: "#if(!atasanLangsungDireksi) { # #= atasanLangsung.namaLengkap # #} else { # #=atasanLangsungDireksi# # } #"
-                },
-                {
-                    field: "pejabatPenilai",
-                    title: "<h3 class='small-font'>Atasan<br>Pejabat Penilai</h3>",
-                    width: "150px",
-                    template: "#if(!pejabatPenilaiDireksi) { # #= pejabatPenilai.namaLengkap # #} else { # #=pejabatPenilaiDireksi# # } #"
-                },
-                {
-                    field: "atasanLangsungDireksi",
-                    title: "<h3 class='small-font'>Atasan<br>Langsung</h3>",
-                    width: "150px",
-                    hidden: true
-                },
-                {
-                    field: "pejabatPenilaiDireksi",
-                    title: "<h3 class='small-font'>Pejabat<br>Penilai</h3>",
-                    width: "150px",
-                    hidden: true
-                },
-                {
-                    field: "isPrimary",
-                    title: "<h3 class='small-font'>Jabatan Utama</h3>",
-                    width: "70px",
-                    template: "#if(isPrimary) { #Ya# } else { #Tidak# } #",
-                    attributes: {
-                        style: "text-align:center;valign=middle"
+                columns: [
+                    // {
+                    //     field: "kdJabatan",
+                    //     title: "<h3 class='small-font'>Kode<br/>Remun</h3>",
+                    //     width: "90px"
+                    // }, 
+                    {
+                        field: "jenisJabatan",
+                        title: "<h3 class='small-font'>Jenis<br>Jabatan</h3>",
+                        width: "100px",
+                        template: "#if(jenisJabatan) { # #= jenisJabatan.jenisJabatan # #} else { #-# } #",
                     },
-                },
-                {
-                    field: "isMonitoring",
-                    title: "<h3 class='small-font'>Akses<br/>Monitoring</h3>",
-                    width: "80px",
-                    template: "#if(isMonitoring) { #Ya# } else { #Tidak# } #",
-                    attributes: {
-                        style: "text-align:center;valign=middle"
+                    {
+                        field: "jabatan",
+                        title: "<h3 class='small-font'>Jabatan</h3>",
+                        width: "120px",
+                        template: "#if(jabatan) { # #= jabatan.namaJabatan # #} else { #-# } #",
                     },
-                },
-                {
-                    field: "isCanCreateJadwal",
-                    title: "<h3 class='small-font'>Membuat Jadwal</h3>",
-                    width: "70px",
-                    template: "#if(isCanCreateJadwal) { #Ya# } else { #Tidak# } #",
-                    attributes: {
-                        style: "text-align:center;valign=middle"
+                    {
+                        field: "unitKerjaPegawai",
+                        title: "<h3 class='small-font'>Unit Kerja</h3>",
+                        width: "150px",
+                        template: "#if(unitKerjaPegawai) { # #= unitKerjaPegawai.name # #} else { #-# } #",
+                    }, // editor: unitDropDownEditor, template: "#= unitKerja.name #"},
+                    {
+                        field: "subUnitKerjaPegawai",
+                        title: "<h3 class='small-font'>Sub<br>Unit Kerja</h3>",
+                        width: "150px",
+                        template: "#if(subUnitKerjaPegawai) { # #= subUnitKerjaPegawai.name # #} else { #-# } #",
                     },
-                },
-                {
-                    command: [{
-                        text: "Edit",
-                        // width: "40px",
-                        align: "center",
+                    {
+                        field: "atasanLangsung",
+                        title: "<h3 class='small-font'>Atasan<br>Langsung</h3>",
+                        width: "150px",
+                        template: "#if(!atasanLangsungDireksi) { # #= atasanLangsung.namaLengkap # #} else { # #=atasanLangsungDireksi# # } #"
+                    },
+                    {
+                        field: "pejabatPenilai",
+                        title: "<h3 class='small-font'>Atasan<br>Pejabat Penilai</h3>",
+                        width: "150px",
+                        template: "#if(!pejabatPenilaiDireksi) { # #= pejabatPenilai.namaLengkap # #} else { # #=pejabatPenilaiDireksi# # } #"
+                    },
+                    {
+                        field: "atasanLangsungDireksi",
+                        title: "<h3 class='small-font'>Atasan<br>Langsung</h3>",
+                        width: "150px",
+                        hidden: true
+                    },
+                    {
+                        field: "pejabatPenilaiDireksi",
+                        title: "<h3 class='small-font'>Pejabat<br>Penilai</h3>",
+                        width: "150px",
+                        hidden: true
+                    },
+                    {
+                        field: "isPrimary",
+                        title: "<h3 class='small-font'>Jabatan Utama</h3>",
+                        width: "70px",
+                        template: "#if(isPrimary) { #Ya# } else { #Tidak# } #",
                         attributes: {
-                            align: "center"
+                            style: "text-align:center;valign=middle"
                         },
-                        click: editDataJabatanInternal,
-                        imageClass: "k-icon k-i-pencil"
-                    }, {
-                        text: "Hapus",
-                        // width: "40px",
-                        align: "center",
-                        attributes: {
-                            align: "center"
-                        },
-                        click: hapusDataJabatanInternal,
-                        imageClass: "k-icon k-delete"
-                    }],
-                    title: "",
-                    width: "170px",
-                    attributes: {
-                        style: "text-align:center;valign=middle"
                     },
-                }
+                    {
+                        field: "isMonitoring",
+                        title: "<h3 class='small-font'>Akses<br/>Monitoring</h3>",
+                        width: "80px",
+                        template: "#if(isMonitoring) { #Ya# } else { #Tidak# } #",
+                        attributes: {
+                            style: "text-align:center;valign=middle"
+                        },
+                    },
+                    {
+                        field: "isCanCreateJadwal",
+                        title: "<h3 class='small-font'>Membuat Jadwal</h3>",
+                        width: "70px",
+                        template: "#if(isCanCreateJadwal) { #Ya# } else { #Tidak# } #",
+                        attributes: {
+                            style: "text-align:center;valign=middle"
+                        },
+                    },
+                    {
+                        command: [{
+                            text: "Edit",
+                            // width: "40px",
+                            align: "center",
+                            attributes: {
+                                align: "center"
+                            },
+                            click: editDataJabatanInternal,
+                            imageClass: "k-icon k-i-pencil"
+                        }, {
+                            text: "Hapus",
+                            // width: "40px",
+                            align: "center",
+                            attributes: {
+                                align: "center"
+                            },
+                            click: hapusDataJabatanInternal,
+                            imageClass: "k-icon k-delete"
+                        }],
+                        title: "",
+                        width: "170px",
+                        attributes: {
+                            style: "text-align:center;valign=middle"
+                        },
+                    }
                 ],
             };
             $scope.isNewData = !$state.params.idPegawai || $state.params.idPegawai === "" ? true : false
@@ -710,8 +712,8 @@ define(['initialize'], function (initialize) {
                         isMonitoring: $scope.ji.isMonitoring,
                         isCanCreateJadwal: $scope.ji.isCanCreateJadwal,
                         atasanLangsungDireksi: $scope.ji.atasanLangsungDireksi,
-                        pejabatPenilaiDireksi: $scope.ji.pejabatPenilaiDireksi,
-                        kdJabatan: $scope.ji.analisaJabatan
+                        pejabatPenilaiDireksi: $scope.ji.pejabatPenilaiDireksi
+                        // kdJabatan: $scope.ji.analisaJabatan
                     })
 
                     $scope.getEvaluasiJabatanPegawaiBaru();
@@ -731,9 +733,9 @@ define(['initialize'], function (initialize) {
 
                 for (var key in newModel[0]) {
                     if (newModel[0].hasOwnProperty(key)) {
-                        if (key.indexOf('analisaJabatan') >= 0) {
-                            delete newModel[0][key];
-                        }
+                        // if (key.indexOf('analisaJabatan') >= 0) {
+                        //     delete newModel[0][key];
+                        // }
 
                         if (key.indexOf('subUnitKerjaPegawai') >= 0) {
                             if (newModel[0][key] === null) {
@@ -848,8 +850,9 @@ define(['initialize'], function (initialize) {
                 });
             }
 
-            $scope.getDataSubUnitKerjaById = function (id, data) {
+            $scope.getDataSubUnitKerjaById = function (id, data, jenisId) {
                 // console.log(data);
+                if (!id) return
                 $('#idComboSubUnitKerja').data('kendoComboBox').value('');
                 if (data.name === 'Direksi') {
                     $scope.isDireksi = true;
@@ -867,6 +870,18 @@ define(['initialize'], function (initialize) {
                         })
                     })
                 })
+                if (jenisId && id) {
+                    ManageSdmNew.getListData("sdm/get-jabatan-by-jenis-dan-unit?jenisJabatanId=" + jenisId + "&unitKerjaId=" + id, true).then(function (res) {
+                        $scope.listJabatanByJenisJabatan = res.data;
+                        $scope.listJabatanByJenisJabatanInternal = [];
+                        res.data.data.forEach(function (e) {
+                            $scope.listJabatanByJenisJabatanInternal.push({
+                                id: e.idJabatan,
+                                namaJabatan: e.namaJabatan
+                            })
+                        })
+                    });
+                }
             }
 
             function editDataJabatanInternal(e) {
@@ -879,9 +894,9 @@ define(['initialize'], function (initialize) {
                     return
                 }
                 clearPop();
-                if (dataItem.kdJabatan) {
-                    $scope.ji.analisaJabatan = dataItem.kdJabatan
-                }
+                // if (dataItem.kdJabatan) {
+                //     $scope.ji.analisaJabatan = dataItem.kdJabatan
+                // }
                 if ($scope.item.detailKelompokJabatan) {
                     if ($scope.item.detailKelompokJabatan.detailKelompokJabatan.toUpperCase() === 'DIREKTUR UTAMA (DIRUT)' ||
                         $scope.item.detailKelompokJabatan.detailKelompokJabatan.toUpperCase() === 'DIREKTUR UTAMA' ||
@@ -902,7 +917,7 @@ define(['initialize'], function (initialize) {
                         $scope.isStaff = true;
                     }
                 }
-                $scope.getDataSubUnitKerjaById(dataItem.unitKerjaPegawai.id, dataItem.unitKerjaPegawai);
+                $scope.getDataSubUnitKerjaById(dataItem.unitKerjaPegawai.id, dataItem.unitKerjaPegawai, dataItem.jenisJabatan.id);
                 $scope.ji.idGridInternalJabatan = dataItem.id;
                 $scope.ji.jenisJabatan = {
                     jenisJabatan: dataItem.jenisJabatan.jenisJabatan,
@@ -948,14 +963,16 @@ define(['initialize'], function (initialize) {
                 $scope.isNotDirut = true;
                 $scope.isDireksi = false;
                 $scope.isStaff = true;
-                $scope.ji.analisaJabatan = null;
+                // $scope.ji.analisaJabatan = null;
                 $scope.ji.jabatan = "";
+                $scope.listJabatanByJenisJabatanInternal = []
                 $scope.ji.jenisJabatan = '';
                 $scope.ji.pejabatPenilai = '';
                 $scope.ji.pejabatPenilaiDireksi = "";
                 $scope.ji.atasanLangsung = '';
                 $scope.ji.unitKerjaPegawai = "";
                 $scope.ji.subUnitKerjaPegawai = null;
+                $scope.ListSubUnitKerjaById = []
                 // $scope.item.subUnitKerjaPop = [];
                 $scope.ji.isCanCreateJadwal = false;
                 $scope.ji.isPrimary = false;
@@ -1663,9 +1680,23 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.getDataJabatan = function (id) {
-                $("#idComboDataJabatan").data("kendoComboBox").value("");
                 if (!id) return;
-                ManageSdmNew.getListData("sdm/get-all-jabatan-by-jenis-jabatan?idJenisJabatan=" + id + "&kdJabatan=" + $scope.ji.analisaJabatan, true).then(function (res) {
+                ManageSdmNew.getListData("sdm/get-all-jabatan-by-jenis-jabatan?idJenisJabatan=" + id, true).then(function (res) {
+                    $scope.listJabatanByJenisJabatan = res.data;
+                    $scope.listJabatanByJenisJabatanInternal = [];
+                    res.data.data.forEach(function (e) {
+                        $scope.listJabatanByJenisJabatanInternal.push({
+                            id: e.idJabatan,
+                            namaJabatan: e.namaJabatan
+                        })
+                    })
+                });
+            }
+
+            $scope.getPilihanJabatan = function (jenisId, unitId) {
+                $("#idComboDataJabatan").data("kendoComboBox").value("");
+                if (!jenisId || !unitId) return;
+                ManageSdmNew.getListData("sdm/get-jabatan-by-jenis-dan-unit?jenisJabatanId=" + jenisId + "&unitKerjaId=" + unitId, true).then(function (res) {
                     $scope.listJabatanByJenisJabatan = res.data;
                     $scope.listJabatanByJenisJabatanInternal = [];
                     res.data.data.forEach(function (e) {

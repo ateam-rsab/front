@@ -18,21 +18,18 @@ define(['initialize'], function (initialize) {
                 });
             });
 
-            ManageSdmNew.getListData("jabatan/get-list-unit-kerja-anjab").then((res) => {
-                var listUK = []
-                for (let i = 0; i < res.data.data.data.length; i++) {
-                    var unitKerja = {
-                        id: i + 1,
-                        name: res.data.data.data[i]
-                    }
-                    listUK.push(unitKerja)
-                }
-                $scope.listUnitKerja = listUK
+            ManageSdmNew.getListData("service/list-generic/?view=UnitKerjaPegawai&select=id,name&criteria=statusEnabled,id&values=true,!0&order=name:asc").then((res) => {
+                $scope.listUnitKerja = res.data
             })
 
-            $scope.getDataJabatan = () => {
-                ManageSdmNew.getListData("jabatan/get-list-jabatan-anjab-by-unit-kerja?unitKerja=" + $scope.data.unitKerja.name).then((res) => {
-                    $scope.listJabatan = res.data.data;
+            ManageSdmNew.getListData("service/list-generic/?view=JenisJabatan&select=id,jenisJabatan&criteria=statusEnabled,id&values=true,!0&order=jenisJabatan:asc").then((res) => {
+                $scope.listJenisJabatan = res.data
+            })
+
+            $scope.getDataJabatan = (unitId, jenisId) => {
+                if (!unitId || !jenisId) return
+                ManageSdmNew.getListData("service/list-generic/?view=Jabatan&select=id,namaJabatan&criteria=statusEnabled,id,jenisJabatanId,unitKerjaId&values=true,!0," + jenisId + "," + unitId + "&order=namaJabatan:asc").then((res) => {
+                    $scope.listJabatan = res.data
                 })
             }
 

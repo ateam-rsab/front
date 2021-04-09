@@ -210,7 +210,7 @@ define(['initialize'], function (initialize) {
             $scope.getJabatan = (id) => {
                 $scope.mapping.jabatan = null;
                 $scope.mapping.srcJabatan = null;
-                ManageSdmNew.getListData("service/list-generic/?view=Jabatan&select=id,namaJabatan&criteria=statusEnabled,kdJabatan,jenisJabatanId&values=true,ANJAB," + id).then((res) => {
+                ManageSdmNew.getListData("service/list-generic/?view=Jabatan&select=id,namaJabatan&criteria=statusEnabled,jenisJabatanId&values=true," + id).then((res) => {
                     $scope.listJabatan = res;
                     $scope.listGridJabatan = res.data;
 
