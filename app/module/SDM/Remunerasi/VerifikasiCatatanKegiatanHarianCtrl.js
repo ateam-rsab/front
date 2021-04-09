@@ -46,13 +46,13 @@ define(['initialize'], function (initialize) {
                             text: "Verifikasi",
                             click: verifData,
                             imageClass: "k-icon k-i-pencil"
-                        }, ],
+                        },],
                         title: "",
                         width: 70
                     }],
                 }
 
-                ManageSdmNew.getListData("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true&order=namaLengkap:asc").then((res) => {
+                ManageSdmNew.getListData("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled,kategoryPegawaiId&values=true,(1;10;14)&order=namaLengkap:asc").then((res) => {
                     $scope.listPegawai = res.data;
                 });
             }
@@ -67,7 +67,6 @@ define(['initialize'], function (initialize) {
             $scope.getDataCatatanKegiatan = () => {
                 $scope.isRouteLoading = true;
                 let URL = "iki-remunerasi/get-catatan-kegiatan-harian?pegawaiId=" + ($scope.item.srcPegawai ? $scope.item.srcPegawai.id : "") + "&jabatanId=" + ($scope.item.srcJabatan ? $scope.item.srcJabatan.id : "") + "&bulan=" + ($scope.item.srcBulan ? dateHelper.toTimeStamp($scope.item.srcBulan) : '')
-                // let URL = "iki-remunerasi/get-catatan-kegiatan-harian?pegawaiId=1316&jabatanId=2122&bulan=1614531600000"
 
                 ManageSdmNew.getListData(URL).then((res) => {
                     $scope.dataSource = new kendo.data.DataSource({
@@ -102,8 +101,7 @@ define(['initialize'], function (initialize) {
             function verifData(e) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-
-                console.log(dataItem);
+                // console.log(dataItem);
 
                 var confirm = $mdDialog.confirm()
                     .title('Apakah anda yakin akan Verifikasi Catatan Kegiatan ' + dataItem.namaIndikator + '?')
@@ -114,10 +112,15 @@ define(['initialize'], function (initialize) {
                 $mdDialog.show(confirm).then(function () {
                     $scope.simpanVerif(dataItem);
                 }, function () {
-
-                    console.error('Tidak jadi verif');
+                    // console.error('Tidak jadi verif');
                 });
             }
+
+            $scope.$watch('item.srcPegawai', function (e) {
+                if (!e) return;
+
+                $scope.item.srcJabatan = null
+            })
         }
     ])
 });

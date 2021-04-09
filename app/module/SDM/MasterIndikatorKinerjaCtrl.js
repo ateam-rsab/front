@@ -4,9 +4,12 @@ define(['initialize'], function (initialize) {
         function ($q, $rootScope, $scope, ModelItem, $state, NamaAsuransi, ManageSdm, ManageSdmNew, $timeout, $mdDialog, dateHelper) {
             $scope.item = {};
             $scope.isDuplicated = false
+            $scope.isDuplicatedMapping = false
+            $scope.isChangeVerifyGranted = false;
             $scope.mapping = {};
             let dataLogin = JSON.parse(localStorage.getItem("datauserlogin"));
-            
+            let isCheckAll = false;
+            let isCheckAllMapping = false
             $scope.optGridMasterKinerja = {
                 toolbar: [{
                     text: "export",
@@ -53,7 +56,6 @@ define(['initialize'], function (initialize) {
             $scope.onChangeTab = (data) => {
                 switch (data) {
                     case 3:
-                        // $scope.getDataMapping()
                         break;
                     default:
                         break;
@@ -64,7 +66,12 @@ define(['initialize'], function (initialize) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
 
-                console.log(dataItem);
+                if (!dataItem.isStatusVerifikasi) {
+                    toastr.warning("Indikator belum terverifikasi!", "Peringatan")
+                    return
+                }
+
+                // console.log(dataItem);
                 $scope.mapping = dataItem;
                 $scope.popUpMapping.open().center();
 
@@ -72,41 +79,58 @@ define(['initialize'], function (initialize) {
 
             function editData(e) {
                 e.preventDefault();
+
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+
                 if (dataItem.isStatusVerifikasi) {
                     $scope.isEdit = true
                 } else {
                     $scope.isEdit = false
                 }
+
+                if (dataLogin.id == 29999 && dataItem.isStatusVerifikasi) {
+                    $scope.isChangeVerifyGranted = true
+                } else if ($scope.isPegawaiSDM) {
+                    $scope.isChangeVerifyGranted = true
+                } else {
+                    $scope.isChangeVerifyGranted = false
+                }
+
                 $scope.item.jenisIndikator = {
                     id: dataItem.jenisIndikatorId,
                     jenisIndikator: dataItem.jenisIndikator
                 };
+
                 $scope.item.satuanIndikator = {
                     satuanIndikator: dataItem.satuanIndikator,
                     id: dataItem.satuanIndikatorId
                 }
+
                 $scope.item.namaIndikator = dataItem.namaIndikator;
                 $scope.item.statusVerif = dataItem.isStatusVerifikasi;
                 $scope.item.idMasterKinerja = dataItem.id;
                 $scope.popupTambah.open().center();
-
             }
 
             function hapusData(e) {
                 e.preventDefault();
+
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+
                 $scope.item.jenisIndikator = {
                     id: dataItem.jenisIndikatorId,
                     jenisIndikator: dataItem.jenisIndikator
                 };
+
                 $scope.item.satuanIndikator = {
                     satuanIndikator: dataItem.satuanIndikator,
                     id: dataItem.satuanIndikatorId
                 }
+
                 $scope.item.namaIndikator = dataItem.namaIndikator;
                 $scope.item.statusVerif = dataItem.isStatusVerifikasi;
                 $scope.item.idMasterKinerja = dataItem.id;
+
                 ManageSdmNew.getListData("iki-remunerasi/cek-kontrak-kinerja?indikatorId=" + dataItem.id).then(rs1 => {
                     if (rs1.data.data.length > 0) {
                         toastr.warning("Indikator kinerja sudah dipakai dalam kontrak kinerja, tidak bisa hapus!")
@@ -122,17 +146,15 @@ define(['initialize'], function (initialize) {
                             .ok('Ya')
                             .cancel('Tidak');
                         $mdDialog.show(confirm).then(function () {
-                            // $scope.item.idMasterKinerja = dataItem.id;
                             $scope.simpanData('delete');
                         }, function () {
                             $scope.reset();
-                            console.error('Tidak jadi hapus');
+                            // console.error('Tidak jadi hapus');
                         });
                     }
                 })
             }
 
-            // $scope.item.statusVerif = false;
             $scope.listJenisIndikator = [{
                 "id": 1,
                 "jenisIndikator": "Kuantitas"
@@ -143,6 +165,7 @@ define(['initialize'], function (initialize) {
                 "id": 3,
                 "jenisIndikator": "Perilaku"
             }];
+
             $scope.listStatusVerif = [{
                 id: 0,
                 statusVerif: "Belum Terverifikasi"
@@ -163,39 +186,50 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.init = () => {
-                $scope.getDataMaster();
-                ManageSdmNew.getListData("service/list-generic/?view=SatuanIndikator&select=id,satuanIndikator&criteria=statusEnabled&values=true&order=satuanIndikator:asc").then((res) => {
-                    $scope.listDataSatuanIndikator = res.data;
-                });
-
-                ManageSdmNew.getListData("service/list-generic/?view=JenisJabatan&select=id,jenisJabatan&criteria=statusEnabled,id&values=true,!0").then((res) => {
-                    // console.log(res)
-                    $scope.listJenisJabatan = res.data;
-
-                });
+                $q.all([
+                    ManageSdmNew.getListData("service/list-generic/?view=SatuanIndikator&select=id,satuanIndikator&criteria=statusEnabled,id&values=true,!1&order=satuanIndikator:asc"),
+                    ManageSdmNew.getListData("service/list-generic/?view=JenisJabatan&select=id,jenisJabatan&criteria=statusEnabled,id&values=true,!0"),
+                    ManageSdmNew.getListData("pegawai/get-pegawai-sdm-for-cred")
+                ]).then(function (res) {
+                    $scope.getDataMaster();
+                    $scope.listDataSatuanIndikator = res[0].data
+                    $scope.listJenisJabatan = res[1].data
+                    for (var i = 0; i < res[2].data.data.data.length; i++) {
+                        if (res[2].data.data.data[i] == ModelItem.getPegawai().id) {
+                            $scope.isPegawaiSDM = true;
+                            break
+                        }
+                    };
+                }, (error) => {
+                    throw (error)
+                })
             }
+
             $scope.init();
 
             $scope.getJabatan = (id) => {
                 $scope.mapping.jabatan = null;
                 $scope.mapping.srcJabatan = null;
-                ManageSdmNew.getListData("service/list-generic/?view=Jabatan&select=id,namaJabatan&criteria=statusEnabled,kdJabatan,jenisJabatanId&values=true,ANJAB," + id).then((res) => {
+                ManageSdmNew.getListData("service/list-generic/?view=Jabatan&select=id,namaJabatan&criteria=statusEnabled,jenisJabatanId&values=true," + id).then((res) => {
                     $scope.listJabatan = res;
-
                     $scope.listGridJabatan = res.data;
+
                     for (let i = 0; i < $scope.listGridJabatan.length; i++) {
                         $scope.listGridJabatan[i].statusPilih = false;
                     }
-
-                    // $scope.dataSourceJabatan = new kendo.data.DataSource({
-                    //     data: res.data,
-                    //     pageSize: 100
-                    // })
                 })
             }
 
             $scope.tambahData = () => {
                 $scope.isEdit = false
+                $scope.reset()
+
+                if ($scope.isPegawaiSDM && dataLogin.id != 29999) {
+                    $scope.isChangeVerifyGranted = true
+                } else {
+                    $scope.isChangeVerifyGranted = false
+                }
+
                 $scope.popupTambah.open().center();
             }
 
@@ -214,6 +248,7 @@ define(['initialize'], function (initialize) {
                 var isValid = ModelItem.setValidation($scope, listRawRequired);
                 if (isValid.status) {
                     let statusEnabled = method === 'save' || method === 'update';
+
                     let dataSave = {
                         statusEnabled: statusEnabled,
                         kdProfile: 0,
@@ -246,6 +281,7 @@ define(['initialize'], function (initialize) {
 
             $scope.simpanDataMapping = (method) => {
                 let statusEnabled = method === 'save' || method === 'update';
+
                 let dataSave = {
                     indikatorKinerja: {
                         id: $scope.mapping.id
@@ -264,11 +300,15 @@ define(['initialize'], function (initialize) {
                     dataSave.noRec = $scope.norecDataMapping;
                 }
 
-                ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-mapping-indikator-jabatan").then(res => {
-                    if (!statusEnabled) $scope.getDataMapping();
-                    $scope.closePopUpMapping();
-                })
-
+                if ($scope.isDuplicatedMapping && method != 'delete') {
+                    toastr.warning("Mapping indikator kinerja sudah tersedia!")
+                    return
+                } else {
+                    ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-mapping-indikator-jabatan").then(res => {
+                        if (!statusEnabled) $scope.getDataMapping();
+                        $scope.closePopUpMapping();
+                    })
+                }
             }
 
             $scope.reset = () => {
@@ -281,16 +321,42 @@ define(['initialize'], function (initialize) {
 
             $scope.$watch('item.namaIndikator', function (e) {
                 if (!e) return;
+
                 ManageSdmNew.getListData("iki-remunerasi/get-duplicate-indikator-kinerja?idIndikator=" + ($scope.item.idMasterKinerja ? $scope.item.idMasterKinerja : "") + "&namaIndikator=" + encodeURIComponent($scope.item.namaIndikator).replace(/%20/g, "+")).then(res => {
                     if (res.data.data.length > 0) {
                         $scope.isDuplicated = true
+                    } else {
+                        $scope.isDuplicated = false
+                    }
+                })
+            })
+
+            $scope.$watch('mapping.jabatan', function (e) {
+                if (!e) return;
+
+                ManageSdmNew.getListData("iki-remunerasi/get-duplicate-indikator-jabatan?indikatorId=" + $scope.mapping.id + "&jabatanId=" + $scope.mapping.jabatan.id + "&tglBerlaku=" + dateHelper.toTimeStamp($scope.mapping.tglBerlaku)).then(res => {
+                    if (res.data.data.length > 0) {
+                        $scope.isDuplicatedMapping = true
+                    } else {
+                        $scope.isDuplicatedMapping = false
+                    }
+                })
+            })
+
+            $scope.$watch('mapping.tglBerlaku', function (e) {
+                if (!e) return;
+
+                ManageSdmNew.getListData("iki-remunerasi/get-duplicate-indikator-jabatan?indikatorId=" + $scope.mapping.id + "&jabatanId=" + $scope.mapping.jabatan.id + "&tglBerlaku=" + dateHelper.toTimeStamp($scope.mapping.tglBerlaku)).then(res => {
+                    if (res.data.data.length > 0) {
+                        $scope.isDuplicatedMapping = true
+                    } else {
+                        $scope.isDuplicatedMapping = false
                     }
                 })
             })
 
             // #region mapping
             $scope.optGridMappingKinerja = {
-
                 pageable: true,
                 scrollable: true,
                 columns: [{
@@ -341,19 +407,55 @@ define(['initialize'], function (initialize) {
                     field: "namaJabatan",
                     title: "<h3>Nama Jabatan</h3>",
                     filterable: true
-                    // width: 150
                 }],
             }
 
             function confirmHapus(e) {
                 e.preventDefault();
+
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
                 $scope.norecDataMapping = dataItem.noRec;
-                $scope.mapping = {
-                    id: dataItem.indikatorId,
-                    jabatan: {
-                        id: $scope.mapping.srcJabatan.id
-                    },
+
+                if ($scope.mapping.srcNamaIndikator) {
+                    $scope.mapping = {
+                        id: dataItem.indikatorId,
+                        jabatan: {
+                            id: $scope.mapping.srcJabatan.id
+                        },
+                        srcJabatan: {
+                            id: $scope.mapping.srcJabatan.id,
+                            namaJabatan: $scope.mapping.srcJabatan.namaJabatan,
+                            statusPilih: $scope.mapping.srcJabatan.statusPilih
+                        },
+                        srcJenisJabatan: {
+                            id: $scope.mapping.srcJenisJabatan.id,
+                            jenisJabatan: $scope.mapping.srcJenisJabatan.jenisJabatan
+                        },
+                        srcJenisIndikator: {
+                            id: $scope.mapping.srcJenisIndikator.id,
+                            jenisIndikator: $scope.mapping.srcJenisIndikator.jenisIndikator
+                        },
+                        srcNamaIndikator: {
+                            id: $scope.mapping.srcNamaIndikator.id,
+                            namaIndikator: $scope.mapping.srcNamaIndikator.namaIndikator
+                        }
+                    }
+                } else {
+                    $scope.mapping = {
+                        id: dataItem.indikatorId,
+                        jabatan: {
+                            id: $scope.mapping.srcJabatan.id
+                        },
+                        srcJabatan: {
+                            id: $scope.mapping.srcJabatan.id,
+                            namaJabatan: $scope.mapping.srcJabatan.namaJabatan,
+                            statusPilih: $scope.mapping.srcJabatan.statusPilih
+                        },
+                        srcJenisJabatan: {
+                            id: $scope.mapping.srcJenisJabatan.id,
+                            jenisJabatan: $scope.mapping.srcJenisJabatan.jenisJabatan
+                        },
+                    }
                 }
 
                 var confirm = $mdDialog.confirm()
@@ -362,24 +464,24 @@ define(['initialize'], function (initialize) {
                     .targetEvent(e)
                     .ok('Ya')
                     .cancel('Tidak');
-
                 $mdDialog.show(confirm).then(function () {
                     $scope.simpanDataMapping('delete');
                 }, function () {
-                    reset();
+                    $scope.getDataMapping()
                 });
             }
 
             $scope.getDataMapping = () => {
-                ManageSdmNew.getListData("iki-remunerasi/get-mapping-indikator-jabatan?jabatanId=" + ($scope.mapping.srcJabatan ? $scope.mapping.srcJabatan.id : 2122)).then((res) => {
+                $scope.isRouteLoading = true;
 
+                ManageSdmNew.getListData("iki-remunerasi/get-mapping-indikator-jabatan?jabatanId=" + $scope.mapping.srcJabatan.id).then((res) => {
                     $scope.dataSourceMappingKinerja = {
-                        kualitas: new kendo.data.DataSource({
-                            data: res.data.data.Kualitas,
-                            pageSize: 5
-                        }),
                         kuantitas: new kendo.data.DataSource({
                             data: res.data.data.Kuantitas,
+                            pageSize: 5
+                        }),
+                        kualitas: new kendo.data.DataSource({
+                            data: res.data.data.Kualitas,
                             pageSize: 5
                         }),
                         perilaku: new kendo.data.DataSource({
@@ -387,6 +489,8 @@ define(['initialize'], function (initialize) {
                             pageSize: 5
                         }),
                     }
+
+                    $scope.isRouteLoading = false;
                 })
             }
 
@@ -399,44 +503,80 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.getAllJabatan = () => {
-                if (!$scope.mapping.srcNamaIndikator.id) {
-                    toastr.warning("Gagal menampilkan data", "Perhatian!");
-                    return;
-                }
+                $scope.isRouteLoading = true;
 
-                ManageSdmNew.getListData("iki-remunerasi/set-mapping-indikator-jabatan?indikatorId=" + $scope.mapping.srcNamaIndikator.id).then((res) => {
-                    let lengthDataPilih = 0;
-                    $scope.statusPilih
-                    for (let i = 0; i < res.data.data.length; i++) {
-                        if (res.data.data[i].statusPilih) {
-                            lengthDataPilih++;
+                var listRawRequired = [
+                    "mapping.srcNamaIndikator|k-ng-model|Indikator"
+                ];
+
+                var isValid = ModelItem.setValidation($scope, listRawRequired);
+                if (isValid.status) {
+                    ManageSdmNew.getListData("iki-remunerasi/set-mapping-indikator-jabatan?indikatorId=" + $scope.mapping.srcNamaIndikator.id).then((res) => {
+                        let lengthDataPilih = 0;
+
+                        for (let i = 0; i < res.data.data.length; i++) {
+                            if (res.data.data[i].statusPilih) {
+                                lengthDataPilih++;
+                            }
                         }
-                    }
-                    $("#headCheckbox").prop("checked", false);
-                    if(lengthDataPilih === res.data.data.length) $("#headCheckbox").prop("checked", true);
-                    toastr.info(`Ditemukan data ${lengthDataPilih} terpilih`, "Info");
-                    
-                    $scope.dataSourceJabatan = new kendo.data.DataSource({
-                        data: res.data.data,
-                        pageSize: 100
-                    })
-                    
-                });
+
+                        $("#headCheckbox").prop("checked", false);
+                        if (lengthDataPilih === res.data.data.length) {
+                            $("#headCheckbox").prop("checked", true);
+                        } else {
+                            isCheckAll = true
+                        }
+
+                        toastr.info(`Ditemukan data ${lengthDataPilih} terpilih`, "Info");
+
+                        $scope.dataSourceJabatan = new kendo.data.DataSource({
+                            data: res.data.data,
+                            pageSize: 100
+                        })
+
+                        $scope.isRouteLoading = false;
+                    });
+                } else {
+                    ModelItem.showMessages(isValid.messages);
+                    $scope.isRouteLoading = false;
+                }
             }
 
             $scope.confirmSimpanBanyakMapping = () => {
-                let gridMapping = $("#gridConfirmMapping").data("kendoGrid");
-                // gridMapping.hideColumn(0);
-                $scope.showTanggalBerlaku = true;
+                $scope.showTanggalBerlaku = false;
+                $scope.isNullTglBerlakuExisted = false;
+
                 let dataTerpilih = [];
+
                 if (!dataTerpilih) {
                     toastr.warning("Harap pilih data terlebih dahulu!", "Perhatian!");
                     return;
                 }
 
+                var isFalseStatusPilihExisted = false;
                 for (let i = 0; i < $scope.dataSourceJabatan._data.length; i++) {
-                    if ($scope.dataSourceJabatan._data[i].statusPilih) {
+                    if (($scope.dataSourceJabatan._data[i].statusPilih && $scope.dataSourceJabatan._data[i].noRec == null)
+                        || (!$scope.dataSourceJabatan._data[i].statusPilih && $scope.dataSourceJabatan._data[i].noRec != null)) {
                         dataTerpilih.push($scope.dataSourceJabatan._data[i]);
+
+                        if (!$scope.isNullTglBerlakuExisted) {
+                            if ($scope.dataSourceJabatan._data[i].tglBerlaku == null) {
+                                $scope.showTanggalBerlaku = true;
+                                $scope.isNullTglBerlakuExisted = true
+                            } else {
+                                $scope.showTanggalBerlaku = false;
+                            }
+                        }
+
+                        $("#headCheckboxMapping").prop("checked", false);
+                        if (!isFalseStatusPilihExisted) {
+                            if (!$scope.dataSourceJabatan._data[i].statusPilih) {
+                                isFalseStatusPilihExisted = true
+                                isCheckAllMapping = false
+                            } else {
+                                $("#headCheckboxMapping").prop("checked", true);
+                            }
+                        }
                     }
                 }
 
@@ -449,46 +589,65 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.simpanDataMappingBanyak = () => {
+                $scope.isRouteLoading = true;
 
                 let dataSave = [],
                     dataSource = $scope.dataSourceConfirmMapping._data;
-                console.log($scope.dataSourceConfirmMapping._data);
 
+                // console.log($scope.dataSourceConfirmMapping._data);
                 for (let i = 0; i < dataSource.length; i++) {
-                    dataSource[i].tglBerlaku = dateHelper.formatDate(dataSource[i].tglBerlaku, "YYYY-MM-DD");
+                    if ((dataSource[i].statusPilih && dataSource[i].noRec == null)
+                        || (!dataSource[i].statusPilih && dataSource[i].noRec != null)) {
 
+                        if (!dataSource[i].tglBerlaku) {
+                            toastr.warning("Mapping baru harus isi tanggal berlaku!", "Perhatian!");
+                            $scope.isRouteLoading = false;
+                            return;
+                        }
 
-                    let temp = {
-                        indikatorKinerja: {
-                            id: $scope.mapping.srcNamaIndikator.id
-                        },
-                        jabatan: {
-                            id: dataSource[i].jabatanId
-                        },
-                        tanggalMulaiBerlaku: dateHelper.toTimeStamp(dataSource[i].tglBerlaku),
-                        kdProfile: 0,
-                        statusEnabled: true
+                        dataSource[i].tglBerlaku = dateHelper.formatDate(dataSource[i].tglBerlaku, "YYYY-MM-DD");
+
+                        let temp = {
+                            indikatorKinerja: {
+                                id: $scope.mapping.srcNamaIndikator.id
+                            },
+                            jabatan: {
+                                id: dataSource[i].jabatanId
+                            },
+                            tanggalMulaiBerlaku: dateHelper.toTimeStamp(dataSource[i].tglBerlaku),
+                            kdProfile: 0,
+                            statusEnabled: true
+                        }
+
+                        if (dataSource[i].noRec && !dataSource[i].statusPilih) {
+                            temp.noRec = dataSource[i].noRec;
+                            temp.statusEnabled = dataSource[i].statusPilih;
+                        }
+
+                        dataSave.push(temp);
                     }
-
-                    if (dataSource[i].noRec && !dataSource[i].statusPilih) {
-                        temp.noRec = dataSource[i].noRec;
-                        temp.statusEnabled = dataSource[i].statusPilih;
-                    }
-                    dataSave.push(temp);
-
                 }
 
-                console.log(dataSave);
+                if (dataSave.length == 0) {
+                    toastr.warning("Tidak ada perubahan data!", "Perhatian!");
+                    $scope.isRouteLoading = false;
+                    return;
+                }
+
+                // console.log(dataSave);
                 ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-mapping-indikator-all-jabatan?loginUserId=" + dataLogin.id).then(res => {
                     $scope.popupConfirmMapping.close();
+                    $scope.getAllJabatan();
+                    $scope.isRouteLoading = false;
                 })
-
             }
 
             $scope.simpanTanggalBerlaku = () => {
                 let dataSource = $scope.dataSourceConfirmMapping._data;
                 for (let i = 0; i < dataSource.length; i++) {
-                    dataSource[i].tglBerlaku = $scope.mapping.tglBerlakuBanyak;
+                    if (dataSource[i].tglBerlaku == null) {
+                        dataSource[i].tglBerlaku = $scope.mapping.tglBerlakuBanyak;
+                    }
                 }
 
                 $scope.dataSourceConfirmMapping = new kendo.data.DataSource({
@@ -507,11 +666,11 @@ define(['initialize'], function (initialize) {
                     mode: 'inline'
                 },
                 columns: [{
-                    "title": "<input type='checkbox' class='checkbox' ng-click='selectUnselectAllMappingRow()' />",
+                    "title": "<input id='headCheckboxMapping' type='checkbox' class='checkbox' ng-click='selectUnselectAllMappingRow()' disabled/>",
                     template: "# if (statusPilih) { #" +
-                        "<input type='checkbox' class='checkbox' ng-click='selectRowMapping(dataItem)' checked />" +
+                        "<input type='checkbox' class='checkbox' ng-click='selectRowMapping(dataItem)' checked disabled/>" +
                         "# } else { #" +
-                        "<input type='checkbox' class='checkbox' ng-click='selectRowMapping(dataItem)' />" +
+                        "<input type='checkbox' class='checkbox' ng-click='selectRowMapping(dataItem)' disabled/>" +
                         "# } #",
                     width: "5%"
                 }, {
@@ -535,7 +694,7 @@ define(['initialize'], function (initialize) {
             }
 
             function dateTimeEditor(container, options) {
-                console.log(options);
+                // console.log(options);
                 let isEdit = options.model.tglBerlaku === null;
                 if (isEdit) {
                     $('<input data-text-field="' + options.field + '" data-value-field="' + options.field + '" data-bind="value:' + options.field + '" data-format="' + options.format + '"value="' + options.model.tglBerlaku + '"/>')
@@ -544,34 +703,6 @@ define(['initialize'], function (initialize) {
                 } else {
                     $('<input c-text-box type="input" class="k-textbox" ng-disabled="true" value="' + options.model.tglBerlaku + '"/>').appendTo(container);
                 }
-
-            }
-
-            $scope.showDataDeleting = () => {
-                let gridMapping = $("#gridConfirmMapping").data("kendoGrid");
-
-                // gridMapping.showColumn(0);
-                $scope.showTanggalBerlaku = false;
-
-                let dataTerpilih = [];
-                if (!dataTerpilih) {
-                    toastr.warning("Harap pilih data terlebih dahulu!", "Perhatian!");
-                    return;
-                }
-
-                for (let i = 0; i < $scope.dataSourceJabatan._data.length; i++) {
-                    if ($scope.dataSourceJabatan._data[i].statusPilih) {
-                        dataTerpilih.push($scope.dataSourceJabatan._data[i]);
-                    }
-                }
-
-                console.log(dataTerpilih);
-                $scope.dataSourceConfirmMapping = new kendo.data.DataSource({
-                    data: dataTerpilih,
-                    pageSize: 100,
-                });
-
-                $scope.popupConfirmMapping.open().center();
             }
 
             $scope.selectRow = function (dataItem) {
@@ -582,31 +713,28 @@ define(['initialize'], function (initialize) {
                 dataSelect.statusPilih = !dataSelect.statusPilih;
             }
 
-            var isCheckAll = false;
             $scope.selectUnselectAllRow = function () {
-            
                 var tempData = $scope.dataSourceJabatan._data;
 
                 if (isCheckAll) {
                     isCheckAll = false;
                     for (var i = 0; i < tempData.length; i++) {
-                        tempData[i].statusPilih = false;
+                        tempData[i].statusPilih = true;
                     }
                 } else {
                     isCheckAll = true;
                     for (var i = 0; i < tempData.length; i++) {
-                        tempData[i].statusPilih = true;
+                        tempData[i].statusPilih = false;
                     }
                 }
 
-                console.log(tempData);
+                // console.log(tempData);
                 $scope.dataSourceJabatan = new kendo.data.DataSource({
                     data: tempData,
                     pageSize: 100
                 })
             }
 
-            var isCheckAllMapping = false;
             $scope.selectRowMapping = function (dataItem) {
                 let dataSelect = _.find($scope.dataSourceConfirmMapping._data, (data) => {
                     return data.jabatanId == dataItem.jabatanId;
@@ -615,7 +743,7 @@ define(['initialize'], function (initialize) {
                 dataSelect.statusPilih = !dataSelect.statusPilih;
             }
 
-            $scope.selectUnselectAllRowMapping = function () {
+            $scope.selectUnselectAllMappingRow = function () {
                 var tempData = $scope.dataSourceConfirmMapping._data;
 
                 if (isCheckAllMapping) {
@@ -629,21 +757,19 @@ define(['initialize'], function (initialize) {
                         tempData[i].statusPilih = true;
                     }
                 }
+
                 $scope.dataSourceConfirmMapping = new kendo.data.DataSource({
                     data: tempData,
                     pageSizeP: 100
                 })
             }
 
-            let reset = () => {
-                $scope.mapping = null;
-            }
 
             $scope.closePopUpMapping = () => {
-                reset()
                 $scope.popUpMapping.close();
             }
             // #endregion mapping
+
         }
     ]);
 });

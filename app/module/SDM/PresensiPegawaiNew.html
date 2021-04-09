@@ -177,17 +177,20 @@
                 </div> -->
 
             <div>
-                <div class="grid_4">
+                <div class="grid_5" style="text-align: right;">
                     <div id="date-part"></div>
-                    <div id="time-part"></div>
+                    <!-- <div id="time-part"></div> -->
                     <!-- <input kendo-time-picker ng-model="str" k-ng-model="tanggalPresensi" k-format="'HH:mm'"
                             style="width: 100%;" disabled> -->
                 </div>
-                <div class="grid_4" style="margin-top: 20px;">
+                <div class="grid_2">
+                    <div id="time-part"></div>
+                </div>
+                <!-- <div class="grid_4" style="margin-top: 20px;">
                     <input type="checkbox" class="k-checkbox" name="wfh" id="wfh" ng-model="data.isWFH"
                         ng-disabled="isNotEditable">
                     <label c-label item="item" class="k-checkbox-label" for="wfh">Work From Home (WFH)</label>
-                </div>
+                </div> -->
                 <div class="grid_2" style="margin-top: 17px;">
                     <md-button class="md-raised md-primary medium-button" ng-click="savePresensi()"
                         ng-disabled="isDisablePresensi">

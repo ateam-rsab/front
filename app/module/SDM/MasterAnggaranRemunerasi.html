@@ -11,7 +11,7 @@
 
 <div class="grid_12" style="margin: 10px 0;">
     <div class="grid_6" style="text-align: right; margin-top: 10px;">
-        <label><strong>Anggaran Remunerasi (/tahun)</strong></label>
+        <label><strong>Anggaran Remunerasi Tahun Ini (P1 + P2 + P3)</strong></label>
     </div>
     <div class="grid_5">
         <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.anggaranRemunerasi"
@@ -19,7 +19,7 @@
     </div>
 
     <div class="grid_6" style="text-align: right; margin-top: 10px;">
-        <label><strong>Anggaran Remunerasi (/bulan)</strong></label>
+        <label><strong>Anggaran Remunerasi per Bulan (P1 + P2)</strong></label>
     </div>
     <div class="grid_5">
         <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.pir" disabled />
@@ -34,17 +34,20 @@
 </div>
 
 <div class="grid_12">
+    <div class="grid_9"></div>
+    <div class="grid_2" style="text-align: right;">
+        <md-button class="md-raised md-primary medium-button" ng-click="simpanAllAnggaran()">
+            <span style="margin-right: 5px;">Simpan</span>
+            <i class="fa fa-save"></i>
+        </md-button>
+    </div>
+</div>
+
+<div class="grid_12">
     <md-subheader class="md-primary">Plafon</md-subheader>
     <div kendo-grid k-data-source="dataPlafon" k-selectable="'row'" options="optGridPlafon"
         k-ng-model="selectedDataPlafon">
     </div>
-</div>
-
-<div class="grid_2">
-    <md-button class="md-raised md-primary medium-button" ng-click="simpanAllAnggaran()">
-        <span style="margin-right: 5px;">Simpan</span>
-        <i class="fa fa-save"></i>
-    </md-button>
 </div>
 
 <div kendo-window="popUp" k-title="'Edit Data Plafon'" k-width="800" k-visible="false" k-on-open="win2visible= true"
@@ -55,7 +58,7 @@
             <div class="grid_12">
                 <div class="grid_6">
                     <label><strong>Grade</strong></label>
-                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="edit.grade" />
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="edit.grade" disabled />
                 </div>
                 <div class="grid_6">
                     <label><strong>Gaji</strong></label>

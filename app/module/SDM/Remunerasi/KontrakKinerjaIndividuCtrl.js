@@ -5,8 +5,9 @@ define(['initialize'], function (initialize) {
             $scope.isRouteLoading = false;
             $scope.item = {};
             $scope.indikator = {};
-            let dataLogin = JSON.parse(localStorage.getItem('pegawai'));
             $scope.item.srcBulan = "";
+
+            let dataLogin = JSON.parse(localStorage.getItem('pegawai'));
 
             $scope.listJenisIndikator = [{
                 "id": 1,
@@ -20,18 +21,6 @@ define(['initialize'], function (initialize) {
             }];
 
             $scope.optGridKontrakKinerja = {
-                toolbar: [
-                    // {
-                    //     text: "export",
-                    //     name: "Tambah",
-                    //     template: '<button ng-click="tambahData()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-plus"></span>Tambah Data</button>'
-                    // },
-                    // {
-                    //     text: "export",
-                    //     name: "Tambah",
-                    //     template: '<button ng-click="tambahIndikator()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-plus"></span>Pengajuan Indikator</button>'
-                    // }
-                ],
                 pageable: true,
                 scrollable: true,
                 columns: [{
@@ -43,12 +32,12 @@ define(['initialize'], function (initialize) {
                     title: "<h3>Satuan Indikator</h3>",
                     width: 50
                 }, {
-                    field: "bobot",
-                    title: "<h3>Bobot</h3>",
-                    width: 50
-                }, {
                     field: "target",
                     title: "<h3>Target</h3>",
+                    width: 50
+                }, {
+                    field: "bobot",
+                    title: "<h3>Bobot</h3>",
                     width: 50
                 }, {
                     field: "statusVerifikasi",
@@ -93,7 +82,6 @@ define(['initialize'], function (initialize) {
                 }
                 $scope.isRouteLoading = true;
                 ManageSdmNew.getListData("iki-remunerasi/get-kontrak-kinerja?pegawaiId=" + ($scope.item.pegawai ? $scope.item.pegawai.id : "") + "&jabatanId=" + ($scope.item.jabatan ? $scope.item.jabatan.id : "") + "&bulan=" + ($scope.item.srcBulan ? dateHelper.toTimeStamp($scope.item.srcBulan) : "")).then((res) => {
-
                     $scope.dataSourceKontrakKinerja = {
                         kualitas: new kendo.data.DataSource({
                             data: res.data.data.Kualitas,
@@ -108,20 +96,41 @@ define(['initialize'], function (initialize) {
                             pageSize: pageSize
                         })
                     }
+
                     $scope.isRouteLoading = false;
                 })
             }
 
             $scope.init = () => {
-                ManageSdmNew.getListData("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true&order=namaLengkap:asc").then((res) => {
-                    $scope.listPegawai = res.data;
-                });
+                $q.all([
+                    ManageSdmNew.getListData("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled,kategoryPegawaiId&values=true,(1;10;14)&order=namaLengkap:asc"),
+                    ManageSdmNew.getListData("service/list-generic/?view=SatuanIndikator&select=id,satuanIndikator&criteria=statusEnabled&values=true&order=id:asc"),
+                    ManageSdmNew.getListData("pegawai/get-pegawai-sdm-for-cred")
+                ]).then(function (res) {
+                    $scope.listPegawai = []
+                    $scope.isPegawaiSDM = false
+                    $scope.listDataSatuanIndikator = res[1].data;
+                    for (var i = 0; i < res[2].data.data.data.length; i++) {
+                        if (res[2].data.data.data[i] == modelItem.getPegawai().id) {
+                            $scope.isPegawaiSDM = true;
+                            break
+                        }
+                    };
 
-                ManageSdmNew.getListData("service/list-generic/?view=SatuanIndikator&select=id,satuanIndikator&criteria=statusEnabled&values=true&order=id:asc").then((res) => {
-                    $scope.listDataSatuanIndikator = res.data;
-                });
+                    if (!$scope.isPegawaiSDM) {
+                        $scope.item.pegawai = {
+                            id: dataLogin.id,
+                            namaLengkap: dataLogin.namaLengkap
+                        }
+                        $scope.listPegawai.push($scope.item.pegawai)
 
-
+                        $scope.getJabatanByIdPegawai()
+                    } else {
+                        $scope.listPegawai = res[0].data;
+                    }
+                }, (error) => {
+                    throw (error);
+                })
             }
 
             $scope.init();
@@ -227,7 +236,6 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.closePopUp = () => {
-                $scope.reset();
                 $scope.popupTambah.close();
             }
 
@@ -238,22 +246,25 @@ define(['initialize'], function (initialize) {
                 $scope.item.target = dataItem.target;
                 $scope.item.bobot = dataItem.bobot;
                 $scope.item.statusVerif = dataItem.isStatusVerifikasi;
-                // $scope.item.pegawai = {
-                //     id: dataItem.idPegawai,
-                //     namaLengkap: dataItem.namaPegawai
-                // }
-                // $scope.item.jabatan = {
-                //     id: dataItem.idJabatan,
-                //     namaJabatan: dataItem.namaJabatan
-                // }
                 $scope.item.indikatorKerja = {
                     id: dataItem.indikatorId,
                     namaIndikator: dataItem.namaIndikator
                 }
-
                 $scope.norecData = dataItem.noRec;
-
                 $scope.item.statusVerif = dataItem.isStatusVerifikasi;
+
+                if (!$scope.isPegawaiSDM && dataItem.isStatusVerifikasi) {
+                    $scope.isVerifGranted = false;
+                    $scope.isNotEditable = true;
+                } else if (!$scope.isPegawaiSDM
+                    && (!dataItem.isStatusVerifikasi || dataItem.isStatusVerifikasi == null)) {
+                    $scope.isVerifGranted = false;
+                    $scope.isNotEditable = false;
+                } else {
+                    $scope.isVerifGranted = true;
+                    $scope.isNotEditable = false;
+                }
+
                 $scope.popupTambah.open().center();
             }
 
@@ -261,20 +272,20 @@ define(['initialize'], function (initialize) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
 
+                if (dataItem.isStatusVerifikasi) {
+                    toastr.warning("Data sudah terverifikasi, tidak dapat dihapus!", "Perhatian!");
+                    return;
+                } else if (!$scope.isPegawaiSDM) {
+                    toastr.warning("Tidak memiliki akses hapus!", "Perhatian!");
+                    return;
+                }
+
                 $scope.item.bulan = dataItem.bulan;
                 $scope.item.target = dataItem.target;
                 $scope.item.bobot = dataItem.bobot;
                 $scope.item.statusVerif = dataItem.isStatusVerifikasi;
-                $scope.item.pegawai = {
-                    id: dataItem.idPegawai,
-                    namaLengkap: dataItem.namaPegawai
-                }
-                $scope.item.jabatan = {
-                    id: dataItem.idJabatan,
-                    namaJabatan: dataItem.namaJabatan
-                }
                 $scope.item.indikatorKerja = {
-                    id: dataItem.idIndikator,
+                    id: dataItem.indikatorId,
                     namaIndikator: dataItem.namaIndikator
                 }
 
@@ -289,9 +300,6 @@ define(['initialize'], function (initialize) {
                     .cancel('Tidak');
                 $mdDialog.show(confirm).then(function () {
                     $scope.simpanData('delete');
-                }, function () {
-                    $scope.reset();
-                    console.error('Tidak jadi hapus');
                 });
             }
 
@@ -301,10 +309,14 @@ define(['initialize'], function (initialize) {
                 $scope.item.target = null;
                 $scope.item.bobot = null;
                 $scope.item.statusVerif = false;
-                $scope.item.pegawai = null;
-                $scope.item.jabatan = null;
                 $scope.item.indikatorKerja = null;
             }
+
+            $scope.$watch('item.pegawai', function (e) {
+                if (!e) return;
+
+                $scope.item.jabatan = null
+            })
         }
     ])
 });

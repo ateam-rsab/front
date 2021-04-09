@@ -131,17 +131,18 @@ define(['initialize'], function (initialize) {
                 ]).then(function (res) {
                     for (let i in res[0].data.data) {
                         $scope.totalNilaiJabatan += res[0].data.data[i].nilaiJabatan;
-
                     }
-                    $scope.item.anggaranRemunerasi = res[1].data.data.anggaranTahun
-                    $scope.item.pir = res[1].data.data.anggaranBulan.toLocaleString('id-ID', {
-                        style: 'currency',
-                        currency: 'IDR'
-                    })
-                    $scope.item.pirHitungan = (res[1].data.data.anggaranBulan / $scope.totalNilaiJabatan).toLocaleString('id-ID', {
-                        style: 'currency',
-                        currency: 'IDR'
-                    })
+                    if (res[1].data.data.anggaranTahun) {
+                        $scope.item.anggaranRemunerasi = res[1].data.data.anggaranTahun
+                        $scope.item.pir = res[1].data.data.anggaranBulan.toLocaleString('id-ID', {
+                            style: 'currency',
+                            currency: 'IDR'
+                        })
+                        $scope.item.pirHitungan = (res[1].data.data.anggaranBulan / $scope.totalNilaiJabatan).toLocaleString('id-ID', {
+                            style: 'currency',
+                            currency: 'IDR'
+                        }) 
+                    }
                     $scope.dataSourcePenempatanEvaluasiJabatan = new kendo.data.DataSource({
                         data: res[0].data.data,
                         pageSize: 10
@@ -156,7 +157,7 @@ define(['initialize'], function (initialize) {
             $scope.init();
 
             $scope.changeAnggaran = () => {
-                $scope.item.pir = Math.ceil($scope.item.anggaranRemunerasi / 13);
+                $scope.item.pir = Math.ceil($scope.item.anggaranRemunerasi * 0.85 / 13);
                 $scope.item.pirHitungan = Math.ceil($scope.item.pir / $scope.totalNilaiJabatan);
                 $scope.item.pirUnformatted = $scope.item.pir;
                 $scope.item.pirHitunganUnformatted = $scope.item.pirHitungan;

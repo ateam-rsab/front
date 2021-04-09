@@ -115,9 +115,9 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
 
                 var tglReg = moment($scope.item.tglRegistrasi).format('YYYY-MM-DD');
                 manageServicePhp.getDataTableTransaksi("registrasipasien/cek-pasien-daftar-duakali?nocm=" +
-                        $scope.currentNoCm +
-                        "&tglregistrasi=" +
-                        tglReg)
+                    $scope.currentNoCm +
+                    "&tglregistrasi=" +
+                    tglReg)
                     .then(function (res) {
                         $scope.CekPasienDaftar = res.data.data;
                     })
@@ -230,14 +230,28 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                 $scope.cekRawatInap(data);
             })
 
+            /**
+             * 
+             * @param {*} id adalah id ruangan yang dipilih
+             * 
+             * @return daftar kelas dengan perubahan :
+             * 1. per bulan April 2021 Kelas VIP A dan VIP B tidak dapat dipilih lagi karena sudah gabung menjadi VIP saja
+             */
             $scope.pilihRuangan = function (id) {
                 // get ruangan with condition (rawat jalan or rawat inap)
                 if ($scope.model.rawatInap === true) {
                     var ruanganId = id;
                     manageServicePhp.getDataTableTransaksi("registrasipasien/get-kelasbyruangan?idRuangan=" + ruanganId)
                         .then(function (dat) {
-                            $scope.listKelas = dat.data.kelas;
+                            var tempListKelas = []
+                            for (let i = 0; i < dat.data.kelas.length; i++) {
+                                if (dat.data.kelas[i].id != 21) {
+                                    tempListKelas.push(dat.data.kelas[i])
+                                }
 
+                            }
+
+                            $scope.listKelas = tempListKelas;
                         });
                 }
             }
@@ -360,13 +374,13 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                     if ($scope.item.kelompokPasien && $scope.item.kelompokPasien.id == 1) {
                         manageServicePhp.getDataTableTransaksi("registrasipasien/cek-pasien-bayar/" +
                             $scope.noCm).then(function (x) {
-                            if (x.data.status == false && moment(x.data.tglregistrasi).format('YYYY-MM-DD') != moment($scope.now).format('YYYY-MM-DD')) {
-                                toastr.error('Pasien belum bayar !', 'Warning')
-                                return
-                            } else {
-                                $scope.lanjutDaftar()
-                            }
-                        })
+                                if (x.data.status == false && moment(x.data.tglregistrasi).format('YYYY-MM-DD') != moment($scope.now).format('YYYY-MM-DD')) {
+                                    toastr.error('Pasien belum bayar !', 'Warning')
+                                    return
+                                } else {
+                                    $scope.lanjutDaftar()
+                                }
+                            })
                     } else {
                         $scope.lanjutDaftar()
                     }
@@ -428,7 +442,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                 // } else
                 //     nomorTempatTidurs = $scope.item.nomorTempatTidur.id;
 
-                if($scope.model.rawatInap && !$scope.item.nomorTempatTidur) {
+                if ($scope.model.rawatInap && !$scope.item.nomorTempatTidur) {
                     toastr.error("Harap isi Nomor Tempat Tidur", "Gagal");
                     return;
                 }
@@ -531,7 +545,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                         } else {
                             //##log Pasien Daftar
                             manageServicePhp.getDataTableTransaksi("logging/save-log-pendaftaran-pasien?norec_pd=" +
-                                $scope.model.norec_pd).then(function (x) {})
+                                $scope.model.norec_pd).then(function (x) { })
                             //## end log    
                         }
                         $scope.isNext = false;
@@ -562,8 +576,8 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
             $scope.updateNoreg = function () {
                 manageServicePhp.getDataTableTransaksi("registrasipasien/update-noregistrasi?norec_pd=" +
                     $scope.model.norec_pd).then(function (x) {
-                    debugger
-                })
+                        debugger
+                    })
             }
             $scope.saveLogging = function (jenis, referensi, noreff, ket) {
                 manageServicePhp.getDataTableTransaksi("logging/save-log-all?jenislog=" + jenis +
@@ -796,7 +810,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
 
             $scope.cetakBro = function () {
                 var client = new HttpClient();
-                client.get('http://127.0.0.1:1237/printvb/Pendaftaran?cetak-lembarmasukkeluar-byNorec=1&norec=' + $scope.cacheNorecAPD + '&view=false', function (response) {});
+                client.get('http://127.0.0.1:1237/printvb/Pendaftaran?cetak-lembarmasukkeluar-byNorec=1&norec=' + $scope.cacheNorecAPD + '&view=false', function (response) { });
             }
             $scope.cetakRMK = function () {
                 var norReg = ""

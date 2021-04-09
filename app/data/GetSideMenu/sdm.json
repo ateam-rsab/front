@@ -1,42 +1,7 @@
 [
     {
-        "name": "Aplikasi Remunerasi",
-        "children": [ 
-            {
-                "name": "Master",
-                "children": [
-                    {
-                        "name": "Master Anggaran Remunerasi",
-                        "link": "#/MasterAnggaranRemunerasi"
-                    }, {
-                        "name": "Master Indikator Kinerja",
-                        "link": "#/MasterIndikatorKinerja"
-                    }
-                ]
-            }, {
-                "name": "Transaksi",
-                "children": [ 
-                    {
-                        "name": "Dashboard Pencatatan Kinerja",
-                        "link": "#/DashboardPencatatanKinerja"
-                    },  {
-                        "name": "Skoring Tindakan Medis",
-                        "link": "#/SkoringTindakanMedis"
-                    }, {
-                        "name": "Kontrak Kinerja Individu",
-                        "link": "#/KontrakKinerjaIndividu"
-                    }, {
-                        "name": "Verifikasi Catatan Kegiatan Harian",
-                        "link": "#/VerifikasiCatatanKegiatanHarian"
-                    }
-                ]
-            }
-        ]
-    },
-    {
         "name": "Master Data SDM",
         "children": [
-            
             {
                 "name": "Master Uraian Tugas Pegawai",
                 "link": "#/MappingUraianTugas"
@@ -344,6 +309,57 @@
                 "link": "#/latihanVersi2"
             }
         ]
+    },
+    {
+        "name": "Aplikasi Remunerasi",
+        "children": [
+            {
+                "name": "Master",
+                "children": [
+                    {
+                        "name": "Evaluasi Jabatan",
+                        "link": "#/EvaluasiJabatan"
+                    },
+                    {
+                        "name": "Rekapitulasi Evaluasi Jabatan",
+                        "link": "#/RekapitulasiEvaluasiJabatan"
+                    },
+                    {
+                        "name": "Master Anggaran Remunerasi",
+                        "link": "#/MasterAnggaranRemunerasi"
+                    },
+                    {
+                        "name": "Master Satuan Indikator",
+                        "link": "#/MasterSatuanIndikator"
+                    },
+                    {
+                        "name": "Master Indikator Kinerja",
+                        "link": "#/MasterIndikatorKinerja"
+                    }
+                ]
+            },
+            {
+                "name": "Transaksi",
+                "children": [
+                    {
+                        "name": "Skoring Tindakan Medis",
+                        "link": "#/SkoringTindakanMedis"
+                    },
+                    {
+                        "name": "Kontrak Kinerja Individu",
+                        "link": "#/KontrakKinerjaIndividu"
+                    },
+                    {
+                        "name": "Verifikasi Catatan Kegiatan Harian",
+                        "link": "#/VerifikasiCatatanKegiatanHarian"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Dashboard Pencatatan Kinerja",
+        "link": "#/DashboardPencatatanKinerja"
     },
     {
         "name": "Kesejahteraan Pegawai",

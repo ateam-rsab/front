@@ -2402,10 +2402,6 @@
         "name": "SDM",
         "children": [
             {
-                "name": "Presensi Pegawai",
-                "link": "#/PresensiPegawai"
-            },
-            {
                 "name": "Data Pegawai Mitra",
                 "children": [
                     {
@@ -2546,6 +2542,23 @@
                 ]
             }
         ]
+    },
+    {
+        "name": "Aplikasi Remunerasi",
+        "children": [
+            {
+                "name": "Kontrak Kinerja Individu",
+                "link": "#/KontrakKinerjaIndividu"
+            },
+            {
+                "name": "Verifikasi Catatan Kegiatan Harian",
+                "link": "#/VerifikasiCatatanKegiatanHarian"
+            }
+        ]
+    },
+    {
+        "name": "Dashboard Pencatatan Kinerja",
+        "link": "#/DashboardPencatatanKinerja"
     },
     {
         "name": "IP3RS",

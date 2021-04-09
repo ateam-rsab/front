@@ -8,7 +8,7 @@ define(['initialize'], function (initialize) {
             $scope.dataDevice = {};
             $scope.time = "";
             $scope.isRouteLoading = false;
-            $scope.data.isWFH = true;
+            // $scope.data.isWFH = false;
             $scope.isDisablePresensi = true;
             $scope.isNotEditable = false;
             $scope.dataPegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
@@ -132,11 +132,11 @@ define(['initialize'], function (initialize) {
                 getDataHistory();
                 ManageSdmNew.getListData('sdm/get-jadwal-pegawai?idPegawai=' + $scope.dataPegawaiLogin.id).then((res) => {
                     $scope.data = res.data.data;
-                    checkEditableWFH()
+                    // checkEditableWFH()
                 });
 
-                // $scope.ip = getIPAddr();
-                var listProviders = ['43.2true25.67.209', '103.116.203.81', '103.116.203.82', '103.116.203.83', '103.116.203.84', '103.116.203.85', '103.116.203.86', '103.116.203.87', '103.116.203.88', '103.116.203.89', '103.116.203.90', '103.116.203.91', '103.116.203.92', '103.116.203.93', '103.116.203.94', '103.116.203.95', '103.247.219.149']
+                $scope.ip = getIPAddr();
+                var listProviders = ['43.225.67.209', '103.116.203.81', '103.116.203.82', '103.116.203.83', '103.116.203.84', '103.116.203.85', '103.116.203.86', '103.116.203.87', '103.116.203.88', '103.116.203.89', '103.116.203.90', '103.116.203.91', '103.116.203.92', '103.116.203.93', '103.116.203.94', '103.116.203.95', '103.247.219.149']
                 if ($scope.ip !== undefined) {
                     if (listProviders.includes($scope.ip)) {
                         $scope.strJenisJaringan = "Jaringan Internet RSAB"
@@ -227,9 +227,9 @@ define(['initialize'], function (initialize) {
                 let http = new XMLHttpRequest();
 
                 http.onreadystatechange = () => {
-                    if (http.status === 0 && http.readyState === 1) {
-                        toastr.info("Jaringan anda bermasalah");
-                    }
+                    // if (http.status === 0 && http.readyState === 1) {
+                    //     toastr.info("Jaringan anda bermasalah");
+                    // }
                     if (http.readyState == 4 && http.status === 200) {
                         dataIP = http.responseText;
                     }
@@ -248,7 +248,8 @@ define(['initialize'], function (initialize) {
                     pegawai: {
                         id: $scope.dataPegawaiLogin.id
                     },
-                    processtatus: $scope.data.isWFH ? 1 : 0,
+                    // processtatus: $scope.data.isWFH ? 1 : 0,
+                    processtatus: 0,
                     ip_addr: $scope.ip,
                     latitude: $scope.userLocation.lat,
                     longitude: $scope.userLocation.lng,
