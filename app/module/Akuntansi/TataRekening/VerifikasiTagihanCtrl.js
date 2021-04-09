@@ -7,7 +7,8 @@ define(['initialize'], function (initialize) {
 			$scope.now = new Date();
 			$scope.nowFormated = moment($scope.now).format('DD-MM-YYYY');
 			$scope.pageCetak = false;
-			$scope.showKelengkapanDokumen = false; gi
+			$scope.showKelengkapanDokumen = false;
+
 			$scope.item = {};
 			$scope.tombolSaveIlang = true;
 			$scope.isDiskonRSAB = false;
