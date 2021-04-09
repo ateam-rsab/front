@@ -16,6 +16,8 @@ define(['initialize'], function (initialize) {
             $scope.showTombol = false
             $scope.header.DataNoregis = true
             // var pegawaiUser = {}
+            $scope.dataLogin = JSON.parse(localStorage.getItem('pegawai'));
+            let getJenisPegawai = $scope.dataLogin.jenisPegawai.jenispegawai ? $scope.dataLogin.jenisPegawai.jenispegawai : $scope.dataLogin.jenisPegawai.jenisPegawai;
             var detail = ''
             let baseURLFiltering = "idjenisperiksapenunjang="
             $scope.listFilters = [
@@ -344,6 +346,10 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.showPopUpOrder = function () {
+                if(getJenisPegawai !== "DOKTER") {
+                    toastr.info('Anda tidak memiliki akses menambahkan konsultasi');
+                    return;
+                }
                 $scope.popupAddLayanan.open().center();
             }
 
@@ -569,12 +575,12 @@ define(['initialize'], function (initialize) {
                 $scope.inputOrder = true;
             }
             $scope.Simpan = function () {
-                if ($scope.item.ruangantujuan == undefined) {
-                    alert("Pilih Ruangan Tujuan terlebih dahulu!!")
-                    return
-                }
+                // if ($scope.item.ruangantujuan == undefined) {
+                //     toastr.warning("Pilih Ruangan Tujuan terlebih dahulu!!")
+                //     return
+                // }
                 if (data2.length == 0) {
-                    alert("Pilih layanan terlebih dahulu!!")
+                    toastr.warning("Pilih layanan terlebih dahulu!!")
                     return
                 }
                 var objSave = {

@@ -152,18 +152,18 @@ define(['initialize'], function (initialize) {
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
 
                 if (!$scope.listId.includes(dataItem.unitKerjaId)) {
-                    toastr.warning("Tidak memiliki akses menghapus data!")
+                    toastr.warning("Tidak memiliki akses menghapus data!");
                     return
                 } else if (!$scope.isHapusGranted) {
                     if (dataItem.isStatusVerifikasi) {
-                        toastr.warning("Mapping skor sudah terverifikasi")
+                        toastr.warning("Mapping skor sudah terverifikasi");
                         return
                     } else {
-                        toastr.warning("Tidak memiliki akses menghapus data!")
+                        toastr.warning("Tidak memiliki akses menghapus data!");
                         return
                     }
                 } else if (dataItem.isStatusVerifikasi) {
-                    toastr.warning("Mapping skor sudah terverifikasi")
+                    toastr.warning("Mapping skor sudah terverifikasi");
                     return
                 }
 

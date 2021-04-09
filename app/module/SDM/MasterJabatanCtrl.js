@@ -118,12 +118,6 @@ define(['initialize'], function (initialize) {
 								}
 							},
 							change: function (e) {
-								// if(!e.action || e.action == "sync"){
-								// 	// set row number on detail grid
-								// 	e.items.forEach(function(lis, index){
-								// 		lis.rowNumber = ++index;
-								// 	})
-								// } else 
 								if (e.field == "jenisJabatanId" && e.action == "itemchange") {
 									e.items[0].jenisJabatanId = e.items[0].jenisJabatanId.id ? e.items[0].jenisJabatanId.id : e.items[0].jenisJabatanId;
 								}

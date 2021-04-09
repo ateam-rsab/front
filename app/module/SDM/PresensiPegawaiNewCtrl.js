@@ -14,6 +14,8 @@ define(['initialize'], function (initialize) {
             $scope.dataPegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
             $scope.userLocation = {};
 
+            $scope.isCameraNotDetected = false;
+
             let canvas = document.getElementById('canvas');
             let context = canvas.getContext('2d');
             let getDataHistory = function () {
@@ -44,7 +46,9 @@ define(['initialize'], function (initialize) {
                     navigator.mozGetUserMedia ||
                     navigator.msGetUserMedia);
 
-                navigator.getMedia({ video: true }, function () {
+                navigator.getMedia({
+                    video: true
+                }, function () {
                     context.drawImage(video, 0, 0, 400, 350);
                     $scope.canvasDataURL = canvas.toDataURL().replace("image/png", "image/jpg");
                     $scope.isDisablePresensi = false;
@@ -132,7 +136,7 @@ define(['initialize'], function (initialize) {
                 });
 
                 // $scope.ip = getIPAddr();
-                var listProviders = ['43.225.67.209', '103.116.203.81', '103.116.203.82', '103.116.203.83', '103.116.203.84', '103.116.203.85', '103.116.203.86', '103.116.203.87', '103.116.203.88', '103.116.203.89', '103.116.203.90', '103.116.203.91', '103.116.203.92', '103.116.203.93', '103.116.203.94', '103.116.203.95', '103.247.219.149']
+                var listProviders = ['43.2true25.67.209', '103.116.203.81', '103.116.203.82', '103.116.203.83', '103.116.203.84', '103.116.203.85', '103.116.203.86', '103.116.203.87', '103.116.203.88', '103.116.203.89', '103.116.203.90', '103.116.203.91', '103.116.203.92', '103.116.203.93', '103.116.203.94', '103.116.203.95', '103.247.219.149']
                 if ($scope.ip !== undefined) {
                     if (listProviders.includes($scope.ip)) {
                         $scope.strJenisJaringan = "Jaringan Internet RSAB"
@@ -146,19 +150,66 @@ define(['initialize'], function (initialize) {
                     $scope.isRSABNet = true
                 }
             }
-
             init();
+
+            function checkCamReady() {
+                // $scope.isCameraNotAccessed = true;
+                if (!navigator.mediaDevices) {
+                    $scope.isCameraNotDetected = true;
+                    return;
+                }
+                navigator.mediaDevices.getUserMedia({
+                    video: true
+                }).then((stream) => {
+                    $scope.isCameraNotAccessed = true;
+                    let res = stream.getVideoTracks().some((track) => {
+                        return track.enabled && track.readyState === 'live';
+                    });
+
+                    // if(res) {
+                    //     alert("ON");
+                    // } else {
+                    //     alert("OFF");
+                    // }
+                }).catch((err) => {
+                    toastr.warning("Izin belum diberikan untuk menggunakan kamera Anda. Harap berikan izin untuk bisa melanjutkan presensi", "Perhatian!");
+                    // $scope.isCameraNotAccessed = false;
+                    console.log(err.name + ": " + err.message);
+                })
+            }
+            checkCamReady();
+
+            function checkGPSReady() {
+
+                navigator.permissions.query({
+                    name: 'geolocation'
+                }).then((res) => {
+                    if (res.state === "denied") {
+                        $scope.isGeolocationOff = true;
+                    } else if (res.state === "granted") {
+                        $scope.isGeolocationOff = false;
+                    } else {
+                        $scope.isGeolocationOff = true;
+                    }
+
+                })
+            }
+            checkGPSReady();
 
             $scope.columnGrid = [{
                 "field": "jam",
                 "title": "<h3>Jam</h3>",
                 "width": "30px",
-                attributes: { style: "text-align:center" }
+                attributes: {
+                    style: "text-align:center"
+                }
             }, {
                 "field": "statusPresensi",
                 "title": "<h3>Status<br/>Presensi</h3>",
                 "width": "20px",
-                attributes: { style: "text-align:center" }
+                attributes: {
+                    style: "text-align:center"
+                }
             }, {
                 "field": "statusInternet",
                 "title": "<h3>Status Internet</h3>",
@@ -213,9 +264,9 @@ define(['initialize'], function (initialize) {
 
             function checkEditableWFH() {
                 if ($scope.data && $scope.dataHistoriPresensi.options.data) {
-                    if ($scope.data.jadwal !== "-"
-                        && !$scope.data.jadwal.contains("Malam")
-                        && $scope.dataHistoriPresensi.options.data.length > 0) {
+                    if ($scope.data.jadwal !== "-" &&
+                        !$scope.data.jadwal.contains("Malam") &&
+                        $scope.dataHistoriPresensi.options.data.length > 0) {
                         $scope.isNotEditable = true
                     }
                 }
@@ -223,8 +274,8 @@ define(['initialize'], function (initialize) {
 
             function assignToNotEditable() {
                 if ($scope.data) {
-                    if ($scope.data.jadwal !== "-"
-                        && !$scope.data.jadwal.contains("Malam")) {
+                    if ($scope.data.jadwal !== "-" &&
+                        !$scope.data.jadwal.contains("Malam")) {
                         $scope.isNotEditable = true
                     }
                 }

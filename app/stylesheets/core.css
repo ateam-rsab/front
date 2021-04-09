@@ -95,6 +95,12 @@
 
 /* #endregion slider */
 
+.length-textarea {
+  margin: 2px;
+  font-size: smaller;
+  text-align: end;
+}
+
 .slides {
     padding: 0;
     width: 609px;

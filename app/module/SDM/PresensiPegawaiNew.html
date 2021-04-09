@@ -5,6 +5,33 @@
     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
     crossorigin="anonymous"></script> -->
 <style>
+    .notify {
+        padding: 15px;
+        background-color: #beffff;
+        border-radius: 5px;
+        display: inline-block;
+        margin: 0 2px 5px
+    }
+
+    .notify strong {
+        margin-right: 10px;
+        font-size: 15px
+    }
+
+    .notify.notify-warn {
+        background-color: #ffcf77
+    }
+
+    .notify-danger {
+        background-color: #ff6f6f;
+        color: #454545;
+    }
+
+    .notify-warning {
+        background-color: #faa74d;
+        color: #454545;
+    }
+
     .container-presensi {
         display: flex;
         /* justify-content: center; */
@@ -94,6 +121,15 @@
 <md-toolbar md-scroll-shrink class="shadow">
     <div class="md-toolbar-tools">Presensi Pegawai</div>
 </md-toolbar>
+
+<div class="notify notify-danger" ng-if="isCameraNotDetected">
+    <strong>Info </strong> Perangkat anda terdeteksi tidak memiliki camera
+</div>
+
+<!-- catch gamau kena -->
+<div class="notify notify-warning" ng-if="isGeolocationOff">
+    <strong>Perhatian </strong> Izin belum diberikan untuk menggunakan lokasi Anda. Harap berikan izin untuk bisa melanjutkan presensi
+</div>
 
 <div class="container-presensi">
     <md-card>

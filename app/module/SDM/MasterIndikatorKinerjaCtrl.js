@@ -6,6 +6,7 @@ define(['initialize'], function (initialize) {
             $scope.isDuplicated = false
             $scope.mapping = {};
             let dataLogin = JSON.parse(localStorage.getItem("datauserlogin"));
+            
             $scope.optGridMasterKinerja = {
                 toolbar: [{
                     text: "export",

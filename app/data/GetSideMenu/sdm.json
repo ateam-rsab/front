@@ -46,6 +46,10 @@
                 "link": "#/MasterJabatan"
             },
             {
+                "name": "Master Jabatan",
+                "link": "#/MasterJabatanRev"
+            },
+            {
                 "name": "Master Unit Kerja",
                 "link": "#/MasterUnitKerjaSDM"
             },

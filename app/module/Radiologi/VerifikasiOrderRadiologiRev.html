@@ -1,0 +1,288 @@
+<style>
+    .hint-label {
+        font-size: 11px;
+        color: rgb(40, 40, 40);
+    }
+
+    hr {
+        margin: 0 5px;
+    }
+</style>
+
+<md-toolbar md-scroll-shrink class="shadow">
+    <div class="md-toolbar-tools">Daftar Order Radiologi</div>
+</md-toolbar>
+
+<div class="grid_12">
+    <md-card>
+        <md-card-content>
+            <div class="grid_12">
+                <div class="grid_2">
+                    <label c-label item="item">No. Order</label>
+                    <label class="hint-label">{{dataOrderRadiologi.noorder}}</label>
+                </div>
+
+                <div class="grid_2">
+                    <label c-label item="item">No. Rekam Medis</label>
+                    <label class="hint-label">{{dataOrderRadiologi.nocm}}</label>
+                </div>
+
+                <div class="grid_2">
+                    <label c-label item="item">No. Registrasi</label>
+                    <label class="hint-label">{{dataOrderRadiologi.noregistrasi}}</label>
+                </div>
+
+                <div class="grid_2">
+                    <label c-label item="item">Nama Pasien</label>
+                    <label class="hint-label">{{dataOrderRadiologi.namapasien}}</label>
+                </div>
+
+                <div class="grid_3">
+                    <label c-label item="item">Catatan Khusus</label>
+                    <label class="hint-label">{{detailOrderRadiologi.catatan_kusus}}</label>
+                </div>
+            </div>
+            <hr>
+            <div class="grid_12">
+                <div class="grid_2">
+                    <label c-label item="item">APGAR</label>
+                    <label class="hint-label">{{detailOrderRadiologi.apgar}}</label>
+                </div>
+
+                <div class="grid_2">
+                    <label c-label item="item">ETT</label>
+                    <label class="hint-label">{{detailOrderRadiologi.ett}}</label>
+                </div>
+
+                <div class="grid_2">
+                    <label c-label item="item">Konengital</label>
+                    <label class="hint-label">{{detailOrderRadiologi.konengital}}</label>
+                </div>
+
+                <div class="grid_2">
+                    <label c-label item="item">Konsultasi Anestesi</label>
+                    <label class="hint-label">{{detailOrderRadiologi.konsultasi_anest}}</label>
+                </div>
+
+                <div class="grid_2">
+                    <label c-label item="item">Oksigen</label>
+                    <label class="hint-label">{{detailOrderRadiologi.oksigen}}</label>
+                </div>
+
+                <div class="grid_2">
+                    <label c-label item="item">Pemeriksaan Laboratorium</label>
+                    <label class="hint-label">{{detailOrderRadiologi.periksa_lab}}</label>
+                </div>
+            </div>
+            <hr>
+            <div class="grid_12">
+                <div class="grid_2">
+                    <label c-label item="item">Pneumonia</label>
+                    <label class="hint-label">{{detailOrderRadiologi.pneumonia}}</label>
+                </div>
+
+                <div class="grid_2">
+                    <label c-label item="item">Prematur</label>
+                    <label class="hint-label">{{detailOrderRadiologi.prematur}}</label>
+                </div>
+
+                <div class="grid_2">
+                    <label c-label item="item">Jenis Proses Persalinan</label>
+                    <label class="hint-label">{{detailOrderRadiologi.scOrNormal}}</label>
+                </div>
+                <div class="grid_2">
+                    <label c-label item="item">Umbilical Catheter</label>
+                    <label class="hint-label">{{detailOrderRadiologi.umb_cathe}}</label>
+                </div>
+
+                <div class="grid_2">
+                    <label c-label item="item">PICC</label>
+                    <label class="hint-label">{{detailOrderRadiologi.picc}}</label>
+                </div>
+                <div class="grid_2">
+                    <label c-label item="item">Catheter Drain</label>
+                    <label class="hint-label">{{detailOrderRadiologi.drain_cath}}</label>
+                </div>
+            </div>
+
+        </md-card-content>
+    </md-card>
+</div>
+
+
+<div class="grid_12">
+    <div id="kGrid" kendo-grid k-data-source="dataSourceDetail" k-selectable="'row'" k-columns="columnsDetailOrder"
+        k-pageable="'true'" k-sortable="'true'" k-ng-model="selectedData" ng-click="onClickGrid(selectedData)">
+    </div>
+</div>
+
+<div class="grid_12" style="margin-top: 20px;">
+    <div id="kGrid" kendo-grid k-data-source="dataSourceVerified" k-selectable="'row'"
+        k-columns="columnsDetailOrderVerified" k-pageable="'true'" k-sortable="'true'" k-ng-model="selectedData"
+        ng-click="onClickGrid(selectedData)">
+    </div>
+</div>
+
+<div kendo-window="popupVerifikasi" k-title="'Verifikasi Data'" k-width="1100" k-height="800" k-visible="false"
+    k-on-open="win2visible = true">
+    <div class="panel panel-default container_12" style="padding: 0px 10px;">
+        <div class="grid_12">
+        </div>
+
+        <div class="window-body">
+            <div class="grid_12">
+                <div class="grid_6">
+                    <md-card>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">Produk dari Dokter</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content>
+                            <div style="margin-bottom: 10px">
+                                <div class="grid_12">
+                                    <label c-label item="item">
+                                        <strong>Nama Produk</strong>
+                                    </label>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="grid_12" style="margin-bottom: 10px">
+                                    {{layanan.namaproduk}}
+                                </div>
+                            </div>
+    
+                            <div style="margin-bottom: 10px" ng-show="racikan">
+                                <div class="grid_12">
+                                    <label c-label item="item">
+                                        <strong>QTY</strong>
+                                    </label>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="grid_12" style="margin-bottom: 10px">
+                                    {{layanan.qtyproduk}}
+                                </div>
+                            </div>
+    
+                            <div style="margin-bottom: 10px">
+                                <div class="grid_12">
+                                    <label c-label item="item">
+                                        <strong>Catatan Tambahan</strong>
+                                    </label>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="grid_12" style="margin-bottom: 10px">
+                                    {{layanan.catatan_tambahan}}
+                                </div>
+                            </div>
+    
+                            <div style="margin-bottom: 10px">
+                                <div class="grid_12">
+                                    <label c-label item="item">
+                                        <strong>Persiapan</strong>
+                                    </label>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="grid_12" style="margin-bottom: 10px">
+                                    {{layanan.persiapan}}
+                                </div>
+                            </div>
+    
+                            <div style="margin-bottom: 10px">
+                                <div class="grid_12">
+                                    <label c-label item="item">
+                                        <strong>Riwayat</strong>
+                                    </label>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="grid_12" style="margin-bottom: 10px">
+                                    {{layanan.riwayat}}
+                                </div>
+                            </div>
+                        </md-card-content>
+    
+                    </md-card>
+                </div>
+    
+                <div class="grid_6">
+                    <md-card>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">Verifikasi Radiologi</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content>
+                            <div style="margin-bottom: 10px">
+                                <div class="grid_12">
+                                    <label c-label item="item">
+                                        <strong>Nama Produk</strong>
+                                    </label>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="grid_12" style="margin-bottom: 10px">
+                                    <input kendo-combo-box k-ng-model="layanan.iptProduk" k-data-text-field="'namaproduk'"
+                                        k-data-value-field="'prid'" k-filter="'contains'" k-auto-bind="false"
+                                        k-data-source="listLayanan" k-on-change="onChangeProduk(layanan.iptProduk)"/>
+                                </div>
+                            </div>
+    
+                            <div style="margin-bottom: 10px">
+                                <div class="grid_12">
+                                    <label c-label item="item">
+                                        <strong>QTY</strong>
+                                    </label>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="grid_12" style="margin-bottom: 10px">
+                                    <input type="number" min="0" class="k-textbox" ng-model="layanan.iptQty">
+                                </div>
+                            </div>
+                        </md-card-content>
+    
+                    </md-card>
+                </div>
+            </div>
+         
+            <div class="grid_12" style="margin-top: 20px;">
+                <div class="grid_6">
+                    <div id="kGrid" kendo-grid k-data-source="dataSourceHargaProduk" k-columns="columnsHargaProduk" k-pageable="'true'" k-sortable="'true'">
+                    </div>
+                </div>
+
+                <div class="grid_6">
+                    <span style="font-size: 15px; font-weight: bold;">Total:</span>
+                    <h2 style="color: rgb(41, 41, 41); font-size: 20px;">{{totalHargaProduk}}</h2>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="grid_12" style="margin-top: 10px;">
+            <md-button class="md-raised md-primary medium-button" style="width: 100px;" ng-click="verifikasiData()">
+                <span style="margin-right: 5px;">Verifikasi</span>
+                <i class="fa fa-plus"></i>
+            </md-button>
+            <md-button class="md-raised md-danger medium-button" ng-click="popupVerifikasi.close()"
+                style="width: 100px;">
+                <span style="margin-right: 5px;">Batal</span>
+                <i class="fa fa-cancel"></i>
+            </md-button>
+        </div>
+    </div>
+</div>
+
+<div class="grid_12" style="margin-top: 5vh;">
+    <div class="grid_2">
+        <md-button class="md-raised md-primary" ng-click="simpanData()">
+            <span style="margin-right: 5px;">Simpan Data</span>
+            <i class="fa fa-save"></i>
+        </md-button>
+    </div>
+
+    <div class="grid_2">
+        <md-button class="md-raised md-danger">
+            <span style="margin-right: 5px;" ng-click="resetData()">Reset</span>
+            <i class="fa fa-cancel"></i>
+        </md-button>
+    </div>
+</div>
+<div ng-include='"../app/module/Shared/TemplateLoading"'></div>

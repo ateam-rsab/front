@@ -528,7 +528,7 @@ define(['initialize'], function (initialize) {
                         dataSource[i].no = i + 1;
 
                         dataSource[i].hargaSatuanFormatted = formatCurrency(dataSource[i].hargasatuan);
-                        tempHarga += parseInt(dataSource[i].hargasatuan);
+                        tempHarga += parseInt(dataSource[i].hargasatuan) * parseInt(dataSource[i].qtyproduk);
                     }
 
                     $scope.totalHarga = tempHarga.toLocaleString('id-ID', {

@@ -1414,6 +1414,78 @@
     ]
   },
   {
+    "name": "DaftarOrderRadiologiCtrl",
+    "url": "/DaftarOrderRadiologi",
+    "templateurl": "module/Radiologi/DaftarOrderRadiologi.html",
+    "controller": "DaftarOrderRadiologiCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "PasienService",
+        "define": "PasienService"
+      },
+      {
+        "module": "ProdukService",
+        "define": "ProdukService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      },
+      {
+        "module": "RadiologiService",
+        "define": "RadiologiService"
+      },
+      {
+        "module": "LaboratoriumService",
+        "define": "LaboratoriumService"
+      }
+    ]
+  },
+  {
+    "name": "VerifikasiOrderRadiologiRevCtrl",
+    "url": "/VerifikasiOrderRadiologiRev/:norec",
+    "templateurl": "module/Radiologi/VerifikasiOrderRadiologiRev.html",
+    "controller": "VerifikasiOrderRadiologiRevCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "PasienService",
+        "define": "PasienService"
+      },
+      {
+        "module": "ProdukService",
+        "define": "ProdukService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      },
+      {
+        "module": "RadiologiService",
+        "define": "RadiologiService"
+      },
+      {
+        "module": "LaboratoriumService",
+        "define": "LaboratoriumService"
+      }
+    ]
+  },
+  {
     "name": "RadiologiPasien",
     "url": "/Radiologi/Pasien",
     "templateurl": "module/Radiologi/daftarPasien.html",

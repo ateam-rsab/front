@@ -63,6 +63,7 @@ define(['initialize'], function (initialize) {
                     "&nostruk=" + $scope.item.struk +
                     "&nofaktur=" + $scope.item.nofaktur +
                     "&namarekanan=" + $scope.item.namarekanan +
+                    "&noorder=" + $scope.item.nousulan +
                     produkfk, true).then(function (dat) {
                     $scope.isRouteLoading = false;
                     for (var i = 0; i < dat.data.daftar.length; i++) {

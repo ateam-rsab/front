@@ -62,7 +62,7 @@
         <md-tab label="Order Radiologi">
             <div class="grid_12">
 
-                <div class="grid_4">
+                <!-- <div class="grid_4">
 
                     <div class="grid_12">
 
@@ -131,6 +131,233 @@
                             <md-button class="md-raised medium-button" ng-click="batal()">Batal</md-button>
                         </div>
                     </div>
+                </div> -->
+
+                <div class="grid_12">
+                    <div class="grid_2">
+                        <label c-label item="item">Klinik/Ruangan Asal</label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruanganAsal"
+                            k-data-text-field="'namaruangan'" k-data-value-field="'id'" k-filter="'contains'"
+                            k-auto-bind="false" k-data-source="listRuangan"
+                            k-on-change="onChangeRuangan(item.ruanganAsal.id)" />
+                    </div>
+                </div>
+
+                <div class="grid_12">
+                    <div class="grid_3">
+                        <label c-label item="item">Klinis</label>
+                        <input c-text-box type="input" class="k-textbox" ng-model="item.klinis" />
+                    </div>
+
+                    <div class="grid_3">
+                        <label c-label item="item">Catatan Khusus</label>
+                        <input c-text-box type="input" class="k-textbox" ng-model="item.catatanKhusus" />
+                    </div>
+
+                    <!-- <div class="grid_3">
+                        <label c-label item="item">Catatan Tambahan</label>
+                        <input c-text-box type="input" class="k-textbox" ng-model="item.catatanTambahan" />
+                    </div> -->
+
+                    <!-- <div class="grid_3">
+                        <label c-label item="item">Riwayat Pemeriksaan Radiologi</label>
+                        <input c-text-box type="input" class="k-textbox" ng-model="item.riwayatRadiologi" />
+                    </div> -->
+
+                    <!--  -->
+                    <!-- <div class="grid_3">
+                        <label c-label item="item">Persiapan</label>
+                        <input c-text-box type="input" class="k-textbox" ng-model="item.persiapan" />
+                    </div> -->
+
+                    <div class="grid_3">
+                        <label c-label item="item">Konsultasi Anestesi</label>
+
+                        <div class="grid_12">
+                            <div class="grid_6">
+                                <input type="radio" name="konsultasiAnestesi" id="konsulya" class="k-radio"
+                                    ng-model="item.konsultasiAnestesi" value="Ya">
+                                <label class="k-radio-label" for="konsulya">Ya</label>
+                            </div>
+                            <div class="grid_6">
+                                <input type="radio" name="konsultasiAnestesi" id="konsultidak" class="k-radio"
+                                    ng-model="item.konsultasiAnestesi" value="Tidak">
+                                <label class="k-radio-label" for="konsultidak">Tidak</label>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="grid_3">
+                        <label c-label item="item">Pemeriksaan Laboratorium</label>
+                        <div class="grid_12">
+                            <div class="grid_4">
+                                <input type="radio" name="pemeriksaanLab" id="pemeriksaanLabya" class="k-radio"
+                                    ng-model="item.pemeriksaanLab" value="Ya" ng-click="onChangePemeriksaanLab(false)">
+                                <label class="k-radio-label" for="pemeriksaanLabya">Ya</label>
+                            </div>
+                            <div class="grid_4">
+                                <input type="radio" name="pemeriksaanLab" id="pemeriksaanLabtidak" class="k-radio"
+                                    ng-model="item.pemeriksaanLab" value="Tidak"
+                                    ng-click="onChangePemeriksaanLab(false)">
+                                <label class="k-radio-label" for="pemeriksaanLabtidak">Tidak</label>
+                            </div>
+                            <div class="grid_4">
+                                <input type="radio" name="pemeriksaanLab" id="lainnya" class="k-radio"
+                                    ng-model="item.pemeriksaanLab" value="lainnya"
+                                    ng-click="onChangePemeriksaanLab(true)">
+                                <label class="k-radio-label" for="lainnya">Lainnya</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid_3" ng-show="showInputPemeriksaanLab">
+                        <label c-label item="item">Pemeriksaan Laboratorium Lainnya</label>
+                        <input c-text-box type="input" class="k-textbox" ng-model="item.pemeriksaanLabLainnya" />
+                    </div>
+                </div>
+
+                <hr ng-show="showInputKhusus">
+
+                <div class="grid_12" ng-show="showInputKhusus">
+                    <div class="grid_2">
+                        <label c-label item="item">Prematur</label>
+                        <input c-text-box type="input" class="k-textbox" ng-model="item.prematur" />
+                    </div>
+
+                    <div class="grid_2">
+                        <label c-label item="item">APGAR</label>
+                        <input c-text-box type="input" class="k-textbox" ng-model="item.apgar" />
+                    </div>
+
+                    <div class="grid_2">
+                        <label c-label item="item">Jenis Proses Persalinan</label>
+                        <div class="grid_12">
+                            <div class="grid_4">
+                                <input type="radio" name="prosesPersalinan" id="Caesar" class="k-radio"
+                                    ng-model="item.prosesPersalinan" value="Caesar">
+                                <label class="k-radio-label" for="Caesar">Caesar</label>
+                            </div>
+                            <div class="grid_4">
+                                <input type="radio" name="prosesPersalinan" id="Normal" class="k-radio"
+                                    ng-model="item.prosesPersalinan" value="Normal">
+                                <label class="k-radio-label" for="Normal">Normal</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid_2">
+                        <label c-label item="item">Kelainan Konengital</label>
+                        <div class="grid_12">
+                            <div class="grid_4">
+                                <input type="radio" name="kelainanKonengital" id="kelainanKonengitalya" class="k-radio"
+                                    ng-model="item.kelainanKonengital" value="Ya">
+                                <label class="k-radio-label" for="kelainanKonengitalya">Ya</label>
+                            </div>
+                            <div class="grid_4">
+                                <input type="radio" name="kelainanKonengital" id="kelainanKonengitaltidak"
+                                    class="k-radio" ng-model="item.kelainanKonengital" value="Tidak">
+                                <label class="k-radio-label" for="kelainanKonengitaltidak">Tidak</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid_2">
+                        <label c-label item="item">Klinis Pneumonia</label>
+                        <div class="grid_12">
+                            <div class="grid_4">
+                                <input type="radio" name="klinisPneumonia" id="klinisPneumoniaya" class="k-radio"
+                                    ng-model="item.klinisPneumonia" value="Ya">
+                                <label class="k-radio-label" for="klinisPneumoniaya">Ya</label>
+                            </div>
+                            <div class="grid_4">
+                                <input type="radio" name="klinisPneumonia" id="klinisPneumoniatidak" class="k-radio"
+                                    ng-model="item.klinisPneumonia" value="Tidak">
+                                <label class="k-radio-label" for="klinisPneumoniatidak">Tidak</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid_2">
+                        <label c-label item="item">Terpasang Oksigen</label>
+                        <div class="grid_12">
+                            <div class="grid_4">
+                                <input type="radio" name="terpasangOksigen" id="terpasangOksigenya" class="k-radio"
+                                    ng-model="item.terpasangOksigen" value="Ya">
+                                <label class="k-radio-label" for="terpasangOksigenya">Ya</label>
+                            </div>
+                            <div class="grid_4">
+                                <input type="radio" name="terpasangOksigen" id="terpasangOksigentidak" class="k-radio"
+                                    ng-model="item.terpasangOksigen" value="Tidak">
+                                <label class="k-radio-label" for="terpasangOksigentidak">Tidak</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid_2">
+                        <label c-label item="item">Terpasang ETT</label>
+                        <div class="grid_12">
+                            <div class="grid_4">
+                                <input type="radio" name="terpasangEtt" id="terpasangEttya" class="k-radio"
+                                    ng-model="item.terpasangEtt" value="Ya">
+                                <label class="k-radio-label" for="terpasangEttya">Ya</label>
+                            </div>
+                            <div class="grid_4">
+                                <input type="radio" name="terpasangEtt" id="terpasangEtttidak" class="k-radio"
+                                    ng-model="item.terpasangEtt" value="Tidak">
+                                <label class="k-radio-label" for="terpasangEtttidak">Tidak</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid_2">
+                        <label c-label item="item">Umbilical Catheter</label>
+                        <div class="grid_12">
+                            <div class="grid_4">
+                                <input type="radio" name="umbilicalCatheter" id="umbilicalCatheterya" class="k-radio"
+                                    ng-model="item.umbilicalCatheter" value="Ya">
+                                <label class="k-radio-label" for="umbilicalCatheterya">Ya</label>
+                            </div>
+                            <div class="grid_4">
+                                <input type="radio" name="umbilicalCatheter" id="umbilicalCathetertidak" class="k-radio"
+                                    ng-model="item.umbilicalCatheter" value="Tidak">
+                                <label class="k-radio-label" for="umbilicalCathetertidak">Tidak</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid_2">
+                        <label c-label item="item">PICC</label>
+                        <div class="grid_12">
+                            <div class="grid_4">
+                                <input type="radio" name="PICC" id="PICCya" class="k-radio" ng-model="item.PICC"
+                                    value="Ya">
+                                <label class="k-radio-label" for="PICCya">Ya</label>
+                            </div>
+                            <div class="grid_4">
+                                <input type="radio" name="PICC" id="PICCtidak" class="k-radio" ng-model="item.PICC"
+                                    value="Tidak">
+                                <label class="k-radio-label" for="PICCtidak">Tidak</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid_2">
+                        <label c-label item="item">Catheter Drain</label>
+                        <div class="grid_12">
+                            <div class="grid_4">
+                                <input type="radio" name="catheterDrain" id="catheterDrainya" class="k-radio"
+                                    ng-model="item.catheterDrain" value="Ya">
+                                <label class="k-radio-label" for="catheterDrainya">Ya</label>
+                            </div>
+                            <div class="grid_4">
+                                <input type="radio" name="catheterDrain" id="catheterDraintidak" class="k-radio"
+                                    ng-model="item.catheterDrain" value="Tidak">
+                                <label class="k-radio-label" for="catheterDraintidak">Tidak</label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="grid_12">
@@ -141,21 +368,22 @@
                 </div>
 
                 <div class="grid_12">
-                    <div class="grid_10">
+                    <div class="grid_6">
                     </div>
 
-                    <div class="grid_1" style="margin-top: 22px">
+                    <div class="grid_2" style="margin-top: 22px">
                         <md-button class="md-raised md-primary" ng-click="Simpan()">Simpan</md-button>
                     </div>
-                    <!-- <div class="grid_1" style="margin-top: 22px">
+                    <div class="grid_2" style="margin-top: 22px">
                         <md-button class="md-raised md-warn" ng-click="BatalOrder()">Batal</md-button>
-                    </div> -->
-                    <div class="grid_1" style="margin-top: 22px">
+                    </div>
+                    <div class="grid_2" style="margin-top: 22px">
                         <md-button class="md-raised" is-back>Kembali</md-button>
                     </div>
 
                 </div>
             </div>
+
             <div kendo-window="popupAddLayanan" k-title="'Tambah Layanan'" k-width="1100" k-height="650"
                 k-visible="false" k-on-open="win2visible = true">
                 <div class="panel panel-default container_12" style="padding: 0px 10px;">
@@ -164,7 +392,8 @@
                     </div>
                     <div class="grid_12">
                         <div class="grid_4">
-                            <input c-text-box type="input" filter="" class="k-textbox" ng-model="filterContain" />
+                            <input c-text-box type="input" filter="" class="k-textbox" ng-model="filterContain"
+                                placeholder="Kata Kunci" />
                         </div>
                         <div class="grid_1" style="margin-top: 6px;">
                             <md-button class="md-raised md-primary medium-button"
@@ -173,29 +402,49 @@
                                 <i class="fa fa-search"></i>
                             </md-button>
                         </div>
+
+                        <div class="grid_3" style="margin-top: 6px;">
+                            <md-button class="md-raised md-primary medium-button" ng-click="showProduk = !showProduk">
+                                <span style="margin-right: 5px;" ng-if="showProduk">Tindakan Radiologi Lainnya</span>
+                                <span style="margin-right: 5px;" ng-if="!showProduk">Tindakan Radiologi</span>
+                                <i class="fa fa-plus"></i>
+                            </md-button>
+                        </div>
                     </div>
-                    <!-- <hr> -->
-                    <div class="window-body">
+
+                    <div class="window-body" ng-show="showProduk">
 
                         <div layout="row" layout-sm="column" layout-align="space-around" ng-if="isLoading">
                             <md-progress-circular md-mode="indeterminate"></md-progress-circular>
                         </div>
-                        <div class="grid_4" ng-repeat="data in listLayanan track by $index" ng-if="!isLoading">
-                            <md-card style="height: 200px;">
+                        <div class="grid_6" ng-repeat="data in listLayanan track by $index" ng-if="!isLoading">
+                            <md-card style="height: 300px;">
                                 <md-card-title>
                                     <md-checkbox style="display: flex;align-items: center;" ng-checked="data.checked"
                                         ng-click="updateSelectedData(data, $index)">
                                         {{ data.namaproduk }}
                                     </md-checkbox>
-                                    <!-- <md-checkbox style="display: flex;align-items: center;" ng-model="item.checkedData[$index]"
-                                        aria-label="{{item.namaproduk}}">{{item.namaproduk}}
-                                    </md-checkbox> -->
                                 </md-card-title>
+
                                 <md-card-content>
-                                    <label>Jumlah Layanan</label>
+
+                                    <label c-label item="item">Jumlah Layanan</label>
                                     <input type="number" min="0" class="k-textbox" ng-disabled="!data.checked"
                                         ng-model="data.jmlLayanan">
+
+                                    <label c-label item="item">Persiapan</label>
+                                    <input type="text" class="k-textbox" ng-disabled="!data.checked"
+                                        ng-model="data.persiapan">
+
+                                    <label c-label item="item">Catatan Tambahan</label>
+                                    <input type="text" class="k-textbox" ng-disabled="!data.checked"
+                                        ng-model="data.catatanTambahan">
+
+                                    <label c-label item="item">Riwayat</label>
+                                    <input type="text" class="k-textbox" ng-disabled="!data.checked"
+                                        ng-model="data.riwayatRadiologi">
                                 </md-card-content>
+
                             </md-card>
                         </div>
 
@@ -207,6 +456,43 @@
 
                     </div>
 
+                    <div class="window-body" ng-show="!showProduk">
+                        <!-- -->
+                        <div class="grid_6" ng-repeat="layanan in listLayananLainnya track by $index">
+                            <md-card style="height: 300px;">
+                                <md-card-title>
+                                    <input class="k-textbox" ng-model="layanan.namaLayanan"
+                                        placeholder="Nama Tindakan Radiologi">
+                                </md-card-title>
+
+                                <md-card-content>
+
+                                    <label c-label item="item">Jumlah Layanan</label>
+                                    <input type="number" min="0" class="k-textbox" ng-model="layanan.jmlLayanan">
+
+                                    <label c-label item="item">Persiapan</label>
+                                    <input type="text" class="k-textbox" ng-model="layanan.persiapan">
+
+                                    <label c-label item="item">Catatan Tambahan</label>
+                                    <input type="text" class="k-textbox" ng-model="layanan.catatanTambahan">
+
+                                    <label c-label item="item">Riwayat</label>
+                                    <input type="text" class="k-textbox" ng-model="layanan.riwayatRadiologi">
+
+                                </md-card-content>
+
+                            </md-card>
+                        </div>
+
+                        <div class="grid_6">
+                            <md-button class="md-raised md-primary medium-button" style="width: 100px;"
+                                ng-click="tambahLayananLainnya()">
+                                <span style="margin-right: 5px;">Tambah</span>
+                                <i class="fa fa-plus"></i>
+                            </md-button>
+                        </div>
+                    </div>
+
                     <div class="window-footer">
                         <!-- <div class="k-edit-buttons  k-state-default pull-right" style="margin-top:10px"> -->
                         <!-- <button class="k-button k-button-icontext k-primary k-grid-update"><span
@@ -216,14 +502,10 @@
                             <span style="margin-right: 5px;">Tambah</span>
                             <i class="fa fa-plus"></i>
                         </md-button>
-                        <md-button class="md-raised md-danger medium-button" ng-click="findData()"
-                            style="width: 100px;">
+                        <md-button class="md-raised md-danger medium-button" ng-click="batal()" style="width: 100px;">
                             <span style="margin-right: 5px;">Batal</span>
                             <i class="fa fa-cancel"></i>
                         </md-button>
-                        <!-- <button class="k-button  k-button-icontext" ng-click="batal()"><span
-                                class="k-icon k-cancel"></span>Batal</button> -->
-                        <!-- </div> -->
                     </div>
                 </div>
             </div>
@@ -246,19 +528,25 @@
 
             </div>
             <div class="grid_12">
-                <div class="grid_4"></div>
+                <div class="grid_8"></div>
+
                 <div class="grid_2" style="margin-top: 22px">
-                    <button class="c-button" ng-click="lihatHasil()">Lihat Hasil</button>
+                    <!-- <button class="error c-button" is-back>Kembali</button> -->
+                    <md-button class="md-raised" ng-click="Hapus()">
+                        <i class="fa fa-arrow-left" style="color: rgb(41, 41, 41);"></i>
+                        <span style="margin-left: 5px;">Kembali</span>
+
+                    </md-button>
                 </div>
+
                 <div class="grid_2" style="margin-top: 22px">
-                    <button class="c-button" ng-click="newOrder()">Order Baru</button>
+                    <!-- <button class="c-button" ng-click="hapusOrder()">Hapus</button> -->
+                    <md-button class="md-raised md-danger" ng-click="hapusOrder()">
+                        <span style="margin-right: 5px;">Hapus</span>
+                        <i class="fa fa-trash"></i>
+                    </md-button>
                 </div>
-                <div class="grid_2" style="margin-top: 22px">
-                    <button class="c-button" ng-click="hapusOrder()">Hapus</button>
-                </div>
-                <div class="grid_2" style="margin-top: 22px">
-                    <button class="error c-button" is-back>Kembali</button>
-                </div>
+
             </div>
         </md-tab>
     </md-tabs>

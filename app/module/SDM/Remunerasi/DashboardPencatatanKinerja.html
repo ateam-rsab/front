@@ -269,7 +269,9 @@
 
                     <div class="grid_12">
                         <label><strong>Catatan</strong></label>
-                        <textarea c-text-box ng-model="item.catatanKegiatan" rows="10"></textarea>
+                        <textarea c-text-box ng-model="item.catatanKegiatan" rows="10" maxlength="1000"></textarea>
+                        <p class="length-textarea">
+                            1000/{{item.catatanKegiatan ? item.catatanKegiatan.length : 0}}</p>
                     </div>
                 </div>
             </md-card-body>

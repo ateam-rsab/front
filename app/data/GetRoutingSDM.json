@@ -2492,6 +2492,26 @@
     ]
   },
   {
+    "name": "MasterJabatanRev",
+    "url": "/MasterJabatanRev",
+    "templateurl": "module/SDM/MasterJabatanRev.html",
+    "controller": "MasterJabatanRevCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      }
+    ]
+  },
+  {
     "name": "MasterJabatan",
     "url": "/MasterJabatan",
     "templateurl": "module/SDM/MasterJabatan.html",

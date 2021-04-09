@@ -393,6 +393,14 @@
       "urlDep": "module/Radiologi/RadiologiDaftarPasienCtrl"
     },
     {
+      "nameDep": "DaftarOrderRadiologiCtrl",
+      "urlDep": "module/Radiologi/DaftarOrderRadiologiCtrl"
+    },
+    {
+      "nameDep": "VerifikasiOrderRadiologiRevCtrl",
+      "urlDep": "module/Radiologi/VerifikasiOrderRadiologiRevCtrl"
+    },
+    {
       "nameDep": "RegistrasiPelayananGawatDaruratCtrl",
       "urlDep": "module/pasien/RegistrasiPelayanan/RegistrasiPelayananGawatDaruratCtrl"
     },

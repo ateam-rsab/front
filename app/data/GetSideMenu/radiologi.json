@@ -5,7 +5,11 @@
     },
     {
         "name": "Daftar Order",
-        "link": "#/Radiologi/Pasien"
+        "link": "#/DaftarOrderRadiologi"
+    },
+    {
+        "name": "Daftar Pasien Penunjang",
+        "link": "#/DaftarPasienPenunjang"
     },
     {
         "name": "Daftar Pasien",
@@ -51,10 +55,6 @@
             {
                 "name": "Daftar Order",
                 "link": "#/DaftarOrderLab"
-            },
-            {
-                "name": "Daftar Pasien Penunjang",
-                "link": "#/DaftarPasienPenunjang"
             }
         ]
     },
