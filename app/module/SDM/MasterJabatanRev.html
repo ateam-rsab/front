@@ -30,36 +30,20 @@
 
 <div class="panel panel-default container_12">
     <div class="panel-body">
-        <div class="grid_2">
-            <label c-label c-label-text="Jenis Jabatan" real></label>
-            <input kendo-combo-box style="width:100%" k-ng-model="item.jenisJabatan" k-data-text-field="'jenisJabatan'"
-                k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisJabatan" />
-        </div>
         <div class="grid_3">
             <label c-label c-label-text="Unit Kerja" real></label>
             <input kendo-combo-box style="width:100%" k-ng-model="item.unitKerja" k-data-text-field="'name'"
                 k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitKerja" />
         </div>
         <div class="grid_2">
-            <label c-label c-label-text="Eselon" real></label>
-            <input kendo-combo-box style="width:100%" k-ng-model="item.eselon" k-data-text-field="'eselon'"
-                k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listEselon" />
+            <label c-label c-label-text="Jenis Jabatan" real></label>
+            <input kendo-combo-box style="width:100%" k-ng-model="item.jenisJabatan" k-data-text-field="'jenisJabatan'"
+                k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisJabatan" />
         </div>
         <div class="grid_3">
             <label c-label item="item" c-label-text="Nama Jabatan"></label>
             <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaJabatan" />
         </div>
-
-        <!-- <div class="grid_2">
-			<label c-label c-label-text="Level Jabatan" real></label>
-			<input kendo-combo-box style="width:100%" k-ng-model="item.levelJabatan" k-data-text-field="'name'"
-				k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="levelJabatan" />
-		</div> -->
-        <!-- <div class="grid_2">
-			<label c-label c-label-text="Level Direksi" real></label>
-			<input kendo-combo-box style="width:100%" k-ng-model="item.levelDireksi" k-data-text-field="'name'"
-				k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="levelDireksi" />
-		</div> -->
         <div class="grid_1" style="margin-top: 23px;">
             <md-button class="md-raised md-primary medium-button" ng-click="getDataJabatan()">
                 <span style="margin-right: 5px;">Cari</span>
@@ -69,51 +53,43 @@
     </div>
 </div>
 
-<div kendo-window="popupTambah" k-title="'Tambah Jabatan'" k-width="1000" k-visible="false"
+<div kendo-window="popupTambah" k-title="'Entri Jabatan'" k-width="1000" k-visible="false"
     k-on-open="win2visible2 = true" k-on-close="win2visible2 = false">
     <div class="panel panel-default container_12" style="padding: 0px 10px;">
-
         <div class="grid_12">
             <div class="grid_6">
                 <label c-label item="item" c-label-text="Nama Jabatan"></label>
                 <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="data.namaJabatan" />
             </div>
-
             <div class="grid_3">
                 <label c-label c-label-text="Jenis Jabatan" real></label>
                 <input kendo-combo-box style="width:100%" k-ng-model="data.jenisJabatan"
                     k-data-text-field="'jenisJabatan'" k-data-value-field="'id'" k-filter="'contains'"
                     k-auto-bind="false" k-data-source="listJenisJabatan" />
             </div>
-
             <div class="grid_3">
                 <label c-label c-label-text="Eselon" real></label>
                 <input kendo-combo-box style="width:100%" k-ng-model="data.eselon" k-data-text-field="'eselon'"
                     k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listEselon" />
             </div>
-
         </div>
-
         <div class="grid_12">
             <div class="grid_4">
                 <label c-label c-label-text="Unit Kerja" real></label>
                 <input kendo-combo-box style="width:100%" k-ng-model="data.unitKerja" k-data-text-field="'name'"
                     k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitKerja" />
             </div>
-
             <div class="grid_4">
                 <label c-label c-label-text="Level Jabatan" real></label>
                 <input kendo-combo-box style="width:100%" k-ng-model="data.levelJabatan" k-data-text-field="'name'"
                     k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="levelJabatan" />
             </div>
-
             <div class="grid_4">
                 <label c-label c-label-text="Level Direksi" real></label>
                 <input kendo-combo-box style="width:100%" k-ng-model="data.levelDireksi" k-data-text-field="'name'"
                     k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="levelDireksi" />
             </div>
         </div>
-
         <div class="k-edit-buttons k-state-default" style="margin-top:10px">
             <div class="grid_8"></div>
             <div class="grid_2">
@@ -130,9 +106,10 @@
             </div>
         </div>
     </div>
-
 </div>
 
 <div class="grid_12">
     <div id="gridJabatan" kendo-grid k-data-source="daftarJabatan" options="daftarJabatanOpt"></div>
 </div>
+
+<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
