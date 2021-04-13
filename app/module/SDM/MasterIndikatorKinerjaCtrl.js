@@ -66,6 +66,10 @@ define(['initialize'], function (initialize) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
 
+                $scope.listJabatan = []
+                $scope.mapping.unitKerja = null
+                $scope.mapping.jenisJabatan = null
+
                 if (!dataItem.isStatusVerifikasi) {
                     toastr.warning("Indikator belum terverifikasi!", "Peringatan")
                     return
@@ -188,14 +192,16 @@ define(['initialize'], function (initialize) {
             $scope.init = () => {
                 $q.all([
                     ManageSdmNew.getListData("service/list-generic/?view=SatuanIndikator&select=id,satuanIndikator&criteria=statusEnabled,id&values=true,!1&order=satuanIndikator:asc"),
+                    ManageSdmNew.getListData("service/list-generic/?view=UnitKerjaPegawai&select=id,name&criteria=statusEnabled,id&values=true,!0"),
                     ManageSdmNew.getListData("service/list-generic/?view=JenisJabatan&select=id,jenisJabatan&criteria=statusEnabled,id&values=true,!0"),
                     ManageSdmNew.getListData("pegawai/get-pegawai-sdm-for-cred")
                 ]).then(function (res) {
                     $scope.getDataMaster();
                     $scope.listDataSatuanIndikator = res[0].data
-                    $scope.listJenisJabatan = res[1].data
-                    for (var i = 0; i < res[2].data.data.data.length; i++) {
-                        if (res[2].data.data.data[i] == ModelItem.getPegawai().id) {
+                    $scope.listUnitKerja = res[1].data
+                    $scope.listJenisJabatan = res[2].data
+                    for (var i = 0; i < res[3].data.data.data.length; i++) {
+                        if (res[3].data.data.data[i] == ModelItem.getPegawai().id) {
                             $scope.isPegawaiSDM = true;
                             break
                         }
@@ -207,10 +213,11 @@ define(['initialize'], function (initialize) {
 
             $scope.init();
 
-            $scope.getJabatan = (id) => {
+            $scope.getJabatan = (unitId, jenisId) => {
+                if (!unitId || !jenisId) return
                 $scope.mapping.jabatan = null;
                 $scope.mapping.srcJabatan = null;
-                ManageSdmNew.getListData("service/list-generic/?view=Jabatan&select=id,namaJabatan&criteria=statusEnabled,jenisJabatanId&values=true," + id).then((res) => {
+                ManageSdmNew.getListData("service/list-generic/?view=Jabatan&select=id,namaJabatan&criteria=statusEnabled,unitKerjaId,jenisJabatanId&values=true," + unitId + "," + jenisId).then((res) => {
                     $scope.listJabatan = res;
                     $scope.listGridJabatan = res.data;
 
@@ -404,8 +411,19 @@ define(['initialize'], function (initialize) {
                         "# } #",
                     width: "50px"
                 }, {
+                    field: "unitKerja",
+                    title: "<h3>Unit Kerja</h3>",
+                    width: "300px",
+                    filterable: true
+                }, {
+                    field: "jenisJabatan",
+                    title: "<h3>Jenis Jabatan</h3>",
+                    width: "150px",
+                    filterable: true
+                }, {
                     field: "namaJabatan",
                     title: "<h3>Nama Jabatan</h3>",
+                    width: "500px",
                     filterable: true
                 }],
             }
@@ -674,15 +692,20 @@ define(['initialize'], function (initialize) {
                         "# } #",
                     width: "5%"
                 }, {
+                    field: "unitKerja",
+                    title: "<h3>Unit Kerja</h3>",
+                    editable: false,
+                    width: "35%"
+                }, {
                     field: "jenisJabatan",
                     title: "<h3>Jenis Jabatan</h3>",
                     editable: false,
-                    width: "20%"
+                    width: "15%"
                 }, {
                     field: "namaJabatan",
                     title: "<h3>Nama Jabatan</h3>",
                     editable: false,
-                    width: "60%"
+                    width: "35%"
                 }, {
                     field: "tglBerlaku",
                     title: "<h3>Tanggal Berlaku</h3>",

@@ -1,24 +1,24 @@
 <style>
     .dmk {
-        background-color: #2dfbff;
+        background-color: #ff5e5e;
         color: #2d2d2d;
         font-weight: bold;
     }
 
     .dpou {
-        background-color: #2dff8b;
+        background-color: #fff457;
         color: #2d2d2d;
         font-weight: bold;
     }
 
     .dsp {
-        background-color: #2dfbff;
+        background-color: #74ff61;
         color: #2d2d2d;
         font-weight: bold;
     }
 
     .dkbmn {
-        background-color: #ffee6a;
+        background-color: #786eff;
         color: #2d2d2d;
         font-weight: bold;
     }
@@ -70,7 +70,8 @@
             <div class="grid_3">
                 <label c-label c-label-text="Eselon" real></label>
                 <input kendo-combo-box style="width:100%" k-ng-model="data.eselon" k-data-text-field="'eselon'"
-                    k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listEselon" />
+                    k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listEselon"
+                    ng-disabled="isJabInternal" />
             </div>
         </div>
         <div class="grid_12">

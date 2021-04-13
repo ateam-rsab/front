@@ -52,7 +52,7 @@ define(['initialize'], function (initialize) {
                     }],
                 }
 
-                ManageSdmNew.getListData("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled,kategoryPegawaiId&values=true,(1;10;14)&order=namaLengkap:asc").then((res) => {
+                ManageSdmNew.getListData("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled,kategoryPegawaiId&values=true,(1;2;10;14)&order=namaLengkap:asc").then((res) => {
                     $scope.listPegawai = res.data;
                 });
             }
@@ -65,6 +65,21 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.getDataCatatanKegiatan = () => {
+                if (!$scope.item.srcBulan) {
+                    toastr.info("Harap pilih Bulan terlebih dahulu");
+                    return;
+                }
+
+                if (!$scope.item.srcPegawai) {
+                    toastr.info("Harap pilih Pegawai terlebih dahulu");
+                    return;
+                }
+
+                if (!$scope.item.srcJabatan) {
+                    toastr.info("Harap pilih Jabatan Pegawai terlebih dahulu");
+                    return;
+                }
+
                 $scope.isRouteLoading = true;
                 let URL = "iki-remunerasi/get-catatan-kegiatan-harian?pegawaiId=" + ($scope.item.srcPegawai ? $scope.item.srcPegawai.id : "") + "&jabatanId=" + ($scope.item.srcJabatan ? $scope.item.srcJabatan.id : "") + "&bulan=" + ($scope.item.srcBulan ? dateHelper.toTimeStamp($scope.item.srcBulan) : '')
 

@@ -181,18 +181,26 @@ define(['initialize'], function (initialize) {
                         id: dataItem.eselonId
                     }
                 }
-                var confirm = $mdDialog.confirm()
-                    .title('Apakah anda yakin menghapus Jabatan ' + dataItem.namaJabatan + '?')
-                    .ariaLabel('Lucky day')
-                    .targetEvent(e)
-                    .ok('Ya')
-                    .cancel('Tidak');
-                $mdDialog.show(confirm).then(function () {
-                    $scope.isHapus = true
-                    $scope.simpanData('hapus');
-                }, function () {
-                    $scope.reset();
-                });
+
+                ManageSdmNew.getListData("jabatan/get-pegawai-jabatan?jabatanId=" + dataItem.id).then((res) => {
+                    if (res.data.data.length > 0) {
+                        toastr.warning("Data sudah digunakan, tidak dapat dihapus!", "Peringatan")
+                        return
+                    } else {
+                        var confirm = $mdDialog.confirm()
+                            .title('Apakah anda yakin menghapus Jabatan ' + dataItem.namaJabatan + '?')
+                            .ariaLabel('Lucky day')
+                            .targetEvent(e)
+                            .ok('Ya')
+                            .cancel('Tidak');
+                        $mdDialog.show(confirm).then(function () {
+                            $scope.isHapus = true
+                            $scope.simpanData('hapus');
+                        }, function () {
+                            $scope.reset();
+                        });
+                    }
+                })
             }
 
             function editData(e) {
@@ -222,7 +230,8 @@ define(['initialize'], function (initialize) {
 
                 if (dataItem.eselon) {
                     $scope.data.eselon = {
-                        id: dataItem.eselonId
+                        id: dataItem.eselonId,
+                        eselon: dataItem.eselon
                     }
                 }
                 // console.log(dataItem)
@@ -296,10 +305,22 @@ define(['initialize'], function (initialize) {
                 var listRawRequired = [
                     "data.levelDireksi|ng-model|Level Direksi",
                     "data.levelJabatan|ng-model|Level Jabatan",
-                    "data.unitKerja|k-ng-model|Unit Kerja",
-                    "data.jenisJabatan|k-ng-model|Jenis Jabatan",
-                    "data.namaJabatan|k-ng-model|Nama Jabatan"
+                    "data.unitKerja|k-ng-model|Unit Kerja"
+
                 ];
+
+                if ($scope.data.jenisJabatan && $scope.data.jenisJabatan.id == 1) {
+                    listRawRequired.push(
+                        "data.eselon|k-ng-model|Eselon",
+                        "data.jenisJabatan|k-ng-model|Jenis Jabatan",
+                        "data.namaJabatan|k-ng-model|Nama Jabatan"
+                    )
+                } else {
+                    listRawRequired.push(
+                        "data.jenisJabatan|k-ng-model|Jenis Jabatan",
+                        "data.namaJabatan|k-ng-model|Nama Jabatan"
+                    )
+                }
 
                 var isValid = ModelItem.setValidation($scope, listRawRequired);
 
@@ -360,11 +381,31 @@ define(['initialize'], function (initialize) {
                 $scope.data.levelJabatan = null;
                 $scope.isEdit = false;
                 $scope.isHapus = false;
+                $scope.isJabInternal = false;
             }
 
             $scope.$watch('data.namaJabatan', function (e) {
                 if (!e) return;
                 if (!$scope.data.namaJabatan && !$scope.data.jenisJabatan.id) return
+                $scope.msgIsDuplikatData = ""
+                ManageSdmNew.getListData("jabatan/validate-nama-jabatan/?idJabatan=" + ($scope.data.jabatanId ? $scope.data.jabatanId : "") + "&namaJabatan=" + encodeURIComponent($scope.data.namaJabatan).replace(/%20/g, "+") + "&idJenisJabatan=" + $scope.data.jenisJabatan.id, true).then(function (dat) {
+                    if (dat.data.data.msg) {
+                        $scope.msgIsDuplikatData = dat.data.data.msg
+                    }
+                });
+            })
+
+            $scope.$watch('data.jenisJabatan', function (e) {
+                if (!e) return;
+                if ($scope.data.jenisJabatan.id == 3) {
+                    //Jenis jabatan internal tidak boleh mengisi eselon
+                    $scope.isJabInternal = true
+                    $scope.data.eselon = null
+                } else {
+                    $scope.isJabInternal = false
+                }
+                if (!$scope.data.namaJabatan && !$scope.data.jenisJabatan.id) return
+                $scope.msgIsDuplikatData = ""
                 ManageSdmNew.getListData("jabatan/validate-nama-jabatan/?idJabatan=" + ($scope.data.jabatanId ? $scope.data.jabatanId : "") + "&namaJabatan=" + encodeURIComponent($scope.data.namaJabatan).replace(/%20/g, "+") + "&idJenisJabatan=" + $scope.data.jenisJabatan.id, true).then(function (dat) {
                     if (dat.data.data.msg) {
                         $scope.msgIsDuplikatData = dat.data.data.msg

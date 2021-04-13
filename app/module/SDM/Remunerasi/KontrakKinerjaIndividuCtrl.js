@@ -80,6 +80,7 @@ define(['initialize'], function (initialize) {
                     toastr.info("Harap pilih Jabatan Pegawai terlebih dahulu");
                     return;
                 }
+                
                 $scope.isRouteLoading = true;
                 ManageSdmNew.getListData("iki-remunerasi/get-kontrak-kinerja?pegawaiId=" + ($scope.item.pegawai ? $scope.item.pegawai.id : "") + "&jabatanId=" + ($scope.item.jabatan ? $scope.item.jabatan.id : "") + "&bulan=" + ($scope.item.srcBulan ? dateHelper.toTimeStamp($scope.item.srcBulan) : "")).then((res) => {
                     $scope.dataSourceKontrakKinerja = {
@@ -103,7 +104,7 @@ define(['initialize'], function (initialize) {
 
             $scope.init = () => {
                 $q.all([
-                    ManageSdmNew.getListData("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled,kategoryPegawaiId&values=true,(1;10;14)&order=namaLengkap:asc"),
+                    ManageSdmNew.getListData("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled,kategoryPegawaiId&values=true,(1;2;10;14)&order=namaLengkap:asc"),
                     ManageSdmNew.getListData("service/list-generic/?view=SatuanIndikator&select=id,satuanIndikator&criteria=statusEnabled&values=true&order=id:asc"),
                     ManageSdmNew.getListData("pegawai/get-pegawai-sdm-for-cred")
                 ]).then(function (res) {

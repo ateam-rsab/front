@@ -81,13 +81,19 @@
     <!-- Tab 3 -->
     <md-tab label="Daftar Mapping Indikator Kinerja" md-on-select="onChangeTab(3)">
         <div class="grid_12">
-            <div class="grid_4">
+            <div class="grid_3">
+                <label><strong>Unit Kerja</strong></label>
+                <input kendo-combo-box k-filter="'contains'" k-ng-model="mapping.srcUnitKerja"
+                    k-data-text-field="'name'" k-data-value-field="'id'" k-data-source="listUnitKerja"
+                    k-on-change="getJabatan(mapping.srcUnitKerja.id, mapping.srcJenisJabatan.id)" />
+            </div>
+            <div class="grid_3">
                 <label><strong>Jenis Jabatan</strong></label>
                 <input kendo-combo-box k-filter="'contains'" k-ng-model="mapping.srcJenisJabatan"
                     k-data-text-field="'jenisJabatan'" k-data-value-field="'id'" k-data-source="listJenisJabatan"
-                    k-on-change="getJabatan(mapping.srcJenisJabatan.id)" />
+                    k-on-change="getJabatan(mapping.srcUnitKerja.id, mapping.srcJenisJabatan.id)" />
             </div>
-            <div class="grid_4">
+            <div class="grid_3">
                 <label><strong>Jabatan</strong></label>
                 <input kendo-combo-box k-filter="'contains'" k-ng-model="mapping.srcJabatan"
                     k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-data-source="listJabatan" />
@@ -191,10 +197,16 @@
 
                 </div>
                 <div class="grid_6">
+                    <label><strong>Unit Kerja</strong></label>
+                    <input kendo-combo-box k-filter="'contains'" k-ng-model="mapping.unitKerja"
+                        k-data-text-field="'name'" k-data-value-field="'id'" k-data-source="listUnitKerja"
+                        k-on-change="getJabatan(mapping.unitKerja.id,mapping.jenisJabatan.id)" />
+                </div>
+                <div class="grid_6">
                     <label><strong>Jenis Jabatan</strong></label>
                     <input kendo-combo-box k-filter="'contains'" k-ng-model="mapping.jenisJabatan"
                         k-data-text-field="'jenisJabatan'" k-data-value-field="'id'" k-data-source="listJenisJabatan"
-                        k-on-change="getJabatan(mapping.jenisJabatan.id)" />
+                        k-on-change="getJabatan(mapping.unitKerja.id,mapping.jenisJabatan.id)" />
                 </div>
                 <div class="grid_6">
                     <label><strong>Jabatan</strong></label>
