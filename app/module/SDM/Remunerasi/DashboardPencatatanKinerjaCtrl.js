@@ -13,15 +13,25 @@ define(['initialize'], function (initialize) {
                 ManageSdmNew.getListData("pegawai/get-all-jabatan-by-pegawai?idPegawai=" + $scope.dataLogin.id).then((res) => {
                     $scope.showIsSingleJabatan = res.data.data.length === 1;
                     $scope.dataSingleJabatan = res.data.data[0].namaJabatan;
+                    $scope.idJabatanSingle = res.data.data[0].id;
 
                     $scope.listJabatan = res.data.data;
+
+                    $scope.getDataDashboard();
                 })
             }
+
             getJabatanPegawai();
 
             $scope.getDataDashboard = () => {
                 let date = dateHelper.toTimeStamp(new Date());
-                ManageSdmNew.getListData("iki-remunerasi/get-dashboard-kinerja?pegawaiId=" + $scope.dataLogin.id + "&jabatanId=" + ($scope.item.jabatan ? $scope.item.jabatan.id : "") + "&bulan=" + date).then((res) => {
+                var jabatanId = ""
+                if ($scope.showIsSingleJabatan) {
+                    jabatanId = $scope.idJabatanSingle
+                } else {
+                    jabatanId = ($scope.item.jabatan ? $scope.item.jabatan.id : "")
+                }
+                ManageSdmNew.getListData("iki-remunerasi/get-dashboard-kinerja?pegawaiId=" + $scope.dataLogin.id + "&jabatanId=" + jabatanId + "&bulan=" + date).then((res) => {
                     $scope.dataDashboard = res.data.data;
 
                     $scope.dataDetailDashboardKinerja = {
@@ -37,8 +47,6 @@ define(['initialize'], function (initialize) {
                     // console.log($scope.dataDetailDashboardKinerja);
                 });
             }
-
-            $scope.getDataDashboard();
 
             $scope.detailData = (state) => {
                 switch (state) {

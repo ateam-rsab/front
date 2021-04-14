@@ -2602,6 +2602,7 @@ define(['initialize'], function (initialize) {
                     }
                 } else {
                     ModelItem.showMessages(isValid.messages);
+                    $scope.isRouteLoading = false;
                 }
             };
 

@@ -4,43 +4,22 @@ define(['initialize'], function (initialize) {
         function ($q, $rootScope, $scope, ModelItem, $state, NamaAsuransi, ManageSdm, ManageSdmNew, $timeout, $mdDialog) {
             $scope.item = {};
             $scope.data = {};
-            $scope.levelJabatan = [{
-                    name: 'Direktur Utama',
-                    id: 1
-                },
-                {
-                    name: 'Direktur',
-                    id: 2
-                },
-                {
-                    name: 'Ketua/ Kepala Komite/ Satuan/ Instalasi/ Unit/ Bagian/ KSM/ Bidang',
-                    id: 3
-                },
-                {
-                    name: 'Kepala Ruangan/ Kepala Seksi/ Kepala Subbagian/ Pengelola Urusan',
-                    id: 4
-                },
-                {
-                    name: 'Staf/ Ketua Tim',
-                    id: 5
-                }
+            $scope.msgIsDuplikatData = ""
+            $scope.isEdit = false;
+            $scope.isHapus = false;
+            $scope.levelJabatan = [
+                { name: 'Direktur Utama', id: 1 },
+                { name: 'Direktur', id: 2 },
+                { name: 'Ketua/ Kepala Komite/ Satuan/ Instalasi/ Unit/ Bagian/ KSM/ Bidang', id: 3 },
+                { name: 'Kepala Ruangan/ Kepala Seksi/ Kepala Subbagian/ Pengelola Urusan (dengan staf)', id: 4 },
+                { name: 'Staf/ Ketua Tim', id: 5 }
             ];
-            $scope.levelDireksi = [{
-                    name: 'Direktorat Pelayanan Medik, Keperawatan, dan Penunjang',
-                    id: 1
-                },
-                {
-                    name: 'Direktorat Perencanaan, Organisasi, dan Umum',
-                    id: 2
-                },
-                {
-                    name: 'Direktorat Sumber Daya Manusia, Pendidikan, dan Penelitian',
-                    id: 3
-                },
-                {
-                    name: 'Direktorat Keuangan dan Barang Milik Negara',
-                    id: 4
-                }
+            $scope.levelDireksi = [
+                { name: 'Direktorat Pelayanan Medik, Keperawatan, dan Penunjang', id: 1 },
+                { name: 'Direktorat Perencanaan, Organisasi, dan Umum', id: 2 },
+                { name: 'Direktorat Sumber Daya Manusia, Pendidikan, dan Penelitian', id: 3 },
+                { name: 'Direktorat Keuangan dan Barang Milik Negara', id: 4 },
+                { name: 'Direktur Utama', id: 5 }
             ];
 
             $scope.daftarJabatanOpt = {
@@ -58,17 +37,17 @@ define(['initialize'], function (initialize) {
                         if ($(this).text() == 'Direktorat Pelayanan Medik, Keperawatan, dan Penunjang') {
                             $(this).addClass('dmk')
                         };
-
                         if ($(this).text() == 'Direktorat Perencanaan, Organisasi, dan Umum') {
                             $(this).addClass('dpou')
                         };
-
                         if ($(this).text() == 'Direktorat Sumber Daya Manusia, Pendidikan, dan Penelitian') {
                             $(this).addClass('dsp')
                         };
-
                         if ($(this).text() == 'Direktorat Keuangan dan Barang Milik Negara') {
                             $(this).addClass('dkbmn')
+                        };
+                        if ($(this).text() == 'Direktur Utama') {
+                            $(this).addClass('du')
                         };
                     })
                 },
@@ -78,6 +57,10 @@ define(['initialize'], function (initialize) {
                     field: "id",
                     title: "Kode",
                     width: 90
+                }, {
+                    field: "unitKerja",
+                    title: "Unit Kerja",
+                    width: 120
                 }, {
                     field: "jenisJabatanId",
                     title: "Jenis Jabatan ",
@@ -90,22 +73,16 @@ define(['initialize'], function (initialize) {
                 }, {
                     field: "eselonId",
                     title: "Eselon ",
-                    // template: "# if (eselonId === 1) {# #= 'I.a' # #} else if (eselonId === 2){# #= 'I.b' # #} else if (eselonId === 3){# #= 'II.a' # #} else if (eselonId === 4){# #= 'II.b' # #} else if (eselonId === 5){# #= 'III.a' # #} else if (eselonId === 6){# #= 'III.b' # #} else if (eselonId === 7){# #= 'IV.a' # #} else if (eselonId === 8){# #= 'IV.b' # #} else if (eselonId === 9){# #= 'V.a' # #} else if (eselonId === 10){# #= 'V.b' # #} else {# #= '-' # #}#",
+                    template: "# if (eselonId === 1) {# #= 'I.a' # #} else if (eselonId === 2){# #= 'I.b' # #} else if (eselonId === 3){# #= 'II.a' # #} else if (eselonId === 4){# #= 'II.b' # #} else if (eselonId === 5){# #= 'III.a' # #} else if (eselonId === 6){# #= 'III.b' # #} else if (eselonId === 7){# #= 'IV.a' # #} else if (eselonId === 8){# #= 'IV.b' # #} else if (eselonId === 9){# #= 'V.a' # #} else if (eselonId === 10){# #= 'V.b' # #} else {# #= '-' # #}#",
                     width: 70
                 }, {
                     field: "levelJabatanFormatted",
                     title: "Level Jabatan ",
-                    // template: "# if (levelJabatan === 1) {# #= 'Direktur Utama' # #} else if (levelJabatan === 2){# #= 'Direktur' # #} else if (levelJabatan === 3){# #= 'Ketua/ Kepala Komite/ Satuan/ Instalasi/ Unit/ Bagian/ KSM/ Bidang' # #} else if (levelJabatan === 4){# #= 'Kepala Ruangan/ Kepala Seksi/ Kepala Subbagian/ Pengelola Urusan' # #} else if (levelJabatan === 5){# #= 'Staf/ Ketua Tim' # #} else {# #= '-' # #}#",
                     width: 100
                 }, {
                     field: "levelDireksiFormatted",
                     title: "Level Direksi ",
-
                     width: 150
-                }, {
-                    field: "unitKerja",
-                    title: "Unit Kerja",
-                    width: 120
                 }, {
                     command: [{
                         text: "Hapus",
@@ -124,42 +101,31 @@ define(['initialize'], function (initialize) {
             $scope.exportExcel = function () {
                 var tempDataExport = [];
                 var rows = [{
-                    cells: [{
-                        value: "Kode"
-                    }, {
-                        value: "Jenis Jabatan"
-                    }, {
-                        value: "Nama Jabatan"
-                    }, {
-                        value: "Eselon"
-                    }, {
-                        value: "Level Jabatan"
-                    }, {
-                        value: "Level Direksi"
-                    }, {
-                        value: "Unit Kerja"
-                    }, ]
+                    cells: [
+                        { value: "Kode" },
+                        { value: "Unit Kerja" },
+                        { value: "Jenis Jabatan" },
+                        { value: "Nama Jabatan" },
+                        { value: "Eselon" },
+                        { value: "Level Jabatan" },
+                        { value: "Level Direksi" },
+                    ]
                 }];
 
                 tempDataExport = $scope.daftarJabatan;
                 tempDataExport.fetch(function () {
                     var data = this.data();
                     for (var i = 0; i < data.length; i++) {
-                        //push single row for every record
                         rows.push({
-                            cells: [{
-                                value: data[i].id
-                            }, {
-                                value: data[i].jenisJabatan
-                            }, {
-                                value: data[i].namaJabatan
-                            }, {
-                                value: data[i].eselon
-                            }, {
-                                value: data[i].levelJabatanFormatted
-                            }, {
-                                value: data[i].levelDireksiFormatted
-                            }]
+                            cells: [
+                                { value: data[i].id },
+                                { value: data[i].unitKerja },
+                                { value: data[i].jenisJabatan },
+                                { value: data[i].namaJabatan },
+                                { value: data[i].eselon },
+                                { value: data[i].levelJabatanFormatted },
+                                { value: data[i].levelDireksiFormatted }
+                            ]
                         })
                     }
                     var workbook = new kendo.ooxml.Workbook({
@@ -167,19 +133,14 @@ define(['initialize'], function (initialize) {
                             freezePane: {
                                 rowSplit: 1
                             },
-                            columns: [{
-                                autoWidth: true
-                            }, {
-                                autoWidth: true
-                            }, {
-                                autoWidth: true
-                            }, {
-                                autoWidth: true
-                            }, {
-                                autoWidth: true
-                            }, {
-                                autoWidth: true
-                            },],
+                            columns: [
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true }],
                             // Title of the sheet
                             title: "Master Jabatan",
                             // Rows of the sheet
@@ -216,24 +177,34 @@ define(['initialize'], function (initialize) {
                         name: dataItem.unitKerja,
                         id: dataItem.unitKerjaId
                     },
-                    eselon: {
-                        eselon: dataItem.eselon,
-                        id: dataItem.eselonId
-                    },
                     jabatanId: dataItem.id
                 }
-                var confirm = $mdDialog.confirm()
-                    .title('Apakah anda yakin menghapus Jabatan ' + dataItem.namaJabatan + '?')
-                    .ariaLabel('Lucky day')
-                    .targetEvent(e)
-                    .ok('Ya')
-                    .cancel('Tidak');
-                $mdDialog.show(confirm).then(function () {
-                    $scope.simpanData('hapus');
-                }, function () {
-                    $scope.reset();
-                });
-                
+
+                if (dataItem.eselon) {
+                    $scope.data.eselon = {
+                        id: dataItem.eselonId
+                    }
+                }
+
+                ManageSdmNew.getListData("jabatan/get-pegawai-jabatan?jabatanId=" + dataItem.id).then((res) => {
+                    if (res.data.data.length > 0) {
+                        toastr.warning("Data sudah digunakan, tidak dapat dihapus!", "Peringatan")
+                        return
+                    } else {
+                        var confirm = $mdDialog.confirm()
+                            .title('Apakah anda yakin menghapus Jabatan ' + dataItem.namaJabatan + '?')
+                            .ariaLabel('Lucky day')
+                            .targetEvent(e)
+                            .ok('Ya')
+                            .cancel('Tidak');
+                        $mdDialog.show(confirm).then(function () {
+                            $scope.isHapus = true
+                            $scope.simpanData('hapus');
+                        }, function () {
+                            $scope.reset();
+                        });
+                    }
+                })
             }
 
             function editData(e) {
@@ -258,57 +229,62 @@ define(['initialize'], function (initialize) {
                         name: dataItem.unitKerja,
                         id: dataItem.unitKerjaId
                     },
-                    eselon: {
-                        eselon: dataItem.eselon,
-                        id: dataItem.eselonId
-                    },
                     jabatanId: dataItem.id
                 }
 
-                console.log(dataItem)
-
+                if (dataItem.eselon) {
+                    $scope.data.eselon = {
+                        id: dataItem.eselonId,
+                        eselon: dataItem.eselon
+                    }
+                }
+                // console.log(dataItem)
+                $scope.isEdit = true
                 $scope.popupTambah.open().center();
             }
 
             $scope.getDataJabatan = () => {
-
+                $scope.isRouteLoading = true;
                 ManageSdmNew.getListData("jabatan/get-master-jabatan?namaJabatan=" + ($scope.item.namaJabatan ? $scope.item.namaJabatan : "") + "&jenisJabatanId=" + ($scope.item.jenisJabatan ? $scope.item.jenisJabatan.id : "") + "&unitKerjaId=" + ($scope.item.unitKerja ? $scope.item.unitKerja.id : "")).then((res) => {
-
+                    var resData = []
                     for (let i = 0; i < res.data.data.length; i++) {
-                        if (res.data.data[i].levelDireksi === 1) {
-                            res.data.data[i].levelDireksiFormatted = "Direktorat Pelayanan Medik, Keperawatan, dan Penunjang";
-                        }
+                        if (!res.data.data[i].id == 0) {
+                            if (res.data.data[i].levelDireksi === 1) {
+                                res.data.data[i].levelDireksiFormatted = "Direktorat Pelayanan Medik, Keperawatan, dan Penunjang";
+                            } else if (res.data.data[i].levelDireksi === 2) {
+                                res.data.data[i].levelDireksiFormatted = "Direktorat Perencanaan, Organisasi, dan Umum";
+                            } else if (res.data.data[i].levelDireksi === 3) {
+                                res.data.data[i].levelDireksiFormatted = "Direktorat Sumber Daya Manusia, Pendidikan, dan Penelitian";
+                            } else if (res.data.data[i].levelDireksi === 4) {
+                                res.data.data[i].levelDireksiFormatted = "Direktorat Keuangan dan Barang Milik Negara";
+                            } else if (res.data.data[i].levelDireksi === 5) {
+                                res.data.data[i].levelDireksiFormatted = "Direktur Utama";
+                            } else {
+                                res.data.data[i].levelDireksiFormatted = "-";
+                            }
 
-                        if (res.data.data[i].levelDireksi === 2) {
-                            res.data.data[i].levelDireksiFormatted = "Direktorat Perencanaan, Organisasi, dan Umum";
-                        }
+                            if (res.data.data[i].levelJabatan === 1) {
+                                res.data.data[i].levelJabatanFormatted = "Direktur Utama";
+                            } else if (res.data.data[i].levelJabatan === 2) {
+                                res.data.data[i].levelJabatanFormatted = "Direktur";
+                            } else if (res.data.data[i].levelJabatan === 3) {
+                                res.data.data[i].levelJabatanFormatted = "Ketua/ Kepala Komite/ Satuan/ Instalasi/ Unit/ Bagian/ KSM/ Bidang";
+                            } else if (res.data.data[i].levelJabatan === 4) {
+                                res.data.data[i].levelJabatanFormatted = "Kepala Ruangan/ Kepala Seksi/ Kepala Subbagian/ Pengelola Urusan";
+                            } else if (res.data.data[i].levelJabatan === 5) {
+                                res.data.data[i].levelJabatanFormatted = "Staf/ Ketua Tim";
+                            } else {
+                                res.data.data[i].levelJabatanFormatted = "-";
+                            }
 
-                        if (res.data.data[i].levelDireksi === 3) {
-                            res.data.data[i].levelDireksiFormatted = "Direktorat Sumber Daya Manusia, Pendidikan, dan Penelitian";
-                        }
-                        if (res.data.data[i].levelDireksi === 4) {
-                            res.data.data[i].levelDireksiFormatted = "Direktorat Keuangan dan Barang Milik Negara";
-
-                        }
-
-                        if (res.data.data[i].levelJabatan === 1) {
-                            res.data.data[i].levelJabatanFormatted = "Direktur Utama";
-                        } else if (res.data.data[i].levelJabatan === 2) {
-                            res.data.data[i].levelJabatanFormatted = "Direktur";
-                        } else if (res.data.data[i].levelJabatan === 3) {
-                            res.data.data[i].levelJabatanFormatted = "Ketua/ Kepala Komite/ Satuan/ Instalasi/ Unit/ Bagian/ KSM/ Bidang";
-                        } else if (res.data.data[i].levelJabatan === 4) {
-                            res.data.data[i].levelJabatanFormatted = "Kepala Ruangan/ Kepala Seksi/ Kepala Subbagian/ Pengelola Urusan";
-                        } else if (res.data.data[i].levelJabatan === 5) {
-                            res.data.data[i].levelJabatanFormatted = "Staf/ Ketua Tim";
-                        } else {
-                            res.data.data[i].levelJabatanFormatted = "-";
+                            resData.push(res.data.data[i]);
                         }
                     }
                     $scope.daftarJabatan = new kendo.data.DataSource({
-                        data: res.data.data,
+                        data: resData,
                         pageSize: 50
                     })
+                    $scope.isRouteLoading = false;
                 })
             }
 
@@ -318,24 +294,15 @@ define(['initialize'], function (initialize) {
                     $scope.listJenisJabatan = res.data;
                 });
 
-                ManageSdmNew.getListData("service/list-generic/?view=UnitKerjaPegawai&select=id,name&criteria=statusEnabled,id&values=true,!0&order=jenisJabatan:asc", true).then(res => {
+                ManageSdmNew.getListData("service/list-generic/?view=UnitKerjaPegawai&select=id,name&criteria=statusEnabled&values=true&order=jenisJabatan:asc", true).then(res => {
                     $scope.listUnitKerja = res.data;
                 })
 
-                ManageSdmNew.getListData("service/list-generic/?view=Eselon&select=id,eselon&criteria=statusEnabled,id&values=true,!0&order=eselon:asc", true).then(res => {
+                ManageSdmNew.getListData("service/list-generic/?view=Eselon&select=id,eselon&criteria=statusEnabled&values=true&order=eselon:asc", true).then(res => {
                     $scope.listEselon = res.data;
                 })
-                // - Simpan/Edit/Hapus (POST) :
-                // http://192.168.12.3:8080/jasamedika-sdm/jabatan/save-master-jabatan
-                // - Grid/Pencarian (GET) :
-                // http://192.168.12.3:8080/jasamedika-sdm/jabatan/get-master-jabatan?namaJabatan=admin&jenisJabatanId=3&unitKerjaId=0
-                // - Dropdown Eselon :
-                // http://192.168.12.3:8080/jasamedika-sdm/service/list-generic/?view=Eselon&select=id,eselon&criteria=statusEnabled,id&values=true,!0&order=eselon:asc
-                // - Dropdown Jenis Jabatan :
-                // http://192.168.12.3:8080/jasamedika-sdm/service/list-generic/?view=JenisJabatan&select=id,jenisJabatan&criteria=statusEnabled,id&values=true,!0&order=jenisJabatan:asc
-                // - Dropdown Unit Kerja :
-                // http://192.168.12.3:8080/jasamedika-sdm/service/list-generic/?view=UnitKerjaPegawai&select=id,name&criteria=statusEnabled,id&values=true,!0&order=jenisJabatan:asc
             }
+
             init();
 
             $scope.showInputData = () => {
@@ -343,39 +310,70 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.simpanData = (method) => {
-                let statusEnabled = method === "simpan";
+                var listRawRequired = [
+                    "data.levelDireksi|ng-model|Level Direksi",
+                    "data.levelJabatan|ng-model|Level Jabatan",
+                    "data.unitKerja|k-ng-model|Unit Kerja"
 
-                let dataSave = {
-                    namaJabatan: $scope.data.namaJabatan,
-                    levelJabatan: $scope.data.levelJabatan.id,
-                    subLevelJabatan: $scope.data.levelDireksi.id,
-                    jenisJabatan: {
-                        id: $scope.data.jenisJabatan.id
-                    },
-                    unitKerja: {
-                        id: $scope.data.unitKerja.id
-                    },
-                    kdProfile: 0,
-                    statusEnabled: statusEnabled
+                ];
+
+                //eselon hanya wajib untuk struktural
+                if ($scope.data.jenisJabatan && $scope.data.jenisJabatan.id == 5) {
+                    listRawRequired.push(
+                        "data.eselon|k-ng-model|Eselon",
+                        "data.jenisJabatan|k-ng-model|Jenis Jabatan",
+                        "data.namaJabatan|k-ng-model|Nama Jabatan"
+                    )
+                } else {
+                    listRawRequired.push(
+                        "data.jenisJabatan|k-ng-model|Jenis Jabatan",
+                        "data.namaJabatan|k-ng-model|Nama Jabatan"
+                    )
                 }
 
-                if ($scope.data.eselon) {
-                    dataSave.eselon = {
-                        id: $scope.data.eselon.id
+                var isValid = ModelItem.setValidation($scope, listRawRequired);
+
+                if (isValid.status) {
+                    let statusEnabled = method === "simpan";
+
+                    let dataSave = {
+                        namaJabatan: $scope.data.namaJabatan,
+                        levelJabatan: $scope.data.levelJabatan.id,
+                        subLevelJabatan: $scope.data.levelDireksi.id,
+                        jenisJabatan: {
+                            id: $scope.data.jenisJabatan.id
+                        },
+                        unitKerja: {
+                            id: $scope.data.unitKerja.id
+                        },
+                        kdProfile: 0,
+                        statusEnabled: statusEnabled
                     }
-                }
 
-                if ($scope.data.jabatanId) {
-                    dataSave.id = $scope.data.jabatanId;
-                }
+                    if ($scope.data.eselon) {
+                        dataSave.eselon = {
+                            id: $scope.data.eselon.id
+                        }
+                    }
 
-                console.log(dataSave);
-                // http://192.168.12.3:8080/jasamedika-sdm/jabatan/save-master-jabatan
-                ManageSdmNew.saveData(dataSave, "jabatan/save-master-jabatan").then(function (e) {
-                    $scope.reset();
-                    $scope.closepopupTambah();
-                    $scope.getDataJabatan();
-                });
+                    if ($scope.data.jabatanId) {
+                        dataSave.id = $scope.data.jabatanId;
+                    }
+
+                    if ($scope.msgIsDuplikatData != "" && !$scope.isHapus) {
+                        toastr.warning($scope.msgIsDuplikatData, "Peringatan")
+                        return
+                    }
+
+                    // console.log(dataSave);
+                    ManageSdmNew.saveData(dataSave, "jabatan/save-master-jabatan").then(function (e) {
+                        $scope.reset();
+                        $scope.closepopupTambah();
+                        $scope.getDataJabatan();
+                    });
+                } else {
+                    ModelItem.showMessages(isValid.messages);
+                }
             }
 
             $scope.closepopupTambah = () => {
@@ -390,7 +388,39 @@ define(['initialize'], function (initialize) {
                 $scope.data.eselon = null;
                 $scope.data.levelDireksi = null;
                 $scope.data.levelJabatan = null;
+                $scope.isEdit = false;
+                $scope.isHapus = false;
+                $scope.isJabInternal = false;
             }
+
+            $scope.$watch('data.namaJabatan', function (e) {
+                if (!e) return;
+                if (!$scope.data.namaJabatan && !$scope.data.jenisJabatan.id) return
+                $scope.msgIsDuplikatData = ""
+                ManageSdmNew.getListData("jabatan/validate-nama-jabatan/?idJabatan=" + ($scope.data.jabatanId ? $scope.data.jabatanId : "") + "&namaJabatan=" + encodeURIComponent($scope.data.namaJabatan).replace(/%20/g, "+") + "&idJenisJabatan=" + $scope.data.jenisJabatan.id, true).then(function (dat) {
+                    if (dat.data.data.msg) {
+                        $scope.msgIsDuplikatData = dat.data.data.msg
+                    }
+                });
+            })
+
+            $scope.$watch('data.jenisJabatan', function (e) {
+                if (!e) return;
+                if ($scope.data.jenisJabatan.id == 3) {
+                    //Jenis jabatan internal tidak boleh mengisi eselon
+                    $scope.isJabInternal = true
+                    $scope.data.eselon = null
+                } else {
+                    $scope.isJabInternal = false
+                }
+                if (!$scope.data.namaJabatan && !$scope.data.jenisJabatan.id) return
+                $scope.msgIsDuplikatData = ""
+                ManageSdmNew.getListData("jabatan/validate-nama-jabatan/?idJabatan=" + ($scope.data.jabatanId ? $scope.data.jabatanId : "") + "&namaJabatan=" + encodeURIComponent($scope.data.namaJabatan).replace(/%20/g, "+") + "&idJenisJabatan=" + $scope.data.jenisJabatan.id, true).then(function (dat) {
+                    if (dat.data.data.msg) {
+                        $scope.msgIsDuplikatData = dat.data.data.msg
+                    }
+                });
+            })
         }
     ]);
 });
