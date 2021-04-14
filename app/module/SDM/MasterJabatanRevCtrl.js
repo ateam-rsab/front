@@ -56,24 +56,30 @@ define(['initialize'], function (initialize) {
                 columns: [{
                     field: "id",
                     title: "Kode",
-                    width: 90
+                    width: 50
                 }, {
                     field: "unitKerja",
                     title: "Unit Kerja",
+                    // template: "# if (unitKerjaId === 0) {# #= '' # #}#",
                     width: 120
                 }, {
-                    field: "jenisJabatanId",
+                    field: "kelompokJabatan",
+                    title: "Kelompok Jabatan ",
+                    // template: "# if (jenisJabatanId === 1) {# #= 'Fungsional' # #} else if (jenisJabatanId === 3){# #= 'Internal' # #} else if (jenisJabatanId === 5){# #= 'Struktural' # #} else {# #= '-' # #}#",
+                    width: 120
+                }, {
+                    field: "jenisJabatan",
                     title: "Jenis Jabatan ",
-                    template: "# if (jenisJabatanId === 1) {# #= 'Fungsional' # #} else if (jenisJabatanId === 3){# #= 'Internal' # #} else if (jenisJabatanId === 5){# #= 'Struktural' # #} else {# #= '-' # #}#",
+                    // template: "# if (jenisJabatanId === 1) {# #= 'Fungsional' # #} else if (jenisJabatanId === 3){# #= 'Internal' # #} else if (jenisJabatanId === 5){# #= 'Struktural' # #} else {# #= '-' # #}#",
                     width: 120
                 }, {
                     field: "namaJabatan",
                     title: "Nama Jabatan",
                     width: 150
                 }, {
-                    field: "eselonId",
+                    field: "eselon",
                     title: "Eselon ",
-                    template: "# if (eselonId === 1) {# #= 'I.a' # #} else if (eselonId === 2){# #= 'I.b' # #} else if (eselonId === 3){# #= 'II.a' # #} else if (eselonId === 4){# #= 'II.b' # #} else if (eselonId === 5){# #= 'III.a' # #} else if (eselonId === 6){# #= 'III.b' # #} else if (eselonId === 7){# #= 'IV.a' # #} else if (eselonId === 8){# #= 'IV.b' # #} else if (eselonId === 9){# #= 'V.a' # #} else if (eselonId === 10){# #= 'V.b' # #} else {# #= '-' # #}#",
+                    // template: "# if (eselonId === 1) {# #= 'I.a' # #} else if (eselonId === 2){# #= 'I.b' # #} else if (eselonId === 3){# #= 'II.a' # #} else if (eselonId === 4){# #= 'II.b' # #} else if (eselonId === 5){# #= 'III.a' # #} else if (eselonId === 6){# #= 'III.b' # #} else if (eselonId === 7){# #= 'IV.a' # #} else if (eselonId === 8){# #= 'IV.b' # #} else if (eselonId === 9){# #= 'V.a' # #} else if (eselonId === 10){# #= 'V.b' # #} else {# #= '-' # #}#",
                     width: 70
                 }, {
                     field: "levelJabatanFormatted",
@@ -104,6 +110,7 @@ define(['initialize'], function (initialize) {
                     cells: [
                         { value: "Kode" },
                         { value: "Unit Kerja" },
+                        { value: "Kelompok Jabatan" },
                         { value: "Jenis Jabatan" },
                         { value: "Nama Jabatan" },
                         { value: "Eselon" },
@@ -120,6 +127,7 @@ define(['initialize'], function (initialize) {
                             cells: [
                                 { value: data[i].id },
                                 { value: data[i].unitKerja },
+                                { value: data[i].kelompokJabatan },
                                 { value: data[i].jenisJabatan },
                                 { value: data[i].namaJabatan },
                                 { value: data[i].eselon },
@@ -134,6 +142,7 @@ define(['initialize'], function (initialize) {
                                 rowSplit: 1
                             },
                             columns: [
+                                { autoWidth: true },
                                 { autoWidth: true },
                                 { autoWidth: true },
                                 { autoWidth: true },
@@ -168,6 +177,10 @@ define(['initialize'], function (initialize) {
                     levelJabatan: {
                         name: dataItem.levelJabatanFormatted,
                         id: dataItem.levelJabatan
+                    },
+                    kelompokJabatan: {
+                        kelompokJabatan: dataItem.kelompokJabatan,
+                        id: dataItem.kelompokJabatanId
                     },
                     jenisJabatan: {
                         jenisJabatan: dataItem.jenisJabatan,
@@ -221,6 +234,10 @@ define(['initialize'], function (initialize) {
                         name: dataItem.levelJabatanFormatted,
                         id: dataItem.levelJabatan
                     },
+                    kelompokJabatan: {
+                        kelompokJabatan: dataItem.kelompokJabatan,
+                        id: dataItem.kelompokJabatanId
+                    },
                     jenisJabatan: {
                         jenisJabatan: dataItem.jenisJabatan,
                         id: dataItem.jenisJabatanId
@@ -260,7 +277,7 @@ define(['initialize'], function (initialize) {
                             } else if (res.data.data[i].levelDireksi === 5) {
                                 res.data.data[i].levelDireksiFormatted = "Direktur Utama";
                             } else {
-                                res.data.data[i].levelDireksiFormatted = "-";
+                                res.data.data[i].levelDireksiFormatted = "";
                             }
 
                             if (res.data.data[i].levelJabatan === 1) {
@@ -274,7 +291,7 @@ define(['initialize'], function (initialize) {
                             } else if (res.data.data[i].levelJabatan === 5) {
                                 res.data.data[i].levelJabatanFormatted = "Staf/ Ketua Tim";
                             } else {
-                                res.data.data[i].levelJabatanFormatted = "-";
+                                res.data.data[i].levelJabatanFormatted = "";
                             }
 
                             resData.push(res.data.data[i]);
@@ -290,6 +307,10 @@ define(['initialize'], function (initialize) {
 
             let init = () => {
                 $scope.getDataJabatan();
+                ManageSdmNew.getListData("service/list-generic/?view=KelompokJabatan&select=id,namaKelompokJabatan&criteria=statusEnabled,id&values=true,(1;2;3;4;5;6;7;8;9;10)&order=namaKelompokJabatan:asc", true).then(res => {
+                    $scope.listKelompokJabatan = res.data;
+                });
+
                 ManageSdmNew.getListData("service/list-generic/?view=JenisJabatan&select=id,jenisJabatan&criteria=statusEnabled,id&values=true,!0&order=jenisJabatan:asc", true).then(res => {
                     $scope.listJenisJabatan = res.data;
                 });
@@ -322,11 +343,13 @@ define(['initialize'], function (initialize) {
                     listRawRequired.push(
                         "data.eselon|k-ng-model|Eselon",
                         "data.jenisJabatan|k-ng-model|Jenis Jabatan",
+                        "data.kelompokJabatan|k-ng-model|Kelompok Jabatan",
                         "data.namaJabatan|k-ng-model|Nama Jabatan"
                     )
                 } else {
                     listRawRequired.push(
                         "data.jenisJabatan|k-ng-model|Jenis Jabatan",
+                        "data.kelompokJabatan|k-ng-model|Kelompok Jabatan",
                         "data.namaJabatan|k-ng-model|Nama Jabatan"
                     )
                 }
@@ -340,6 +363,9 @@ define(['initialize'], function (initialize) {
                         namaJabatan: $scope.data.namaJabatan,
                         levelJabatan: $scope.data.levelJabatan.id,
                         subLevelJabatan: $scope.data.levelDireksi.id,
+                        kelompokJabatan: {
+                            id: $scope.data.kelompokJabatan.id
+                        },
                         jenisJabatan: {
                             id: $scope.data.jenisJabatan.id
                         },
@@ -360,7 +386,10 @@ define(['initialize'], function (initialize) {
                         dataSave.id = $scope.data.jabatanId;
                     }
 
-                    if ($scope.msgIsDuplikatData != "" && !$scope.isHapus) {
+                    if ($scope.msgIsDuplikatData != "" && $scope.isEdit) {
+                        toastr.warning($scope.msgIsDuplikatData + ", mohon untuk memberi Nama Jabatan unik/ sesuai Unit Kerja", "Peringatan")
+                        return
+                    } else if ($scope.msgIsDuplikatData != "" && !$scope.isHapus) {
                         toastr.warning($scope.msgIsDuplikatData, "Peringatan")
                         return
                     }
@@ -383,6 +412,7 @@ define(['initialize'], function (initialize) {
             $scope.reset = () => {
                 $scope.data.jabatanId = null;
                 $scope.data.namaJabatan = null;
+                $scope.data.kelompokJabatan = null;
                 $scope.data.jenisJabatan = null;
                 $scope.data.unitKerja = null;
                 $scope.data.eselon = null;

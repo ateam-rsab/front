@@ -68,30 +68,36 @@
                 <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="data.namaJabatan" />
             </div>
             <div class="grid_3">
+                <label c-label c-label-text="Kelompok Jabatan" real></label>
+                <input kendo-combo-box style="width:100%" k-ng-model="data.kelompokJabatan"
+                    k-data-text-field="'namaKelompokJabatan'" k-data-value-field="'id'" k-filter="'contains'"
+                    k-auto-bind="false" k-data-source="listKelompokJabatan" />
+            </div>
+            <div class="grid_3">
                 <label c-label c-label-text="Jenis Jabatan" real></label>
                 <input kendo-combo-box style="width:100%" k-ng-model="data.jenisJabatan"
                     k-data-text-field="'jenisJabatan'" k-data-value-field="'id'" k-filter="'contains'"
                     k-auto-bind="false" k-data-source="listJenisJabatan" />
             </div>
-            <div class="grid_3">
+        </div>
+        <div class="grid_12">
+            <div class="grid_2">
                 <label c-label c-label-text="Eselon" real></label>
                 <input kendo-combo-box style="width:100%" k-ng-model="data.eselon" k-data-text-field="'eselon'"
                     k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listEselon"
                     ng-disabled="isJabInternal" />
             </div>
-        </div>
-        <div class="grid_12">
             <div class="grid_4">
                 <label c-label c-label-text="Unit Kerja" real></label>
                 <input kendo-combo-box style="width:100%" k-ng-model="data.unitKerja" k-data-text-field="'name'"
                     k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitKerja" />
             </div>
-            <div class="grid_4">
+            <div class="grid_3">
                 <label c-label c-label-text="Level Jabatan" real></label>
                 <input kendo-combo-box style="width:100%" k-ng-model="data.levelJabatan" k-data-text-field="'name'"
                     k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="levelJabatan" />
             </div>
-            <div class="grid_4">
+            <div class="grid_3">
                 <label c-label c-label-text="Level Direksi" real></label>
                 <input kendo-combo-box style="width:100%" k-ng-model="data.levelDireksi" k-data-text-field="'name'"
                     k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="levelDireksi" />
