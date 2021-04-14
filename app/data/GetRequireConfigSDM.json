@@ -369,6 +369,10 @@
       "urlDep": "module/SDM/MasterJabatanCtrl"
     },
     {
+      "nameDep": "MasterJabatanRevCtrl",
+      "urlDep": "module/SDM/MasterJabatanRevCtrl"
+    },
+    {
       "nameDep": "MasterAnggaranRemunerasiCtrl",
       "urlDep": "module/SDM/MasterAnggaranRemunerasiCtrl"
     },
@@ -1131,10 +1135,6 @@
     {
       "nameDep": "CapaianUraianTugasCtrl",
       "urlDep": "module/SDM/CapaianUraianTugasCtrl"
-    },
-    {
-      "nameDep": "MasterJabatanRevCtrl",
-      "urlDep": "module/SDM/MasterJabatanRevCtrl"
     },
     {
       "nameDep": "MasterKedudukanPegawaiCtrl",

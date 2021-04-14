@@ -11,14 +11,15 @@ define(['initialize'], function (initialize) {
                 { name: 'Direktur Utama', id: 1 },
                 { name: 'Direktur', id: 2 },
                 { name: 'Ketua/ Kepala Komite/ Satuan/ Instalasi/ Unit/ Bagian/ KSM/ Bidang', id: 3 },
-                { name: 'Kepala Ruangan/ Kepala Seksi/ Kepala Subbagian/ Pengelola Urusan', id: 4 },
+                { name: 'Kepala Ruangan/ Kepala Seksi/ Kepala Subbagian/ Pengelola Urusan (dengan staf)', id: 4 },
                 { name: 'Staf/ Ketua Tim', id: 5 }
             ];
             $scope.levelDireksi = [
                 { name: 'Direktorat Pelayanan Medik, Keperawatan, dan Penunjang', id: 1 },
                 { name: 'Direktorat Perencanaan, Organisasi, dan Umum', id: 2 },
                 { name: 'Direktorat Sumber Daya Manusia, Pendidikan, dan Penelitian', id: 3 },
-                { name: 'Direktorat Keuangan dan Barang Milik Negara', id: 4 }
+                { name: 'Direktorat Keuangan dan Barang Milik Negara', id: 4 },
+                { name: 'Direktur Utama', id: 5 }
             ];
 
             $scope.daftarJabatanOpt = {
@@ -44,6 +45,9 @@ define(['initialize'], function (initialize) {
                         };
                         if ($(this).text() == 'Direktorat Keuangan dan Barang Milik Negara') {
                             $(this).addClass('dkbmn')
+                        };
+                        if ($(this).text() == 'Direktur Utama') {
+                            $(this).addClass('du')
                         };
                     })
                 },
@@ -253,6 +257,10 @@ define(['initialize'], function (initialize) {
                                 res.data.data[i].levelDireksiFormatted = "Direktorat Sumber Daya Manusia, Pendidikan, dan Penelitian";
                             } else if (res.data.data[i].levelDireksi === 4) {
                                 res.data.data[i].levelDireksiFormatted = "Direktorat Keuangan dan Barang Milik Negara";
+                            } else if (res.data.data[i].levelDireksi === 5) {
+                                res.data.data[i].levelDireksiFormatted = "Direktur Utama";
+                            } else {
+                                res.data.data[i].levelDireksiFormatted = "-";
                             }
 
                             if (res.data.data[i].levelJabatan === 1) {
@@ -286,11 +294,11 @@ define(['initialize'], function (initialize) {
                     $scope.listJenisJabatan = res.data;
                 });
 
-                ManageSdmNew.getListData("service/list-generic/?view=UnitKerjaPegawai&select=id,name&criteria=statusEnabled,id&values=true,!0&order=jenisJabatan:asc", true).then(res => {
+                ManageSdmNew.getListData("service/list-generic/?view=UnitKerjaPegawai&select=id,name&criteria=statusEnabled&values=true&order=jenisJabatan:asc", true).then(res => {
                     $scope.listUnitKerja = res.data;
                 })
 
-                ManageSdmNew.getListData("service/list-generic/?view=Eselon&select=id,eselon&criteria=statusEnabled,id&values=true,!0&order=eselon:asc", true).then(res => {
+                ManageSdmNew.getListData("service/list-generic/?view=Eselon&select=id,eselon&criteria=statusEnabled&values=true&order=eselon:asc", true).then(res => {
                     $scope.listEselon = res.data;
                 })
             }
@@ -309,7 +317,8 @@ define(['initialize'], function (initialize) {
 
                 ];
 
-                if ($scope.data.jenisJabatan && $scope.data.jenisJabatan.id == 1) {
+                //eselon hanya wajib untuk struktural
+                if ($scope.data.jenisJabatan && $scope.data.jenisJabatan.id == 5) {
                     listRawRequired.push(
                         "data.eselon|k-ng-model|Eselon",
                         "data.jenisJabatan|k-ng-model|Jenis Jabatan",
