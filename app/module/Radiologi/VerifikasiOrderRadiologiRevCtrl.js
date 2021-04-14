@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('VerifikasiOrderRadiologiRevCtrl', ['FindProduk', 'CacheHelper', 'ManagePasien', 'socket', '$rootScope', '$scope', 'ModelItem', '$state', 'RegistrasiPasienBaru', 'FindPasien', 'FindPasienRadiologi', 'DateHelper',
-        function (produkService, cacheHelper, managePasien, socket, $rootScope, $scope, ModelItem, $state, RegistrasiPasienBaru, findPasien, findPasienRadiologi, dateHelper) {
+    initialize.controller('VerifikasiOrderRadiologiRevCtrl', ['FindProduk', 'CacheHelper', 'ManagePasien', 'socket', '$rootScope', '$scope', 'ModelItem', '$state', 'RegistrasiPasienBaru', 'FindPasien', 'FindPasienRadiologi', 'DateHelper', '$mdDialog',
+        function (produkService, cacheHelper, managePasien, socket, $rootScope, $scope, ModelItem, $state, RegistrasiPasienBaru, findPasien, findPasienRadiologi, dateHelper, $mdDialog) {
             $scope.item = {};
             $scope.isRouteLoading = false;
             $scope.dataOrderRadiologi = JSON.parse(localStorage.getItem("dataOrderRadiologi"));
@@ -26,7 +26,6 @@ define(['initialize'], function (initialize) {
 
                 // http://192.168.12.3:5555/simrs_harkit/service/transaksi/transaksi/lab-radiologi/get-compnonen-rad
                 findPasienRadiologi.getData("lab-radiologi/get-compnonen-rad", true).then(function (dat) {
-                    console.log(dat.data.data)
                     $scope.listLayanan = dat.data.data;
                 });
             }
@@ -152,7 +151,21 @@ define(['initialize'], function (initialize) {
                 })
             }
 
+            $scope.showAlertSuccess = function (ev) {
+                $mdDialog.show(
+                  $mdDialog.alert()
+                    .clickOutsideToClose(true)
+                    .title('Verifikasi Berhasil')
+                    .textContent('Anda akan di arahkan ke laman Daftar Order Pasien Radiologi.')
+                    .ok('Ya')
+                    .targetEvent(ev)
+                ).then(() => {
+                    $state.go("DaftarOrderRadiologi");
+                });
+              };
+
             $scope.simpanData = () => {
+             
                 let dataSourceGrid = $scope.dataSourceVerified._data;
                 let dataSave = {
                     norec_pp: "",
@@ -224,12 +237,12 @@ define(['initialize'], function (initialize) {
                 findPasienRadiologi.saveData("lab-radiologi/save-pelayanan-rad", dataSave).then((res) => {
 
                     findPasienRadiologi.saveData("lab-radiologi/save-bridging-zeta", dataBridge).then((res) => {
-
+                        $scope.showAlertSuccess();
                     });
 
                 })
 
-                // http://192.168.12.3:5555/simrs_harkit/service/transaksi/lab-radiologi/save-bridging-zeta
+                
             }
         }
     ]);

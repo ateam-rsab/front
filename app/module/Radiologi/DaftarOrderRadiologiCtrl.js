@@ -8,8 +8,8 @@ define(['initialize'], function (initialize) {
             $scope.item.tglAkhir = new Date();
             $scope.getDataOrder = () => {
                 $scope.isRouteLoading = true;
-                let tglAwal = $scope.item.tglAwal ? dateHelper.formatDate($scope.item.tglAwal, "YYYY-MM-DD") : dateHelper.formatDate(new Date(), "YYYY-MM-DD"),
-                    tglAkhir = $scope.item.tglAkhir ? dateHelper.formatDate($scope.item.tglAkhir, "YYYY-MM-DD") : dateHelper.formatDate(new Date(), "YYYY-MM-DD");
+                let tglAwal = $scope.item.tglAwal ? dateHelper.formatDate($scope.item.tglAwal, "YYYY-MM-DD HH:mm") : dateHelper.formatDate(new Date(), "YYYY-MM-DD HH:mm"),
+                    tglAkhir = $scope.item.tglAkhir ? dateHelper.formatDate($scope.item.tglAkhir, "YYYY-MM-DD HH:mm") : dateHelper.formatDate(new Date(), "YYYY-MM-DD HH:mm");
                 findPasienRadiologi.getData("lab-radiologi/get-daftar-order-rad?tglAwal=" + tglAwal + "&tglAkhir=" + tglAkhir).then((res) => {
 
                     $scope.dataSourceOrder = new kendo.data.DataSource({

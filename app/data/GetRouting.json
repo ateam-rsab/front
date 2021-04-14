@@ -1414,7 +1414,7 @@
     ]
   },
   {
-    "name": "DaftarOrderRadiologiCtrl",
+    "name": "DaftarOrderRadiologi",
     "url": "/DaftarOrderRadiologi",
     "templateurl": "module/Radiologi/DaftarOrderRadiologi.html",
     "controller": "DaftarOrderRadiologiCtrl",
