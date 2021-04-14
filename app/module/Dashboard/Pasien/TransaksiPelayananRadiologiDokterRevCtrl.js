@@ -88,7 +88,7 @@ define(['initialize'], function (initialize) {
                 for (let ii in $scope.listLayananLainnya) {
 
                     if (!$scope.listLayananLainnya[ii].namaLayanan) {
-                        toastr.info("Nama lainnya masih kosong", "Perhatian");
+                        toastr.info("Nama tindakkan masih kosong", "Perhatian");
                         return;
                     }
 
@@ -113,7 +113,7 @@ define(['initialize'], function (initialize) {
                 for (let i in $scope.selectedDataProduk) {
 
                     if (!$scope.selectedDataProduk[i].jmlLayanan) {
-                        toastr.info("Jumlah layanan " + $scope.listLayananLainnya[ii].namaproduk + " masih kosong", "Perhatian");
+                        toastr.info("Jumlah layanan " + $scope.selectedDataProduk[i].namaproduk + " masih kosong", "Perhatian");
                         return;
                     }
 
@@ -161,6 +161,8 @@ define(['initialize'], function (initialize) {
                     $scope.listLayanan = dat.data.produk;
 
                     namaRuanganFk = dat.data.data[0].objectruanganfk
+
+                    $scope.showInputKhusus = namaRuanganFk === 328 || namaRuanganFk === 76;
                     norec_pd = dat.data.data[0].noregistrasifk
                     $scope.isLoading = false;
                 });
@@ -578,8 +580,30 @@ define(['initialize'], function (initialize) {
                 $scope.dataGridOrder = new kendo.data.DataSource({
                     data: []
                 });
+
+                
                 $scope.CmdOrderPelayanan = true;
                 $scope.OrderPelayanan = false;
+
+                $scope.item.ruanganAsal = null;
+                $scope.item.klinis = null;
+                $scope.item.catatanKhusus = null;
+                $scope.item.konsultasiAnestesi = null;
+                $scope.item.pemeriksaanLab = null;
+                $scope.item.pemeriksaanLabLainnya = null;
+                $scope.item.prematur = null;
+                $scope.item.apgar = null;
+                $scope.item.prosesPersalinan = null;
+                $scope.item.kelainanKonengital = null;
+                $scope.item.klinisPneumonia = null;
+                $scope.item.terpasangOksigen = null;
+                $scope.item.terpasangEtt = null;
+                $scope.item.umbilicalCatheter = null;
+                $scope.item.PICC = null;
+                $scope.item.catheterDrain = null;
+
+                $scope.showInputPemeriksaanLab = false;
+                $scope.showInputKhusus = false;
             }
 
             $scope.riwayat = function () {
@@ -588,10 +612,12 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.Simpan = function () {
+                
                 if ($scope.item.ruangantujuan == undefined) {
                     alert("Pilih Ruangan Tujuan terlebih dahulu!!")
                     return
                 }
+
                 if (data2.length == 0) {
                     alert("Pilih layanan terlebih dahulu!!")
                     return;
@@ -604,6 +630,8 @@ define(['initialize'], function (initialize) {
                     norec_pd: norec_pd,
                     qtyproduk: data2.length, //
                     objectruanganfk: namaRuanganFk,
+                    // objectruanganfk: $scope.item.ruanganAsal.id,
+                    
                     objectruangantujuanfk: $scope.item.ruangantujuan.id,
                     departemenfk: 27,
                     pegawaiorderfk: $scope.PegawaiLogin2.pegawai[0].id,
@@ -627,11 +655,11 @@ define(['initialize'], function (initialize) {
                 console.log(objSave);
 
                 // http://192.168.12.3:4444/simrs_harkit/service/transaksi/lab-radiologi/save-order-rad-dokter
-                manageLogistikPhp.postpost("lab-radiologi/save-order-rad-dokter", objSave).then(function (e) {
-                    init();
-                    $scope.BatalOrder();
-                    manageLogistikPhp.postLogging('Order Radiologi', 'Norec strukorder_t', e.data.strukorder.norec, 'Menu Dokter').then(function (res) {})
-                })
+                // manageLogistikPhp.postpost("lab-radiologi/save-order-rad-dokter", objSave).then(function (e) {
+                    
+                //     $scope.BatalOrder();
+                //     manageLogistikPhp.postLogging('Order Radiologi', 'Norec strukorder_t', e.data.strukorder.norec, 'Menu Dokter').then(function (res) {})
+                // })
             }
             $scope.formatRupiah = function (value, currency) {
                 return currency + " " + parseFloat(value).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");

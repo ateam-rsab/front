@@ -188,8 +188,8 @@ define(['initialize'], function (initialize) {
                     "title": "Nama Kelas",
                     "width": "80px",
                 }, {
-                    "field": "tglmasuk",
-                    "title": "Tanggal<br>Masuk",
+                    "field": "tglorder",
+                    "title": "Tanggal<br>Order",
                     "width": "100px",
                 }, {
                     "field": "tglregistrasi",
