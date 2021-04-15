@@ -22,7 +22,7 @@ define(['initialize'], function (initialize) {
                 $scope.listUnitKerja = res.data
             })
 
-            ManageSdmNew.getListData("service/list-generic/?view=JenisJabatan&select=id,jenisJabatan&criteria=statusEnabled,id&values=true,!0&order=jenisJabatan:asc").then((res) => {
+            ManageSdmNew.getListData("service/list-generic/?view=JenisJabatan&select=id,jenisJabatan&criteria=statusEnabled,id&values=true,(7;8;9)&order=jenisJabatan:asc").then((res) => {
                 $scope.listJenisJabatan = res.data
             })
 
