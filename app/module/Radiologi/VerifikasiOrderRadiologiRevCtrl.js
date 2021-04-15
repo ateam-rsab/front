@@ -100,6 +100,7 @@ define(['initialize'], function (initialize) {
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
 
                 $scope.layanan = dataItem;
+                console.log(dataItem);
 
                 $scope.popupVerifikasi.open().center();
             }

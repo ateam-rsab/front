@@ -15,16 +15,16 @@ define(['initialize'], function (initialize) {
                 var chacePeriode = cacheHelper.get('DaftarPasienPenunjang');
                 if (chacePeriode != undefined) {
                     //var arrPeriode = chacePeriode.split(':');
-                    $scope.item.tglAwal = new Date(chacePeriode[0]);
-                    $scope.item.tglAkhir = new Date(chacePeriode[1]);
+                    // $scope.item.tglAwal = new Date(chacePeriode[0]);
+                    // $scope.item.tglAkhir = new Date(chacePeriode[1]);
                     $scope.item.namaPasien = chacePeriode[2];
                     $scope.item.noMr = chacePeriode[3];
                     $scope.item.noReg = chacePeriode[4];
 
                     init();
                 } else {
-                    $scope.item.tglAwal = $scope.now;
-                    $scope.item.tglAkhir = $scope.now;
+                    // $scope.item.tglAwal = $scope.now;
+                    // $scope.item.tglAkhir = $scope.now;
                     init();
                 }
             }
@@ -44,37 +44,41 @@ define(['initialize'], function (initialize) {
 
             function init() {
                 var ins = ""
-                if ($scope.item.instalasi != undefined) {
+                if ($scope.item.instalasi) {
                     var ins = "&deptId=" + $scope.item.instalasi.id
                 }
                 var rg = ""
-                if ($scope.item.ruangan != undefined) {
+                if ($scope.item.ruangan) {
                     var rg = "&ruangId=" + $scope.item.ruangan.id
                 }
                 var kp = ""
-                if ($scope.item.kelompokPasien != undefined) {
+                if ($scope.item.kelompokPasien) {
                     var kp = "&kelId=" + $scope.item.kelompokPasien.id
                 }
 
                 var reg = ""
-                if ($scope.item.noReg != undefined) {
+                if ($scope.item.noReg) {
                     var reg = "&noregistrasi=" + $scope.item.noReg
                 }
                 var rm = ""
-                if ($scope.item.noMr != undefined) {
+                if ($scope.item.noMr) {
                     var rm = "&nocm=" + $scope.item.noMr
                 }
                 var nm = ""
-                if ($scope.item.namaPasien != undefined) {
+                if ($scope.item.namaPasien) {
                     var nm = "&namapasien=" + $scope.item.namaPasien
                 }
 
-                var tglAwal = moment($scope.item.tglAwal).format('YYYY-MM-DD HH:mm:ss');
-                var tglAkhir = moment($scope.item.tglAkhir).format('YYYY-MM-DD HH:mm:ss');
+                let tglAwal = $scope.item.tglAwal ? moment($scope.item.tglAwal).format('YYYY-MM-DD HH:mm:ss') : "",
+                    tglAkhir = $scope.item.tglAkhir ? moment($scope.item.tglAkhir).format('YYYY-MM-DD HH:mm:ss') : "",
+                    tglOrderAwal = moment($scope.item.tglOrderAwal).format('YYYY-MM-DD HH:mm:ss'),
+                    tglOrderAkhir = moment($scope.item.tglOrderAkhir).format('YYYY-MM-DD HH:mm:ss');
+
                 $scope.isRouteLoading = true;
                 manageLogistikPhp.getDataTableTransaksi("lab-radiologi/get-daftar-pasien-penunjang?" +
                     "tglAwal=" + tglAwal +
                     "&tglAkhir=" + tglAkhir +
+                    "&tglOrderAwal=" + tglOrderAwal + "&tglOrderAkhir=" + tglOrderAkhir +
                     reg +
                     rm +
                     nm +
@@ -145,72 +149,71 @@ define(['initialize'], function (initialize) {
                 cacheHelper.set('RincianPelayananLabRadCtrl', arrStr);
                 $state.go('RincianPelayananLabRad')
             }
-            
+
             $scope.formatTanggal = function (tanggal) {
                 return moment(tanggal).format('DD-MMM-YYYY');
             }
 
 
             $scope.columnGrid = [{
-                    "field": "no",
-                    "title": "No",
-                    "width": "30px",
-                }, {
-                    "field": "noregistrasi",
-                    "title": "No Registrasi",
-                    "width": "80px",
-                }, {
-                    "field": "nocm",
-                    "title": "No MR",
-                    "width": "70px",
-                }, {
-                    "field": "namapasien",
-                    "title": "Nama Pasien",
-                    "width": "150px",
-                }, {
-                    "field": "namaruangan",
-                    "title": "Nama Ruangan",
-                    "width": "130px",
-                }, {
-                    "field": "jeniskelamin",
-                    "title": "Jenis Kelamin",
-                    "width": "70px",
-                }, {
-                    "field": "umur",
-                    "title": "Umur",
-                    "width": "100px"
-                }, {
-                    "field": "kelompokpasien",
-                    "title": "Kelompok Pasien",
-                    "width": "100px",
-                }, {
-                    "field": "namakelas",
-                    "title": "Nama Kelas",
-                    "width": "80px",
-                }, {
-                    "field": "tglorder",
-                    "title": "Tanggal<br>Order",
-                    "width": "100px",
-                }, {
-                    "field": "tglregistrasi",
-                    "title": "Tanggal<br>Registrasi",
-                    "width": "100px",
-                }, {
-                    "field": "tglpulang",
-                    "title": "Tanggal<br>Pulang",
-                    "width": "100px",
-                }, {
+                "field": "no",
+                "title": "No",
+                "width": "30px",
+            }, {
+                "field": "noregistrasi",
+                "title": "No Registrasi",
+                "width": "80px",
+            }, {
+                "field": "nocm",
+                "title": "No MR",
+                "width": "70px",
+            }, {
+                "field": "namapasien",
+                "title": "Nama Pasien",
+                "width": "150px",
+            }, {
+                "field": "namaruangan",
+                "title": "Nama Ruangan",
+                "width": "130px",
+            }, {
+                "field": "jeniskelamin",
+                "title": "Jenis Kelamin",
+                "width": "70px",
+            }, {
+                "field": "umur",
+                "title": "Umur",
+                "width": "100px"
+            }, {
+                "field": "kelompokpasien",
+                "title": "Kelompok Pasien",
+                "width": "100px",
+            }, {
+                "field": "namakelas",
+                "title": "Nama Kelas",
+                "width": "80px",
+            }, {
+                "field": "tglorder",
+                "title": "Tanggal<br>Order",
+                "width": "100px",
+            }, {
+                "field": "tglregistrasi",
+                "title": "Tanggal<br>Registrasi",
+                "width": "100px",
+            }, {
+                "field": "tglpulang",
+                "title": "Tanggal<br>Pulang",
+                "width": "100px",
+            }, {
 
-                    command: [{
-                        text: "Rincian Pelayanan",
-                        click: rincianPelayanan,
-                        imageClass: "k-icon k-i-pencil"
-                    }],
-                    title: "",
-                    width: 100
-    
-                }
-            ];
+                command: [{
+                    text: "Rincian Pelayanan",
+                    click: rincianPelayanan,
+                    imageClass: "k-icon k-i-pencil"
+                }],
+                title: "",
+                width: 100
+
+            }];
 
             function rincianPelayanan(e) {
                 e.preventDefault();

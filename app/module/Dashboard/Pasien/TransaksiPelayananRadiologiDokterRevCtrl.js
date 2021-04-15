@@ -343,12 +343,12 @@ define(['initialize'], function (initialize) {
             $scope.showPopUpOrder = function () {
                 $scope.listLayananLainnya = [];
                 console.log($scope.listLayanan);
-                
+
                 $scope.popupAddLayanan.open().center();
             }
 
             $scope.resetFormInputTindakan = () => {
-                for(let i = 0; i < $scope.listLayanan.length; i++) {
+                for (let i = 0; i < $scope.listLayanan.length; i++) {
                     $scope.listLayanan[i].checked = false;
                     $scope.listLayanan[i].riwayatRadiologi = null;
                     $scope.listLayanan[i].catatanTambahan = null;
@@ -356,8 +356,8 @@ define(['initialize'], function (initialize) {
                     $scope.listLayanan[i].jmlLayanan = null;
                 }
 
-                if($scope.listLayananLainnya.length != 0) {
-                    for(let ii = 0; ii < $scope.listLayananLainnya.length; ii++) {
+                if ($scope.listLayananLainnya.length != 0) {
+                    for (let ii = 0; ii < $scope.listLayananLainnya.length; ii++) {
                         $scope.listLayananLainnya[ii].checked = false;
                         $scope.listLayananLainnya[ii].riwayatRadiologi = null;
                         $scope.listLayananLainnya[ii].catatanTambahan = null;
@@ -365,7 +365,7 @@ define(['initialize'], function (initialize) {
                         $scope.listLayananLainnya[ii].jmlLayanan = null;
                     }
                 }
-                
+
             }
 
             $scope.columnGridRiwayat = [{
@@ -609,7 +609,7 @@ define(['initialize'], function (initialize) {
                     data: []
                 });
 
-                
+
                 $scope.CmdOrderPelayanan = true;
                 $scope.OrderPelayanan = false;
 
@@ -640,7 +640,7 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.Simpan = function () {
-                
+
                 if ($scope.item.ruangantujuan == undefined) {
                     alert("Pilih Ruangan Tujuan terlebih dahulu!!")
                     return
@@ -659,7 +659,7 @@ define(['initialize'], function (initialize) {
                     qtyproduk: data2.length, //
                     objectruanganfk: namaRuanganFk,
                     // objectruanganfk: $scope.item.ruanganAsal.id,
-                    
+
                     objectruangantujuanfk: $scope.item.ruangantujuan.id,
                     departemenfk: 27,
                     pegawaiorderfk: $scope.PegawaiLogin2.pegawai[0].id,
@@ -682,12 +682,15 @@ define(['initialize'], function (initialize) {
                 console.log(data2);
                 console.log(objSave);
 
-                // http://192.168.12.3:4444/simrs_harkit/service/transaksi/lab-radiologi/save-order-rad-dokter
-                manageLogistikPhp.postpost("lab-radiologi/save-order-rad-dokter", objSave).then(function (e) {
-                    
-                    $scope.BatalOrder();
-                    manageLogistikPhp.postLogging('Order Radiologi', 'Norec strukorder_t', e.data.strukorder.norec, 'Menu Dokter').then(function (res) {})
-                })
+                $scope.selectedDataProduk = [];
+                tempDataGrid = [];
+                $scope.BatalOrder();
+                // // http://192.168.12.3:4444/simrs_harkit/service/transaksi/lab-radiologi/save-order-rad-dokter
+                // manageLogistikPhp.postpost("lab-radiologi/save-order-rad-dokter", objSave).then(function (e) {
+                //     $scope.selectedDataProduk = [];
+                //     $scope.BatalOrder();
+                //     manageLogistikPhp.postLogging('Order Radiologi', 'Norec strukorder_t', e.data.strukorder.norec, 'Menu Dokter').then(function (res) {})
+                // })
             }
             $scope.formatRupiah = function (value, currency) {
                 return currency + " " + parseFloat(value).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");

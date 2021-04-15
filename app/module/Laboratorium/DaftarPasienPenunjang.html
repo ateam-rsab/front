@@ -87,31 +87,54 @@
             </div>
             <div class="grid_4">
                 <div class="grid_12">
-                    <label c-label item="item" c-label-text="Periode Tanggal"></label>
+                    <label c-label item="item" c-label-text="Periode Tanggal Order"></label>
                 </div>
                 <div class="grid_12">
                     <!-- AwalPeriode -->
-                    <div class="grid_4 padDatePicker">
-                        <input style="width: 100%" k-ng-model="item.tglAwal" kendo-datetimepicker k-max="now"
+                    <div class="grid_6 padDatePicker">
+                        <input style="width: 100%" k-ng-model="item.tglOrderAwal" kendo-datetimepicker k-max="now"
                             placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm"
                             ng-disabled='cekBelumVerifs' />
                     </div>
 
                     <!-- AkhirPeriode -->
-                    <div class="grid_4 padDatePicker">
-                        <input style="width: 100%" k-ng-model="item.tglAkhir" kendo-datetimepicker
+                    <div class="grid_6 padDatePicker">
+                        <input style="width: 100%" k-ng-model="item.tglOrderAkhir" kendo-datetimepicker
                             placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" ng-disabled='cekBelumVerifs' />
                     </div>
-                    <div class="grid_2">
-                        <!-- <button class="c-button" ng-click="cariFilter()">Cari</button> -->
-                        <md-button class="md-raised md-primary medium-button" style="width: 100px;" ng-click="cariFilter()">
-                            <span style="margin-right: 5px;">Cari</span>
-                            <i class="fa fa-search"></i>
-                        </md-button>
-
-                    </div>
+                  
                 </div>
 
+            </div>
+            <div class="grid_12">
+                <div class="grid_4">
+                    <div class="grid_12">
+                        <label c-label item="item" c-label-text="Periode Tanggal Registrasi"></label>
+                    </div>
+                    <div class="grid_12">
+                        <!-- AwalPeriode -->
+                        <div class="grid_4 padDatePicker">
+                            <input style="width: 100%" k-ng-model="item.tglAwal" kendo-datetimepicker k-max="now"
+                                placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm"
+                                ng-disabled='cekBelumVerifs' />
+                        </div>
+    
+                        <!-- AkhirPeriode -->
+                        <div class="grid_4 padDatePicker">
+                            <input style="width: 100%" k-ng-model="item.tglAkhir" kendo-datetimepicker
+                                placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" ng-disabled='cekBelumVerifs' />
+                        </div>
+                        <div class="grid_2">
+                            <!-- <button class="c-button" ng-click="cariFilter()">Cari</button> -->
+                            <md-button class="md-raised md-primary medium-button" style="width: 100px;" ng-click="cariFilter()">
+                                <span style="margin-right: 5px;">Cari</span>
+                                <i class="fa fa-search"></i>
+                            </md-button>
+    
+                        </div>
+                    </div>
+    
+                </div>
             </div>
             
             <div class="grid_12">

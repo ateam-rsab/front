@@ -5,7 +5,7 @@ define(['initialize'], function (initialize) {
             $scope.item = {};
             // $scope.dataVOloaded = true;
             $scope.now = new Date();
-            $scope.isLoading = false;
+            $scope.isRouteLoading = false;
             var norec_apd = ''
             var norec_pd = ''
             var norec_so = ''
@@ -92,7 +92,7 @@ define(['initialize'], function (initialize) {
 
             }
             function init() {
-                $scope.isLoading = true;
+                $scope.isRouteLoading = true;
 
                 manageLogistikPhp.getDataTableTransaksi("lab-radiologi/get-data-combo?objectkelasfk=" + $scope.item.kelas.id, true).then(function (dat) {
                     $scope.listRuanganTujuan = dat.data.ruangantujuan;
@@ -123,7 +123,7 @@ define(['initialize'], function (initialize) {
                                 if (dat.data.data[0].objectdepartemenfk == 27)
                                     $scope.disableLab = true
                             }
-                            $scope.isLoading = false;
+                            $scope.isRouteLoading = false;
 
                             $scope.dataGrid = {
                                 data: dat.data.data,
@@ -145,7 +145,7 @@ define(['initialize'], function (initialize) {
 
                         });
                 } else {
-                    $scope.isLoading = false;
+                    $scope.isRouteLoading = false;
                 }
 
 
@@ -174,7 +174,12 @@ define(['initialize'], function (initialize) {
                     },
                     {
                         "field": "tglpelayanan",
-                        "title": "Tgl Pelayanan",
+                        "title": "Tanggal<br> Pelayanan",
+                        "width": "90px",
+                    },
+                    {
+                        "field": "jadualPelayanan",
+                        "title": "Jadwal<br> Pelayanan",
                         "width": "90px",
                     },
                     {
