@@ -28,8 +28,9 @@ define(['initialize'], function (initialize) {
 
             $scope.getDataJabatan = (unitId, jenisId) => {
                 if (!unitId || !jenisId) return
-                ManageSdmNew.getListData("service/list-generic/?view=Jabatan&select=id,namaJabatan&criteria=statusEnabled,id,jenisJabatanId,unitKerjaId&values=true,!0," + jenisId + "," + unitId + "&order=namaJabatan:asc").then((res) => {
-                    $scope.listJabatan = res.data
+                $scope.data.jabatan = null
+                ManageSdmNew.getListData("jabatan/get-jabatan-dan-batas-nilai?jenisJabatanId=" + jenisId + "&unitKerjaId=" + unitId).then((res) => {
+                    $scope.listJabatan = res.data.data
                 })
             }
 
@@ -403,8 +404,15 @@ define(['initialize'], function (initialize) {
 
 
                 });
-
             }
+
+            $scope.$watch('data.jabatan', function (e) {
+                if (!e) return;
+                if (!$scope.data.jabatan.nilaiTerendah || !$scope.data.jabatan.nilaiTertinggi) {
+                    toastr.warning($scope.data.jabatan.namaJabatan + " belum entri kelompok jabatan", "Peringatan")
+                    return
+                }
+            })
         }
     ])
 });
