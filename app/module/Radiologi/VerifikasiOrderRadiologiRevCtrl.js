@@ -81,6 +81,10 @@ define(['initialize'], function (initialize) {
                 "field": "catatan_tambahan",
                 "title": "Catatan",
                 "width": 150,
+            }, {
+                "field": "jadualTindakan",
+                "title": "Jadwal Tindakan",
+                "width": 100,
             }];
 
             $scope.columnsHargaProduk = [{
@@ -96,6 +100,7 @@ define(['initialize'], function (initialize) {
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
 
                 $scope.layanan = dataItem;
+                console.log(dataItem);
 
                 $scope.popupVerifikasi.open().center();
             }
@@ -111,6 +116,7 @@ define(['initialize'], function (initialize) {
                     persiapan: $scope.layanan.persiapan,
                     riwayat: $scope.layanan.riwayat,
                     catatan_tambahan: $scope.layanan.catatan_tambahan,
+                    jadualTindakan: dateHelper.formatDate($scope.layanan.jadwalTindakan, "YYYY-MM-DD HH:mm")
                 }
 
                 dataSource = [
@@ -173,16 +179,9 @@ define(['initialize'], function (initialize) {
                     norec_so: $scope.dataOrderRadiologi.norec_so,
                     objectkelasfk: $scope.dataOrderRadiologi.objectkelasfk,
                     norec_pd: $scope.dataOrderRadiologi.norec_pd,
-
-                    // blm ada
-                    // objectruangantujuanfk: $scope.dataOrderRadiologi,
-                    // ambigu dengan dokterorder
                     objectpegawaiorderfk: $scope.dataOrderRadiologi.dokter,
-
                     iddokterverif: dataLogin.id,
                     namadokterverif: dataLogin.namaLengkap,
-                    // iddokterorder: $scope.dataOrderRadiologi.dokter,
-                    // namadokterorder: $scope.dataOrderRadiologi.namalengkap,
                     details: [],
                     bridging: []
                 }
@@ -202,7 +201,7 @@ define(['initialize'], function (initialize) {
                         namaproduk: dataSourceGrid[i].namaproduk,
                         objectkelasfk: $scope.dataOrderRadiologi.objectkelasfk,
                         objectruanganfk: $scope.dataOrderRadiologi.objectruanganfk,
-
+                        jadualTindakan:dataSourceGrid[i].jadualTindakan,
                         produkfk: dataSourceGrid[i].idProduk,
                         qtyproduk: dataSourceGrid[i].qtyproduk,
                     })

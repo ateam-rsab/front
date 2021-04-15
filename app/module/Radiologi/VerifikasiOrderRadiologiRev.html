@@ -46,66 +46,75 @@
             <hr>
 
             <div class="grid_12">
-                <div class="grid_2" ng-if="detailOrderRadiologi.apgar">
+                <div class="grid_2">
                     <label c-label item="item">APGAR</label>
-                    <label class="hint-label">{{detailOrderRadiologi.apgar}}</label>
+                    <label class="hint-label">{{detailOrderRadiologi.apgar ? etailOrderRadiologi.apgar : '-'}}</label>
                 </div>
 
-                <div class="grid_2" ng-if="detailOrderRadiologi.ett">
+                <div class="grid_2">
                     <label c-label item="item">ETT</label>
-                    <label class="hint-label">{{detailOrderRadiologi.ett}}</label>
+                    <label class="hint-label">{{detailOrderRadiologi.ett ? detailOrderRadiologi.ett : '-'}}</label>
                 </div>
 
-                <div class="grid_2" ng-if="detailOrderRadiologi.konengital">
+                <div class="grid_2">
                     <label c-label item="item">Konengital</label>
-                    <label class="hint-label">{{detailOrderRadiologi.konengital}}</label>
+                    <label
+                        class="hint-label">{{detailOrderRadiologi.konengital ? detailOrderRadiologi.konengital : '-'}}</label>
                 </div>
 
-                <div class="grid_2" ng-if="detailOrderRadiologi.konsultasi_anest">
+                <div class="grid_2">
                     <label c-label item="item">Konsultasi Anestesi</label>
-                    <label class="hint-label">{{detailOrderRadiologi.konsultasi_anest}}</label>
+                    <label
+                        class="hint-label">{{detailOrderRadiologi.konsultasi_anest ? detailOrderRadiologi.konsultasi_anest : '-'}}</label>
                 </div>
 
-                <div class="grid_2" ng-if="detailOrderRadiologi.oksigen">
+                <div class="grid_2">
                     <label c-label item="item">Oksigen</label>
-                    <label class="hint-label">{{detailOrderRadiologi.oksigen}}</label>
+                    <label
+                        class="hint-label">{{detailOrderRadiologi.oksigen ? detailOrderRadiologi.oksigen : '-'}}</label>
                 </div>
 
-                <div class="grid_2" ng-if="detailOrderRadiologi.periksa_lab">
+                <div class="grid_2">
                     <label c-label item="item">Pemeriksaan Laboratorium</label>
-                    <label class="hint-label">{{detailOrderRadiologi.periksa_lab}}</label>
+                    <label
+                        class="hint-label">{{detailOrderRadiologi.periksa_lab ? detailOrderRadiologi.periksa_lab : '-'}}</label>
                 </div>
             </div>
 
             <hr>
 
-            <div class="grid_12" >
-                <div class="grid_2" ng-if="detailOrderRadiologi.pneumonia">
+            <div class="grid_12">
+                <div class="grid_2">
                     <label c-label item="item">Pneumonia</label>
-                    <label class="hint-label">{{detailOrderRadiologi.pneumonia}}</label>
+                    <label
+                        class="hint-label">{{detailOrderRadiologi.pneumonia ? detailOrderRadiologi.pneumonia : '-'}}</label>
                 </div>
 
-                <div class="grid_2" ng-if="detailOrderRadiologi.prematur">
+                <div class="grid_2">
                     <label c-label item="item">Prematur</label>
-                    <label class="hint-label">{{detailOrderRadiologi.prematur}}</label>
+                    <label
+                        class="hint-label">{{detailOrderRadiologi.prematur ? detailOrderRadiologi.prematur : '-'}}</label>
                 </div>
 
-                <div class="grid_2" ng-if="detailOrderRadiologi.scOrNormal">
+                <div class="grid_2">
                     <label c-label item="item">Jenis Proses Persalinan</label>
-                    <label class="hint-label">{{detailOrderRadiologi.scOrNormal}}</label>
+                    <label
+                        class="hint-label">{{detailOrderRadiologi.scOrNormal ? detailOrderRadiologi.scOrNormal : '-'}}</label>
                 </div>
-                <div class="grid_2" ng-if="detailOrderRadiologi.umb_cathe">
+                <div class="grid_2">
                     <label c-label item="item">Umbilical Catheter</label>
-                    <label class="hint-label">{{detailOrderRadiologi.umb_cathe}}</label>
+                    <label
+                        class="hint-label">{{detailOrderRadiologi.umb_cathe ? detailOrderRadiologi.umb_cathe : '-'}}</label>
                 </div>
 
-                <div class="grid_2" ng-if="detailOrderRadiologi.picc">
+                <div class="grid_2">
                     <label c-label item="item">PICC</label>
-                    <label class="hint-label">{{detailOrderRadiologi.picc}}</label>
+                    <label class="hint-label">{{detailOrderRadiologi.picc ? detailOrderRadiologi.picc : '-'}}</label>
                 </div>
-                <div class="grid_2" ng-if="detailOrderRadiologi.drain_cath">
+                <div class="grid_2">
                     <label c-label item="item">Catheter Drain</label>
-                    <label class="hint-label">{{detailOrderRadiologi.drain_cath}}</label>
+                    <label
+                        class="hint-label">{{detailOrderRadiologi.drain_cath ? detailOrderRadiologi.drain_cath : ''}}</label>
                 </div>
             </div>
 
@@ -139,7 +148,7 @@
                     <md-card>
                         <md-card-title>
                             <md-card-title-text>
-                                <span class="md-headline">Produk dari Dokter</span>
+                                <span class="md-headline">Order Dokter</span>
                             </md-card-title-text>
                         </md-card-title>
                         <md-card-content>
@@ -152,6 +161,18 @@
                                 <div class="clear"></div>
                                 <div class="grid_12" style="margin-bottom: 10px">
                                     {{layanan.namaproduk}}
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 10px">
+                                <div class="grid_12">
+                                    <label c-label item="item">
+                                        <strong>QTY Produk</strong>
+                                    </label>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="grid_12" style="margin-bottom: 10px">
+                                    {{layanan.qtyproduk}}
                                 </div>
                             </div>
 
@@ -239,6 +260,17 @@
                                 <div class="clear"></div>
                                 <div class="grid_12" style="margin-bottom: 10px">
                                     <input type="number" min="0" class="k-textbox" ng-model="layanan.iptQty">
+                                </div>
+
+                                <div class="grid_12">
+                                    <label c-label item="item">
+                                        <strong>Jadwal Tindakan</strong>
+                                    </label>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="grid_12" style="margin-bottom: 10px">
+                                    <input style="width: 100%" k-ng-model="layanan.jadwalTindakan" kendo-datetimepicker
+                                        placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" />
                                 </div>
                             </div>
                         </md-card-content>
