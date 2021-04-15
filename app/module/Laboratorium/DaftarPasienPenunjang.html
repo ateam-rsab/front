@@ -83,11 +83,7 @@
                         <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaPasien" />
                     </div>
                 </div>
-                <!-- <div class="grid_6">
-                </div>
-                <div class="grid_2" style="margin-top: 22px">
-                    <button class="c-button" ng-click="TransaksiPelayanan()">Rincian Pelayanan</button>
-                </div> -->
+               
             </div>
             <div class="grid_4">
                 <div class="grid_12">
@@ -107,7 +103,11 @@
                             placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" ng-disabled='cekBelumVerifs' />
                     </div>
                     <div class="grid_2">
-                        <button class="c-button" ng-click="cariFilter()">Cari</button>
+                        <!-- <button class="c-button" ng-click="cariFilter()">Cari</button> -->
+                        <md-button class="md-raised md-primary medium-button" style="width: 100px;" ng-click="cariFilter()">
+                            <span style="margin-right: 5px;">Cari</span>
+                            <i class="fa fa-search"></i>
+                        </md-button>
 
                     </div>
                 </div>

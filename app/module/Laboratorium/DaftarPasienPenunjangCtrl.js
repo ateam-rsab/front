@@ -87,7 +87,10 @@ define(['initialize'], function (initialize) {
                         dat.data.data[i].umur = umur.year + ' thn ' + umur.month + ' bln ' + umur.day + ' hari'
                         //itungUsia(dat.data[i].tgllahir)
                     }
-                    $scope.dataGrid = dat.data.data;
+                    $scope.dataGrid = new kendo.data.DataSource({
+                        data: dat.data.data,
+                        pageSize: 10
+                    });
                     $scope.listRuangan = dat.data.ruanganlogin;
                     $scope.item.ruangan = {
                         id: $scope.listRuangan[0].id,
@@ -142,10 +145,7 @@ define(['initialize'], function (initialize) {
                 cacheHelper.set('RincianPelayananLabRadCtrl', arrStr);
                 $state.go('RincianPelayananLabRad')
             }
-
-            // $scope.tambah = function(){
-            //  $state.go('Produk')
-            // }
+            
             $scope.formatTanggal = function (tanggal) {
                 return moment(tanggal).format('DD-MMM-YYYY');
             }
@@ -207,7 +207,7 @@ define(['initialize'], function (initialize) {
                         imageClass: "k-icon k-i-pencil"
                     }],
                     title: "",
-                    width: 70
+                    width: 100
     
                 }
             ];
