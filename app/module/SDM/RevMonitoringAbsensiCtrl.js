@@ -252,7 +252,7 @@ define(['initialize'], function (initialize) {
                         width: "150px",
                         footerTemplate: "{{item.titleFooter}}",
                         aggregates: ["count"],
-                        groupHeaderTemplate: "Nama Pegawai: #= value # (Jumlah: #= count#)"
+                        // groupHeaderTemplate: "Nama Pegawai: #= value # (Jumlah: #= count#)"
                     },
                     {
                         field: "tanggal",
@@ -393,19 +393,15 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.seeLocation = (data) => {
-                console.log(data);
+                
+                ManageSdmNew.getListData("sdm/get-reverse-geocoding?latitude=" + data.latitude + "&longitude=" +  data.longitude).then(function (res) {
+                    $scope.showLocation = true;
+                    $scope.reverseLocation = res.data.data;
+                })
+            }
 
-                let coordinate = data.split(',');
-                console.log(coordinate);
-                coordinate[1] = coordinate[1].trim();
-                coordinate[0] = coordinate[0].replace("″ LS","");
-                coordinate[1] = coordinate[1].replace("″ BT", "");
-                console.log(coordinate);
-                // // http://192.168.12.3:8080/jasamedika-sdm/sdm/get-reverse-geocoding?latitude=-6.1872413&longitude=106.8060503
-                // ManageSdmNew.getListData("sdm/get-reverse-geocoding?latitude=" + coordinate[0] + "&longitude=" + coordinate[1]).then(function (res) {
-                //     $scope.dataDetail = res.data.data;
-                //     $scope.windDetailPresensi.center().open();
-                // })
+            $scope.hideLocation = () => {
+                $scope.showLocation = false;
             }
 
             $scope.getDetail = function (data) {
