@@ -208,7 +208,7 @@ define(['initialize'], function (initialize) {
 					return;
 				}
 
-				window.open("http://172.16.44.33:7777/service-reporting/cetak-sep/" + dataItem.norec , "_blank", "fullscreen=yes");
+				window.open("http://172.16.44.33:7777/service-reporting/cetak-sep/" + dataItem.rpp , "_blank", "fullscreen=yes");
 			}
 
             $scope.formatTanggal = function (tanggal) {

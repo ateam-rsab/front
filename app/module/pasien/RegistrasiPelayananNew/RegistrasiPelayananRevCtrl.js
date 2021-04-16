@@ -513,7 +513,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                     objectkelasfk: kelasId,
                     objectpegawaifk: dokterId,
                     objectkamarfk: kamarIds,
-                    nobed: $scope.item.nomorTempatTidur.id,
+                    // nobed: $scope.item.nomorTempatTidur.id,
                     objectdepartemenfk: $scope.item.ruangan.objectdepartemenfk,
                     objectasalrujukanfk: $scope.item.asalRujukan.id,
                     israwatgabung: $scope.model.rawatGabung === true ? 1 : 0,

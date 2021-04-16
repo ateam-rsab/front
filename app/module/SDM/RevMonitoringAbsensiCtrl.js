@@ -392,6 +392,22 @@ define(['initialize'], function (initialize) {
                 ]
             }
 
+            $scope.seeLocation = (data) => {
+                console.log(data);
+
+                let coordinate = data.split(',');
+                console.log(coordinate);
+                coordinate[1] = coordinate[1].trim();
+                coordinate[0] = coordinate[0].replace("″ LS","");
+                coordinate[1] = coordinate[1].replace("″ BT", "");
+                console.log(coordinate);
+                // // http://192.168.12.3:8080/jasamedika-sdm/sdm/get-reverse-geocoding?latitude=-6.1872413&longitude=106.8060503
+                // ManageSdmNew.getListData("sdm/get-reverse-geocoding?latitude=" + coordinate[0] + "&longitude=" + coordinate[1]).then(function (res) {
+                //     $scope.dataDetail = res.data.data;
+                //     $scope.windDetailPresensi.center().open();
+                // })
+            }
+
             $scope.getDetail = function (data) {
                 if (!$scope.isBebasValidasi) {
                     toastr.warning("Tidak ada akses!");

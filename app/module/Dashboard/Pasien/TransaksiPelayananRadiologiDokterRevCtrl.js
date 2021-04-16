@@ -166,6 +166,7 @@ define(['initialize'], function (initialize) {
                     $scope.isLoading = false;
                 });
             }
+            
 
             $scope.filterPelayanan("A");
 
@@ -179,18 +180,27 @@ define(['initialize'], function (initialize) {
                     $scope.PegawaiLogin2 = dat.data
                 });
                 if ($scope.header.DataNoregis == false) {
-                    manageLogistikPhp.getDataTableTransaksi('laporan/get-order-rad?noregistrasi=' + $scope.item.noregistrasi).then(function (e) {
-                        //debugger;
-                        for (var i = e.data.daftar.length - 1; i >= 0; i--) {
+                    manageLogistikPhp.getDataTableTransaksi('lab-radiologi/get-riwayat-rad?noregistrasi=' + $scope.item.noregistrasi).then((e) => {
+                        for (let i = e.data.daftar.length - 1; i >= 0; i--) {
                             e.data.daftar[i].no = i + 1
                         }
                         $scope.dataGridRiwayat = new kendo.data.DataSource({
                             data: e.data.daftar,
                             pageSize: 10
                         });
+                    })
+                    // manageLogistikPhp.getDataTableTransaksi('laporan/get-order-rad?noregistrasi=' + $scope.item.noregistrasi).then(function (e) {
+                    //     //debugger;
+                    //     for (var i = e.data.daftar.length - 1; i >= 0; i--) {
+                    //         e.data.daftar[i].no = i + 1
+                    //     }
+                    //     $scope.dataGridRiwayat = new kendo.data.DataSource({
+                    //         data: e.data.daftar,
+                    //         pageSize: 10
+                    //     });
 
 
-                    });
+                    // });
                 } else {
                     manageLogistikPhp.getDataTableTransaksi('laporan/get-order-lab?NoCM=' + $scope.item.noMr).then(function (e) {
                         for (var i = e.data.daftar.length - 1; i >= 0; i--) {
@@ -686,11 +696,11 @@ define(['initialize'], function (initialize) {
                 tempDataGrid = [];
                 $scope.BatalOrder();
                 // // http://192.168.12.3:4444/simrs_harkit/service/transaksi/lab-radiologi/save-order-rad-dokter
-                // manageLogistikPhp.postpost("lab-radiologi/save-order-rad-dokter", objSave).then(function (e) {
-                //     $scope.selectedDataProduk = [];
-                //     $scope.BatalOrder();
-                //     manageLogistikPhp.postLogging('Order Radiologi', 'Norec strukorder_t', e.data.strukorder.norec, 'Menu Dokter').then(function (res) {})
-                // })
+                manageLogistikPhp.postpost("lab-radiologi/save-order-rad-dokter", objSave).then(function (e) {
+                    $scope.selectedDataProduk = [];
+                    $scope.BatalOrder();
+                    manageLogistikPhp.postLogging('Order Radiologi', 'Norec strukorder_t', e.data.strukorder.norec, 'Menu Dokter').then(function (res) {})
+                })
             }
             $scope.formatRupiah = function (value, currency) {
                 return currency + " " + parseFloat(value).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
