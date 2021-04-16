@@ -193,7 +193,7 @@ define(['initialize'], function (initialize) {
                 $q.all([
                     ManageSdmNew.getListData("service/list-generic/?view=SatuanIndikator&select=id,satuanIndikator&criteria=statusEnabled,id&values=true,!1&order=satuanIndikator:asc"),
                     ManageSdmNew.getListData("service/list-generic/?view=UnitKerjaPegawai&select=id,name&criteria=statusEnabled,id&values=true,!0"),
-                    ManageSdmNew.getListData("service/list-generic/?view=JenisJabatan&select=id,jenisJabatan&criteria=statusEnabled,id&values=true,!0"),
+                    ManageSdmNew.getListData("service/list-generic/?view=JenisJabatan&select=id,jenisJabatan&criteria=statusEnabled,id&values=true,(7;8;9)"),
                     ManageSdmNew.getListData("pegawai/get-pegawai-sdm-for-cred")
                 ]).then(function (res) {
                     $scope.getDataMaster();

@@ -37,9 +37,8 @@
 <div class="panel panel-default container_12">
     <div class="panel-body">
         <div class="grid_3">
-            <label c-label c-label-text="Unit Kerja" real></label>
-            <input kendo-combo-box style="width:100%" k-ng-model="item.unitKerja" k-data-text-field="'name'"
-                k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitKerja" />
+            <label c-label item="item" c-label-text="Nama Jabatan"></label>
+            <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaJabatan" />
         </div>
         <div class="grid_2">
             <label c-label c-label-text="Jenis Jabatan" real></label>
@@ -47,8 +46,9 @@
                 k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisJabatan" />
         </div>
         <div class="grid_3">
-            <label c-label item="item" c-label-text="Nama Jabatan"></label>
-            <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaJabatan" />
+            <label c-label c-label-text="Unit Kerja" real></label>
+            <input kendo-combo-box style="width:100%" k-ng-model="item.unitKerja" k-data-text-field="'name'"
+                k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitKerja" />
         </div>
         <div class="grid_1" style="margin-top: 23px;">
             <md-button class="md-raised md-primary medium-button" ng-click="getDataJabatan()">
@@ -77,15 +77,14 @@
                 <label c-label c-label-text="Jenis Jabatan" real></label>
                 <input kendo-combo-box style="width:100%" k-ng-model="data.jenisJabatan"
                     k-data-text-field="'jenisJabatan'" k-data-value-field="'id'" k-filter="'contains'"
-                    k-auto-bind="false" k-data-source="listJenisJabatan" />
+                    k-auto-bind="false" k-data-source="listEntriJenisJabatan" />
             </div>
         </div>
         <div class="grid_12">
             <div class="grid_2">
                 <label c-label c-label-text="Eselon" real></label>
                 <input kendo-combo-box style="width:100%" k-ng-model="data.eselon" k-data-text-field="'eselon'"
-                    k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listEselon"
-                    ng-disabled="isJabInternal" />
+                    k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listEselon" />
             </div>
             <div class="grid_4">
                 <label c-label c-label-text="Unit Kerja" real></label>
