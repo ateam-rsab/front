@@ -9,6 +9,8 @@ define(['initialize'], function (initialize) {
                 depth: "year"
             };
 
+            let dataPegawai = JSON.parse(localStorage.getItem('pegawai'));
+
             $scope.init = () => {
                 $scope.optGrid = {
                     pageable: true,
@@ -52,8 +54,8 @@ define(['initialize'], function (initialize) {
                     }],
                 }
 
-                ManageSdmNew.getListData("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled,kategoryPegawaiId&values=true,(1;2;10;14)&order=namaLengkap:asc").then((res) => {
-                    $scope.listPegawai = res.data;
+                ManageSdmNew.getListData("iki-remunerasi/get-akses-pegawai-verifikasi-kinerja?pegawaiId=" + dataPegawai.id).then((res) => {
+                    $scope.listPegawai = res.data.data;
                 });
             }
             $scope.init();
