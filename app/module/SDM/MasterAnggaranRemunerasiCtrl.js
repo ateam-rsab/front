@@ -11,6 +11,16 @@ define(['initialize'], function (initialize) {
             let dataLogin = JSON.parse(localStorage.getItem("datauserlogin"));
 
             $scope.optGridPenempatanEvaluasiJabatan = {
+                filterable: {
+                    extra: false,
+                    operators: {
+                        string: {
+                            startswith: "Dimulai dengan",
+                            contains: "mengandung kata",
+                            neq: "Tidak mengandung kata"
+                        }
+                    }
+                },
                 pageable: true,
                 scrollable: true,
                 columns: [{
@@ -53,6 +63,14 @@ define(['initialize'], function (initialize) {
                     title: "<h3>Grade</h3>",
                     width: 70
                 }, {
+                    field: "nilaiTerendah",
+                    title: "<h3>Nilai<br/>Terendah</h3>",
+                    width: 50
+                }, {
+                    field: "nilaiTertinggi",
+                    title: "<h3>Nilai<br/>Tertinggi</h3>",
+                    width: 50
+                }, {
                     field: "gajiHonorariumFormatted",
                     title: "<h3>Gaji Honorarium</h3>",
                     width: 150
@@ -88,6 +106,8 @@ define(['initialize'], function (initialize) {
 
                 $scope.edit.noRec = dataItem.noRec;
                 $scope.edit.grade = dataItem.grade;
+                $scope.edit.nilaiTerendah = dataItem.nilaiTerendah;
+                $scope.edit.nilaiTertinggi = dataItem.nilaiTertinggi;
                 $scope.edit.gaji = dataItem.gajiHonorarium;
                 $scope.edit.minInsentif = dataItem.minInsentif;
                 $scope.edit.maxInsentif = dataItem.maxInsentif;
@@ -141,7 +161,7 @@ define(['initialize'], function (initialize) {
                         $scope.item.pirHitungan = (res[1].data.data.anggaranBulan / $scope.totalNilaiJabatan).toLocaleString('id-ID', {
                             style: 'currency',
                             currency: 'IDR'
-                        }) 
+                        })
                     }
                     $scope.dataSourcePenempatanEvaluasiJabatan = new kendo.data.DataSource({
                         data: res[0].data.data,
@@ -202,6 +222,8 @@ define(['initialize'], function (initialize) {
 
                 let data = {
                     grade: $scope.edit.grade,
+                    nilaiTerendah: $scope.edit.nilaiTerendah,
+                    nilaiTertinggi: $scope.edit.nilaiTertinggi,
                     gajiHonorarium: $scope.edit.gaji,
                     minInsentif: $scope.edit.minInsentif,
                     maxInsentif: $scope.edit.maxInsentif,

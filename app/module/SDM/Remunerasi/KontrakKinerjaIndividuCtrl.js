@@ -80,7 +80,7 @@ define(['initialize'], function (initialize) {
                     toastr.info("Harap pilih Jabatan Pegawai terlebih dahulu");
                     return;
                 }
-                
+
                 $scope.isRouteLoading = true;
                 ManageSdmNew.getListData("iki-remunerasi/get-kontrak-kinerja?pegawaiId=" + ($scope.item.pegawai ? $scope.item.pegawai.id : "") + "&jabatanId=" + ($scope.item.jabatan ? $scope.item.jabatan.id : "") + "&bulan=" + ($scope.item.srcBulan ? dateHelper.toTimeStamp($scope.item.srcBulan) : "")).then((res) => {
                     $scope.dataSourceKontrakKinerja = {
@@ -125,7 +125,7 @@ define(['initialize'], function (initialize) {
                         }
                         $scope.listPegawai.push($scope.item.pegawai)
 
-                        $scope.getJabatanByIdPegawai()
+                        $scope.getJabatanByIdPegawai(dataLogin.id)
                     } else {
                         $scope.listPegawai = res[0].data;
                     }
@@ -142,26 +142,27 @@ define(['initialize'], function (initialize) {
                 })
             }
 
-            $scope.getJabatanByIdPegawai = () => {
-                ManageSdmNew.getListData("pegawai/get-all-jabatan-by-pegawai?idPegawai=" + $scope.item.pegawai.id).then((res) => {
+            $scope.getJabatanByIdPegawai = (pegawaiId) => {
+                ManageSdmNew.getListData("pegawai/get-all-jabatan-by-pegawai?idPegawai=" + pegawaiId).then((res) => {
                     $scope.listJabatan = res.data.data;
                 })
             }
 
             $scope.tambahData = () => {
-                $scope.item.jabatan = null;
-                $scope.item.pegawai = null;
                 $scope.reset();
                 $scope.popupTambah.open().center();
             }
 
             $scope.tambahIndikator = () => {
-                $scope.item.pegawai = {
+                $scope.listPegawaiPengusul = []
+
+                $scope.indikator.pegawai = {
                     id: dataLogin.id,
                     namaLengkap: dataLogin.namaLengkap
                 }
 
-                $scope.getJabatanByIdPegawai();
+                $scope.listPegawaiPengusul.push($scope.indikator.pegawai)
+                $scope.getJabatanByIdPegawai(dataLogin.id);
                 $scope.popupTambahIndikator.open().center();
             }
 
@@ -204,6 +205,19 @@ define(['initialize'], function (initialize) {
                 $scope.indikator.indikatorKerja = null;
                 $scope.indikator.jenisIndikator = null;
                 $scope.indikator.satuanIndikator = null;
+            }
+
+            $scope.hapusMappingIndikatorJabatan = (noRec) => {
+                let dataSave = {
+                    noRec: noRec,
+                    statusEnabled: false,
+                    loginUserId: dataLogin.id
+                }
+
+                ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-mapping-indikator-jabatan").then(res => {
+                    $scope.getAllData();
+                    $scope.closePopUp();
+                })
             }
 
             $scope.simpanData = (method) => {
@@ -300,7 +314,11 @@ define(['initialize'], function (initialize) {
                     .ok('Ya')
                     .cancel('Tidak');
                 $mdDialog.show(confirm).then(function () {
-                    $scope.simpanData('delete');
+                    if (dataItem.noRecMap && dataItem.noRec == null) {
+                        $scope.hapusMappingIndikatorJabatan(dataItem.noRecMap)
+                    } else {
+                        $scope.simpanData('delete');
+                    }
                 });
             }
 
