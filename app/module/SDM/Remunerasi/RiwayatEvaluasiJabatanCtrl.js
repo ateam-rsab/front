@@ -33,7 +33,7 @@ define(['initialize'], function (initialize) {
                 }, {
                     field: "unitKerja",
                     title: "<h3>Unit<br>Kerja</h3>",
-                    width: "100px",
+                    width: "170px",
                 }, {
                     field: "namaJabatan",
                     title: "<h3>Jabatan</h3>",

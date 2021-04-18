@@ -7,7 +7,8 @@ define(['initialize'], function (initialize) {
             $scope.indikator = {};
             $scope.item.srcBulan = "";
 
-            let dataLogin = JSON.parse(localStorage.getItem('pegawai'));
+            let dataPegawai = JSON.parse(localStorage.getItem('pegawai'));
+            let dataLogin = JSON.parse(localStorage.getItem("datauserlogin"));
 
             $scope.listJenisIndikator = [{
                 "id": 1,
@@ -80,7 +81,7 @@ define(['initialize'], function (initialize) {
                     toastr.info("Harap pilih Jabatan Pegawai terlebih dahulu");
                     return;
                 }
-                
+
                 $scope.isRouteLoading = true;
                 ManageSdmNew.getListData("iki-remunerasi/get-kontrak-kinerja?pegawaiId=" + ($scope.item.pegawai ? $scope.item.pegawai.id : "") + "&jabatanId=" + ($scope.item.jabatan ? $scope.item.jabatan.id : "") + "&bulan=" + ($scope.item.srcBulan ? dateHelper.toTimeStamp($scope.item.srcBulan) : "")).then((res) => {
                     $scope.dataSourceKontrakKinerja = {
@@ -104,31 +105,18 @@ define(['initialize'], function (initialize) {
 
             $scope.init = () => {
                 $q.all([
-                    ManageSdmNew.getListData("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled,kategoryPegawaiId&values=true,(1;2;10;14)&order=namaLengkap:asc"),
-                    ManageSdmNew.getListData("service/list-generic/?view=SatuanIndikator&select=id,satuanIndikator&criteria=statusEnabled&values=true&order=id:asc"),
-                    ManageSdmNew.getListData("pegawai/get-pegawai-sdm-for-cred")
+                    ManageSdmNew.getListData("iki-remunerasi/get-akses-pegawai-kontrak-kinerja?pegawaiId=" + dataPegawai.id),
+                    ManageSdmNew.getListData("service/list-generic/?view=SatuanIndikator&select=id,satuanIndikator&criteria=statusEnabled&values=true&order=id:asc")
                 ]).then(function (res) {
                     $scope.listPegawai = []
-                    $scope.isPegawaiSDM = false
-                    $scope.listDataSatuanIndikator = res[1].data;
-                    for (var i = 0; i < res[2].data.data.data.length; i++) {
-                        if (res[2].data.data.data[i] == modelItem.getPegawai().id) {
-                            $scope.isPegawaiSDM = true;
-                            break
-                        }
-                    };
-
-                    if (!$scope.isPegawaiSDM) {
-                        $scope.item.pegawai = {
-                            id: dataLogin.id,
-                            namaLengkap: dataLogin.namaLengkap
-                        }
-                        $scope.listPegawai.push($scope.item.pegawai)
-
-                        $scope.getJabatanByIdPegawai()
-                    } else {
-                        $scope.listPegawai = res[0].data;
+                    $scope.item.pegawai = {
+                        id: dataPegawai.id,
+                        namaLengkap: dataPegawai.namaLengkap
                     }
+                    $scope.listPegawai = res[0].data.data;
+                    $scope.getJabatanByIdPegawai(dataPegawai.id)
+
+                    $scope.listDataSatuanIndikator = res[1].data;
                 }, (error) => {
                     throw (error);
                 })
@@ -142,26 +130,27 @@ define(['initialize'], function (initialize) {
                 })
             }
 
-            $scope.getJabatanByIdPegawai = () => {
-                ManageSdmNew.getListData("pegawai/get-all-jabatan-by-pegawai?idPegawai=" + $scope.item.pegawai.id).then((res) => {
+            $scope.getJabatanByIdPegawai = (pegawaiId) => {
+                ManageSdmNew.getListData("pegawai/get-all-jabatan-by-pegawai?idPegawai=" + pegawaiId).then((res) => {
                     $scope.listJabatan = res.data.data;
                 })
             }
 
             $scope.tambahData = () => {
-                $scope.item.jabatan = null;
-                $scope.item.pegawai = null;
                 $scope.reset();
                 $scope.popupTambah.open().center();
             }
 
             $scope.tambahIndikator = () => {
-                $scope.item.pegawai = {
-                    id: dataLogin.id,
-                    namaLengkap: dataLogin.namaLengkap
+                $scope.listPegawaiPengusul = []
+
+                $scope.indikator.pegawai = {
+                    id: dataPegawai.id,
+                    namaLengkap: dataPegawai.namaLengkap
                 }
 
-                $scope.getJabatanByIdPegawai();
+                $scope.listPegawaiPengusul.push($scope.indikator.pegawai)
+                $scope.getJabatanByIdPegawai(dataPegawai.id);
                 $scope.popupTambahIndikator.open().center();
             }
 
@@ -171,7 +160,7 @@ define(['initialize'], function (initialize) {
                     target: $scope.indikator.target,
                     bobot: $scope.indikator.bobot,
                     pegawai: {
-                        id: dataLogin.id
+                        id: dataPegawai.id
                     },
                     jabatan: {
                         id: $scope.indikator.jabatan.id
@@ -204,6 +193,19 @@ define(['initialize'], function (initialize) {
                 $scope.indikator.indikatorKerja = null;
                 $scope.indikator.jenisIndikator = null;
                 $scope.indikator.satuanIndikator = null;
+            }
+
+            $scope.hapusMappingIndikatorJabatan = (noRec) => {
+                let dataSave = {
+                    noRec: noRec,
+                    statusEnabled: false,
+                    loginUserId: dataLogin.id
+                }
+
+                ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-mapping-indikator-jabatan").then(res => {
+                    $scope.getAllData();
+                    $scope.closePopUp();
+                })
             }
 
             $scope.simpanData = (method) => {
@@ -254,16 +256,12 @@ define(['initialize'], function (initialize) {
                 $scope.norecData = dataItem.noRec;
                 $scope.item.statusVerif = dataItem.isStatusVerifikasi;
 
-                if (!$scope.isPegawaiSDM && dataItem.isStatusVerifikasi) {
-                    $scope.isVerifGranted = false;
-                    $scope.isNotEditable = true;
-                } else if (!$scope.isPegawaiSDM
-                    && (!dataItem.isStatusVerifikasi || dataItem.isStatusVerifikasi == null)) {
-                    $scope.isVerifGranted = false;
-                    $scope.isNotEditable = false;
-                } else {
+                if ($scope.item.pegawai.isModifAkses) {
                     $scope.isVerifGranted = true;
                     $scope.isNotEditable = false;
+                } else if (!$scope.item.pegawai.isModifAkses) {
+                    $scope.isVerifGranted = false;
+                    $scope.isNotEditable = true;
                 }
 
                 $scope.popupTambah.open().center();
@@ -276,7 +274,7 @@ define(['initialize'], function (initialize) {
                 if (dataItem.isStatusVerifikasi) {
                     toastr.warning("Data sudah terverifikasi, tidak dapat dihapus!", "Perhatian!");
                     return;
-                } else if (!$scope.isPegawaiSDM) {
+                } else if (!$scope.item.pegawai.isModifAkses) {
                     toastr.warning("Tidak memiliki akses hapus!", "Perhatian!");
                     return;
                 }
@@ -300,7 +298,11 @@ define(['initialize'], function (initialize) {
                     .ok('Ya')
                     .cancel('Tidak');
                 $mdDialog.show(confirm).then(function () {
-                    $scope.simpanData('delete');
+                    if (dataItem.noRecMap && dataItem.noRec == null) {
+                        $scope.hapusMappingIndikatorJabatan(dataItem.noRecMap)
+                    } else {
+                        $scope.simpanData('delete');
+                    }
                 });
             }
 
