@@ -783,7 +783,7 @@ define(['initialize'], function (initialize) {
                 });
             }
 
-            $scope.getDataSubUnitKerjaById = function (id, data) {
+            $scope.getDataSubUnitKerjaById = function (id, data, jenisId) {
                 // console.log(data);
                 $('#idComboSubUnitKerja').data('kendoComboBox').value('');
                 if (data.name === 'Direksi') {
@@ -802,6 +802,18 @@ define(['initialize'], function (initialize) {
                         })
                     })
                 })
+                if (jenisId && id) {
+                    ManageSdmNew.getListData("sdm/get-jabatan-by-jenis-dan-unit?jenisJabatanId=" + jenisId + "&unitKerjaId=" + id, true).then(function (res) {
+                        $scope.listJabatanByJenisJabatan = res.data;
+                        $scope.listJabatanByJenisJabatanInternal = [];
+                        res.data.data.forEach(function (e) {
+                            $scope.listJabatanByJenisJabatanInternal.push({
+                                id: e.idJabatan,
+                                namaJabatan: e.namaJabatan
+                            })
+                        })
+                    });
+                }
             }
 
             function editDataJabatanInternal(e) {
@@ -834,7 +846,7 @@ define(['initialize'], function (initialize) {
                         $scope.isStaff = true;
                     }
                 }
-                $scope.getDataSubUnitKerjaById(dataItem.unitKerjaPegawai.id, dataItem.unitKerjaPegawai);
+                $scope.getDataSubUnitKerjaById(dataItem.unitKerjaPegawai.id, dataItem.unitKerjaPegawai, dataItem.jenisJabatan.id);
                 $scope.ji.idGridInternalJabatan = dataItem.id;
                 $scope.ji.jenisJabatan = {
                     jenisJabatan: dataItem.jenisJabatan.jenisJabatan,
@@ -1560,6 +1572,21 @@ define(['initialize'], function (initialize) {
             $scope.getDataJabatan = function (id) {
                 $("#idComboDataJabatan").data("kendoComboBox").value("");
                 ManageSdmNew.getListData("sdm/get-all-jabatan-by-jenis-jabatan?idJenisJabatan=" + id, true).then(function (res) {
+                    $scope.listJabatanByJenisJabatan = res.data;
+                    $scope.listJabatanByJenisJabatanInternal = [];
+                    res.data.data.forEach(function (e) {
+                        $scope.listJabatanByJenisJabatanInternal.push({
+                            id: e.idJabatan,
+                            namaJabatan: e.namaJabatan
+                        })
+                    })
+                });
+            }
+
+            $scope.getPilihanJabatan = function (jenisId, unitId) {
+                if (!jenisId || !unitId) return;
+                $("#idComboDataJabatan").data("kendoComboBox").value("");
+                ManageSdmNew.getListData("sdm/get-jabatan-by-jenis-dan-unit?jenisJabatanId=" + jenisId + "&unitKerjaId=" + unitId, true).then(function (res) {
                     $scope.listJabatanByJenisJabatan = res.data;
                     $scope.listJabatanByJenisJabatanInternal = [];
                     res.data.data.forEach(function (e) {
