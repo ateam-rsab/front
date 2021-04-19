@@ -44,28 +44,6 @@
                 k-data-source="listPegawai" ng-disabled="true" />
         </div>
         <div class="clearfix"></div>
-        <div class="grid_12">
-            <!-- Jenis Jabatan -->
-            <div class="grid_4">
-                <label c-label item="item" c-label-text="JenisJabatan"></label>
-            </div>
-            <div class="clear"></div>
-            <div class="grid_8">
-                <input kendo-combo-box k-ng-model="ji.jenisJabatan" k-data-text-field="'jenisJabatan'"
-                    k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisJabatan"
-                    k-on-change="getDataJabatan(ji.jenisJabatan.id)" ng-disabled="true" />
-            </div>
-            <!-- Jabatan -->
-            <div class="grid_4">
-                <label c-label item="item" c-label-text="Jabatan"></label>
-            </div>
-            <div class="clear"></div>
-            <div class="grid_8">
-                <input kendo-combo-box id="idComboDataJabatan" k-ng-model="ji.jabatan" k-data-text-field="'namaJabatan'"
-                    k-filter="'contains'" k-data-value-field="'id'" k-data-source="listJabatanByJenisJabatanInternal"
-                    k-on-change="getJabatan(ji.jabatan)" ng-disabled="true" />
-            </div>
-        </div>
         <!-- Unit Kerja -->
         <div class="grid_12">
             <div class="grid_4">
@@ -75,7 +53,7 @@
             <div class="grid_8">
                 <input style="width: 100%;" kendo-combo-box k-ng-model="ji.unitKerjaPegawai" k-data-text-field="'name'"
                     k-data-value-field="'id'" k-filter="'contains'" k-data-source="ListUnitKerjaPop"
-                    k-on-change="getDataSubUnitKerjaById(ji.unitKerjaPegawai.id, ji.unitKerjaPegawai)" />
+                    k-on-change="getDataSubUnitKerjaById(ji.unitKerjaPegawai.id, ji.unitKerjaPegawai, ji.jenisJabatan.id)" />
             </div>
         </div>
         <!-- Sub unit -->
@@ -88,6 +66,28 @@
                 <input style="width: 100%;" id="idComboSubUnitKerja" kendo-combo-box k-ng-model="ji.subUnitKerjaPegawai"
                     k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'"
                     k-data-source="ListSubUnitKerjaById" />
+            </div>
+        </div>
+        <div class="grid_12">
+            <!-- Jenis Jabatan -->
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="JenisJabatan"></label>
+            </div>
+            <div class="clear"></div>
+            <div class="grid_8">
+                <input kendo-combo-box k-ng-model="ji.jenisJabatan" k-data-text-field="'jenisJabatan'"
+                    k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisJabatan"
+                    k-on-change="getPilihanJabatan(ji.jenisJabatan.id,ji.unitKerjaPegawai.id)" />
+            </div>
+            <!-- Jabatan -->
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="Jabatan"></label>
+            </div>
+            <div class="clear"></div>
+            <div class="grid_8">
+                <input kendo-combo-box id="idComboDataJabatan" k-ng-model="ji.jabatan" k-data-text-field="'namaJabatan'"
+                    k-filter="'contains'" k-data-value-field="'id'" k-data-source="listJabatanByJenisJabatanInternal"
+                    k-on-change="getJabatan(ji.jabatan)" />
             </div>
         </div>
         <!-- Atasan Langsung -->
@@ -121,25 +121,28 @@
                 <div class="grid_4">
                     <div class="clear"></div>
                     <div class="grid_12">
-                        <input type="checkbox" class="k-checkbox" ng-model='ji.isPrimary' id="cb" ng-checked="vals" ng-click="changeCB()" ng-click="isPrimary(ji.isPrimary)">
+                        <input type="checkbox" class="k-checkbox" ng-model='ji.isPrimary' id="cb" ng-checked="vals"
+                            ng-click="changeCB()" ng-click="isPrimary(ji.isPrimary)">
                         <label class="k-checkbox-label" for="cb">Jabatan Utama</label>
                     </div>
                 </div>
                 <div class="grid_3">
                     <div class="clear"></div>
                     <div class="grid_12">
-                        <input type="checkbox" class="k-checkbox" ng-model='ji.isMonitoring' id="cb1" ng-checked="vals1" ng-click="isMonitoring(ji.isMonitoring)">
+                        <input type="checkbox" class="k-checkbox" ng-model='ji.isMonitoring' id="cb1" ng-checked="vals1"
+                            ng-click="isMonitoring(ji.isMonitoring)">
                         <label class="k-checkbox-label" for="cb1">Monitoring</label>
                     </div>
                 </div>
                 <div class="grid_5">
                     <div class="clear">
-                    <div class="grid_12">
-                        <input type="checkbox" class="k-checkbox" ng-model='ji.isCanCreateJadwal' id="cb2" ng-checked="vals2" ng-click="isCanCreateJadwal(ji.isCanCreateJadwal)">
-                        <label class="k-checkbox-label" for="cb2">Membuat Jadwal Kerja</label>
+                        <div class="grid_12">
+                            <input type="checkbox" class="k-checkbox" ng-model='ji.isCanCreateJadwal' id="cb2"
+                                ng-checked="vals2" ng-click="isCanCreateJadwal(ji.isCanCreateJadwal)">
+                            <label class="k-checkbox-label" for="cb2">Membuat Jadwal Kerja</label>
+                        </div>
                     </div>
                 </div>
-            </div>
         </fieldset>
         <!-- Action Button -->
         <div class="grid_12">
