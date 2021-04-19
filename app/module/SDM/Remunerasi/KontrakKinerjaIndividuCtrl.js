@@ -108,11 +108,6 @@ define(['initialize'], function (initialize) {
                     ManageSdmNew.getListData("iki-remunerasi/get-akses-pegawai-kontrak-kinerja?pegawaiId=" + dataPegawai.id),
                     ManageSdmNew.getListData("service/list-generic/?view=SatuanIndikator&select=id,satuanIndikator&criteria=statusEnabled&values=true&order=id:asc")
                 ]).then(function (res) {
-                    $scope.listPegawai = []
-                    $scope.item.pegawai = {
-                        id: dataPegawai.id,
-                        namaLengkap: dataPegawai.namaLengkap
-                    }
                     $scope.listPegawai = res[0].data.data;
                     $scope.getJabatanByIdPegawai(dataPegawai.id)
 
@@ -171,7 +166,8 @@ define(['initialize'], function (initialize) {
                             id: $scope.indikator.satuanIndikator.id
                         },
                         jenisIndikator: $scope.indikator.jenisIndikator.id,
-                        statusVerifikasi: false
+                        statusVerifikasi: false,
+                        id: $scope.indikator.indikatorKerja.id
                     },
                     statusVerifikasi: false
                 }
