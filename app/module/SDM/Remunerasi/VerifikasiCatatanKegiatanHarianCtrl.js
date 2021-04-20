@@ -61,7 +61,7 @@ define(['initialize'], function (initialize) {
             $scope.init();
 
             $scope.getJabatanByIdPegawai = (id) => {
-                ManageSdmNew.getListData("pegawai/get-all-jabatan-by-pegawai?idPegawai=" + id).then((res) => {
+                ManageSdmNew.getListData("pegawai/jabatan-kontrak-verif-kinerja?pegawaiId=" + id + "&pegawaiLoginId=" + dataPegawai.id).then((res) => {
                     $scope.listJabatan = res.data.data;
                 })
             }
@@ -80,6 +80,11 @@ define(['initialize'], function (initialize) {
                 if (!$scope.item.srcJabatan) {
                     toastr.info("Harap pilih Jabatan Pegawai terlebih dahulu");
                     return;
+                }
+
+                if ($scope.item.srcJabatan && !$scope.item.srcJabatan.isCariAkses) {
+                    toastr.warning("Tidak ada akses untuk menampilkan data", "Peringatan")
+                    return
                 }
 
                 $scope.isRouteLoading = true;
@@ -119,6 +124,11 @@ define(['initialize'], function (initialize) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
                 // console.log(dataItem);
+
+                if (dataItem.isStatusVerifikasi) {
+                    toastr.warning("Catatan Kegiatan Sudah Terverifikasi", "Peringatan")
+                    return
+                }
 
                 var confirm = $mdDialog.confirm()
                     .title('Apakah anda yakin akan Verifikasi Catatan Kegiatan ' + dataItem.namaIndikator + '?')

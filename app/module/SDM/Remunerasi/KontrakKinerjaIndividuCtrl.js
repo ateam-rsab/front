@@ -82,6 +82,11 @@ define(['initialize'], function (initialize) {
                     return;
                 }
 
+                if ($scope.item.jabatan && !$scope.item.jabatan.isCariAkses) {
+                    toastr.warning("Tidak ada akses untuk menampilkan data", "Peringatan")
+                    return
+                }
+
                 $scope.isRouteLoading = true;
                 ManageSdmNew.getListData("iki-remunerasi/get-kontrak-kinerja?pegawaiId=" + ($scope.item.pegawai ? $scope.item.pegawai.id : "") + "&jabatanId=" + ($scope.item.jabatan ? $scope.item.jabatan.id : "") + "&bulan=" + ($scope.item.srcBulan ? dateHelper.toTimeStamp($scope.item.srcBulan) : "")).then((res) => {
                     $scope.dataSourceKontrakKinerja = {
@@ -126,7 +131,7 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.getJabatanByIdPegawai = (pegawaiId) => {
-                ManageSdmNew.getListData("pegawai/get-all-jabatan-by-pegawai?idPegawai=" + pegawaiId).then((res) => {
+                ManageSdmNew.getListData("pegawai/jabatan-kontrak-verif-kinerja?pegawaiId=" + pegawaiId + "&pegawaiLoginId=" + dataPegawai.id).then((res) => {
                     $scope.listJabatan = res.data.data;
                 })
             }
