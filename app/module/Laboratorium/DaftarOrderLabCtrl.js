@@ -12,10 +12,8 @@ define(['initialize'], function (initialize) {
             $scope.btnSimpanVis = false;
             $scope.item.belumVerifikasi = true;
             var loginRadiologi = false
-            if ($scope.item.belumVerifikasi)
-                $scope.cekBelumVerifs = true;
-            else
-                $scope.cekBelumVerifs = false;
+            if ($scope.item.belumVerifikasi) $scope.cekBelumVerifs = true;
+            else $scope.cekBelumVerifs = false;
 
             $scope.cekbelumVerifikasi = function (data) {
                 if (data === true) {
@@ -26,6 +24,61 @@ define(['initialize'], function (initialize) {
                     return;
                 }
             }
+
+            $scope.optGridOrder = {
+                dataBound: function (e) {
+                    $('td').each(function () {
+                        if ($(this).text() == 'MASUK') {
+                            $(this).addClass('masuk')
+                        };
+                        if ($(this).text() == 'SELESAI DIPERIKSA') {
+                            $(this).addClass('selesai')
+                        };
+                        // DIPANGGIL_SUSTER
+                        if ($(this).text() == 'DIPANGGIL_SUSTER') {
+                            $(this).addClass('dipanggil')
+                        };
+                    })
+                },
+                columns: [{
+                    "field": "noorder",
+                    "title": "No Order",
+                    "width": 100,
+                }, {
+                    "field": "tglorder",
+                    "title": "Tanggal Order",
+                    "width": 100,
+                }, {
+                    "field": "noregistrasi",
+                    "title": "No. Registrasi",
+                    "width": 100,
+                }, {
+                    "field": "nocm",
+                    "title": "No. Rekam Medis",
+                    "width": 90,
+                }, {
+                    "field": "namapasien",
+                    "title": "Nama Pasien",
+                    "width": 150,
+                }, {
+                    "field": "umur",
+                    "title": "Umur",
+                    "width": 100,
+                }, {
+                    "field": "namaruangan",
+                    "title": "Ruangan Asal",
+                    "width": 100,
+                }, {
+                    "field": "pegawaiorder",
+                    "title": "Pegawai Order",
+                    "width": 100,
+                }, {
+                    "field": "status",
+                    "title": "Status",
+                    "width": 100,
+                }]
+            }
+
             $scope.item.jmlRow = 100
             $scope.selected = function (data) {
                 $scope.dataSelected = data;
@@ -130,7 +183,7 @@ define(['initialize'], function (initialize) {
 
                 var tglAwal = ""
                 var tglAkhir = ""
-                if ($scope.cekBelumVerifs == false) {
+                if (!$scope.cekBelumVerifs) {
                     tglAwal = "&tglAwal=" + moment($scope.item.tglAwal).format('YYYY-MM-DD HH:mm:ss');
                     tglAkhir = "&tglAkhir=" + moment($scope.item.tglAkhir).format('YYYY-MM-DD HH:mm:ss');
                 }
@@ -156,76 +209,14 @@ define(['initialize'], function (initialize) {
                         dat.data.data[i].umur = umur.year + ' thn ' + umur.month + ' bln ' + umur.day + ' hari';
 
                     }
-                    // $scope.dataGrid =  new kendo.data.DataSource({
-                    //     data: dat.data.data,
-                    //     pageable: true,
-                    //     pageSize: 10,
-                    //     total:  dat.data.data.length,
-                    //     serverPaging: false,
-                    //     schema: {
-                    //         model: {
-                    //             fields: {
-                    //             }
-                    //         }
-                    //     }   
-                    // })
-                    // if(dat.data.data == null || dat.data.data == undefined){
-                    // // window.messageContainer.error("Data pada tanggal"+dateHelper.formatDate($scope.tglAwal, 'YYYY-MM-DD HH:mm:00')+" s/d "+dateHelper.formatDate($scope.tglAkhir, 'YYYY-MM-DD HH:mm:59')+" tersebut tidak ada !!!")
-                    // var data = [];
-                    // }else{
-                    var data = dat.data.data
-                    // for(var y = 0; y<e.data.data.length; y++){
-                    //     if(data[y].pasienDaftar.tglRegistrasi){
-                    //         data[y].pasienDaftar.tglRegistrasi = new moment(new Date(data[y].pasienDaftar.tglRegistrasi)).format('DD-MM-YYYY');
-                    //     }
-                    // }
-                    var Warnaku = [];
-                    for (var i = 0; i < dat.data.data.length; i++) {
-                        switch (data[i].status) {
-                            case "MASUK":
-                                data[i].myStyle = {
-                                    'background-color': '#606572',
-                                    'color': '#F0FFFF'
-                                };
-                                break;
-                            case "SELESAI DIPERIKSA":
-                                data[i].myStyle = {
-                                    'background-color': '#3CB27A',
-                                    'color': '#F0FFFF'
-                                };
-                                break;
-                            case "DIPANGGIL_SUSTER":
-                                data[i].myStyle = {
-                                    'background-color': '#FF0000',
-                                    'color': '#F0FFFF'
-                                };
-                                break;
 
-                        }
-                    }
-                    // }
-                    // $scope.isLoadingData = false;
-                    // data = _.sortBy(data, function(e) {
-                    //     if (e.strukOrder.noOrderIntern == undefined)
-                    //         return 100000;
-                    //     return -1 * parseInt(e.strukOrder.noOrderIntern.substring(1));
-                    // });
-                    $scope.listDataPasien =
-                        new kendo.data.DataSource({
-                            data: data
-                        });
-                    $scope.listDataPasien.fetch(function (e) {
-                        var temp = [];
-                        for (var key in this._data) {
-                            if (this._data.hasOwnProperty(key)) {
-                                var element = this._data[key];
-                                if (angular.isFunction(element) === false && key !== "_events" && key !== "length")
-                                    temp.push(element);
-                            }
-                        }
-                        $scope.listPasien = temp;
-                        cacheHelper.set('listBedahSentral', temp);
+                    console.log(dat.data.data);
+                    
+                    $scope.listDataPasien = new kendo.data.DataSource({
+                        data: dat.data.data,
+                        pageSize: 100
                     });
+                   
                 });
 
             }
@@ -234,7 +225,7 @@ define(['initialize'], function (initialize) {
                 $scope.listRuangan = $scope.item.instalasi.ruangan;
             }
             $scope.cariFilter = function () {
-
+                $scope.isRouteLoading = true;
                 init();
 
                 var tglAwal = moment($scope.item.tglAwal).format('YYYY-MM-DD HH:mm:ss');
@@ -322,14 +313,7 @@ define(['initialize'], function (initialize) {
                     "field": "ruangantujuan",
                     "title": "Ruangan Tujuan",
                     "width": "130px",
-                },
-
-                // {
-                //     "field": "jeniskelamin",
-                //     "title": "Jenis Kelamin",
-                //     "width" : "70px",
-                // },
-                {
+                }, {
                     "field": "umur",
                     "title": "Umur",
                     "width": "100px"

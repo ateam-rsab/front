@@ -1,5 +1,4 @@
-
-<style>
+<!-- <style>
     md-card {
         background-color: #4a4c4c;
         border-radius: 5px;
@@ -90,70 +89,8 @@
     }
 }
 
-</style>
-<div class="c-login" ng-show="showPageLogin">
-    <!-- image lama
-    <img src="resources/images/welcomeScreen.jpg">-->
-
-    <!-- image baru -->
-    <!-- <img src="resources/images/welcomeScreenNew.jppg"> -->
-    <!-- <div class="panel">
-        <core-busy busy="isLoading"></core-busy>
-        <div style="position: absolute; width: 100%;">
-            <h1>&nbsp;SMART<span class="c-color">RSAB</span></h1>
-            <span style="position: fixed;top: 0;right: 70px;">
-                <img style="left: 36px;top: 0px;position: absolute;" class="flag" src="images/indonesia.png"/>
-                <img class="flag" src="images/english.png"/>
-            </span>
-            <table cellpadding="10px">
-                <tr>
-                    <td colspan="2">
-                        <label for="simple-input">Pengguna</label>
-                        <input id="userName" focus-me="userName" ng-model="userName" type="text" class="k-textbox" style="width: 100%" />
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <label for="simple-input">Kata Kunci</label>
-                        <input id="password" focus-me="password" ng-model="password" type="password" ng-keyup="$event.keyCode == 13 ? validate() : null" ng-keydown='keyDown($event)' class="k-textbox" style="display: block; width: 100%;" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <button kendo-button style="width: 100%" class="cancel" ng-click="reset()">Batal</button>
-
-
-                    </td>
-                    <td>
-                        <button kendo-button style="width: 100% " class="success" ng-click="validate()">Masuk</button>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <span kendo-notification="notification" k-append-to="'#container_notification'"></span>
-                        <div id="container_notification" class="demo-section k-content"></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <span kendo-qrcode k-error-correction="'M'" ng-model="qrcode" style="height: 250px;"></span>
-                    </td>
-                </tr>
-            </table>
-
-        </div>
-	<br/>
-	<table width="135" border="0" cellpadding="2" cellspacing="0" title="Click to Verify - This site chose GeoTrust SSL for secure e-commerce and confidential communications.">
-	<tr>
-	<td width="135" align="center" valign="top"><script type="text/javascript" src="https://seal.geotrust.com/getgeotrustsslseal?host_name=smart.rsabhk.co.id&amp;size=S&amp;lang=en"></script><br />
-	<a href="http://www.geotrust.com/ssl/" target="_blank"  style="color:#000000; text-decoration:none; font:bold 7px verdana,sans-serif; letter-spacing:.5px; text-align:center; margin:0px; padding:0px;"></a></td>
-	</tr>
-	</table>
-	<br/>
-        <h5 class="c-color" style="text-align: center; left: 0px; right: 0px; bottom: 0px; ; position: absolute"><span style="font-size:18pt;color:white;font-style: italic;">RSAB Harapan Kita</span>
-            <br/>Terdepan Dalam Layanan Kesehatan Perempuan, Perinatal dan Anak </h5>
-    </div> -->
+</style> -->
+<!-- <div class="c-login" ng-show="showPageLogin">
     <div class="loading-container" ng-show="isLoading">
         <div class="lds-dual-ring"></div>
     </div>
@@ -179,4 +116,222 @@
             <br/>Terdepan Dalam Layanan Kesehatan Perempuan, Perinatal dan Anak </h5>
     </md-card>
 
+</div> -->
+
+<style>
+    html {
+        width: 100%;
+        height: 100%;
+    }
+
+    body {
+        background: linear-gradient(45deg, rgba(66, 183, 245, 0.8) 0%, rgba(66, 245, 189, 0.4) 100%);
+        color: rgba(0, 0, 0, 0.6);
+        font-family: "Roboto", sans-serif;
+        font-size: 14px;
+        line-height: 1.6em;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .overlay,
+    .form-panel.one:before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: none;
+        background: rgba(0, 0, 0, 0.8);
+        width: 100%;
+        height: 100%;
+    }
+
+    .form {
+        z-index: 15;
+        position: relative;
+        background: #fff;
+        width: 600px;
+        border-radius: 4px;
+        box-shadow: 0 0 30px rgba(0, 0, 0, .1);
+        box-sizing: border-box;
+        margin: 100px auto 10px;
+        overflow: hidden;
+    }
+
+    .form-toggle {
+        z-index: 10;
+        position: absolute;
+        top: 60px;
+        right: 60px;
+        background: #fff;
+        width: 60px;
+        height: 60px;
+        border-radius: 100%;
+        transform-origin: center;
+        transform: translate(0, -25%) scale(0);
+        opacity: 0;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .form-toggle:before,
+    .form-toggle:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 30px;
+        height: 4px;
+        background: #4285f4;
+        transform: translate(-50%, -50%);
+    }
+
+    .form-toggle:before {
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    .form-toggle:after {
+        transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+    .form-toggle.visible {
+        transform: translate(0, -25%) scale(1);
+        opacity: 1;
+    }
+
+    .form-group {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 0 0 20px;
+    }
+
+    .form-group:last-child {
+        margin: 0;
+    }
+
+    .form-group label {
+        display: block;
+        margin: 0 0 10px;
+        color: rgba(0, 0, 0, 0.6);
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 1;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+    }
+
+    .form-group input {
+        outline: none;
+        display: block;
+        background: rgba(0, 0, 0, 0.1);
+        width: 100%;
+        border: 0;
+        border-radius: 4px;
+        box-sizing: border-box;
+        padding: 12px 20px;
+        color: rgba(0, 0, 0, 0.6);
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: 500;
+        line-height: inherit;
+        transition: 0.3s ease;
+    }
+
+    .form-group input:focus {
+        color: rgba(0, 0, 0, 0.8);
+    }
+
+    .form-group button {
+        outline: none;
+        background: #6bf4a4;
+        width: 100%;
+        border: 0;
+        border-radius: 4px;
+        padding: 12px 20px;
+        color: rgb(41, 41, 41);
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: bolder;
+        line-height: inherit;
+        text-transform: uppercase;
+        cursor: pointer;
+    }
+
+    .form-group .form-remember {
+        font-size: 12px;
+        font-weight: 400;
+        letter-spacing: 0;
+        text-transform: none;
+    }
+
+    .form-group .form-remember input[type='checkbox'] {
+        display: inline-block;
+        width: auto;
+        margin: 0 10px 0 0;
+    }
+
+    .form-panel {
+        padding: 60px calc(5% + 60px) 60px 60px;
+        box-sizing: border-box;
+    }
+
+    .form-panel.one:before {
+        content: '';
+        display: block;
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.3s ease;
+    }
+
+    .form-panel.one.hidden:before {
+        display: block;
+        opacity: 1;
+        visibility: visible;
+    }
+
+   
+    .form-header {
+        margin: 0 0 40px;
+    }
+
+    .form-header h1 {
+        padding: 4px 0;
+        color: #6bf4a4;
+        font-size: 24px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+</style>
+
+<!-- Form-->
+<div class="form">
+    <div class="form-toggle"></div>
+    <div class="form-panel one">
+        <div class="form-header">
+            <h1>Masuk Ke dalam Akun <span style="color: #323232;">SMARTRSAB</span></h1>
+        </div>
+        <div class="form-content">
+            <form>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" ng-model="userName" name="username" required="required" />
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" ng-model="password" required="required" ng-keyup="$event.keyCode == 13 ? validate() : null" ng-keydown='keyDown($event)'/>
+                </div>
+                <!-- <div class="form-group"><label class="form-remember">
+                    <input type="checkbox" />Remember Me</label><a
+                        class="form-recovery" href="#">Forgot Password?</a></div> -->
+                <div class="form-group">
+                    <button type="submit" ng-click="validate()">Masuk</button>
+                </div>
+            </form>
+
+            <h5 style="font-size:18pt;font-weight: bolder;color:#323232;font-style: italic;margin-bottom: 10px;">RSAB Harapan Kita</h5>
+            <h4 style="font-size:10pt;color:#6bf4a4;">Terdepan Dalam Layanan Kesehatan Perempuan, Perinatal dan Anak </h4>
+        </div>
+    </div>
+   
 </div>

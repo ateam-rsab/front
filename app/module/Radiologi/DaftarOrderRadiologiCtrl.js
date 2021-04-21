@@ -4,8 +4,9 @@ define(['initialize'], function (initialize) {
         function ($q, $rootScope, $state, produkService, cacheHelper, managePasien, socket, $scope, ModelItem, RegistrasiPasienBaru, findPasien, findPasienRadiologi, dateHelper) {
             $scope.item = {};
 
-            $scope.item.tglAwal = new Date();
-            $scope.item.tglAkhir = new Date();
+            $scope.item.tglAwal = dateHelper.setJamAwal(new Date());
+            $scope.item.tglAkhir = dateHelper.setJamAkhir(new Date());
+            console.log($scope.item.tglAwal);
             $scope.getDataOrder = () => {
                 $scope.isRouteLoading = true;
                 let tglAwal = $scope.item.tglAwal ? dateHelper.formatDate($scope.item.tglAwal, "YYYY-MM-DD HH:mm") : dateHelper.formatDate(new Date(), "YYYY-MM-DD HH:mm"),
@@ -53,7 +54,7 @@ define(['initialize'], function (initialize) {
                     "title": "Nama Pasien",
                     "width": 150,
                 }, {
-                    "field": "noregistrasi",
+                    "field": "umur",
                     "title": "Umur",
                     "width": 100,
                 }, {
@@ -81,19 +82,23 @@ define(['initialize'], function (initialize) {
 
             let init = () => {
                 $scope.getDataOrder();
-                
-
-                // $scope.columnsDataOrder = 
             }
             init();
 
             function verifikasiOrder(e) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                if(dataItem.status === "SELESAI DIVERIFIKASI") {
+                    toastr.info(`No. Order ${dataItem.noorder} Sudah Selesai Di Verifikasi`);
+                    return;
+                }
 
                 localStorage.setItem("dataOrderRadiologi", JSON.stringify(dataItem));
 
-                window.location.href = "#/VerifikasiOrderRadiologiRev/" + dataItem.norec_so;
+                $state.go("VerifikasiOrderRadiologiRev", {
+                    norec: dataItem.norec_so
+                })
+                // window.location.href = "#/VerifikasiOrderRadiologiRev/" + dataItem.norec_so;
 
             }
         }

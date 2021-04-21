@@ -59,7 +59,7 @@
 
 <div class="grid_12">
     <md-tabs md-dynamic-height md-border-bottom>
-        <md-tab label="Order Radiologi">
+        <md-tab label="Order Radiologi" md-on-select="onChangeTab(1)">
             <div class="grid_12">
 
                 <!-- <div class="grid_4">
@@ -506,7 +506,7 @@
                 </div>
             </div>
         </md-tab>
-        <md-tab label="Riwayat">
+        <md-tab label="Riwayat" md-on-select="onChangeTab(2)">
             <div class="grid_12">
                 <div class="grid_12 borderBox">
                     <div id="kGrid" kendo-grid k-data-source="dataGridRiwayat" k-selectable="'row'"
@@ -528,7 +528,7 @@
 
                 <div class="grid_2" style="margin-top: 22px">
                     <!-- <button class="error c-button" is-back>Kembali</button> -->
-                    <md-button class="md-raised" ng-click="Hapus()">
+                    <md-button class="md-raised" is-back>
                         <i class="fa fa-arrow-left" style="color: rgb(41, 41, 41);"></i>
                         <span style="margin-left: 5px;">Kembali</span>
 

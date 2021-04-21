@@ -71,8 +71,8 @@ define(['initialize'], function (initialize) {
 
                 let tglAwal = $scope.item.tglAwal ? moment($scope.item.tglAwal).format('YYYY-MM-DD HH:mm:ss') : "",
                     tglAkhir = $scope.item.tglAkhir ? moment($scope.item.tglAkhir).format('YYYY-MM-DD HH:mm:ss') : "",
-                    tglOrderAwal = moment($scope.item.tglOrderAwal).format('YYYY-MM-DD HH:mm:ss'),
-                    tglOrderAkhir = moment($scope.item.tglOrderAkhir).format('YYYY-MM-DD HH:mm:ss');
+                    tglOrderAwal = $scope.item.tglOrderAwal ? moment($scope.item.tglOrderAwal).format('YYYY-MM-DD HH:mm:ss') : '',
+                    tglOrderAkhir = $scope.item.tglOrderAkhir ? moment($scope.item.tglOrderAkhir).format('YYYY-MM-DD HH:mm:ss') : '';
 
                 $scope.isRouteLoading = true;
                 manageLogistikPhp.getDataTableTransaksi("lab-radiologi/get-daftar-pasien-penunjang?" +

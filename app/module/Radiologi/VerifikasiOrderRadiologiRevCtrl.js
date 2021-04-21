@@ -107,6 +107,20 @@ define(['initialize'], function (initialize) {
 
             let dataSource = [];
             $scope.verifikasiData = () => {
+                if(!$scope.layanan.iptProduk) {
+                    toastr.warning("Harap pilih Nama Produk terlebih dahulu");
+                    return
+                }
+
+                if(!$scope.layanan.iptQty) {
+                    toastr.warning("Harap isi QTY terlebih dahulu");
+                    return
+                }
+
+                if(!$scope.layanan.jadwalTindakan) {
+                    toastr.warning("Harap pilih Jadwal Tindakan terlebih dahulu");
+                    return
+                }
                 let data = {
                     namaproduk: $scope.layanan.iptProduk.namaproduk,
                     detailKomponenHarga: $scope.layanan.iptProduk.detailKomponenHarga,
