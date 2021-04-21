@@ -31,6 +31,7 @@
 
     .selesai {
         background-color: #6bf4a4;
+        color: #323232;
     }
     .masuk {
         background-color: #6bd5fc;
@@ -38,7 +39,7 @@
         font-weight: bolder;
     }
     .dipanggil {
-        background-color: darkturquoise;
+        background-color: #00d199;
     }
 </style>
 <md-toolbar md-scroll-shrink class="shadow">
@@ -129,11 +130,11 @@
 
         <div class="grid_12">
             <div class="grid_6">
-                <span id="square" style="background-color:#606572">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span id="square" style="background-color:#6bd5fc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 <span>Masuk</span>
-                <span id="square" style="background-color:#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span id="square" style="background-color:#00d199">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 <span>Sample Checkin</span>
-                <span id="square" style="background-color:#3CB27A">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span id="square" style="background-color:#6bf4a4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 <span>Selesai Periksa</span>
             </div>
             <div class="grid_4">
@@ -148,7 +149,7 @@
 
     <div class="grid_12">
         <div id="kGrid" kendo-grid k-data-source="listDataPasien" k-selectable="'row'" k-options="optGridOrder"
-            k-pageable="'true'" k-sortable="'true'" k-ng-model="selectedData" ng-click="onClickGrid(selectedData)">
+            k-pageable="'true'" k-sortable="'true'" k-ng-model="selectedData" ng-click="selected(selectedData)">
         </div>
     </div>
     <!-- <div class="panel panel-default panel-white">

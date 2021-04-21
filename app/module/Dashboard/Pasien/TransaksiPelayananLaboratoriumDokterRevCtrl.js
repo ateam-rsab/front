@@ -204,6 +204,9 @@ define(['initialize'], function (initialize) {
                     data: tempDataGrid,
                     pageSize: 20
                 });
+                tempDataGrid = [];
+                $scope.selectedDataProduk = [];
+                $scope.popupAddLayanan.close();
             }
 
             $rootScope.getRekamMedisCheck = function (bool) {
