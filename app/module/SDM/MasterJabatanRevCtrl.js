@@ -167,27 +167,42 @@ define(['initialize'], function (initialize) {
 
                 $scope.data = {
                     namaJabatan: dataItem.namaJabatan,
-                    levelDireksi: {
+                    jabatanId: dataItem.id
+                }
+
+                if (dataItem.levelDireksi) {
+                    $scope.data.levelDireksi = {
                         id: dataItem.levelDireksi,
                         name: dataItem.levelDireksiFormatted
-                    },
-                    levelJabatan: {
-                        name: dataItem.levelJabatanFormatted,
-                        id: dataItem.levelJabatan
-                    },
-                    kelompokJabatan: {
-                        namaKelompokJabatan: dataItem.kelompokJabatan,
-                        id: dataItem.kelompokJabatanId
-                    },
-                    jenisJabatan: {
-                        jenisJabatan: dataItem.jenisJabatan,
-                        id: dataItem.jenisJabatanId
-                    },
-                    unitKerja: {
+                    }
+                }
+
+                if (dataItem.levelJabatan) {
+                    $scope.data.levelJabatan = {
+                        id: dataItem.levelJabatan,
+                        name: dataItem.levelJabatanFormatted
+                    }
+                }
+
+                if (dataItem.kelompokJabatan) {
+                    $scope.data.kelompokJabatan = {
+                        id: dataItem.kelompokJabatanId,
+                        namaKelompokJabatan: dataItem.kelompokJabatan
+                    }
+                }
+
+                if (dataItem.jenisJabatan) {
+                    $scope.data.jenisJabatan = {
+                        id: dataItem.jenisJabatanId,
+                        jenisJabatan: dataItem.jenisJabatan
+                    }
+                }
+
+                if (dataItem.unitKerja) {
+                    $scope.data.unitKerja = {
                         name: dataItem.unitKerja,
                         id: dataItem.unitKerjaId
-                    },
-                    jabatanId: dataItem.id
+                    }
                 }
 
                 if (dataItem.eselon) {
@@ -367,24 +382,33 @@ define(['initialize'], function (initialize) {
 
                 var isValid = ModelItem.setValidation($scope, listRawRequired);
 
-                if (isValid.status) {
+                if ((isValid.status && method == "simpan") || method == "hapus") {
                     let statusEnabled = method === "simpan";
 
                     let dataSave = {
                         namaJabatan: $scope.data.namaJabatan,
                         levelJabatan: $scope.data.levelJabatan.id,
                         subLevelJabatan: $scope.data.levelDireksi.id,
-                        kelompokJabatan: {
-                            id: $scope.data.kelompokJabatan.id
-                        },
-                        jenisJabatan: {
-                            id: $scope.data.jenisJabatan.id
-                        },
-                        unitKerja: {
-                            id: $scope.data.unitKerja.id
-                        },
                         kdProfile: 0,
                         statusEnabled: statusEnabled
+                    }
+
+                    if ($scope.data.kelompokJabatan) {
+                        dataSave.kelompokJabatan = {
+                            id: $scope.data.kelompokJabatan.id
+                        }
+                    }
+
+                    if ($scope.data.jenisJabatan) {
+                        dataSave.jenisJabatan = {
+                            id: $scope.data.jenisJabatan.id
+                        }
+                    }
+
+                    if ($scope.data.unitKerja) {
+                        dataSave.unitKerja = {
+                            id: $scope.data.unitKerja.id
+                        }
                     }
 
                     if ($scope.data.eselon) {
