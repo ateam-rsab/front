@@ -48,7 +48,7 @@
             <div class="grid_12">
                 <div class="grid_2">
                     <label c-label item="item">APGAR</label>
-                    <label class="hint-label">{{detailOrderRadiologi.apgar ? etailOrderRadiologi.apgar : '-'}}</label>
+                    <label class="hint-label">{{detailOrderRadiologi.apgar ? detailOrderRadiologi.apgar : '-'}}</label>
                 </div>
 
                 <div class="grid_2">
@@ -320,6 +320,11 @@
         <md-button class="md-raised md-danger">
             <span style="margin-right: 5px;" ng-click="resetData()">Reset</span>
             <i class="fa fa-cancel"></i>
+        </md-button>
+    </div>
+    <div class="grid_2">
+        <md-button class="md-raised" is-back>
+            <span>Kembali</span>
         </md-button>
     </div>
 </div>

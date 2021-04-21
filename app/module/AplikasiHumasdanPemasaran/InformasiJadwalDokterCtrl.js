@@ -14,6 +14,7 @@ define(['initialize'], function (initialize) {
 			var Awal = moment($scope.now).format('YYYY-MM-DD 00:00')
 			loadDataCombo();
 			$scope.hideFiltering = getJenisPegawai === "DOKTER";
+			let dataSearch = localStorage.getItem("dataSearchJadwalDokter") ? JSON.parse(localStorage.getItem("dataSearchJadwalDokter")) : null;
 
 			$scope.monthSelectorOptions = {
 				start: "year",
@@ -130,7 +131,6 @@ define(['initialize'], function (initialize) {
 				// 	toastr.warning("Harap isi nama Dokter");
 				// 	return;
 				// }
-				
 				var datatemp = [];
 				let bln = new Date($scope.item.bulan).getMonth(),
 					thn = new Date($scope.item.bulan).getFullYear()
@@ -167,11 +167,11 @@ define(['initialize'], function (initialize) {
 						data[i].no = i + 1
 						datatemp.push({
 							"id": data[i].no,
-							"title": data[i].namaruangan + ' ' + ':' + ' ' + data[i].namalengkap ,
-							"quota":data[i].quota,
-							"sisaQuota":data[i].sisaQuota,
-							"jmlAktivasi":data[i].jmlAktivasi,
-							"jmlDaftar":data[i].jmlDaftar,
+							"title": data[i].namaruangan + ' ' + ':' + ' ' + data[i].namalengkap,
+							"quota": data[i].quota,
+							"sisaQuota": data[i].sisaQuota,
+							"jmlAktivasi": data[i].jmlAktivasi,
+							"jmlDaftar": data[i].jmlDaftar,
 							// "pegawaiid": datas[i].pegawaiid,
 							"namalengkap": data[i].namalengkap,
 							// "ruanganid": datas[i].ruanganid,
@@ -194,7 +194,7 @@ define(['initialize'], function (initialize) {
 					$scope.schedulerOptions = {
 						date: new Date(Awal),
 						messages: {
-							event:"Jadwal Dokter"
+							event: "Jadwal Dokter"
 						},
 						// startTime: new Date(Awal),
 						height: 600,
@@ -235,51 +235,33 @@ define(['initialize'], function (initialize) {
 					// $scope.dataJadwalDokter.sabtu = [];
 					// $scope.dataJadwalDokter.minggu = [];
 
-					// for (let i in data) {
-					// 	// data[i].namahari = data[i].namahari.toLowerCase();
-					// 	// console.log(i, data[i]);
-
-					// 	switch (data[i].namahari) {
-					// 		case "SENIN":
-					// 			$scope.dataJadwalDokter.senin.push(data[i]);
-					// 			break;
-					// 		case "SELASA":
-					// 			$scope.dataJadwalDokter.selasa.push(data[i]);
-					// 			break;
-					// 		case "RABU":
-					// 			$scope.dataJadwalDokter.rabu.push(data[i]);
-					// 			break;
-					// 		case "KAMIS":
-					// 			$scope.dataJadwalDokter.kamis.push(data[i]);
-					// 			break;
-					// 		case "JUMAT":quota
-					// 			$scope.dataJadwalDokter.jumat.push(data[i]);
-					// 			break;
-					// 		case "SABTU":
-					// 			$scope.dataJadwalDokter.sabtu.push(data[i]);
-					// 			break;
-					// 		case "MINGGU":
-					// 			$scope.dataJadwalDokter.minggu.push(data[i]);
-					// 			break;
-					// 		default:
-					// 			break;
-					// 	}
-					// }
-
-					// $scope.dataGrid = new kendo.data.DataSource({
-					// 	data: res,
-					// 	pageSize: 20
-					// })
-
 					$scope.isRouteLoading = false;
 				})
 			}
-			// $scope.getData();
+			
+			let init = () => {
+
+				$scope.item.dokter = dataSearch.dokter
+				$scope.item.ruangan = dataSearch.ruangan
+				$scope.item.bulan = dataSearch.bulan
+				
+				if(dataSearch) {
+					$scope.getData();
+				}
+			}
+			init();
 
 			$scope.SearchData = function () {
 				// idDokter = $scope.item.dokter ? $scope.item.dokter.id : "";
 				// LoadData();
-				$scope.getData();
+				let dataSearch = {
+					dokter: $scope.item.dokter,
+					ruangan: $scope.item.ruangan,
+					bulan: $scope.item.bulan
+				}
+
+				localStorage.setItem("dataSearchJadwalDokter", JSON.stringify(dataSearch));
+				window.location.reload();
 			}
 		}
 	]);

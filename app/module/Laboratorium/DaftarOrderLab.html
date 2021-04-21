@@ -28,11 +28,20 @@
     .k-grid .k-grid-header .k-header {
         text-align: center;
     }
+
+    .selesai {
+        background-color: #6bf4a4;
+        color: #323232;
+    }
+    .masuk {
+        background-color: #6bd5fc;
+        color: #ffffff;
+        font-weight: bolder;
+    }
+    .dipanggil {
+        background-color: #00d199;
+    }
 </style>
-
-<!-- <div ng-controller="DaftarPasienApotikCtrl"> -->
-
-<!-- <c-panel item="item" header="'Daftar Order'" disabled> -->
 <md-toolbar md-scroll-shrink class="shadow">
     <div class="md-toolbar-tools">Daftar Order Laboratorium</div>
 </md-toolbar>
@@ -121,11 +130,11 @@
 
         <div class="grid_12">
             <div class="grid_6">
-                <span id="square" style="background-color:#606572">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span id="square" style="background-color:#6bd5fc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 <span>Masuk</span>
-                <span id="square" style="background-color:#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span id="square" style="background-color:#00d199">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 <span>Sample Checkin</span>
-                <span id="square" style="background-color:#3CB27A">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span id="square" style="background-color:#6bf4a4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 <span>Selesai Periksa</span>
             </div>
             <div class="grid_4">
@@ -138,12 +147,12 @@
         </div>
     </div>
 
-    <!-- grid WARNA -->
-    <div class="panel panel-default panel-white">
-        <!--   <div class="panel-heading-white">
-                    <span class="title" c-translate>Daftar Antrian Pasien Diperiksa</span>
-                </div> -->
-
+    <div class="grid_12">
+        <div id="kGrid" kendo-grid k-data-source="listDataPasien" k-selectable="'row'" k-options="optGridOrder"
+            k-pageable="'true'" k-sortable="'true'" k-ng-model="selectedData" ng-click="selected(selectedData)">
+        </div>
+    </div>
+    <!-- <div class="panel panel-default panel-white">
         <div class="panel-body">
             <div class="grid_12">
                 <div class="k-grid k-widget">
@@ -184,10 +193,7 @@
                                     <th style="width:100px; text-align: center;" class="k-header">
                                         Tgl Pulang
                                     </th>
-                                    <!-- 
-                                            <th style="width:100px; text-align: center;" class="k-header">
-                                                Status
-                                            </th> -->
+
                                 </tr>
                             </table>
                         </div>
@@ -220,9 +226,7 @@
                                             class="ng-binding"></span></td>
                                     <td style="width:100px" role="gridcell"><span ng-bind="data.tglpulang"
                                             class="ng-binding"></span></td>
-                                    <!-- 
-                                            <td style="width:100px" role="gridcell"><span ng-bind="data.status" class="ng-binding" style="font-weight: bold; font-style: italic;">Check in</span></td>
- -->
+
                                 </tr>
                             </tbody>
                         </table>
@@ -230,7 +234,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
 <!-- NamaKegiatan -->
 <div class="grid_12">
@@ -305,10 +309,9 @@
             </md-button>
         </div>
         <div class="grid_2" style="margin-top: 22px">
-            <!-- <button class="c-button" ng-click="LihatHasil('LaboratoriumPasien.InputHasilKlinik')">Lihat
-                Hasil</button> -->
 
-            <md-button class="md-raised md-primary medium-button" ng-click="LihatHasil('LaboratoriumPasien.InputHasilKlinik')">
+            <md-button class="md-raised md-primary medium-button"
+                ng-click="LihatHasil('LaboratoriumPasien.InputHasilKlinik')">
                 <span style="margin-right: 5px;">Lihat Hasil</span>
                 <i class="fa fa-file-text"></i>
             </md-button>
