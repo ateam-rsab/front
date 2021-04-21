@@ -6,6 +6,13 @@ define(['initialize'], function (initialize) {
             $scope.item = {};
             $scope.indikator = {};
             $scope.item.srcBulan = "";
+            $scope.currentNilaiBobot = {};
+            // let nilaiMaxKuantitas = 40, nilaiMaxKualitas = 30, nilaiMaxPerilaku = 30;
+            let nilaiMax = {
+                kuantitas: 40,
+                kualitas: 30,
+                perilaku: 30
+            }
 
             let dataPegawai = JSON.parse(localStorage.getItem('pegawai'));
             let dataLogin = JSON.parse(localStorage.getItem("datauserlogin"));
@@ -89,6 +96,27 @@ define(['initialize'], function (initialize) {
 
                 $scope.isRouteLoading = true;
                 ManageSdmNew.getListData("iki-remunerasi/get-kontrak-kinerja?pegawaiId=" + ($scope.item.pegawai ? $scope.item.pegawai.id : "") + "&jabatanId=" + ($scope.item.jabatan ? $scope.item.jabatan.id : "") + "&bulan=" + ($scope.item.srcBulan ? dateHelper.toTimeStamp($scope.item.srcBulan) : "")).then((res) => {
+
+                    let tempNilaiBobotKualitas = 0, tempNilaiBobotKuantitas = 0, tempNilaiBobotPerilaku = 0;
+                    for(let i = 0; i < res.data.data.Kualitas.length; i++) {
+                        tempNilaiBobotKualitas += res.data.data.Kualitas[i].bobot;
+                        res.data.data.Kualitas[i].jenisIndikator = "kualitas";
+                    }
+
+                    for(let ii = 0; ii < res.data.data.Kuantitas.length; ii++) {
+                        tempNilaiBobotKuantitas += res.data.data.Kuantitas[ii].bobot;
+                        res.data.data.Kuantitas[ii].jenisIndikator = "kuantitas";
+                    }
+
+                    for(let iii = 0; iii < res.data.data.Perilaku.length; iii++) {
+                        tempNilaiBobotPerilaku += res.data.data.Perilaku[iii].bobot;
+                        res.data.data.Perilaku[iii].jenisIndikator = "perilaku";
+                    }
+
+                    $scope.currentNilaiBobot.kualitas = tempNilaiBobotKualitas;
+                    $scope.currentNilaiBobot.perilaku = tempNilaiBobotPerilaku;
+                    $scope.currentNilaiBobot.kuantitas = tempNilaiBobotKuantitas;
+
                     $scope.dataSourceKontrakKinerja = {
                         kualitas: new kendo.data.DataSource({
                             data: res.data.data.Kualitas,
@@ -103,6 +131,8 @@ define(['initialize'], function (initialize) {
                             pageSize: pageSize
                         })
                     }
+
+                    console.log($scope.dataSourceKontrakKinerja);
 
                     $scope.isRouteLoading = false;
                 })
@@ -155,10 +185,11 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.simpanPengajuanIndikator = () => {
+               
                 let dataSave = {
                     bulan: dateHelper.toTimeStamp($scope.indikator.bulan),
                     target: $scope.indikator.target,
-                    bobot: $scope.indikator.bobot,
+                    bobot: $scope.indikator.bobot ? $scope.indikator.bobot : 0,
                     pegawai: {
                         id: dataPegawai.id
                     },
@@ -211,6 +242,14 @@ define(['initialize'], function (initialize) {
 
             $scope.simpanData = (method) => {
                 let statusEnabled = method === 'save' || method === 'update';
+
+                console.log($scope.selectedJenisIndikator);
+                console.log((($scope.currentNilaiBobot[$scope.selectedJenisIndikator] - $scope.tempSelectedBobot) + parseInt($scope.item.bobot)));
+                if((($scope.currentNilaiBobot[$scope.selectedJenisIndikator] - $scope.tempSelectedBobot) + parseInt($scope.item.bobot)) > nilaiMax[$scope.selectedJenisIndikator]) {
+                    toastr.info('Nilai Bobot ' + $scope.selectedJenisIndikator.toUpperCase() + ' tidak bisa lebih dari ' + nilaiMax[$scope.selectedJenisIndikator]);
+                    return;
+                }
+
                 let dataSave = {
                     bulan: dateHelper.toTimeStamp($scope.item.srcBulan),
                     target: $scope.item.target,
@@ -233,10 +272,10 @@ define(['initialize'], function (initialize) {
                     dataSave.noRec = $scope.norecData;
                 }
 
-                ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-kontrak-kinerja").then(res => {
-                    $scope.getAllData();
-                    $scope.closePopUp();
-                })
+                // ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-kontrak-kinerja").then(res => {
+                //     $scope.getAllData();
+                //     $scope.closePopUp();
+                // })
             }
 
             $scope.closePopUp = () => {
@@ -246,6 +285,10 @@ define(['initialize'], function (initialize) {
             function editData(e) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                
+                $scope.tempSelectedBobot = parseInt(dataItem.bobot);
+                $scope.selectedJenisIndikator = dataItem.jenisIndikator
+
                 $scope.item.bulan = new Date(dataItem.bulan);
                 $scope.item.target = dataItem.target;
                 $scope.item.bobot = dataItem.bobot;

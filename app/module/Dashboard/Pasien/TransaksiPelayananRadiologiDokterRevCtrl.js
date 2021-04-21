@@ -170,6 +170,18 @@ define(['initialize'], function (initialize) {
 
             $scope.filterPelayanan("A");
 
+             function getDataRiwayat() {
+                manageLogistikPhp.getDataTableTransaksi('lab-radiologi/get-riwayat-rad?noregistrasi=' + $scope.item.noregistrasi).then((e) => {
+                    for (let i = e.data.daftar.length - 1; i >= 0; i--) {
+                        e.data.daftar[i].no = i + 1
+                    }
+                    $scope.dataGridRiwayat = new kendo.data.DataSource({
+                        data: e.data.daftar,
+                        pageSize: 10
+                    });
+                })
+            }
+
             function init() {
                 manageLogistikPhp.getDataTableTransaksi("rekam-medis/get-combo").then(function (e) {
                     // $scope.listDokter = e.data.dokter;
@@ -180,15 +192,7 @@ define(['initialize'], function (initialize) {
                     $scope.PegawaiLogin2 = dat.data
                 });
                 if ($scope.header.DataNoregis == false) {
-                    manageLogistikPhp.getDataTableTransaksi('lab-radiologi/get-riwayat-rad?noregistrasi=' + $scope.item.noregistrasi).then((e) => {
-                        for (let i = e.data.daftar.length - 1; i >= 0; i--) {
-                            e.data.daftar[i].no = i + 1
-                        }
-                        $scope.dataGridRiwayat = new kendo.data.DataSource({
-                            data: e.data.daftar,
-                            pageSize: 10
-                        });
-                    })
+                    getDataRiwayat();
                     // manageLogistikPhp.getDataTableTransaksi('laporan/get-order-rad?noregistrasi=' + $scope.item.noregistrasi).then(function (e) {
                     //     //debugger;
                     //     for (var i = e.data.daftar.length - 1; i >= 0; i--) {
@@ -214,6 +218,11 @@ define(['initialize'], function (initialize) {
                     });
                 }
 
+            }
+
+            $scope.onChangeTab = (tab) => {
+                // console.log(tab);
+                // if(tab === 2)
             }
 
             $scope.onChangePemeriksaanLab = (kondisi) => {
@@ -434,8 +443,8 @@ define(['initialize'], function (initialize) {
                 var data = {
                     norec_order: dataItem.norec
                 }
-                manageLogistikPhp.saveDataProduk2(data, "lab-radiologi/delete-orderlabrad").then(function (e) {
-                    init();
+                manageLogistikPhp.saveDataProduk2(data, "lab-radiologi/delete-order-rad").then(function (e) {
+                    getDataRiwayat();
                 })
             }
 
@@ -692,13 +701,14 @@ define(['initialize'], function (initialize) {
                 console.log(data2);
                 console.log(objSave);
 
-                $scope.selectedDataProduk = [];
-                tempDataGrid = [];
-                $scope.BatalOrder();
-                // // http://192.168.12.3:4444/simrs_harkit/service/transaksi/lab-radiologi/save-order-rad-dokter
+                // $scope.selectedDataProduk = [];
+                
+                // $scope.BatalOrder();
                 manageLogistikPhp.postpost("lab-radiologi/save-order-rad-dokter", objSave).then(function (e) {
+                    tempDataGrid = [];
                     $scope.selectedDataProduk = [];
                     $scope.BatalOrder();
+                    getDataRiwayat();
                     manageLogistikPhp.postLogging('Order Radiologi', 'Norec strukorder_t', e.data.strukorder.norec, 'Menu Dokter').then(function (res) {})
                 })
             }

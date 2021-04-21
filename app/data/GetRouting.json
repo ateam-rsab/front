@@ -1450,7 +1450,7 @@
     ]
   },
   {
-    "name": "VerifikasiOrderRadiologiRevCtrl",
+    "name": "VerifikasiOrderRadiologiRev",
     "url": "/VerifikasiOrderRadiologiRev/:norec",
     "templateurl": "module/Radiologi/VerifikasiOrderRadiologiRev.html",
     "controller": "VerifikasiOrderRadiologiRevCtrl",
