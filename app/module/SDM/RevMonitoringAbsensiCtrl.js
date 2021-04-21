@@ -123,28 +123,28 @@ define(['initialize'], function (initialize) {
                             namalengkap: single.namalengkap
                         };
                     } else if ($scope.listUnitKerja.length == 1 && $scope.isMonitoring) {
-                    var single = res[0].data.data.dataSingle[0];
-                    $scope.isSingle = true;
-                    $scope.listUnitKerja = [{
-                        id: single.idUnit,
-                        name: single.nameUnit
-                    }];
-                    // $scope.listSubUnitKerja = [{id:single.idSub,name:single.nameSub}];
-                    ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-drop-down-subunit?id=" + single.idPgw + "&idUnit=" + single.idUnit).then(function (data) {
-                        $scope.item.subUnitKerja = {
-                            id: single.idSub,
-                            name: single.nameSub
+                        var single = res[0].data.data.dataSingle[0];
+                        $scope.isSingle = true;
+                        $scope.listUnitKerja = [{
+                            id: single.idUnit,
+                            name: single.nameUnit
+                        }];
+                        // $scope.listSubUnitKerja = [{id:single.idSub,name:single.nameSub}];
+                        ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-drop-down-subunit?id=" + single.idPgw + "&idUnit=" + single.idUnit).then(function (data) {
+                            $scope.item.subUnitKerja = {
+                                id: single.idSub,
+                                name: single.nameSub
+                            };
+                            $scope.listSubUnitKerja = data.data.data;
+                        });
+                        // $scope.listPegawai = [{id:single.idPgw,namalengkap:single.namalengkap}];
+                        $scope.item.unitKerja = {
+                            id: single.idUnit,
+                            name: single.nameUnit
                         };
-                        $scope.listSubUnitKerja = data.data.data;
-                    });
-                    // $scope.listPegawai = [{id:single.idPgw,namalengkap:single.namalengkap}];
-                    $scope.item.unitKerja = {
-                        id: single.idUnit,
-                        name: single.nameUnit
-                    };
-                    // $scope.item.subUnitKerja = {id:single.idSub,name:single.nameSub};
-                    // $scope.item.pegawai = {id:single.idPgw,namalengkap:single.namalengkap}; 
-                }
+                        // $scope.item.subUnitKerja = {id:single.idSub,name:single.nameSub};
+                        // $scope.item.pegawai = {id:single.idPgw,namalengkap:single.namalengkap}; 
+                    }
                 $scope.isRouteLoading = false;
                 // $scope.jabatanLogin = res[3].data.data.idJabatan;
             });
@@ -268,15 +268,15 @@ define(['initialize'], function (initialize) {
                             style: "text-align : center"
                         },
                         columns: [{
-                                field: "jadwalMasuk",
-                                title: "Masuk",
-                                width: "45px"
-                            },
-                            {
-                                field: "jadwalPulang",
-                                title: "Pulang",
-                                width: "45px"
-                            }
+                            field: "jadwalMasuk",
+                            title: "Masuk",
+                            width: "45px"
+                        },
+                        {
+                            field: "jadwalPulang",
+                            title: "Pulang",
+                            width: "45px"
+                        }
                         ],
                     },
                     {
@@ -285,25 +285,25 @@ define(['initialize'], function (initialize) {
                             style: "text-align : center"
                         },
                         columns: [{
-                                field: "absensiMasuk",
-                                title: "Masuk",
-                                width: "45px"
-                            },
-                            {
-                                field: "validMasuk",
-                                title: "V",
-                                width: "18px"
-                            },
-                            {
-                                field: "absensiPulang",
-                                title: "Pulang",
-                                width: "45px"
-                            },
-                            {
-                                field: "validPulang",
-                                title: "V",
-                                width: "18px"
-                            }
+                            field: "absensiMasuk",
+                            title: "Masuk",
+                            width: "45px"
+                        },
+                        {
+                            field: "validMasuk",
+                            title: "V",
+                            width: "18px"
+                        },
+                        {
+                            field: "absensiPulang",
+                            title: "Pulang",
+                            width: "45px"
+                        },
+                        {
+                            field: "validPulang",
+                            title: "V",
+                            width: "18px"
+                        }
                         ],
                     },
                     {
@@ -378,23 +378,23 @@ define(['initialize'], function (initialize) {
             $scope.mainGridNotif = {
                 // editable: true,
                 columns: [{
-                        field: "nama",
-                        title: "Nama Pegawai",
-                        visible: false,
-                        width: "40%"
-                    },
-                    {
-                        field: "tanggal",
-                        title: "Tanggal",
-                        visible: false,
-                        width: "60%"
-                    },
+                    field: "nama",
+                    title: "Nama Pegawai",
+                    visible: false,
+                    width: "40%"
+                },
+                {
+                    field: "tanggal",
+                    title: "Tanggal",
+                    visible: false,
+                    width: "60%"
+                },
                 ]
             }
 
             $scope.seeLocation = (data) => {
-                
-                ManageSdmNew.getListData("sdm/get-reverse-geocoding?latitude=" + data.latitude + "&longitude=" +  data.longitude).then(function (res) {
+
+                ManageSdmNew.getListData("sdm/get-reverse-geocoding?latitude=" + data.latitude + "&longitude=" + data.longitude).then(function (res) {
                     $scope.showLocation = true;
                     $scope.reverseLocation = res.data.data;
                 })
@@ -746,17 +746,17 @@ define(['initialize'], function (initialize) {
                         },
                         group: $scope.group,
                         aggregate: [{
-                                field: "nama",
-                                aggregate: "count"
-                            },
-                            {
-                                field: "kelebihanJamKerja",
-                                aggregate: "sum"
-                            },
-                            {
-                                field: "jamEfektif",
-                                aggregate: "sum"
-                            },
+                            field: "nama",
+                            aggregate: "count"
+                        },
+                        {
+                            field: "kelebihanJamKerja",
+                            aggregate: "sum"
+                        },
+                        {
+                            field: "jamEfektif",
+                            aggregate: "sum"
+                        },
                             // editable: "inline"
                         ]
                     });

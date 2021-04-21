@@ -17,7 +17,8 @@
     <div class="grid_3">
         <label><strong>Pegawai</strong></label>
         <input kendo-combo-box k-filter="'contains'" k-ng-model="item.pegawai" k-data-text-field="'namaLengkap'"
-            k-data-value-field="'id'" k-data-source="listPegawai" k-on-change="getJabatanByIdPegawai()" />
+            k-data-value-field="'id'" k-data-source="listPegawai"
+            k-on-change="getJabatanByIdPegawai(item.pegawai.id)" />
     </div>
     <div class="grid_3">
         <label><strong>Jabatan</strong></label>
@@ -32,7 +33,7 @@
     </div>
     <div class="grid_2" style="margin-top: 1.6em;">
         <md-button class="md-raised md-primary medium-button" ng-click="tambahIndikator()">
-            <span style="margin-right: 5px;">Ajukan Kontrak Kinerja</span>
+            <span style="margin-right: 5px;">Usulan Baru</span>
             <i class="fa fa-file"></i>
         </md-button>
     </div>
@@ -112,6 +113,12 @@
                     <label><strong>Bulan</strong></label>
                     <input style="width: 100%;" k-options="monthSelectorOptions" k-ng-model="indikator.bulan"
                         kendo-date-picker placeholer="mm-yyyy" k-format="'MM-yyyy'" />
+                </div>
+                <div class="grid_4">
+                    <label><strong>Pegawai</strong></label>
+                    <input kendo-combo-box k-filter="'contains'" k-ng-model="indikator.pegawai"
+                        k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-data-source="listPegawaiPengusul"
+                        disabled />
                 </div>
                 <div class="grid_4">
                     <label><strong>Jabatan</strong></label>

@@ -94,7 +94,7 @@ define(['initialize'], function (initialize) {
                     ManageSdmNew.getListData("sdm/get-all-sub-unit-kerja"),
                     ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true&order=namaLengkap:asc", true),
                     ManageSdm.getOrderList("service/list-generic/?view=Jabatan&select=id,namaJabatan&criteria=statusEnabled&values=true&order=namaJabatan:asc", true),
-                    ManageSdm.getOrderList("service/list-generic/?view=JenisJabatan&select=id,jenisJabatan&criteria=statusEnabled&values=true&order=jenisJabatan:asc", true),
+                    ManageSdmNew.getListData("service/list-generic/?view=JenisJabatan&select=id,jenisJabatan&criteria=statusEnabled,id&values=true,(7;8;9)&order=jenisJabatan:asc", true),
                     ManageSdm.getOrderList("service/list-generic/?view=KategoryPegawai&select=id,kategoryPegawai&criteria=statusEnabled&values=true&order=kategoryPegawai:asc", true),
                     ManageSdm.getOrderList("service/list-generic/?view=UnitKerjaPegawai&select=id,name&criteria=statusEnabled&values=true&order=name:asc", true),
                 ]).then(function (res) {
@@ -202,7 +202,7 @@ define(['initialize'], function (initialize) {
                 });
             }
 
-            $scope.getDataSubUnitKerjaById = function (id, data) {
+            $scope.getDataSubUnitKerjaById = function (id, data, jenisId) {
                 $('#idComboSubUnitKerja').data('kendoComboBox').value('');
 
                 if (data.name === 'Direksi') {
@@ -222,6 +222,19 @@ define(['initialize'], function (initialize) {
                         })
                     })
                 })
+
+                if (jenisId && id) {
+                    ManageSdmNew.getListData("sdm/get-jabatan-by-jenis-dan-unit?jenisJabatanId=" + jenisId + "&unitKerjaId=" + id, true).then(function (res) {
+                        $scope.listJabatanByJenisJabatan = res.data;
+                        $scope.listJabatanByJenisJabatanInternal = [];
+                        res.data.data.forEach(function (e) {
+                            $scope.listJabatanByJenisJabatanInternal.push({
+                                id: e.idJabatan,
+                                namaJabatan: e.namaJabatan
+                            })
+                        })
+                    });
+                }
             }
 
             function editDataJabatanInternal(e) {
@@ -253,7 +266,7 @@ define(['initialize'], function (initialize) {
                     }
                 }
 
-                $scope.getDataSubUnitKerjaById(dataItem.unitKerjaPegawai.id, dataItem.unitKerjaPegawai);
+                $scope.getDataSubUnitKerjaById(dataItem.unitKerjaPegawai.id, dataItem.unitKerjaPegawai, dataItem.jenisJabatan.id);
 
                 $scope.ji.idGridInternalJabatan = dataItem.id;
                 $scope.ji.pegawai = {
@@ -331,8 +344,24 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.getDataJabatan = function (id) {
+                if (!id) return;
                 $("#idComboDataJabatan").data("kendoComboBox").value("");
                 ManageSdmNew.getListData("sdm/get-all-jabatan-by-jenis-jabatan?idJenisJabatan=" + id, true).then(function (res) {
+                    $scope.listJabatanByJenisJabatan = res.data;
+                    $scope.listJabatanByJenisJabatanInternal = [];
+                    res.data.data.forEach(function (e) {
+                        $scope.listJabatanByJenisJabatanInternal.push({
+                            id: e.idJabatan,
+                            namaJabatan: e.namaJabatan
+                        })
+                    })
+                });
+            }
+
+            $scope.getPilihanJabatan = function (jenisId, unitId) {
+                if (!jenisId || !unitId) return;
+                $("#idComboDataJabatan").data("kendoComboBox").value("");
+                ManageSdmNew.getListData("sdm/get-jabatan-by-jenis-dan-unit?jenisJabatanId=" + jenisId + "&unitKerjaId=" + unitId, true).then(function (res) {
                     $scope.listJabatanByJenisJabatan = res.data;
                     $scope.listJabatanByJenisJabatanInternal = [];
                     res.data.data.forEach(function (e) {
