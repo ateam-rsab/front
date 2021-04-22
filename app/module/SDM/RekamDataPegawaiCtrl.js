@@ -78,15 +78,15 @@ define(['initialize'], function (initialize) {
                         width: "150px",
                         hidden: true
                     },
-                    {
-                        field: "isPrimary",
-                        title: "<h3 class='small-font'>Jabatan Utama</h3>",
-                        width: "70px",
-                        template: "#if(isPrimary) { #Ya# } else { #Tidak# } #",
-                        attributes: {
-                            style: "text-align:center;valign=middle"
-                        },
-                    },
+                    // {
+                    //     field: "isPrimary",
+                    //     title: "<h3 class='small-font'>Jabatan Utama</h3>",
+                    //     width: "70px",
+                    //     template: "#if(isPrimary) { #Ya# } else { #Tidak# } #",
+                    //     attributes: {
+                    //         style: "text-align:center;valign=middle"
+                    //     },
+                    // },
                     {
                         field: "isMonitoring",
                         title: "<h3 class='small-font'>Akses<br/>Monitoring</h3>",
@@ -638,6 +638,7 @@ define(['initialize'], function (initialize) {
                     .ok('Ya')
                     .cancel('Tidak');
                 $mdDialog.show(confirm).then(function () {
+                    $scope.isRouteLoading = true;
                     ManageSdmNew.saveData(dataSave, "map-pegawai-jabatan-unitkerja/hapus-map").then(function (res) {
                         var isEmptyModel = _.isEmpty(res.data.data.data[1]);
                         if (!isEmptyModel) {
@@ -666,16 +667,16 @@ define(['initialize'], function (initialize) {
 
             }
 
-            function validateJabatanUtama() {
-                let data = $scope.dataSourceJabatanInternal._data;
-                var isPrimaryExist = false;
-                for (let i = 0; i < data.length; i++) {
-                    if (data[i].isPrimary) {
-                        isPrimaryExist = true;
-                    }
-                }
-                return isPrimaryExist;
-            }
+            // function validateJabatanUtama() {
+            //     let data = $scope.dataSourceJabatanInternal._data;
+            //     var isPrimaryExist = false;
+            //     for (let i = 0; i < data.length; i++) {
+            //         if (data[i].isPrimary) {
+            //             isPrimaryExist = true;
+            //         }
+            //     }
+            //     return isPrimaryExist;
+            // }
 
             $scope.getEvaluasiJabatanPegawaiBaru = () => {
                 let listJabatanSelected = [];
@@ -699,6 +700,7 @@ define(['initialize'], function (initialize) {
             // $scope.getEvaluasiJabatanPegawaiBaru();
 
             $scope.simpanJabatanInternal = function () {
+                $scope.isRouteLoading = true;
                 // Jika dia pegawai baru 
                 if ($scope.isNewData) {
                     $scope.dataSourceJabatanInternal.add({
@@ -767,13 +769,13 @@ define(['initialize'], function (initialize) {
                     }
                 }
 
-                if (!validateJabatanUtama()) {
-                    if (!newModel[0].isPrimary) {
-                        toastr.warning('Harap Pilih Satu Jabatan sebagai Jabatan Utama')
-                        $scope.enableBtnSimpanJabatanInternal = true;
-                        return
-                    }
-                }
+                // if (!validateJabatanUtama()) {
+                //     if (!newModel[0].isPrimary) {
+                //         toastr.warning('Harap Pilih Satu Jabatan sebagai Jabatan Utama')
+                //         $scope.enableBtnSimpanJabatanInternal = true;
+                //         return
+                //     }
+                // }
 
 
                 // var dataSave = [{
@@ -839,7 +841,6 @@ define(['initialize'], function (initialize) {
                         $scope.item.grade = ""
                     }
 
-                    $scope.isRouteLoading = true;
                     $scope.idGridInternalJabatan = null;
                     $scope.popUpJabatan.close();
                     $scope.loadDataGridJabatanInternal();
@@ -888,6 +889,7 @@ define(['initialize'], function (initialize) {
                 e.preventDefault();
                 var tr = $(e.target).closest("tr");
                 var dataItem = this.dataItem(tr);
+                $scope.enableBtnSimpanJabatanInternal = true
                 $scope.getDataJabatan(dataItem.jenisJabatan.id);
                 if (!$scope.isEdit && !$scope.isNewData) {
                     toastr.warning('Tidak bisa merubah jabatan');

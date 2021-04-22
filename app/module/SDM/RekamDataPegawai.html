@@ -497,7 +497,7 @@
                                     <strong>Status</strong>
                                 </legend>
                                 <div class="grid_12">
-                                    <div class="grid_4">
+                                    <!-- <div class="grid_4">
                                         <div class="clear"></div>
                                         <div class="grid_12">
                                             <input type="checkbox" class="k-checkbox" ng-model='ji.isPrimary' id="cb"
@@ -505,7 +505,7 @@
                                                 ng-click="isPrimary(ji.isPrimary)">
                                             <label class="k-checkbox-label" for="cb">Jabatan Utama</label>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="grid_3">
                                         <div class="clear"></div>
                                         <div class="grid_12">
@@ -537,6 +537,7 @@
                                 </div>
                             </div>
                         </div>
+                        <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
                     </div>
                 </div>
                 <!-- <div class="grid_12 borderBox containerBorderBox">
@@ -1067,8 +1068,8 @@
             </fieldset>
         </div>
     </div>
+    <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
 </div>
-<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
 
 <div kendo-window="confirmDialog" k-title="'Hapus Data Pegawai'" k-width="400" k-visible="false">
     <p class="text-center">Apakah anda yakin ingin menghapus data ini?</p>
@@ -1085,7 +1086,9 @@
         &nbsp;
         <input type="button" class="confirm_yes k-button" value="Ya" style="width: 70px" ng-click="lanjutHapus()" />
     </div>
+    <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
 </div>
+
 <div kendo-window="popUpRiwayat" k-title="'Riwayat Jabatan Pegawai'" k-width="650" k-visible="false"
     k-on-open="win2visible = true" k-on-close="win2visible = false">
     <div class="panel panel-default container_12" style="padding: 0px 10px;">
@@ -1169,6 +1172,7 @@
             </div>
         </div>
     </div>
+    <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
 </div>
 
 <div kendo-window="popUpRiwayatPendidikan" k-title="'Riwayat Pendidikan Pegawai'" k-width="850" k-visible="false"
@@ -1262,6 +1266,7 @@
             </div>
         </div>
     </div>
+    <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
 </div>
 
 <div kendo-window="popUpKeluarga" k-title="'Riwayat Suami/Istri'" k-width="650" k-height="420" k-visible="false"
@@ -1412,4 +1417,5 @@
             </div>
         </div>
     </div>
+    <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
 </div>
