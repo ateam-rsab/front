@@ -18,7 +18,9 @@ define(['initialize'], function (initialize) {
             $scope.showTombol = false
             $scope.showProduk = true;
             // var pegawaiUser = {}
-
+            let dataPengkajian = JSON.parse(localStorage.getItem("cacheHelper"));
+            dataPengkajian = dataPengkajian[0].value;
+            let kelompokPasien = dataPengkajian[5];
             $scope.listFilters = [
                 "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
                 "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
@@ -69,6 +71,10 @@ define(['initialize'], function (initialize) {
 
             $scope.selectedDataProduk = [];
             $scope.updateSelectedData = (data, i) => {
+                if($scope.selectedDataProduk.length >= 1) {
+                    toastr.info("Untuk Pasien BPJS tidak bisa lebih dari 1 tindakan");
+                    return;
+                }
                 $scope.selectedDataProduk = [];
                 $scope.listLayanan[i].checked = !$scope.listLayanan[i].checked;
                 for (let i in $scope.listLayanan) {
@@ -665,6 +671,11 @@ define(['initialize'], function (initialize) {
                     return
                 }
 
+                if(!$scope.item.klinis) {
+                    toastr.warning("Klinis tidak boleh kosong!");
+                    return;
+                }
+
                 if (data2.length == 0) {
                     alert("Pilih layanan terlebih dahulu!!")
                     return;
@@ -678,7 +689,7 @@ define(['initialize'], function (initialize) {
                     qtyproduk: data2.length, //
                     objectruanganfk: namaRuanganFk,
                     // objectruanganfk: $scope.item.ruanganAsal.id,
-
+                    klinis: $scope.item.klinis.toUpperCase(),
                     objectruangantujuanfk: $scope.item.ruangantujuan.id,
                     departemenfk: 27,
                     pegawaiorderfk: $scope.PegawaiLogin2.pegawai[0].id,

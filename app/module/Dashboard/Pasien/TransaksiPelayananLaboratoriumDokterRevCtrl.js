@@ -20,6 +20,9 @@ define(['initialize'], function (initialize) {
             let getJenisPegawai = $scope.dataLogin.jenisPegawai.jenispegawai ? $scope.dataLogin.jenisPegawai.jenispegawai : $scope.dataLogin.jenisPegawai.jenisPegawai;
             var detail = ''
             let baseURLFiltering = "idjenisperiksapenunjang="
+
+            let dataPengkajian = JSON.parse(localStorage.getItem("cacheHelper"));
+            dataPengkajian = dataPengkajian[0].value;
             $scope.listFilters = [
                 "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
                 "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
@@ -84,9 +87,9 @@ define(['initialize'], function (initialize) {
 
             // }
 
-            $scope.getDataPaket = function() {
+            $scope.getDataPaket = function () {
                 // http://192.168.12.3:8080/jasamedika-web/service/list-generic/?view=Paket&select=id,namaPaket&criteria=statusEnabled,jenisPaketId&values=true,4&order=namaPaket:asc
-                manageLogistikPhp.getDataTableMaster("produk/master-paket?idjenispaket=4").then(function (dat) { 
+                manageLogistikPhp.getDataTableMaster("produk/master-paket?idjenispaket=4").then(function (dat) {
                     $scope.listPaket = dat.data;
                     // console.log(dat);
                 });
@@ -94,7 +97,7 @@ define(['initialize'], function (initialize) {
             $scope.getDataPaket();
 
             $scope.getDataKategori = () => {
-                manageLogistikPhp.getDataTableMaster("produk/grup-penunjang").then(function (dat) { 
+                manageLogistikPhp.getDataTableMaster("produk/grup-penunjang").then(function (dat) {
                     $scope.listKategori = dat.data.penunjang.jenisperiksapenunjang;
                     // console.log($scope.listKategori);
                     // jenisperiksapenunjang
@@ -103,7 +106,7 @@ define(['initialize'], function (initialize) {
             $scope.getDataKategori();
 
             $scope.changeBaseUrlFiltering = (data, id) => {
-                if(data) {
+                if (data) {
                     $scope.item.paket = null;
                 } else {
                     $scope.item.kategori = null;
@@ -135,7 +138,42 @@ define(['initialize'], function (initialize) {
             }
             $scope.filterPelayanan("");
 
+            $scope.columnGridPreview = [{
+                    "field": "noregistrasi",
+                    "title": "No. Registrasi",
+                    "width": 100,
+                }, {
+                    "field": "noorder",
+                    "title": "No. Order",
+                    "width": 100,
+                }, {
+                    "field": "tglorder",
+                    "title": "Tanggal Order",
+                    "width": 100,
+                }, {
+                    "field": "namaruanganasal",
+                    "title": "Ruangan",
+                    "width": 150,
+                }, {
+                    "field": "dokter",
+                    "title": "Dokter Order",
+                    "width": 150,
+                }, {
+                    "field": "statusorder",
+                    "title": "Status Order",
+                    "width": 100,
+                },
+            ]
+
             function init() {
+                console.log(dataPengkajian);
+                manageLogistikPhp.getDataTableTransaksi("laporan/get-riwayat-harian?noregistrasi=" + dataPengkajian[3], true).then(function (dat) {
+                    console.log(dat.data.daftar);
+                    $scope.dataDailyPreview = new kendo.data.DataSource({
+                        data: dat.data.daftar,
+                        pageSize: 5
+                    })
+                });
                 manageLogistikPhp.getDataTableTransaksi("get-detail-login", true).then(function (dat) {
                     $scope.PegawaiLogin2 = dat.data
                 });
@@ -349,7 +387,7 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.showPopUpOrder = function () {
-                if(getJenisPegawai !== "DOKTER") {
+                if (getJenisPegawai !== "DOKTER") {
                     toastr.info('Anda tidak memiliki akses menambahkan konsultasi');
                     return;
                 }
@@ -475,7 +513,7 @@ define(['initialize'], function (initialize) {
                             data.produkfk = $scope.item.layanan.id;
                             data.qtyproduk = parseFloat($scope.item.qty);
                             data.pemeriksaanluar = $scope.item.pemeriksaanKeluar === true ? 1 : 0;
-                            
+
 
                             data2[i] = data;
                             $scope.dataGridOrder = new kendo.data.DataSource({

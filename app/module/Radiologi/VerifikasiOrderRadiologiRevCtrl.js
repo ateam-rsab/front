@@ -5,6 +5,7 @@ define(['initialize'], function (initialize) {
             $scope.item = {};
             $scope.isRouteLoading = false;
             $scope.dataOrderRadiologi = JSON.parse(localStorage.getItem("dataOrderRadiologi"));
+            console.log($scope.dataOrderRadiologi);
             $scope.totalHargaProduk = 'Rp. 0,00';
 
             let dataLogin = JSON.parse(localStorage.getItem("pegawai"));

@@ -267,10 +267,10 @@ define(['initialize'], function (initialize) {
                     dataSave.noRec = $scope.norecData;
                 }
 
-                // ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-kontrak-kinerja").then(res => {
-                //     $scope.getAllData();
-                //     $scope.closePopUp();
-                // })
+                ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-kontrak-kinerja").then(res => {
+                    $scope.getAllData();
+                    $scope.closePopUp();
+                })
             }
 
             $scope.closePopUp = () => {
