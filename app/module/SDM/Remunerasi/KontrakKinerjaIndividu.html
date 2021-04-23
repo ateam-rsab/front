@@ -135,11 +135,9 @@
                         k-data-source="listJenisIndikator"
                         k-on-change="getIndikatorKerja(indikator.jenisIndikator.id)" />
                 </div>
-                <div class="grid_3">
+                <div class="grid_4">
                     <label><strong>Indikator Kinerja</strong></label>
-                    <input kendo-combo-box k-filter="'contains'" k-ng-model="indikator.indikatorKerja"
-                        k-data-text-field="'namaIndikator'" k-data-value-field="'id'"
-                        k-data-source="listIndikatorKinerja" />
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="indikator.namaIndikator" />
                 </div>
 
                 <div class="grid_3">
