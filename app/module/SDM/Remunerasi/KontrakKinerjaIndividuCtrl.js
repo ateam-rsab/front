@@ -246,7 +246,7 @@ define(['initialize'], function (initialize) {
                 console.log($scope.selectedJenisIndikator);
                 console.log((($scope.currentNilaiBobot[$scope.selectedJenisIndikator] - $scope.tempSelectedBobot) + parseInt($scope.item.bobot)));
                 if((($scope.currentNilaiBobot[$scope.selectedJenisIndikator] - $scope.tempSelectedBobot) + parseInt($scope.item.bobot)) > nilaiMax[$scope.selectedJenisIndikator]) {
-                    toastr.info('Nilai Bobot ' + $scope.selectedJenisIndikator.toUpperCase() + ' tidak bisa lebih dari ' + nilaiMax[$scope.selectedJenisIndikator]);
+                    toastr.info('Total Nilai Bobot ' + $scope.selectedJenisIndikator.toUpperCase() + ' Tidak Boleh Lebih dari ' + nilaiMax[$scope.selectedJenisIndikator]);
                     return;
                 }
 
@@ -272,10 +272,10 @@ define(['initialize'], function (initialize) {
                     dataSave.noRec = $scope.norecData;
                 }
 
-                // ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-kontrak-kinerja").then(res => {
-                //     $scope.getAllData();
-                //     $scope.closePopUp();
-                // })
+                ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-kontrak-kinerja").then(res => {
+                    $scope.getAllData();
+                    $scope.closePopUp();
+                })
             }
 
             $scope.closePopUp = () => {

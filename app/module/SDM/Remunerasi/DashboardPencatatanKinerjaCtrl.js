@@ -33,6 +33,7 @@ define(['initialize'], function (initialize) {
                 }
                 ManageSdmNew.getListData("iki-remunerasi/get-dashboard-kinerja?pegawaiId=" + $scope.dataLogin.id + "&jabatanId=" + jabatanId + "&bulan=" + date).then((res) => {
                     $scope.dataDashboard = res.data.data;
+                    console.log($scope.dataDashboard);
 
                     $scope.dataDetailDashboardKinerja = {
                         kuantitas: res.data.data.listJenisIndikator[0],

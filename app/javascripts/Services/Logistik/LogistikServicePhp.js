@@ -21,10 +21,10 @@
           });
       },
 
-      saveData:function (urlPost) {  
-        return r.get({
-          url: baseUrlApiAction + urlGet
-        })
+      saveData:function (urlPost, data) {
+        return r.post({
+          url: baseUrlApiAction + urlPost
+        }, data)
       },
 
       postDataTableMaster:function(urlGet, data){

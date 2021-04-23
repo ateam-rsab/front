@@ -54,10 +54,6 @@ define(['initialize'], function (initialize) {
                     "title": "Nama Pasien",
                     "width": 150,
                 }, {
-                    "field": "umur",
-                    "title": "Umur",
-                    "width": 100,
-                }, {
                     "field": "namaruangan",
                     "title": "Ruangan Asal",
                     "width": 100,

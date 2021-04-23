@@ -20,6 +20,9 @@ define(['initialize'], function (initialize) {
             let getJenisPegawai = $scope.dataLogin.jenisPegawai.jenispegawai ? $scope.dataLogin.jenisPegawai.jenispegawai : $scope.dataLogin.jenisPegawai.jenisPegawai;
             var detail = ''
             let baseURLFiltering = "idjenisperiksapenunjang="
+
+            let dataPengkajian = JSON.parse(localStorage.getItem("cacheHelper"));
+            dataPengkajian = dataPengkajian[0].value;
             $scope.listFilters = [
                 "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
                 "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
@@ -84,26 +87,26 @@ define(['initialize'], function (initialize) {
 
             // }
 
-            $scope.getDataPaket = function() {
+            $scope.getDataPaket = function () {
                 // http://192.168.12.3:8080/jasamedika-web/service/list-generic/?view=Paket&select=id,namaPaket&criteria=statusEnabled,jenisPaketId&values=true,4&order=namaPaket:asc
-                manageLogistikPhp.getDataTableMaster("produk/master-paket?idjenispaket=4").then(function (dat) { 
+                manageLogistikPhp.getDataTableMaster("produk/master-paket?idjenispaket=4").then(function (dat) {
                     $scope.listPaket = dat.data;
-                    // console.log(dat);
+
                 });
             }
             $scope.getDataPaket();
 
             $scope.getDataKategori = () => {
-                manageLogistikPhp.getDataTableMaster("produk/grup-penunjang").then(function (dat) { 
+                manageLogistikPhp.getDataTableMaster("produk/grup-penunjang").then(function (dat) {
                     $scope.listKategori = dat.data.penunjang.jenisperiksapenunjang;
-                    // console.log($scope.listKategori);
+
                     // jenisperiksapenunjang
                 })
             }
             $scope.getDataKategori();
 
             $scope.changeBaseUrlFiltering = (data, id) => {
-                if(data) {
+                if (data) {
                     $scope.item.paket = null;
                 } else {
                     $scope.item.kategori = null;
@@ -135,7 +138,39 @@ define(['initialize'], function (initialize) {
             }
             $scope.filterPelayanan("");
 
+            $scope.columnGridPreview = [{
+                "field": "noregistrasi",
+                "title": "No. Registrasi",
+                "width": 100,
+            }, {
+                "field": "noorder",
+                "title": "No. Order",
+                "width": 100,
+            }, {
+                "field": "tglorder",
+                "title": "Tanggal Order",
+                "width": 100,
+            }, {
+                "field": "namaruanganasal",
+                "title": "Ruangan",
+                "width": 150,
+            }, {
+                "field": "dokter",
+                "title": "Dokter Order",
+                "width": 150,
+            }, {
+                "field": "statusorder",
+                "title": "Status Order",
+                "width": 100,
+            }, ]
+
             function init() {
+                manageLogistikPhp.getDataTableTransaksi("laporan/get-riwayat-harian?noregistrasi=" + dataPengkajian[3], true).then(function (dat) {
+                    $scope.dataDailyPreview = new kendo.data.DataSource({
+                        data: dat.data.daftar,
+                        pageSize: 5
+                    })
+                });
                 manageLogistikPhp.getDataTableTransaksi("get-detail-login", true).then(function (dat) {
                     $scope.PegawaiLogin2 = dat.data
                 });
@@ -349,7 +384,7 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.showPopUpOrder = function () {
-                if(getJenisPegawai !== "DOKTER") {
+                if (getJenisPegawai !== "DOKTER") {
                     toastr.info('Anda tidak memiliki akses menambahkan konsultasi');
                     return;
                 }
@@ -360,42 +395,38 @@ define(['initialize'], function (initialize) {
                     "field": "no",
                     "title": "No",
                     "width": "20px",
-                },
-                {
+                }, {
                     "field": "noregistrasi",
                     "title": "No Registrasi",
                     "width": "70px",
-                },
-                {
+                }, {
                     "field": "tglorder",
                     "title": "Tgl Order",
                     "width": "50px",
-                },
-                {
+                }, {
                     "field": "noorder",
                     "title": "No Order",
                     "width": "60px",
-                },
-                {
+                }, {
                     "field": "dokter",
                     "title": "Dokter",
                     "width": "100px"
-                },
-                {
+                }, {
                     "field": "namaruangantujuan",
                     "title": "Ruangan",
                     "width": "100px",
-                },
-                // {
-                //     "field": "statusorder",
-                //     "title": "Status",
-                //     "width": "70px",
-                // },
-                {
+                }, {
+                    "field": "statusorder",
+                    "title": "Status",
+                    "width": "70px",
+                }, {
                     command: [{
                         text: "PDF",
                         click: exportToPdf
-                    }, ],
+                    }, {
+                        text: "Edit",
+                        click: exportToPdf
+                    }],
                     title: "&nbsp;",
                     width: 50,
                     attributes: {
@@ -408,7 +439,6 @@ define(['initialize'], function (initialize) {
             function exportToPdf(e) {
                 e.preventDefault();
                 let dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-                console.log(dataItem);
                 window.open('http://192.168.12.4:7777/service-reporting/lap-lab/' + dataItem.noregistrasi);
             }
             $scope.detailGridOptions = function (dataItem) {
@@ -475,7 +505,7 @@ define(['initialize'], function (initialize) {
                             data.produkfk = $scope.item.layanan.id;
                             data.qtyproduk = parseFloat($scope.item.qty);
                             data.pemeriksaanluar = $scope.item.pemeriksaanKeluar === true ? 1 : 0;
-                            
+
 
                             data2[i] = data;
                             $scope.dataGridOrder = new kendo.data.DataSource({

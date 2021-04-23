@@ -37,9 +37,14 @@
                     <label class="hint-label">{{dataOrderRadiologi.namapasien}}</label>
                 </div>
 
-                <div class="grid_3">
+                <div class="grid_2">
                     <label c-label item="item">Catatan Khusus</label>
                     <label class="hint-label">{{detailOrderRadiologi.catatan_kusus}}</label>
+                </div>
+
+                <div class="grid_2">
+                    <label c-label item="item">Klinis</label>
+                    <label class="hint-label">{{dataOrderRadiologi.klinis}}</label>
                 </div>
             </div>
 
@@ -271,6 +276,35 @@
                                 <div class="grid_12" style="margin-bottom: 10px">
                                     <input style="width: 100%" k-ng-model="layanan.jadwalTindakan" kendo-datetimepicker
                                         placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" />
+                                </div>
+
+                                <div class="grid_12">
+                                    <label c-label item="item">
+                                        <strong>Konsultasi Anestesi</strong>
+                                    </label>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="grid_12" style="margin-bottom: 10px">
+                                    <!-- <input type="text" class="k-textbox" ng-model="layanan.konsultasiAnestesi"> -->
+                                    <textarea ng-model="layanan.konsultasiAnestesi" maxlength="5000"
+                                        style="height:100px"></textarea>
+                                    <p class="length-textarea">
+                                        5000/{{layanan.konsultasiAnestesi ? layanan.konsultasiAnestesi.length : 0}}</p>
+                                </div>
+
+                                <div class="grid_12">
+                                    <label c-label item="item">
+                                        <strong>Pemeriksaan Radiologi</strong>
+                                    </label>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="grid_12" style="margin-bottom: 10px">
+                                    <!-- <input type="text" min="0" class="k-textbox"
+                                        ng-model="layanan.pemeriksaanRadiologi"> -->
+                                    <textarea ng-model="layanan.pemeriksaanRadiologi" maxlength="3000" ng-disabled="isVerif"
+                                        style="height:100px"></textarea>
+                                    <p class="length-textarea">
+                                        3000/{{layanan.pemeriksaanRadiologi ? layanan.pemeriksaanRadiologi.length : 0}}</p>
                                 </div>
                             </div>
                         </md-card-content>
