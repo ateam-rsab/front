@@ -48,9 +48,13 @@ define(['initialize'], function (initialize) {
                             text: "Verifikasi",
                             click: verifData,
                             imageClass: "k-icon k-i-pencil"
+                        }, {
+                            text: "Hapus",
+                            click: hapusData,
+                            imageClass: "k-icon k-i-pencil"
                         },],
                         title: "",
-                        width: 70
+                        width: 100
                     }],
                 }
 
@@ -96,11 +100,20 @@ define(['initialize'], function (initialize) {
                         pageSize: 50
                     });
 
+                    if(res.data.data.length >= 1) {
+                        $scope.tglBatasAkhirVerifikasi = res.data.data[0].tglBatasAkhirVerif;
+                    }
+
+                    if(dateHelper.toTimeStamp(new Date()) > $scope.tglBatasAkhirVerifikasi) {
+                        toastr.info("Harap Verifikasi Kegiatan Harian");
+                    }
+
                     $scope.isRouteLoading = false;
                 })
             }
 
-            $scope.simpanVerif = (data) => {
+            $scope.simpanVerif = (data, method) => {
+                let statusEnabled = method === "verif";
 
                 let dataSave = {
                     namaKegiatan: data.namaIndikator,
@@ -111,7 +124,7 @@ define(['initialize'], function (initialize) {
                         noRec: data.logbookKinerja.noRec
                     },
                     kdProfile: 0,
-                    statusEnabled: true,
+                    statusEnabled: statusEnabled,
                     noRec: data.noRec
                 }
 
@@ -123,7 +136,6 @@ define(['initialize'], function (initialize) {
             function verifData(e) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-                // console.log(dataItem);
 
                 if (dataItem.isStatusVerifikasi) {
                     toastr.warning("Catatan Kegiatan Sudah Terverifikasi", "Peringatan")
@@ -137,10 +149,23 @@ define(['initialize'], function (initialize) {
                     .ok('Ya')
                     .cancel('Tidak');
                 $mdDialog.show(confirm).then(function () {
-                    $scope.simpanVerif(dataItem);
-                }, function () {
-                    // console.error('Tidak jadi verif');
-                });
+                    $scope.simpanVerif(dataItem, "verif");
+                }, function () {});
+            }
+
+            function hapusData(e) {
+                e.preventDefault();
+                var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+
+                var confirm = $mdDialog.confirm()
+                    .title('Apakah anda yakin akan Menghapus Catatan Kegiatan ' + dataItem.namaIndikator + '?')
+                    .ariaLabel('Lucky day')
+                    .targetEvent(e)
+                    .ok('Ya')
+                    .cancel('Tidak');
+                $mdDialog.show(confirm).then(function () {
+                    $scope.simpanVerif(dataItem, "hapus");
+                }, function () {});
             }
 
             $scope.$watch('item.srcPegawai', function (e) {

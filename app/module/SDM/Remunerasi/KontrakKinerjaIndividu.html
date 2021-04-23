@@ -65,17 +65,17 @@
                 <div class="grid_6">
                     <label><strong>Indikator Kinerja</strong></label>
                     <input c-text-box type="input" filter="" class="k-textbox"
-                        ng-model="item.indikatorKerja.namaIndikator" ng-disabled="isNotEditable" />
+                        ng-model="item.indikatorKerja.namaIndikator" ng-disabled="true" />
                 </div>
                 <div class="grid_1">
                     <label><strong>Target</strong></label>
-                    <input c-text-box type="input" filter="numeric" class="k-textbox" ng-model="item.target"
-                        ng-disabled="isNotEditable" />
+                    <input c-text-box type="number" filter="numeric" min="0" class="k-textbox" ng-model="item.target"
+                        ng-disabled="item.statusVerif" />
                 </div>
                 <div class="grid_1">
                     <label><strong>Bobot</strong></label>
-                    <input c-text-box type="input" filter="numeric" class="k-textbox" ng-model="item.bobot"
-                        ng-disabled="isNotEditable" />
+                    <input c-text-box type="number" filter="numeric" min="0" class="k-textbox" ng-model="item.bobot"
+                        ng-disabled="item.statusVerif" />
                 </div>
                 <div class="grid_2" ng-show="isVerifGranted">
                     <md-checkbox ng-model="item.statusVerif" aria-label="verified" style="margin-top:24px"

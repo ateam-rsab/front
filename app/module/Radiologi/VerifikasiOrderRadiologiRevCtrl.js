@@ -86,6 +86,14 @@ define(['initialize'], function (initialize) {
                 "field": "jadualTindakan",
                 "title": "Jadwal Tindakan",
                 "width": 100,
+            }, {
+                "field": "konsultasiAnestesi",
+                "title": "Konsultasi Anestesi",
+                "width": 100,
+            }, {
+                "field": "pemeriksaanRadiologi",
+                "title": "Pemeriksaan Radiologi",
+                "width": 100,
             }];
 
             $scope.columnsHargaProduk = [{
@@ -108,17 +116,17 @@ define(['initialize'], function (initialize) {
 
             let dataSource = [];
             $scope.verifikasiData = () => {
-                if(!$scope.layanan.iptProduk) {
+                if (!$scope.layanan.iptProduk) {
                     toastr.warning("Harap pilih Nama Produk terlebih dahulu");
                     return
                 }
 
-                if(!$scope.layanan.iptQty) {
+                if (!$scope.layanan.iptQty) {
                     toastr.warning("Harap isi QTY terlebih dahulu");
                     return
                 }
 
-                if(!$scope.layanan.jadwalTindakan) {
+                if (!$scope.layanan.jadwalTindakan) {
                     toastr.warning("Harap pilih Jadwal Tindakan terlebih dahulu");
                     return
                 }
@@ -131,7 +139,9 @@ define(['initialize'], function (initialize) {
                     persiapan: $scope.layanan.persiapan,
                     riwayat: $scope.layanan.riwayat,
                     catatan_tambahan: $scope.layanan.catatan_tambahan,
-                    jadualTindakan: dateHelper.formatDate($scope.layanan.jadwalTindakan, "YYYY-MM-DD HH:mm")
+                    jadualTindakan: dateHelper.formatDate($scope.layanan.jadwalTindakan, "YYYY-MM-DD HH:mm"),
+                    pemeriksaanRadiologi: $scope.layanan.pemeriksaanRadiologi,
+                    konsultasiAnestesi: $scope.layanan.konsultasiAnestesi,
                 }
 
                 dataSource = [
@@ -174,7 +184,7 @@ define(['initialize'], function (initialize) {
 
             $scope.showAlertSuccess = function (ev) {
                 $mdDialog.show(
-                  $mdDialog.alert()
+                    $mdDialog.alert()
                     .clickOutsideToClose(true)
                     .title('Verifikasi Berhasil')
                     .textContent('Anda akan di arahkan ke laman Daftar Order Pasien Radiologi.')
@@ -183,10 +193,10 @@ define(['initialize'], function (initialize) {
                 ).then(() => {
                     $state.go("DaftarOrderRadiologi");
                 });
-              };
+            };
 
             $scope.simpanData = () => {
-             
+
                 let dataSourceGrid = $scope.dataSourceVerified._data;
                 let dataSave = {
                     norec_pp: "",
@@ -216,9 +226,11 @@ define(['initialize'], function (initialize) {
                         namaproduk: dataSourceGrid[i].namaproduk,
                         objectkelasfk: $scope.dataOrderRadiologi.objectkelasfk,
                         objectruanganfk: $scope.dataOrderRadiologi.objectruanganfk,
-                        jadualTindakan:dataSourceGrid[i].jadualTindakan,
+                        jadualTindakan: dataSourceGrid[i].jadualTindakan,
                         produkfk: dataSourceGrid[i].idProduk,
                         qtyproduk: dataSourceGrid[i].qtyproduk,
+                        pemeriksaanRadiologi: dataSourceGrid[i].pemeriksaanRadiologi,
+                        konsultasiAnestesi: dataSourceGrid[i].konsultasiAnestesi,
                     })
 
                     dataBridge.bridging.push({
@@ -240,14 +252,9 @@ define(['initialize'], function (initialize) {
                             hargasatuan: dataSourceGrid[i].detailKomponenHarga[ii].hargasatuan,
                             objectprodukfk: dataSourceGrid[i].detailKomponenHarga[ii].objectprodukfk,
                         });
-                        // dataSave.bridging[i].komponenharga.push(dataSourceGrid[i].detailKomponenHarga[ii]);
                     }
                 }
 
-                console.log(dataSave);
-                console.log(dataSourceGrid);
-
-                // http://192.168.12.3:5555/simrs_harkit/service/transaksi/lab-radiologi/save-pelayanan-rad
                 findPasienRadiologi.saveData("lab-radiologi/save-pelayanan-rad", dataSave).then((res) => {
 
                     findPasienRadiologi.saveData("lab-radiologi/save-bridging-zeta", dataBridge).then((res) => {
@@ -256,7 +263,7 @@ define(['initialize'], function (initialize) {
 
                 })
 
-                
+
             }
         }
     ]);

@@ -8925,6 +8925,34 @@
     ]
   },
   {
+    "name": "DaftarKehadiranPasienLab",
+    "url": "/DaftarKehadiranPasienLab",
+    "templateurl": "module/Laboratorium/DaftarKehadiranPasienLab.html",
+    "controller": "DaftarKehadiranPasienLabCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
+      },
+      {
+        "module": "PasienService",
+        "define": "PasienService"
+      },
+      {
+        "module": "PhpServices",
+        "define": "PhpServices"
+      }
+    ]
+  },
+  {
     "name": "DaftarPasienPenunjang",
     "url": "/DaftarPasienPenunjang",
     "templateurl": "module/Laboratorium/DaftarPasienPenunjang.html",

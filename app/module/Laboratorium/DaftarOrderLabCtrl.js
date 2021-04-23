@@ -129,7 +129,24 @@ define(['initialize'], function (initialize) {
                 manageLogistikPhp.getDataTableTransaksi("lab-radiologi/get-data-combo", true).then(function (dat) {
                     $scope.listDepartemen = dat.data.departemen;
                     $scope.listKelompokPasien = dat.data.kelompokpasien;
-                    $scope.listDokter = dat.data.dokter
+                    $scope.listDokter = dat.data.dokter;
+                    $scope.listDokterVerifikasi = [{
+                        id: 961,
+                        namalengkap: "dr. Yosanti Elsa Kartikawati, Sp.PK, M.Kes"
+                    }, {
+                        id: 538,
+                        namalengkap: "dr. Ni Sayu Dewi Budhiyani, Sp.PK"
+                    }, {
+                        id: 1078,
+                        namalengkap: "dr. Lydia Pratanu, MS"
+                    }, {
+                        id: 457,
+                        namalengkap: "dr. Meryanne Elisabeth, Sp.PA"
+                    }, {
+                        id: 1256,
+                        namalengkap: "dr. Isabelle Deli, Sp.PA"
+                    }]
+                 
                 });
             }
 
@@ -210,13 +227,11 @@ define(['initialize'], function (initialize) {
 
                     }
 
-                    console.log(dat.data.data);
-                    
                     $scope.listDataPasien = new kendo.data.DataSource({
                         data: dat.data.data,
                         pageSize: 100
                     });
-                   
+
                 });
 
             }
@@ -505,7 +520,6 @@ define(['initialize'], function (initialize) {
                     "&objectkelasfk=" + $scope.dataSelected.objectkelasfk, true).then(function (dat) {
 
                     var dataSource = dat.data.data;
-                    // console.log(dataSource)
                     // $scope.catatanOrder = dat.data.
                     for (let i = 0; i < dataSource.length; i++) {
                         dataSource[i].statCheckbox = false;

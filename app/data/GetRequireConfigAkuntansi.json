@@ -1473,6 +1473,10 @@
       "urlDep": "module/Laboratorium/DaftarOrderLabCtrl"
     },
     {
+      "nameDep": "DaftarKehadiranPasienLabCtrl",
+      "urlDep": "module/Laboratorium/DaftarKehadiranPasienLabCtrl"
+    },
+    {
       "nameDep": "DaftarPasienPenunjangCtrl",
       "urlDep": "module/Laboratorium/DaftarPasienPenunjangCtrl"
     },
