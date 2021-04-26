@@ -411,9 +411,9 @@ define(['initialize'], function (initialize) {
                         "# } #",
                     width: "50px"
                 }, {
-                    field: "unitKerja",
-                    title: "<h3>Unit Kerja</h3>",
-                    width: "300px",
+                    field: "namaJabatan",
+                    title: "<h3>Nama Jabatan</h3>",
+                    width: "500px",
                     filterable: true
                 }, {
                     field: "jenisJabatan",
@@ -421,9 +421,9 @@ define(['initialize'], function (initialize) {
                     width: "150px",
                     filterable: true
                 }, {
-                    field: "namaJabatan",
-                    title: "<h3>Nama Jabatan</h3>",
-                    width: "500px",
+                    field: "unitKerja",
+                    title: "<h3>Unit Kerja</h3>",
+                    width: "300px",
                     filterable: true
                 }],
             }
@@ -692,8 +692,8 @@ define(['initialize'], function (initialize) {
                         "# } #",
                     width: "5%"
                 }, {
-                    field: "unitKerja",
-                    title: "<h3>Unit Kerja</h3>",
+                    field: "namaJabatan",
+                    title: "<h3>Nama Jabatan</h3>",
                     editable: false,
                     width: "35%"
                 }, {
@@ -702,8 +702,8 @@ define(['initialize'], function (initialize) {
                     editable: false,
                     width: "15%"
                 }, {
-                    field: "namaJabatan",
-                    title: "<h3>Nama Jabatan</h3>",
+                    field: "unitKerja",
+                    title: "<h3>Unit Kerja</h3>",
                     editable: false,
                     width: "35%"
                 }, {

@@ -130,7 +130,7 @@ define(['initialize'], function (initialize) {
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
 
                 if (dataItem.isStatusVerifikasi) {
-                    toastr.warning("Catatan Kegiatan Sudah Terverifikasi", "Peringatan")
+                    toastr.warning("Catatan kegiatan sudah terverifikasi", "Peringatan")
                     return
                 }
 
@@ -147,7 +147,7 @@ define(['initialize'], function (initialize) {
                     .cancel('Tidak');
                 $mdDialog.show(confirm).then(function () {
                     $scope.simpanVerif(dataItem, "verif");
-                }, function () {});
+                }, function () { });
             }
 
             function hapusData(e) {
@@ -155,7 +155,7 @@ define(['initialize'], function (initialize) {
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
 
                 if (dataItem.isStatusVerifikasi) {
-                    toastr.warning("Catatan Kegiatan Sudah Terverifikasi", "Peringatan")
+                    toastr.warning("Catatan kegiatan sudah terverifikasi tidak dapat dihapus", "Peringatan")
                     return
                 }
 
@@ -167,7 +167,7 @@ define(['initialize'], function (initialize) {
                     .cancel('Tidak');
                 $mdDialog.show(confirm).then(function () {
                     $scope.simpanVerif(dataItem, "hapus");
-                }, function () {});
+                }, function () { });
             }
 
             $scope.$watch('item.srcPegawai', function (e) {

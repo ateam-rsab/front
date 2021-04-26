@@ -846,8 +846,10 @@ define(['initialize'], function (initialize) {
                     $scope.loadDataGridJabatanInternal();
                     $scope.enableBtnSimpanJabatanInternal = true;
                     $scope.loadDataRiwayatJabatan();
+                    $scope.isRouteLoading = false;
                 }, (error) => {
                     $scope.enableBtnSimpanJabatanInternal = true;
+                    $scope.isRouteLoading = false;
                 });
             }
 
