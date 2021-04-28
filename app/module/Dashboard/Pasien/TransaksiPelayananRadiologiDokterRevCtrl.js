@@ -26,6 +26,19 @@ define(['initialize'], function (initialize) {
                 "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
             ];
 
+            $scope.item = {
+                konsultasiAnestesi: "Tidak",
+                pemeriksaanLab: "Tidak",
+                prosesPersalinan: "Normal",
+                kelainanKonengital: "Tidak",
+                klinisPneumonia: "Tidak",
+                terpasangOksigen: "Tidak",
+                terpasangEtt: "Tidak",
+                umbilicalCatheter: "Tidak",
+                PICC: "Tidak",
+                catheterDrain: "Tidak",
+            }
+
             var data2 = [];
             $scope.PegawaiLogin2 = {};
             var namaRuangan = ''
@@ -71,10 +84,10 @@ define(['initialize'], function (initialize) {
 
             $scope.selectedDataProduk = [];
             $scope.updateSelectedData = (data, i) => {
-                if($scope.selectedDataProduk.length >= 1) {
-                    toastr.info("Untuk Pasien BPJS tidak bisa lebih dari 1 tindakan");
-                    return;
-                }
+                // if(kelompokPasien === "BPJS" && $scope.selectedDataProduk.length >= 1) {
+                //     toastr.info("Untuk Pasien BPJS tidak bisa lebih dari 1 tindakan");
+                //     return;
+                // }
                 $scope.selectedDataProduk = [];
                 $scope.listLayanan[i].checked = !$scope.listLayanan[i].checked;
                 for (let i in $scope.listLayanan) {
@@ -172,11 +185,11 @@ define(['initialize'], function (initialize) {
                     $scope.isLoading = false;
                 });
             }
-            
+
 
             $scope.filterPelayanan("A");
 
-             function getDataRiwayat() {
+            function getDataRiwayat() {
                 manageLogistikPhp.getDataTableTransaksi('lab-radiologi/get-riwayat-rad?noregistrasi=' + $scope.item.noregistrasi).then((e) => {
                     for (let i = e.data.daftar.length - 1; i >= 0; i--) {
                         e.data.daftar[i].no = i + 1
@@ -666,12 +679,17 @@ define(['initialize'], function (initialize) {
 
             $scope.Simpan = function () {
 
-                if ($scope.item.ruangantujuan == undefined) {
+                if (kelompokPasien === "BPJS" && data2.length >= 1) {
+                    toastr.info("Untuk Pasien BPJS tidak bisa lebih dari 1 tindakan");
+                    return;
+                }
+
+                if (!$scope.item.ruangantujuan) {
                     alert("Pilih Ruangan Tujuan terlebih dahulu!!")
                     return
                 }
 
-                if(!$scope.item.klinis) {
+                if (!$scope.item.klinis) {
                     toastr.warning("Klinis tidak boleh kosong!");
                     return;
                 }
@@ -680,6 +698,8 @@ define(['initialize'], function (initialize) {
                     alert("Pilih layanan terlebih dahulu!!")
                     return;
                 }
+
+
 
                 // persiapan nya ada 2
                 var objSave = {
@@ -709,12 +729,7 @@ define(['initialize'], function (initialize) {
                     drainCath: $scope.item.catheterDrain,
                     details: data2
                 }
-                console.log(data2);
-                console.log(objSave);
 
-                // $scope.selectedDataProduk = [];
-                
-                // $scope.BatalOrder();
                 manageLogistikPhp.postpost("lab-radiologi/save-order-rad-dokter", objSave).then(function (e) {
                     tempDataGrid = [];
                     $scope.selectedDataProduk = [];

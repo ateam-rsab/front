@@ -1198,6 +1198,11 @@ define(['initialize'], function (initialize) {
             // }
 
             $scope.createNewJabatanInternal = function () {
+                if($scope.dataSourceJabatanInternal._data.length >= 1) {
+                    toastr.info("Pegawai Mitra tidak bisa memiliki lebih dari 2 Jabatan");
+                    
+                    return;
+                }
                 clearPop();
                 $scope.idGridInternalJabatan = null;
                 if ($scope.isEdit) {

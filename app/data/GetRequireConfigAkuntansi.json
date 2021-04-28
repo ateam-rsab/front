@@ -1200,6 +1200,10 @@
       "urlDep": "module/Farmasi/InputResepApotikOrderRevCtrl"
     },
     {
+      "nameDep": "TambahTindakanLabDokterCtrl",
+      "urlDep": "module/Dashboard/Pasien/TambahTindakanLabDokterCtrl"
+    },
+    {
       "nameDep": "TransaksiPelayananLaboratoriumDokterRevCtrl",
       "urlDep": "module/Dashboard/Pasien/TransaksiPelayananLaboratoriumDokterRevCtrl"
     },

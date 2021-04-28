@@ -139,6 +139,16 @@
         ]
     },
     {
+        "name":"Laporan",
+        "children":[{
+            "name": "Laporan Kunjungan Pasien",
+            "link": "#/LaporanKunjunganPasien"
+        }, {
+            "name": "Laporan Layanan",
+            "link": "#/LaporanLayanan"
+        }]
+    },
+    {
         "name": "Inventori",
         "children": [
             {
@@ -231,6 +241,10 @@
             {
                 "name": "Daftar Pengajuan Mutasi Resign Sanksi Pegawai",
                 "link": "#/DaftarPengajuanMutasiSanksiResign"
+            },
+            {
+                "name": "Rekapitulasi Kehadiran Pegawai",
+                "link": "#/RekapitulasiKehadiranPegawai"
             },
             {
                 "name": "Monitoring Absensi",

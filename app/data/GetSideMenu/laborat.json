@@ -21,6 +21,10 @@
         "link": "#/DaftarOrderLab"
     },
     {
+        "name": "Daftar Kehadiran Pasien Laboratorium",
+        "link": "#/DaftarKehadiranPasienLab"
+    },
+    {
         "name": "Daftar Pasien Penunjang",
         "link": "#/DaftarPasienPenunjang"
     },

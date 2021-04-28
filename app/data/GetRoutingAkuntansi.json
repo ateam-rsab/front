@@ -7264,6 +7264,44 @@
     ]
   },
   {
+    "name": "TambahTindakanLabDokter",
+    "url": "/TambahTindakanLabDokter",
+    "templateurl": "module/Dashboard/Pasien/TambahTindakanLabDokter.html",
+    "controller": "TambahTindakanLabDokterCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "PasienService",
+        "define": "PasienService"
+      },
+      {
+        "module": "ProdukService",
+        "define": "ProdukService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      },
+      {
+        "define": "InputOrderCtrl"
+      },
+      {
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
+      },
+      {
+        "define": "RekamMedisCtrl"
+      }
+    ]
+  },
+  {
     "name": "RekamMedis.TransaksiPelayananRadiologiDokterRev",
     "url": "/TransaksiPelayananRadiologiDokterRev",
     "templateurl": "module/Dashboard/Pasien/TransaksiPelayananRadiologiDokterRev.html",

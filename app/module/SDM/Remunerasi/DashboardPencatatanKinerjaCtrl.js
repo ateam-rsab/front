@@ -7,6 +7,9 @@ define(['initialize'], function (initialize) {
             $scope.showDetailPerilaku = false;
             $scope.showIsSingleJabatan = false;
             $scope.item = {};
+            $scope.item.tanggal = new Date();
+            $scope.now = new Date();
+            $scope.disabledButtonAdd = true;
             $scope.dataLogin = JSON.parse(localStorage.getItem("pegawai"));
 
             let getJabatanPegawai = () => {
@@ -24,10 +27,16 @@ define(['initialize'], function (initialize) {
             getJabatanPegawai();
 
             $scope.getDataDashboard = () => {
-                let date = dateHelper.toTimeStamp(new Date());
-                var jabatanId = ""
+                let date = dateHelper.toTimeStamp($scope.item.tanggal);
+                let awalBulan = new Date();
+                awalBulan = new Date(awalBulan.getFullYear(), awalBulan.getMonth(), 1);
+                awalBulan = dateHelper.toTimeStamp(awalBulan);
+                console.log(awalBulan);
+                $scope.disabledButtonAdd = date < awalBulan;
+                console.log(date > awalBulan);
+                var jabatanId = "";
                 if ($scope.showIsSingleJabatan) {
-                    jabatanId = $scope.idJabatanSingle
+                    jabatanId = $scope.idJabatanSingle;
                 } else {
                     jabatanId = ($scope.item.jabatan ? $scope.item.jabatan.id : "")
                 }

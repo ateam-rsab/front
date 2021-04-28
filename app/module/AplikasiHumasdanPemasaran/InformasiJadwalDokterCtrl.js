@@ -238,14 +238,13 @@ define(['initialize'], function (initialize) {
 					$scope.isRouteLoading = false;
 				})
 			}
-			
+
 			let init = () => {
 
-				$scope.item.dokter = dataSearch.dokter
-				$scope.item.ruangan = dataSearch.ruangan
-				$scope.item.bulan = dataSearch.bulan
-				
-				if(dataSearch) {
+				if (dataSearch) {
+					$scope.item.dokter = dataSearch.dokter;
+					$scope.item.ruangan = dataSearch.ruangan;
+					$scope.item.bulan = dataSearch.bulan;
 					$scope.getData();
 				}
 			}

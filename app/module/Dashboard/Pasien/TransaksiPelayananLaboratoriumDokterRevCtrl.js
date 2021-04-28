@@ -22,7 +22,7 @@ define(['initialize'], function (initialize) {
             let baseURLFiltering = "idjenisperiksapenunjang="
 
             let dataPengkajian = JSON.parse(localStorage.getItem("cacheHelper"));
-            dataPengkajian = dataPengkajian[0].value;
+            dataPengkajian = dataPengkajian[1].value;
             $scope.listFilters = [
                 "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
                 "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
@@ -423,9 +423,6 @@ define(['initialize'], function (initialize) {
                     command: [{
                         text: "PDF",
                         click: exportToPdf
-                    }, {
-                        text: "Edit",
-                        click: exportToPdf
                     }],
                     title: "&nbsp;",
                     width: 50,
@@ -441,6 +438,7 @@ define(['initialize'], function (initialize) {
                 let dataItem = this.dataItem($(e.currentTarget).closest("tr"));
                 window.open('http://192.168.12.4:7777/service-reporting/lap-lab/' + dataItem.noregistrasi);
             }
+            
             $scope.detailGridOptions = function (dataItem) {
                 return {
                     dataSource: new kendo.data.DataSource({
@@ -549,6 +547,7 @@ define(['initialize'], function (initialize) {
                 $scope.item.qty = dataSelected.qtyproduk
                 $scope.item.pemeriksaanKeluar = dataSelected.pemeriksaanluar == 1 ? true : false
             }
+            
             $scope.hapus = function () {
                 if ($scope.item.qty == 0) {
                     alert("Qty harus di isi!")
@@ -603,10 +602,14 @@ define(['initialize'], function (initialize) {
                 $scope.riwayatForm = true
                 $scope.inputOrder = false;
             }
-            $scope.newOrder = function () {
-                $scope.riwayatForm = false
-                $scope.inputOrder = true;
+
+            $scope.tambahTindakan = () => {
+                console.log($scope.dataSelectedRiwayat);
+                localStorage.setItem("dataRiwayatLab", JSON.stringify($scope.dataSelectedRiwayat));
+                
+                $state.go("TambahTindakanLabDokter");
             }
+          
             $scope.Simpan = function () {
                 // if ($scope.item.ruangantujuan == undefined) {
                 //     toastr.warning("Pilih Ruangan Tujuan terlebih dahulu!!")

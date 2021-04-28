@@ -97,11 +97,17 @@
             <md-card-title-text>
                 <span class="md-headline">{{dataLogin.namaLengkap}}</span>
                 <span class="md-subhead" ng-if="showIsSingleJabatan">{{dataSingleJabatan}}</span>
-                <div class="grid_6" ng-if="!showIsSingleJabatan">
-                    <input kendo-combo-box k-filter="'contains'" k-ng-model="item.jabatan"
-                        k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-data-source="listJabatan"
-                        k-on-change="getDataDashboard()" />
+                <div class="grid_12">
+                    <div class="grid_6" ng-if="!showIsSingleJabatan">
+                        <input kendo-combo-box k-filter="'contains'" k-ng-model="item.jabatan"
+                            k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-data-source="listJabatan"
+                            k-on-change="getDataDashboard()" />
+                    </div>
+                    <div class="grid_2">
+                        <input style="width: 100%;" k-ng-model="item.tanggal" kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" k-max="now" k-on-change="getDataDashboard()"/>
+                    </div>
                 </div>
+              
             </md-card-title-text>
         </md-card-title>
 
@@ -148,7 +154,7 @@
                                 data-label="{{kuantitas.persenCapaianDibulatkan}}%"></progress>
                         </div>
                         <div class="grid_1">
-                            <md-button class="md-raised md-primary medium-button" ng-click="addData(kuantitas)">
+                            <md-button class="md-raised md-primary medium-button" ng-click="addData('kuantitas')" ng-disabled="disabledButtonAdd">
                                 <i class="fa fa-plus"></i>
                             </md-button>
                         </div>
@@ -190,7 +196,7 @@
                                 data-label="{{kualitas.persenCapaianDibulatkan}}%"></progress>
                         </div>
                         <div class="grid_1">
-                            <md-button class="md-raised md-primary medium-button" ng-click="addData(kualitas)">
+                            <md-button class="md-raised md-primary medium-button" ng-click="addData('kualitas')" ng-disabled="disabledButtonAdd">
                                 <i class="fa fa-plus"></i>
                             </md-button>
                         </div>
@@ -233,7 +239,7 @@
                         </div>
 
                         <div class="grid_1">
-                            <md-button class="md-raised md-primary medium-button" ng-click="addData(perilaku)">
+                            <md-button class="md-raised md-primary medium-button" ng-click="addData('perilaku')" ng-disabled="disabledButtonAdd">
                                 <i class="fa fa-plus"></i>
                             </md-button>
                         </div>

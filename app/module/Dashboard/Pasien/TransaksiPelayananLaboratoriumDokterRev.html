@@ -82,7 +82,7 @@
                                     <md-button class="md-raised md-warn" ng-click="BatalOrder()">Batal</md-button>
                                 </div>
                                 <div class="grid_1" style="margin-top: 22px">
-                                    <md-button class="md-raised" ng-click="riwayat()">Riwayat</md-button>
+                                    <md-button class="md-raised md-danger" ng-click="hapus()">Hapus</md-button>
                                 </div>
                                 <div class="grid_1" style="margin-top: 22px">
                                     <md-button class="md-raised" ng-click="kembali()">Kembali</md-button>
@@ -135,7 +135,7 @@
                         <div class="grid_12">
                             <div class="grid_6"></div>
                             <div class="grid_2" style="margin-top: 22px">
-                                <md-button class="md-raised medium-button md-default md-primary" is-back>
+                                <md-button class="md-raised md-default md-primary" is-back>
                                     <i class="fa fa-arrow-left"></i>
                                     <span>Kembali</span>
         
@@ -156,15 +156,15 @@
         
                             <div class="grid_2" style="margin-top: 22px">
                                 <!-- <button class="c-button" ng-click="hapusOrder()">Hapus</button> -->
-                                <md-button class="md-raised medium-button md-danger" ng-click="hapusOrder()">
+                                <md-button class="md-raised md-danger" ng-click="hapusOrder()">
                                     <span style="margin-right:5px;">Hapus</span>
                                     <i class="fa fa-trash"></i>
                                 </md-button>
                             </div>
                             <div class="grid_2" style="margin-top: 22px">
                                 <!-- <button class="c-button" ng-click="newOrder()">Order Baru</button> -->
-                                <md-button class="md-raised medium-button md-primary" ng-click="newOrder()">
-                                    <span style="margin-right:5px;">Tambah</span>
+                                <md-button class="md-raised md-primary" ng-click="tambahTindakan()">
+                                    <span style="margin-right:5px;">Tambah Tindakan</span>
                                     <i class="fa fa-plus"></i>
                                 </md-button>
                             </div>
