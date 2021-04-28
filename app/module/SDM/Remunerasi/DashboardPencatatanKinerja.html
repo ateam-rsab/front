@@ -113,12 +113,22 @@
 
         <md-card-content>
             <progress id="headProgress" class="mt-progress-bar" max="100"
-                value="{{dataDashboard.persenCapaianDibulatkan}}"></progress>
-            <strong style="display: block;margin-top: 10px;">P1: {{dataDashboard.rupiahCapaianP1Format}}/{{dataDashboard.rupiahTargetFormatP1}}</strong>
-            <i style="display: block;">S&K: Plafon Gaji {{dataDashboard.rupiahCapaianP1Format}}, selisihnya dengan gaji yang anda terima adalah maksimal P1 anda</i>
+                value="{{dataDashboard.persenCapaianDibulatkan}}"
+                data-label="{{dataDashboard.persenCapaianDibulatkan}}%"></progress>
+            <div ng-show="showSyaratKetentuan" style="text-align: right;">
+                <strong style="display: block;margin-top: 10px;">P1:
+                    {{dataDashboard.rupiahCapaianP1Format}}/{{dataDashboard.rupiahTargetFormatP1}}</strong>
+                <i style="display: block;">S&K: Plafon Gaji
+                    {{dataDashboard.plafonP1}}, selisihnya dengan
+                    gaji yang Anda terima adalah maksimal P1 Anda</i>
 
-            <strong style="display: block;margin-top: 20px;">P2: {{dataDashboard.rupiahCapaianP2Format}}/{{dataDashboard.rupiahTargetFormatP2}}</strong>
-            <i style="display: block;">S&K: Plafon Insentif {{dataDashboard.rupiahCapaianP2Format}}, selisihnya dengan insentif yang anda terima adalah maksimal P2 anda</i>
+                <strong style="display: block;margin-top: 20px;">P2:
+                    {{dataDashboard.rupiahCapaianP2Format}}/{{dataDashboard.rupiahTargetFormatP2}}</strong>
+                <i style="display: block;">S&K: Plafon Insentif
+                    {{dataDashboard.plafonP2}}, selisihnya
+                    dengan insentif yang Anda terima adalah maksimal P2 Anda</i>
+            </div>
+
             <hr>
 
             <div class="grid_12">

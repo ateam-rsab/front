@@ -10,6 +10,7 @@ define(['initialize'], function (initialize) {
             $scope.grade = "";
             $scope.detailGrade = "";
             $scope.isSimpanDisabled = true;
+            $scope.isRouteLoading = false;
             $scope.pegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
 
             modelItem.getDataDummyGeneric('Ruangan').then(function (e) {
@@ -241,6 +242,7 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.Save = function () {
+                $scope.isRouteLoading = true;
                 if (!totalNilai) {
                     $scope.Hitung();
                     return;
@@ -293,6 +295,7 @@ define(['initialize'], function (initialize) {
                     $scope.grade = "";
                     $scope.detailGrade = "";
                     $scope.item = "";
+                    $scope.isRouteLoading = false;
                 });
             };
 
@@ -312,6 +315,7 @@ define(['initialize'], function (initialize) {
 
             //Hitung index Evaluasi Pegawai
             $scope.Hitung = function () {
+                $scope.isRouteLoading = true;
                 if (!validate()) {
                     return;
                 }
@@ -370,6 +374,7 @@ define(['initialize'], function (initialize) {
                     $scope.grade = e.data.data.grade ? e.data.data.grade : "-";
                     $scope.detailGrade = e.data.data.detailGrade ? e.data.data.detailGrade : "-";
 
+                    $scope.isRouteLoading = false;
                 });
                 $rootScope.doneLoad = true;
             };

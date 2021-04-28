@@ -10,13 +10,15 @@
                         <label class="c-label">Unit Kerja</label>
                         <input style="width: 100%;" kendo-combo-box k-ng-model="data.unitKerja"
                             k-data-text-field="'name'" k-filter="'contains'" k-data-value-field="'id'"
-                            k-data-source="listUnitKerja" k-on-change="getDataJabatan(data.unitKerja.id,data.jenisJabatan.id)" />
+                            k-data-source="listUnitKerja"
+                            k-on-change="getDataJabatan(data.unitKerja.id,data.jenisJabatan.id)" />
                     </div>
                     <div class="grid_12" style="margin-top: 3.25%;">
                         <label class="c-label">Jenis Jabatan</label>
                         <input style="width: 100%;" kendo-combo-box k-ng-model="data.jenisJabatan"
                             k-data-text-field="'jenisJabatan'" k-filter="'contains'" k-data-value-field="'id'"
-                            k-data-source="listJenisJabatan" k-on-change="getDataJabatan(data.unitKerja.id,data.jenisJabatan.id)" />
+                            k-data-source="listJenisJabatan"
+                            k-on-change="getDataJabatan(data.unitKerja.id,data.jenisJabatan.id)" />
                     </div>
                     <div class="grid_12" style="margin-top: 3.25%;">
                         <label class="c-label">Jabatan</label>
@@ -279,7 +281,7 @@
                 </div>
             </div>
 
-
+            <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
         </div>
 
     </div>

@@ -6,11 +6,17 @@ define(['initialize'], function (initialize) {
             $scope.showDetailKualitas = false;
             $scope.showDetailPerilaku = false;
             $scope.showIsSingleJabatan = false;
+            $scope.showSyaratKetentuan = false;
             $scope.item = {};
             $scope.item.tanggal = new Date();
             $scope.now = new Date();
             $scope.disabledButtonAdd = true;
             $scope.dataLogin = JSON.parse(localStorage.getItem("pegawai"));
+
+            var listKategoriRemun = [1, 10, 14]
+            if (listKategoriRemun.includes($scope.dataLogin.kategoryPegawai.id)) {
+                $scope.showSyaratKetentuan = true
+            }
 
             let getJabatanPegawai = () => {
                 ManageSdmNew.getListData("pegawai/get-all-jabatan-by-pegawai?idPegawai=" + $scope.dataLogin.id).then((res) => {

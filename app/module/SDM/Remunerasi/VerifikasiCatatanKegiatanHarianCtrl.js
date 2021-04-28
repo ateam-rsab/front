@@ -18,11 +18,11 @@ define(['initialize'], function (initialize) {
                     columns: [{
                         field: "namaIndikator",
                         title: "<h3>Indikator</h3>",
-                        width: 150
+                        width: 120
                     }, {
                         field: "namaKegiatan",
                         title: "<h3>Kegiatan</h3>",
-                        width: 100
+                        width: 120
                     }, {
                         field: "hasil",
                         title: "<h3>Hasil</h3>",
@@ -30,19 +30,19 @@ define(['initialize'], function (initialize) {
                     }, {
                         field: "satuanIndikator",
                         title: "<h3>Satuan</h3>",
-                        width: 70
+                        width: 50
                     }, {
                         field: "catatan",
                         title: "<h3>Catatan</h3>",
-                        width: 200
+                        width: 120
                     }, {
                         field: "tglKegiatanFormat",
                         title: "<h3>Tanggal</h3>",
-                        width: 100
+                        width: 50
                     }, {
                         field: "statusVerifikasi",
                         title: "<h3>Status</h3>",
-                        width: 100
+                        width: 50
                     }, {
                         command: [{
                             text: "Verifikasi",
@@ -100,14 +100,6 @@ define(['initialize'], function (initialize) {
                         pageSize: 50
                     });
 
-                    if(res.data.data.length >= 1) {
-                        $scope.tglBatasAkhirVerifikasi = res.data.data[0].tglBatasAkhirVerif;
-                    }
-
-                    if(dateHelper.toTimeStamp(new Date()) > $scope.tglBatasAkhirVerifikasi) {
-                        toastr.info("Harap Verifikasi Kegiatan Harian");
-                    }
-
                     $scope.isRouteLoading = false;
                 })
             }
@@ -138,7 +130,12 @@ define(['initialize'], function (initialize) {
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
 
                 if (dataItem.isStatusVerifikasi) {
-                    toastr.warning("Catatan Kegiatan Sudah Terverifikasi", "Peringatan")
+                    toastr.warning("Catatan kegiatan sudah terverifikasi", "Peringatan")
+                    return
+                }
+
+                if (dateHelper.toTimeStamp(new Date()) > dataItem.tglBatasAkhirVerif) {
+                    toastr.warning("Batas masa verifikasi sudah lewat", "Peringatan")
                     return
                 }
 
@@ -150,12 +147,17 @@ define(['initialize'], function (initialize) {
                     .cancel('Tidak');
                 $mdDialog.show(confirm).then(function () {
                     $scope.simpanVerif(dataItem, "verif");
-                }, function () {});
+                }, function () { });
             }
 
             function hapusData(e) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+
+                if (dataItem.isStatusVerifikasi) {
+                    toastr.warning("Catatan kegiatan sudah terverifikasi tidak dapat dihapus", "Peringatan")
+                    return
+                }
 
                 var confirm = $mdDialog.confirm()
                     .title('Apakah anda yakin akan Menghapus Catatan Kegiatan ' + dataItem.namaIndikator + '?')
@@ -165,7 +167,7 @@ define(['initialize'], function (initialize) {
                     .cancel('Tidak');
                 $mdDialog.show(confirm).then(function () {
                     $scope.simpanVerif(dataItem, "hapus");
-                }, function () {});
+                }, function () { });
             }
 
             $scope.$watch('item.srcPegawai', function (e) {
