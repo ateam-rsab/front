@@ -37,16 +37,16 @@ define(['initialize'], function (initialize) {
                     title: "<h3>Indikator</h3>",
                     width: 200
                 }, {
-                    field: "satuanIndikator",
-                    title: "<h3>Satuan Indikator</h3>",
-                    width: 50
-                }, {
                     field: "target",
                     title: "<h3>Target</h3>",
                     width: 50
                 }, {
+                    field: "satuanIndikator",
+                    title: "<h3>Satuan Indikator</h3>",
+                    width: 60
+                }, {
                     field: "bobot",
-                    title: "<h3>Bobot</h3>",
+                    title: "<h3>Bobot (%)</h3>",
                     width: 50
                 }, {
                     field: "statusVerifikasi",
@@ -133,8 +133,7 @@ define(['initialize'], function (initialize) {
                         })
                     }
 
-                    console.log($scope.dataSourceKontrakKinerja);
-
+                    // console.log($scope.dataSourceKontrakKinerja);
                     $scope.isRouteLoading = false;
                 })
             }
@@ -257,9 +256,9 @@ define(['initialize'], function (initialize) {
             $scope.simpanData = (method) => {
                 let statusEnabled = method === 'save' || method === 'update';
 
-                console.log($scope.selectedJenisIndikator);
-                console.log((($scope.currentNilaiBobot[$scope.selectedJenisIndikator] - $scope.tempSelectedBobot) + parseInt($scope.item.bobot)));
-                if ((($scope.currentNilaiBobot[$scope.selectedJenisIndikator] - $scope.tempSelectedBobot) + parseInt($scope.item.bobot)) > nilaiMax[$scope.selectedJenisIndikator]) {
+                // console.log($scope.selectedJenisIndikator);
+                // console.log((($scope.currentNilaiBobot[$scope.selectedJenisIndikator] - $scope.tempSelectedBobot) + parseInt($scope.item.bobot)));
+                if ((($scope.currentNilaiBobot[$scope.selectedJenisIndikator] - $scope.tempSelectedBobot) + parseFloat($scope.item.bobot)) > nilaiMax[$scope.selectedJenisIndikator]) {
                     toastr.info('Total Nilai Bobot ' + $scope.selectedJenisIndikator.toUpperCase() + ' Tidak Boleh Lebih dari ' + nilaiMax[$scope.selectedJenisIndikator]);
                     return;
                 }
@@ -300,11 +299,16 @@ define(['initialize'], function (initialize) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
 
-                $scope.tempSelectedBobot = parseInt(dataItem.bobot);
+                if (dataItem.bobot != null) {
+                    $scope.tempSelectedBobot = parseFloat(dataItem.bobot);
+                } else {
+                    $scope.tempSelectedBobot = 0.0;
+                }
                 $scope.selectedJenisIndikator = dataItem.jenisIndikator
 
                 $scope.item.bulan = new Date(dataItem.bulan);
                 $scope.item.target = dataItem.target;
+                $scope.item.satuanIndikator = dataItem.satuanIndikator;
                 $scope.item.bobot = dataItem.bobot;
                 $scope.item.statusVerif = dataItem.isStatusVerifikasi;
                 $scope.item.indikatorKerja = {
