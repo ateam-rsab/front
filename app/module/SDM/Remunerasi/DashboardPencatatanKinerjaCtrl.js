@@ -34,6 +34,40 @@ define(['initialize'], function (initialize) {
 
             getJabatanPegawai();
 
+            $scope.init = () => {
+                $scope.optGrid = {
+                    pageable: true,
+                    scrollable: true,
+                    columns: [{
+                        field: "tglKegiatanFormat",
+                        title: "<h3>Tanggal</h3>",
+                        width: 50
+                    }, {
+                        field: "namaKegiatan",
+                        title: "<h3>Kegiatan</h3>",
+                        width: 120
+                    }, {
+                        field: "hasil",
+                        title: "<h3>Hasil</h3>",
+                        width: 50
+                    }, {
+                        field: "satuanIndikator",
+                        title: "<h3>Satuan</h3>",
+                        width: 50
+                    }, {
+                        field: "catatan",
+                        title: "<h3>Catatan</h3>",
+                        width: 120
+                    }, {
+                        field: "statusVerifikasi",
+                        title: "<h3>Status</h3>",
+                        width: 50
+                    }],
+                }
+            }
+
+            $scope.init();
+
             $scope.monthSelectorOptions = {
                 start: "year",
                 depth: "year"
@@ -41,10 +75,18 @@ define(['initialize'], function (initialize) {
 
             $scope.getDataDashboard = () => {
                 let bulan = new Date();
+                var bulanSF = bulan.getFullYear() + '-' + (bulan.getMonth() + 1)
+
                 if ($scope.item.bulan) {
                     bulan = $scope.item.bulan
                 }
                 let date = dateHelper.toTimeStamp(bulan);
+                var monthSF = bulan.getFullYear() + '-' + (bulan.getMonth() + 1)
+
+                $scope.isBulanIni = false;
+                if (monthSF == bulanSF) {
+                    $scope.isBulanIni = true;
+                }
 
                 var jabatanId = ""
                 if ($scope.showIsSingleJabatan) {
@@ -53,21 +95,23 @@ define(['initialize'], function (initialize) {
                     jabatanId = ($scope.item.jabatan ? $scope.item.jabatan.id : "")
                 }
 
-                ManageSdmNew.getListData("iki-remunerasi/get-dashboard-kinerja?pegawaiId=" + $scope.dataLogin.id + "&jabatanId=" + jabatanId + "&bulan=" + date).then((res) => {
-                    $scope.dataDashboard = res.data.data;
-                    // console.log($scope.dataDashboard);
+                ManageSdmNew.getListData("iki-remunerasi/get-dashboard-kinerja?pegawaiId=" + $scope.dataLogin.id
+                    + "&jabatanId=" + jabatanId
+                    + "&bulan=" + date).then((res) => {
+                        $scope.dataDashboard = res.data.data;
+                        // console.log($scope.dataDashboard);
 
-                    $scope.dataDetailDashboardKinerja = {
-                        kuantitas: res.data.data.listJenisIndikator[0],
-                        kualitas: res.data.data.listJenisIndikator[1],
-                        perilaku: res.data.data.listJenisIndikator[2],
-                        persentaseCapaianKuntitas: res.data.data.listJenisIndikator[0].persenCapaianDibulatkan,
-                        persentaseCapaianKualitas: res.data.data.listJenisIndikator[1].persenCapaianDibulatkan,
-                        persentaseCapaianPerilaku: res.data.data.listJenisIndikator[2].persenCapaianDibulatkan,
+                        $scope.dataDetailDashboardKinerja = {
+                            kuantitas: res.data.data.listJenisIndikator[0],
+                            kualitas: res.data.data.listJenisIndikator[1],
+                            perilaku: res.data.data.listJenisIndikator[2],
+                            persentaseCapaianKuntitas: res.data.data.listJenisIndikator[0].persenCapaianDibulatkan,
+                            persentaseCapaianKualitas: res.data.data.listJenisIndikator[1].persenCapaianDibulatkan,
+                            persentaseCapaianPerilaku: res.data.data.listJenisIndikator[2].persenCapaianDibulatkan,
 
-                    };
-                    // console.log($scope.dataDetailDashboardKinerja);
-                });
+                        };
+                        // console.log($scope.dataDetailDashboardKinerja);
+                    });
             }
 
             $scope.detailData = (state) => {
@@ -90,6 +134,24 @@ define(['initialize'], function (initialize) {
                     default:
                         break;
                 }
+            }
+
+            $scope.showDetail = (data) => {
+                $scope.labelDetail = data.namaIndikator
+
+                let URL = "iki-remunerasi/catatan-kegiatan-harian-indikator?pegawaiId=" + data.idPegawai
+                    + "&jabatanId=" + data.idJabatan
+                    + "&bulan=" + dateHelper.toTimeStamp($scope.item.bulan)
+                    + "&indikatorId=" + data.idIndikator
+
+                ManageSdmNew.getListData(URL).then((res) => {
+                    $scope.dataSource = new kendo.data.DataSource({
+                        data: res.data.data,
+                        pageSize: 5
+                    });
+
+                    $scope.popupDetail.open().center();
+                })
             }
 
             $scope.addData = (data) => {

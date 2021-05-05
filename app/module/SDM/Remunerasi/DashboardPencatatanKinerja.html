@@ -81,6 +81,10 @@
     h5 {
         margin: 10px 0;
     }
+
+    .fa-ellipsis-v {
+        color: black;
+    }
 </style>
 
 <md-toolbar md-scroll-shrink class="shadow">
@@ -150,13 +154,16 @@
                 <!-- detail kuantitas -->
                 <div class="grid_12" ng-if="showDetailKuantitas">
                     <div class="grid_6" ng-repeat="kuantitas in dataDetailDashboardKinerja.kuantitas.data">
-                        <span>{{kuantitas.namaIndikator}}</span>
+                        <div class="grid_12" style="margin-left: 0.5em;">
+                            <span ng-click="showDetail(kuantitas)"><i class="fa fa-ellipsis-v"></i></span>
+                            <span>{{kuantitas.namaIndikator}}</span>
+                        </div>
                         <div class="grid_11">
                             <progress class="mt-progress-bar blue" max="100"
                                 value="{{kuantitas.persenCapaianDibulatkan}}"
                                 data-label="{{kuantitas.persenCapaianDibulatkan}}%"></progress>
                         </div>
-                        <div class="grid_1">
+                        <div class="grid_1" ng-show="isBulanIni">
                             <md-button class="md-raised md-primary medium-button" ng-click="addData(kuantitas)">
                                 <i class="fa fa-plus"></i>
                             </md-button>
@@ -189,13 +196,16 @@
                 <!-- detail kualitas -->
                 <div class="grid_12" ng-if="showDetailKualitas">
                     <div class="grid_6" ng-repeat="kualitas in dataDetailDashboardKinerja.kualitas.data">
-                        <span>{{kualitas.namaIndikator}}</span>
+                        <div class="grid_12" style="margin-left: 0.5em;">
+                            <span ng-click="showDetail(kualitas)"><i class="fa fa-ellipsis-v"></i></span>
+                            <span>{{kualitas.namaIndikator}}</span>
+                        </div>
                         <div class="grid_11">
                             <progress class="mt-progress-bar egg-blue" max="100"
                                 value="{{kualitas.persenCapaianDibulatkan}}"
                                 data-label="{{kualitas.persenCapaianDibulatkan}}%"></progress>
                         </div>
-                        <div class="grid_1">
+                        <div class="grid_1" ng-show="isBulanIni">
                             <md-button class="md-raised md-primary medium-button" ng-click="addData(kualitas)">
                                 <i class="fa fa-plus"></i>
                             </md-button>
@@ -229,13 +239,15 @@
                 <!-- detail perilaku -->
                 <div class="grid_12" ng-if="showDetailPerilaku">
                     <div class="grid_6" ng-repeat="perilaku in dataDetailDashboardKinerja.perilaku.data">
-                        <span>{{perilaku.namaIndikator}}</span>
+                        <div class="grid_12" style="margin-left: 0.5em;">
+                            <span ng-click="showDetail(perilaku)"><i class="fa fa-ellipsis-v"></i></span>
+                            <span>{{perilaku.namaIndikator}}</span>
+                        </div>
                         <div class="grid_11">
                             <progress class="mt-progress-bar" max="100" value="{{perilaku.persenCapaianDibulatkan}}"
                                 data-label="{{perilaku.persenCapaianDibulatkan}}%"></progress>
                         </div>
-
-                        <div class="grid_1">
+                        <div class="grid_1" ng-show="isBulanIni">
                             <md-button class="md-raised md-primary medium-button" ng-click="addData(perilaku)">
                                 <i class="fa fa-plus"></i>
                             </md-button>
@@ -271,7 +283,7 @@
                         <label><strong>Catatan</strong></label>
                         <textarea c-text-box ng-model="item.catatanKegiatan" rows="10" maxlength="1000"></textarea>
                         <p class="length-textarea">
-                            1000/{{item.catatanKegiatan ? item.catatanKegiatan.length : 0}}</p>
+                            {{item.catatanKegiatan ? item.catatanKegiatan.length : 0}}/1000</p>
                     </div>
                 </div>
             </md-card-body>
@@ -298,5 +310,19 @@
                 </md-button>
             </div>
         </div>
+    </div>
+</div>
+
+<div kendo-window="popupDetail" k-title="'Detail'" k-width="1200" k-visible="false" k-on-open="win2visible= true"
+    k-on-close="win2visible= false">
+    <div class="panel panel-default container_12" style="padding: 0px 10px;">
+        <md-card>
+            <md-card-body style="padding: 10px;">
+                <h5>{{labelDetail}}</h5>
+                <div class="grid_12">
+                    <div kendo-grid k-data-source="dataSource" k-selectable="'row'" options="optGrid"></div>
+                </div>
+            </md-card-body>
+        </md-card>
     </div>
 </div>
