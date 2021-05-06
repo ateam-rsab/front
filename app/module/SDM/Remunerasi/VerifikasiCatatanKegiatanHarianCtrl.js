@@ -62,6 +62,7 @@ define(['initialize'], function (initialize) {
                     $scope.listPegawai = res.data.data;
                 });
             }
+
             $scope.init();
 
             $scope.getJabatanByIdPegawai = (id) => {
@@ -140,7 +141,7 @@ define(['initialize'], function (initialize) {
                 }
 
                 var confirm = $mdDialog.confirm()
-                    .title('Apakah anda yakin akan Verifikasi Catatan Kegiatan ' + dataItem.namaIndikator + '?')
+                    .title('Apakah anda yakin akan Verifikasi Catatan Kegiatan ' + dataItem.namaKegiatan + '?')
                     .ariaLabel('Lucky day')
                     .targetEvent(e)
                     .ok('Ya')
@@ -160,7 +161,7 @@ define(['initialize'], function (initialize) {
                 }
 
                 var confirm = $mdDialog.confirm()
-                    .title('Apakah anda yakin akan Menghapus Catatan Kegiatan ' + dataItem.namaIndikator + '?')
+                    .title('Apakah anda yakin akan Menghapus Catatan Kegiatan ' + dataItem.namaKegiatan + '?')
                     .ariaLabel('Lucky day')
                     .targetEvent(e)
                     .ok('Ya')

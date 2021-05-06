@@ -57,6 +57,8 @@
         options="optGridKontrakKinerja" k-ng-model="selectedData"></div>
 </div>
 
+<div ng-include='"../app/module/Shared/TemplateLoading"' ng-hide="isPopup"></div>
+
 <div kendo-window="popupTambah" k-title="'Input Data Kontrak Kinerja'" k-width="1200" k-visible="false"
     k-on-open="win2visible= true" k-on-close="win2visible= false">
     <div class="panel panel-default container_12" style="padding: 0px 10px;">
@@ -108,6 +110,8 @@
             </div>
         </div>
     </div>
+
+    <div ng-include='"../app/module/Shared/TemplateLoading"' ng-show="isPopup"></div>
 </div>
 
 <div kendo-window="popupTambahIndikator" k-title="'Tambah Data Kontrak Kinerja'" k-width="1200" k-visible="false"
@@ -188,6 +192,6 @@
             </div>
         </div>
     </div>
-</div>
 
-<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+    <div ng-include='"../app/module/Shared/TemplateLoading"' ng-show="isPopup"></div>
+</div>

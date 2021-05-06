@@ -4,20 +4,11 @@ define(['initialize'], function (initialize) {
         function ($q, managePegawai, findPegawai, dateHelper, findSdm, modelItem, manageSdm, ManageSdmNew, $state, $rootScope, $scope, $mdDialog) {
             $scope.isRouteLoading = false;
             $scope.isDuplicated = false
+            $scope.isPopup = false
             $scope.item = {};
             $scope.indikator = {};
             $scope.item.srcBulan = "";
             $scope.currentNilaiBobot = {};
-            // let nilaiMaxKuantitas = 40, nilaiMaxKualitas = 30, nilaiMaxPerilaku = 30;
-            let nilaiMax = {
-                kuantitas: 40,
-                kualitas: 30,
-                perilaku: 30
-            }
-
-            let dataPegawai = JSON.parse(localStorage.getItem('pegawai'));
-            let dataLogin = JSON.parse(localStorage.getItem("datauserlogin"));
-
             $scope.listJenisIndikator = [{
                 "id": 1,
                 "jenisIndikator": "Kuantitas"
@@ -28,6 +19,14 @@ define(['initialize'], function (initialize) {
                 "id": 3,
                 "jenisIndikator": "Perilaku"
             }];
+
+            let nilaiMax = {
+                kuantitas: 40,
+                kualitas: 30,
+                perilaku: 30
+            }
+            let dataPegawai = JSON.parse(localStorage.getItem('pegawai'));
+            let dataLogin = JSON.parse(localStorage.getItem("datauserlogin"));
 
             $scope.optGridKontrakKinerja = {
                 pageable: true,
@@ -96,46 +95,51 @@ define(['initialize'], function (initialize) {
                 }
 
                 $scope.isRouteLoading = true;
-                ManageSdmNew.getListData("iki-remunerasi/get-kontrak-kinerja?pegawaiId=" + ($scope.item.pegawai ? $scope.item.pegawai.id : "") + "&jabatanId=" + ($scope.item.jabatan ? $scope.item.jabatan.id : "") + "&bulan=" + ($scope.item.srcBulan ? dateHelper.toTimeStamp($scope.item.srcBulan) : "")).then((res) => {
+                $scope.isPopup = false;
 
-                    let tempNilaiBobotKualitas = 0, tempNilaiBobotKuantitas = 0, tempNilaiBobotPerilaku = 0;
-                    for (let i = 0; i < res.data.data.Kualitas.length; i++) {
-                        tempNilaiBobotKualitas += res.data.data.Kualitas[i].bobot;
-                        res.data.data.Kualitas[i].jenisIndikator = "kualitas";
-                    }
+                ManageSdmNew.getListData("iki-remunerasi/get-kontrak-kinerja?pegawaiId=" + ($scope.item.pegawai ? $scope.item.pegawai.id : "")
+                    + "&jabatanId=" + ($scope.item.jabatan ? $scope.item.jabatan.id : "")
+                    + "&bulan=" + ($scope.item.srcBulan ? dateHelper.toTimeStamp($scope.item.srcBulan) : "")).then((res) => {
+                        let tempNilaiBobotKualitas = 0, tempNilaiBobotKuantitas = 0, tempNilaiBobotPerilaku = 0;
 
-                    for (let ii = 0; ii < res.data.data.Kuantitas.length; ii++) {
-                        tempNilaiBobotKuantitas += res.data.data.Kuantitas[ii].bobot;
-                        res.data.data.Kuantitas[ii].jenisIndikator = "kuantitas";
-                    }
+                        for (let i = 0; i < res.data.data.Kualitas.length; i++) {
+                            tempNilaiBobotKualitas += res.data.data.Kualitas[i].bobot;
+                            res.data.data.Kualitas[i].jenisIndikator = "kualitas";
+                        }
 
-                    for (let iii = 0; iii < res.data.data.Perilaku.length; iii++) {
-                        tempNilaiBobotPerilaku += res.data.data.Perilaku[iii].bobot;
-                        res.data.data.Perilaku[iii].jenisIndikator = "perilaku";
-                    }
+                        for (let ii = 0; ii < res.data.data.Kuantitas.length; ii++) {
+                            tempNilaiBobotKuantitas += res.data.data.Kuantitas[ii].bobot;
+                            res.data.data.Kuantitas[ii].jenisIndikator = "kuantitas";
+                        }
 
-                    $scope.currentNilaiBobot.kualitas = tempNilaiBobotKualitas;
-                    $scope.currentNilaiBobot.perilaku = tempNilaiBobotPerilaku;
-                    $scope.currentNilaiBobot.kuantitas = tempNilaiBobotKuantitas;
+                        for (let iii = 0; iii < res.data.data.Perilaku.length; iii++) {
+                            tempNilaiBobotPerilaku += res.data.data.Perilaku[iii].bobot;
+                            res.data.data.Perilaku[iii].jenisIndikator = "perilaku";
+                        }
 
-                    $scope.dataSourceKontrakKinerja = {
-                        kualitas: new kendo.data.DataSource({
-                            data: res.data.data.Kualitas,
-                            pageSize: pageSize
-                        }),
-                        kuantitas: new kendo.data.DataSource({
-                            data: res.data.data.Kuantitas,
-                            pageSize: pageSize
-                        }),
-                        perilaku: new kendo.data.DataSource({
-                            data: res.data.data.Perilaku,
-                            pageSize: pageSize
-                        })
-                    }
+                        $scope.currentNilaiBobot.kualitas = tempNilaiBobotKualitas;
+                        $scope.currentNilaiBobot.perilaku = tempNilaiBobotPerilaku;
+                        $scope.currentNilaiBobot.kuantitas = tempNilaiBobotKuantitas;
 
-                    // console.log($scope.dataSourceKontrakKinerja);
-                    $scope.isRouteLoading = false;
-                })
+                        $scope.dataSourceKontrakKinerja = {
+                            kualitas: new kendo.data.DataSource({
+                                data: res.data.data.Kualitas,
+                                pageSize: pageSize
+                            }),
+                            kuantitas: new kendo.data.DataSource({
+                                data: res.data.data.Kuantitas,
+                                pageSize: pageSize
+                            }),
+                            perilaku: new kendo.data.DataSource({
+                                data: res.data.data.Perilaku,
+                                pageSize: pageSize
+                            })
+                        }
+
+                        // console.log($scope.dataSourceKontrakKinerja);
+                        $scope.isRouteLoading = false;
+                        $scope.isPopup = false;
+                    })
             }
 
             $scope.init = () => {
@@ -193,6 +197,8 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.simpanPengajuanIndikator = () => {
+                $scope.isRouteLoading = true;
+                $scope.isPopup = true;
 
                 let dataSave = {
                     bulan: dateHelper.toTimeStamp($scope.indikator.bulan),
@@ -217,6 +223,9 @@ define(['initialize'], function (initialize) {
 
                 if ($scope.isDuplicated) {
                     toastr.warning("Indikator kinerja sudah tersedia!")
+
+                    $scope.isRouteLoading = false;
+                    $scope.isPopup = true;
                     return
                 } else {
                     ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-pengajuan-kontrak-kinerja").then(res => {
@@ -234,7 +243,6 @@ define(['initialize'], function (initialize) {
                 $scope.indikator.target = null;
                 $scope.indikator.bobot = null;
                 $scope.indikator.jabatan = null;
-
                 $scope.indikator.indikatorKerja = null;
                 $scope.indikator.jenisIndikator = null;
                 $scope.indikator.satuanIndikator = null;
@@ -254,12 +262,18 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.simpanData = (method) => {
+                $scope.isRouteLoading = true;
+                $scope.isPopup = true;
+
                 let statusEnabled = method === 'save' || method === 'update';
 
                 // console.log($scope.selectedJenisIndikator);
                 // console.log((($scope.currentNilaiBobot[$scope.selectedJenisIndikator] - $scope.tempSelectedBobot) + parseInt($scope.item.bobot)));
                 if ((($scope.currentNilaiBobot[$scope.selectedJenisIndikator] - $scope.tempSelectedBobot) + parseFloat($scope.item.bobot)) > nilaiMax[$scope.selectedJenisIndikator]) {
                     toastr.info('Total Nilai Bobot ' + $scope.selectedJenisIndikator.toUpperCase() + ' Tidak Boleh Lebih dari ' + nilaiMax[$scope.selectedJenisIndikator]);
+
+                    $scope.isRouteLoading = false;
+                    $scope.isPopup = true;
                     return;
                 }
 

@@ -6,6 +6,7 @@ define(['initialize'], function (initialize) {
             $scope.showDetailKualitas = false;
             $scope.showDetailPerilaku = false;
             $scope.showIsSingleJabatan = false;
+            $scope.showIsSinglePegawai = false;
             $scope.showSyaratKetentuan = false;
 
             $scope.item = {};
@@ -17,8 +18,47 @@ define(['initialize'], function (initialize) {
                 $scope.showSyaratKetentuan = true
             }
 
-            let getJabatanPegawai = () => {
-                ManageSdmNew.getListData("pegawai/get-all-jabatan-by-pegawai?idPegawai=" + $scope.dataLogin.id).then((res) => {
+            let getListPegawai = () => {
+                ManageSdmNew.getListData("iki-remunerasi/get-akses-pegawai-kontrak-kinerja?pegawaiId=" + $scope.dataLogin.id).then((res) => {
+                    $scope.showIsSinglePegawai = res.data.data.length === 1;
+                    $scope.listPegawaiLength = res.data.data.length;
+                    $scope.listPegawai = res.data.data;
+                    $scope.item.bulan = new Date();
+
+                    for (let i = 0; i < res.data.data.length; i++) {
+                        if (res.data.data[i].id == $scope.dataLogin.id) {
+                            $scope.dataSinglePegawai = res.data.data[i].namaLengkap;
+                            $scope.idPegawaiSingle = res.data.data[i].id;
+
+                            $scope.item.pegawai = {
+                                id: res.data.data[i].id,
+                                namaLengkap: res.data.data[i].namaLengkap
+                            }
+
+                            break
+                        }
+                    }
+
+                    if ($scope.item.pegawai) {
+                        $scope.showIsSinglePegawai = true
+                    }
+
+                    $scope.getJabatanPegawai($scope.idPegawaiSingle);
+                })
+            }
+
+            getListPegawai();
+
+            $scope.getJabatanPegawai = (pegawaiId) => {
+                $scope.showIsSinglePegawai = true
+
+                if ($scope.item.pegawai) {
+                    $scope.dataSinglePegawai = $scope.item.pegawai.namaLengkap;
+                    $scope.idPegawaiSingle = $scope.item.pegawai.id;
+                }
+
+                ManageSdmNew.getListData("pegawai/get-all-jabatan-by-pegawai?idPegawai=" + pegawaiId).then((res) => {
+
                     $scope.showIsSingleJabatan = res.data.data.length === 1;
 
                     $scope.dataSingleJabatan = res.data.data[0].namaJabatan;
@@ -26,13 +66,11 @@ define(['initialize'], function (initialize) {
 
                     $scope.listJabatan = res.data.data;
 
-                    $scope.item.bulan = new Date();
-
                     $scope.getDataDashboard();
                 })
             }
 
-            getJabatanPegawai();
+            $scope.getJabatanPegawai($scope.dataLogin.id);
 
             $scope.init = () => {
                 $scope.optGrid = {
@@ -83,9 +121,30 @@ define(['initialize'], function (initialize) {
                 let date = dateHelper.toTimeStamp(bulan);
                 var monthSF = bulan.getFullYear() + '-' + (bulan.getMonth() + 1)
 
-                $scope.isBulanIni = false;
-                if (monthSF == bulanSF) {
-                    $scope.isBulanIni = true;
+                $scope.isAksesWR1 = false;
+                $scope.isAksesWR2 = false;
+                $scope.isAksesWR3 = false;
+                if (monthSF == bulanSF && $scope.dataLogin.id == $scope.idPegawaiSingle) {
+                    $scope.isAksesWR1 = true;
+                    $scope.isAksesWR2 = true;
+                    $scope.isAksesWR3 = true;
+                } else if (monthSF == bulanSF && $scope.dataLogin.id != $scope.idPegawaiSingle) {
+                    $scope.isAksesWR1 = false;
+                    $scope.isAksesWR2 = true;
+                    $scope.isAksesWR3 = true;
+                }
+
+                if (listKategoriRemun.includes($scope.dataLogin.kategoryPegawai.id) && $scope.dataLogin.id == $scope.idPegawaiSingle) {
+                    $scope.showSyaratKetentuan = true
+                } else {
+                    $scope.showSyaratKetentuan = false;
+                }
+
+                var pegawaiId = ""
+                if ($scope.showIsSinglePegawai) {
+                    pegawaiId = $scope.idPegawaiSingle
+                } else {
+                    pegawaiId = ($scope.item.pegawai ? $scope.item.pegawai.id : "")
                 }
 
                 var jabatanId = ""
@@ -95,7 +154,7 @@ define(['initialize'], function (initialize) {
                     jabatanId = ($scope.item.jabatan ? $scope.item.jabatan.id : "")
                 }
 
-                ManageSdmNew.getListData("iki-remunerasi/get-dashboard-kinerja?pegawaiId=" + $scope.dataLogin.id
+                ManageSdmNew.getListData("iki-remunerasi/get-dashboard-kinerja?pegawaiId=" + pegawaiId
                     + "&jabatanId=" + jabatanId
                     + "&bulan=" + date).then((res) => {
                         $scope.dataDashboard = res.data.data;
@@ -152,6 +211,12 @@ define(['initialize'], function (initialize) {
 
                     $scope.popupDetail.open().center();
                 })
+            }
+
+            $scope.showListPegawai = () => {
+                if ($scope.listPegawaiLength > 1) {
+                    $scope.showIsSinglePegawai = false
+                }
             }
 
             $scope.addData = (data) => {

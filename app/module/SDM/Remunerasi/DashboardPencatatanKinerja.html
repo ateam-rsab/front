@@ -20,8 +20,6 @@
         appearance: none;
     }
 
-    .mt-progress-bar-value {}
-
     .mt-progress-bar[value]::-moz-progress-bar {
         background-color: #99f3e7;
         border-radius: .25em;
@@ -61,6 +59,10 @@
         background-color: #73cbc7;
     }
 
+    .fa-ellipsis-v {
+        color: black;
+    }
+
     progress.mt-progress-bar:before {
         content: attr(data-label);
         font-size: 1em;
@@ -81,10 +83,6 @@
     h5 {
         margin: 10px 0;
     }
-
-    .fa-ellipsis-v {
-        color: black;
-    }
 </style>
 
 <md-toolbar md-scroll-shrink class="shadow">
@@ -103,9 +101,19 @@
                             k-on-change="getDataDashboard()" />
                     </div>
                 </span>
-                <span class="md-headline">{{dataLogin.namaLengkap}}</span>
-                <span class="md-subhead" ng-if="showIsSingleJabatan">{{dataSingleJabatan}}</span>
-                <div class="grid_6" ng-if="!showIsSingleJabatan">
+                <div class="grid_6" ng-if="showIsSinglePegawai" style="margin-left: -0.4em;">
+                    <span class="md-headline" ng-if="showIsSinglePegawai"
+                        ng-click="showListPegawai()">{{dataSinglePegawai}}</span>
+                </div>
+                <div class="grid_6" ng-if="!showIsSinglePegawai" style="margin-left: -0.4em;">
+                    <input kendo-combo-box k-filter="'contains'" k-ng-model="item.pegawai"
+                        k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-data-source="listPegawai"
+                        k-on-change="getJabatanPegawai(item.pegawai.id)" />
+                </div>
+                <div class="grid_6" ng-if="showIsSingleJabatan" style="margin-left: -0.4em;">
+                    <span class="md-subhead" ng-if="showIsSingleJabatan">{{dataSingleJabatan}}</span>
+                </div>
+                <div class="grid_6" ng-if="!showIsSingleJabatan" style="margin-left: -0.4em;">
                     <input kendo-combo-box k-filter="'contains'" k-ng-model="item.jabatan"
                         k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-data-source="listJabatan"
                         k-on-change="getDataDashboard()" />
@@ -163,7 +171,7 @@
                                 value="{{kuantitas.persenCapaianDibulatkan}}"
                                 data-label="{{kuantitas.persenCapaianDibulatkan}}%"></progress>
                         </div>
-                        <div class="grid_1" ng-show="isBulanIni">
+                        <div class="grid_1" ng-show="isAksesWR1">
                             <md-button class="md-raised md-primary medium-button" ng-click="addData(kuantitas)">
                                 <i class="fa fa-plus"></i>
                             </md-button>
@@ -205,7 +213,7 @@
                                 value="{{kualitas.persenCapaianDibulatkan}}"
                                 data-label="{{kualitas.persenCapaianDibulatkan}}%"></progress>
                         </div>
-                        <div class="grid_1" ng-show="isBulanIni">
+                        <div class="grid_1" ng-show="isAksesWR2">
                             <md-button class="md-raised md-primary medium-button" ng-click="addData(kualitas)">
                                 <i class="fa fa-plus"></i>
                             </md-button>
@@ -247,7 +255,7 @@
                             <progress class="mt-progress-bar" max="100" value="{{perilaku.persenCapaianDibulatkan}}"
                                 data-label="{{perilaku.persenCapaianDibulatkan}}%"></progress>
                         </div>
-                        <div class="grid_1" ng-show="isBulanIni">
+                        <div class="grid_1" ng-show="isAksesWR3">
                             <md-button class="md-raised md-primary medium-button" ng-click="addData(perilaku)">
                                 <i class="fa fa-plus"></i>
                             </md-button>
