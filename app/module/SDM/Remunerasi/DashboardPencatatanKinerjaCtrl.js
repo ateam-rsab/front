@@ -8,6 +8,7 @@ define(['initialize'], function (initialize) {
             $scope.showIsSingleJabatan = false;
             $scope.showIsSinglePegawai = false;
             $scope.showSyaratKetentuan = false;
+            $scope.endOfDay = new Date(new Date().setHours(23, 59, 59, 999))
 
             $scope.item = {};
 
@@ -57,8 +58,7 @@ define(['initialize'], function (initialize) {
                     $scope.idPegawaiSingle = $scope.item.pegawai.id;
                 }
 
-                ManageSdmNew.getListData("pegawai/get-all-jabatan-by-pegawai?idPegawai=" + pegawaiId).then((res) => {
-
+                ManageSdmNew.getListData("pegawai/jabatan-kontrak-verif-kinerja?pegawaiId=" + pegawaiId + "&pegawaiLoginId=" + $scope.dataLogin.id).then((res) => {
                     $scope.showIsSingleJabatan = res.data.data.length === 1;
 
                     $scope.dataSingleJabatan = res.data.data[0].namaJabatan;
@@ -112,6 +112,11 @@ define(['initialize'], function (initialize) {
             };
 
             $scope.getDataDashboard = () => {
+                if ($scope.item.jabatan && !$scope.item.jabatan.isCariAkses) {
+                    toastr.warning("Tidak ada akses untuk menampilkan data", "Peringatan")
+                    return
+                }
+
                 let bulan = new Date();
                 var bulanSF = bulan.getFullYear() + '-' + (bulan.getMonth() + 1)
 
@@ -126,10 +131,7 @@ define(['initialize'], function (initialize) {
                 $scope.isAksesWR3 = false;
                 if (monthSF == bulanSF && $scope.dataLogin.id == $scope.idPegawaiSingle) {
                     $scope.isAksesWR1 = true;
-                    $scope.isAksesWR2 = true;
-                    $scope.isAksesWR3 = true;
                 } else if (monthSF == bulanSF && $scope.dataLogin.id != $scope.idPegawaiSingle) {
-                    $scope.isAksesWR1 = false;
                     $scope.isAksesWR2 = true;
                     $scope.isAksesWR3 = true;
                 }
@@ -217,6 +219,8 @@ define(['initialize'], function (initialize) {
                 if ($scope.listPegawaiLength > 1) {
                     $scope.showIsSinglePegawai = false
                 }
+
+                $scope.item.jabatan = null
             }
 
             $scope.addData = (data) => {
