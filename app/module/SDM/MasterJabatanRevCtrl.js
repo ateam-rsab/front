@@ -457,48 +457,6 @@ define(['initialize'], function (initialize) {
                 $scope.isHapus = false;
             }
 
-            // $scope.$watch('data.namaJabatan', function (e) {
-            //     if (!e) return;
-            //     if (!$scope.data.namaJabatan && !$scope.data.jenisJabatan.id && !$scope.data.unitKerja.id) return
-            //     $scope.msgIsDuplikatData = ""
-            //     ManageSdmNew.getListData("jabatan/validate-nama-jabatan/?idJabatan=" + ($scope.data.jabatanId ? $scope.data.jabatanId : "")
-            //         + "&namaJabatan=" + encodeURIComponent($scope.data.namaJabatan).replace(/%20/g, "+")
-            //         + "&idJenisJabatan=" + $scope.data.jenisJabatan.id
-            //         + "&idUnitKerja=" + $scope.data.unitKerja.id, true).then(function (dat) {
-            //             if (dat.data.data.msg) {
-            //                 $scope.msgIsDuplikatData = dat.data.data.msg
-            //             }
-            //         });
-            // })
-
-            // $scope.$watch('data.jenisJabatan', function (e) {
-            //     if (!e) return;
-            //     if (!$scope.data.namaJabatan && !$scope.data.jenisJabatan.id && !$scope.data.unitKerja.id) return
-            //     $scope.msgIsDuplikatData = ""
-            //     ManageSdmNew.getListData("jabatan/validate-nama-jabatan/?idJabatan=" + ($scope.data.jabatanId ? $scope.data.jabatanId : "")
-            //         + "&namaJabatan=" + encodeURIComponent($scope.data.namaJabatan).replace(/%20/g, "+")
-            //         + "&idJenisJabatan=" + $scope.data.jenisJabatan.id
-            //         + "&idUnitKerja=" + $scope.data.unitKerja.id, true).then(function (dat) {
-            //             if (dat.data.data.msg) {
-            //                 $scope.msgIsDuplikatData = dat.data.data.msg
-            //             }
-            //         });
-            // })
-
-            // $scope.$watch('data.unitKerja', function (e) {
-            //     if (!e) return;
-            //     if (!$scope.data.namaJabatan && !$scope.data.jenisJabatan.id && !$scope.data.unitKerja.id) return
-            //     $scope.msgIsDuplikatData = ""
-            //     ManageSdmNew.getListData("jabatan/validate-nama-jabatan/?idJabatan=" + ($scope.data.jabatanId ? $scope.data.jabatanId : "")
-            //         + "&namaJabatan=" + encodeURIComponent($scope.data.namaJabatan).replace(/%20/g, "+")
-            //         + "&idJenisJabatan=" + $scope.data.jenisJabatan.id
-            //         + "&idUnitKerja=" + $scope.data.unitKerja.id, true).then(function (dat) {
-            //             if (dat.data.data.msg) {
-            //                 $scope.msgIsDuplikatData = dat.data.data.msg
-            //             }
-            //         });
-            // })
-
             $scope.getValJabatan = function (idJabatan, namaJabatan, idJenisJabatan, idUnitKerja) {
                 if (!namaJabatan && !idJenisJabatan && !idUnitKerja) return
 

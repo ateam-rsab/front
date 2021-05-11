@@ -149,6 +149,11 @@ define(['initialize'], function (initialize) {
                     ManageSdmNew.getListData("sdm/get-penempatan-evaluasi-jabatan"),
                     ManageSdmNew.getListData("sdm/get-anggaran-remunerasi-tahun-ini")
                 ]).then(function (res) {
+                    $scope.dataSourcePenempatanEvaluasiJabatan = new kendo.data.DataSource({
+                        data: res[0].data.data,
+                        pageSize: 10
+                    });
+
                     for (let i in res[0].data.data) {
                         $scope.totalNilaiJabatan += res[0].data.data[i].nilaiJabatan;
                     }
@@ -163,10 +168,6 @@ define(['initialize'], function (initialize) {
                             currency: 'IDR'
                         })
                     }
-                    $scope.dataSourcePenempatanEvaluasiJabatan = new kendo.data.DataSource({
-                        data: res[0].data.data,
-                        pageSize: 10
-                    });
                 }, (error) => {
                     throw (error);
                 })

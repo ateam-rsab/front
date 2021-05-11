@@ -383,6 +383,11 @@ define(['initialize'], function (initialize) {
                         }
                     });
                 } else if (!dataItem.noRec && dataItem.noRecMap) {
+                    if (!$scope.isPegawaiSDM) {
+                        toastr.warning("Tidak memiliki akses hapus!", "Perhatian!");
+                        return;
+                    }
+
                     var confirm = $mdDialog.confirm()
                         .title('Apakah anda yakin menghapus data?')
                         .textContent('Hapus data juga menghilangkan mapping indikator - jabatan!')
