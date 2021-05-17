@@ -55,6 +55,22 @@ define(['initialize'], function (initialize) {
 
             }
 
+            $scope.$watch('item.faktor8', function (newVal, oldVal) {
+                if (!newVal) return;
+                if (newVal && newVal !== oldVal) {
+                    $scope.item.faktor9 = null
+                    modelItem.getDataDummyGeneric('FaktorEvaluasi').then(function (e) {
+                        $scope.listFaktor9 = []
+                        var arr = _.groupBy(e, "faktor");
+                        for (let i = 0; i < _.sortBy(arr["Faktor 9"], "profile").length; i++) {
+                            if (newVal.profile.split("(")[0] == _.sortBy(arr["Faktor 9"], "profile")[i].profile.split("(")[0]) {
+                                $scope.listFaktor9.push(_.sortBy(arr["Faktor 9"], "profile")[i])
+                            }
+                        }
+                    })
+                }
+            });
+
             $scope.listFaktor = [];
             modelItem.getDataDummyGeneric('MapFaktorEvaluasi').then(function (e) {
                 $scope.map = e;
@@ -67,7 +83,7 @@ define(['initialize'], function (initialize) {
                     $scope.listFaktor5 = _.sortBy(arr["Faktor 5"], "profile");
                     $scope.listFaktor7 = _.sortBy(arr["Faktor 7"], "profile");
                     $scope.listFaktor8 = _.sortBy(arr["Faktor 8"], "profile");
-                    $scope.listFaktor9 = _.sortBy(arr["Faktor 9"], "profile");
+                    // $scope.listFaktor9 = _.sortBy(arr["Faktor 9"], "profile");
                     $scope.listFaktor10 = _.sortBy(arr["Faktor 10"], "profile");
                     var temp = [];
                     for (var key in arr) {
