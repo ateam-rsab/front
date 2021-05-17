@@ -157,16 +157,20 @@ define(['initialize'], function (initialize) {
                     for (let i in res[0].data.data) {
                         $scope.totalNilaiJabatan += res[0].data.data[i].nilaiJabatan;
                     }
-                    if (res[1].data.data.anggaranTahun) {
+                    if (res[1].data.data && res[1].data.data.anggaranTahun) {
                         $scope.item.anggaranRemunerasi = res[1].data.data.anggaranTahun
                         $scope.item.pir = res[1].data.data.anggaranBulan.toLocaleString('id-ID', {
                             style: 'currency',
                             currency: 'IDR'
                         })
-                        $scope.item.pirHitungan = (res[1].data.data.anggaranBulan / $scope.totalNilaiJabatan).toLocaleString('id-ID', {
+                        $scope.item.pirHitungan = (res[1].data.data.anggaranBulan / res[1].data.data.totNilaiJabatan).toLocaleString('id-ID', {
                             style: 'currency',
                             currency: 'IDR'
                         })
+
+                        $scope.isExistedTahunIni = true
+                    } else {
+                        $scope.isExistedTahunIni = false
                     }
                 }, (error) => {
                     throw (error);
@@ -265,7 +269,9 @@ define(['initialize'], function (initialize) {
                     })
                 }
 
-                ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-all-anggaran-remunerasi?loginUserId=" + dataLogin.id).then(res => { })
+                ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-all-anggaran-remunerasi?loginUserId=" + dataLogin.id).then(res => {
+                    $scope.isExistedTahunIni = true
+                })
             }
         }
     ]);
