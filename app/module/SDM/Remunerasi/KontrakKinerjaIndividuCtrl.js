@@ -200,38 +200,72 @@ define(['initialize'], function (initialize) {
                 $scope.isRouteLoading = true;
                 $scope.isPopup = true;
 
-                let dataSave = {
-                    bulan: dateHelper.toTimeStamp($scope.indikator.bulan),
-                    target: $scope.indikator.target,
-                    bobot: $scope.indikator.bobot ? $scope.indikator.bobot : 0,
-                    pegawai: {
-                        id: dataPegawai.id
-                    },
-                    jabatan: {
-                        id: $scope.indikator.jabatan.id
-                    },
-                    indikatorKinerja: {
-                        namaIndikator: $scope.indikator.namaIndikator,
-                        satuanIndikator: {
-                            id: $scope.indikator.satuanIndikator.id
+                var listRawRequired = [
+                    "indikator.bobot|k-ng-model|Bobot",
+                    "indikator.satuanIndikator|k-ng-model|Satuan",
+                    "indikator.target|k-ng-model|Target",
+                    "indikator.namaIndikator|k-ng-model|Nama Indikator",
+                    "indikator.jenisIndikator|k-ng-model|Jenis Indikator",
+                    "indikator.jabatan|k-ng-model|Jabatan",
+                    "indikator.bulan|k-ng-model|Bulan"
+                ]
+
+                var isValid = modelItem.setValidation($scope, listRawRequired);
+                if (isValid.status) {
+                    if (!$scope.indikator.target && $scope.indikator.target <= 0) {
+                        toastr.warning('Target harus diisi dan lebih besar dari 0')
+
+                        $scope.isRouteLoading = false;
+                        $scope.isPopup = true;
+                        return
+                    }
+
+                    if (!$scope.indikator.bobot && $scope.indikator.bobot <= 0) {
+                        toastr.warning('Bobot harus diisi dan lebih besar dari 0')
+
+                        $scope.isRouteLoading = false;
+                        $scope.isPopup = true;
+                        return
+                    }
+
+                    let dataSave = {
+                        bulan: dateHelper.toTimeStamp($scope.indikator.bulan),
+                        target: $scope.indikator.target,
+                        bobot: $scope.indikator.bobot ? $scope.indikator.bobot : 0,
+                        pegawai: {
+                            id: dataPegawai.id
                         },
-                        jenisIndikator: $scope.indikator.jenisIndikator.id,
+                        jabatan: {
+                            id: $scope.indikator.jabatan.id
+                        },
+                        indikatorKinerja: {
+                            namaIndikator: $scope.indikator.namaIndikator,
+                            satuanIndikator: {
+                                id: $scope.indikator.satuanIndikator.id
+                            },
+                            jenisIndikator: $scope.indikator.jenisIndikator.id,
+                            statusVerifikasi: false
+                        },
                         statusVerifikasi: false
-                    },
-                    statusVerifikasi: false
-                }
+                    }
 
-                if ($scope.isDuplicated) {
-                    toastr.warning("Indikator kinerja sudah tersedia!")
+                    if ($scope.isDuplicated) {
+                        toastr.warning("Indikator kinerja sudah tersedia!")
 
+                        $scope.isRouteLoading = false;
+                        $scope.isPopup = true;
+                        return
+                    } else {
+                        ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-pengajuan-kontrak-kinerja").then(res => {
+                            $scope.resetDataPengajuan();
+                            $scope.closePopUpPengajuan();
+                        })
+                    }
+                } else {
                     $scope.isRouteLoading = false;
                     $scope.isPopup = true;
-                    return
-                } else {
-                    ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-pengajuan-kontrak-kinerja").then(res => {
-                        $scope.resetDataPengajuan();
-                        $scope.closePopUpPengajuan();
-                    })
+
+                    modelItem.showMessages(isValid.messages);
                 }
             }
 
@@ -266,6 +300,22 @@ define(['initialize'], function (initialize) {
                 $scope.isPopup = true;
 
                 let statusEnabled = method === 'save' || method === 'update';
+
+                if (!$scope.item.target && $scope.item.target <= 0) {
+                    toastr.warning('Target harus diisi dan lebih besar dari 0')
+
+                    $scope.isRouteLoading = false;
+                    $scope.isPopup = true;
+                    return
+                }
+
+                if (!$scope.item.bobot && $scope.item.bobot <= 0) {
+                    toastr.warning('Bobot harus diisi dan lebih besar dari 0')
+
+                    $scope.isRouteLoading = false;
+                    $scope.isPopup = true;
+                    return
+                }
 
                 // console.log($scope.selectedJenisIndikator);
                 // console.log((($scope.currentNilaiBobot[$scope.selectedJenisIndikator] - $scope.tempSelectedBobot) + parseInt($scope.item.bobot)));
