@@ -73,6 +73,10 @@ define(['initialize'], function (initialize) {
                     "title": "Pegawai Order",
                     "width": 100,
                 }, {
+                    "field": "dpjp",
+                    "title": "DPJP",
+                    "width": 100,
+                }, {
                     "field": "status",
                     "title": "Status",
                     "width": 100,
@@ -206,7 +210,7 @@ define(['initialize'], function (initialize) {
                 }
 
 
-                manageLogistikPhp.getDataTableTransaksi("lab-radiologi/get-daftar-order-lab?" +
+                manageLogistikPhp.getDataTableTransaksi("lab-radiologi/get-daftar-order-lab-new?" +
                     isNotVerif +
                     tglAwal +
                     tglAkhir +
@@ -224,7 +228,7 @@ define(['initialize'], function (initialize) {
                         var tanggalLahir = new Date(dat.data.data[i].tgllahir);
                         var umur = dateHelper.CountAge(tanggalLahir, tanggal);
                         dat.data.data[i].umur = umur.year + ' thn ' + umur.month + ' bln ' + umur.day + ' hari';
-
+                        dat.data.data[i].dpjp = dat.data.data[i].dpjp ? dat.data.data[i].dpjp : "-";
                     }
 
                     $scope.listDataPasien = new kendo.data.DataSource({
@@ -516,7 +520,7 @@ define(['initialize'], function (initialize) {
                 });
                 $scope.totalHarga = 'Rp. 0, 00';
                 let tempHarga = 0;
-                manageServicePhp.getDataTableTransaksi("lab-radiologi/get-order-pelayanan?norec_so=" + $scope.dataSelected.norec_so +
+                manageServicePhp.getDataTableTransaksi("lab-radiologi/get-order-pelayanan-new?norec_so=" + $scope.dataSelected.norec_so +
                     "&objectkelasfk=" + $scope.dataSelected.objectkelasfk, true).then(function (dat) {
 
                     var dataSource = dat.data.data;
@@ -708,8 +712,7 @@ define(['initialize'], function (initialize) {
 
                     }
 
-                    manageServicePhp.savePelayananPasien(itemsave)
-                        .then(function (e) {
+                    manageServicePhp.saveDataTransaksi("lab-radiologi/save-pelayanan-pasien-new", itemsave).then(function (e) {
                             // $scope.btnSimpanVis = false;
                             // $scope.popUpVerif.close();
                             init()
@@ -728,7 +731,7 @@ define(['initialize'], function (initialize) {
                 var objDelete = {
                     "norec_op": $scope.dataSelectedVerif.norec_op,
                 };
-                manageServicePhp.deleteOrderPelayanan(objDelete).then(function (e) {
+                manageServicePhp.saveDataTransaksi("lab-radiologi/delete-order-pelayanan-lab", objDelete).then(function (e) {
                     loadDataVerif()
                 })
             }

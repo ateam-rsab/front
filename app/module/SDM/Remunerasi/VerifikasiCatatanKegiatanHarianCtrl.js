@@ -108,7 +108,7 @@ define(['initialize'], function (initialize) {
                 let statusEnabled = method === "verif";
 
                 let dataSave = {
-                    namaKegiatan: data.namaIndikator,
+                    namaKegiatan: data.namaKegiatan,
                     capaian: data.hasil,
                     catatan: data.catatan,
                     statusVerifikasi: true,

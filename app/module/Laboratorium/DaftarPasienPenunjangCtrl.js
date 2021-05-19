@@ -10,6 +10,8 @@ define(['initialize'], function (initialize) {
             // $scope.item.tglAkhir = $scope.now;
             loadCombo();
             LoadCache();
+            $scope.item.tglOrderAwal = new Date();
+            $scope.item.tglOrderAkhir = new Date();
 
             function LoadCache() {
                 var chacePeriode = cacheHelper.get('DaftarPasienPenunjang');

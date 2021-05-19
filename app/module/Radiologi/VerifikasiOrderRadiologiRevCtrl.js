@@ -10,6 +10,19 @@ define(['initialize'], function (initialize) {
 
             let dataLogin = JSON.parse(localStorage.getItem("pegawai"));
 
+            $scope.listDokterVerifikasi = [{
+                id: 950,
+                namalengkap: "dr Yarmaniani Miliati Muchtar, Sp.Rad"
+            }, {
+                id: 320266,
+                namalengkap: "dr. Ido Narpati Bramantya, Sp.Rad"
+            }, {
+                id: 22632,
+                namalengkap: "dr. Gita Maria, Sp.Rad"
+            }, {
+                id: 1420,
+                namalengkap: "dr. Ade Satrijani Sutarto, Sp.Rad"
+            }]
             $scope.layanan = {};
 
             let init = () => {
@@ -141,7 +154,9 @@ define(['initialize'], function (initialize) {
                     catatan_tambahan: $scope.layanan.catatan_tambahan,
                     jadualTindakan: dateHelper.formatDate($scope.layanan.jadwalTindakan, "YYYY-MM-DD HH:mm"),
                     pemeriksaanRadiologi: $scope.layanan.pemeriksaanRadiologi,
+                    persiapanRadiologi: $scope.layanan.persiapanRadiologi,
                     konsultasiAnestesi: $scope.layanan.konsultasiAnestesi,
+                    dokterVerif: $scope.layanan.dokterVerif.id
                 }
 
                 dataSource = [
@@ -230,6 +245,7 @@ define(['initialize'], function (initialize) {
                         produkfk: dataSourceGrid[i].idProduk,
                         qtyproduk: dataSourceGrid[i].qtyproduk,
                         pemeriksaanRadiologi: dataSourceGrid[i].pemeriksaanRadiologi,
+                        persiapanRadiologi:dataSourceGrid[i].persiapanRadiologi,
                         konsultasiAnestesi: dataSourceGrid[i].konsultasiAnestesi,
                     })
 
@@ -239,6 +255,7 @@ define(['initialize'], function (initialize) {
 
                     dataSave.bridging.push({
                         produkid: dataSourceGrid[i].idProduk,
+                        iddokterverif: dataSourceGrid[i].dokterVerif,
                         hargasatuan: dataSourceGrid[i].hargasatuan,
                         qtyproduk: dataSourceGrid[i].qtyproduk,
                         komponenharga: []
@@ -254,6 +271,8 @@ define(['initialize'], function (initialize) {
                         });
                     }
                 }
+
+                console.log(dataSave);
 
                 findPasienRadiologi.saveData("lab-radiologi/save-pelayanan-rad", dataSave).then((res) => {
 

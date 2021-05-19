@@ -228,6 +228,11 @@
                                     {{layanan.riwayat}}
                                 </div>
                             </div>
+
+                            <div class="grid_12">
+                                <span style="font-size: 15px; font-weight: bold;">Total:</span>
+                                <h2 style="color: rgb(41, 41, 41); font-size: 20px;">{{totalHargaProduk}}</h2>
+                            </div>
                         </md-card-content>
 
                     </md-card>
@@ -280,6 +285,19 @@
 
                                 <div class="grid_12">
                                     <label c-label item="item">
+                                        <strong>Dokter Tindakan</strong>
+                                    </label>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="grid_12" style="margin-bottom: 10px">
+                                    <input style="width: 100%;" kendo-combo-box k-ng-model="layanan.dokterVerif"
+                                        k-data-text-field="'namalengkap'" k-data-value-field="'id'"
+                                        k-filter="'contains'" k-auto-bind="false"
+                                        k-data-source="listDokterVerifikasi" />
+                                </div>
+
+                                <div class="grid_12">
+                                    <label c-label item="item">
                                         <strong>Konsultasi Anestesi</strong>
                                     </label>
                                 </div>
@@ -294,17 +312,33 @@
 
                                 <div class="grid_12">
                                     <label c-label item="item">
-                                        <strong>Pemeriksaan Radiologi</strong>
+                                        <strong>Pemeriksaan Laboratorium</strong>
                                     </label>
                                 </div>
                                 <div class="clear"></div>
                                 <div class="grid_12" style="margin-bottom: 10px">
                                     <!-- <input type="text" min="0" class="k-textbox"
                                         ng-model="layanan.pemeriksaanRadiologi"> -->
-                                    <textarea ng-model="layanan.pemeriksaanRadiologi" maxlength="3000" ng-disabled="isVerif"
-                                        style="height:100px"></textarea>
+                                    <textarea ng-model="layanan.pemeriksaanRadiologi" maxlength="3000"
+                                        ng-disabled="isVerif" style="height:100px"></textarea>
                                     <p class="length-textarea">
-                                        3000/{{layanan.pemeriksaanRadiologi ? layanan.pemeriksaanRadiologi.length : 0}}</p>
+                                        3000/{{layanan.pemeriksaanRadiologi ? layanan.pemeriksaanRadiologi.length : 0}}
+                                    </p>
+                                </div>
+
+                                <div class="grid_12">
+                                    <label c-label item="item">
+                                        <strong>Persiapan Radiologi</strong>
+                                    </label>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="grid_12" style="margin-bottom: 10px">
+                                    <!-- <input type="text" min="0" class="k-textbox"
+                                        ng-model="layanan.pemeriksaanRadiologi"> -->
+                                    <textarea ng-model="layanan.persiapanRadiologi" maxlength="5000"
+                                        ng-disabled="isVerif" style="height:100px"></textarea>
+                                    <p class="length-textarea">
+                                        5000/{{layanan.persiapanRadiologi ? layanan.persiapanRadiologi.length : 0}}</p>
                                 </div>
                             </div>
                         </md-card-content>
@@ -314,16 +348,13 @@
             </div>
 
             <div class="grid_12" style="margin-top: 20px;">
-                <div class="grid_6">
+                <!-- <div class="grid_6">
                     <div id="kGrid" kendo-grid k-data-source="dataSourceHargaProduk" k-columns="columnsHargaProduk"
                         k-pageable="'true'" k-sortable="'true'">
                     </div>
-                </div>
+                </div> -->
 
-                <div class="grid_6">
-                    <span style="font-size: 15px; font-weight: bold;">Total:</span>
-                    <h2 style="color: rgb(41, 41, 41); font-size: 20px;">{{totalHargaProduk}}</h2>
-                </div>
+
             </div>
 
         </div>

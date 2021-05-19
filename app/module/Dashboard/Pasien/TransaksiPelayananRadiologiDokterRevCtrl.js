@@ -679,7 +679,7 @@ define(['initialize'], function (initialize) {
 
             $scope.Simpan = function () {
 
-                if (kelompokPasien === "BPJS" && data2.length >= 1) {
+                if (kelompokPasien === "BPJS" && data2.length > 1) {
                     toastr.info("Untuk Pasien BPJS tidak bisa lebih dari 1 tindakan");
                     return;
                 }

@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
 	'use strict';
-	initialize.controller('DaftarOrderGiziCtrl', ['$mdDialog', '$timeout', '$state', '$q', '$rootScope', '$scope', 'CacheHelper', 'DateHelper', 'ManageServicePhp',
-		function ($mdDialog, $timeout, $state, $q, $rootScope, $scope, cacheHelper, dateHelper, manageServicePhp) {
+	initialize.controller('DaftarOrderGiziCtrl', ['$mdDialog', '$timeout', '$state', '$q', '$rootScope', '$scope', 'CacheHelper', 'DateHelper', 'ManageServicePhp', 'CetakHelper',
+		function ($mdDialog, $timeout, $state, $q, $rootScope, $scope, cacheHelper, dateHelper, manageServicePhp, cetakHelper) {
 
 			$scope.dataVOloaded = true;
 			$scope.now = new Date();
@@ -153,14 +153,14 @@ define(['initialize'], function (initialize) {
 			$scope.cetakPermintaan = () => {
 				var tglAwal = moment($scope.item.periodeAwal).format('YYYY-MM-DD');
 				var tglAkhir = moment($scope.item.periodeAkhir).format('YYYY-MM-DD');
-
-				window.open("http://192.168.12.4:7777/service-reporting/lap-permintaan-makanan?idRu=" + ($scope.item.ruangan ? $scope.item.ruangan.id : '') +"&tglAwal=" + tglAwal + "&tglAkhir=" + tglAkhir, "_blank");
+				cetakHelper.openURLReportingNew(`lap-permintaan-makanan?idRu=${($scope.item.ruangan ? $scope.item.ruangan.id : '')}&tglAwal=${tglAwal}&tglAkhir=${tglAkhir}&jenisDietId=${($scope.item.jenisDiets ? $scope.item.jenisDiets.id : '')}`, '&');
 			}
 
 			$scope.cetakRekap = () => {
+				
 				var tglAwal = moment($scope.item.periodeAwal).format('YYYY-MM-DD');
 				var tglAkhir = moment($scope.item.periodeAkhir).format('YYYY-MM-DD');
-				window.open("http://192.168.12.4:7777/service-reporting/lap-permintaan-makanan?idRu=" + ($scope.item.ruangan ? $scope.item.ruangan.id : '') + "&tglAwal=" + tglAwal + "&tglAkhir=" + tglAkhir, "_blank");
+				cetakHelper.openURLReportingNew(`lap-rekap-makanan?idRu=${($scope.item.ruangan ? $scope.item.ruangan.id : '')}&tglAwal=${tglAwal}&tglAkhir=${tglAkhir}`, '&');
 			}
 
 			$scope.selectRow = function (dataItem) {

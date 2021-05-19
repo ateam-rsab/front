@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('LaporanPendapatanRuanganCtrl', ['CacheHelper', '$q', '$rootScope', '$scope', 'ModelItemAkuntansi', 'ManageLogistikPhp', 'DateHelper', '$http', '$state', 'ReportPelayanan', 'ManageSdm',
-        function (cacheHelper, $q, $rootScope, $scope, modelItemAkuntansi, manageLogistikPhp, DateHelper, $http, $state, ReportPelayanan, ManageSdm) {
+    initialize.controller('LaporanPendapatanRuanganCtrl', ['CacheHelper', '$q', '$rootScope', '$scope', 'ModelItemAkuntansi', 'ManageLogistikPhp', 'DateHelper', '$http', '$state', 'ReportPelayanan', 'ManageSdm', 'CetakHelper',
+        function (cacheHelper, $q, $rootScope, $scope, modelItemAkuntansi, manageLogistikPhp, DateHelper, $http, $state, ReportPelayanan, ManageSdm, cetakHelper) {
             //Inisial Variable 
             $scope.dataVOloaded = true;
             $scope.now = new Date();
@@ -736,40 +736,44 @@ define(['initialize'], function (initialize) {
             $scope.tglakhir = $scope.item.tglakhir;
             $scope.pegawai = modelItemAkuntansi.getPegawai();
 
-            $scope.Cetak = function () {               
-                var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
-                var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');
+            $scope.Cetak = function () {
+                var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD');
+                var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD');
 
-                var dokter = ''
-                if ($scope.item.namaPegawai != undefined) {
-                  dokter = $scope.item.namaPegawai.id
-                }
-                var departemen = ''
-                if ($scope.item.departement != undefined) {
-                  departemen = $scope.item.departement.id
-                }
-                var ruanganId = ''
-                if ($scope.item.ruangan != undefined) {
-                  ruanganId = $scope.item.ruangan.id
-                }
-                var kelompokPasien = ''
-                if ($scope.item.KelompokPasien != undefined) {
-                  kelompokPasien = $scope.item.KelompokPasien.id
-                }
+                // var dokter = ''
+                // if ($scope.item.namaPegawai != undefined) {
+                //   dokter = $scope.item.namaPegawai.id
+                // }
+                // var departemen = ''
+                // if ($scope.item.departement != undefined) {
+                //   departemen = $scope.item.departement.id
+                // }
+                // var ruanganId = ''
+                // if ($scope.item.ruangan != undefined) {
+                //   ruanganId = $scope.item.ruangan.id
+                // }
+                // var kelompokPasien = ''
+                // if ($scope.item.KelompokPasien != undefined) {
+                //   kelompokPasien = $scope.item.KelompokPasien.id
+                // }
 
 
-                var stt = 'false'
-                if (confirm('View Laporan Pendapatan Ruangan? ')) {
-                    // Save it!
-                    stt = 'true';
-                } else {
-                    // Do nothing!
-                    stt = 'false'
-                }
-                var client = new HttpClient();
-                client.get('http://127.0.0.1:1237/printvb/laporanPelayanan?cetak-pendapatanruangan=1&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&idDepartemen=' + departemen + '&strIdRuangan=' + ruanganId + '&strIdKelompokPasien=' + kelompokPasien + '&strIdPegawai=' + dokter + '&view=' + stt, function (response) {
-                    // do something with response
-                });
+                // var stt = 'false'
+                // if (confirm('View Laporan Pendapatan Ruangan? ')) {
+                //     // Save it!
+                //     stt = 'true';
+                // } else {
+                //     // Do nothing!
+                //     stt = 'false'
+                // }
+                // var client = new HttpClient();
+                // client.get('http://127.0.0.1:1237/printvb/laporanPelayanan?cetak-pendapatanruangan=1&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&idDepartemen=' + departemen + '&strIdRuangan=' + ruanganId + '&strIdKelompokPasien=' + kelompokPasien + '&strIdPegawai=' + dokter + '&view=' + stt, function (response) {
+                //     // do something with response
+                // });
+
+                // https://smart.rsabhk.co.id:2222/reporting-rsabhk-service/lap-pendapatan-ruangan/2021-01-01/2021-01-31
+
+                cetakHelper.openURLReportingNew(`lap-pendapatan-ruangan/${tglAwal}/${tglAkhir}`, '?');
             };
 
             $scope.CetakDetail = function () {

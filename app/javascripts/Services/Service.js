@@ -105,6 +105,19 @@ define(['Configuration'], function (config) {
                     // var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJvcGVyYXRvciJ9.eNEJVKwi8thRx0ruZxlk377mgpgkkLGtraRKwBjmb3Y4yT_nxfWUCeT-DrJ93_U0ZNJZrc-TM2rO4cxe5LjL5A";
                     return urlDownload + urlfile + '&X-AUTH-TOKEN=' + result['authorization'];
                 },
+                openURLReportingNew: function(url, param) {
+                    var str = document.cookie;
+                    str = str.split('; ');
+                    var result = {};
+                    for (var i = 0; i < str.length; i++) {
+                        var cur = str[i].split('=');
+                        result[cur[0]] = cur[1];
+                    }
+
+                    // param di isi dengan simbol / ? &
+                    let BASEURL = "https://smart.rsabhk.co.id:2222/reporting-rsabhk-service/";
+                    window.open(`${BASEURL}${url}${param}X-AUTH-TOKEN=${result['authorization']}`, "_blank")
+                }
             };
 
         }

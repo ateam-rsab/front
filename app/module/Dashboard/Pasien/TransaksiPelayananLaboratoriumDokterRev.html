@@ -59,22 +59,31 @@
             <md-tabs md-dynamic-height md-border-bottom>
                 <md-tab label="Order Laboratorium" md-on-select="onChangeTab(1)">
                     <div class="grid_12">
-                        <!-- <div class="grid_12 headerBox">
-                        <p>Order Penunjang Laboratorium</p>
-                    </div> -->
+
+                        <div class="grid_4">
+                            <label c-label item="item">Klinis</label>
+                            <input c-text-box type="input" class="k-textbox" ng-model="item.klinis" />
+                        </div>
+                        <div class="grid_4" ng-if="!isDokter">
+                            <label c-label item="item">DPJP</label>
+                            <input kendo-combo-box k-ng-model="item.dpjp" k-data-text-field="'namalengkap'"
+                                k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
+                                k-data-source="listDokter"/>
+                        </div>
+
                         <div class="grid_12">
                             <div class="grid_12">
                                 <div id="kGrid" kendo-grid k-data-source="dataGridOrder" k-selectable="'row'"
                                     options="gridOrderOption" k-pageable="'true'" k-sortable="'true'"
                                     k-ng-model="dataSelectedOrder" ng-click="klikGrid(dataSelectedOrder)">
                                 </div>
-        
+
                             </div>
-        
+
                             <div class="grid_12">
                                 <div class="grid_8">
                                 </div>
-        
+
                                 <div class="grid_1" style="margin-top: 22px">
                                     <md-button class="md-raised md-primary" ng-click="Simpan()">Simpan</md-button>
                                 </div>
@@ -87,9 +96,9 @@
                                 <div class="grid_1" style="margin-top: 22px">
                                     <md-button class="md-raised" ng-click="kembali()">Kembali</md-button>
                                 </div>
-        
+
                             </div>
-        
+
                             <div class="grid_12">
                                 <h4>Preview</h4>
                                 <div class="grid_12">
@@ -105,9 +114,9 @@
                                         </div>
                                     </div>
                                 </div>
-        
+
                             </div>
-        
+
                         </div>
                     </div>
                 </md-tab>
@@ -138,7 +147,7 @@
                                 <md-button class="md-raised md-default md-primary" is-back>
                                     <i class="fa fa-arrow-left"></i>
                                     <span>Kembali</span>
-        
+
                                 </md-button>
                                 <!-- <button class="c-button" is-back>
                                 <span style="margin-right:5px;">Kembali</span>
@@ -153,7 +162,7 @@
                                     <i class="fa fa-file-text"></i>
                                 </md-button>
                             </div> -->
-        
+
                             <div class="grid_2" style="margin-top: 22px">
                                 <!-- <button class="c-button" ng-click="hapusOrder()">Hapus</button> -->
                                 <md-button class="md-raised md-danger" ng-click="hapusOrder()">
@@ -172,8 +181,8 @@
                     </div>
                 </md-tab>
             </md-tabs>
-            
-            
+
+
 
         </div>
     </div>
@@ -221,7 +230,7 @@
             </div>
 
             <div class="grid_4" ng-repeat="data in listLayanan track by $index" ng-if="!isLoading">
-                <md-card style="height: 200px;">
+                <md-card style="height: 150px;">
                     <!-- <md-card-title>
                         <md-checkbox style="display: flex;align-items: center;" ng-checked="data.checked"
                             ng-click="updateSelectedData(data, $index)">
@@ -240,9 +249,9 @@
                             Pemeriksaan Luar
                         </label>
 
-                        <label>Jumlah Layanan</label>
-                        <input type="number" min="1" class="k-textbox" ng-disabled="!data.checked"
-                            ng-model="data.jmlLayanan">
+                        <!-- <label>Jumlah Layanan</label> -->
+                        <!-- <input type="number" min="1" class="k-textbox" ng-disabled="!data.checked"
+                            ng-model="data.jmlLayanan"> -->
 
                         <label>Catatan</label>
                         <textarea class="k-textbox" ng-model="data.catatan"></textarea>

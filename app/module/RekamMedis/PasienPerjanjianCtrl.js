@@ -12,6 +12,9 @@ define(['initialize'], function (initialize) {
                     toolbar: [{
                         name: "create", text: "Input Baru",
                         template: '<button ng-click="inputBaru()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah Pasien Perjanjian</button>'
+                    }, {
+                        name: "create", text: "Lihat",
+                        template: '<button ng-click="lihatJadwalDokter()" class="k-button k-button-icontext k-grid-upload" href="\\#">Lihat Jadwal Dokter</button>'
                     }],
                     pageable: true,
                     columns: [
@@ -90,6 +93,10 @@ define(['initialize'], function (initialize) {
                     //    $scope.showTombol = true
                     //}
                 }
+            }
+
+            $scope.lihatJadwalDokter = () => {
+                $state.go("InformasiJadwalDokterV2");
             }
 
             $scope.inputBaru = function() {

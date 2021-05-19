@@ -30,6 +30,11 @@ define(['initialize'], function (initialize) {
             $scope.kodeReservasi = '';
 
             $scope.columnResevasi = {
+                toolbar: [{
+                    name: "create",
+                    text: "Lihat",
+                    template: '<button ng-click="lihatJadwalDokter()" class="k-button k-button-icontext k-grid-upload" href="\\#">Lihat Jadwal Dokter</button>'
+                }],
                 pageable: true,
                 scrollable: true,
                 columns: [{
@@ -88,6 +93,10 @@ define(['initialize'], function (initialize) {
                     }
                 ]
             };
+
+            $scope.lihatJadwalDokter = () => {
+                $state.go("InformasiJadwalDokterV2");
+            }
 
 
             // $scope.Column = [
@@ -267,7 +276,7 @@ define(['initialize'], function (initialize) {
                         LoadData();
                         console.log(res);
                     })
-                    
+
                 }, function () {
                     console.error('Tidak jadi batal');
                 });

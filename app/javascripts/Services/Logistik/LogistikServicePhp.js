@@ -21,6 +21,12 @@
           });
       },
 
+      local:function(urlGet){
+        return r.get({
+              url: "http://172.16.111.18:8001/" + urlGet
+          });
+      },
+
       saveData:function (urlPost, data) {
         return r.post({
           url: baseUrlApiAction + urlPost
