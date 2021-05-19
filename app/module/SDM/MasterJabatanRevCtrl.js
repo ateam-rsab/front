@@ -457,33 +457,19 @@ define(['initialize'], function (initialize) {
                 $scope.isHapus = false;
             }
 
-            $scope.$watch('data.namaJabatan', function (e) {
-                if (!e) return;
-                if (!$scope.data.namaJabatan && !$scope.data.jenisJabatan.id) return
+            $scope.getValJabatan = function (idJabatan, namaJabatan, idJenisJabatan, idUnitKerja) {
+                if (!namaJabatan && !idJenisJabatan && !idUnitKerja) return
 
                 $scope.msgIsDuplikatData = ""
-                ManageSdmNew.getListData("jabatan/validate-nama-jabatan/?idJabatan=" + ($scope.data.jabatanId ? $scope.data.jabatanId : "")
-                    + "&namaJabatan=" + encodeURIComponent($scope.data.namaJabatan).replace(/%20/g, "+")
-                    + "&idJenisJabatan=" + $scope.data.jenisJabatan.id, true).then(function (dat) {
+                ManageSdmNew.getListData("jabatan/validate-nama-jabatan/?idJabatan=" + (idJabatan ? idJabatan : "")
+                    + "&namaJabatan=" + encodeURIComponent(namaJabatan).replace(/%20/g, "+")
+                    + "&idJenisJabatan=" + idJenisJabatan
+                    + "&idUnitKerja=" + idUnitKerja, true).then(function (dat) {
                         if (dat.data.data.msg) {
                             $scope.msgIsDuplikatData = dat.data.data.msg
                         }
                     });
-            })
-
-            $scope.$watch('data.jenisJabatan', function (e) {
-                if (!e) return;
-                if (!$scope.data.namaJabatan && !$scope.data.jenisJabatan.id) return
-
-                $scope.msgIsDuplikatData = ""
-                ManageSdmNew.getListData("jabatan/validate-nama-jabatan/?idJabatan=" + ($scope.data.jabatanId ? $scope.data.jabatanId : "")
-                    + "&namaJabatan=" + encodeURIComponent($scope.data.namaJabatan).replace(/%20/g, "+")
-                    + "&idJenisJabatan=" + $scope.data.jenisJabatan.id, true).then(function (dat) {
-                        if (dat.data.data.msg) {
-                            $scope.msgIsDuplikatData = dat.data.data.msg
-                        }
-                    });
-            })
+            }
         }
     ]);
 });

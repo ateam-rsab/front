@@ -375,7 +375,7 @@
                             </div>
                         </div>
                         <!-- Nilai Jabatan / Grade -->
-                        <div class="grid_12">
+                        <!-- <div class="grid_12">
                             <div class="grid_4" style="margin: 10px 0 0 0;">
                                 <label c-label item="item" c-label-text="NilaiJabatan/Grade"></label>
                             </div>
@@ -387,7 +387,7 @@
                                 <input c-text-box type="input" placeholder="Grade" filter="'varchar'" class="k-textbox"
                                     ng-model="item.grade" disabled />
                             </div>
-                        </div>
+                        </div> -->
                     </fieldset>
                     <!-- PopUp -->
                     <div kendo-window="popUpJabatan" k-title="'Jabatan'" k-width="550" k-visible="false"
@@ -412,6 +412,19 @@
                                         for="cito">Non-Anjab</label>
                                 </div>
                             </div> -->
+                            <!-- Sumber Data -->
+                            <div class="grid_12">
+                                <div class="grid_4" style="margin-top: 1.5%;">
+                                    <label c-label item="item" c-label-text="SumberData"></label>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="grid_8">
+                                    <input style="width: 100%;" kendo-combo-box k-ng-model="ji.sumberData"
+                                        k-data-text-field="'sumberData'" k-data-value-field="'id'" k-filter="'contains'"
+                                        k-data-source="SumberData" />
+                                </div>
+                                <!-- </div> -->
+                            </div>
                             <!-- Unit Kerja -->
                             <div class="grid_12">
                                 <div class="grid_4" style="margin-top: 1.5%;">
@@ -623,7 +636,7 @@
                             k-auto-bind="false" k-data-source="ListKedudukanPegawai" ng-disabled="isSimpan" />
                     </div>
                     <!-- Kelompok Jabatan -->
-                    <div class="grid_12">
+                    <!-- <div class="grid_12">
                         <div class="grid_4" style="margin: 10px 0 0 0;">
                             <label c-label item="item" c-label-text="Kelompok Jabatan"></label>
                         </div>
@@ -633,7 +646,7 @@
                                 k-filter="'contains'" k-auto-bind="false" k-data-source="ListDetilKelompokJabatan"
                                 disabled />
                         </div>
-                    </div>
+                    </div> -->
                     <!-- Pangkat dan Golongan-->
                     <div class="grid_12">
                         <div class="grid_4" style="margin: 10px 0 0 0;">
@@ -1115,25 +1128,52 @@
         <div class="grid_12">
             <div class="grid_6">
                 <div class="grid_12">
+                    <label c-label item="item" c-label-text="SumberData"></label>
+                </div>
+                <div class="clear"></div>
+                <div class="grid_12">
+                    <input kendo-combo-box k-ng-model="item.sumberData" k-data-text-field="'sumberData'"
+                        k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
+                        k-data-source="SumberData" />
+                </div>
+            </div>
+            <div class="grid_6">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="UnitKerja"></label>
+                </div>
+                <div class="clear"></div>
+                <div class="grid_12">
+                    <input kendo-combo-box k-ng-model="item.unitKerja" k-data-text-field="'name'"
+                        k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
+                        k-data-source="ListUnitKerjaPop"
+                        k-on-change="getDataSubUnitKerjaById(item.unitKerja.id, item.unitKerja, item.jenisJabatan.id)"
+                        ng-disabled="isEditedRJ" />
+                </div>
+            </div>
+        </div>
+        <div class="grid_12">
+            <div class="grid_6">
+                <div class="grid_12">
                     <label c-label item="item" c-label-text="JenisJabatan"></label>
                 </div>
                 <div class="clear"></div>
                 <div class="grid_12">
                     <input kendo-combo-box k-ng-model="item.jenisJabatan" k-data-text-field="'jenisJabatan'"
                         k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
-                        k-data-source="listJenisJabatan" k-on-change="getDataJabatan(item.jenisJabatan.id)" />
+                        k-data-source="listJenisJabatan"
+                        k-on-change="getPilihanJabatan(item.jenisJabatan.id,item.unitKerja.id)"
+                        ng-disabled="isEditedRJ" />
                 </div>
             </div>
             <div class="grid_6">
                 <div class="grid_12">
-                    <label c-label item="item" c-label-text="Jabatan"></label>
+                    <label c-label item=" item" c-label-text="Jabatan"></label>
                 </div>
                 <div class="clear"></div>
                 <div class="grid_12">
-                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.riwayatJabatan"
+                    <input style=" width: 100%;" kendo-combo-box id="idComboDataRJabatan" k-ng-model="item.riwayatJabatan"
                         k-data-text-field="'namaJabatan'" k-data-value-field="'idJabatan'" k-filter="'contains'"
-                        k-data-source="listJabatanByJenisJabatan" />
-                    <!-- <input kendo-combo-box k-ng-model="item.jabatanRiwayat" k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJabatanByJenisJabatan" /> -->
+                        k-data-source="listJabatanByJenisJabatan" ng-disabled="isEditedRJ" />
                 </div>
             </div>
         </div>

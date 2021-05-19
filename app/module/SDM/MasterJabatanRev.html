@@ -63,9 +63,14 @@
     k-on-open="win2visible2 = true" k-on-close="win2visible2 = false">
     <div class="panel panel-default container_12" style="padding: 0px 10px;">
         <div class="grid_12">
+            <div class="grid_6" ng-hide="true">
+                <label c-label item="item" c-label-text="Kode Jabatan"></label>
+                <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="data.jabatanId" />
+            </div>
             <div class="grid_6">
                 <label c-label item="item" c-label-text="Nama Jabatan"></label>
-                <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="data.namaJabatan" />
+                <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="data.namaJabatan"
+                    k-on-change="getValJabatan(data.jabatanId,data.namaJabatan,data.jenisJabatan.id,data.unitKerja.id)" />
             </div>
             <div class="grid_3">
                 <label c-label c-label-text="Kelompok Jabatan" real></label>
@@ -77,7 +82,8 @@
                 <label c-label c-label-text="Jenis Jabatan" real></label>
                 <input kendo-combo-box style="width:100%" k-ng-model="data.jenisJabatan"
                     k-data-text-field="'jenisJabatan'" k-data-value-field="'id'" k-filter="'contains'"
-                    k-auto-bind="false" k-data-source="listEntriJenisJabatan" />
+                    k-auto-bind="false" k-data-source="listEntriJenisJabatan"
+                    k-on-change="getValJabatan(data.jabatanId,data.namaJabatan,data.jenisJabatan.id,data.unitKerja.id)" />
             </div>
         </div>
         <div class="grid_12">
@@ -89,7 +95,8 @@
             <div class="grid_4">
                 <label c-label c-label-text="Unit Kerja" real></label>
                 <input kendo-combo-box style="width:100%" k-ng-model="data.unitKerja" k-data-text-field="'name'"
-                    k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitKerja" />
+                    k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitKerja"
+                    k-on-change="getValJabatan(data.jabatanId,data.namaJabatan,data.jenisJabatan.id,data.unitKerja.id)" />
             </div>
             <div class="grid_3">
                 <label c-label c-label-text="Level Jabatan" real></label>

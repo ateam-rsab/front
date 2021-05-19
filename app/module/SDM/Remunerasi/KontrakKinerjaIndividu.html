@@ -57,12 +57,14 @@
         options="optGridKontrakKinerja" k-ng-model="selectedData"></div>
 </div>
 
+<div ng-include='"../app/module/Shared/TemplateLoading"' ng-hide="isPopup"></div>
+
 <div kendo-window="popupTambah" k-title="'Input Data Kontrak Kinerja'" k-width="1200" k-visible="false"
     k-on-open="win2visible= true" k-on-close="win2visible= false">
     <div class="panel panel-default container_12" style="padding: 0px 10px;">
         <md-card>
             <div class="grid_12">
-                <div class="grid_6">
+                <div class="grid_5">
                     <label><strong>Indikator Kinerja</strong></label>
                     <input c-text-box type="input" filter="" class="k-textbox"
                         ng-model="item.indikatorKerja.namaIndikator" ng-disabled="true" />
@@ -72,10 +74,16 @@
                     <input c-text-box type="number" filter="numeric" min="0" class="k-textbox" ng-model="item.target"
                         ng-disabled="item.statusVerif" />
                 </div>
+                <div class="grid_2" style="margin-top: 2em; margin-right: auto;">
+                    <label><strong>{{item.satuanIndikator}}</strong></label>
+                </div>
                 <div class="grid_1">
                     <label><strong>Bobot</strong></label>
                     <input c-text-box type="number" filter="numeric" min="0" class="k-textbox" ng-model="item.bobot"
                         ng-disabled="item.statusVerif" />
+                </div>
+                <div class="grid_1" style="margin-top: 2em; margin-right: auto;">
+                    <label><strong>%</strong></label>
                 </div>
                 <div class="grid_2" ng-show="isVerifGranted">
                     <md-checkbox ng-model="item.statusVerif" aria-label="verified" style="margin-top:24px"
@@ -102,6 +110,8 @@
             </div>
         </div>
     </div>
+
+    <div ng-include='"../app/module/Shared/TemplateLoading"' ng-show="isPopup"></div>
 </div>
 
 <div kendo-window="popupTambahIndikator" k-title="'Tambah Data Kontrak Kinerja'" k-width="1200" k-visible="false"
@@ -128,7 +138,7 @@
             </div>
 
             <div class="grid_12">
-                <div class="grid_3">
+                <div class="grid_2">
                     <label><strong>Jenis Indikator Kinerja</strong></label>
                     <input kendo-combo-box k-filter="'contains'" k-ng-model="indikator.jenisIndikator"
                         k-data-text-field="'jenisIndikator'" k-data-value-field="'id'"
@@ -140,20 +150,22 @@
                     <input c-text-box type="input" filter="" class="k-textbox" ng-model="indikator.namaIndikator" />
                 </div>
 
+                <div class="grid_1">
+                    <label><strong>Target</strong></label>
+                    <input c-text-box type="input" filter="numeric" class="k-textbox" ng-model="indikator.target" />
+                </div>
                 <div class="grid_3">
                     <label><strong>Satuan Indikator</strong></label>
                     <input kendo-combo-box k-filter="'contains'" k-ng-model="indikator.satuanIndikator"
                         k-data-text-field="'satuanIndikator'" k-data-value-field="'id'"
                         k-data-source="listDataSatuanIndikator" />
                 </div>
-
-                <div class="grid_1">
-                    <label><strong>Target</strong></label>
-                    <input c-text-box type="input" filter="numeric" class="k-textbox" ng-model="indikator.target" />
-                </div>
                 <div class="grid_1">
                     <label><strong>Bobot</strong></label>
                     <input c-text-box type="input" filter="numeric" class="k-textbox" ng-model="indikator.bobot" />
+                </div>
+                <div class="grid_1" style="margin-top: 2em;">
+                    <label><strong>%</strong></label>
                 </div>
             </div>
         </md-card>
@@ -180,6 +192,6 @@
             </div>
         </div>
     </div>
-</div>
 
-<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+    <div ng-include='"../app/module/Shared/TemplateLoading"' ng-show="isPopup"></div>
+</div>

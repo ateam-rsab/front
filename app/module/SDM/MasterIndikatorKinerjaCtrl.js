@@ -654,6 +654,14 @@ define(['initialize'], function (initialize) {
 
                 // console.log(dataSave);
                 ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-mapping-indikator-all-jabatan?loginUserId=" + dataLogin.id).then(res => {
+                    for (let i = 0; i < res.data.data.length; i++) {
+                        if (res.data.data[i].contains("hapus")) {
+                            toastr.warning(res.data.data[i], "Perhatian!");
+                            $scope.isRouteLoading = false;
+                            return;
+                        }
+                    }
+
                     $scope.popupConfirmMapping.close();
                     $scope.getAllJabatan();
                     $scope.isRouteLoading = false;

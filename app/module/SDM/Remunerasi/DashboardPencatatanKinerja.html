@@ -8,8 +8,6 @@
         cursor: pointer;
     }
 
-
-
     .mt-progress-bar::-webkit-progress-bar {
         background-color: #fff;
         border-radius: .25em;
@@ -21,8 +19,6 @@
         -moz-appearance: none;
         appearance: none;
     }
-
-    .mt-progress-bar-value {}
 
     .mt-progress-bar[value]::-moz-progress-bar {
         background-color: #99f3e7;
@@ -63,6 +59,9 @@
         background-color: #73cbc7;
     }
 
+    .fa-ellipsis-v {
+        color: black;
+    }
 
     progress.mt-progress-bar:before {
         content: attr(data-label);
@@ -91,23 +90,34 @@
 </md-toolbar>
 
 <div class="grid_12">
-
     <md-card>
         <md-card-title>
             <md-card-title-text>
-                <span class="md-headline">{{dataLogin.namaLengkap}}</span>
-                <span class="md-subhead" ng-if="showIsSingleJabatan">{{dataSingleJabatan}}</span>
-                <div class="grid_12">
-                    <div class="grid_6" ng-if="!showIsSingleJabatan">
-                        <input kendo-combo-box k-filter="'contains'" k-ng-model="item.jabatan"
-                            k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-data-source="listJabatan"
+                <span class="md-subhead">
+                    <div class="grid_11"></div>
+                    <div class="grid_1">
+                        <input style="width: 100%;" k-ng-model="item.bulan" k-options="monthSelectorOptions"
+                            kendo-date-picker placeholer="mmm-yyyy" k-format="'MMM-yyyy'" k-max="endOfDay"
                             k-on-change="getDataDashboard()" />
                     </div>
-                    <div class="grid_2">
-                        <input style="width: 100%;" k-ng-model="item.tanggal" kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" k-max="now" k-on-change="getDataDashboard()"/>
-                    </div>
+                </span>
+                <div class="grid_6" ng-if="showIsSinglePegawai" style="margin-left: -0.4em;">
+                    <span class="md-headline" ng-if="showIsSinglePegawai"
+                        ng-click="showListPegawai()">{{dataSinglePegawai}}</span>
                 </div>
-              
+                <div class="grid_6" ng-if="!showIsSinglePegawai" style="margin-left: -0.4em;">
+                    <input kendo-combo-box k-filter="'contains'" k-ng-model="item.pegawai"
+                        k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-data-source="listPegawai"
+                        k-on-change="getJabatanPegawai(item.pegawai.id)" />
+                </div>
+                <div class="grid_6" ng-if="showIsSingleJabatan" style="margin-left: -0.4em;">
+                    <span class="md-subhead" ng-if="showIsSingleJabatan">{{dataSingleJabatan}}</span>
+                </div>
+                <div class="grid_6" ng-if="!showIsSingleJabatan" style="margin-left: -0.4em;">
+                    <input kendo-combo-box k-filter="'contains'" k-ng-model="item.jabatan"
+                        k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-data-source="listJabatan"
+                        k-on-change="getDataDashboard()" />
+                </div>
             </md-card-title-text>
         </md-card-title>
 
@@ -121,16 +131,13 @@
                 <i style="display: block;">S&K: Plafon Gaji
                     {{dataDashboard.plafonP1}}, selisihnya dengan
                     gaji yang Anda terima adalah maksimal P1 Anda</i>
-
                 <strong style="display: block;margin-top: 20px;">P2:
                     {{dataDashboard.rupiahCapaianP2Format}}/{{dataDashboard.rupiahTargetFormatP2}}</strong>
                 <i style="display: block;">S&K: Plafon Insentif
                     {{dataDashboard.plafonP2}}, selisihnya
                     dengan insentif yang Anda terima adalah maksimal P2 Anda</i>
             </div>
-
             <hr>
-
             <div class="grid_12">
                 <h5 style="color: #3498db; font-weight: bolder;">Kuantitas</h5>
                 <div class="grid_11">
@@ -138,14 +145,12 @@
                         value="{{dataDetailDashboardKinerja.persentaseCapaianKuntitas}}"
                         data-label="{{dataDetailDashboardKinerja.persentaseCapaianKuntitas}}%"></progress>
                 </div>
-
                 <div class="grid_1">
                     <md-button class="md-raised md-primary medium-button" ng-click="detailData('kuantitas')"
                         ng-if="!showDetailKuantitas">
                         <span style="margin-right: 5px;">Detail</span>
                         <i class="fa fa-info-circle"></i>
                     </md-button>
-
                     <md-button class="md-raised md-danger medium-button" ng-click="detailData('kuantitas')"
                         ng-if="showDetailKuantitas">
                         <span style="margin-right: 5px;">Tutup</span>
@@ -153,18 +158,21 @@
                     </md-button>
                 </div>
 
-                <!-- detail kuantitas -->
                 <hr>
+                <!-- detail kuantitas -->
                 <div class="grid_12" ng-if="showDetailKuantitas">
                     <div class="grid_6" ng-repeat="kuantitas in dataDetailDashboardKinerja.kuantitas.data">
-                        <span>{{kuantitas.namaIndikator}}</span>
+                        <div class="grid_12" style="margin-left: 0.5em;">
+                            <span ng-click="showDetail(kuantitas)"><i class="fa fa-ellipsis-v"></i></span>
+                            <span>{{kuantitas.namaIndikator}}</span>
+                        </div>
                         <div class="grid_11">
                             <progress class="mt-progress-bar blue" max="100"
                                 value="{{kuantitas.persenCapaianDibulatkan}}"
                                 data-label="{{kuantitas.persenCapaianDibulatkan}}%"></progress>
                         </div>
-                        <div class="grid_1">
-                            <md-button class="md-raised md-primary medium-button" ng-click="addData('kuantitas')" ng-disabled="disabledButtonAdd">
+                        <div class="grid_1" ng-show="isAksesWR1">
+                            <md-button class="md-raised md-primary medium-button" ng-click="addData(kuantitas)">
                                 <i class="fa fa-plus"></i>
                             </md-button>
                         </div>
@@ -179,15 +187,12 @@
                         value="{{dataDetailDashboardKinerja.persentaseCapaianKualitas}}"
                         data-label="{{dataDetailDashboardKinerja.persentaseCapaianKualitas}}%"></progress>
                 </div>
-
                 <div class="grid_1">
-
                     <md-button class="md-raised md-danger medium-button" ng-click="detailData('kualitas')"
                         ng-if="showDetailKualitas">
                         <span style="margin-right: 5px;">Tutup</span>
                         <i class="fa fa-close"></i>
                     </md-button>
-
                     <md-button class="md-raised md-primary medium-button" ng-click="detailData('kualitas')"
                         ng-if="!showDetailKualitas">
                         <span style="margin-right: 5px;">Detail</span>
@@ -195,18 +200,21 @@
                     </md-button>
                 </div>
 
-                <!-- detail kualitas -->
                 <hr>
+                <!-- detail kualitas -->
                 <div class="grid_12" ng-if="showDetailKualitas">
                     <div class="grid_6" ng-repeat="kualitas in dataDetailDashboardKinerja.kualitas.data">
-                        <span>{{kualitas.namaIndikator}}</span>
+                        <div class="grid_12" style="margin-left: 0.5em;">
+                            <span ng-click="showDetail(kualitas)"><i class="fa fa-ellipsis-v"></i></span>
+                            <span>{{kualitas.namaIndikator}}</span>
+                        </div>
                         <div class="grid_11">
                             <progress class="mt-progress-bar egg-blue" max="100"
                                 value="{{kualitas.persenCapaianDibulatkan}}"
                                 data-label="{{kualitas.persenCapaianDibulatkan}}%"></progress>
                         </div>
-                        <div class="grid_1">
-                            <md-button class="md-raised md-primary medium-button" ng-click="addData('kualitas')" ng-disabled="disabledButtonAdd">
+                        <div class="grid_1" ng-show="isAksesWR2">
+                            <md-button class="md-raised md-primary medium-button" ng-click="addData(kualitas)">
                                 <i class="fa fa-plus"></i>
                             </md-button>
                         </div>
@@ -222,15 +230,12 @@
                         data-label="{{dataDetailDashboardKinerja.persentaseCapaianPerilaku}}%">
                     </progress>
                 </div>
-
                 <div class="grid_1">
-
                     <md-button class="md-raised md-danger medium-button" ng-click="detailData('perilaku')"
                         ng-if="showDetailPerilaku">
                         <span style="margin-right: 5px;">Tutup</span>
                         <i class="fa fa-close"></i>
                     </md-button>
-
                     <md-button class="md-raised md-primary medium-button" ng-click="detailData('perilaku')"
                         ng-if="!showDetailPerilaku">
                         <span style="margin-right: 5px;">Detail</span>
@@ -238,18 +243,20 @@
                     </md-button>
                 </div>
 
-                <!-- detail perilaku -->
                 <hr>
+                <!-- detail perilaku -->
                 <div class="grid_12" ng-if="showDetailPerilaku">
                     <div class="grid_6" ng-repeat="perilaku in dataDetailDashboardKinerja.perilaku.data">
-                        <span>{{perilaku.namaIndikator}}</span>
+                        <div class="grid_12" style="margin-left: 0.5em;">
+                            <span ng-click="showDetail(perilaku)"><i class="fa fa-ellipsis-v"></i></span>
+                            <span>{{perilaku.namaIndikator}}</span>
+                        </div>
                         <div class="grid_11">
                             <progress class="mt-progress-bar" max="100" value="{{perilaku.persenCapaianDibulatkan}}"
                                 data-label="{{perilaku.persenCapaianDibulatkan}}%"></progress>
                         </div>
-
-                        <div class="grid_1">
-                            <md-button class="md-raised md-primary medium-button" ng-click="addData('perilaku')" ng-disabled="disabledButtonAdd">
+                        <div class="grid_1" ng-show="isAksesWR3">
+                            <md-button class="md-raised md-primary medium-button" ng-click="addData(perilaku)">
                                 <i class="fa fa-plus"></i>
                             </md-button>
                         </div>
@@ -258,13 +265,11 @@
             </div>
         </md-card-content>
     </md-card>
-
 </div>
 
 <div kendo-window="popupAdd" k-title="'Tambah Data'" k-width="1200" k-visible="false" k-on-open="win2visible= true"
     k-on-close="win2visible= false">
     <div class="panel panel-default container_12" style="padding: 0px 10px;">
-
         <md-card>
             <md-card-body style="padding: 10px;">
                 <h5>{{labelData}}</h5>
@@ -273,7 +278,6 @@
                         <label><strong>Kegiatan</strong></label>
                         <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaKegiatan" />
                     </div>
-
                     <div class="grid_12">
                         <div class="grid_10">
                             <label><strong>Hasil</strong></label>
@@ -283,12 +287,11 @@
                             <label><strong>{{dataAdd.satuanIndikator}}</strong></label>
                         </div>
                     </div>
-
                     <div class="grid_12">
                         <label><strong>Catatan</strong></label>
                         <textarea c-text-box ng-model="item.catatanKegiatan" rows="10" maxlength="1000"></textarea>
                         <p class="length-textarea">
-                            1000/{{item.catatanKegiatan ? item.catatanKegiatan.length : 0}}</p>
+                            {{item.catatanKegiatan ? item.catatanKegiatan.length : 0}}/1000</p>
                     </div>
                 </div>
             </md-card-body>
@@ -315,5 +318,19 @@
                 </md-button>
             </div>
         </div>
+    </div>
+</div>
+
+<div kendo-window="popupDetail" k-title="'Detail'" k-width="1200" k-visible="false" k-on-open="win2visible= true"
+    k-on-close="win2visible= false">
+    <div class="panel panel-default container_12" style="padding: 0px 10px;">
+        <md-card>
+            <md-card-body style="padding: 10px;">
+                <h5>{{labelDetail}}</h5>
+                <div class="grid_12">
+                    <div kendo-grid k-data-source="dataSource" k-selectable="'row'" options="optGrid"></div>
+                </div>
+            </md-card-body>
+        </md-card>
     </div>
 </div>
