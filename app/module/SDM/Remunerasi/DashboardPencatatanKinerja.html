@@ -281,19 +281,32 @@
                     <div class="grid_12">
                         <div class="grid_10">
                             <label><strong>Hasil</strong></label>
-                            <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.hasilKegiatan" />
+                            <input ng-show="!showInputHasil" c-text-box type="input" filter="" class="k-textbox" ng-model="item.hasilKegiatan" />
+                            <ul class="fieldlist" ng-show="showInputHasil" style="display: flex;flex-direction: row;justify-content: space-around;">
+                                <li>
+                                    <input type="radio" name="hasilKegiatan" ng-model="item.hasilKegiatan" value="100"
+                                        id="hasilKegiatanYa" class="k-radio">
+                                    <label class="k-radio-label" for="hasilKegiatanYa">Ya (100%)</label>
+                                </li>
+                                <li>
+                                    <input type="radio" name="hasilKegiatan" ng-model="item.hasilKegiatan" value="0"
+                                        id="hasilKegiatanTidak" class="k-radio">
+                                    <label class="k-radio-label" for="hasilKegiatanTidak">Tidak (0%)</label>
+                                </li>
+                            </ul>
                         </div>
-                        <div class="grid_2" style="margin-top: 25px;">
+                        <div class="grid_2" style="margin-top: 25px;" ng-show="!showInputHasil">
                             <label><strong>{{dataAdd.satuanIndikator}}</strong></label>
                         </div>
+
+
+                        <div class="grid_12">
+                            <label><strong>Catatan</strong></label>
+                            <textarea c-text-box ng-model="item.catatanKegiatan" rows="10" maxlength="1000"></textarea>
+                            <p class="length-textarea">
+                                {{item.catatanKegiatan ? item.catatanKegiatan.length : 0}}/1000</p>
+                        </div>
                     </div>
-                    <div class="grid_12">
-                        <label><strong>Catatan</strong></label>
-                        <textarea c-text-box ng-model="item.catatanKegiatan" rows="10" maxlength="1000"></textarea>
-                        <p class="length-textarea">
-                            {{item.catatanKegiatan ? item.catatanKegiatan.length : 0}}/1000</p>
-                    </div>
-                </div>
             </md-card-body>
         </md-card>
 

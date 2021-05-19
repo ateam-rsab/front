@@ -8,6 +8,7 @@ define(['initialize'], function (initialize) {
             $scope.showIsSingleJabatan = false;
             $scope.showIsSinglePegawai = false;
             $scope.showSyaratKetentuan = false;
+            $scope.showInputHasil = true;
             $scope.endOfDay = new Date(new Date().setHours(23, 59, 59, 999))
 
             $scope.item = {};
@@ -227,6 +228,9 @@ define(['initialize'], function (initialize) {
                 $scope.dataAdd = data;
                 $scope.labelData = data.namaIndikator;
 
+                
+                $scope.showInputHasil = data.satuanId === 11743 && (data.jenisIndikator === "Kualitas" || data.jenisIndikator === "Perilaku");
+                console.log($scope.showInputHasil);
                 $scope.popupAdd.open().center();
             }
 
