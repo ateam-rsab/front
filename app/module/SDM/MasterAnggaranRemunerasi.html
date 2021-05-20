@@ -15,7 +15,7 @@
     </div>
     <div class="grid_5">
         <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.anggaranRemunerasi"
-            ng-change="changeAnggaran()" ng-disabled="isExistedTahunIni"/>
+            ng-change="changeAnggaran()" ng-disabled="isExistedTahunIni" />
     </div>
 
     <div class="grid_6" style="text-align: right; margin-top: 10px;">
@@ -33,7 +33,7 @@
     </div>
 </div>
 
-<div class="grid_12">
+<div class="grid_12" ng-hide="isExistedTahunIni">
     <div class="grid_9"></div>
     <div class="grid_2" style="text-align: right;">
         <md-button class="md-raised md-primary medium-button" ng-click="simpanAllAnggaran()">
