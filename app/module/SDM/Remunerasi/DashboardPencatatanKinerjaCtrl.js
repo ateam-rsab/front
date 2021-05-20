@@ -228,9 +228,9 @@ define(['initialize'], function (initialize) {
                 $scope.dataAdd = data;
                 $scope.labelData = data.namaIndikator;
 
-                
+
                 $scope.showInputHasil = data.satuanId === 11743 && (data.jenisIndikator === "Kualitas" || data.jenisIndikator === "Perilaku");
-                console.log($scope.showInputHasil);
+                // console.log($scope.showInputHasil);
                 $scope.popupAdd.open().center();
             }
 

@@ -2246,19 +2246,21 @@ define(['initialize'], function (initialize) {
                         // {command: [{text: "Detil", click: showDetailPerubahan}], title: "&nbsp;", width: "6%"}
                     ]
                 }
-                ManageSdmNew.getListData("sdm/get-list-history-pegawai/" + $state.params.idPegawai).then(function (res) {
-                    if (res.data.data.dataFound) {
-                        $scope.lastEditDate = res.data.data.data[0].tanggal ? dateHelper.formatDate(new Date(res.data.data.data[0].tanggal), 'DD-MM-YYYY HH:mm') : '-';
-                        $scope.lastEditBy = res.data.data.data[0].petugas ? res.data.data.data[0].petugas : '-';
-                        $scope.dataHistoriPegawai = new kendo.data.DataSource({
-                            data: res.data.data.data,
-                            pageSize: 10
-                        });
-                        $scope.klikRiwayat = true;
-                    } else {
-                        messageContainer.log('Belum ada histori')
-                    }
-                })
+                if ($state.params.idPegawai) {
+                    ManageSdmNew.getListData("sdm/get-list-history-pegawai/" + $state.params.idPegawai).then(function (res) {
+                        if (res.data.data.dataFound) {
+                            $scope.lastEditDate = res.data.data.data[0].tanggal ? dateHelper.formatDate(new Date(res.data.data.data[0].tanggal), 'DD-MM-YYYY HH:mm') : '-';
+                            $scope.lastEditBy = res.data.data.data[0].petugas ? res.data.data.data[0].petugas : '-';
+                            $scope.dataHistoriPegawai = new kendo.data.DataSource({
+                                data: res.data.data.data,
+                                pageSize: 10
+                            });
+                            $scope.klikRiwayat = true;
+                        } else {
+                            messageContainer.log('Belum ada histori')
+                        }
+                    })
+                }
             }
 
             // initRiwayatPerubahandData();
