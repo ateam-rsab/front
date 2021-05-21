@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('RekapPendapatanRuanganCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm', 'ManageSdmNew', 'ReportService', 'DateHelper', 'FindPegawai', 'FindSdm', '$timeout', '$mdDialog',
-        function ($q, $rootScope, $scope, ModelItem, $state, ManageSdm, ManageSdmNew, ReportService, dateHelper, FindPegawai, FindSdm, $timeout, $mdDialog) {
+    initialize.controller('RekapPendapatanRuanganCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm', 'ManageSdmNew', 'ReportService', 'DateHelper', 'FindPegawai', 'FindSdm', '$timeout', '$mdDialog', 'CetakHelper',
+        function ($q, $rootScope, $scope, ModelItem, $state, ManageSdm, ManageSdmNew, ReportService, dateHelper, FindPegawai, FindSdm, $timeout, $mdDialog, cetakHelper) {
             $scope.dataVOloaded = true;
             $scope.item = {};
             $scope.now = new Date();
@@ -31,12 +31,12 @@ define(['initialize'], function (initialize) {
                     pageable: false,
                     columns: [
                         {
-                            field: "departemen.namaDepartemen",
+                            field: "namaDepartemen",
                             title: "Departemen", width: "200px",
                             hidden: true
                         },
                         {
-                            field: "ruangan.namaRuangan",
+                            field: "namaRuangan",
                             title: "Ruangan", width: "200px",
                             footerTemplate: "Jumlah : ",
                             footerAttributes: { style: "text-align : right" }
@@ -129,17 +129,17 @@ define(['initialize'], function (initialize) {
                             footerTemplate: "{{item.diskon}}",
                             footerAttributes: { style: "text-align : right" }
                         },
-                        {
-                            field: "totalDiRuangan",
-                            title: "Total", width: "200px",
-                            template: "<span class='style-right'>{{formatRupiah('#: totalDiRuangan #', 'Rp.')}}</span>",
-                            attributes: {
-                                style: "text-align: right;"
-                            },
-                            aggregates: ["sum"],
-                            footerTemplate: "{{item.totalDiRuangan}}",
-                            footerAttributes: { style: "text-align : right" }
-                        }
+                        // {
+                        //     field: "totalDiRuangan",
+                        //     title: "Total", width: "200px",
+                        //     template: "<span class='style-right'>{{formatRupiah('#: totalDiRuangan #', 'Rp.')}}</span>",
+                        //     attributes: {
+                        //         style: "text-align: right;"
+                        //     },
+                        //     aggregates: ["sum"],
+                        //     footerTemplate: "{{item.totalDiRuangan}}",
+                        //     footerAttributes: { style: "text-align : right" }
+                        // }
                     ]
                 };
             };
@@ -149,8 +149,8 @@ define(['initialize'], function (initialize) {
                     ManageSdm.getOrderList("service/list-generic/?view=Departemen&select=id,namaDepartemen&criteria=statusEnabled&values=true&order=namaDepartemen:asc", true),
                     ManageSdm.getOrderList("service/list-generic/?view=Ruangan&select=id,namaRuangan&criteria=statusEnabled&values=true&order=namaRuangan:asc", true)
                 ]).then(function (res) {
-                    $scope.Departemen = res[0].data.data;
-                    $scope.Ruangan = res[1].data.data;
+                    $scope.Departemen = res[0].data;
+                    $scope.Ruangan = res[1].data;
 
                     initLoadData();
 
@@ -160,13 +160,22 @@ define(['initialize'], function (initialize) {
 
             $scope.init();
 
+            $scope.cetakRekap = () => {
+                var tglAwal = dateHelper.getDateTimeFormatted3($scope.item.tglAwal) + " 00:00:00";
+                var tglAkhir = dateHelper.getDateTimeFormatted3($scope.item.tglAkhir) + " 23:59:59";
+                // https://smart.rsabhk.co.id:2222/reporting-rsabhk-service/lap-pendapatan-ruangan?tglAwal=2021-05-01&tglAkhir=2021-05-20&departemen=Inap&ruangan=&X-AUTH-TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbi5vcGVyYXRvciJ9.2yCoQiRKSoXJhCzSdbLxvLWPPx02jzPgkUpT2f0uDLeKKPIK00xLbLlUeTlS7eNq6cLOE7XM03sOWgmQ5TLvVA
+                cetakHelper.openURLReportingNew(`lap-pendapatan-ruangan?tglAwal=${tglAwal}&tglAkhir=${tglAwal}&departemen=${$scope.item.departemen ? $scope.item.departemen.namaDepartemen : ""}&ruangan=`, '?');
+            }
+
             $scope.loadDataGridRekap = function () {
                 $scope.isRouteLoading = true;
 
                 var tglAwal = dateHelper.getDateTimeFormatted3($scope.item.tglAwal) + " 00:00:00";
                 var tglAkhir = dateHelper.getDateTimeFormatted3($scope.item.tglAkhir) + " 23:59:59";
+                console.log($scope.item.departemen);
+                console.log($scope.item.ruangan);
 
-                ReportService.getListData("reporting/rekapitulasi-laporan-pendapatan-ruangan?tglAwal=" + dateHelper.formatDate(tglAwal, 'YYYY-MM-DD HH:mm:ss') + "&tglAkhir=" + dateHelper.formatDate(tglAkhir, 'YYYY-MM-DD HH:mm:ss')).then(function (data) {
+                ReportService.getListDataNew("get-pendapatan-ruangan?tglAwal=" + dateHelper.formatDate(tglAwal, 'YYYY-MM-DD HH:mm:ss') + "&tglAkhir=" + dateHelper.formatDate(tglAkhir, 'YYYY-MM-DD HH:mm:ss') + "&departemen=" + ($scope.item.departemen ? $scope.item.departemen.id : "") + "&ruangan=" + ($scope.item.ruangan ? $scope.item.ruangan.id : "")).then(function (data) {
                     $scope.dataSourceRekap = new kendo.data.DataSource({
                         data: data.data.data,
                         schema: {
@@ -186,9 +195,8 @@ define(['initialize'], function (initialize) {
                                 }
                             }
                         },
-                        // pageSize: data.data.data.length,
                         group: {
-                            field: "departemen.namaDepartemen"
+                            field: "namaDepartemen"
                         },
                         sort: [
                             { field: "departemen.namaDepartemen", dir: "asc" },

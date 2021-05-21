@@ -77,7 +77,7 @@ define(['initialize'], function (initialize) {
                     tglOrderAkhir = $scope.item.tglOrderAkhir ? moment($scope.item.tglOrderAkhir).format('YYYY-MM-DD HH:mm:ss') : '';
 
                 $scope.isRouteLoading = true;
-                manageLogistikPhp.getDataTableTransaksi("lab-radiologi/get-daftar-pasien-penunjang?" +
+                manageLogistikPhp.getDataTableTransaksi("lab-radiologi/get-daftar-pasien-penunjang-new?" +
                     "tglAwal=" + tglAwal +
                     "&tglAkhir=" + tglAkhir +
                     "&tglOrderAwal=" + tglOrderAwal + "&tglOrderAkhir=" + tglOrderAkhir +

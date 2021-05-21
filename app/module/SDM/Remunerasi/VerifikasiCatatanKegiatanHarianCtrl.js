@@ -56,6 +56,12 @@ define(['initialize'], function (initialize) {
                         title: "",
                         width: 100
                     }],
+                    dataBound: function (e) {
+                        $('td').each(function () {
+                            if ($(this).text() == 'Terverifikasi') { $(this).addClass('verified') };
+                            if ($(this).text() == 'Belum Terverifikasi') { $(this).addClass('unverified') };
+                        })
+                    },
                 }
 
                 ManageSdmNew.getListData("iki-remunerasi/get-akses-pegawai-verifikasi-kinerja?pegawaiId=" + dataPegawai.id).then((res) => {

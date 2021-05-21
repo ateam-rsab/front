@@ -94,8 +94,9 @@
                     <div class="grid_2">
                         <label><b>Lama Operasi</b></label>
                         <input c-text-box type="input"
-                            placeholder="Jam" filter="'varchar'"
+                            placeholder="Menit" filter="'varchar'"
                             class="k-textbox"
+                            fiter="'numeric'"
                             ng-disabled="isVerif"
                             ng-model="item.lamaOperasi"/>
                     </div>
@@ -105,6 +106,7 @@
                         <input c-text-box type="input"
                             placeholder="No. Telepon" filter="'varchar'"
                             class="k-textbox"
+                            fiter="'numeric'"
                             ng-disabled="isVerif"
                             ng-model="item.notelp"/>
                     </div>
@@ -172,7 +174,7 @@
                 <div class="grid_6">
                     <label>
                         <strong>
-                            Macam Anastesi
+                            Macam Anestesi
                         </strong>
                     </label>
                     <textarea

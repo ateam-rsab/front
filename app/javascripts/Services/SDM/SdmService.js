@@ -8,6 +8,7 @@ define(['Configuration'], function(config) {
      var baseApiPostDataSDM = config.baseApiPostDataSDM;
      var e = config.baseUrlListData;
      var baseUrlReport = config.urlReporting;
+     var baseUrlReportNew = config.urlReportingNew;
      var SdmService = angular.module('SdmService', ['ngResource', 'HttpServices', 'Services']);
      SdmService.service('ManageSdmNew', ['ModelItem', 'R', 'DateHelper', function(modelItem, r, dateHelper) {
         return {
@@ -49,6 +50,11 @@ define(['Configuration'], function(config) {
             getListData: function(urlGet) {
                 return r.get({
                     url: baseUrlReport + urlGet
+                });
+            }, 
+            getListDataNew: function(urlGet) {
+                return r.get({
+                    url: baseUrlReportNew + urlGet
                 });
             }
         }
