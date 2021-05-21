@@ -15,13 +15,11 @@ define(['initialize'], function (initialize) {
                     name: "create",
                     text: "Buat Jabatan Internal Baru",
                     template: '<button ng-click="createNewJabatanInternal()" id="btnCreateNewJabatan" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah Jabatan</button>'
-                },
-                {
+                }, {
                     name: "pengaturanBawahan",
                     text: "Pengaturan Bawahan",
                     template: '<button ng-click="pengaturanBawahan()" class="k-button k-button-icontext"><span class="k-icon k-i-gear"></span>Pengaturan Bawahan</button>'
-                }
-                ],
+                }],
                 pageable: true,
                 // scrollable: true,
                 columns: [{
@@ -154,21 +152,17 @@ define(['initialize'], function (initialize) {
             $scope.dataYesOrNo = [{
                 name: 'Ya',
                 id: 1
-            },
-            {
+            }, {
                 name: 'Tidak',
                 id: 2
-            }
-            ]
+            }]
             $scope.listOfGolonganRhesus = [{
                 name: '+',
                 id: 1
-            },
-            {
+            }, {
                 name: '-',
                 id: 2
-            }
-            ]
+            }]
             var getPangkatDanGolongan = function () {
                 ManageSdmNew.getListData('pegawai/get-all-pangkat-golongan').then(function (res) {
                     $scope.listOfPangkat = res.data.data;
@@ -593,6 +587,42 @@ define(['initialize'], function (initialize) {
                 }
                 var tr = $(e.target).closest("tr");
                 var dataItem = this.dataItem(tr);
+
+                if ($scope.isNewData && !$scope.isNewJabatan) {
+                    var grid = $("#grid").data("kendoGrid")._data;
+
+                    $scope.dataSourceJabatanInternal = new kendo.data.DataSource({
+                        data: []
+                    });
+                    for (let i = 0; i < grid.length; i++) {
+                        if (dataItem.uid != grid[i].uid) {
+                            $scope.dataSourceJabatanInternal.add({
+                                sumberData: grid[i].sumberData,
+                                jenisJabatan: grid[i].jenisJabatan,
+                                jabatan: grid[i].jabatan,
+                                unitKerjaPegawai: grid[i].unitKerjaPegawai,
+                                subUnitKerjaPegawai: grid[i].subUnitKerjaPegawai,
+                                atasanLangsung: grid[i].atasanLangsung,
+                                pejabatPenilai: grid[i].pejabatPenilai,
+                                grade: grid[i].grade,
+                                kelompokJabatan: grid[i].kelompokJabatan,
+                                nilaiJabatan: grid[i].nilaiJabatan,
+                                isPrimary: grid[i].isPrimary,
+                                isMonitoring: grid[i].isMonitoring,
+                                isCanCreateJadwal: grid[i].isCanCreateJadwal,
+                                atasanLangsungDireksi: grid[i].atasanLangsungDireksi,
+                                pejabatPenilaiDireksi: grid[i].pejabatPenilaiDireksi
+                            })
+                        }
+                    }
+
+                    $scope.isRouteLoading = false;
+                    $scope.popUpJabatan.close();
+                    e.preventDefault();
+                    $scope.loadDataGridJabatanInternal();
+                    return
+                }
+
                 var dataSave = [{
                     "id": dataItem.id,
                     // "pegawai": {
@@ -654,11 +684,10 @@ define(['initialize'], function (initialize) {
                             $scope.item.grade = ""
                         }
 
-                        $scope.isRouteLoading = true;
+                        $scope.isRouteLoading = false;
                         $scope.popUpJabatan.close();
                         e.preventDefault();
                         $scope.loadDataGridJabatanInternal();
-                        // console.warn('Data Berhasil Dihapus');
                     });
                     // console.warn('Masuk sini pak eko');
                 }, function () {
@@ -701,8 +730,8 @@ define(['initialize'], function (initialize) {
 
             $scope.simpanJabatanInternal = function () {
                 $scope.isRouteLoading = true;
-                // Jika dia pegawai baru 
-                if ($scope.isNewData) {
+                // Jika dia pegawai baru dan jabatan baru
+                if ($scope.isNewData && $scope.isNewJabatan) {
                     $scope.dataSourceJabatanInternal.add({
                         sumberData: $scope.ji.sumberData,
                         jenisJabatan: $scope.ji.jenisJabatan,
@@ -711,17 +740,72 @@ define(['initialize'], function (initialize) {
                         subUnitKerjaPegawai: $scope.ji.subUnitKerjaPegawai,
                         atasanLangsung: $scope.ji.atasanLangsung,
                         pejabatPenilai: $scope.ji.pejabatPenilai,
+                        grade: $scope.ji.grade,
+                        kelompokJabatan: $scope.ji.kelompokJabatan,
+                        nilaiJabatan: $scope.ji.nilaiJabatan,
                         isPrimary: $scope.ji.isPrimary,
                         isMonitoring: $scope.ji.isMonitoring,
                         isCanCreateJadwal: $scope.ji.isCanCreateJadwal,
                         atasanLangsungDireksi: $scope.ji.atasanLangsungDireksi,
                         pejabatPenilaiDireksi: $scope.ji.pejabatPenilaiDireksi
-                        // kdJabatan: $scope.ji.analisaJabatan
                     })
 
                     $scope.getEvaluasiJabatanPegawaiBaru();
 
                     $scope.popUpJabatan.close();
+                    $scope.isRouteLoading = false;
+                    return;
+                } else if ($scope.isNewData && !$scope.isNewJabatan) {
+                    var ji = $scope.ji
+                    var grid = $("#grid").data("kendoGrid")._data;
+
+                    $scope.dataSourceJabatanInternal = new kendo.data.DataSource({
+                        data: []
+                    });
+                    for (let i = 0; i < grid.length; i++) {
+                        if (ji.uid == grid[i].uid) {
+                            $scope.dataSourceJabatanInternal.add({
+                                sumberData: $scope.ji.sumberData,
+                                jenisJabatan: $scope.ji.jenisJabatan,
+                                jabatan: $scope.ji.jabatan,
+                                unitKerjaPegawai: $scope.ji.unitKerjaPegawai,
+                                subUnitKerjaPegawai: $scope.ji.subUnitKerjaPegawai,
+                                atasanLangsung: $scope.ji.atasanLangsung,
+                                pejabatPenilai: $scope.ji.pejabatPenilai,
+                                grade: $scope.ji.grade,
+                                kelompokJabatan: $scope.ji.kelompokJabatan,
+                                nilaiJabatan: $scope.ji.nilaiJabatan,
+                                isPrimary: $scope.ji.isPrimary,
+                                isMonitoring: $scope.ji.isMonitoring,
+                                isCanCreateJadwal: $scope.ji.isCanCreateJadwal,
+                                atasanLangsungDireksi: $scope.ji.atasanLangsungDireksi,
+                                pejabatPenilaiDireksi: $scope.ji.pejabatPenilaiDireksi
+                            })
+                        } else {
+                            $scope.dataSourceJabatanInternal.add({
+                                sumberData: grid[i].sumberData,
+                                jenisJabatan: grid[i].jenisJabatan,
+                                jabatan: grid[i].jabatan,
+                                unitKerjaPegawai: grid[i].unitKerjaPegawai,
+                                subUnitKerjaPegawai: grid[i].subUnitKerjaPegawai,
+                                atasanLangsung: grid[i].atasanLangsung,
+                                pejabatPenilai: grid[i].pejabatPenilai,
+                                grade: grid[i].grade,
+                                kelompokJabatan: grid[i].kelompokJabatan,
+                                nilaiJabatan: grid[i].nilaiJabatan,
+                                isPrimary: grid[i].isPrimary,
+                                isMonitoring: grid[i].isMonitoring,
+                                isCanCreateJadwal: grid[i].isCanCreateJadwal,
+                                atasanLangsungDireksi: grid[i].atasanLangsungDireksi,
+                                pejabatPenilaiDireksi: grid[i].pejabatPenilaiDireksi
+                            })
+                        }
+                    }
+
+                    $scope.getEvaluasiJabatanPegawaiBaru();
+
+                    $scope.popUpJabatan.close();
+                    $scope.isRouteLoading = false;
                     return;
                 }
 
@@ -898,9 +982,12 @@ define(['initialize'], function (initialize) {
 
             function editDataJabatanInternal(e) {
                 e.preventDefault();
+
+                $scope.isNewJabatan = false
+                $scope.enableBtnSimpanJabatanInternal = true
+
                 var tr = $(e.target).closest("tr");
                 var dataItem = this.dataItem(tr);
-                $scope.enableBtnSimpanJabatanInternal = true
                 $scope.getDataJabatan(dataItem.jenisJabatan.id);
                 if (!$scope.isEdit && !$scope.isNewData) {
                     toastr.warning('Tidak bisa merubah jabatan');
@@ -931,6 +1018,7 @@ define(['initialize'], function (initialize) {
                     }
                 }
                 $scope.getDataSubUnitKerjaById(dataItem.unitKerjaPegawai.id, dataItem.unitKerjaPegawai, dataItem.jenisJabatan.id);
+                $scope.ji.uid = dataItem.uid
                 $scope.ji.idGridInternalJabatan = dataItem.id;
                 $scope.ji.sumberData = {
                     id: dataItem.sumberData.id,
@@ -1294,6 +1382,8 @@ define(['initialize'], function (initialize) {
 
             $scope.createNewJabatanInternal = function () {
                 clearPop();
+
+                $scope.isNewJabatan = true
                 $scope.idGridInternalJabatan = null;
                 if ($scope.isEdit || $scope.isNewData) {
                     $scope.popUpJabatan.center().open();
@@ -2156,19 +2246,21 @@ define(['initialize'], function (initialize) {
                         // {command: [{text: "Detil", click: showDetailPerubahan}], title: "&nbsp;", width: "6%"}
                     ]
                 }
-                ManageSdmNew.getListData("sdm/get-list-history-pegawai/" + $state.params.idPegawai).then(function (res) {
-                    if (res.data.data.dataFound) {
-                        $scope.lastEditDate = res.data.data.data[0].tanggal ? dateHelper.formatDate(new Date(res.data.data.data[0].tanggal), 'DD-MM-YYYY HH:mm') : '-';
-                        $scope.lastEditBy = res.data.data.data[0].petugas ? res.data.data.data[0].petugas : '-';
-                        $scope.dataHistoriPegawai = new kendo.data.DataSource({
-                            data: res.data.data.data,
-                            pageSize: 10
-                        });
-                        $scope.klikRiwayat = true;
-                    } else {
-                        messageContainer.log('Belum ada histori')
-                    }
-                })
+                if ($state.params.idPegawai) {
+                    ManageSdmNew.getListData("sdm/get-list-history-pegawai/" + $state.params.idPegawai).then(function (res) {
+                        if (res.data.data.dataFound) {
+                            $scope.lastEditDate = res.data.data.data[0].tanggal ? dateHelper.formatDate(new Date(res.data.data.data[0].tanggal), 'DD-MM-YYYY HH:mm') : '-';
+                            $scope.lastEditBy = res.data.data.data[0].petugas ? res.data.data.data[0].petugas : '-';
+                            $scope.dataHistoriPegawai = new kendo.data.DataSource({
+                                data: res.data.data.data,
+                                pageSize: 10
+                            });
+                            $scope.klikRiwayat = true;
+                        } else {
+                            messageContainer.log('Belum ada histori')
+                        }
+                    })
+                }
             }
 
             // initRiwayatPerubahandData();

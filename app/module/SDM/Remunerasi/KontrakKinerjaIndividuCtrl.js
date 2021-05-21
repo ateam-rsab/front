@@ -352,6 +352,12 @@ define(['initialize'], function (initialize) {
                 ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-kontrak-kinerja").then(res => {
                     $scope.getAllData();
                     $scope.closePopUp();
+
+                    $scope.isRouteLoading = false;
+                    $scope.isPopup = true;
+                }, (error) => {
+                    $scope.isRouteLoading = false;
+                    $scope.isPopup = true;
                 })
             }
 
@@ -482,6 +488,12 @@ define(['initialize'], function (initialize) {
                     }
                 })
             })
+
+            document.querySelector(".numerik").addEventListener("keypress", function (evt) {
+                if (evt.which != 8 && evt.which != 0 && (evt.which > 31 && (evt.which != 46 && (evt.which < 48 || evt.which > 57)))) {
+                    evt.preventDefault();
+                }
+            });
         }
     ])
 });
