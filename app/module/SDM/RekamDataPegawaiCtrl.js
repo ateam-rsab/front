@@ -2579,6 +2579,9 @@ define(['initialize'], function (initialize) {
                         if (key === 'golongan') {
                             delete newModel[key];
                         }
+                        if (key === 'mappingJabatan' && !$scope.isNewData) {
+                            newModel[key] = null;
+                        }
 
                         // if(newModel[key] === "") {
                         //     newModel[key] = '-';
