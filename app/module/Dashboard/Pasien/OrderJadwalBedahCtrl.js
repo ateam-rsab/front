@@ -5,10 +5,12 @@ define(['initialize'], function (initialize) {
             $scope.item = {};
             $scope.dataVOloaded = true;
             $scope.now = new Date();
+            $scope.item.tglJadwalPembedahan = new Date();
             $scope.isRouteLoading = false;
             $scope.isSaveLoad = false;
             $scope.pegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
             $scope.dataPasien = JSON.parse(localStorage.getItem('cacheHelper'));
+            $scope.item.jenisBedah = "Jenis Operasi Elektif";
             let jenisPegawai = $scope.pegawaiLogin.jenisPegawai.jenispegawai ? $scope.pegawaiLogin.jenisPegawai.jenispegawai : $scope.pegawaiLogin.jenisPegawai.jenisPegawai;
             let idPegawaiLogin = $scope.pegawaiLogin;
             $scope.item.tglOperasi = new Date();
@@ -352,30 +354,65 @@ define(['initialize'], function (initialize) {
                 // console.log(nocm);
                 // bugs, kadang no cm hilang
                 if(!$scope.item.noMr) {
-                    // LoadCache();
-                    console.log('no cm kosong');
                     $scope.item.noMr = nocm;
                     // return;
                 }
+
+                if(!$scope.item.tglJadwalPembedahan) {
+                    toastr.info("Tanggal Bedah belum dipilih!");
+                    return;
+                }
+
+                if(!$scope.item.lamaOperasi) {
+                    toastr.info("Harap isi Lama Operasi!");
+                    return;
+                }
+
+                if(!$scope.item.notelp) {
+                    toastr.info("Harap isi Nomor Telepon!");
+                    return;
+                }
+                if(!$scope.item.dokterJadwalBedah) {
+                    toastr.info("Harap pilih Dokter Bedah!");
+                    return;
+                }
+                if(!$scope.item.diagnosaJadwalBedah) {
+                    toastr.info("Harap isi Diagnosa!");
+                    return;
+                }
+                if(!$scope.item.tindakanJadwalBedah) {
+                    toastr.info("Harap isi Tindakan!");
+                    return;
+                }
+                if(!$scope.item.posisiKhusus) {
+                    toastr.info("Harap isi Posisi Khusus/Peralatan khusus!");
+                    return;
+                }
+
+                if(!$scope.item.macamAnastesi) {
+                    toastr.info("Harap isi Macam Anestesi!");
+                    return;
+                }
+
                 $scope.isSaveLoad = true;
                 $scope.isRouteLoading = true;
                 let data = {
-                    "norec": $scope.norecJadwalBedah,
-                    "pasienfk": $scope.item.noMr,
-                    "dokterfk": $scope.pegawaiLogin.id,
-                    "doktertujuanfk": $scope.item.dokterJadwalBedah.id,
-                    "noregistrasifk": norec_apd,
-                    "ruanganfk": $scope.item.idRuangan,
-                    "ruangantujuanfk": 44,
-                    "iscito": $scope.item.jenisBedah === "CITO" ? true : false,
-                    "tglinput": DateHelper.formatDate(new Date(), 'YYYY-MM-DD HH:mm'),
-                    "tgloperasi": DateHelper.formatDate($scope.item.tglJadwalPembedahan, 'YYYY-MM-DD HH:mm'),
-                    "diagnosa": $scope.item.diagnosaJadwalBedah,
-                    "tindakan": $scope.item.tindakanJadwalBedah,
-                    "posisikhusus": $scope.item.posisiKhusus,
-                    "macamanestesi": $scope.item.macamAnastesi,
-                    "lamaoperasi": $scope.item.lamaOperasi,
-                    "telp":$scope.item.notelp
+                    norec: $scope.norecJadwalBedah,
+                    pasienfk: $scope.item.noMr,
+                    dokterfk: $scope.pegawaiLogin.id,
+                    doktertujuanfk: $scope.item.dokterJadwalBedah.id,
+                    noregistrasifk: norec_apd,
+                    ruanganfk: $scope.item.idRuangan,
+                    ruangantujuanfk: 44,
+                    iscito: $scope.item.jenisBedah === "CITO" ? true : false,
+                    tglinput: DateHelper.formatDate(new Date(), 'YYYY-MM-DD HH:mm'),
+                    tgloperasi: DateHelper.formatDate($scope.item.tglJadwalPembedahan, 'YYYY-MM-DD HH:mm'),
+                    diagnosa: $scope.item.diagnosaJadwalBedah,
+                    tindakan: $scope.item.tindakanJadwalBedah,
+                    posisikhusus: $scope.item.posisiKhusus,
+                    macamanestesi: $scope.item.macamAnastesi,
+                    lamaoperasi: $scope.item.lamaOperasi,
+                    telp:$scope.item.notelp
                 };
                 console.log($scope.item.noMr);
 

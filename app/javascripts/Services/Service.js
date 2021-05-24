@@ -114,7 +114,7 @@ define(['Configuration'], function (config) {
                         result[cur[0]] = cur[1];
                     }
 
-                    // param di isi dengan simbol / ? &
+                    // param di isi dengan simbol / ? & 
                     let BASEURL = "https://smart.rsabhk.co.id:2222/reporting-rsabhk-service/";
                     window.open(`${BASEURL}${url}${param}X-AUTH-TOKEN=${result['authorization']}`, "_blank")
                 }
