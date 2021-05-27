@@ -9,6 +9,7 @@ define(['initialize'], function (initialize) {
             $scope.item = {};
             $scope.username = "Show";
             $scope.item.selectedStatusPegawai = [];
+            $scope.inactiveLogin = [3, 4, 5, 6, 24, 25, 26, 28, 29]
             $scope.isRouteLoading = true;
             $scope.listOfJenisKategoriPegawai = [
                 { name: 'Tetap', id: 1, value: '1,2,10,12,14' },
@@ -52,7 +53,7 @@ define(['initialize'], function (initialize) {
                     var toRemove = [0],
                         listUnitKerja = result[0].data.data;
 
-                    $scope.listUnitKerja = listUnitKerja.filter(function(el) {
+                    $scope.listUnitKerja = listUnitKerja.filter(function (el) {
                         return !toRemove.includes(el.id);
                     });
                 }
@@ -69,10 +70,10 @@ define(['initialize'], function (initialize) {
                 // };
                 // $scope.ListKedudukanPegawai = result[5].data.data;
                 if (result[1].statResponse) {
-                    var toRemove = [2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,22,24,25,27,28],
+                    var toRemove = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 24, 25, 27, 28],
                         listKedudukan = result[1].data.data;
 
-                    $scope.ListKedudukanPegawai = listKedudukan.filter(function(el) {
+                    $scope.ListKedudukanPegawai = listKedudukan.filter(function (el) {
                         return !toRemove.includes(el.id);
                     });
                 }
@@ -87,7 +88,7 @@ define(['initialize'], function (initialize) {
                 //         return !toRemove.includes(el.id);
                 //     });
                 // }
-                
+
                 // $scope.ListStatusPegawai = [];
                 // var tempListStatusPegawai = result[6].data;
                 // tempListStatusPegawai.forEach(function (el) {
@@ -103,7 +104,7 @@ define(['initialize'], function (initialize) {
                 //         }
                 //     }
                 // });
-                 
+
                 // restructure json get mapping atasan
                 // if (result[2].statResponse) {
                 //     $scope.arrayMapAtasan = [];
@@ -444,7 +445,12 @@ define(['initialize'], function (initialize) {
             function confirmHapusDataPegawai(e) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-                console.log(dataItem);
+                // console.log(dataItem);
+                if (!$scope.inactiveLogin.includes(dataItem.kedudukanId)) {
+                    toastr.warning("Mohon sesuaikan kedudukan pegawai terlebih dahulu", "Peringatan")
+                    return
+                }
+
                 var confirm = $mdDialog.confirm()
                     .title('Apakah anda yakin akan menghapus data pegawai?')
                     .textContent(`Anda akan menghapus data pegawai dengan nama ${dataItem.namaLengkap}`)
@@ -454,9 +460,9 @@ define(['initialize'], function (initialize) {
                     .cancel('Tidak');
                 $mdDialog.show(confirm).then(function () {
                     hapusDataPegawai(dataItem.idPegawai);
-                    console.warn('Masuk sini pak eko');
-                }, function () {
-                    console.error('Tidak jadi hapus');
+                    // console.warn('Masuk sini pak eko');
+                }, function (err) {
+                    console.error(err);
                 });
             }
 
@@ -534,7 +540,7 @@ define(['initialize'], function (initialize) {
             // }
             // item.namaPegawai
 
-            $scope.onEnter = function($event){
+            $scope.onEnter = function ($event) {
                 var keyCode = $event.which || $event.keyCode;
                 if (keyCode === 13) {
                     $scope.searchDataPegawai();
@@ -558,7 +564,7 @@ define(['initialize'], function (initialize) {
                 var usergemes = '';
                 // &listIdStatusPegawai=${$scope.item.selectedJenisKategoriPegawai ? $scope.item.selectedJenisKategoriPegawai.value:'' }
                 // ManageSdmNew.getListData(`pegawai/search-pegawai?nama=${$scope.item.namaPegawai ? $scope.item.namaPegawai : ''}&idUnitKerja=${$scope.item.unitKerja ? $scope.item.unitKerja.id : ''}&idKedudukan=${$scope.item.kedudukanPegawai ? $scope.item.kedudukanPegawai.id : ''}&listStatusPegawaiId=${arrIdKategoriPegawai ? arrIdKategoriPegawai : ''}&periode=${$scope.item.tglMasuk ? tglMasuk : ''}`, true).then(res => {
-                    ManageSdmNew.getListData(`pegawai/search-pegawai-mitra?nama=${$scope.item.namaPegawai ? $scope.item.namaPegawai : ''}&idUnitKerja=${$scope.item.unitKerja ? $scope.item.unitKerja.id : ''}&idKedudukan=${$scope.item.kedudukanPegawai ? $scope.item.kedudukanPegawai.id : ''}&periode=${$scope.item.tglMasuk ? tglMasuk : ''}`, true).then(res => {
+                ManageSdmNew.getListData(`pegawai/search-pegawai-mitra?nama=${$scope.item.namaPegawai ? $scope.item.namaPegawai : ''}&idUnitKerja=${$scope.item.unitKerja ? $scope.item.unitKerja.id : ''}&idKedudukan=${$scope.item.kedudukanPegawai ? $scope.item.kedudukanPegawai.id : ''}&periode=${$scope.item.tglMasuk ? tglMasuk : ''}`, true).then(res => {
                     if (res.data.data.dataFound) {
                         for (var x = 0; x < res.data.data.pegawai.length; x++) {
                             var element = res.data.data.pegawai[x];
