@@ -128,18 +128,7 @@ define(['initialize'], function (initialize) {
                             aggregates: ["sum"],
                             footerTemplate: "{{item.diskon}}",
                             footerAttributes: { style: "text-align : right" }
-                        },
-                        // {
-                        //     field: "totalDiRuangan",
-                        //     title: "Total", width: "200px",
-                        //     template: "<span class='style-right'>{{formatRupiah('#: totalDiRuangan #', 'Rp.')}}</span>",
-                        //     attributes: {
-                        //         style: "text-align: right;"
-                        //     },
-                        //     aggregates: ["sum"],
-                        //     footerTemplate: "{{item.totalDiRuangan}}",
-                        //     footerAttributes: { style: "text-align : right" }
-                        // }
+                        }
                     ]
                 };
             };
@@ -163,7 +152,6 @@ define(['initialize'], function (initialize) {
             $scope.cetakRekap = () => {
                 var tglAwal = dateHelper.getDateTimeFormatted3($scope.item.tglAwal) + " 00:00:00";
                 var tglAkhir = dateHelper.getDateTimeFormatted3($scope.item.tglAkhir) + " 23:59:59";
-                // https://smart.rsabhk.co.id:2222/reporting-rsabhk-service/lap-pendapatan-ruangan?tglAwal=2021-05-01&tglAkhir=2021-05-20&departemen=Inap&ruangan=&X-AUTH-TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbi5vcGVyYXRvciJ9.2yCoQiRKSoXJhCzSdbLxvLWPPx02jzPgkUpT2f0uDLeKKPIK00xLbLlUeTlS7eNq6cLOE7XM03sOWgmQ5TLvVA
                 cetakHelper.openURLReportingNew(`lap-pendapatan-ruangan?tglAwal=${tglAwal}&tglAkhir=${tglAwal}&departemen=${$scope.item.departemen ? $scope.item.departemen.namaDepartemen : ""}&ruangan=`, '?');
             }
 
@@ -172,10 +160,8 @@ define(['initialize'], function (initialize) {
 
                 var tglAwal = dateHelper.getDateTimeFormatted3($scope.item.tglAwal) + " 00:00:00";
                 var tglAkhir = dateHelper.getDateTimeFormatted3($scope.item.tglAkhir) + " 23:59:59";
-                console.log($scope.item.departemen);
-                console.log($scope.item.ruangan);
 
-                ReportService.getListDataNew("get-pendapatan-ruangan?tglAwal=" + dateHelper.formatDate(tglAwal, 'YYYY-MM-DD HH:mm:ss') + "&tglAkhir=" + dateHelper.formatDate(tglAkhir, 'YYYY-MM-DD HH:mm:ss') + "&departemen=" + ($scope.item.departemen ? $scope.item.departemen.id : "") + "&ruangan=" + ($scope.item.ruangan ? $scope.item.ruangan.id : "")).then(function (data) {
+                ReportService.getListDataNew("get-pendapatan-ruangan?tglAwal=" + dateHelper.formatDate(tglAwal, 'YYYY-MM-DD HH:mm:ss') + "&tglAkhir=" + dateHelper.formatDate(tglAkhir, 'YYYY-MM-DD HH:mm:ss') + "&departemen=" + ($scope.item.departemen ? $scope.item.departemen.namaDepartemen : "") + "&ruangan=" + ($scope.item.ruangan ? $scope.item.ruangan.namaRuangan : "")).then(function (data) {
                     $scope.dataSourceRekap = new kendo.data.DataSource({
                         data: data.data.data,
                         schema: {

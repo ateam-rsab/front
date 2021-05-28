@@ -6,7 +6,7 @@ define(['initialize'], function (initialize) {
             $scope.item = {};
             $scope.username = "Show";
             $scope.isRouteLoading = true;
-
+            $scope.inactiveLogin = [3, 4, 5, 6, 24, 25, 26, 28, 29]
             $scope.listOfJenisKategoriPegawai = [
                 { name: 'Tetap', id: 1, value: '1,2,10,12,14' },
                 { name: 'Tidak Tetap', id: 1, value: '13,16,19,11,17,15' },
@@ -391,6 +391,11 @@ define(['initialize'], function (initialize) {
             function confirmHapusDataPegawai(e) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                if (!$scope.inactiveLogin.includes(dataItem.kedudukanId)) {
+                    toastr.warning("Mohon sesuaikan kedudukan pegawai terlebih dahulu", "Peringatan")
+                    return
+                }
+
                 var confirm = $mdDialog.confirm()
                     .title('Hapus Data Dokter Tamu')
                     .textContent(`Apakah Anda yakin akan menghapus data dokter tamu atas nama ${dataItem.namaLengkap}?`)

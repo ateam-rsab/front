@@ -2499,6 +2499,7 @@ define(['initialize'], function (initialize) {
 
                     for (let i = 0; i < dataGridJabIn.length; i++) {
                         tempData.push({
+                            sumberData: dataGridJabIn[i].sumberData.id,
                             jabatan: dataGridJabIn[i].jabatan,
                             jenisJabatan: dataGridJabIn[i].jenisJabatan,
                             pejabatPenilai: dataGridJabIn[i].pejabatPenilai,
@@ -2588,6 +2589,9 @@ define(['initialize'], function (initialize) {
                         }
                         if (key === 'golongan') {
                             delete newModel[key];
+                        }
+                        if (key === 'mappingJabatan' && !$scope.isNewData) {
+                            newModel[key] = null;
                         }
 
                         // if(newModel[key] === "") {
