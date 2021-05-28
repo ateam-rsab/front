@@ -10,12 +10,12 @@ define(['initialize'], function (initialize) {
             var norec_pd = ''
             var nocm_str = ''
             $scope.data = {};
-            $scope.item.qty = 1
+            $scope.item.qty = 1;
             $scope.riwayatForm = false
             $scope.inputOrder = true
             $scope.CmdOrderPelayanan = true;
             $scope.OrderPelayanan = false;
-            $scope.showTombol = false
+            $scope.showTombol = false;
             $scope.showProduk = true;
             // var pegawaiUser = {}
             let dataPengkajian = JSON.parse(localStorage.getItem("cacheHelper"));
@@ -26,19 +26,10 @@ define(['initialize'], function (initialize) {
                 "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
             ];
 
-            $scope.item = {
-                konsultasiAnestesi: "Tidak",
-                pemeriksaanLab: "Tidak",
-                prosesPersalinan: "Normal",
-                kelainanKonengital: "Tidak",
-                klinisPneumonia: "Tidak",
-                terpasangOksigen: "Tidak",
-                terpasangEtt: "Tidak",
-                umbilicalCatheter: "Tidak",
-                PICC: "Tidak",
-                catheterDrain: "Tidak",
+            $scope.item.ruangantujuan = {
+                id: 35,
+                namaruangan: "Radiologi"
             }
-
             var data2 = [];
             $scope.PegawaiLogin2 = {};
             var namaRuangan = ''
@@ -108,10 +99,10 @@ define(['initialize'], function (initialize) {
                         return;
                     }
 
-                    if (!$scope.listLayananLainnya[ii].jmlLayanan) {
-                        toastr.info("Jumlah layanan " + $scope.listLayananLainnya[ii].namaLayanan + " masih kosong", "Perhatian");
-                        return;
-                    }
+                    // if (!$scope.listLayananLainnya[ii].jmlLayanan) {
+                    //     toastr.info("Jumlah layanan " + $scope.listLayananLainnya[ii].namaLayanan + " masih kosong", "Perhatian");
+                    //     return;
+                    // }
 
                     tempDataGrid.push({
                         namaproduk: $scope.listLayananLainnya[ii].namaLayanan,
@@ -119,7 +110,7 @@ define(['initialize'], function (initialize) {
                         objectkelasfk: $scope.item.idKelas,
                         objectruanganfk: namaRuanganFk,
                         objectruangantujuanfk: $scope.item.ruangantujuan.id,
-                        qtyproduk: $scope.listLayananLainnya[ii].jmlLayanan,
+                        qtyproduk: 1,
                         persiapan: $scope.listLayananLainnya[ii].persiapan,
                         catatanTambahan: $scope.listLayananLainnya[ii].catatanTambahan,
                         riwayat: $scope.listLayananLainnya[ii].riwayatRadiologi
@@ -128,10 +119,10 @@ define(['initialize'], function (initialize) {
 
                 for (let i in $scope.selectedDataProduk) {
 
-                    if (!$scope.selectedDataProduk[i].jmlLayanan) {
-                        toastr.info("Jumlah layanan " + $scope.selectedDataProduk[i].namaproduk + " masih kosong", "Perhatian");
-                        return;
-                    }
+                    // if (!$scope.selectedDataProduk[i].jmlLayanan) {
+                    //     toastr.info("Jumlah layanan " + $scope.selectedDataProduk[i].namaproduk + " masih kosong", "Perhatian");
+                    //     return;
+                    // }
 
                     tempDataGrid.push({
                         namaproduk: $scope.selectedDataProduk[i].namaproduk,
@@ -139,7 +130,7 @@ define(['initialize'], function (initialize) {
                         objectkelasfk: $scope.item.idKelas,
                         objectruanganfk: namaRuanganFk,
                         objectruangantujuanfk: $scope.item.ruangantujuan.id,
-                        qtyproduk: $scope.selectedDataProduk[i].jmlLayanan,
+                        qtyproduk: 1,
                         persiapan: $scope.selectedDataProduk[i].persiapan,
                         catatanTambahan: $scope.selectedDataProduk[i].catatanTambahan,
                         riwayat: $scope.selectedDataProduk[i].riwayatRadiologi
@@ -168,10 +159,10 @@ define(['initialize'], function (initialize) {
                 manageLogistikPhp.getDataTableTransaksi("pelayanan/get-order-penunjang?departemenfk=27&nocm=" + nocm_str + "&norec_apd=" + norec_apd + "&filter_huruf=" + (data ? data.toLowerCase() : "") + "&filter_contain=" + ($scope.filterContain ? $scope.filterContain : ""), true).then(function (dat) {
                     $scope.item.ruanganAsal = dat.data.data[0].namaruangan
                     $scope.listRuanganTujuan = dat.data.ruangantujuan;
-                    $scope.item.ruangantujuan = {
-                        id: dat.data.ruangantujuan[0].id,
-                        namaruangan: dat.data.ruangantujuan[0].namaruangan
-                    };
+                    // $scope.item.ruangantujuan = {
+                    //     id: dat.data.ruangantujuan[0].id,
+                    //     namaruangan: dat.data.ruangantujuan[0].namaruangan
+                    // };
                     for (let i in dat.data.produk) {
                         dat.data.produk[i].checked = false;
                         dat.data.produk[i].jmlLayanan = 0;
@@ -181,6 +172,17 @@ define(['initialize'], function (initialize) {
                     namaRuanganFk = dat.data.data[0].objectruanganfk
 
                     $scope.showInputKhusus = namaRuanganFk === 328 || namaRuanganFk === 76;
+                    $scope.item.konsultasiAnestesi = "Tidak",
+                    $scope.item.pemeriksaanLab = "Tidak",
+                    // $scope.item.prosesPersalinan = $scope.showInputKhusus ? "Normal" : null,
+                    $scope.item.kelainanKonengital = $scope.showInputKhusus ? "Tidak" : null,
+                    $scope.item.klinisPneumonia = $scope.showInputKhusus ? "Tidak" : null,
+                    $scope.item.terpasangOksigen = $scope.showInputKhusus ? "Tidak" : null,
+                    $scope.item.terpasangEtt = $scope.showInputKhusus ? "Tidak" : null,
+                    $scope.item.umbilicalCatheter = $scope.showInputKhusus ? "Tidak" : null,
+                    $scope.item.PICC = $scope.showInputKhusus ? "Tidak" : null,
+                    $scope.item.catheterDrain = $scope.showInputKhusus ? "Tidak" : null,
+                    
                     norec_pd = dat.data.data[0].noregistrasifk
                     $scope.isLoading = false;
                 });
@@ -521,10 +523,10 @@ define(['initialize'], function (initialize) {
                     alert("Qty harus di isi!")
                     return;
                 }
-                if ($scope.item.ruangantujuan == undefined) {
-                    alert("Pilih Ruangan Tujuan terlebih dahulu!!")
-                    return;
-                }
+                // if ($scope.item.ruangantujuan == undefined) {
+                //     alert("Pilih Ruangan Tujuan terlebih dahulu!!")
+                //     return;
+                // }
                 if ($scope.item.layanan == undefined) {
                     alert("Pilih Layanan terlebih dahulu!!")
                     return;
@@ -560,6 +562,7 @@ define(['initialize'], function (initialize) {
                         produkfk: $scope.item.layanan.id,
                         namaproduk: $scope.item.layanan.namaproduk,
                         qtyproduk: parseFloat($scope.item.qty),
+                        qtyproduk: 1,
                         objectruanganfk: namaRuanganFk,
                         objectruangantujuanfk: $scope.item.ruangantujuan.id,
                         objectkelasfk: $scope.item.idKelas
@@ -594,10 +597,10 @@ define(['initialize'], function (initialize) {
                     return;
                 }
 
-                if ($scope.item.ruangantujuan == undefined) {
-                    alert("Pilih Ruangan Tujuan terlebih dahulu!!")
-                    return;
-                }
+                // if ($scope.item.ruangantujuan == undefined) {
+                //     alert("Pilih Ruangan Tujuan terlebih dahulu!!")
+                //     return;
+                // }
 
                 if ($scope.item.layanan == undefined) {
                     alert("Pilih Layanan terlebih dahulu!!")
@@ -669,7 +672,7 @@ define(['initialize'], function (initialize) {
                 $scope.item.catheterDrain = null;
 
                 $scope.showInputPemeriksaanLab = false;
-                $scope.showInputKhusus = false;
+                // $scope.showInputKhusus = false;
             }
 
             $scope.riwayat = function () {
@@ -684,22 +687,20 @@ define(['initialize'], function (initialize) {
                     return;
                 }
 
-                if (!$scope.item.ruangantujuan) {
-                    alert("Pilih Ruangan Tujuan terlebih dahulu!!")
-                    return
-                }
-
                 if (!$scope.item.klinis) {
                     toastr.warning("Klinis tidak boleh kosong!");
                     return;
                 }
 
                 if (data2.length == 0) {
-                    alert("Pilih layanan terlebih dahulu!!")
+                    toastr.warning("Pilih layanan terlebih dahulu!");
                     return;
                 }
 
-
+                if(!$scope.item.prosesPersalinan && !(namaRuanganFk === 328 || namaRuanganFk === 76)) {
+                    toastr.warning("Harap pilih Proses Persalinan!");
+                    return;
+                }
 
                 // persiapan nya ada 2
                 var objSave = {

@@ -45,6 +45,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                         $scope.header.generate = true;
         
                         $scope.header = result;
+                        localStorage.setItem('nomorTelpPasien', result.notelepon)
                         localStorage.setItem('usiaPengkajian', JSON.stringify(setUsiaPengkajian));
                         localStorage.setItem('departemenPengkajian', departemen);
                         $scope.hideShowForm(setUsiaPengkajian, departemen);

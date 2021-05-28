@@ -111,9 +111,10 @@ define(['initialize'], function (initialize) {
                     }, {
                         text: "Hapus",
                         // width: "40px",
+                        className: "btn-hapus",
                         align: "center",
                         attributes: {
-                            align: "center"
+                            align: "center",
                         },
                         click: hapusDataJabatanInternal,
                         imageClass: "k-icon k-delete"
@@ -668,28 +669,37 @@ define(['initialize'], function (initialize) {
                     .ok('Ya')
                     .cancel('Tidak');
                 $mdDialog.show(confirm).then(function () {
-                    $scope.isRouteLoading = true;
-                    ManageSdmNew.saveData(dataSave, "map-pegawai-jabatan-unitkerja/hapus-map").then(function (res) {
-                        var isEmptyModel = _.isEmpty(res.data.data.data[1]);
-                        if (!isEmptyModel) {
-                            $scope.item.detailKelompokJabatan = {
-                                id: res.data.data.data[1].idDetailKelompokJabatan,
-                                detailKelompokJabatan: res.data.data.data[1].detailKelompokJabatan
+                    if($scope.isEdit) {
+                        $scope.isRouteLoading = true;
+                        ManageSdmNew.saveData(dataSave, "map-pegawai-jabatan-unitkerja/hapus-map").then(function (res) {
+                            var isEmptyModel = _.isEmpty(res.data.data.data[1]);
+                            if (!isEmptyModel) {
+                                $scope.item.detailKelompokJabatan = {
+                                    id: res.data.data.data[1].idDetailKelompokJabatan,
+                                    detailKelompokJabatan: res.data.data.data[1].detailKelompokJabatan
+                                }
+                                $scope.item.nilaiJabatan = res.data.data.data[1].nilaiJabatan
+                                $scope.item.grade = res.data.data.data[1].grade
+                            } else {
+                                $scope.item.detailKelompokJabatan = undefined
+                                $scope.item.nilaiJabatan = ""
+                                $scope.item.grade = ""
                             }
-                            $scope.item.nilaiJabatan = res.data.data.data[1].nilaiJabatan
-                            $scope.item.grade = res.data.data.data[1].grade
-                        } else {
-                            $scope.item.detailKelompokJabatan = undefined
-                            $scope.item.nilaiJabatan = ""
-                            $scope.item.grade = ""
-                        }
 
-                        $scope.isRouteLoading = false;
-                        $scope.popUpJabatan.close();
-                        e.preventDefault();
-                        $scope.loadDataGridJabatanInternal();
-                    });
-                    // console.warn('Masuk sini pak eko');
+                            $scope.isRouteLoading = false;
+                            $scope.popUpJabatan.close();
+                            e.preventDefault();
+                            $scope.loadDataGridJabatanInternal();
+                        });
+                        return;
+                    }
+                    
+                    // $("#gridJabatanInternal").on("click", ".btn-hapus", function() {
+                        var $tr = $(e.target).closest("tr"),
+                            grid = $("#gridJabatanInternal").data("kendoGrid");
+                    
+                        grid.removeRow($tr);
+                    // });
                 }, function () {
                     // console.error('Tidak jadi hapus');
                 });

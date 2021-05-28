@@ -5,6 +5,7 @@ define(['initialize'], function (initialize) {
             $scope.item = {};
             $scope.dataVOloaded = true;
             $scope.now = new Date();
+            $scope.item.tglPembedahan = new Date();
             $scope.item.tglJadwalPembedahan = new Date();
             $scope.isRouteLoading = false;
             $scope.isSaveLoad = false;
@@ -24,6 +25,7 @@ define(['initialize'], function (initialize) {
             $scope.OrderPelayanan = false;
             $scope.showTombol = false;
 
+            $scope.item.notelp = localStorage.getItem("nomorTelpPasien");
             $scope.isEdit = false;
             $scope.header.DataNoregis = '';
             var myVar = 0;
@@ -34,6 +36,7 @@ define(['initialize'], function (initialize) {
             $scope.showInputan = false;
 
             LoadCache();
+
             function LoadCache() {
                 var chacePeriode = cacheHelper.get('cacheCPPT');
                 console.log(chacePeriode)
@@ -70,6 +73,7 @@ define(['initialize'], function (initialize) {
             });
 
             LoadCacheHelper();
+
             function LoadCacheHelper() {
                 var chacePeriode = cacheHelper.get('TransaksiPelayananLaboratoriumDokterRevCtrl');
                 if (chacePeriode != undefined) {
@@ -95,8 +99,8 @@ define(['initialize'], function (initialize) {
 
                     managePhp.getData("tatarekening/get-sudah-verif?noregistrasi=" +
                         $scope.item.noregistrasi, true).then(function (dat) {
-                            $scope.item.statusVerif = dat.data.status;
-                        });
+                        $scope.item.statusVerif = dat.data.status;
+                    });
                 }
             }
 
@@ -108,8 +112,7 @@ define(['initialize'], function (initialize) {
                         serverPaging: false,
                         schema: {
                             model: {
-                                fields: {
-                                }
+                                fields: {}
                             }
                         }
                     });
@@ -118,38 +121,72 @@ define(['initialize'], function (initialize) {
 
             function init() {
                 $scope.item.dokterJadwalBedah = {
-                    namaLengkap:$scope.pegawaiLogin.namaLengkap,
-                    id:$scope.pegawaiLogin.id
+                    namaLengkap: $scope.pegawaiLogin.namaLengkap,
+                    id: $scope.pegawaiLogin.id
                 }
                 getDataOrderJadwalBedah();
                 getLapPascaBedah();
 
-                $scope.listOfPenanganKhusus = [
-                    { id: 1, name: 'Minor' },
-                    { id: 2, name: 'Medium' },
-                    { id: 3, name: 'Mayor' },
-                    { id: 4, name: 'Khusus' },
+                $scope.listOfPenanganKhusus = [{
+                        id: 1,
+                        name: 'Minor'
+                    },
+                    {
+                        id: 2,
+                        name: 'Medium'
+                    },
+                    {
+                        id: 3,
+                        name: 'Mayor'
+                    },
+                    {
+                        id: 4,
+                        name: 'Khusus'
+                    },
                 ];
 
-                $scope.listOfLabelPasien = [
-                    { id: 1, name: 'Sudah dipasang' },
-                    { id: 3, name: 'Belum dipasang' },
+                $scope.listOfLabelPasien = [{
+                        id: 1,
+                        name: 'Sudah dipasang'
+                    },
+                    {
+                        id: 3,
+                        name: 'Belum dipasang'
+                    },
                 ];
 
-                $scope.listOfStatus = [
-                    { id: 11, name: 'Emergency' },
-                    { id: 33, name: 'Elektif' },
-                    { id: 34, name: 'Poliklinik' },
+                $scope.listOfStatus = [{
+                        id: 11,
+                        name: 'Emergency'
+                    },
+                    {
+                        id: 33,
+                        name: 'Elektif'
+                    },
+                    {
+                        id: 34,
+                        name: 'Poliklinik'
+                    },
                 ];
 
-                $scope.listYesOrNo = [
-                    { id: 1, name: 'Ya' },
-                    { id: 2, name: 'Tidak' },
+                $scope.listYesOrNo = [{
+                        id: 1,
+                        name: 'Ya'
+                    },
+                    {
+                        id: 2,
+                        name: 'Tidak'
+                    },
                 ];
 
-                $scope.listSesuaiOrNot = [
-                    { id: 1, name: 'Sesuai' },
-                    { id: 2, name: 'Tidak Sesuai' },
+                $scope.listSesuaiOrNot = [{
+                        id: 1,
+                        name: 'Sesuai'
+                    },
+                    {
+                        id: 2,
+                        name: 'Tidak Sesuai'
+                    },
                 ];
 
                 managePhp.getData("pelayanan/get-order-penunjang?departemenfk=25&nocm=" + nocm_str + '&norec_apd=' + norec_apd, true).then(function (dat) {
@@ -218,9 +255,9 @@ define(['initialize'], function (initialize) {
             init();
 
             $scope.columnDaftarJadwalBedah = {
-                toolbar: [
-                    {
-                        name: "create", text: "Input Baru",
+                toolbar: [{
+                        name: "create",
+                        text: "Input Baru",
                         template: '<button ng-click="inputBaruJadwalBedah()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Buat Baru</button>'
                     },
                     {
@@ -230,8 +267,7 @@ define(['initialize'], function (initialize) {
                 scrollable: true,
                 selectable: 'row',
                 pageable: true,
-                columns: [
-                    {
+                columns: [{
                         "field": "tgloperasi",
                         "title": "<h3>Tanggal<br> Permintaan Bedah</h3>",
                         "width": 200,
@@ -283,14 +319,18 @@ define(['initialize'], function (initialize) {
                         // "template": "<span class='style-left'>#: iscito ? 'CITO' : 'Jenis Operasi Elektif' #</span>"
                     },
                     {
-                        command: [
-                            { text: "Detail", click: detailJadwalBedah, imageClass: "k-icon k-i-pencil" },
-                        ], title: "", width: 100
+                        command: [{
+                            text: "Detail",
+                            click: detailJadwalBedah,
+                            imageClass: "k-icon k-i-pencil"
+                        }, ],
+                        title: "",
+                        width: 100
                     }
                 ]
             };
 
-            $scope.gotToDashboard = function() {
+            $scope.gotToDashboard = function () {
                 $state.go('DashboardRuanganBedah')
             }
 
@@ -331,7 +371,7 @@ define(['initialize'], function (initialize) {
 
             function getDataOrderJadwalBedah() {
                 managePhp.getData("rekam-medis/get-jadwal-operasi?nocm=" + $scope.item.noMr, true).then(function (data) {
-                    for(let i = 0; i < data.data.data.length; i++) {
+                    for (let i = 0; i < data.data.data.length; i++) {
                         data.data.data[i].ruangoperasiFormatted = data.data.data[i].ruangoperasi ? data.data.data[i].ruangoperasi : '-';
                         data.data.data[i].statusBedah = data.data.data[i].iscito ? 'CITO' : "Jenis Operasi Elektif";
                     };
@@ -340,7 +380,7 @@ define(['initialize'], function (initialize) {
                         data: data.data.data,
                         pageSize: 20
                     })
-                    
+
                 });
             }
 
@@ -353,43 +393,43 @@ define(['initialize'], function (initialize) {
                 let nocm = $("#idNoCM").val();
                 // console.log(nocm);
                 // bugs, kadang no cm hilang
-                if(!$scope.item.noMr) {
+                if (!$scope.item.noMr) {
                     $scope.item.noMr = nocm;
                     // return;
                 }
 
-                if(!$scope.item.tglJadwalPembedahan) {
+                if (!$scope.item.tglJadwalPembedahan) {
                     toastr.info("Tanggal Bedah belum dipilih!");
                     return;
                 }
 
-                if(!$scope.item.lamaOperasi) {
+                if (!$scope.item.lamaOperasi) {
                     toastr.info("Harap isi Lama Operasi!");
                     return;
                 }
 
-                if(!$scope.item.notelp) {
+                if (!$scope.item.notelp) {
                     toastr.info("Harap isi Nomor Telepon!");
                     return;
                 }
-                if(!$scope.item.dokterJadwalBedah) {
+                if (!$scope.item.dokterJadwalBedah) {
                     toastr.info("Harap pilih Dokter Bedah!");
                     return;
                 }
-                if(!$scope.item.diagnosaJadwalBedah) {
+                if (!$scope.item.diagnosaJadwalBedah) {
                     toastr.info("Harap isi Diagnosa!");
                     return;
                 }
-                if(!$scope.item.tindakanJadwalBedah) {
+                if (!$scope.item.tindakanJadwalBedah) {
                     toastr.info("Harap isi Tindakan!");
                     return;
                 }
-                if(!$scope.item.posisiKhusus) {
+                if (!$scope.item.posisiKhusus) {
                     toastr.info("Harap isi Posisi Khusus/Peralatan khusus!");
                     return;
                 }
 
-                if(!$scope.item.macamAnastesi) {
+                if (!$scope.item.macamAnastesi) {
                     toastr.info("Harap isi Macam Anestesi!");
                     return;
                 }
@@ -412,12 +452,11 @@ define(['initialize'], function (initialize) {
                     posisikhusus: $scope.item.posisiKhusus,
                     macamanestesi: $scope.item.macamAnastesi,
                     lamaoperasi: $scope.item.lamaOperasi,
-                    telp:$scope.item.notelp
+                    
+                    telp: $scope.item.notelp
                 };
-                console.log($scope.item.noMr);
+                console.log(data);
 
-                
-                
                 managePhp.postData(data, 'rekam-medis/save-jadwal-operasi/save').then(function (e) {
                     // init();
                     getDataOrderJadwalBedah();
@@ -460,8 +499,8 @@ define(['initialize'], function (initialize) {
 
             $scope.inputBaruJadwalBedah = function () {
                 $scope.item.dokterJadwalBedah = {
-                    namaLengkap:$scope.pegawaiLogin.namaLengkap,
-                    id:$scope.pegawaiLogin.id
+                    namaLengkap: $scope.pegawaiLogin.namaLengkap,
+                    id: $scope.pegawaiLogin.id
                 }
                 console.log($scope.pegawaiLogin.namaLengkap)
                 $scope.isEdit = false;
@@ -499,13 +538,13 @@ define(['initialize'], function (initialize) {
 
             $scope.columnDaftar = {
                 toolbar: [{
-                    name: "create", text: "Input Baru",
+                    name: "create",
+                    text: "Input Baru",
                     template: '<button ng-click="inputBaru()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Buat Baru</button>'
                 }],
                 selectable: 'row',
                 pageable: true,
-                columns: [
-                    {
+                columns: [{
                         "field": "tglbedah",
                         "title": "<h3>Tanggal Bedah</h3>",
                         "width": "80px",
@@ -529,12 +568,29 @@ define(['initialize'], function (initialize) {
                         // "template": "<span class='style-left'>#: if(!namaruangan) { namaruangan = '' } #</span>"
                     },
                     {
-                        command: [
-                            { text: "Edit", click: editData, imageClass: "k-icon k-i-pencil" },
-                            { text: "Detail", click: detailData, imageClass: "k-icon k-detail" },
-                            { text: "Hapus", click: hapusData, imageClass: "k-icon k-i-cancel" },
-                            { text: "Cetak", click: cetakBedah, imageClass: "k-icon k-print" }
-                        ], title: "", width: 160
+                        command: [{
+                                text: "Edit",
+                                click: editData,
+                                imageClass: "k-icon k-i-pencil"
+                            },
+                            {
+                                text: "Detail",
+                                click: detailData,
+                                imageClass: "k-icon k-detail"
+                            },
+                            {
+                                text: "Hapus",
+                                click: hapusData,
+                                imageClass: "k-icon k-i-cancel"
+                            },
+                            {
+                                text: "Cetak",
+                                click: cetakBedah,
+                                imageClass: "k-icon k-print"
+                            }
+                        ],
+                        title: "",
+                        width: 160
                     }
                 ]
             };
@@ -761,8 +817,7 @@ define(['initialize'], function (initialize) {
                     dataSource: new kendo.data.DataSource({
                         data: dataItem.details
                     }),
-                    columns: [
-                        {
+                    columns: [{
                             field: "namaproduk",
                             title: "Deskripsi",
                             width: "300px"
@@ -771,7 +826,8 @@ define(['initialize'], function (initialize) {
                             field: "qtyproduk",
                             title: "Qty",
                             width: "100px"
-                        }]
+                        }
+                    ]
                 };
             };
 

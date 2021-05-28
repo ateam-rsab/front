@@ -1,0 +1,36 @@
+<style>
+    .selesai {
+        background-color: rgb(117, 255, 121);
+        font-weight: bolder;
+    }
+
+    .pending {
+        background-color: rgb(247, 95, 95);
+        color: white;
+        font-weight: bolder;
+    }
+</style>
+
+<md-toolbar md-scroll-shrink class="shadow">
+    <div class="md-toolbar-tools">Daftar Pasien Bedah</div>
+</md-toolbar>
+<div class="grid_12">
+    <div class="grid_2">
+        <label><b>Tanggal Permintaan Bedah</b></label>
+        <input style="width: 100%" kendo-date-picker k-ng-model="item.tglBedah" placeholer="Hari-Bln-Thn"
+            k-format="'dd-MM-yyyy'" />
+    </div>
+
+    <div class="grid_1" style="margin-top:22px">
+        <md-button class="md-raised md-primary medium-button" ng-click="getData()">
+            <span style="margin-right: 5px;">Cari</span>
+            <i class="fa fa-search"></i>
+        </md-button>
+    </div>
+</div>
+
+<div class="grid_12">
+    <kendo-grid data-source="dataSource" options="optGrid" k-selectable="'row'" k-sortable="'true'"
+        k-resizable="'true'">
+    </kendo-grid>
+</div>

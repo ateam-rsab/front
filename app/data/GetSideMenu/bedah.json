@@ -39,6 +39,10 @@
         "link": "#/DaftarOrderBedah"
       },
       {
+        "name": "Daftar Pasien Bedah",
+        "link": "#/DaftarPasienBedah"
+      }, 
+      {
         "name": "Kasus Infeksi VAP",
         "link": "#/IkiDirutCapaian"
       }

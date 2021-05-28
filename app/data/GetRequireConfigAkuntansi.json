@@ -2181,6 +2181,10 @@
       "urlDep": "module/Bedah/DaftarOrderBedahCtrl"
     },
     {
+      "nameDep": "DaftarPasienBedahCtrl",
+      "urlDep": "module/Bedah/DaftarPasienBedahCtrl"
+    },
+    {
       "nameDep": "DashboardRuanganBedahCtrl",
       "urlDep": "module/Bedah/DashboardRuanganBedahCtrl"
     },

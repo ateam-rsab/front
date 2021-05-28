@@ -14158,6 +14158,34 @@
     ]
   },
   {
+    "name": "DaftarPasienBedah",
+    "url": "/DaftarPasienBedah",
+    "templateurl": "module/Bedah/DaftarPasienBedah.html",
+    "controller": "DaftarPasienBedahCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
+      },
+      {
+        "module": "PasienService",
+        "define": "PasienService"
+      },
+      {
+        "module": "PhpServices",
+        "define": "PhpServices"
+      }
+    ]
+  },
+  {
     "name": "DashboardRuanganBedah",
     "url": "/DashboardRuanganBedah",
     "templateurl": "module/Bedah/DashboardRuanganBedah.html",

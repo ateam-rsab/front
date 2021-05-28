@@ -71,7 +71,7 @@
                 </div>
                 <div class="grid_1">
                     <label><strong>Target</strong></label>
-                    <input c-text-box filter="numeric" min="0" class="k-textbox numerik"
+                    <input filter="'numeric'" min="0" class="k-textbox numerik"
                         ng-model="item.target" ng-disabled="item.statusVerif" />
                 </div>
                 <div class="grid_2" style="margin-top: 2em; margin-right: auto;">
@@ -79,7 +79,7 @@
                 </div>
                 <div class="grid_1">
                     <label><strong>Bobot</strong></label>
-                    <input c-text-box filter="numeric" min="0" class="k-textbox numerik"
+                    <input filter="'numeric'" min="0" class="k-textbox numerik"
                         ng-model="item.bobot" ng-disabled="item.statusVerif" />
                 </div>
                 <div class="grid_1" style="margin-top: 2em; margin-right: auto;">
@@ -152,7 +152,7 @@
 
                 <div class="grid_1">
                     <label><strong>Target</strong></label>
-                    <input c-text-box type="input" filter="numeric" class="k-textbox numerik"
+                    <input type="input" filter="'numeric'" class="k-textbox numerik"
                         ng-model="indikator.target" />
                 </div>
                 <div class="grid_3">
@@ -163,7 +163,7 @@
                 </div>
                 <div class="grid_1">
                     <label><strong>Bobot</strong></label>
-                    <input c-text-box type="input" filter="numeric" class="k-textbox numerik"
+                    <input filter="'numeric'" class="k-textbox numerik"
                         ng-model="indikator.bobot" />
                 </div>
                 <div class="grid_1" style="margin-top: 2em;">

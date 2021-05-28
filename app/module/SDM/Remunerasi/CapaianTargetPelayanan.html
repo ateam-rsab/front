@@ -1,44 +1,46 @@
 <div>
     <div ng-show="dataVOloaded">
-        <c-panel item="item" header="'Target dan Capaian Pelayanan'" disabled>
-            <div class="panel panel-default container_12">
-                <div class="panel-body">
-                    <div>
-                        <div class="grid_2">
-                            <label><b>Periode</b></label>
-                            <input kendo-date-picker k-max="now" k-ng-model="item.periode"
-                                k-on-change="getBulanCapaian()" style="width: 100%" k-options="yearSelected" />
-                        </div>
-                        <div class="grid_1" style="margin-top:5px">
-                            <label c-label c-label-text=""></label>
-                            <button class="c-button" ng-click="hitungTarget()">Hitung Target</button>
-                        </div>
-                        <div class="grid_3" ng-show="isGridShowed">
-                            <label c-label item="item" c-label-text="Unit Kerja"></label>
-                            <input kendo-combo-box k-ng-model="item.unitKerja" k-data-text-field="'name'"
-                                k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
-                                k-data-source="ListUnitKerjaFilter" />
-                        </div>
-                        <div class="grid_3" ng-show="isGridShowed">
-                            <label c-label item="item" c-label-text="Subunit Kerja"></label>
-                            <input kendo-combo-box k-ng-model="item.subunitKerja" k-data-text-field="'name'"
-                                k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
-                                k-data-source="ListSubUnitKerjaById" />
-                        </div>
-                        <div class="grid_1" ng-show="isGridShowed">
-                            <label c-label c-label-text=""></label>
-                            <em style="margin-top:6px;" ng-click='resetFilter()' id="iconButton" data-role="button"
-                                class="k-button k-button-icon k-primary" role="button" aria-disabled="false"
-                                tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
-                        </div>
+        <md-toolbar md-scroll-shrink class="shadow">
+            <div class="md-toolbar-tools">Target dan Capaian Pelayanan</div>
+        </md-toolbar>
+        <div class="panel panel-default container_12">
+            <div class="panel-body">
+                <div>
+                    <div class="grid_2">
+                        <label><b>Periode</b></label>
+                        <input kendo-date-picker k-max="now" k-ng-model="item.periode" k-on-change="getBulanCapaian()"
+                            style="width: 100%" k-options="yearSelected" />
+                    </div>
+                    <!-- <div class="grid_2">
+                        <label><b>Jumlah Bulan</b></label>
+                        <input c-text-box type="number" class="k-textbox" filter="'numeric'"
+                            ng-disabled="isVerif" ng-model="item.lamaBulan" />
+                    </div> -->
+                    <div class="grid_1" style="margin-top:5px">
+                        <label c-label c-label-text=""></label>
+                        <md-button class="md-raised md-primary medium-button" ng-click="hitungTarget()">
+                            <span>Hitung Target</span>
+                        </md-button>
                     </div>
                 </div>
             </div>
-            <div class="grid_12 containerBorderBox" ng-show="isGridShowed">
-                <div id="grid" kendo-grid options="gridTargetLayanan" data-source="dataSourceTargetLayanan"></div>
+        </div>
+        <div class="grid_12 containerBorderBox">
+            <!-- <div id="grid" kendo-grid options="gridTargetLayanan" data-source="dataSourceTargetLayanan"></div> -->
+            <div kendo-grid id="kGrid" options="gridTargetLayanan" data-source="dataSourceTargetLayanan"
+                k-groupable="'true'" k-selectable="'row'" k-pageable="'true'" k-sortable="'true'">
+                <div k-detail-template>
+                    <kendo-tabstrip>
+                        <div>
+                            <div id="kGridDetail" kendo-grid k-options="data2(dataItem)" k-sortable="'true'"
+                                k-selectable="'row'" k-ng-model="dataSelected2" ng-click="klikDetail(dataSelected2)">
+                            </div>
+                        </div>
+                    </kendo-tabstrip>
+                </div>
             </div>
-            <div ng-include='"../app/module/Shared/TemplateButtonSimpanNotFixed"' ng-show="isGridShowed"></div>
-        </c-panel>
+        </div>
+        <div ng-include='"../app/module/Shared/TemplateButtonSimpanNotFixed"' ng-show="isGridShowed"></div>
     </div>
 </div>
 <div ng-include='"../app/module/Shared/TemplateLoading"'></div>

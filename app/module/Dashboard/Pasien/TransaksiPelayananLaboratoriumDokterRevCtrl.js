@@ -801,6 +801,7 @@ define(['initialize'], function (initialize) {
                 cacheHelper.set('TransaksiPelayananLaboratoriumDokterRevCtrl', arrStr);
                 $state.go('TransaksiPelayananLaboratoriumDokterRev')
             }
+
             $scope.radiologi = function () {
                 var arrStr = cacheHelper.get('TransaksiPelayananLaboratoriumDokterRevCtrl')
                 cacheHelper.set('TransaksiPelayananRadiologiDokterRevCtrl', arrStr);
@@ -822,11 +823,11 @@ define(['initialize'], function (initialize) {
                     return
                 }
                 if ($scope.dataSelectedRiwayat.statusorder != 'PENDING') {
-                    toastr.error('Tidak bisa dihapus')
+                    toastr.error('Tidak bisa dihapus');
                     return
                 }
                 var data = {
-                    norec_order: $scope.dataSelectedRiwayat.norec
+                    norec_order: $scope.dataSelectedRiwayat.norecSo
                 }
                 manageLogistikPhp.saveDataProduk2(data, "lab-radiologi/delete-orderlabrad")
                     .then(function (e) {

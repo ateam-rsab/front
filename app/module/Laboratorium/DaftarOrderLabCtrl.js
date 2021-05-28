@@ -496,8 +496,8 @@ define(['initialize'], function (initialize) {
                 $scope.item.noOrder = $scope.dataSelected.noorder;
                 $scope.item.namaPasiens = $scope.dataSelected.namapasien;
                 $scope.item.dokterOrder = {
-                    id: $scope.dataSelected.objectpegawaiorderfk,
-                    namalengkap: $scope.dataSelected.pegawaiorder
+                    id: $scope.dataSelected.objectdpjp,
+                    namalengkap: $scope.dataSelected.dpjp
                 };
                 $scope.popUpVerif.center().open();
                 loadDataVerif();

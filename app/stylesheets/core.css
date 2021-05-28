@@ -262,10 +262,11 @@ input#img-6:checked ~ .nav-dots label#img-dot-6 {
   background-color: #fa3939;
   border-color: #fa3939;
 }
-.k-grid-Konfirmasi {
+.k-grid-Konfirmasi, .k-grid-Selesai {
   background-color: #2dbecd;
   border-color: #2dbecd;
 }
+
 .k-grid-Hapus:hover {
   background-color: #fd2d2d;
   border-color: #fd2d2d;
