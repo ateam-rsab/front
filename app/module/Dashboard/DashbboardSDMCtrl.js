@@ -788,14 +788,14 @@ define(['initialize'], function (initialize) {
 
 									$scope.showDetailPasien = true;
 									$scope.showDetailPasienFfs = false;
-									$scope.showDetail(selectedData.idProduk, selectedData.idKelas, $scope.item.pegawai.id, akhir, ffs);
+									$scope.showDetail(selectedData.idProduk, selectedData.idKelas, $scope.item.pegawai.id, akhir, ffs, selectedData.diskon, selectedData.statusDiskon);
 								} else if (gridId === "gridOrderService") {
 									var akhir = DateHelper.getFormatMonthPicker($scope.item.periodeFee) + "-" + colName;
 									var ffs = true;
 
 									$scope.showDetailPasien = false;
 									$scope.showDetailPasienFfs = true;
-									$scope.showDetailFfs(selectedData.idProduk, selectedData.idKelas, selectedData.idJasa, $scope.item.pegawai.id, akhir, ffs);
+									$scope.showDetailFfs(selectedData.idProduk, selectedData.idKelas, selectedData.idJasa, $scope.item.pegawai.id, akhir, ffs, selectedData.diskon, selectedData.statusDiskon);
 								}
 							}
 						}
@@ -817,164 +817,166 @@ define(['initialize'], function (initialize) {
 					// // });
 				});
 			}
-			$scope.showDetail = function (idProduk, idKelas, idPegawai, tgl, ffs) {
+			$scope.showDetail = function (idProduk, idKelas, idPegawai, tgl, ffs, diskon, statusDiskon) {
 				$scope.isRouteLoading = true;
 				// FindSdm.getDetilLogbookKinerja(idProduk, idKelas, idPegawai, tgl, ffs).then(function(data){
-				ManageSdmNew.getListData("sdm/get-detail-pasien/" + idProduk + "/" + idKelas + "/" + idPegawai + "/" + tgl + "/" + ffs).then(function (data) {
-					$scope.dats = data.data.data;
-					$scope.dats.tgl = DateHelper.formatDate(tgl, "dd-MM-yyyy");
-					$scope.detilGridOptions = {
-						scrollable: true,
-						columns: [{
-							"field": "namaProduk",
-							"title": "Nama Tindakan",
-							"width": 400
-						}, {
-							"field": "tglpelayanan",
-							"title": "Tanggal",
-							"template": "#= kendo.toString(kendo.parseDate(new Date(tglpelayanan)), 'dd-MM-yyyy') #",
-							"width": 90,
-							"attibutes": {
-								"class": "table-cell",
-								"style": "text-align: center;"
-							}
-						}, {
-							"field": "tglpelayanan",
-							"title": "Jam",
-							"template": "#= kendo.toString(kendo.parseDate(new Date(tglpelayanan)), 'HH:mm') #",
-							"width": 90,
-							"attibutes": {
-								"class": "table-cell",
-								"style": "text-align: center;"
-							}
-						}, {
-							"field": "ruangan",
-							"title": "Ruangan",
-							"width": 200
-						}, {
-							"field": "namaKelas",
-							"title": "Kelas",
-							"width": 100
-						}, {
-							"field": "harga",
-							"title": "Harga",
-							"template": "#= kendo.toString(harga, 'n0') #",
-							"width": 120,
-							"attibutes": {
-								"class": "table-cell",
-								"style": "text-align: right;"
-							}
-						}, {
-							"title": "Pasien",
-							"columns": [
-								{ "field": "noCm", "title": "No. CM", "width": 100 },
-								{ "field": "noRegistrasi", "title": "No. Reg", "width": 150 },
-								{ "field": "namapasien", "title": "Nama", "width": 300 }
-							]
-						}, {
-							"field": "jenisPetugas", "title": "Petugas", "width": 150
-						}]
-					}
-					$scope.dataDetil = new kendo.data.DataSource({
-						data: data.data.data,
-						// aggregate: [
-						//     { field: "point", aggregate: "sum" }
-						// ]
-					});
-					$scope.isRouteLoading = false;
-					$scope.winDialog.center().open();
-				}, (error) => {
-					$scope.isRouteLoading = false;
-				})
+				ManageSdmNew.getListData("sdm/get-detail-pasien/" + idProduk + "/" + idKelas + "/" + idPegawai + "/" + tgl + "/" + ffs
+					+ "?diskon=" + diskon + "&statusDiskon=" + (statusDiskon ? statusDiskon : "")).then(function (data) {
+						$scope.dats = data.data.data;
+						$scope.dats.tgl = DateHelper.formatDate(tgl, "dd-MM-yyyy");
+						$scope.detilGridOptions = {
+							scrollable: true,
+							columns: [{
+								"field": "namaProduk",
+								"title": "Nama Tindakan",
+								"width": 400
+							}, {
+								"field": "tglpelayanan",
+								"title": "Tanggal",
+								"template": "#= kendo.toString(kendo.parseDate(new Date(tglpelayanan)), 'dd-MM-yyyy') #",
+								"width": 90,
+								"attibutes": {
+									"class": "table-cell",
+									"style": "text-align: center;"
+								}
+							}, {
+								"field": "tglpelayanan",
+								"title": "Jam",
+								"template": "#= kendo.toString(kendo.parseDate(new Date(tglpelayanan)), 'HH:mm') #",
+								"width": 90,
+								"attibutes": {
+									"class": "table-cell",
+									"style": "text-align: center;"
+								}
+							}, {
+								"field": "ruangan",
+								"title": "Ruangan",
+								"width": 200
+							}, {
+								"field": "namaKelas",
+								"title": "Kelas",
+								"width": 100
+							}, {
+								"field": "harga",
+								"title": "Harga",
+								"template": "#= kendo.toString(harga, 'n0') #",
+								"width": 120,
+								"attibutes": {
+									"class": "table-cell",
+									"style": "text-align: right;"
+								}
+							}, {
+								"title": "Pasien",
+								"columns": [
+									{ "field": "noCm", "title": "No. CM", "width": 100 },
+									{ "field": "noRegistrasi", "title": "No. Reg", "width": 150 },
+									{ "field": "namapasien", "title": "Nama", "width": 300 }
+								]
+							}, {
+								"field": "jenisPetugas", "title": "Petugas", "width": 150
+							}]
+						}
+						$scope.dataDetil = new kendo.data.DataSource({
+							data: data.data.data,
+							// aggregate: [
+							//     { field: "point", aggregate: "sum" }
+							// ]
+						});
+						$scope.isRouteLoading = false;
+						$scope.winDialog.center().open();
+					}, (error) => {
+						$scope.isRouteLoading = false;
+					})
 			}
 
-			$scope.showDetailFfs = function (idProduk, idKelas, idKomponenHarga, idPegawai, tgl, ffs) {
+			$scope.showDetailFfs = function (idProduk, idKelas, idKomponenHarga, idPegawai, tgl, ffs, diskon, statusDiskon) {
 				$scope.isRouteLoading = true;
 				// FindSdm.getDetilLogbookKinerja(idProduk, idKelas, idPegawai, tgl, ffs).then(function(data){
-				ManageSdmNew.getListData("sdm/get-detail-pasien-ffs/" + idProduk + "/" + idKelas + "/" + idKomponenHarga + "/" + idPegawai + "/" + tgl).then(function (data) {
-					$scope.dataFfs = data.data.data;
-					$scope.dataFfs.tgl = DateHelper.formatDate(tgl, "dd-MM-yyyy");
-					$scope.detilGridFfsOptions = {
-						scrollable: true,
-						columns: [{
-							"field": "namaProduk",
-							"title": "Nama Tindakan",
-							"width": 400
-						}, {
-							"field": "tglpelayanan",
-							"title": "Tanggal",
-							"template": "#= kendo.toString(kendo.parseDate(new Date(tglpelayanan)), 'dd-MM-yyyy') #",
-							"width": 90,
-							"attibutes": {
-								"class": "table-cell",
-								"style": "text-align: center;"
-							}
-						}, {
-							"field": "tglpelayanan",
-							"title": "Jam",
-							"template": "#= kendo.toString(kendo.parseDate(new Date(tglpelayanan)), 'HH:mm') #",
-							"width": 90,
-							"attibutes": {
-								"class": "table-cell",
-								"style": "text-align: center;"
-							}
-						}, {
-							"field": "ruangan",
-							"title": "Ruangan",
-							"width": 200
-						}, {
-							"field": "namaKelas",
-							"title": "Kelas",
-							"width": 100
-						}, {
-							"field": "harga",
-							"title": "Harga",
-							"template": "#= kendo.toString(harga, 'n0') #",
-							"width": 120,
-							"attibutes": {
-								"class": "table-cell",
-								"style": "text-align: right;"
-							}
-						}, {
-							"field": "jumlah",
-							"title": "Jumlah<br>Tindakan",
-							"width": 90
-						}, {
-							"field": "jasaMedis",
-							"title": "Harga<br>Jasa Medis",
-							"template": "#= kendo.toString(jasaMedis, 'n0') #",
-							"width": 120
-							// }, {
-							// 	"field": "hargaDiscount",
-							// 	"title": "Harga<br>Diskon",
-							// 	"template": "#= kendo.toString(hargaDiscount, 'n0') #",
-							// 	"width": 120
-							// }, {
-							// 	"title": "Total Jasa Medis",
-							// 	"template": "#= kendo.toString((hargaJual-hargaDiscount)*jumlah, 'n0') #",
-							// 	"width": 120
-						}, {
-							"title": "Pasien",
-							"columns": [
-								{ "field": "noCm", "title": "No. CM", "width": 100 },
-								{ "field": "noRegistrasi", "title": "No. Reg", "width": 150 },
-								{ "field": "namapasien", "title": "Nama", "width": 300 }
-							]
-						}, {
-							"field": "jenisPetugas", "title": "Petugas", "width": 150
-						}]
-					}
-					$scope.dataDetilFfs = new kendo.data.DataSource({
-						data: data.data.data,
-						// aggregate: [
-						//     { field: "point", aggregate: "sum" }
-						// ]
-					});
-					$scope.isRouteLoading = false;
-					$scope.winDialog.center().open();
-				}, (error) => {
-					$scope.isRouteLoading = false;
-				})
+				ManageSdmNew.getListData("sdm/get-detail-pasien-ffs/" + idProduk + "/" + idKelas + "/" + idKomponenHarga + "/" + idPegawai
+					+ "/" + tgl + "?diskon=" + diskon + "&statusDiskon=" + (statusDiskon ? statusDiskon : "")).then(function (data) {
+						$scope.dataFfs = data.data.data;
+						$scope.dataFfs.tgl = DateHelper.formatDate(tgl, "dd-MM-yyyy");
+						$scope.detilGridFfsOptions = {
+							scrollable: true,
+							columns: [{
+								"field": "namaProduk",
+								"title": "Nama Tindakan",
+								"width": 400
+							}, {
+								"field": "tglpelayanan",
+								"title": "Tanggal",
+								"template": "#= kendo.toString(kendo.parseDate(new Date(tglpelayanan)), 'dd-MM-yyyy') #",
+								"width": 90,
+								"attibutes": {
+									"class": "table-cell",
+									"style": "text-align: center;"
+								}
+							}, {
+								"field": "tglpelayanan",
+								"title": "Jam",
+								"template": "#= kendo.toString(kendo.parseDate(new Date(tglpelayanan)), 'HH:mm') #",
+								"width": 90,
+								"attibutes": {
+									"class": "table-cell",
+									"style": "text-align: center;"
+								}
+							}, {
+								"field": "ruangan",
+								"title": "Ruangan",
+								"width": 200
+							}, {
+								"field": "namaKelas",
+								"title": "Kelas",
+								"width": 100
+							}, {
+								"field": "harga",
+								"title": "Harga",
+								"template": "#= kendo.toString(harga, 'n0') #",
+								"width": 120,
+								"attibutes": {
+									"class": "table-cell",
+									"style": "text-align: right;"
+								}
+							}, {
+								"field": "jumlah",
+								"title": "Jumlah<br>Tindakan",
+								"width": 90
+							}, {
+								"field": "jasaMedis",
+								"title": "Harga<br>Jasa Medis",
+								"template": "#= kendo.toString(jasaMedis, 'n0') #",
+								"width": 120
+								// }, {
+								// 	"field": "hargaDiscount",
+								// 	"title": "Harga<br>Diskon",
+								// 	"template": "#= kendo.toString(hargaDiscount, 'n0') #",
+								// 	"width": 120
+								// }, {
+								// 	"title": "Total Jasa Medis",
+								// 	"template": "#= kendo.toString((hargaJual-hargaDiscount)*jumlah, 'n0') #",
+								// 	"width": 120
+							}, {
+								"title": "Pasien",
+								"columns": [
+									{ "field": "noCm", "title": "No. CM", "width": 100 },
+									{ "field": "noRegistrasi", "title": "No. Reg", "width": 150 },
+									{ "field": "namapasien", "title": "Nama", "width": 300 }
+								]
+							}, {
+								"field": "jenisPetugas", "title": "Petugas", "width": 150
+							}]
+						}
+						$scope.dataDetilFfs = new kendo.data.DataSource({
+							data: data.data.data,
+							// aggregate: [
+							//     { field: "point", aggregate: "sum" }
+							// ]
+						});
+						$scope.isRouteLoading = false;
+						$scope.winDialog.center().open();
+					}, (error) => {
+						$scope.isRouteLoading = false;
+					})
 			}
 
 			$scope.cetakLogBookKinerja = function () {
