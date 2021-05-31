@@ -108,6 +108,7 @@ define(['initialize'], function (initialize) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
             
+                // if(dataItem)
                 var confirm = $mdDialog.confirm()
                     .title('Apakah anda yakin akan merubah Status Jadwal Bedah dengan No. Rekam Medis ' + dataItem.nocm + " menjadi Selesai")
                     .textContent(`Anda akan merubah status data`)

@@ -258,7 +258,7 @@ input#img-6:checked ~ .nav-dots label#img-dot-6 {
   background-color: #FF7600;
 }
 
-.k-grid-Hapus {
+.k-grid-Hapus, .k-grid-Batal {
   background-color: #fa3939;
   border-color: #fa3939;
 }

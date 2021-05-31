@@ -80,7 +80,7 @@ define(['initialize'], function (initialize) {
                     click: verifikasiJadwalBedah,
                     imageClass: "k-icon k-i-pencil"
                 }, {
-                    text: "Hapus",
+                    text: "Batal",
                     click: batalJadwalBedah,
                     imageClass: "k-icon k-i-cancel"
                 }],

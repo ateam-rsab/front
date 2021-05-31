@@ -26,7 +26,8 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                 modelItemAkuntansi.getDataTableTransaksi('rekam-medis/get-apd/' + $state.params.noRec).then(function (e) {
                     if(e.statResponse) {
                         var result = e.result;
-                        result.umur = dateHelper.CountAge(new Date(result.tgllahir), new Date(result.tglregistrasi));
+                        // result.umur = dateHelper.CountAge(new Date(result.tgllahir), new Date(result.tglregistrasi));
+                        result.umur = dateHelper.CountAge(new Date(result.tgllahir), new Date());
                         var bln = result.umur.month,
                             thn = result.umur.year,
                             day = result.umur.day;
@@ -39,7 +40,8 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                         var countDay = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime()) / (oneDay)));
         
                         var setUsiaPengkajian = {
-                            'hari': countDay,
+                            // 'hari': countDay,
+                            'hari': day,
                             'umur': thn
                         }
                         $scope.header.generate = true;
