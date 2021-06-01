@@ -308,19 +308,19 @@ define(['initialize'], function (initialize) {
                         data: dataItem.detail
                     }),
                     columns: [{
-                            field: "bulan",
-                            title: "Bulan",
-                            width: 100
-                        },
-                        {
-                            field: "target",
-                            title: "Target",
-                            width: 100,
-                        }, {
-                            field: "capaian",
-                            title: "Capaian",
-                            width: 100,
-                        }
+                        field: "bulan",
+                        title: "Bulan",
+                        width: 100
+                    },
+                    {
+                        field: "target",
+                        title: "Target",
+                        width: 100,
+                    }, {
+                        field: "capaian",
+                        title: "Capaian",
+                        width: 100,
+                    }
                     ]
                 }
             };
