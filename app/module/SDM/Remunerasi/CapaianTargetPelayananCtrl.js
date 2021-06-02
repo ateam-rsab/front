@@ -344,7 +344,7 @@ define(['initialize'], function (initialize) {
 
             $scope.Save = function () {
                 var tglBatasSimpan = new Date($scope.item.periode);
-                tglBatasSimpan.setDate(3);
+                tglBatasSimpan.setDate(4);
                 tglBatasSimpan.setHours(23, 59, 59, 999);
                 if (dateHelper.toTimeStamp(new Date()) > tglBatasSimpan) {
                     toastr.warning("Batas masa simpan hasil hitung target layanan sudah lewat", "Peringatan")
