@@ -25,6 +25,8 @@ define(['initialize'], function (initialize) {
                     $scope.item.jenisKelamin = chacePeriode[2]
                     $scope.item.noregistrasi = chacePeriode[3]
                     $scope.item.kelompokPasien = chacePeriode[13]
+                    $scope.item.noSbm =chacePeriode[16]
+                    $scope.item.nostruk =chacePeriode[17]
                     $scope.item.umur = chacePeriode[4]
                     $scope.listKelas = ([{ id: chacePeriode[5], namakelas: chacePeriode[6] }])
                     $scope.item.kelas = { id: chacePeriode[5], namakelas: chacePeriode[6] }
@@ -366,8 +368,7 @@ define(['initialize'], function (initialize) {
                 }
             }
             $scope.InputTindakan = function () {
-
-                if ($scope.item.statusVerif == true) {
+                if ($scope.item.kelompokPasien !== "Umum/Pribadi" && !$scope.item.noSbm && !$scope.item.nostruk && $scope.item.statusVerif) {
                     window.messageContainer.error("Pelayanan yang sudah di Verif tidak bisa di ubah!");
                     return;
                 }
