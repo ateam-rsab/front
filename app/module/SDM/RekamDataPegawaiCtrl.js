@@ -2537,6 +2537,7 @@ define(['initialize'], function (initialize) {
                     )
                 }
                 var isValid = ModelItem.setValidation($scope, listRawRequired);
+                
                 if (isValid.status) {
 
                     if (_.contains($scope.item.tglLahir, '-')) {
@@ -2690,6 +2691,7 @@ define(['initialize'], function (initialize) {
                             newModel.mappingJabatan = $scope.getTempJabatanInternal();
                         }
 
+                        console.log(newModel);
                         ManageSdmNew.saveData(newModel, "sdm/save-rekam-data-pegawai").then(function (dat) {
                             if (dat.data.data.noRec) {
                                 var idPegawai = dat.data.data.noRec;
