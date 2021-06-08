@@ -411,10 +411,10 @@ define(['initialize'], function (initialize) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
 
-                if (dataItem.isStatusVerifikasi) {
+                if (dataItem.isStatusVerifikasi && !$scope.item.pegawai.isModifAkses) {
                     toastr.warning("Data sudah terverifikasi, tidak dapat dihapus!", "Perhatian!");
                     return;
-                } else if (!$scope.item.pegawai.isModifAkses) {
+                } else if (dataItem.isStatusVerifikasi) {
                     toastr.warning("Tidak memiliki akses hapus!", "Perhatian!");
                     return;
                 }

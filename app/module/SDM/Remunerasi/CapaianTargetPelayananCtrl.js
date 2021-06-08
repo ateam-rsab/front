@@ -254,7 +254,7 @@ define(['initialize'], function (initialize) {
             $scope.hitungTarget = function () {
                 $scope.isGridShowed = false;
                 $scope.isRouteLoading = true;
-                ManageSdmNew.getListData("iki-remunerasi/get-all-target-dan-capaian-layanan?periode=" + dateHelper.getFormatMonthPicker($scope.item.periode) + "&jumlahBulan=" + ($scope.item.lamaBulan ? $scope.item.lamaBulan : 3)).then(function (data) {
+                ManageSdmNew.getListData("iki-remunerasi/get-all-target-dan-capaian-layanan?periode=" + dateHelper.getFormatMonthPicker($scope.item.periode)).then(function (data) {
 
                     for (let i = 0; i < data.data.data.length; i++) {
                         data.data.data[i].namaIndikator = data.data.data[i].indikator.namaIndikator;
