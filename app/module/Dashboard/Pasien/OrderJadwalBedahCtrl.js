@@ -38,8 +38,8 @@ define(['initialize'], function (initialize) {
             LoadCache();
 
             function LoadCache() {
+                $scope.item.notelp = $scope.item.notelp === null ? $scope.item.notelp : 0;
                 var chacePeriode = cacheHelper.get('cacheCPPT');
-                console.log(chacePeriode)
                 if (!chacePeriode) {
                     $scope.item.noMr = chacePeriode[0];
                     $scope.item.namaPasien = chacePeriode[1];
@@ -352,7 +352,7 @@ define(['initialize'], function (initialize) {
                 // console.log(dataItem);
 
                 $scope.isEdit = true;
-                $scope.item.jenisBedah = dataItem.iscito ? "CITO" : "Jenis Operasi Elektif";
+                $scope.item.jenisBedah = "Jenis Operasi Elektif";
                 $scope.isVerif = dataItem.tglverifikasi ? true : false;
                 $scope.item.tglJadwalPembedahan = new Date(dataItem.tgloperasi);
                 $scope.item.lamaOperasi = dataItem.lamaoperasi;
@@ -365,7 +365,7 @@ define(['initialize'], function (initialize) {
                 $scope.item.tindakanJadwalBedah = dataItem.tindakan;
                 $scope.item.posisiKhusus = dataItem.posisikhusus;
                 $scope.item.macamAnastesi = dataItem.macamanestesi;
-                $scope.item.notelp = dataItem.telp;
+                $scope.item.notelp = dataItem.telp ? dataItem.telp : 0;
                 $scope.showModalInputJadwal.open().center();
             }
 

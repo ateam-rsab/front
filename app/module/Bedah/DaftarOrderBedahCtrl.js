@@ -454,10 +454,10 @@ define(['initialize'], function (initialize) {
                 let dataVerified = $scope.dataValidasiJamDanRuangan;
                 let tglTerpilih = dateHelper.formatDate($scope.item.tglVerifikasi, 'YYYY-MM-DD HH:mm:ss');
                 let ruanganTerpilih = $scope.item.ruanganOperasi.nama;
-                if (dataVerified.length === 0) {
-                    toastr.info("Data tidak ada");
-                    return;
-                }
+                // if (dataVerified.length === 0) {
+                //     toastr.info("Data tidak ada");
+                //     return;
+                // }
 
                 for (let i = 0; i < dataVerified.length; i++) {
 
