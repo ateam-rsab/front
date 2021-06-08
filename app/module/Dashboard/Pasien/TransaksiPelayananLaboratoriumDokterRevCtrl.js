@@ -8,6 +8,7 @@ define(['initialize'], function (initialize) {
             var norec_apd = ''
             var norec_pd = ''
             var nocm_str = ''
+            let tempDataGrid = [];
             $scope.item.qty = 1
             $scope.riwayatForm = false
             $scope.inputOrder = true
@@ -207,10 +208,10 @@ define(['initialize'], function (initialize) {
                     });
                 }
             }
-
+            
             $scope.selectedDataProduk = [];
             $scope.updateSelectedData = (data, i) => {
-                $scope.selectedDataProduk = [];
+                
                 $scope.listLayanan[i].checked = !$scope.listLayanan[i].checked;
 
                 for (let i in $scope.listLayanan) {
@@ -225,7 +226,7 @@ define(['initialize'], function (initialize) {
             }
 
 
-            let tempDataGrid = [];
+            
             $scope.tambahData = () => {
 
                 for (let i in $scope.selectedDataProduk) {
@@ -247,7 +248,8 @@ define(['initialize'], function (initialize) {
                     data: tempDataGrid,
                     pageSize: 20
                 });
-                tempDataGrid = [];
+
+                // tempDataGrid = [];
                 $scope.selectedDataProduk = [];
                 $scope.popupAddLayanan.close();
             }

@@ -46,10 +46,6 @@ define(['initialize'], function (initialize) {
                 "title": "<h3>Status</h3>",
                 "width": 140
             }, {
-                "field": "statusBedah",
-                "title": "<h3>Sifat Bedah</h3>",
-                "width": 140
-            }, {
                 command: [{
                     text: "Selesai",
                     click: selesai,

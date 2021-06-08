@@ -71,10 +71,6 @@ define(['initialize'], function (initialize) {
                 "title": "<h3>No.Telp</h3>",
                 "width": 150
             }, {
-                "field": "statusBedah",
-                "title": "<h3>Sifat Bedah</h3>",
-                "width": 140
-            }, {
                 command: [{
                     text: "Detail",
                     click: verifikasiJadwalBedah,
@@ -129,10 +125,6 @@ define(['initialize'], function (initialize) {
                     "field": "telp",
                     "title": "<h3>No.Telp</h3>",
                     "width": 150
-                }, {
-                    "field": "statusBedah",
-                    "title": "<h3>Sifat Bedah</h3>",
-                    "width": 140
                 }, {
                     command: [{
                         text: "Detail",
@@ -430,6 +422,11 @@ define(['initialize'], function (initialize) {
                     key: dataItem.ruangoperasi
                 };
 
+                $scope.item.namaPerawat = dataItem.objectperawatfk ? {
+                    namalengkap: dataItem.namaPerawat,
+                    id: dataItem.objectperawatfk
+                } : null;
+
                 $scope.item.tglVerifikasi = dateHelper.formatDate(new Date(), 'YYYY-MM-DD HH:mm');
                 $scope.item.tglOperasi = dataItem.tgloperasi; // dataItem.tgloperasi === '-' ? dateHelper.formatDate(new Date(), 'YYYY-MM-DD HH:mm'): dateHelper.formatDate(new Date(dataItem.tgloperasi), 'YYYY-MM-DD HH:mm');
                 $scope.item.notelp = dataItem.telp;
@@ -459,6 +456,16 @@ define(['initialize'], function (initialize) {
                 //     return;
                 // }
 
+                if(!$scope.item.namaPerawat) {
+                    toastr.info("Harap Pilih Perawat terlebih dahulu!");
+                    return;
+                }
+
+                if(!$scope.item.namaDokterTujuan) {
+                    toastr.info("Harap Pilih Dokter Tujuan terlebih dahulu!");
+                    return;
+                }
+
                 for (let i = 0; i < dataVerified.length; i++) {
 
                     if (tglTerpilih === dataVerified[i].tglverifikasi && ruanganTerpilih === dataVerified[i].ruangoperasi) {
@@ -466,12 +473,12 @@ define(['initialize'], function (initialize) {
                         return;
                     }
                 }
-                $scope.isRouteLoading = true;
+               
                 if (!$scope.item.ruanganOperasi) {
                     toastr.error('Anda belum memasukan Nama Ruangan Operasi');
                     return;
                 }
-
+                $scope.isRouteLoading = true;
                 let dataSave = {
                     norec: $scope.item.norec,
                     pegawaiverifikasifk: $scope.pegawai.id,
@@ -481,6 +488,11 @@ define(['initialize'], function (initialize) {
                     dokteranestesifk: $scope.item.namaDokterAnastesi ? $scope.item.namaDokterAnastesi.id : null,
                     ruangoperasi: $scope.item.ruanganOperasi.nama,
                     objectperawatfk: $scope.item.namaPerawat.id,
+                    lamaoperasi: $scope.item.lamaOperasi ? $scope.item.lamaOperasi : 0,
+                    diagnosa: $scope.item.diagnosa,
+                    tindakan: $scope.item.tindakan,
+                    posisikhusus: $scope.item.posisiKhusus,
+                    macamanestesi: $scope.item.macamAnestesi,
                     namaVerifikator: $scope.pegawai.id
                 }
                 console.log(dataSave);
