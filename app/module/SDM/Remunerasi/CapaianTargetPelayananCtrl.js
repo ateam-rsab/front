@@ -254,7 +254,7 @@ define(['initialize'], function (initialize) {
             $scope.hitungTarget = function () {
                 $scope.isGridShowed = false;
                 $scope.isRouteLoading = true;
-                ManageSdmNew.getListData("iki-remunerasi/get-all-target-dan-capaian-layanan?periode=" + dateHelper.getFormatMonthPicker($scope.item.periode) + "&jumlahBulan=" + ($scope.item.lamaBulan ? $scope.item.lamaBulan : 3)).then(function (data) {
+                ManageSdmNew.getListData("iki-remunerasi/get-all-target-dan-capaian-layanan?periode=" + dateHelper.getFormatMonthPicker($scope.item.periode)).then(function (data) {
 
                     for (let i = 0; i < data.data.data.length; i++) {
                         data.data.data[i].namaIndikator = data.data.data[i].indikator.namaIndikator;
@@ -308,19 +308,19 @@ define(['initialize'], function (initialize) {
                         data: dataItem.detail
                     }),
                     columns: [{
-                            field: "bulan",
-                            title: "Bulan",
-                            width: 100
-                        },
-                        {
-                            field: "target",
-                            title: "Target",
-                            width: 100,
-                        }, {
-                            field: "capaian",
-                            title: "Capaian",
-                            width: 100,
-                        }
+                        field: "bulan",
+                        title: "Bulan",
+                        width: 100
+                    },
+                    {
+                        field: "target",
+                        title: "Target (Skor)",
+                        width: 100,
+                    }, {
+                        field: "capaian",
+                        title: "Capaian (Skor)",
+                        width: 100,
+                    }
                     ]
                 }
             };
@@ -343,10 +343,17 @@ define(['initialize'], function (initialize) {
             $scope.init();
 
             $scope.Save = function () {
-                $scope.now = new Date();
+                var tglBatasSimpan = new Date($scope.item.periode);
+                tglBatasSimpan.setDate(4);
+                tglBatasSimpan.setHours(23, 59, 59, 999);
+                if (dateHelper.toTimeStamp(new Date()) > tglBatasSimpan) {
+                    toastr.warning("Batas masa simpan hasil hitung target layanan sudah lewat", "Peringatan")
+                    return
+                }
 
+                $scope.now = new Date();
                 var data = $scope.dataSourceTargetLayanan._data;
-                console.log(data);
+                // console.log(data);
                 var datas = [];
                 if (data.length > 0) {
                     for (let i = 0; i < data.length; i++) {
@@ -363,10 +370,10 @@ define(['initialize'], function (initialize) {
                             }
                         })
 
-                        console.log(data[i].detail.length)
+                        // console.log(data[i].detail.length)
 
                         for (let ii = 0; ii < data[i].detail.length; ii++) {
-                            console.log(ii);
+                            // console.log(ii);
                             datas[i].detail.push({
                                 date: data[i].detail[ii].date,
                                 capaian: data[i].detail[ii].capaian,
@@ -377,7 +384,7 @@ define(['initialize'], function (initialize) {
                     }
                 }
 
-                console.log(datas);
+                // console.log(datas);
                 ManageSdmNew.saveData(datas, "sdm/save-target-layanan/").then(function (e) {
                     $scope.isRouteLoading = false;
                 }, function (err) {

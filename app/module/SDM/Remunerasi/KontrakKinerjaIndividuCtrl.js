@@ -299,6 +299,14 @@ define(['initialize'], function (initialize) {
                 $scope.isRouteLoading = true;
                 $scope.isPopup = true;
 
+                var tglBatasSimpan = new Date($scope.item.periode);
+                tglBatasSimpan.setDate(4);
+                tglBatasSimpan.setHours(23, 59, 59, 999);
+                if (dateHelper.toTimeStamp(new Date()) > tglBatasSimpan) {
+                    toastr.warning("Batas masa simpan kontrak kinerja individu sudah lewat", "Peringatan")
+                    return
+                }
+
                 let statusEnabled = method === 'save' || method === 'update';
 
                 if (!$scope.item.target && $scope.item.target <= 0) {
@@ -403,10 +411,10 @@ define(['initialize'], function (initialize) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
 
-                if (dataItem.isStatusVerifikasi) {
+                if (dataItem.isStatusVerifikasi && !$scope.item.pegawai.isModifAkses) {
                     toastr.warning("Data sudah terverifikasi, tidak dapat dihapus!", "Perhatian!");
                     return;
-                } else if (!$scope.item.pegawai.isModifAkses) {
+                } else if (dataItem.isStatusVerifikasi) {
                     toastr.warning("Tidak memiliki akses hapus!", "Perhatian!");
                     return;
                 }

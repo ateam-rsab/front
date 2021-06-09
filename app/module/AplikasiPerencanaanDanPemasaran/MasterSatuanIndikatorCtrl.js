@@ -13,13 +13,15 @@ define(['initialize'], function (initialize) {
 				var data = []
 				var i = 1
 				dat.data.data.forEach(function (e) {
-					var satuanIndikator = {
-						"no": i,
-						"satuanIndikator": e.satuanIndikator,
-						"statusEnabled": e.statusEnabled ? "Aktif" : "Tidak aktif"
+					if (e.statusEnabled) {
+						var satuanIndikator = {
+							"no": i,
+							"satuanIndikator": e.satuanIndikator,
+							"statusEnabled": e.statusEnabled ? "Aktif" : "Tidak aktif"
+						}
+						data[i - 1] = satuanIndikator
+						i++;
 					}
-					data[i - 1] = satuanIndikator
-					i++;
 				});
 				$scope.source = data;
 				// debugger;

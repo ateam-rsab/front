@@ -348,79 +348,80 @@ define(['initialize'], function (initialize) {
                         if (colName.length <= 2) {
                             // show detail on date cell click only
                             var akhir = dateHelper.getFormatMonthPicker($scope.item.periode) + "-" + colName;
-                            $scope.showDetail(selectedData.idProduk, selectedData.idKelas, $scope.item.pegawai.id, akhir);
+                            $scope.showDetail(selectedData.idProduk, selectedData.idKelas, $scope.item.pegawai.id, akhir, selectedData.diskon, selectedData.statusDiskon);
                         }
                     }
                 });
             }
-            $scope.showDetail = function (idProduk, idKelas, idPegawai, tgl) {
+            $scope.showDetail = function (idProduk, idKelas, idPegawai, tgl, diskon, statusDiskon) {
                 $scope.isRouteLoading = true;
-                ManageSdmNew.getListData("sdm/get-detail-pasien/" + idProduk + "/" + idKelas + "/" + idPegawai + "/" + tgl + "/" + false).then(function (data) {
-                    $scope.dats = data.data.data
-                    $scope.dats.tgl = dateHelper.formatDate(tgl, "dd-MM-yyyy");
-                    $scope.detilGridOptions = {
-                        scrollable: true,
-                        columns: [{
-                            "field": "namaProduk",
-                            "title": "Nama Tindakan",
-                            "width": 400
-                        }, {
-                            "field": "tglpelayanan",
-                            "title": "Tanggal",
-                            "template": "#= kendo.toString(kendo.parseDate(new Date(tglpelayanan)), 'dd-MM-yyyy') #",
-                            "width": 90,
-                            "attibutes": {
-                                "class": "table-cell",
-                                "style": "text-align: center;"
-                            }
-                        }, {
-                            "field": "tglpelayanan",
-                            "title": "Jam",
-                            "template": "#= kendo.toString(kendo.parseDate(new Date(tglpelayanan)), 'HH:mm') #",
-                            "width": 90,
-                            "attibutes": {
-                                "class": "table-cell",
-                                "style": "text-align: center;"
-                            }
-                        }, {
-                            "field": "ruangan",
-                            "title": "Ruangan",
-                            "width": 200
-                        }, {
-                            "field": "namaKelas",
-                            "title": "Kelas",
-                            "width": 100
-                        }, {
-                            "field": "harga",
-                            "title": "Harga",
-                            "template": "#= kendo.toString(harga, 'n0') #",
-                            "width": 120,
-                            "attibutes": {
-                                "class": "table-cell",
-                                "style": "text-align: right;"
-                            }
-                        }, {
-                            "title": "Pasien",
-                            "columns": [
-                                { "field": "noCm", "title": "No. CM", "width": 100 },
-                                { "field": "noRegistrasi", "title": "No. Reg", "width": 150 },
-                                { "field": "namapasien", "title": "Nama", "width": 300 }
-                            ]
-                        }, {
-                            "field": "jenisPetugas", "title": "Petugas", "width": 150
-                        }]
-                    }
-                    $scope.dataDetil = new kendo.data.DataSource({
-                        data: data.data.data,
-                        // aggregate: [
-                        //     { field: "point", aggregate: "sum" }
-                        // ]
-                    });
-                    $scope.isRouteLoading = false;
-                    $scope.winDialog.center().open();
-                }, (error) => {
-                    $scope.isRouteLoading = false;
-                })
+                ManageSdmNew.getListData("sdm/get-detail-pasien/" + idProduk + "/" + idKelas + "/" + idPegawai + "/" + tgl + "/" + false
+                    + "?diskon=" + diskon + "&statusDiskon=" + (statusDiskon ? statusDiskon : "")).then(function (data) {
+                        $scope.dats = data.data.data
+                        $scope.dats.tgl = dateHelper.formatDate(tgl, "dd-MM-yyyy");
+                        $scope.detilGridOptions = {
+                            scrollable: true,
+                            columns: [{
+                                "field": "namaProduk",
+                                "title": "Nama Tindakan",
+                                "width": 400
+                            }, {
+                                "field": "tglpelayanan",
+                                "title": "Tanggal",
+                                "template": "#= kendo.toString(kendo.parseDate(new Date(tglpelayanan)), 'dd-MM-yyyy') #",
+                                "width": 90,
+                                "attibutes": {
+                                    "class": "table-cell",
+                                    "style": "text-align: center;"
+                                }
+                            }, {
+                                "field": "tglpelayanan",
+                                "title": "Jam",
+                                "template": "#= kendo.toString(kendo.parseDate(new Date(tglpelayanan)), 'HH:mm') #",
+                                "width": 90,
+                                "attibutes": {
+                                    "class": "table-cell",
+                                    "style": "text-align: center;"
+                                }
+                            }, {
+                                "field": "ruangan",
+                                "title": "Ruangan",
+                                "width": 200
+                            }, {
+                                "field": "namaKelas",
+                                "title": "Kelas",
+                                "width": 100
+                            }, {
+                                "field": "harga",
+                                "title": "Harga",
+                                "template": "#= kendo.toString(harga, 'n0') #",
+                                "width": 120,
+                                "attibutes": {
+                                    "class": "table-cell",
+                                    "style": "text-align: right;"
+                                }
+                            }, {
+                                "title": "Pasien",
+                                "columns": [
+                                    { "field": "noCm", "title": "No. CM", "width": 100 },
+                                    { "field": "noRegistrasi", "title": "No. Reg", "width": 150 },
+                                    { "field": "namapasien", "title": "Nama", "width": 300 }
+                                ]
+                            }, {
+                                "field": "jenisPetugas", "title": "Petugas", "width": 150
+                            }]
+                        }
+                        $scope.dataDetil = new kendo.data.DataSource({
+                            data: data.data.data,
+                            // aggregate: [
+                            //     { field: "point", aggregate: "sum" }
+                            // ]
+                        });
+                        $scope.isRouteLoading = false;
+                        $scope.winDialog.center().open();
+                    }, (error) => {
+                        $scope.isRouteLoading = false;
+                    })
             }
             $scope.cetak = function () {
                 var listRawRequired = [
