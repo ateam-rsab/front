@@ -697,7 +697,7 @@ define(['initialize'], function (initialize) {
                     return;
                 }
 
-                if(!$scope.item.prosesPersalinan && !(namaRuanganFk === 328 || namaRuanganFk === 76)) {
+                if(!$scope.item.prosesPersalinan && (namaRuanganFk === 328 || namaRuanganFk === 76)) {
                     toastr.warning("Harap pilih Proses Persalinan!");
                     return;
                 }
@@ -718,16 +718,16 @@ define(['initialize'], function (initialize) {
                     catatanKusus: $scope.item.catatanKhusus,
                     konsultasiAnest: $scope.item.konsultasiAnestesi,
                     periksaLab: $scope.item.pemeriksaanLab === "lainnya" ? $scope.item.pemeriksaanLabLainnya : $scope.item.pemeriksaanLab,
-                    prematur: $scope.item.prematur,
-                    scOrNormal: $scope.item.prosesPersalinan,
-                    apgar: $scope.item.apgar,
-                    konengital: $scope.item.kelainanKonengital,
-                    pneumonia: $scope.item.klinisPneumonia,
-                    oksigen: $scope.item.terpasangOksigen,
-                    ett: $scope.item.terpasangEtt,
-                    umbCathe: $scope.item.umbilicalCatheter,
-                    picc: $scope.item.PICC,
-                    drainCath: $scope.item.catheterDrain,
+	   	    prematur: $scope.item.prematur ? $scope.item.prematur : "",
+scOrNormal: $scope.item.prosesPersalinan ? $scope.item.prosesPersalinan : "",
+apgar: $scope.item.apgar ? $scope.item.apgar : "",
+konengital: $scope.item.kelainanKonengital ? $scope.item.kelainanKonengital : "",
+pneumonia: $scope.item.klinisPneumonia ? $scope.item.klinisPneumonia : "",
+oksigen: $scope.item.terpasangOksigen ? $scope.item.terpasangOksigen : "",
+ett: $scope.item.terpasangEtt ? $scope.item.terpasangEtt : "",
+umbCathe: $scope.item.umbilicalCatheter ? $scope.item.umbilicalCatheter : "",
+picc: $scope.item.PICC ? $scope.item.PICC : "",
+drainCath: $scope.item.catheterDrain ? $scope.item.catheterDrain : "",
                     details: data2
                 }
 
