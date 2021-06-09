@@ -8,7 +8,7 @@ define(['initialize'], function (initialize) {
             $scope.dataSelected = {};
             $scope.item = {};
             // $scope.bg = {};
-            // $scope.isRouteLoading = false;
+            $scope.isRouteLoading = false;
             Combo()
 
             function Combo() {
