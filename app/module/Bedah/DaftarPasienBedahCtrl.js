@@ -50,6 +50,10 @@ define(['initialize'], function (initialize) {
                     text: "Selesai",
                     click: selesai,
                     imageClass: "k-icon k-i-pencil"
+                }, {
+                    text: "Batal",
+                    click: selesai,
+                    imageClass: "k-icon k-i-pencil"
                 }],
                 title: "",
                 width: 100

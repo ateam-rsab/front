@@ -30,21 +30,21 @@
                 <div class="grid_6">
                     <label><strong>Bulan</strong></label>
                     <input style="width: 100%;" k-options="monthSelectorOptions" k-ng-model="data.bulan" kendo-date-picker
-                        placeholer="mm-yyyy" k-format="'MM-yyyy'" />
+                        placeholer="mm-yyyy" k-format="'MM-yyyy'" ng-disabled="isEdit"/>
                 </div>
                 <div class="grid_12">
                     <div class="grid_4">
                         <label><strong>Jenis Indikator</strong></label>
                         <input kendo-combo-box k-filter="'contains'" k-ng-model="data.jenisIndikator"
                             k-data-text-field="'name'" k-data-value-field="'id'"
-                            k-data-source="listJenisIndikator" />
+                            k-data-source="listJenisIndikator" ng-disabled="isEdit"/>
                     </div>
 
                     <div class="grid_4">
                         <label><strong>Kelompok Jabatan</strong></label>
                         <input kendo-combo-box k-filter="'contains'" k-ng-model="data.kelompokJabatan"
                             k-data-text-field="'namaKelompokJabatan'" k-data-value-field="'id'"
-                            k-data-source="listKelompokJabatan" />
+                            k-data-source="listKelompokJabatan" ng-disabled="isEdit"/>
                     </div>
 
                     <div class="grid_4">
@@ -59,7 +59,7 @@
         <div class="k-edit-buttons k-state-default" style="margin-top:10px">
             <div class="grid_8"></div>
             <div class="grid_2">
-                <md-button class="md-raised md-warn medium-button" ng-click="closePopUp()">
+                <md-button class="md-raised md-warn medium-button" ng-click="closepopupTambah()">
                     <span style="margin-right: 5px;">Batal</span>
                     <i class="fa fa-close"></i>
                 </md-button>
