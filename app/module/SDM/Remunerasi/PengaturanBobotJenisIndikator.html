@@ -1,0 +1,75 @@
+<md-toolbar md-scroll-shrink class="shadow">
+    <div class="md-toolbar-tools">Pengaturan Bobot Jenis Indikator</div>
+</md-toolbar>
+
+<div class="grid_12">
+    <div class="grid_2">
+        <label><strong>Bulan</strong></label>
+        <input style="width: 100%;" k-options="monthSelectorOptions" k-ng-model="item.bulan" kendo-date-picker
+            placeholer="mm-yyyy" k-format="'MM-yyyy'" />
+    </div>
+
+    <div class="grid_2" style="margin-top: 20px;">
+        <md-button class="md-raised md-primary medium-button" ng-click="getData()">
+            <span style="margin-right: 5px;">Cari</span>
+            <i class="fa fa-search"></i>
+        </md-button>
+    </div>
+</div>
+
+<div class="grid_12">
+    <div kendo-grid k-data-source="dataSource" k-selectable="'row'" options="optGrid" k-ng-model="selectedData"></div>
+</div>ß
+
+<div kendo-window="popupTambah" k-title="'Tambah Data'" k-width="800" k-visible="false"
+    k-on-open="win2visible= true" k-on-close="win2visible= false">
+    <div class="panel panel-default container_12" style="padding: 0px 10px;">
+
+        <md-card>
+            <div class="grid_12">
+                <div class="grid_6">
+                    <label><strong>Bulan</strong></label>
+                    <input style="width: 100%;" k-options="monthSelectorOptions" k-ng-model="data.bulan" kendo-date-picker
+                        placeholer="mm-yyyy" k-format="'MM-yyyy'" />
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label><strong>Jenis Indikator</strong></label>
+                        <input kendo-combo-box k-filter="'contains'" k-ng-model="data.jenisIndikator"
+                            k-data-text-field="'name'" k-data-value-field="'id'"
+                            k-data-source="listJenisIndikator" />
+                    </div>
+
+                    <div class="grid_4">
+                        <label><strong>Kelompok Jabatan</strong></label>
+                        <input kendo-combo-box k-filter="'contains'" k-ng-model="data.kelompokJabatan"
+                            k-data-text-field="'namaKelompokJabatan'" k-data-value-field="'id'"
+                            k-data-source="listKelompokJabatan" />
+                    </div>
+
+                    <div class="grid_4">
+                        <label><strong>Persentase</strong></label>
+                        <input id="targetGrid" filter="'numeric'" class="k-textbox" ng-model="data.persentase" />
+                    </div>
+                </div>
+              
+            </div>
+        </md-card>
+
+        <div class="k-edit-buttons k-state-default" style="margin-top:10px">
+            <div class="grid_8"></div>
+            <div class="grid_2">
+                <md-button class="md-raised md-warn medium-button" ng-click="closePopUp()">
+                    <span style="margin-right: 5px;">Batal</span>
+                    <i class="fa fa-close"></i>
+                </md-button>
+            </div>
+            <div class="grid_2">
+                <md-button class="md-raised md-primary medium-button" ng-click="saveData('save')">
+                    <span style="margin-right: 5px;">Simpan</span>
+                    <i class="fa fa-save"></i>
+                </md-button>
+            </div>
+        </div>
+    </div>
+</div>
