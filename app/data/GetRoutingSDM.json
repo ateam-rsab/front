@@ -4750,6 +4750,29 @@
         "define": "PegawaiService"
       }
     ]
+  },{
+    "name": "PengaturanBobotJenisIndikator",
+    "url": "/PengaturanBobotJenisIndikator",
+    "templateurl": "module/SDM/Remunerasi/PengaturanBobotJenisIndikator.html",
+    "controller": "PengaturanBobotJenisIndikatorCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      }
+    ]
   },
   {
     "name": "VerifikasiCatatanKegiatanHarian",

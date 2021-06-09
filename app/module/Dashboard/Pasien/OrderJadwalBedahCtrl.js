@@ -370,10 +370,10 @@ define(['initialize'], function (initialize) {
             }
 
             function getDataOrderJadwalBedah() {
-                managePhp.getData("rekam-medis/get-jadwal-operasi?nocm=" + $scope.item.noMr, true).then(function (data) {
+                managePhp.getData("rekam-medis/get-jadwal-operasi-dokter?nocm=" + $scope.item.noMr, true).then(function (data) {
                     for (let i = 0; i < data.data.data.length; i++) {
                         data.data.data[i].ruangoperasiFormatted = data.data.data[i].ruangoperasi ? data.data.data[i].ruangoperasi : '-';
-                        data.data.data[i].statusBedah = data.data.data[i].iscito ? 'CITO' : "Jenis Operasi Elektif";
+                        data.data.data[i].statusB   edah = data.data.data[i].iscito ? 'CITO' : "Jenis Operasi Elektif";
                     };
 
                     $scope.dataDaftarJadwalBedah = new kendo.data.DataSource({

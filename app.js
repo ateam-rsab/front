@@ -262,10 +262,11 @@ app.use(function(req, res, next) {
         } else {
 
             url = url.split('?')[0];
+            console.log("URL => ", url)
             if (url[url.length - 1] === '\\')
                 url = url.substring(0, url.length - 1);
             url = url + ".json";
-            console.log(url);
+            // console.log(url);
             fs.readFile(url, 'utf8', function(err, contents) {
                 if (contents !== undefined) {
                     var data = JSON.parse(contents);
