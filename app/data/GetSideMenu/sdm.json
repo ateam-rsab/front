@@ -346,6 +346,10 @@
                         "link": "#/SkoringTindakanMedis"
                     },
                     {
+                        "name": "Target dan Capaian Pelayanan",
+                        "link": "#/CapaianTargetPelayanan"
+                    },
+                    {
                         "name": "Kontrak Kinerja Individu",
                         "link": "#/KontrakKinerjaIndividu"
                     },
@@ -392,10 +396,6 @@
             {
                 "name": "Remunerasi",
                 "children": [
-                    {
-                        "name": "Target dan Capaian Pelayanan",
-                        "link": "#/CapaianTargetPelayanan"
-                    },
                     {
                         "name": "Remunerasi Pegawai",
                         "link": "#/RemunerasiPegawai"
