@@ -86,11 +86,12 @@ define(['initialize'], function (initialize) {
                     .ok('Ya')
                     .cancel('Tidak');
                 $mdDialog.show(confirm).then(function () {
-                    $scope.isRouteLoading = true;
+                    $scope.isRouteLoading = false;
                     console.log(dataItem);
 
                     let dataSave = {
                         norec: dataItem.norec,
+                        pegawaifk: $scope.pegawai.id,
                     }
 
                     ManageServicePhp.saveDataTransaksi('rekam-medis/save-jadwal-operasi/batal', dataSave).then(e => {
