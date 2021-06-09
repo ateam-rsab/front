@@ -52,7 +52,7 @@ define(['initialize'], function (initialize) {
                     imageClass: "k-icon k-i-pencil"
                 }, {
                     text: "Batal",
-                    click: selesai,
+                    click: batalJadwalBedah,
                     imageClass: "k-icon k-i-pencil"
                 }],
                 title: "",
@@ -72,6 +72,35 @@ define(['initialize'], function (initialize) {
                         pageSize: 100
                     });
                 });
+            }
+
+
+            function batalJadwalBedah(e) {
+                e.preventDefault();
+                var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                var confirm = $mdDialog.confirm()
+                    .title('Apakah anda yakin akan membatalkan Jadwal Bedah dengan No. Rekam Medis ' + dataItem.nocm)
+                    .textContent(`Anda akan membatalkan data`)
+                    .ariaLabel('Lucky day')
+                    .targetEvent(e)
+                    .ok('Ya')
+                    .cancel('Tidak');
+                $mdDialog.show(confirm).then(function () {
+                    $scope.isRouteLoading = true;
+                    console.log(dataItem);
+
+                    let dataSave = {
+                        norec: dataItem.norec,
+                    }
+
+                    ManageServicePhp.saveDataTransaksi('rekam-medis/save-jadwal-operasi/batal', dataSave).then(e => {
+                        $scope.getData();
+                        $scope.isRouteLoading = false;
+                    });
+                }, function () {
+
+                });
+
             }
 
             let init = () => {
