@@ -8,25 +8,19 @@
                 <div>
                     <div class="grid_2">
                         <label><b>Periode</b></label>
-                        <input kendo-date-picker k-max="now" k-ng-model="item.periode" k-on-change="getBulanCapaian()"
-                            style="width: 100%" k-options="yearSelected" />
+                        <input kendo-date-picker k-max="now" k-ng-model="item.periode" style="width: 100%"
+                            k-options="yearSelected" />
                     </div>
-                    <!-- <div class="grid_2">
-                        <label><b>Jumlah Bulan</b></label>
-                        <input c-text-box type="number" class="k-textbox" filter="'numeric'"
-                            ng-disabled="isVerif" ng-model="item.lamaBulan" />
-                    </div> -->
                     <div class="grid_1" style="margin-top:5px">
                         <label c-label c-label-text=""></label>
-                        <md-button class="md-raised md-primary medium-button" ng-click="hitungTarget()">
-                            <span>Hitung Target</span>
+                        <md-button class="md-raised md-primary medium-button" ng-click="cari()">
+                            <span>Cari</span>
                         </md-button>
                     </div>
                 </div>
             </div>
         </div>
         <div class="grid_12 containerBorderBox">
-            <!-- <div id="grid" kendo-grid options="gridTargetLayanan" data-source="dataSourceTargetLayanan"></div> -->
             <div kendo-grid id="kGrid" options="gridTargetLayanan" data-source="dataSourceTargetLayanan"
                 k-groupable="'true'" k-selectable="'row'" k-pageable="'true'" k-sortable="'true'">
                 <div k-detail-template>
@@ -40,7 +34,6 @@
                 </div>
             </div>
         </div>
-        <div ng-include='"../app/module/Shared/TemplateButtonSimpanNotFixed"' ng-show="isGridShowed"></div>
     </div>
 </div>
 <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
