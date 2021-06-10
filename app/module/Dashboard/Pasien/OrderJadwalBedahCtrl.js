@@ -313,8 +313,8 @@ define(['initialize'], function (initialize) {
                         // "template": "<span class='style-left'>#: notelp ? notelp : '-' #</span>"
                     },
                     {
-                        "field": "statusBedah",
-                        "title": "<h3>Sifat Bedah</h3>",
+                        "field": "status",
+                        "title": "<h3>Status</h3>",
                         "width": 200,
                         // "template": "<span class='style-left'>#: iscito ? 'CITO' : 'Jenis Operasi Elektif' #</span>"
                     },
@@ -373,7 +373,7 @@ define(['initialize'], function (initialize) {
                 managePhp.getData("rekam-medis/get-jadwal-operasi-dokter?nocm=" + $scope.item.noMr, true).then(function (data) {
                     for (let i = 0; i < data.data.data.length; i++) {
                         data.data.data[i].ruangoperasiFormatted = data.data.data[i].ruangoperasi ? data.data.data[i].ruangoperasi : '-';
-                        data.data.data[i].statusB   edah = data.data.data[i].iscito ? 'CITO' : "Jenis Operasi Elektif";
+                        data.data.data[i].statusBedah = data.data.data[i].iscito ? 'CITO' : "Jenis Operasi Elektif";
                     };
 
                     $scope.dataDaftarJadwalBedah = new kendo.data.DataSource({
@@ -522,7 +522,6 @@ define(['initialize'], function (initialize) {
                             top: 580,
                             behavior: 'smooth'
                         });
-                        // console.log('aaaaaaaaaa')
                     }, 100);
                 } else {
                     $timeout(function () {
@@ -530,7 +529,6 @@ define(['initialize'], function (initialize) {
                             top: -630,
                             behavior: 'smooth'
                         });
-                        // console.log('aaaaaaaaaa')
                     }, 100);
                 }
 

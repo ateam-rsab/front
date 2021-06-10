@@ -9,6 +9,7 @@ define(['initialize'], function (initialize) {
                 depth: "year"
             };
             $scope.item.bulan = new Date();
+            $scope.isEdit = false;
 
             $scope.listJenisIndikator = [{
                 "id": 1,
@@ -126,7 +127,7 @@ define(['initialize'], function (initialize) {
             function editData(e) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-
+                $scope.isEdit = true;
                 $scope.data.noRec = dataItem.noRec;
                 $scope.data.bulan = new Date(dataItem.bulanBerlaku);
                 $scope.data.jenisIndikator = {
@@ -187,9 +188,12 @@ define(['initialize'], function (initialize) {
                 $scope.data.persentase = null;
                 $scope.data.kelompokJabatan = null;
                 $scope.data.noRec = null;
+
+                $scope.isEdit = false;
             }
 
-            $scope.closePopup = () => {
+            $scope.closepopupTambah = () => {
+                $scope.reset();
                 $scope.popupTambah.close();
             };
         }
