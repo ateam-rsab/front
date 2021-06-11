@@ -56,7 +56,7 @@ define(['initialize'], function (initialize) {
                     imageClass: "k-icon k-i-pencil"
                 }],
                 title: "",
-                width: 100
+                width: 200
             }]
 
             $scope.getData = () => {
@@ -108,15 +108,22 @@ define(['initialize'], function (initialize) {
                 $scope.optGrid = {
                     dataBound: function (e) {
                         $('td').each(function () {
-                            if ($(this).text() == 'PENDING') {
-                                $(this).addClass('pending')
+                            if ($(this).text() == 'BELUM DIVERIFIKASI') {
+                                $(this).addClass('brown')
                             };
                             if ($(this).text() == 'SELESAI') {
-                                $(this).addClass('selesai')
+                                $(this).addClass('green')
                             };
-                            if ($(this).text() == 'CITO') {
-                                $(this).addClass('pending')
+                            if ($(this).text() == 'BATAL') {
+                                $(this).addClass('red')
                             };
+                            if ($(this).text() == 'MASUK ANTRIAN') {
+                                $(this).addClass('blue')
+                            };
+                            if ($(this).text() == 'DI VERIFIKASI') {
+                                $(this).addClass('cyan')
+                            };
+
                         })
                     },
                     toolbar: [{
