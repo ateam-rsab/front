@@ -57,18 +57,24 @@ define(['initialize'], function (initialize) {
                     columns: [{
                         field: "bulan",
                         title: "Bulan",
-                        width: 100
+                        width: 70,
+                        template: '<span style="float:right">#= bulan #</span>'
                     },
                     {
                         field: "target",
                         title: "Target (Skor)",
-                        width: 100,
+                        width: 50,
+                        template: '<span style="float:right">#= target #</span>'
                     }, {
                         field: "capaian",
                         title: "Capaian (Skor)",
-                        width: 100,
-                    }
-                    ]
+                        width: 50,
+                        template: '<span style="float:right">#= capaian #</span>'
+                    }, {
+                        field: "tglHitung",
+                        title: "Tanggal Hitung",
+                        width: 100
+                    }]
                 }
             };
 
