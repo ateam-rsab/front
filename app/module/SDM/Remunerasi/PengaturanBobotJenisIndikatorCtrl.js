@@ -30,7 +30,7 @@ define(['initialize'], function (initialize) {
                 pageable: true,
                 scrollable: true,
                 columns: [{
-                    field: "bulanBerlaku",
+                    field: "bulanBerlakuFormatted",
                     title: "<h3>Bulan Berlaku</h3>",
                     width: 70
                 }, {
@@ -180,7 +180,7 @@ define(['initialize'], function (initialize) {
                     .targetEvent(e)
                     .ok('Ya')
                     .cancel('Tidak');
-                
+
                 $mdDialog.show(confirm).then(function () {
                     ManageSdmNew.saveData({}, "iki-remunerasi/delete-master-bobot-jenis-indikator?noRec=" + dataItem.noRec).then(res => {
                         $scope.reset();

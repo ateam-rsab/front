@@ -329,6 +329,10 @@
                         "link": "#/MasterAnggaranRemunerasi"
                     },
                     {
+                        "name": "Master Bobot Jenis Indikator",
+                        "link": "#/PengaturanBobotJenisIndikator"
+                    },
+                    {
                         "name": "Master Satuan Indikator",
                         "link": "#/MasterSatuanIndikator"
                     },
