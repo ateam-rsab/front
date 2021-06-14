@@ -9,7 +9,7 @@
         color: white;
         font-weight: bolder;
     }
-    
+
     .blue {
         background-color: rgb(95, 179, 247);
         color: white;
@@ -51,4 +51,145 @@
     <kendo-grid data-source="dataSource" options="optGrid" k-selectable="'row'" k-sortable="'true'"
         k-resizable="'true'">
     </kendo-grid>
+</div>
+
+<div kendo-window="popupDetail" k-title="'Input Jadwal Bedah'" k-width="1200" k-visible="false"
+    k-on-open="win2visible= true" k-on-close="win2visible= false">
+    <div class="panel panel-default container_12" style="padding: 0px 10px;">
+
+        <div class="grid_2">
+            <label><b>Tanggal Permintaan Bedah</b></label>
+            <input style="width: 100%" kendo-date-time-picker k-ng-model="item.tglOperasi" ng-disabled="'true'"
+                placeholer="Hari-Bln-Thn" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" />
+        </div>
+
+        <div class="grid_3">
+            <label><b>Tanggal Bedah</b></label>
+            <input style="width: 100%" kendo-datetimepicker k-ng-model="item.tglVerifikasi" ng-disabled="isVerif"
+                placeholer="Hari-Bln-Thn" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" />
+        </div>
+
+        <div class="grid_2">
+            <label><b>No. Telepon</b></label>
+            <input c-text-box type="input" placeholder="No. Telp" filter="'varchar'" class="k-textbox" disabled
+                ng-model="item.notelp" />
+        </div>
+
+        <div class="grid_2">
+            <label><b>Lama Bedah</b></label>
+            <div style="display: flex;">
+                <input c-text-box type="input" placeholder="Menit" filter="'numeric'" class="k-textbox"
+                    ng-disabled="isVerif" ng-model="item.lamaOperasi" />
+                <label style="margin-top:10px">
+                    <b>Mnt</b>
+                </label>
+            </div>
+        </div>
+
+        <div class="grid_2">
+            <label><b>Ruang Bedah</b></label>
+            <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruanganOperasi" k-data-text-field="'nama'"
+                k-data-value-field="'key'" k-filter="'contains'" k-auto-bind="false" ng-disabled="isVerif"
+                k-data-source="listRuangOperasi" />
+        </div>
+
+        <div class="grid_12">
+            <div class="grid_3">
+                <label><b>Dokter Periksa</b></label>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaDokter"
+                    k-data-text-field="'namalengkap'" k-data-value-field="'id'" k-filter="'contains'"
+                    k-auto-bind="false" k-data-source="listDokter" disabled />
+            </div>
+
+            <div class="grid_3">
+                <label><b>Dokter Bedah</b></label>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaDokterTujuan"
+                    k-data-text-field="'namalengkap'" k-data-value-field="'id'" k-filter="'contains'"
+                    k-auto-bind="false" k-data-source="listDokter" ng-disabled="isVerif" />
+            </div>
+
+            <div class="grid_3">
+                <label><b>Dokter Anestesi</b></label>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaDokterAnastesi"
+                    k-data-text-field="'namalengkap'" k-data-value-field="'id'" k-filter="'contains'"
+                    k-auto-bind="false" k-data-source="listDokter" ng-disabled="isVerif" />
+            </div>
+
+            <div class="grid_3">
+                <label><b>Perawat</b></label>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaPerawat"
+                    k-data-text-field="'namalengkap'" k-data-value-field="'id'" k-filter="'contains'"
+                    k-auto-bind="false" k-data-source="listPegawai" ng-disabled="isVerif" />
+            </div>
+
+        </div>
+
+        <div class="grid_12">
+            <div class="grid_6">
+                <label>
+                    <strong>
+                        Diagnosa
+                    </strong>
+                </label>
+                <textarea ng-model="item.diagnosa" maxlength="500" disabled style="height:100px"></textarea>
+                <p class="length-textarea">
+                    500/{{item.diagnosa ? item.diagnosa.length : 0}}
+                </p>
+            </div>
+
+            <div class="grid_6">
+                <label>
+                    <strong>
+                        Tindakan
+                    </strong>
+                </label>
+                <textarea ng-model="item.tindakan" maxlength="500" disabled style="height:100px"></textarea>
+                <p class="length-textarea">
+                    500/{{item.tindakan ? item.tindakan.length : 0}}
+                </p>
+            </div>
+
+            <div class="grid_6">
+                <label>
+                    <strong>
+                        Posisi Khusus/Peralatan khusus
+                    </strong>
+                </label>
+                <textarea ng-model="item.posisiKhusus" maxlength="500" disabled style="height:100px"></textarea>
+                <p class="length-textarea">
+                    500/{{item.posisiKhusus ? item.posisiKhusus.length : 0}}
+                </p>
+            </div>
+
+            <div class="grid_6">
+                <label>
+                    <strong>
+                        Macam Anastesi
+                    </strong>
+                </label>
+                <textarea ng-model="item.macamAnestesi" maxlength="500" disabled style="height:100px"></textarea>
+                <p class="length-textarea">
+                    500/{{item.macamAnestesi ? item.macamAnestesi.length :
+                    0}}
+                </p>
+            </div>
+        </div>
+
+
+        <div class="k-edit-buttons k-state-default" style="margin-top:10px">
+            <div class="grid_8"></div>
+            <div class="grid_2">
+                <md-button class="md-raised md-warn medium-button" ng-click="closeModalJadwalBedah()">
+                    <span style="margin-right: 5px;">Batal</span>
+                    <i class="fa fa-close"></i>
+                </md-button>
+            </div>
+            <div class="grid_2">
+                <md-button class="md-raised md-primary medium-button" ng-disabled="isVerif" ng-click="verifikasiData()">
+                    <span style="margin-right: 5px;">Verifikasi</span>
+                    <i class="fa fa-check"></i>
+                </md-button>
+            </div>
+        </div>
+    </div>
 </div>

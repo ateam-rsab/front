@@ -54,9 +54,13 @@ define(['initialize'], function (initialize) {
                     text: "Batal",
                     click: batalJadwalBedah,
                     imageClass: "k-icon k-i-pencil"
+                }, {
+                    text: "Detail",
+                    click: detailData,
+                    imageClass: "k-icon k-i-pencil"
                 }],
                 title: "",
-                width: 200
+                width: 250
             }]
 
             $scope.getData = () => {
@@ -72,6 +76,58 @@ define(['initialize'], function (initialize) {
                         pageSize: 100
                     });
                 });
+            }
+
+            function detailData(e) {
+                e.preventDefault();
+                var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+
+                console.log(dataItem);
+                $scope.isVerif = dataItem.tglverifikasi !== '-' ? true : false;
+
+                $scope.item.namaDokterAnastesi = {
+                    id: dataItem.dokteranestesifk,
+                    namalengkap: dataItem.namaDokterAnestesi
+                }
+
+                $scope.item.namaDokter = {
+                    namalengkap: dataItem.namaDokter,
+                    id: dataItem.dokterfk
+                };
+
+                $scope.item.namaDokterTujuan = {
+                    namalengkap: dataItem.namaDokterTujuan,
+                    id: dataItem.doktertujuanfk
+                };
+
+                $scope.item.ruanganOperasi = {
+                    nama: dataItem.ruangoperasi,
+                    key: dataItem.ruangoperasi
+                };
+
+                $scope.item.namaPerawat = dataItem.objectperawatfk ? {
+                    namalengkap: dataItem.namaPerawat,
+                    id: dataItem.objectperawatfk
+                } : null;
+
+                $scope.item.tglVerifikasi = dateHelper.formatDate(new Date(), 'YYYY-MM-DD HH:mm');
+                $scope.item.tglOperasi = dataItem.tgloperasi; // dataItem.tgloperasi === '-' ? dateHelper.formatDate(new Date(), 'YYYY-MM-DD HH:mm'): dateHelper.formatDate(new Date(dataItem.tgloperasi), 'YYYY-MM-DD HH:mm');
+                $scope.item.notelp = dataItem.telp;
+                $scope.item.norec = dataItem.norec;
+                $scope.item.namaRuangan = dataItem.namaruangan;
+                $scope.item.namaRuanganTujuan = dataItem.namaRuanganTujuan;
+                $scope.item.noRegistrasi = dataItem.noregistrasi;
+                $scope.item.tglRegistrasi = dataItem.tglregistrasi;
+                $scope.item.nocm = dataItem.nocm;
+                $scope.item.namaPasien = dataItem.namapasien;
+                $scope.item.diagnosa = dataItem.diagnosa;
+                $scope.item.tindakan = dataItem.tindakan;
+                $scope.item.posisiKhusus = dataItem.posisikhusus;
+                $scope.item.macamAnestesi = dataItem.macamanestesi;
+                $scope.item.lamaOperasi = dataItem.lamaoperasi;
+
+
+                $scope.popupDetail.open().center();
             }
 
 

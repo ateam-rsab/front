@@ -62,8 +62,8 @@ define(['initialize'], function (initialize) {
 
             let init = () => {
                 ManageSdmNew.getListData("service/list-generic/?view=KelompokJabatan&select=id,namaKelompokJabatan&criteria=statusEnabled,id&values=true,(1;2;3;4;5;6;7;8;9;10)&order=namaKelompokJabatan:asc").then((res) => {
-                    $scope.listKelompokJabatan = res.data
-                })
+                    $scope.listKelompokJabatan = res.data;
+                });
             }
             init();
 
@@ -75,7 +75,6 @@ define(['initialize'], function (initialize) {
                 let bln = dateHelper.toTimeStamp($scope.item.bulan);
                 // http://192.168.12.3:8080/jasamedika-sdm/iki-remunerasi/get-master-bobot-jenis-indikator?periode=1622480400000
                 ManageSdmNew.getListData("iki-remunerasi/get-master-bobot-jenis-indikator?periode=" + bln).then((res) => {
-                    console.log(res);
                     $scope.dataSource = new kendo.data.DataSource({
                         data: res.data.data,
                         pageSize: 10
@@ -89,7 +88,23 @@ define(['initialize'], function (initialize) {
                 $scope.popupTambah.open().center();
             }
 
+            $scope.validasiDataDouble = () => {
+                ManageSdmNew.getListData("iki-remunerasi/get-duplikat-bobot-jenis-indikator?periode=" + dateHelper.toTimeStamp($scope.data.bulan) + "&jenisIndikatorId=" + ($scope.data.jenisIndikator ? $scope.data.jenisIndikator.id : "") + "&kelompokJabatanId=" + ($scope.data.kelompokJabatan ? $scope.data.kelompokJabatan.id : "")).then((res) => {
+                    res.data.data;
+                    if(res.data.data.length === 0) {
+                        $scope.saveData("save");
+                        return;
+                    }
+
+                    toastr.info("Data sudah ada!", "Gagal Simpan")
+                    
+                });
+                // http://192.168.12.3:8080/jasamedika-sdm/iki-remunerasi/get-duplikat-bobot-jenis-indikator?periode=1623171600000&jenisIndikatorId=1&kelompokJabatanId=3
+                
+            }
+
             $scope.saveData = (method) => {
+                
                 let statusEnabled = method === "save";
                 if (!$scope.data.bulan) {
                     toastr.info("Harap pilih Bulan terlebih dahulu!")
@@ -101,9 +116,6 @@ define(['initialize'], function (initialize) {
                     statusEnabled: statusEnabled,
                     bulan: dateHelper.toTimeStamp($scope.data.bulan),
                     jenisIndikator: $scope.data.jenisIndikator.id,
-                    // kelompokJabatan : {
-                    //     id : 8
-                    // },
                     persentase: $scope.data.persentase
                 }
 
@@ -120,7 +132,7 @@ define(['initialize'], function (initialize) {
                 ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-bobot-jenis-indikator").then(res => {
                     $scope.getData();
                     $scope.reset();
-                    $scope.closePopup();
+                    $scope.closepopupTambah();
                 })
             }
 
