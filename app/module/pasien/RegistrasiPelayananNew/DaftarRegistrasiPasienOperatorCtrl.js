@@ -624,8 +624,9 @@ define(['initialize'], function (initialize) {
 			$scope.GelangPasien = function () {
 				if ($scope.dataPasienSelected.nocmfk != undefined) {
 					// http://192.168.12.4:7777/service-reporting/gelang-pasien/2103007612
-					var fixUrlLaporan = "http://192.168.12.4:7777/service-reporting/gelang-pasien/" + $scope.dataPasienSelected.noregistrasi; // cetakHelper.open("registrasi-pelayanan/gelangPasien?id=" + $scope.dataPasienSelected.nocmfk);
-					window.open(fixUrlLaporan, '', 'width=800,height=600')
+					// var fixUrlLaporan = "http://192.168.12.4:7777/service-reporting/gelang-pasien/" + $scope.dataPasienSelected.noregistrasi; // cetakHelper.open("registrasi-pelayanan/gelangPasien?id=" + $scope.dataPasienSelected.nocmfk);
+					// window.open(fixUrlLaporan, '', 'width=800,height=600')
+					cetakHelper.openURLReportingNew("gelang-pasien/" + $scope.dataPasienSelected.noregistrasi, "?");
 				}
 			}
 

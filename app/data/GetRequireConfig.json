@@ -8253,6 +8253,10 @@
       "urlDep": "module/Management/DashboardPenerimaanCtrl"
     },
     {
+      "nameDep": "DashboardPortalMenuCtrl",
+      "urlDep": "module/Management/DashboardPortalMenuCtrl"
+    },
+    {
       "nameDep": "DaftarRegistrasiPasienCtrl",
       "urlDep": "module/Akuntansi/TataRekening/DaftarRegistrasiPasienCtrl"
     },

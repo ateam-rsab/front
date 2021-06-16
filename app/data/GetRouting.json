@@ -48352,6 +48352,30 @@
     ]
   },
   {
+    "name": "DashboardPortalMenu",
+    "url": "/DashboardPortalMenu",
+    "templateurl": "module/Management/DashboardPortalMenu.html",
+    "controller": "DashboardPortalMenuCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "ManagementService",
+        "define": "ManagementService"
+      },
+      {
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
+      }
+    ]
+  },
+  {
     "name": "DaftarRegistrasiPasien",
     "url": "/DaftarRegistrasiPasien",
     "templateurl": "module/Akuntansi/TataRekening/DaftarRegistrasiPasien.html",

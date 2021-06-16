@@ -20,7 +20,7 @@ define(['initialize'], function (initialize) {
                 "jenisIndikator": "Perilaku"
             }];
 
-            let nilaiMax = {
+            $scope.nilaiMax = {
                 kuantitas: 40,
                 kualitas: 30,
                 perilaku: 30
@@ -60,10 +60,30 @@ define(['initialize'], function (initialize) {
                         text: "Hapus",
                         click: confirmHapus,
                         imageClass: "k-icon k-i-pencil"
-                    }],
+                    }, {
+                        text: "Detail",
+                        click: detailData,
+                        imageClass: "k-icon k-i-align-justify"
+                    },],
                     title: "",
                     width: 100
                 }],
+            }
+
+            $scope.optGridDetailIndikator = {
+                pageable: true,
+                scrollable: true,
+                columns: [
+                    {
+                        field: "detailIndikator",
+                        title: "<h3>Indikator</h3>",
+                        width: 200
+                    }, {
+                        field: "detailTarget",
+                        title: "<h3>Target</h3>",
+                        width: 200
+                    }
+                ]
             }
 
             $scope.monthSelectorOptions = {
@@ -140,6 +160,19 @@ define(['initialize'], function (initialize) {
                         $scope.isRouteLoading = false;
                         $scope.isPopup = false;
                     })
+            }
+
+            $scope.getBobotJenisByJabatan = () => {
+                ManageSdmNew.getListData("iki-remunerasi/get-bobot-jenis-by-jabatan?periode=" + dateHelper.toTimeStamp($scope.item.srcBulan) + "&jabatanId=" + ($scope.item.jabatan ? $scope.item.jabatan.id : "")).then((res) => {
+                    console.log(res.data.data)
+                    if(res.data.data.length != 0) {
+                        $scope.nilaiMax = {
+                            kuantitas: res.data.data[0] ,
+                            kualitas: res.data.data[1] ,
+                            perilaku: res.data.data[2] 
+                        }
+                    }
+                })
             }
 
             $scope.init = () => {
@@ -327,8 +360,8 @@ define(['initialize'], function (initialize) {
 
                 // console.log($scope.selectedJenisIndikator);
                 // console.log((($scope.currentNilaiBobot[$scope.selectedJenisIndikator] - $scope.tempSelectedBobot) + parseInt($scope.item.bobot)));
-                if ((($scope.currentNilaiBobot[$scope.selectedJenisIndikator] - $scope.tempSelectedBobot) + parseFloat($scope.item.bobot)) > nilaiMax[$scope.selectedJenisIndikator]) {
-                    toastr.info('Total Nilai Bobot ' + $scope.selectedJenisIndikator.toUpperCase() + ' Tidak Boleh Lebih dari ' + nilaiMax[$scope.selectedJenisIndikator]);
+                if ((($scope.currentNilaiBobot[$scope.selectedJenisIndikator] - $scope.tempSelectedBobot) + parseFloat($scope.item.bobot)) > $scope.nilaiMax[$scope.selectedJenisIndikator]) {
+                    toastr.info('Total Nilai Bobot ' + $scope.selectedJenisIndikator.toUpperCase() + ' Tidak Boleh Lebih dari ' + $scope.nilaiMax[$scope.selectedJenisIndikator]);
 
                     $scope.isRouteLoading = false;
                     $scope.isPopup = true;
@@ -405,6 +438,21 @@ define(['initialize'], function (initialize) {
                 }
 
                 $scope.popupTambah.open().center();
+            }
+
+            function detailData(e) {
+                e.preventDefault();
+                var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                $scope.dataSourceDetailIndikator = new kendo.data.DataSource({
+                    data: dataItem.detail,
+                    pageSize: 10
+                })
+                if(dataItem.detail) {
+                    $scope.popupDetailIndikator.open().center();
+                    return;
+                }
+
+                toastr.info("Tidak ada data");
             }
 
             function confirmHapus(e) {
