@@ -8405,6 +8405,10 @@
       "urlDep": "module/SDM/LogbookKinerjaCtrl"
     },
     {
+      "nameDep": "LogbookKinerjaDokterCtrl",
+      "urlDep": "module/SDM/LogbookKinerjaDokterCtrl"
+    },
+    {
       "nameDep": "CapaianUraianTugasCtrl",
       "urlDep": "module/SDM/CapaianUraianTugasCtrl"
     },

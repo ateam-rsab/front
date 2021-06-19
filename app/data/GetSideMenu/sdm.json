@@ -358,6 +358,10 @@
                         "link": "#/KontrakKinerjaIndividu"
                     },
                     {
+                        "name": "Logbook Kinerja Dokter",
+                        "link": "#/LogbookKinerjaDokter"
+                    },
+                    {
                         "name": "Verifikasi Catatan Kegiatan Harian",
                         "link": "#/VerifikasiCatatanKegiatanHarian"
                     }
