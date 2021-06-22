@@ -8,6 +8,7 @@ define(['initialize'], function (initialize) {
                 start: "year",
                 depth: "year"
             };
+            $scope.isEditJabatan = false;
             $scope.item.bulan = new Date();
             $scope.data.bulan = new Date();
             $scope.isEdit = false;
@@ -107,12 +108,12 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.validasiDataDouble = () => {
-                if($scope.data.noRec) {
+                if ($scope.data.noRec) {
                     $scope.saveData("save");
                     return;
                 }
                 ManageSdmNew.getListData("iki-remunerasi/get-duplikat-bobot-jenis-indikator?periode=" + dateHelper.toTimeStamp($scope.data.bulan) + "&jenisIndikatorId=" + ($scope.data.jenisIndikator ? $scope.data.jenisIndikator.id : "") + "&kelompokJabatanId=" + ($scope.data.kelompokJabatan ? $scope.data.kelompokJabatan.id : "")).then((res) => {
-                    
+
                     if (res.data.data.length === 0) {
                         $scope.saveData("save");
                         return;
@@ -178,32 +179,33 @@ define(['initialize'], function (initialize) {
                 // let tgl = dateHelper.toTimeStamp(dataItem.tglPembaharuanData);
                 ManageSdmNew.getListData("iki-remunerasi/get-edit-master-bobot-jenis-indikator?tglPembaharuanData=" + dataItem.tglPembaharuanData).then((res) => {
                     // console.log(res);
-                    for(let i = 0; i < res.data.data.detail.length; i++) {
-                        $scope.data.dataSave[i].jenisIndikator = { id: res.data.data.detail[i].jenisIndikatorId, name: res.data.data.detail[i].jenisIndikator};
+                    for (let i = 0; i < res.data.data.detail.length; i++) {
+                        $scope.data.dataSave[i].jenisIndikator = { id: res.data.data.detail[i].jenisIndikatorId, name: res.data.data.detail[i].jenisIndikator };
                         $scope.data.dataSave[i].persentase = res.data.data.detail[i].persentase;
                         $scope.data.dataSave[i].noRec = res.data.data.detail[i].noRec;
                     }
 
                     $scope.isEdit = true;
-                
+                    $scope.isEditJabatan = dataItem.kelompokJabatanId && dataItem.kelompokJabatan;
+
                     $scope.data.noRec = dataItem.noRec;
                     $scope.data.bulan = new Date(dataItem.bulanBerlaku);
-    
+
                     $scope.data.jenisIndikator = {
                         id: dataItem.jenisIndikatorId,
                         name: dataItem.jenisIndikator
                     }
-    
+
                     $scope.data.kelompokJabatan = {
                         id: dataItem.kelompokJabatanId,
                         namaKelompokJabatan: dataItem.kelompokJabatan
                     }
                     $scope.data.persentase = dataItem.persentase;
-    
+
                     $scope.popupTambah.open().center();
                 })
 
-               
+
             }
 
             function confirmHapus(e) {
@@ -232,11 +234,16 @@ define(['initialize'], function (initialize) {
                     .cancel('Tidak');
 
                 $mdDialog.show(confirm).then(function () {
-                    ManageSdmNew.saveData({}, "iki-remunerasi/delete-master-bobot-jenis-indikator?noRec=" + dataItem.noRec).then(res => {
+                    ManageSdmNew.saveData({}, "iki-remunerasi/delete-all-master-bobot-jenis-indikator?tglPembaharuanData=" + dataItem.tglPembaharuanData).then(res => {
                         $scope.reset();
                         $scope.getData();
                         console.log("HAPUSED");
                     })
+                    // ManageSdmNew.saveData({}, "iki-remunerasi/delete-master-bobot-jenis-indikator?noRec=" + dataItem.noRec).then(res => {
+                    //     $scope.reset();
+                    //     $scope.getData();
+                    //     console.log("HAPUSED");
+                    // })
                 }, function () {
                     console.info("Batal hapus....");
                     $scope.reset();
