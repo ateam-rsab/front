@@ -33,6 +33,10 @@
         ]
     },
     {
+        "name": "Dashboard Portal",
+        "link": "#/DashboardPortalMenu"
+    },
+    {
         "name": "Laporan COVID-19",
         "link": "#/LaporanPasienCovid"
     },

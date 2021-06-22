@@ -17,6 +17,10 @@ define(['initialize'], function (initialize) {
                 {
                     namaRuangan: 'Instalasi Rawat Inap',
                     id: 16
+                },
+                {
+                    namaRuangan: 'Instalasi Gawat Darurat',
+                    id: 24
                 }
             ];
 

@@ -1,7 +1,7 @@
 define(['initialize'], function(initialize) {
     'use strict';
-    initialize.controller('DaftarBarangKadaluarsaCtrl', ['$sce', '$rootScope', '$scope', 'ModelItem', 'DateHelper', 'ManageLogistikPhp','$http', 'ModelItemAkuntansi',
-            function($sce, $rootScope, $scope, ModelItem, DateHelper,manageLogistikPhp,$http,modelItemAkuntansi) {     
+    initialize.controller('DaftarBarangKadaluarsaCtrl', ['$sce', '$rootScope', '$scope', 'ModelItem', 'DateHelper', 'ManageLogistikPhp','$http', 'ModelItemAkuntansi', 'ReportService',
+            function($sce, $rootScope, $scope, ModelItem, DateHelper,manageLogistikPhp,$http,modelItemAkuntansi, ReportService) {     
                 $scope.isRouteLoading=false;
             var init = function() {
                 $scope.dataVOloaded = true;
@@ -76,7 +76,7 @@ define(['initialize'], function(initialize) {
                 },
                 {
                     "field": "tglkadaluarsa",
-                    "title": "Tgl Kadaluarsa",
+                    "title": "Tanggal Kadaluarsa",
                     "width" : "80px",
                 }
            
@@ -89,7 +89,7 @@ define(['initialize'], function(initialize) {
                         $scope.item.harga = (parseFloat($scope.item.hargaJual) /125)*100
                     }
                 }
-            });            
+            });
             $scope.simpan = function(){
                 var objSave ={
                     objectprodukfk:$scope.dataSelected.kodeProduk,
@@ -116,7 +116,9 @@ define(['initialize'], function(initialize) {
           
             function loadgrid(){
                 $scope.isRouteLoading=true;
-                var tglKadaluarsa = moment($scope.item.tanggal).format('YYYY-MM-DD 00:00:00');             
+                var tglKadaluarsa = moment($scope.item.tanggal).format('YYYY-MM-DD 00:00:00');
+                let tglAwal = moment($scope.item.tanggalAwal).format('YYYY-MM-DD');
+                let tglAkhir = moment($scope.item.tanggalAkhir).format('YYYY-MM-DD');   
                 var ruanganid = "";
                 if ($scope.item.ruangan != undefined) {
                     ruanganid = $scope.item.ruangan.id
@@ -127,9 +129,13 @@ define(['initialize'], function(initialize) {
                     kdproduk = "&kdproduk=" +$scope.item.produk.id;
                 }
 
+                // https://smart.rsabhk.co.id:2222/reporting-rsabhk-service/get-barang-kadaluarsa?tglAwal=2021-01-01&tglAkhir=2021-01-31&namaProduk=&X-AUTH-TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJpd2FuIn0.XlUDnTLEg75djc9MSg1BrkStcvveR2FYy667eEd66zEIeP6t_nQiLpvNsefgcgi8BOjyhplb70fu47yF0n5EYQ
+                ReportService.getListDataNew("get-barang-kadaluarsa?tglAwal=2021-01-01&tglAkhir=2021-01-31&namaProduk=" + $scope.item.produk.namaproduk).then((res) => {
+                    console.log(res);
+                })
                 manageLogistikPhp.getDataTableTransaksi('logistik-stok/get-daftar-barang-kadaluarsa-new?'
-                    +'tglkadaluarsa='+tglKadaluarsa
-                    +'&idruangan='+ruanganid
+                    +'tglkadaluarsa=' + tglKadaluarsa
+                    +'&idruangan=' + ruanganid
                     + kdproduk
                   ).then(function(data){
                   	 for (var i = 0; i < data.data.data.length; i++) {

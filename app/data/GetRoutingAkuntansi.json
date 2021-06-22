@@ -9589,6 +9589,10 @@
         "define": "LogistikServicePhp"
       },
       {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
         "module": "AkuntansiService",
         "define": "AkuntansiService"
       }

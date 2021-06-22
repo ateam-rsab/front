@@ -157,13 +157,46 @@ define(['initialize'], function (initialize) {
 
             $scope.loadDataGridRekap = function () {
                 $scope.isRouteLoading = true;
-
+                let dataSource = [];
                 var tglAwal = dateHelper.getDateTimeFormatted3($scope.item.tglAwal) + " 00:00:00";
                 var tglAkhir = dateHelper.getDateTimeFormatted3($scope.item.tglAkhir) + " 23:59:59";
+                var administrasi = 0;
+                var visite = 0;
+                var konsultasi = 0;
+                var akomodasi = 0;
+                var alatCanggih = 0;
+                var tindakan = 0;
+                var obatAlkes = 0;
+                var diskon = 0;
+                var totalDiRuangan = 0;
 
-                ReportService.getListDataNew("get-pendapatan-ruangan?tglAwal=" + dateHelper.formatDate(tglAwal, 'YYYY-MM-DD HH:mm:ss') + "&tglAkhir=" + dateHelper.formatDate(tglAkhir, 'YYYY-MM-DD HH:mm:ss') + "&departemen=" + ($scope.item.departemen ? $scope.item.departemen.namaDepartemen : "") + "&ruangan=" + ($scope.item.ruangan ? $scope.item.ruangan.namaRuangan : "")).then(function (data) {
+                ReportService.getListDataNew("get-pendapatan-ruangan?tglAwal=" + dateHelper.formatDate(tglAwal, 'YYYY-MM-DD HH:mm:ss') + "&tglAkhir=" + dateHelper.formatDate(tglAkhir, 'YYYY-MM-DD HH:mm:ss')).then(function (data) {
+                    
+                    for(let i in data.data.data.pendapatan_farmasi.length) {
+                        dataSource.push(data.data.data.pendapatan_farmasi[i]);
+                        dataSource = [...dataSource, data.data.data.pendapatan_farmasi[i]]
+                    }
+
+                    for(let i in data.data.data.pendapatan_non_farmasi.length) {
+                        dataSource = [...dataSource, data.data.data.pendapatan_non_farmasi[i]]
+                        dataSource.push(data.data.data.pendapatan_non_farmasi[i]);
+                    }
+
+                    if (dataSource.length > 0) {
+                        for (var i = 0; i < dataSource.length; i++) {
+                            administrasi = administrasi + dataSource[i].administrasi;
+                            visite = visite + dataSource[i].visite;
+                            konsultasi = konsultasi + dataSource[i].konsultasi;
+                            akomodasi = akomodasi + dataSource[i].akomodasi;
+                            alatCanggih = alatCanggih + dataSource[i].alatCanggih;
+                            tindakan = tindakan + dataSource[i].tindakan;
+                            obatAlkes = obatAlkes + dataSource[i].obatAlkes;
+                            diskon = diskon + dataSource[i].diskon;
+                            totalDiRuangan = totalDiRuangan + dataSource[i].totalDiRuangan;
+                        };
+                    }
                     $scope.dataSourceRekap = new kendo.data.DataSource({
-                        data: data.data.data,
+                        data: dataSource,
                         schema: {
                             model: {
                                 fields: {
@@ -190,28 +223,20 @@ define(['initialize'], function (initialize) {
                         ]
                     });
 
-                    var administrasi = 0;
-                    var visite = 0;
-                    var konsultasi = 0;
-                    var akomodasi = 0;
-                    var alatCanggih = 0;
-                    var tindakan = 0;
-                    var obatAlkes = 0;
-                    var diskon = 0;
-                    var totalDiRuangan = 0;
-                    if (data.data.data.length > 0) {
-                        for (var i = 0; i < data.data.data.length; i++) {
-                            administrasi = administrasi + data.data.data[i].administrasi;
-                            visite = visite + data.data.data[i].visite;
-                            konsultasi = konsultasi + data.data.data[i].konsultasi;
-                            akomodasi = akomodasi + data.data.data[i].akomodasi;
-                            alatCanggih = alatCanggih + data.data.data[i].alatCanggih;
-                            tindakan = tindakan + data.data.data[i].tindakan;
-                            obatAlkes = obatAlkes + data.data.data[i].obatAlkes;
-                            diskon = diskon + data.data.data[i].diskon;
-                            totalDiRuangan = totalDiRuangan + data.data.data[i].totalDiRuangan;
-                        };
-                    }
+                   
+                    // if (data.data.data.length > 0) {
+                    //     for (var i = 0; i < data.data.data.length; i++) {
+                    //         administrasi = administrasi + data.data.data[i].administrasi;
+                    //         visite = visite + data.data.data[i].visite;
+                    //         konsultasi = konsultasi + data.data.data[i].konsultasi;
+                    //         akomodasi = akomodasi + data.data.data[i].akomodasi;
+                    //         alatCanggih = alatCanggih + data.data.data[i].alatCanggih;
+                    //         tindakan = tindakan + data.data.data[i].tindakan;
+                    //         obatAlkes = obatAlkes + data.data.data[i].obatAlkes;
+                    //         diskon = diskon + data.data.data[i].diskon;
+                    //         totalDiRuangan = totalDiRuangan + data.data.data[i].totalDiRuangan;
+                    //     };
+                    // }
                     $scope.item.administrasi = $scope.formatRupiah(administrasi, "Rp.");
                     $scope.item.visite = $scope.formatRupiah(visite, "Rp.");
                     $scope.item.konsultasi = $scope.formatRupiah(konsultasi, "Rp.");
