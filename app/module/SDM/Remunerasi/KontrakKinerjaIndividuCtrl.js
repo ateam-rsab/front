@@ -435,13 +435,21 @@ define(['initialize'], function (initialize) {
                 if ($scope.item.pegawai.isModifAkses) {
                     $scope.isVerifGranted = true;
                     if ($scope.item.statusVerif) {
-                        $scope.isNotEditable = true;
+                        $scope.isNotEditable1 = true;
+                        $scope.isNotEditable2 = true;
                     } else {
-                        $scope.isNotEditable = false;
+                        if (dataItem.detail) {
+                            $scope.isNotEditable1 = true;
+                            $scope.isNotEditable2 = false;
+                        } else {
+                            $scope.isNotEditable1 = false;
+                            $scope.isNotEditable2 = false;
+                        }
                     }
                 } else if (!$scope.item.pegawai.isModifAkses) {
                     $scope.isVerifGranted = false;
-                    $scope.isNotEditable = true;
+                    $scope.isNotEditable1 = true;
+                    $scope.isNotEditable2 = true;
                 }
 
                 $scope.popupTambah.open().center();

@@ -72,7 +72,7 @@
                 <div class="grid_1">
                     <label><strong>Target</strong></label>
                     <input id="targetGrid" filter="'numeric'" class="k-textbox" ng-model="item.target"
-                        ng-disabled="isNotEditable" />
+                        ng-disabled="isNotEditable1" />
                 </div>
                 <div class="grid_2" style="margin-top: 2em; margin-right: auto;">
                     <label><strong>{{item.satuanIndikator}}</strong></label>
@@ -80,7 +80,7 @@
                 <div class="grid_1">
                     <label><strong>Bobot</strong></label>
                     <input id="bobotGrid" filter="'numeric'" class="k-textbox" ng-model="item.bobot"
-                        ng-disabled="isNotEditable" />
+                        ng-disabled="isNotEditable2" />
                 </div>
                 <div class="grid_1" style="margin-top: 2em; margin-right: auto;">
                     <label><strong>%</strong></label>
@@ -152,8 +152,7 @@
 
                 <div class="grid_1">
                     <label><strong>Target</strong></label>
-                    <input id="targetPop" type="input" filter="'numeric'" class="k-textbox"
-                        ng-model="indikator.target" />
+                    <input id="targetPop" filter="'numeric'" class="k-textbox" ng-model="indikator.target" />
                 </div>
                 <div class="grid_3">
                     <label><strong>Satuan Indikator</strong></label>
