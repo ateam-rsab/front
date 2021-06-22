@@ -72,16 +72,20 @@ define(['initialize'], function (initialize) {
 
             $scope.optGridDetailIndikator = {
                 pageable: true,
-                scrollable: true,
+                scrollable: false,
                 columns: [
                     {
                         field: "detailIndikator",
-                        title: "<h3>Indikator</h3>",
+                        title: "<h3>Detail Indikator</h3>",
                         width: 200
                     }, {
                         field: "detailTarget",
                         title: "<h3>Target</h3>",
-                        width: 200
+                        width: 100,
+                        attributes: {
+                            class: "table-cell",
+                            style: "text-align: right;"
+                        }
                     }
                 ]
             }
@@ -156,7 +160,6 @@ define(['initialize'], function (initialize) {
                             })
                         }
 
-                        // console.log($scope.dataSourceKontrakKinerja);
                         $scope.isRouteLoading = false;
                         $scope.isPopup = false;
                     })
@@ -165,11 +168,11 @@ define(['initialize'], function (initialize) {
             $scope.getBobotJenisByJabatan = () => {
                 ManageSdmNew.getListData("iki-remunerasi/get-bobot-jenis-by-jabatan?periode=" + dateHelper.toTimeStamp($scope.item.srcBulan) + "&jabatanId=" + ($scope.item.jabatan ? $scope.item.jabatan.id : "")).then((res) => {
                     console.log(res.data.data)
-                    if(res.data.data.length != 0) {
+                    if (res.data.data.length != 0) {
                         $scope.nilaiMax = {
-                            kuantitas: res.data.data[0] ,
-                            kualitas: res.data.data[1] ,
-                            perilaku: res.data.data[2] 
+                            kuantitas: res.data.data[0],
+                            kualitas: res.data.data[1],
+                            perilaku: res.data.data[2]
                         }
                     }
                 })
@@ -332,11 +335,13 @@ define(['initialize'], function (initialize) {
                 $scope.isRouteLoading = true;
                 $scope.isPopup = true;
 
-                var tglBatasSimpan = new Date($scope.item.periode);
+                var tglBatasSimpan = new Date($scope.item.srcBulan);
                 tglBatasSimpan.setDate(4);
                 tglBatasSimpan.setHours(23, 59, 59, 999);
                 if (dateHelper.toTimeStamp(new Date()) > tglBatasSimpan) {
                     toastr.warning("Batas masa simpan kontrak kinerja individu sudah lewat", "Peringatan")
+
+                    $scope.isRouteLoading = false;
                     return
                 }
 
@@ -358,8 +363,6 @@ define(['initialize'], function (initialize) {
                     return
                 }
 
-                // console.log($scope.selectedJenisIndikator);
-                // console.log((($scope.currentNilaiBobot[$scope.selectedJenisIndikator] - $scope.tempSelectedBobot) + parseInt($scope.item.bobot)));
                 if ((($scope.currentNilaiBobot[$scope.selectedJenisIndikator] - $scope.tempSelectedBobot) + parseFloat($scope.item.bobot)) > $scope.nilaiMax[$scope.selectedJenisIndikator]) {
                     toastr.info('Total Nilai Bobot ' + $scope.selectedJenisIndikator.toUpperCase() + ' Tidak Boleh Lebih dari ' + $scope.nilaiMax[$scope.selectedJenisIndikator]);
 
@@ -431,7 +434,11 @@ define(['initialize'], function (initialize) {
 
                 if ($scope.item.pegawai.isModifAkses) {
                     $scope.isVerifGranted = true;
-                    $scope.isNotEditable = false;
+                    if ($scope.item.statusVerif) {
+                        $scope.isNotEditable = true;
+                    } else {
+                        $scope.isNotEditable = false;
+                    }
                 } else if (!$scope.item.pegawai.isModifAkses) {
                     $scope.isVerifGranted = false;
                     $scope.isNotEditable = true;
@@ -447,7 +454,7 @@ define(['initialize'], function (initialize) {
                     data: dataItem.detail,
                     pageSize: 10
                 })
-                if(dataItem.detail) {
+                if (dataItem.detail) {
                     $scope.popupDetailIndikator.open().center();
                     return;
                 }

@@ -97,8 +97,7 @@
                     <div class="grid_11"></div>
                     <div class="grid_1">
                         <input style="width: 100%;" k-ng-model="item.bulan" k-options="monthSelectorOptions"
-                            kendo-date-picker placeholer="mmm-yyyy" k-format="'MMM-yyyy'" k-max="endOfDay"
-                            k-on-change="getDataDashboard()" />
+                            kendo-date-picker placeholer="mmm-yyyy" k-format="'MMM-yyyy'" k-max="endOfDay" />
                     </div>
                 </span>
                 <div class="grid_6" ng-if="showIsSinglePegawai" style="margin-left: -0.4em;">
@@ -115,8 +114,7 @@
                 </div>
                 <div class="grid_6" ng-if="!showIsSingleJabatan" style="margin-left: -0.4em;">
                     <input kendo-combo-box k-filter="'contains'" k-ng-model="item.jabatan"
-                        k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-data-source="listJabatan"
-                        k-on-change="getDataDashboard()" />
+                        k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-data-source="listJabatan" />
                 </div>
             </md-card-title-text>
         </md-card-title>
@@ -265,6 +263,7 @@
             </div>
         </md-card-content>
     </md-card>
+    <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
 </div>
 
 <div kendo-window="popupAdd" k-title="'Tambah Data'" k-width="1200" k-visible="false" k-on-open="win2visible= true"

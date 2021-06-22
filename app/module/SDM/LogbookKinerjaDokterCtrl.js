@@ -107,7 +107,7 @@ define(['initialize'], function (initialize) {
                                         style: "text-align: right;"
                                     },
                                     aggregates: ["sum"],
-                                    groupFooterTemplate: "#= sum #"
+                                    groupFooterTemplate: "#= sum #",
                                 }, {
                                     field: "tSkor",
                                     title: "Total Skor",
@@ -126,7 +126,7 @@ define(['initialize'], function (initialize) {
                                         style: "text-align: right;"
                                     },
                                     aggregates: ["sum"],
-                                    groupFooterTemplate: "#= sum #"
+                                    groupFooterTemplate: "#= kendo.toString(sum, '0.00') #",
                                 }, {
                                     field: "Capaian",
                                     headerAttributes: {
