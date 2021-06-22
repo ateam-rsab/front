@@ -833,6 +833,10 @@
       "urlDep": "module/SDM/Remunerasi/DashboardPencatatanKinerjaCtrl"
     },
     {
+      "nameDep": "LogbookKinerjaDokterCtrl",
+      "urlDep": "module/SDM/Remunerasi/LogbookKinerjaDokterCtrl"
+    },
+    {
       "nameDep": "PengaturanBobotJenisIndikatorCtrl",
       "urlDep": "module/SDM/Remunerasi/PengaturanBobotJenisIndikatorCtrl"
     },

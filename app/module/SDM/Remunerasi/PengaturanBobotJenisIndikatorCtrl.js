@@ -9,6 +9,7 @@ define(['initialize'], function (initialize) {
                 depth: "year"
             };
             $scope.item.bulan = new Date();
+            $scope.data.bulan = new Date();
             $scope.isEdit = false;
 
             $scope.listJenisIndikator = [{
@@ -21,6 +22,24 @@ define(['initialize'], function (initialize) {
                 "id": 3,
                 "name": "Perilaku"
             }];
+
+            $scope.data.dataSave = [
+                {
+                    jenisIndikator: { id: 1, name: "Kuantitas" },
+                    persentase: 0
+                }, {
+                    jenisIndikator: { id: 2, name: "Kualitas" },
+                    persentase: 0
+                }, {
+                    jenisIndikator: { id: 3, name: "Perilaku" },
+                    persentase: 0
+                }
+            ]
+
+            $scope.data.kuantitas = { id: 1, name: "Kuantitas" }
+            $scope.data.kualitas = { id: 2, name: "Kualitas" }
+            $scope.data.perilaku = { id: 3, name: "Perilaku" }
+
             $scope.optGrid = {
                 toolbar: [{
                     text: "export",
@@ -73,7 +92,6 @@ define(['initialize'], function (initialize) {
                     return;
                 }
                 let bln = dateHelper.toTimeStamp($scope.item.bulan);
-                // http://192.168.12.3:8080/jasamedika-sdm/iki-remunerasi/get-master-bobot-jenis-indikator?periode=1622480400000
                 ManageSdmNew.getListData("iki-remunerasi/get-master-bobot-jenis-indikator?periode=" + bln).then((res) => {
                     $scope.dataSource = new kendo.data.DataSource({
                         data: res.data.data,
@@ -89,71 +107,103 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.validasiDataDouble = () => {
+                if($scope.data.noRec) {
+                    $scope.saveData("save");
+                    return;
+                }
                 ManageSdmNew.getListData("iki-remunerasi/get-duplikat-bobot-jenis-indikator?periode=" + dateHelper.toTimeStamp($scope.data.bulan) + "&jenisIndikatorId=" + ($scope.data.jenisIndikator ? $scope.data.jenisIndikator.id : "") + "&kelompokJabatanId=" + ($scope.data.kelompokJabatan ? $scope.data.kelompokJabatan.id : "")).then((res) => {
-                    res.data.data;
-                    if(res.data.data.length === 0) {
+                    
+                    if (res.data.data.length === 0) {
                         $scope.saveData("save");
                         return;
                     }
 
-                    toastr.info("Data sudah ada!", "Gagal Simpan")
-                    
+                    toastr.info("Data sudah ada!", "Gagal Simpan");
+
                 });
-                // http://192.168.12.3:8080/jasamedika-sdm/iki-remunerasi/get-duplikat-bobot-jenis-indikator?periode=1623171600000&jenisIndikatorId=1&kelompokJabatanId=3
-                
             }
 
             $scope.saveData = (method) => {
-                
+                let dataSave = [];
                 let statusEnabled = method === "save";
+                let URL = "save-all-bobot-jenis-indikator";
+                // update-all-bobot-jenis-indikator
                 if (!$scope.data.bulan) {
                     toastr.info("Harap pilih Bulan terlebih dahulu!")
                     return;
                 }
 
-                let dataSave = {
-                    kdProfile: 0,
-                    statusEnabled: statusEnabled,
-                    bulan: dateHelper.toTimeStamp($scope.data.bulan),
-                    jenisIndikator: $scope.data.jenisIndikator.id,
-                    persentase: $scope.data.persentase
-                }
+                for (let i = 0; i < $scope.data.dataSave.length; i++) {
+                    dataSave.push({
+                        kdProfile: 0,
+                        statusEnabled: statusEnabled,
+                        bulan: dateHelper.toTimeStamp($scope.data.bulan),
+                        jenisIndikator: $scope.data.dataSave[i].jenisIndikator.id,
+                        persentase: $scope.data.dataSave[i].persentase
+                    });
 
-                if ($scope.data.kelompokJabatan) {
-                    dataSave.kelompokJabatan = {
-                        id: $scope.data.kelompokJabatan.id
+                    if ($scope.data.kelompokJabatan) {
+                        dataSave[i].kelompokJabatan = {
+                            id: $scope.data.kelompokJabatan.id
+                        }
+                    }
+
+                    if ($scope.data.dataSave[i].noRec) {
+                        URL = "update-all-bobot-jenis-indikator";
+                        dataSave[i].noRec = $scope.data.dataSave[i].noRec;
                     }
                 }
 
-                if ($scope.data.noRec) {
-                    dataSave.noRec = $scope.data.noRec;
-                }
-
-                ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-bobot-jenis-indikator").then(res => {
+                console.log(dataSave);
+                ManageSdmNew.saveData(dataSave, `iki-remunerasi/${URL}`).then(res => {
                     $scope.getData();
                     $scope.reset();
                     $scope.closepopupTambah();
                 })
+
+                /**
+                 *  OLD
+                    ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-bobot-jenis-indikator").then(res => {
+                        $scope.getData();
+                        $scope.reset();
+                        $scope.closepopupTambah();
+                    })
+                 */
+
             }
 
             function editData(e) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-                $scope.isEdit = true;
-                $scope.data.noRec = dataItem.noRec;
-                $scope.data.bulan = new Date(dataItem.bulanBerlaku);
-                $scope.data.jenisIndikator = {
-                    id: dataItem.jenisIndikatorId,
-                    name: dataItem.jenisIndikator
-                }
+                // let tgl = dateHelper.toTimeStamp(dataItem.tglPembaharuanData);
+                ManageSdmNew.getListData("iki-remunerasi/get-edit-master-bobot-jenis-indikator?tglPembaharuanData=" + dataItem.tglPembaharuanData).then((res) => {
+                    // console.log(res);
+                    for(let i = 0; i < res.data.data.detail.length; i++) {
+                        $scope.data.dataSave[i].jenisIndikator = { id: res.data.data.detail[i].jenisIndikatorId, name: res.data.data.detail[i].jenisIndikator};
+                        $scope.data.dataSave[i].persentase = res.data.data.detail[i].persentase;
+                        $scope.data.dataSave[i].noRec = res.data.data.detail[i].noRec;
+                    }
 
-                $scope.data.kelompokJabatan = {
-                    id: dataItem.kelompokJabatanId,
-                    namaKelompokJabatan: dataItem.kelompokJabatan
-                }
-                $scope.data.persentase = dataItem.persentase;
+                    $scope.isEdit = true;
+                
+                    $scope.data.noRec = dataItem.noRec;
+                    $scope.data.bulan = new Date(dataItem.bulanBerlaku);
+    
+                    $scope.data.jenisIndikator = {
+                        id: dataItem.jenisIndikatorId,
+                        name: dataItem.jenisIndikator
+                    }
+    
+                    $scope.data.kelompokJabatan = {
+                        id: dataItem.kelompokJabatanId,
+                        namaKelompokJabatan: dataItem.kelompokJabatan
+                    }
+                    $scope.data.persentase = dataItem.persentase;
+    
+                    $scope.popupTambah.open().center();
+                })
 
-                $scope.popupTambah.open().center();
+               
             }
 
             function confirmHapus(e) {
@@ -195,11 +245,23 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.reset = () => {
-                $scope.data.bulan = null;
+                $scope.data.bulan = new Date();
                 $scope.data.jenisIndikator = null;
                 $scope.data.persentase = null;
                 $scope.data.kelompokJabatan = null;
                 $scope.data.noRec = null;
+                $scope.data.dataSave = [
+                    {
+                        jenisIndikator: { id: 1, name: "Kuantitas" },
+                        persentase: 0
+                    }, {
+                        jenisIndikator: { id: 2, name: "Kualitas" },
+                        persentase: 0
+                    }, {
+                        jenisIndikator: { id: 3, name: "Perilaku" },
+                        persentase: 0
+                    }
+                ]
 
                 $scope.isEdit = false;
             }

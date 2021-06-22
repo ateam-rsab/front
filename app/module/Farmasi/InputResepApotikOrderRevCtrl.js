@@ -540,7 +540,7 @@ define(['initialize'], function (initialize) {
                             imageClass: "k-icon k-i-pencil"
                         }],
                         title: "",
-                        width: "2%",
+                        width: "10%",
                         attributes: {
                             style: "text-align:center;valign=middle"
                         },

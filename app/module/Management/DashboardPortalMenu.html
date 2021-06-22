@@ -1,23 +1,113 @@
 <style>
     .card-menu-portal {
-        width: 40%;
-        min-height: 20%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: space-around;
+        align-items: center;
+        width: 30%;
+        min-height: 200px;
         background-color: rgb(255, 255, 255);
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
         transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
         padding: 10px;
+        margin: 10px;
         border-radius: 4px;
+        transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+        /* background-size: cover; */
+        background-repeat: no-repeat;
+        background-size: 200px;
+        background-position: center center;
     }
 
-    .card-menu-portal.bg-chart {}
+    .card-menu-portal h1 {
+        font-weight: bolder;
+        color: rgb(53, 53, 53);
+        padding: 20px;
+        background-color: rgba(226, 226, 226, 0.5);
+        transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+    }
+
+    .card-menu-portal:hover h1 {
+        background-color: rgba(226, 226, 226, 0.8);
+    }
+
+    .card-menu-portal.bg-chart {
+        background-image: url("../../../app/images/analytics.svg");
+    }
+
+    .card-menu-portal.bg-report {
+        background-image: url("../../../app/images/business-report.svg");
+    }
+
+    .card-menu-portal.bg-stock {
+        background-image: url("../../../app/images/risk.svg");
+    }
+
+    .card-menu-portal.bg-patient {
+        background-image: url("../../../app/images/patient.svg");
+    }
+
+    .card-menu-portal.bg-budget {
+        background-image: url("../../../app/images/calculator.svg");
+    }
 
     .menu-container {
+        display: flex;
         margin: 10px;
+        display: flex;
+        margin: 10px;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        justify-content: center;
+        align-items: center;
     }
 </style>
 
 <div class="menu-container">
-    <div class="card-menu-portal">
-        tes
+    <div class="card-menu-portal bg-chart">
+        <h1>Executive Infomation System (EIS)</h1>
+
+        <md-button class="md-raised md-primary medium-button" style="width: 40%;" ng-click="goToEis()">
+            <span>Go To Link</span>
+        </md-button>
+
+    </div>
+
+    <div class="card-menu-portal bg-report">
+        <h1>Rekap Pendapatan(Tata Rekening)</h1>
+
+        <md-button class="md-raised md-primary medium-button" style="width: 40%;" ng-click="goToLink('RekapPendapatanRuangan')">
+            <span>Go To Link</span>
+        </md-button>
+
+    </div>
+
+    <div class="card-menu-portal bg-stock">
+        <h1>Buffer Stok (Logistik)</h1>
+
+        <md-button class="md-raised md-primary medium-button" style="width: 40%;" ng-click="goToLink('StokBarangMinimum')">
+            <span>Go To Link</span>
+        </md-button>
+
+    </div>
+
+    <div class="card-menu-portal bg-patient">
+        <h1>Laporan Pasien Pulang (Pendaftaran)</h1>
+
+        <md-button class="md-raised md-primary medium-button" style="width: 40%;" ng-click="goToLink('LaporanPasienPulang')">
+            <span>Go To Link</span>
+        </md-button>
+
+    </div>
+
+    <div class="card-menu-portal bg-budget">
+        <h1>Dashboard Realisasi Anggaran (Keuangan)</h1>
+
+        <md-button class="md-raised md-primary medium-button" style="width: 40%;" ng-click="goToLink('DashboardRealisasiAnggaran')">
+            <span>Go To Link</span>
+        </md-button>
+
     </div>
 </div>
