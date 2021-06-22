@@ -113,6 +113,8 @@ define(['initialize'], function (initialize) {
             };
 
             $scope.getDataDashboard = () => {
+                $scope.isRouteLoading = true;
+
                 if ($scope.item.jabatan && !$scope.item.jabatan.isCariAkses) {
                     toastr.warning("Tidak ada akses untuk menampilkan data", "Peringatan")
                     return
@@ -160,6 +162,8 @@ define(['initialize'], function (initialize) {
                 ManageSdmNew.getListData("iki-remunerasi/get-dashboard-kinerja?pegawaiId=" + pegawaiId
                     + "&jabatanId=" + jabatanId
                     + "&bulan=" + date).then((res) => {
+                        $scope.isRouteLoading = false;
+
                         $scope.dataDashboard = res.data.data;
                         // console.log($scope.dataDashboard);
 
@@ -199,21 +203,23 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.showDetail = (data) => {
-                $scope.labelDetail = data.namaIndikator
+                if (data.idIndikator != 466) {
+                    $scope.labelDetail = data.namaIndikator
 
-                let URL = "iki-remunerasi/catatan-kegiatan-harian-indikator?pegawaiId=" + data.idPegawai
-                    + "&jabatanId=" + data.idJabatan
-                    + "&bulan=" + dateHelper.toTimeStamp($scope.item.bulan)
-                    + "&indikatorId=" + data.idIndikator
+                    let URL = "iki-remunerasi/catatan-kegiatan-harian-indikator?pegawaiId=" + data.idPegawai
+                        + "&jabatanId=" + data.idJabatan
+                        + "&bulan=" + dateHelper.toTimeStamp($scope.item.bulan)
+                        + "&indikatorId=" + data.idIndikator
 
-                ManageSdmNew.getListData(URL).then((res) => {
-                    $scope.dataSource = new kendo.data.DataSource({
-                        data: res.data.data,
-                        pageSize: 5
-                    });
+                    ManageSdmNew.getListData(URL).then((res) => {
+                        $scope.dataSource = new kendo.data.DataSource({
+                            data: res.data.data,
+                            pageSize: 5
+                        });
 
-                    $scope.popupDetail.open().center();
-                })
+                        $scope.popupDetail.open().center();
+                    })
+                }
             }
 
             $scope.showListPegawai = () => {
@@ -269,6 +275,20 @@ define(['initialize'], function (initialize) {
                     evt.preventDefault();
                 }
             });
+
+            $scope.$watch('item.bulan', function (newVal, oldVal) {
+                if (!newVal) return;
+                if (newVal && newVal !== oldVal) {
+                    $scope.getDataDashboard();
+                }
+            })
+
+            $scope.$watch('item.jabatan', function (newVal, oldVal) {
+                if (!newVal) return;
+                if ((newVal && !oldVal) || (newVal && oldVal && newVal.id !== oldVal.id)) {
+                    $scope.getDataDashboard();
+                }
+            })
         }
     ])
 });

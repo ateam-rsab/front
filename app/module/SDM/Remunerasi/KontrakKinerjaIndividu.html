@@ -23,7 +23,7 @@
     <div class="grid_3">
         <label><strong>Jabatan</strong></label>
         <input kendo-combo-box k-filter="'contains'" k-ng-model="item.jabatan" k-data-text-field="'namaJabatan'"
-            k-data-value-field="'id'" k-data-source="listJabatan" k-on-change="getBobotJenisByJabatan()"/>
+            k-data-value-field="'id'" k-data-source="listJabatan" k-on-change="getBobotJenisByJabatan()" />
     </div>
     <div class="grid_1" style="margin-top: 1.6em;">
         <md-button class="md-raised md-primary medium-button" ng-click="getAllData()">
@@ -72,7 +72,7 @@
                 <div class="grid_1">
                     <label><strong>Target</strong></label>
                     <input id="targetGrid" filter="'numeric'" class="k-textbox" ng-model="item.target"
-                        ng-disabled="item.statusVerif" />
+                        ng-disabled="isNotEditable1" />
                 </div>
                 <div class="grid_2" style="margin-top: 2em; margin-right: auto;">
                     <label><strong>{{item.satuanIndikator}}</strong></label>
@@ -80,7 +80,7 @@
                 <div class="grid_1">
                     <label><strong>Bobot</strong></label>
                     <input id="bobotGrid" filter="'numeric'" class="k-textbox" ng-model="item.bobot"
-                        ng-disabled="item.statusVerif" />
+                        ng-disabled="isNotEditable2" />
                 </div>
                 <div class="grid_1" style="margin-top: 2em; margin-right: auto;">
                     <label><strong>%</strong></label>
@@ -152,8 +152,7 @@
 
                 <div class="grid_1">
                     <label><strong>Target</strong></label>
-                    <input id="targetPop" type="input" filter="'numeric'" class="k-textbox"
-                        ng-model="indikator.target" />
+                    <input id="targetPop" filter="'numeric'" class="k-textbox" ng-model="indikator.target" />
                 </div>
                 <div class="grid_3">
                     <label><strong>Satuan Indikator</strong></label>
@@ -197,23 +196,12 @@
     <div ng-include='"../app/module/Shared/TemplateLoading"' ng-show="isPopup"></div>
 </div>
 
-<div kendo-window="popupDetailIndikator" k-title="'Tambah Data Kontrak Kinerja'" k-width="1200" k-visible="false"
+<div kendo-window="popupDetailIndikator" k-title="'Detail Indikator'" k-width="500" k-visible="false"
     k-on-open="win2visible= true" k-on-close="win2visible= false">
     <div class="panel panel-default container_12" style="padding: 0px 10px;">
         <md-card>
             <div kendo-grid k-data-source="dataSourceDetailIndikator" k-selectable="'row'"
-            options="optGridDetailIndikator" k-ng-model="selectedDataDetail"></div>
+                options="optGridDetailIndikator" k-ng-model="selectedDataDetail"></div>
         </md-card>
-
-        <div class="k-edit-buttons k-state-default" style="margin-top:10px">
-            <div class="grid_6"></div>
-           
-            <div class="grid_2">
-                <md-button class="md-raised md-danger medium-button" ng-click="popupDetailIndikator().close()">
-                    <span style="margin-right: 5px;">Tutup</span>
-                    <i class="fa fa-save"></i>
-                </md-button>
-            </div>
-        </div>
     </div>
 </div>
