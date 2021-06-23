@@ -4823,30 +4823,7 @@
       }
     ]
   },
-  {
-    "name": "LogbookKinerjaDokter",
-    "url": "/LogbookKinerjaDokter",
-    "templateurl": "module/SDM/Remunerasi/LogbookKinerjaDokter.html",
-    "controller": "LogbookKinerjaDokterCtrl",
-    "deps": [
-      {
-        "module": "Services",
-        "define": "Service"
-      },
-      {
-        "module": "LoginServices",
-        "define": "LoginService"
-      },
-      {
-        "module": "SdmService",
-        "define": "SdmService"
-      },
-      {
-        "module": "PegawaiService",
-        "define": "PegawaiService"
-      }
-    ]
-  },
+  
   {
     "name": "Simulasi",
     "url": "/Sdm/Pendapatan",

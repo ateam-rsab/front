@@ -4,10 +4,9 @@ define(['initialize'], function (initialize) {
         function ($q, managePegawai, findPegawai, dateHelper, findSdm, modelItem, manageSdm, ManageSdmNew, $state, $rootScope, $scope) {
             $scope.item = {};
             $scope.isRouteLoading = false;
-            $scope.monthly = {
+            $scope.monthSelectorOptions = {
                 start: "year",
-                depth: "year",
-                format: "MMMM yyyy"
+                depth: "year"
             };
             $scope.grandTotal = 0;
             $scope.dataSource = [];
@@ -127,7 +126,7 @@ define(['initialize'], function (initialize) {
                     $scope.isRouteLoading = false;
                 })
             }
-            $scope.getDataLogbook();
+            // $scope.getDataLogbook();
         }
     ])
 });

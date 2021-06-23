@@ -75,7 +75,9 @@
 <div class="grid_12">
     <div class="grid_2">
         <label><b>Periode</b></label>
-        <input kendo-date-picker k-ng-model="item.periode" style="width: 100%" k-options="monthly" />
+        <!-- <input kendo-date-picker k-ng-model="item.periode" style="width: 100%" k-options="monthSelectorOptions" /> -->
+        <input style="width: 100%;" k-options="monthSelectorOptions" k-ng-model="item.periode" kendo-date-picker
+            placeholer="mm-yyyy" k-format="'MM-yyyy'" />
     </div>
     <div class="grid_4">
         <label><b>Pegawai</b></label>
@@ -113,12 +115,13 @@
             <th scope="col" style="min-width: 50px; text-align: center;">Jumlah</th>
             <th scope="col" style="min-width: 50px; text-align: center;">Skor</th>
             <th scope="col" style="min-width: 50px; text-align: center;">Total Skor</th>
-            <th scope="col" ng-repeat="head in headerTable" style="min-width: 20px; text-align: center;">{{head.title}}</th>
+            <th scope="col" ng-repeat="head in headerTable" style="min-width: 20px; text-align: center;">{{head.title}}
+            </th>
         </thead>
 
         <tbody ng-repeat="ds in dataSource">
-           
-            <tr >
+
+            <tr>
                 <td style="font-weight: bolder; background-color: #3d3d3d; color: white;" colspan="35">{{ds.label}}</td>
             </tr>
 
@@ -131,7 +134,8 @@
                 <td style="text-align: center;">{{detailProduk.jumlah}}</td>
                 <td style="text-align: center;">{{detailProduk.skor}}</td>
                 <td style="text-align: center;">{{detailProduk.totalSkor}}</td>
-                <td style="text-align: center;" ng-repeat="dataTgl in detailProduk.dataDetail">{{dataTgl.jmlLayanan}}</td>
+                <td style="text-align: center;" ng-repeat="dataTgl in detailProduk.dataDetail">{{dataTgl.jmlLayanan}}
+                </td>
             </tr>
 
             <tr>
@@ -148,7 +152,7 @@
 
         </tbody>
         <tbody ng-if="dataSource.length !== 0">
-            
+
             <tr>
                 <td colspan="3" style="font-style: italic; font-weight: bolder;">Grand Total</td>
                 <td style="text-align: center;">{{grandTotal}}</td>

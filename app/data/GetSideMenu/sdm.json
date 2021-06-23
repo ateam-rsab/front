@@ -339,6 +339,10 @@
                     {
                         "name": "Master Indikator Kinerja",
                         "link": "#/MasterIndikatorKinerja"
+                    },
+                    {
+                        "name": "Logbook Kinerja Dokter",
+                        "link": "#/LogbookKinerjaDokter"
                     }
                 ]
             },
