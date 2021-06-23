@@ -1,43 +1,164 @@
-<div ng-show="dataVOloaded">
-    <c-panel item="item" header="'Logbook Kinerja Dokter'" disabled>
-        <div class="grid_12">
-            <div class="grid_10">
-                <div class="grid_2">
-                    <label><b>Periode</b></label>
-                    <input kendo-date-picker k-max="now" k-ng-model="item.periode" style="width: 100%"
-                        k-options="yearSelected" />
-                </div>
-                <div class="grid_3">
-                    <label><b>Pegawai</b></label>
-                    <input kendo-combo-box k-ng-model="item.pegawai" k-data-value-field="'id'"
-                        k-data-text-field="'namaLengkap'" k-filter="'contains'" k-auto-bind="true"
-                        k-data-source="daftarListPegawai" style="width:100%" />
-                </div>
-                <div class="grid_6">
-                    <div class="grid_3">
-                        <label c-label c-label-text=""></label>
-                        <button class="c-button" ng-click="cari()">Cari</button>
-                    </div>
-                </div>
-            </div>
+<style>
+    .container-table {
+        /* position: absolute; */
+        /* top: 50%;
+        left: 50%; */
+        /* transform: translate(-50%, -50%); */
+        width: 100%;
+        display: flex;
+    }
 
-        </div>
-    </c-panel>
-    <div class="panel panel-default" ng-show="!isLoading">
-        <div class="panel-heading-white">
-            <span class="title" c-translate>Remunerasi</span>
-            <div class="grid_2 pull-right" style="text-align:right;font-style:italic">
-                <label c-label>Total Skor:</label>
-                <input c-text-box type="input" placeholder="0,00" filter="'varchar'" class="k-textbox label-total"
-                    ng-model="totalCapaian" style="text-align:right" disabled />
-            </div>
-        </div>
-        <div class="panel-body">
-            <div class="clearfix"></div>
-            <div class="grid_12" style="margin: 10px 0 50px;" ng-show="showGridKinerja">
-                <div kendo-grid id="gridLogKinerja" k-data-source="dataSource" k-options="mainGridOption"></div>
-            </div>
-        </div>
+    table.table-custom {
+        /* width: 800px; */
+        /* position: unset; */
+        display: block;
+        border-collapse: collapse;
+        max-height: 400px;
+        overflow: scroll;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    table.table-custom th,
+    table.table-custom td {
+        padding: 15px;
+        /* background-color: rgba(119, 119, 119, 0.637); */
+        color: #fff;
+        /* border: 1px solid #ddd; */
+    }
+
+    table.table-custom td {
+        color: rgb(131, 131, 131);
+        border: 1px solid #ddd;
+        white-space: nowrap;
+    }
+
+    table.table-custom th {
+        text-align: left;
+    }
+
+    table.table-custom thead,
+    table.table-custom tbody {
+        /* display: table; */
+    }
+
+    table.table-custom thead th {
+        background-color: #3d3d3d;
+        table-layout: fixed;
+        width: 100%;
+        border: solid .5px #5a5a5a;
+    }
+
+    table.table-custom tbody tr:hover {
+        background-color: rgba(85, 85, 85, 0.3);
+    }
+
+    table.table-custom tbody td {
+        /* position: relative; */
+    }
+
+    table.table-custom tbody td:hover:before {
+        content: "";
+        /* position: absolute; */
+        left: 0;
+        right: 0;
+        top: -9999px;
+        bottom: -9999px;
+        background-color: rgba(255, 255, 255, 0.2);
+        z-index: -1;
+    }
+</style>
+
+<md-toolbar md-scroll-shrink class="shadow">
+    <div class="md-toolbar-tools">Logbook Kinerja Dokter</div>
+</md-toolbar>
+
+<div class="grid_12">
+    <div class="grid_2">
+        <label><b>Periode</b></label>
+        <!-- <input kendo-date-picker k-ng-model="item.periode" style="width: 100%" k-options="monthSelectorOptions" /> -->
+        <input style="width: 100%;" k-options="monthSelectorOptions" k-ng-model="item.periode" kendo-date-picker
+            placeholer="mm-yyyy" k-format="'MM-yyyy'" />
+    </div>
+    <div class="grid_4">
+        <label><b>Pegawai</b></label>
+        <input kendo-combo-box k-ng-model="item.pegawai" k-data-value-field="'id'" k-data-text-field="'namaLengkap'"
+            k-filter="'contains'" k-auto-bind="true" k-data-source="listPegawai" style="width:100%" />
+    </div>
+    <div class="grid_1" style="margin-top:22px">
+        <md-button class="md-raised md-primary medium-button" ng-click="getDataLogbook()">
+            <span style="margin-right: 5px;">Cari</span>
+            <i class="fa fa-search"></i>
+        </md-button>
     </div>
 </div>
+<div class="container-table">
+    <!-- <table class="table-custom">
+        <thead>
+            <th scope="col" ng-repeat="head in headerTable" >{{head.title}}</th>
+        </thead>
+        <tbody>
+            <tr ng-if="dataSource.length === 0">
+                <td colspan="32" style="text-align: center;">Tidak ada data</td>
+            </tr>
+            
+            <tr ng-repeat="data in dataSource">
+                <td style="width: 100px;">{{data.namaIndikator}}</td>
+                <td>{{data.namaProduk}}</td>
+                <td ng-repeat="detail in data.dataDetail">{{detail.jmlLayanan}}</td>
+            </tr>
+          
+        </tbody>
+    </table> -->
+    <table class="table-custom">
+        <thead>
+            <th scope="col" style="min-width: 200px;">Nama Kegiatan</th>
+            <th scope="col" style="min-width: 50px; text-align: center;">Jumlah</th>
+            <th scope="col" style="min-width: 50px; text-align: center;">Skor</th>
+            <th scope="col" style="min-width: 50px; text-align: center;">Total Skor</th>
+            <th scope="col" ng-repeat="head in headerTable" style="min-width: 20px; text-align: center;">{{head.title}}
+            </th>
+        </thead>
+
+        <tbody ng-repeat="ds in dataSource">
+
+            <tr>
+                <td style="font-weight: bolder; background-color: #3d3d3d; color: white;" colspan="35">{{ds.label}}</td>
+            </tr>
+
+            <tr ng-repeat="detailProduk in ds.detail">
+                <td>
+                    <span style="padding-left:10px">
+                        {{detailProduk.namaProduk}}
+                    </span>
+                </td>
+                <td style="text-align: center;">{{detailProduk.jumlah}}</td>
+                <td style="text-align: center;">{{detailProduk.skor}}</td>
+                <td style="text-align: center;">{{detailProduk.totalSkor}}</td>
+                <td style="text-align: center;" ng-repeat="dataTgl in detailProduk.dataDetail">{{dataTgl.jmlLayanan}}
+                </td>
+            </tr>
+
+            <tr>
+                <td style="font-style: italic;"><strong>Sub Total</strong></td>
+                <td style="text-align: center;">{{ds.subJumlah}}</td>
+                <td style="text-align: center;">{{ds.subSkor}}</td>
+                <td style="text-align: center;">{{ds.subTotalSkor}}</td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr ng-if="dataSource.length === 0">
+                <td colspan="35" style="text-align: center;">Tidak ada data</td>
+            </tr>
+
+        </tbody>
+        <tbody ng-if="dataSource.length !== 0">
+
+            <tr>
+                <td colspan="3" style="font-style: italic; font-weight: bolder;">Grand Total</td>
+                <td style="text-align: center;">{{grandTotal}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
 <div ng-include='"../app/module/Shared/TemplateLoading"'></div>

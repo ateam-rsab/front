@@ -1,206 +1,132 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('LogbookKinerjaDokterCtrl', ['$q', '$http', '$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm', 'ManageSdmNew', 'DateHelper', 'ReportHelper', 'FindPegawai', 'CetakHelper', 'FindSdm',
-        function ($q, $http, $rootScope, $scope, ModelItem, $state, ManageSdm, ManageSdmNew, dateHelper, reportHelper, findPegawai, cetakHelper, FindSdm) {
+    initialize.controller('LogbookKinerjaDokterCtrl', ['$q', 'ManagePegawai', 'FindPegawai', 'DateHelper', 'FindSdm', 'ModelItem', 'ManageSdm', 'ManageSdmNew', '$state', '$rootScope', '$scope',
+        function ($q, managePegawai, findPegawai, dateHelper, findSdm, modelItem, manageSdm, ManageSdmNew, $state, $rootScope, $scope) {
             $scope.item = {};
-            $scope.isLoading = true;
-            $scope.dataVOloaded = true;
-            $scope.isRouteLoading = true;
-
-            $scope.now = new Date();
-            $scope.yearSelected = {
-                format: "MMMM yyyy",
+            $scope.isRouteLoading = false;
+            $scope.monthSelectorOptions = {
                 start: "year",
                 depth: "year"
             };
+            $scope.grandTotal = 0;
+            $scope.dataSource = [];
+            $scope.item.periode = new Date();
 
-            $q.all([
-                ManageSdmNew.getListData("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled,namaLengkap&values=true,!'-'&order=namaLengkap:asc")
-            ]).then(function (res) {
-                if (res[0].statResponse) {
-                    $scope.listPegawai = res[0].data;
-                    $scope.daftarListPegawai = $scope.listPegawai
-                }
-                $scope.isRouteLoading = false;
-            })
-
-            $scope.cari = function () {
-                var listRawRequired = [
-                    "item.pegawai|k-ng-model|Nama pegawai",
-                    "item.periode|k-ng-model|Periode"
-                ]
-                var isValid = ModelItem.setValidation($scope, listRawRequired);
-                if (isValid.status) {
-                    $scope.isRouteLoading = true;
-                    $q.all([
-                        ManageSdmNew.getListData("iki-remunerasi/get-logbook-skoring-dokter?bulan=" + dateHelper.toTimeStamp($scope.item.periode) + "&pegawaiId=" + $scope.item.pegawai.id)
-                    ]).then(function (res) {
-                        if (res[0].statResponse) {
-                            // define grid logbook kinerja and show data
-                            $scope.showGridKinerja = true;
-                            var dataGrid = [];
-                            res[0].data.data.forEach(function (element) {
-                                var customData = {};
-                                for (var key in element) {
-                                    switch (key) {
-                                        case "detail":
-                                            var lisObjek = element.detail;
-                                            lisObjek.forEach(function (subElement) {
-                                                var tgl = subElement.tglPelayanan;
-                                                var key = tgl.slice(-2);
-                                                if (key[0] === "0") {
-                                                    key = key.slice(-1);
-                                                    customData[key] = subElement["jumlah"];
-                                                } else {
-                                                    customData[key] = subElement["jumlah"];
-                                                };
-                                            });
-                                            break;
-                                        default:
-                                            customData[key] = element[key];
-                                            break;
-                                    }
-                                };
-                                dataGrid.push(customData);
-                            });
-                            $scope.mainGridOption = {
-                                editable: false,
-                                scrollable: true,
-                                selectable: "row",
-                                columns: [{
-                                    field: "namaIndikator",
-                                    title: "Indikator",
-                                    hidden: true
-                                }, {
-                                    field: "namaProduk",
-                                    title: "Kegiatan",
-                                    width: 400,
-                                    headerAttributes: {
-                                        style: "text-align: center"
-                                    }
-                                }, {
-                                    field: "skor",
-                                    title: "Skor",
-                                    width: 80,
-                                    format: "{0:n2}",
-                                    headerAttributes: {
-                                        style: "text-align: center"
-                                    },
-                                    attributes: {
-                                        class: "table-cell",
-                                        style: "text-align: right;"
-                                    }
-                                }, {
-                                    field: "jumlah",
-                                    title: "Jumlah",
-                                    width: 80,
-                                    headerAttributes: {
-                                        style: "text-align: center"
-                                    },
-                                    attributes: {
-                                        class: "table-cell",
-                                        style: "text-align: right;"
-                                    },
-                                    footerTemplate: "#= sum #",
-                                    footerAttributes: {
-                                        class: "table-footer-cell",
-                                        style: "text-align: right;"
-                                    },
-                                    aggregates: ["sum"],
-                                    groupFooterTemplate: "#= sum #",
-                                }, {
-                                    field: "tSkor",
-                                    title: "Total Skor",
-                                    width: 100,
-                                    format: "{0:n2}",
-                                    headerAttributes: {
-                                        style: "text-align: center"
-                                    },
-                                    attributes: {
-                                        class: "table-cell",
-                                        style: "text-align: right;",
-                                    },
-                                    footerTemplate: "#= kendo.toString(sum, '0.00') #",
-                                    footerAttributes: {
-                                        class: "table-footer-cell",
-                                        style: "text-align: right;"
-                                    },
-                                    aggregates: ["sum"],
-                                    groupFooterTemplate: "#= kendo.toString(sum, '0.00') #",
-                                }, {
-                                    field: "Capaian",
-                                    headerAttributes: {
-                                        style: "text-align: center"
-                                    },
-                                    columns: $scope.generateGridColumn()
-                                }],
-                                dataBound: $scope.onDataBound
-                            };
-                            $scope.dataSource = new kendo.data.DataSource({
-                                data: dataGrid,
-                                aggregate: [
-                                    { field: "jumlah", aggregate: "sum" },
-                                    { field: "skor", aggregate: "sum" },
-                                    { field: "tSkor", aggregate: "sum" }
-                                ],
-                                group: {
-                                    field: "namaIndikator",
-                                    aggregates: [
-                                        { field: "jumlah", aggregate: "sum" },
-                                        { field: "skor", aggregate: "sum" },
-                                        { field: "tSkor", aggregate: "sum" }
-                                    ]
-                                },
-                            })
-                            $scope.isLoading = false;
-                            $scope.isRouteLoading = false;
-                        }
-                    }, (error) => {
-                        $scope.isRouteLoading = false;
-                        throw (error);
-                    });
-                } else {
-                    ModelItem.showMessages(isValid.messages);
-                }
+            let groupJSON = function (xs, key) {
+                return xs.reduce(function (rv, x) {
+                    
+                    (rv[x[key]] = rv[x[key]] || []).push(x);
+                    return rv;
+                }, {});
             };
 
-            $scope.generateGridColumn = function () {
-                var year = $scope.item.periode.getYear();
-                var month = $scope.item.periode.getMonth();
-                var dateInMonth = new Date(year, month + 1, 0);
-                var listDay = [];
-                for (var i = 0; i < dateInMonth.getDate(); i++) {
-                    var data = {
-                        field: "[" + (i + 1) + "]",
-                        title: (i + 1).toString(),
-                        width: "50px", attributes: { style: "text-align: right;" },
-                        headerAttributes: { style: "text-align: center;  " }
-                    };
-                    listDay.push(data);
+            let getHeaderTable = () => {
+                $scope.headerTable = [];
+                var dt = new Date($scope.item.periode);
+                var month = dt.getMonth() + 1;
+                var year = dt.getFullYear();
+                $scope.daysInMonth = new Date(year, month, 0).getDate();
+
+                $scope.headerTable = [
+                    // {
+                    //     width: "300px",
+                    //     title: "Indikator"
+                    // },
+                    // {
+                    //     width: "300px",
+                    //     title: "Kegiatan"
+                    // }
+                ];
+
+                for (let i = 0; i < $scope.daysInMonth; i++) {
+                    $scope.headerTable.push({
+                        width: "20px",
+                        title: i + 1
+                    });
                 }
-                return listDay;
             }
 
-            $scope.onDataBound = function (e) {
-                var grid = $("#gridLogKinerja").data("kendoGrid");
-                var totalCapaian = grid.dataSource.aggregates().tSkor.sum;
-                $scope.totalCapaian = totalCapaian.toFixed(2);
-                $(grid.tbody).on("click", "td", function (e) {
-                    // disable show popup on empty cell date value
-                    if (e.currentTarget.innerText === "") return;
+            let init = () => {
+                ManageSdmNew.getListData(`service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled,namaLengkap&values=true,!'-'&order=namaLengkap:asc`).then(res => {
+                    $scope.listPegawai = res.data;
+                })
+                getHeaderTable();
+            }
+            init();
 
-                    var row = $(this).closest("tr");
-                    var colIdx = $("td", row).index(this);
-                    if (colIdx >= 5) {
-                        // disable show popup if cell index < 4
-                        var colDateIdx = colIdx - 5;
-                        var colName = $('#gridLogKinerja tr').eq(1).find('th').eq(colDateIdx).text();
-                        if (colName.length === 1) {
-                            colName = "0" + colName;
+            $scope.getDataLogbook = () => {
+                getHeaderTable();
+
+                if (!$scope.item.pegawai) {
+                    toastr.info("Harap pilih pegawai terlebih dahulu");
+                    return;
+                }
+                $scope.isRouteLoading = true;
+                let dataTemp = [];
+                // ${$scope.item.periode ? dateHelper.toTimeStamp($scope.item.periode) : dateHelper.toTimeStamp(new Date())}
+                // ${$scope.item.pegawai.id}
+                ManageSdmNew.getListData(`iki-remunerasi/get-logbook-skoring-dokter?bulan=${$scope.item.periode ? dateHelper.toTimeStamp($scope.item.periode) : dateHelper.toTimeStamp(new Date())}&pegawaiId=${$scope.item.pegawai.id}`).then(res => {
+
+                    for (let i = 0; i < res.data.data.length; i++) {
+                        dataTemp.push({
+                            namaIndikator: res.data.data[i].namaIndikator,
+                            namaProduk: res.data.data[i].namaProduk,
+                            skor: res.data.data[i].skor,
+                            totalSkor: res.data.data[i].tSkor,
+                            jumlah: res.data.data[i].jumlah,
+                            dataDetail: []
+                        });
+
+                        for (let ii = 0; ii < $scope.daysInMonth; ii++) {
+                            dataTemp[i].dataDetail.push({
+                                tgl: ii + 1,
+                                jmlLayanan: 0
+                            })
+
+                        }
+
+                    }
+
+                    for (let i = 0; i < res.data.data.length; i++) {
+                        for (let ii = 0; ii < res.data.data[i].detail.length; ii++) {
+                            for (let iii = 0; iii < dataTemp[i].dataDetail.length; iii++) {
+                                let tglPelayanan = res.data.data[i].detail[ii].tglPelayanan.split('-');
+                                if (parseInt(tglPelayanan[2]) === iii + 1) {
+                                    dataTemp[i].dataDetail[iii].jmlLayanan = res.data.data[i].detail[ii].jumlah;
+                                    break;
+                                }
+                            }
+
                         }
                     }
-                });
+
+                    // $scope.dataSource = dataTemp;
+                    let groupedJSON = groupJSON(dataTemp, 'namaIndikator');
+                    let formattedJSON = Object.keys(groupedJSON).map((key) => [(key), groupedJSON[key]]);
+                    let dataGet = [];
+                    
+                    for(let i = 0; i < formattedJSON.length; i++) {
+                        dataGet.push({
+                            label:formattedJSON[i][0],
+                            detail: [],
+                            subTotalSkor:0,
+                            subJumlah: 0,
+                            subSkor: 0
+                        })
+
+                        for(let ii = 0; ii < formattedJSON[i][1].length; ii++) {
+                            dataGet[i].detail.push(formattedJSON[i][1][ii]);
+                            dataGet[i].subJumlah += formattedJSON[i][1][ii].totalSkor;
+                            dataGet[i].subSkor += formattedJSON[i][1][ii].skor;
+                            dataGet[i].subTotalSkor += formattedJSON[i][1][ii].totalSkor;
+                        }
+                        $scope.grandTotal = dataGet[i].subTotalSkor + $scope.grandTotal;
+                    }   
+                    $scope.dataSource = dataGet;
+                    $scope.isRouteLoading = false;
+                })
             }
+            // $scope.getDataLogbook();
         }
-    ]);
+    ])
 });
