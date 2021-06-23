@@ -66,6 +66,10 @@ define(['initialize'], function (initialize) {
                     title: "<h3>Persentase<br>(%)</h3>",
                     width: 50
                 }, {
+                    field: "status",
+                    title: "<h3>Status</h3>",
+                    width: 100
+                }, {
                     command: [{
                         text: "Edit",
                         click: editData,
