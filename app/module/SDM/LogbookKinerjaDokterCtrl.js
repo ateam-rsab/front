@@ -121,6 +121,10 @@ define(['initialize'], function (initialize) {
                             dataGet[i].subJumlah += formattedJSON[i][1][ii].totalSkor;
                             dataGet[i].subSkor += formattedJSON[i][1][ii].skor;
                             dataGet[i].subTotalSkor += formattedJSON[i][1][ii].totalSkor;
+
+                            dataGet[i].subJumlah = Math.round(dataGet[i].subJumlah);
+                            dataGet[i].subSkor = Math.round(dataGet[i].subSkor);
+                            dataGet[i].subTotalSkor = Math.round(dataGet[i].subTotalSkor);
                         }
                         $scope.grandTotal = dataGet[i].subTotalSkor + $scope.grandTotal;
                     }
@@ -136,7 +140,6 @@ define(['initialize'], function (initialize) {
             // $scope.getDataLogbook();
 
             $scope.exportExcel = () => {
-
                 var rows = [{
                     cells: [{ value: "Nama Kegiatan" },
                     { value: "Jumlah" },
@@ -146,11 +149,6 @@ define(['initialize'], function (initialize) {
                     ]
                 }];
                 $scope.columnsConfig = [];
-                // for(let i in rows[0].cells) {
-                //     $scope.columnsConfig.push({
-                //         autoWidth: true
-                //     })
-                // }
 
                 let tempDataExport = $scope.kendoDataSource;
                 tempDataExport.fetch(() => {
@@ -192,9 +190,16 @@ define(['initialize'], function (initialize) {
                             ]
                         })
                     }
+                    let month = new Date($scope.item.periode);
+                    rows.unshift({
+                        cells: [{ value: "Logbook Kinerja " + $scope.item.pegawai.namaLengkap + " Periode " + dateHelper.toMonth(month.getMonth()), }]
+                    });
 
                     var workbook = new kendo.ooxml.Workbook({
-                        // mergedCells: ["A1:B4"],
+                        freezePane: {
+                            rowSplit: 1
+                        },
+                        mergedCells: ["A1:D1"],
                         sheets: [{
                             freezePane: {
                                 rowSplit: 1
@@ -208,7 +213,7 @@ define(['initialize'], function (initialize) {
                                     autoWidth: true
                                 }, {
                                     autoWidth: true
-                                }, 
+                                }
                             ],
                             // Title of the sheet
                             title: "Logbook Kinerja Dokter",
@@ -217,9 +222,11 @@ define(['initialize'], function (initialize) {
                         }]
                     });
                     // save the file as Excel file with extension xlsx
+
+
                     kendo.saveAs({
                         dataURI: workbook.toDataURL(),
-                        fileName: "logbook-kinerja-dokter.xlsx"
+                        fileName: "logbook-kinerja-dokter" + $scope.item.pegawai.namaLengkap + "-periode=" + dateHelper.toMonth(month.getMonth()) + ".xlsx"
                     });
                 });
             };
