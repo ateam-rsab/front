@@ -834,7 +834,7 @@
     },
     {
       "nameDep": "LogbookKinerjaDokterCtrl",
-      "urlDep": "module/SDM/Remunerasi/LogbookKinerjaDokterCtrl"
+      "urlDep": "module/SDM/LogbookKinerjaDokterCtrl"
     },
     {
       "nameDep": "PengaturanBobotJenisIndikatorCtrl",

@@ -4826,7 +4826,7 @@
   {
     "name": "LogbookKinerjaDokter",
     "url": "/LogbookKinerjaDokter",
-    "templateurl": "module/SDM/Remunerasi/LogbookKinerjaDokter.html",
+    "templateurl": "module/SDM/LogbookKinerjaDokter.html",
     "controller": "LogbookKinerjaDokterCtrl",
     "deps": [
       {
