@@ -145,29 +145,35 @@ define(['initialize'], function (initialize) {
                     ...$scope.headerTable,
                     ]
                 }];
+                $scope.columnsConfig = [];
+                // for(let i in rows[0].cells) {
+                //     $scope.columnsConfig.push({
+                //         autoWidth: true
+                //     })
+                // }
 
                 let tempDataExport = $scope.kendoDataSource;
                 tempDataExport.fetch(() => {
                     var data = tempDataExport._data;
                     let dataTemp = [];
-                    
-                    for(let i = 0; i < data.length; i++) {
+
+                    for (let i = 0; i < data.length; i++) {
                         dataTemp.push(data[i])
-                        for(let ii = 0; ii < data[i].detail.length; ii++) {
+                        for (let ii = 0; ii < data[i].detail.length; ii++) {
                             dataTemp.push(data[i].detail[ii]);
                         }
                     }
                     let dataTgl = []
                     for (var i = 0; i < dataTemp.length; i++) {
                         dataTgl = [];
-                        if(dataTemp[i].dataDetail) {
-                            for(let ii = 0; ii < dataTemp[i].dataDetail.length; ii++) {
+                        if (dataTemp[i].dataDetail) {
+                            for (let ii = 0; ii < dataTemp[i].dataDetail.length; ii++) {
                                 dataTgl.push({
                                     value: dataTemp[i].dataDetail[ii].jmlLayanan
                                 })
                             }
                         }
-                       
+
                         //push single row for every record
                         rows.push({
                             cells: [{
@@ -183,20 +189,27 @@ define(['initialize'], function (initialize) {
                                 value: dataTemp[i].totalSkor ? dataTemp[i].totalSkor : ""
                             },
                             ...dataTgl
-                          ]
+                            ]
                         })
                     }
 
-                    let columnsConfig = [];
-
-                    console.log(rows);
                     var workbook = new kendo.ooxml.Workbook({
                         // mergedCells: ["A1:B4"],
                         sheets: [{
                             freezePane: {
                                 rowSplit: 1
                             },
-                            columns: [],
+                            columns: [
+                                {
+                                    autoWidth: true
+                                }, {
+                                    autoWidth: true
+                                }, {
+                                    autoWidth: true
+                                }, {
+                                    autoWidth: true
+                                }, 
+                            ],
                             // Title of the sheet
                             title: "Logbook Kinerja Dokter",
                             // Rows of the sheet
