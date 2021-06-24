@@ -58,10 +58,10 @@ define(['initialize'], function (initialize) {
             $scope.getDataLogbook = () => {
                 getHeaderTable();
 
-                // if (!$scope.item.pegawai) {
-                //     toastr.info("Harap pilih pegawai terlebih dahulu");
-                //     return;
-                // }
+                if (!$scope.item.pegawai) {
+                    toastr.info("Harap pilih pegawai terlebih dahulu");
+                    return;
+                }
                 $scope.isRouteLoading = true;
                 let dataTemp = [];
                 // ${$scope.item.periode ? dateHelper.toTimeStamp($scope.item.periode) : dateHelper.toTimeStamp(new Date())}
@@ -133,7 +133,7 @@ define(['initialize'], function (initialize) {
                     $scope.isRouteLoading = false;
                 });
             }
-            $scope.getDataLogbook();
+            // $scope.getDataLogbook();
 
             $scope.exportExcel = () => {
 
@@ -187,9 +187,11 @@ define(['initialize'], function (initialize) {
                         })
                     }
 
+                    let columnsConfig = [];
+
                     console.log(rows);
                     var workbook = new kendo.ooxml.Workbook({
-                        mergedCells: ["A1:B4"],
+                        // mergedCells: ["A1:B4"],
                         sheets: [{
                             freezePane: {
                                 rowSplit: 1
