@@ -82,11 +82,6 @@ define(['initialize'], function (initialize) {
                 }
                 $scope.isRouteLoading = true;
                 let dataTemp = [];
-<<<<<<< HEAD
-=======
-                // ${$scope.item.periode ? dateHelper.toTimeStamp($scope.item.periode) : dateHelper.toTimeStamp(new Date())}
-                // ${$scope.item.pegawai.id}
->>>>>>> e453fbf55ce144c0959d73332f16b22045cb7ea2
                 ManageSdmNew.getListData(`iki-remunerasi/get-logbook-skoring-dokter?bulan=${$scope.item.periode ? dateHelper.toTimeStamp($scope.item.periode) : dateHelper.toTimeStamp(new Date())}&pegawaiId=${$scope.item.pegawai.id}`).then(res => {
                     let periode = new Date($scope.item.periode), bln = periode.getMonth(), thn = periode.getFullYear();
                     console.log(bln, thn)
@@ -156,7 +151,6 @@ define(['initialize'], function (initialize) {
                     $scope.isRouteLoading = false;
                 })
             }
-<<<<<<< HEAD
             // $scope.getDataLogbook();
 
             $scope.exportExcel = () => {
@@ -265,9 +259,6 @@ define(['initialize'], function (initialize) {
                 })
 
             }
-=======
-            $scope.getDataLogbook();
->>>>>>> e453fbf55ce144c0959d73332f16b22045cb7ea2
         }
     ])
 });
