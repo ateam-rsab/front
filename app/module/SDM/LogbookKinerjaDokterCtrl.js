@@ -12,6 +12,24 @@ define(['initialize'], function (initialize) {
             $scope.dataSource = [];
             $scope.item.periode = new Date();
 
+            $scope.columnGrid = [{
+                "field": "tglPelayananFormatted",
+                "title": "Tanggal<br>Pelayanan",
+                "width": "20%"
+            },{
+                "field": "noRegistrasi",
+                "title": "No. Registrasi",
+                "width": "10%"
+            }, {
+                "field": "namaPasien",
+                "title": "Nama Pasien",
+                "width": "30%"
+            }, {
+                "field": "namaProduk",
+                "title": "Nama Layanan",
+                "width": "30%"
+            }];
+
             let groupJSON = function (xs, key) {
                 return xs.reduce(function (rv, x) {
 
@@ -64,24 +82,28 @@ define(['initialize'], function (initialize) {
                 }
                 $scope.isRouteLoading = true;
                 let dataTemp = [];
-                // ${$scope.item.periode ? dateHelper.toTimeStamp($scope.item.periode) : dateHelper.toTimeStamp(new Date())}
-                // ${$scope.item.pegawai.id}
-                // Request URL: http://192.168.12.3:8080/jasamedika-sdm/iki-remunerasi/get-logbook-skoring-dokter?bulan=1614127280000&pegawaiId=3
                 ManageSdmNew.getListData(`iki-remunerasi/get-logbook-skoring-dokter?bulan=${$scope.item.periode ? dateHelper.toTimeStamp($scope.item.periode) : dateHelper.toTimeStamp(new Date())}&pegawaiId=${$scope.item.pegawai.id}`).then(res => {
-
+                    let periode = new Date($scope.item.periode), bln = periode.getMonth(), thn = periode.getFullYear();
+                    console.log(bln, thn)
                     for (let i = 0; i < res.data.data.length; i++) {
                         dataTemp.push({
                             namaIndikator: res.data.data[i].namaIndikator,
+                            indikatorId: res.data.data[i].indikatorId,
                             namaProduk: res.data.data[i].namaProduk,
+                            jenisPetugasId: res.data.data[i].jenisPetugasId,
+                            produkId: res.data.data[i].produkId,
                             skor: res.data.data[i].skor,
                             totalSkor: res.data.data[i].tSkor,
                             jumlah: res.data.data[i].jumlah,
+                            // tglPelayanan: res.data.data[i].tglPelayanan,
                             dataDetail: []
                         });
 
                         for (let ii = 0; ii < $scope.daysInMonth; ii++) {
+                            let frmtBln = bln + 1 > 10 ? bln + 1 : '0' + (bln + 1), frmtDate = ii + 1 > 10 ? ii + 1 : '0' + (ii + 1);
                             dataTemp[i].dataDetail.push({
                                 tgl: ii + 1,
+                                tglPelayanan: `${thn}-${frmtBln}-${frmtDate}`,
                                 jmlLayanan: 0
                             })
 
@@ -93,6 +115,7 @@ define(['initialize'], function (initialize) {
                         for (let ii = 0; ii < res.data.data[i].detail.length; ii++) {
                             for (let iii = 0; iii < dataTemp[i].dataDetail.length; iii++) {
                                 let tglPelayanan = res.data.data[i].detail[ii].tglPelayanan.split('-');
+
                                 if (parseInt(tglPelayanan[2]) === iii + 1) {
                                     dataTemp[i].dataDetail[iii].jmlLayanan = res.data.data[i].detail[ii].jumlah;
                                     break;
@@ -230,6 +253,21 @@ define(['initialize'], function (initialize) {
                     });
                 });
             };
+
+            $scope.detailTindakan = (ds, detail, data) => {
+                if(data.jmlLayanan === 0) {
+                    toastr.info("Tidak ada data");
+                    return;
+                }
+                ManageSdmNew.getListData("iki-remunerasi/get-detail-pasien-dokter?pegawaiId=" + $scope.item.pegawai.id + "&indikatorId=" + detail.indikatorId + "&produkId=" + detail.produkId + "&tglPelayanan=" + data.tglPelayanan + "&jenisPetugasId=" + detail.jenisPetugasId + "&skor=" + detail.skor).then((res) => {
+                    $scope.dataSourceDetailTindakan = new kendo.data.DataSource({
+                        data: res.data.data,
+                        pageSize: 5
+                    })
+                    $scope.popupDetail.open().center();
+                })
+
+            }
         }
     ])
 });
