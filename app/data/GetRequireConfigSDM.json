@@ -832,7 +832,10 @@
       "nameDep": "DashboardPencatatanKinerjaCtrl",
       "urlDep": "module/SDM/Remunerasi/DashboardPencatatanKinerjaCtrl"
     },
-    
+    {
+      "nameDep": "LogbookKinerjaDokterCtrl",
+      "urlDep": "module/SDM/LogbookKinerjaDokterCtrl"
+    },
     {
       "nameDep": "PengaturanBobotJenisIndikatorCtrl",
       "urlDep": "module/SDM/Remunerasi/PengaturanBobotJenisIndikatorCtrl"
@@ -1136,10 +1139,6 @@
     {
       "nameDep": "LogbookKinerjaCtrl",
       "urlDep": "module/SDM/LogbookKinerjaCtrl"
-    },
-    {
-      "nameDep": "LogbookKinerjaDokterCtrl",
-      "urlDep": "module/SDM/LogbookKinerjaDokterCtrl"
     },
     {
       "nameDep": "CapaianUraianTugasCtrl",

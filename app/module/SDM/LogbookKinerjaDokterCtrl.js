@@ -4,9 +4,10 @@ define(['initialize'], function (initialize) {
         function ($q, managePegawai, findPegawai, dateHelper, findSdm, modelItem, manageSdm, ManageSdmNew, $state, $rootScope, $scope) {
             $scope.item = {};
             $scope.isRouteLoading = false;
-            $scope.monthSelectorOptions = {
+            $scope.monthly = {
                 start: "year",
-                depth: "year"
+                depth: "year",
+                format: "MMMM yyyy"
             };
             $scope.grandTotal = 0;
             $scope.dataSource = [];
@@ -32,7 +33,7 @@ define(['initialize'], function (initialize) {
 
             let groupJSON = function (xs, key) {
                 return xs.reduce(function (rv, x) {
-
+                    
                     (rv[x[key]] = rv[x[key]] || []).push(x);
                     return rv;
                 }, {});
@@ -59,8 +60,7 @@ define(['initialize'], function (initialize) {
                 for (let i = 0; i < $scope.daysInMonth; i++) {
                     $scope.headerTable.push({
                         width: "20px",
-                        title: i + 1,
-                        value: i + 1
+                        title: i + 1
                     });
                 }
             }
@@ -82,6 +82,11 @@ define(['initialize'], function (initialize) {
                 }
                 $scope.isRouteLoading = true;
                 let dataTemp = [];
+<<<<<<< HEAD
+=======
+                // ${$scope.item.periode ? dateHelper.toTimeStamp($scope.item.periode) : dateHelper.toTimeStamp(new Date())}
+                // ${$scope.item.pegawai.id}
+>>>>>>> e453fbf55ce144c0959d73332f16b22045cb7ea2
                 ManageSdmNew.getListData(`iki-remunerasi/get-logbook-skoring-dokter?bulan=${$scope.item.periode ? dateHelper.toTimeStamp($scope.item.periode) : dateHelper.toTimeStamp(new Date())}&pegawaiId=${$scope.item.pegawai.id}`).then(res => {
                     let periode = new Date($scope.item.periode), bln = periode.getMonth(), thn = periode.getFullYear();
                     console.log(bln, thn)
@@ -129,37 +134,29 @@ define(['initialize'], function (initialize) {
                     let groupedJSON = groupJSON(dataTemp, 'namaIndikator');
                     let formattedJSON = Object.keys(groupedJSON).map((key) => [(key), groupedJSON[key]]);
                     let dataGet = [];
-
-                    for (let i = 0; i < formattedJSON.length; i++) {
+                    
+                    for(let i = 0; i < formattedJSON.length; i++) {
                         dataGet.push({
-                            label: formattedJSON[i][0],
+                            label:formattedJSON[i][0],
                             detail: [],
-                            subTotalSkor: 0,
+                            subTotalSkor:0,
                             subJumlah: 0,
                             subSkor: 0
                         })
 
-                        for (let ii = 0; ii < formattedJSON[i][1].length; ii++) {
+                        for(let ii = 0; ii < formattedJSON[i][1].length; ii++) {
                             dataGet[i].detail.push(formattedJSON[i][1][ii]);
                             dataGet[i].subJumlah += formattedJSON[i][1][ii].totalSkor;
                             dataGet[i].subSkor += formattedJSON[i][1][ii].skor;
                             dataGet[i].subTotalSkor += formattedJSON[i][1][ii].totalSkor;
-
-                            dataGet[i].subJumlah = Math.round(dataGet[i].subJumlah);
-                            dataGet[i].subSkor = Math.round(dataGet[i].subSkor);
-                            dataGet[i].subTotalSkor = Math.round(dataGet[i].subTotalSkor);
                         }
                         $scope.grandTotal = dataGet[i].subTotalSkor + $scope.grandTotal;
-                    }
+                    }   
                     $scope.dataSource = dataGet;
-
-                    $scope.kendoDataSource = new kendo.data.DataSource({
-                        data: dataGet,
-                        pageSize: 100
-                    })
                     $scope.isRouteLoading = false;
-                });
+                })
             }
+<<<<<<< HEAD
             // $scope.getDataLogbook();
 
             $scope.exportExcel = () => {
@@ -268,6 +265,9 @@ define(['initialize'], function (initialize) {
                 })
 
             }
+=======
+            $scope.getDataLogbook();
+>>>>>>> e453fbf55ce144c0959d73332f16b22045cb7ea2
         }
     ])
 });
