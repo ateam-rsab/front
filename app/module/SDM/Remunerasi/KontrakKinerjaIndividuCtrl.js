@@ -126,19 +126,19 @@ define(['initialize'], function (initialize) {
                     + "&bulan=" + ($scope.item.srcBulan ? dateHelper.toTimeStamp($scope.item.srcBulan) : "")).then((res) => {
                         let tempNilaiBobotKualitas = 0, tempNilaiBobotKuantitas = 0, tempNilaiBobotPerilaku = 0;
 
-                        for (let i = 0; i < res.data.data.Kualitas.length; i++) {
-                            tempNilaiBobotKualitas += res.data.data.Kualitas[i].bobot;
-                            res.data.data.Kualitas[i].jenisIndikator = "kualitas";
+                        for (let i = 0; i < res.data.data.kualitas.length; i++) {
+                            tempNilaiBobotKualitas += res.data.data.kualitas[i].bobot;
+                            res.data.data.kualitas[i].jenisIndikator = "kualitas";
                         }
 
-                        for (let ii = 0; ii < res.data.data.Kuantitas.length; ii++) {
-                            tempNilaiBobotKuantitas += res.data.data.Kuantitas[ii].bobot;
-                            res.data.data.Kuantitas[ii].jenisIndikator = "kuantitas";
+                        for (let ii = 0; ii < res.data.data.kuantitas.length; ii++) {
+                            tempNilaiBobotKuantitas += res.data.data.kuantitas[ii].bobot;
+                            res.data.data.kuantitas[ii].jenisIndikator = "kuantitas";
                         }
 
-                        for (let iii = 0; iii < res.data.data.Perilaku.length; iii++) {
-                            tempNilaiBobotPerilaku += res.data.data.Perilaku[iii].bobot;
-                            res.data.data.Perilaku[iii].jenisIndikator = "perilaku";
+                        for (let iii = 0; iii < res.data.data.perilaku.length; iii++) {
+                            tempNilaiBobotPerilaku += res.data.data.perilaku[iii].bobot;
+                            res.data.data.perilaku[iii].jenisIndikator = "perilaku";
                         }
 
                         $scope.currentNilaiBobot.kualitas = tempNilaiBobotKualitas;
