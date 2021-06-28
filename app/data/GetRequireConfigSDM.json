@@ -841,6 +841,10 @@
       "urlDep": "module/SDM/Remunerasi/PengaturanBobotJenisIndikatorCtrl"
     },
     {
+      "nameDep": "PenilaianKinerjaIndividuCtrl",
+      "urlDep": "module/SDM/Remunerasi/PenilaianKinerjaIndividuCtrl"
+    },
+    {
       "nameDep": "KontrakKinerjaIndividuCtrl",
       "urlDep": "module/SDM/Remunerasi/KontrakKinerjaIndividuCtrl"
     },

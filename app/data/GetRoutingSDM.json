@@ -4728,6 +4728,30 @@
     ]
   },
   {
+    "name": "PenilaianKinerjaIndividu",
+    "url": "/PenilaianKinerjaIndividu",
+    "templateurl": "module/SDM/Remunerasi/PenilaianKinerjaIndividu.html",
+    "controller": "PenilaianKinerjaIndividuCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      }
+    ]
+  },
+  {
     "name": "KontrakKinerjaIndividu",
     "url": "/KontrakKinerjaIndividu",
     "templateurl": "module/SDM/Remunerasi/KontrakKinerjaIndividu.html",
