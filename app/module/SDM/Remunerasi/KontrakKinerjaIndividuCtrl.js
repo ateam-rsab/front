@@ -147,15 +147,15 @@ define(['initialize'], function (initialize) {
 
                         $scope.dataSourceKontrakKinerja = {
                             kualitas: new kendo.data.DataSource({
-                                data: res.data.data.Kualitas,
+                                data: res.data.data.kualitas,
                                 pageSize: pageSize
                             }),
                             kuantitas: new kendo.data.DataSource({
-                                data: res.data.data.Kuantitas,
+                                data: res.data.data.kuantitas,
                                 pageSize: pageSize
                             }),
                             perilaku: new kendo.data.DataSource({
-                                data: res.data.data.Perilaku,
+                                data: res.data.data.perilaku,
                                 pageSize: pageSize
                             })
                         }
