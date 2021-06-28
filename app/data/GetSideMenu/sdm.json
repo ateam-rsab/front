@@ -358,6 +358,10 @@
                         "link": "#/KontrakKinerjaIndividu"
                     },
                     {
+                        "name": "Penilaian Kinerja Individu",
+                        "link": "#/PenilaianKinerjaIndividu"
+                    },
+                    {
                         "name": "Logbook Kinerja Dokter",
                         "link": "#/LogbookKinerjaDokter"
                     },
