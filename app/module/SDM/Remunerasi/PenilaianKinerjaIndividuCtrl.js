@@ -54,7 +54,7 @@ define(['initialize'], function (initialize) {
                     field: "bobot",
                     title: "<h3>Bobot (%)</h3>",
                     width: 50,
-                    footerTemplate: "<span>{{subTotalBobotKuantitas}}</span>",
+                    footerTemplate: "<span>{{subTotalBobotKualitas}}</span>",
                 }, {
                     field: "nilai",
                     title: "<h3>Nilai</h3>",
@@ -67,7 +67,7 @@ define(['initialize'], function (initialize) {
                     field: "hasil",
                     title: "<h3>Hasil</h3>",
                     width: 50,
-                    footerTemplate: "<span>{{subTotalHasilKuantitas}}</span>",
+                    footerTemplate: "<span>{{subTotalHasilKualitas}}</span>",
                 }, ],
                 kuantitas: [{
                     field: "namaIndikator",
@@ -95,7 +95,7 @@ define(['initialize'], function (initialize) {
                     field: "hasil",
                     title: "<h3>Hasil</h3>",
                     width: 50,
-                    footerTemplate: "<span>{{subTotalHasilKualitas}}</span>",
+                    footerTemplate: "<span>{{subTotalHasilKuantitas}}</span>",
                 }, ],
                 perilaku: [{
                     field: "namaIndikator",
@@ -205,7 +205,6 @@ define(['initialize'], function (initialize) {
                         $scope.totalBobot = res.data.data.tBobot;
                         $scope.totalHasil = res.data.data.tHasil;
 
-                        // bug variable jadi kebalik :D
                         $scope.subTotalBobotKualitas = res.data.data.kualitas.stBobot;
                         $scope.subTotalHasilKualitas = res.data.data.kualitas.stHasil;
 
