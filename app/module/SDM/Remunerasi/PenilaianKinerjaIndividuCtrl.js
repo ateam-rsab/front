@@ -208,8 +208,8 @@ define(['initialize'], function (initialize) {
                         $scope.subTotalBobotKualitas = res.data.data.kualitas.stBobot;
                         $scope.subTotalHasilKualitas = res.data.data.kualitas.stHasil;
 
-                        $scope.subTotalBobotKuantitas = res.data.data.kuantitas.stHasil;
-                        $scope.subTotalHasilKuantitas = res.data.data.kuantitas.stBobot;
+                        $scope.subTotalBobotKuantitas = res.data.data.kuantitas.stBobot;
+                        $scope.subTotalHasilKuantitas = res.data.data.kuantitas.stHasil;
 
                         $scope.subTotalHasilPerilaku = res.data.data.perilaku.stHasil;
                         $scope.subTotalBobotPerilaku = res.data.data.perilaku.stBobot;
