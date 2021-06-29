@@ -25,6 +25,9 @@ define(['initialize'], function (initialize) {
                 kualitas: 30,
                 perilaku: 30
             }
+
+            let now = new Date();
+
             let dataPegawai = JSON.parse(localStorage.getItem('pegawai'));
             let dataLogin = JSON.parse(localStorage.getItem("datauserlogin"));
 
@@ -338,7 +341,8 @@ define(['initialize'], function (initialize) {
                 var tglBatasSimpan = new Date($scope.item.srcBulan);
                 tglBatasSimpan.setDate(4);
                 tglBatasSimpan.setHours(23, 59, 59, 999);
-                if (dateHelper.toTimeStamp(new Date()) > tglBatasSimpan) {
+                if (dateHelper.toTimeStamp(now) > tglBatasSimpan
+                    && monthDiff(new Date($scope.item.pegawai.tglMasuk), tglBatasSimpan) > 0) {
                     toastr.warning("Batas masa simpan kontrak kinerja individu sudah lewat", "Peringatan")
 
                     $scope.isRouteLoading = false;
@@ -559,6 +563,14 @@ define(['initialize'], function (initialize) {
                     }
                 })
             })
+
+            function monthDiff(d1, d2) {
+                var months;
+                months = (d2.getFullYear() - d1.getFullYear()) * 12;
+                months -= d1.getMonth();
+                months += d2.getMonth();
+                return months;
+            }
 
             document.querySelector("#targetGrid").addEventListener("keypress", function (evt) {
                 if (evt.which != 8 && evt.which != 0 && (evt.which > 31 && (evt.which != 46 && (evt.which < 48 || evt.which > 57)))) {
