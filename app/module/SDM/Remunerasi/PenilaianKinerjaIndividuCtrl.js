@@ -205,6 +205,7 @@ define(['initialize'], function (initialize) {
                         $scope.totalBobot = res.data.data.tBobot;
                         $scope.totalHasil = res.data.data.tHasil;
 
+                        // bug variable jadi kebalik :D
                         $scope.subTotalBobotKualitas = res.data.data.kualitas.stBobot;
                         $scope.subTotalHasilKualitas = res.data.data.kualitas.stHasil;
 
