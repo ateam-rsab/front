@@ -54,7 +54,7 @@ define(['initialize'], function (initialize) {
                     field: "bobot",
                     title: "<h3>Bobot (%)</h3>",
                     width: 50,
-                    footerTemplate: "<span>{{subTotalBobotKualitas}}</span>",
+                    footerTemplate: "<span>{{subTotalBobotKuantitas}}</span>",
                 }, {
                     field: "nilai",
                     title: "<h3>Nilai</h3>",
@@ -67,7 +67,7 @@ define(['initialize'], function (initialize) {
                     field: "hasil",
                     title: "<h3>Hasil</h3>",
                     width: 50,
-                    footerTemplate: "<span>{{subTotalHasilKualitas}}</span>",
+                    footerTemplate: "<span>{{subTotalHasilKuantitas}}</span>",
                 }, ],
                 kuantitas: [{
                     field: "namaIndikator",
@@ -95,7 +95,7 @@ define(['initialize'], function (initialize) {
                     field: "hasil",
                     title: "<h3>Hasil</h3>",
                     width: 50,
-                    footerTemplate: "<span>{{subTotalHasilKuantitas}}</span>",
+                    footerTemplate: "<span>{{subTotalHasilKualitas}}</span>",
                 }, ],
                 perilaku: [{
                     field: "namaIndikator",
