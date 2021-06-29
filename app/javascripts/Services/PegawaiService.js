@@ -4,6 +4,7 @@
      var baseUrlAction = config.baseUrlAction;
      var baseUrlApiAction = config.baseApiUrlData;
      var baseUrlDataMaster = config.urlDataMaster;
+     var baseURLAkuntansi = config.urlDataTableTransaksi_Akuntansi;
      var pasienService = angular.module('PegawaiService', ['ngResource', 'HttpServices', 'Services']);
      pasienService.service('ManagePegawai', ['ModelItem', 'R', 'DateHelper', function(modelItem, r, dateHelper) {
          return {

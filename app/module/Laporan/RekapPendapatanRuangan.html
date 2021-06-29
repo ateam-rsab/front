@@ -1,50 +1,37 @@
-<div>
-    <div ng-show="dataVOloaded">
-        <c-panel item="item" header="'Rekapitulasi Pendapatan Ruangan'" disabled>
-            <div class="panel panel-default container_12">
-                <div class="panel-body">
-                    <div class="grid_2">
-                        <label><b>Tanggal Awal</b></label>
-                        <input kendo-date-picker k-ng-model="item.tglAwal" k-max="now" k-format="'dd-MM-yyyy'"
-                            style="width: 100%" />
-                    </div>
-                    <div class="grid_2">
-                        <label><b>Tanggal Akhir</b></label>
-                        <input kendo-date-picker k-ng-model="item.tglAkhir" k-max="now" k-format="'dd-MM-yyyy'"
-                            style="width: 100%" />
-                    </div>
-                    <div class="grid_2">
-                        <label><b>Departemen</b></label>
-                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.departemen"
-                            k-data-text-field="'namaDepartemen'" k-data-value-field="'id'" k-filter="'contains'"
-                            k-auto-bind="false" k-data-source="Departemen" />
-                    </div>
-                    <div class="grid_2">
-                        <label><b>Ruangan</b></label>
-                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan"
-                            k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'"
-                            k-auto-bind="false" k-data-source="Ruangan" />
-                    </div>
-                    <div class="grid_1" style="margin-top: 22px;">
-                        <md-button class="md-raised md-primary medium-button" ng-click="LoadData()">
-                            <span style="margin-right: 5px;">Cari</span>
-                            <i class="fa fa-search"></i>
-                        </md-button>
-                    </div>
-                </div>
-            </div>
-            <div class="grid_12 containerBorderBox">
-                <div id="grid" kendo-grid options="gridData" data-source="dataSourceRekap"></div>
-            </div>
+<md-toolbar md-scroll-shrink class="shadow">
+    <div class="md-toolbar-tools">Rekapitulasi Pendapatan Ruangan</div>
+</md-toolbar>
 
-            <div class="grid_3" style="margin-top: 22px;">
-                <md-button class="md-raised md-primary" ng-click="cetakRekap()">
-                    <span style="margin-right: 5px;">Cetak</span>
-                    <i class="fa fa-print"></i>
-                </md-button>
-            </div>
-        </c-panel>
+<div class="panel panel-default container_12">
+    <div class="panel-body">
+        <div class="grid_2">
+            <label><b>Tanggal Awal</b></label>
+            <input kendo-date-picker k-ng-model="item.tglAwal" k-max="now" k-format="'dd-MM-yyyy'"
+                style="width: 100%" />
+        </div>
+        <div class="grid_2">
+            <label><b>Tanggal Akhir</b></label>
+            <input kendo-date-picker k-ng-model="item.tglAkhir" k-max="now" k-format="'dd-MM-yyyy'"
+                style="width: 100%" />
+        </div>
+
+        <div class="grid_1" style="margin-top: 22px;">
+            <md-button class="md-raised md-primary medium-button" ng-click="LoadData()">
+                <span style="margin-right: 5px;">Cari</span>
+                <i class="fa fa-search"></i>
+            </md-button>
+        </div>
     </div>
+</div>
+<div class="grid_12 containerBorderBox">
+    <div id="grid" kendo-grid options="gridData" data-source="dataSourceRekap"></div>
+</div>
+
+<div class="grid_3" style="margin-top: 22px;">
+    <md-button class="md-raised md-primary" ng-click="cetakRekap()">
+        <span style="margin-right: 5px;">Cetak</span>
+        <i class="fa fa-print"></i>
+    </md-button>
 </div>
 <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
 

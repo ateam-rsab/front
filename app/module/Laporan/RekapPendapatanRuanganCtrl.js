@@ -1,12 +1,22 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('RekapPendapatanRuanganCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm', 'ManageSdmNew', 'ReportService', 'DateHelper', 'FindPegawai', 'FindSdm', '$timeout', '$mdDialog', 'CetakHelper',
-        function ($q, $rootScope, $scope, ModelItem, $state, ManageSdm, ManageSdmNew, ReportService, dateHelper, FindPegawai, FindSdm, $timeout, $mdDialog, cetakHelper) {
+    initialize.controller('RekapPendapatanRuanganCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm', 'ManageSdmNew', 'ReportService', 'DateHelper', 'FindPegawai', 'FindSdm', '$timeout', '$mdDialog', 'CetakHelper', 'ManageLogistikPhp',
+        function ($q, $rootScope, $scope, ModelItem, $state, ManageSdm, ManageSdmNew, ReportService, dateHelper, FindPegawai, FindSdm, $timeout, $mdDialog, cetakHelper, ManageLogistikPhp) {
             $scope.dataVOloaded = true;
             $scope.item = {};
             $scope.now = new Date();
             $scope.item.tglAwal = new Date();
             $scope.item.tglAkhir = new Date();
+
+            $scope.item.administrasi = 0;
+            $scope.item.visite = 0;
+            $scope.item.konsultasi = 0;
+            $scope.item.akomodasi = 0;
+            $scope.item.alatCanggih = 0;
+            $scope.item.tindakan = 0;
+            $scope.item.obatAlkes = 0;
+            $scope.item.diskon = 0;
+            $scope.item.totalDiRuangan = 0;
 
             var initLoadData = function () {
                 $scope.gridData = {
@@ -31,120 +41,95 @@ define(['initialize'], function (initialize) {
                     pageable: false,
                     columns: [
                         {
-                            field: "namaDepartemen",
+                            field: "namadepartemen",
                             title: "Departemen", width: "200px",
                             hidden: true
                         },
                         {
-                            field: "namaRuangan",
+                            field: "namaruangan",
                             title: "Ruangan", width: "200px",
                             footerTemplate: "Jumlah : ",
                             footerAttributes: { style: "text-align : right" }
                         },
                         {
-                            field: "administrasi",
+                            field: "administrasiFormatted",
                             title: "Administrasi", width: "200px",
-                            template: "<span class='style-right'>{{formatRupiah('#: administrasi #', 'Rp.')}}</span>",
                             attributes: {
                                 style: "text-align: right;"
                             },
-                            aggregates: ["sum"],
                             footerTemplate: "{{item.administrasi}}",
                             footerAttributes: { style: "text-align : right" }
                         },
                         {
-                            field: "visite",
+                            field: "visiteFormatted",
                             title: "Visite", width: "200px",
-                            template: "<span class='style-right'>{{formatRupiah('#: visite #', 'Rp.')}}</span>",
                             attributes: {
                                 style: "text-align: right;"
                             },
-                            aggregates: ["sum"],
                             footerTemplate: "{{item.visite}}",
                             footerAttributes: { style: "text-align : right" }
                         },
                         {
-                            field: "konsultasi",
+                            field: "konsultasiFormatted",
                             title: "Konsultasi", width: "200px",
-                            template: "<span class='style-right'>{{formatRupiah('#: konsultasi #', 'Rp.')}}</span>",
                             attributes: {
                                 style: "text-align: right;"
                             },
-                            aggregates: ["sum"],
                             footerTemplate: "{{item.konsultasi}}",
                             footerAttributes: { style: "text-align : right" }
                         },
                         {
-                            field: "akomodasi",
+                            field: "akomodasiFormatted",
                             title: "Akomodasi", width: "200px",
-                            template: "<span class='style-right'>{{formatRupiah('#: akomodasi #', 'Rp.')}}</span>",
                             attributes: {
                                 style: "text-align: right;"
                             },
-                            aggregates: ["sum"],
                             footerTemplate: "{{item.akomodasi}}",
                             footerAttributes: { style: "text-align : right" }
                         },
                         {
-                            field: "alatCanggih",
+                            field: "alatcanggihFormatted",
                             title: "Alat Canggih", width: "200px",
-                            template: "<span class='style-right'>{{formatRupiah('#: alatCanggih #', 'Rp.')}}</span>",
                             attributes: {
                                 style: "text-align: right;"
                             },
-                            aggregates: ["sum"],
                             footerTemplate: "{{item.alatCanggih}}",
                             footerAttributes: { style: "text-align : right" }
                         },
                         {
-                            field: "tindakan",
+                            field: "tindakanFormatted",
                             title: "Tindakan", width: "200px",
-                            template: "<span class='style-right'>{{formatRupiah('#: tindakan #', 'Rp.')}}</span>",
                             attributes: {
                                 style: "text-align: right;"
                             },
-                            aggregates: ["sum"],
                             footerTemplate: "{{item.tindakan}}",
                             footerAttributes: { style: "text-align : right" }
                         },
                         {
-                            field: "obatAlkes",
+                            field: "obatalkesFormatted",
                             title: "Obat Alkes", width: "200px",
-                            template: "<span class='style-right'>{{formatRupiah('#: obatAlkes #', 'Rp.')}}</span>",
                             attributes: {
                                 style: "text-align: right;"
                             },
-                            aggregates: ["sum"],
                             footerTemplate: "{{item.obatAlkes}}",
                             footerAttributes: { style: "text-align : right" }
                         },
-                        {
-                            field: "diskon",
-                            title: "Diskon", width: "200px",
-                            template: "<span class='style-right'>{{formatRupiah('#: diskon #', 'Rp.')}}</span>",
-                            attributes: {
-                                style: "text-align: right;"
-                            },
-                            aggregates: ["sum"],
-                            footerTemplate: "{{item.diskon}}",
-                            footerAttributes: { style: "text-align : right" }
-                        }
                     ]
                 };
             };
 
             $scope.init = function () {
-                $q.all([
-                    ManageSdm.getOrderList("service/list-generic/?view=Departemen&select=id,namaDepartemen&criteria=statusEnabled&values=true&order=namaDepartemen:asc", true),
-                    ManageSdm.getOrderList("service/list-generic/?view=Ruangan&select=id,namaRuangan&criteria=statusEnabled&values=true&order=namaRuangan:asc", true)
-                ]).then(function (res) {
-                    $scope.Departemen = res[0].data;
-                    $scope.Ruangan = res[1].data;
+                // $q.all([
+                //     ManageSdm.getOrderList("service/list-generic/?view=Departemen&select=id,namaDepartemen&criteria=statusEnabled&values=true&order=namaDepartemen:asc", true),
+                //     ManageSdm.getOrderList("service/list-generic/?view=Ruangan&select=id,namaRuangan&criteria=statusEnabled&values=true&order=namaRuangan:asc", true)
+                // ]).then(function (res) {
+                //     $scope.Departemen = res[0].data;
+                //     $scope.Ruangan = res[1].data;
 
-                    initLoadData();
+                initLoadData();
 
-                    $scope.isRouteLoading = false;
-                });
+                $scope.isRouteLoading = false;
+                // });
             };
 
             $scope.init();
@@ -152,8 +137,9 @@ define(['initialize'], function (initialize) {
             $scope.cetakRekap = () => {
                 var tglAwal = dateHelper.getDateTimeFormatted3($scope.item.tglAwal) + " 00:00:00";
                 var tglAkhir = dateHelper.getDateTimeFormatted3($scope.item.tglAkhir) + " 23:59:59";
-                cetakHelper.openURLReportingNew(`lap-pendapatan-ruangan?tglAwal=${tglAwal}&tglAkhir=${tglAwal}&departemen=${$scope.item.departemen ? $scope.item.departemen.namaDepartemen : ""}&ruangan=`, '?');
+                cetakHelper.openURLReportingNew(`lap-pendapatan-ruangan?tglAwal=${tglAwal}&tglAkhir=${tglAkhir}&departemen=${$scope.item.departemen ? $scope.item.departemen.namaDepartemen : ""}&ruangan=`, '?');
             }
+
 
             $scope.loadDataGridRekap = function () {
                 $scope.isRouteLoading = true;
@@ -170,73 +156,44 @@ define(['initialize'], function (initialize) {
                 var diskon = 0;
                 var totalDiRuangan = 0;
 
-                ReportService.getListDataNew("get-pendapatan-ruangan?tglAwal=" + dateHelper.formatDate(tglAwal, 'YYYY-MM-DD HH:mm:ss') + "&tglAkhir=" + dateHelper.formatDate(tglAkhir, 'YYYY-MM-DD HH:mm:ss')).then(function (data) {
-                    
-                    for(let i in data.data.data.pendapatan_farmasi.length) {
-                        dataSource.push(data.data.data.pendapatan_farmasi[i]);
-                        dataSource = [...dataSource, data.data.data.pendapatan_farmasi[i]]
+                ManageLogistikPhp.getDataTableTransaksi("laporan/get-data-lap-rekap-pendapatan-ruangan?tglAwal=" + dateHelper.formatDate(tglAwal, 'YYYY-MM-DD HH:mm:ss') + "&tglAkhir=" + dateHelper.formatDate(tglAkhir, 'YYYY-MM-DD HH:mm:ss')).then(function (data) {
+                    // dataSource.push = [...data.data.pendapatan_non_farmasi];
+                    if (data.data.pendapatan_farmasi) {
+                        data.data.pendapatan_farmasi.namaruangan = data.data.pendapatan_farmasi.namadepartemen;
+                        dataSource.push(data.data.pendapatan_farmasi);
                     }
 
-                    for(let i in data.data.data.pendapatan_non_farmasi.length) {
-                        dataSource = [...dataSource, data.data.data.pendapatan_non_farmasi[i]]
-                        dataSource.push(data.data.data.pendapatan_non_farmasi[i]);
+                    for (let i = 0; i < data.data.pendapatan_non_farmasi.length; i++) {
+                        dataSource.push(data.data.pendapatan_non_farmasi[i]);
                     }
 
                     if (dataSource.length > 0) {
-                        for (var i = 0; i < dataSource.length; i++) {
-                            administrasi = administrasi + dataSource[i].administrasi;
-                            visite = visite + dataSource[i].visite;
-                            konsultasi = konsultasi + dataSource[i].konsultasi;
-                            akomodasi = akomodasi + dataSource[i].akomodasi;
-                            alatCanggih = alatCanggih + dataSource[i].alatCanggih;
-                            tindakan = tindakan + dataSource[i].tindakan;
-                            obatAlkes = obatAlkes + dataSource[i].obatAlkes;
-                            diskon = diskon + dataSource[i].diskon;
-                            totalDiRuangan = totalDiRuangan + dataSource[i].totalDiRuangan;
+                        for (let i = 0; i < dataSource.length; i++) {
+                            dataSource[i].konsultasiFormatted = $scope.formatRupiah(dataSource[i].konsultasi ? dataSource[i].konsultasi : 0, 'Rp.');
+                            dataSource[i].akomodasiFormatted = $scope.formatRupiah(dataSource[i].akomodasi ? dataSource[i].akomodasi : 0, 'Rp.');
+                            dataSource[i].administrasiFormatted = $scope.formatRupiah(dataSource[i].administrasi ? dataSource[i].administrasi : 0, 'Rp.');
+                            dataSource[i].alatcanggihFormatted = $scope.formatRupiah(dataSource[i].alatcanggih ? dataSource[i].alatcanggih : 0, 'Rp.');
+                            dataSource[i].tindakanFormatted = $scope.formatRupiah(dataSource[i].tindakan ? dataSource[i].tindakan : 0, 'Rp.');
+                            dataSource[i].visiteFormatted = $scope.formatRupiah(dataSource[i].visite ? dataSource[i].visite : 0, 'Rp.');
+                            dataSource[i].obatalkesFormatted = $scope.formatRupiah(dataSource[i].obatalkes ? dataSource[i].obatalkes : 0, 'Rp.');
+
+                            administrasi = parseInt(administrasi) + parseInt(dataSource[i].administrasi ? dataSource[i].administrasi : 0);
+                            visite = parseInt(visite) + parseInt(dataSource[i].visite ? dataSource[i].visite : 0);
+                            konsultasi = parseInt(konsultasi) + parseInt(dataSource[i].konsultasi ? dataSource[i].konsultasi : 0);
+                            akomodasi = parseInt(akomodasi) + parseInt(dataSource[i].akomodasi ? dataSource[i].akomodasi : 0);
+                            alatCanggih = parseInt(alatCanggih) + parseInt(dataSource[i].alatCanggih ? dataSource[i].alatCanggih : 0);
+                            tindakan = parseInt(tindakan) + parseInt(dataSource[i].tindakan ? dataSource[i].tindakan : 0);
+                            obatAlkes = parseInt(obatAlkes) + parseInt(dataSource[i].obatalkes ? dataSource[i].obatalkes : 0);
+                            diskon = parseInt(diskon) + parseInt(dataSource[i].diskon ? dataSource[i].diskon : 0);
+                            totalDiRuangan = parseInt(totalDiRuangan) + parseInt(dataSource[i].totalDiRuangan ? dataSource[i].totalDiRuangan : 0);
                         };
                     }
+
+                    console.log(dataSource)
                     $scope.dataSourceRekap = new kendo.data.DataSource({
                         data: dataSource,
-                        schema: {
-                            model: {
-                                fields: {
-                                    "departemen.namaDepartemen": { type: "string" },
-                                    "ruangan.namaRuangan": { type: "string" },
-                                    "administrasi": { type: "number" },
-                                    "visite": { type: "number" },
-                                    "konsultasi": { type: "number" },
-                                    "akomodasi": { type: "number" },
-                                    "alatcanggih": { type: "number" },
-                                    "tindakan": { type: "number" },
-                                    "obatalkes": { type: "number" },
-                                    "diskon": { type: "number" },
-                                    "totalDiRuangan": { type: "number" }
-                                }
-                            }
-                        },
-                        group: {
-                            field: "namaDepartemen"
-                        },
-                        sort: [
-                            { field: "departemen.namaDepartemen", dir: "asc" },
-                            { field: "ruangan.namaRuangan", dir: "asc" }
-                        ]
+                        pageSize: 100
                     });
-
-                   
-                    // if (data.data.data.length > 0) {
-                    //     for (var i = 0; i < data.data.data.length; i++) {
-                    //         administrasi = administrasi + data.data.data[i].administrasi;
-                    //         visite = visite + data.data.data[i].visite;
-                    //         konsultasi = konsultasi + data.data.data[i].konsultasi;
-                    //         akomodasi = akomodasi + data.data.data[i].akomodasi;
-                    //         alatCanggih = alatCanggih + data.data.data[i].alatCanggih;
-                    //         tindakan = tindakan + data.data.data[i].tindakan;
-                    //         obatAlkes = obatAlkes + data.data.data[i].obatAlkes;
-                    //         diskon = diskon + data.data.data[i].diskon;
-                    //         totalDiRuangan = totalDiRuangan + data.data.data[i].totalDiRuangan;
-                    //     };
-                    // }
                     $scope.item.administrasi = $scope.formatRupiah(administrasi, "Rp.");
                     $scope.item.visite = $scope.formatRupiah(visite, "Rp.");
                     $scope.item.konsultasi = $scope.formatRupiah(konsultasi, "Rp.");

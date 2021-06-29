@@ -845,6 +845,10 @@
       "urlDep": "module/SDM/Remunerasi/PenilaianKinerjaIndividuCtrl"
     },
     {
+      "nameDep": "RekapitulasiPenilaianKinerjaIndividuCtrl",
+      "urlDep": "module/SDM/Remunerasi/RekapitulasiPenilaianKinerjaIndividuCtrl"
+    },
+    {
       "nameDep": "KontrakKinerjaIndividuCtrl",
       "urlDep": "module/SDM/Remunerasi/KontrakKinerjaIndividuCtrl"
     },

@@ -208,11 +208,11 @@ define(['initialize'], function (initialize) {
                         $scope.subTotalBobotKualitas = res.data.data.kualitas.stBobot;
                         $scope.subTotalHasilKualitas = res.data.data.kualitas.stHasil;
 
-                        $scope.subTotalBobotKuantitas = res.data.data.kuantitas.stBobot;
-                        $scope.subTotalHasilKuantitas = res.data.data.kuantitas.stHasil;
+                        $scope.subTotalBobotKuantitas = res.data.data.kuantitas.stHasil;
+                        $scope.subTotalHasilKuantitas = res.data.data.kuantitas.stBobot;
 
-                        $scope.subTotalHasilPerilaku = res.data.data.perilaku.stBobot;
-                        $scope.subTotalBobotPerilaku = res.data.data.perilaku.stHasil;
+                        $scope.subTotalHasilPerilaku = res.data.data.perilaku.stHasil;
+                        $scope.subTotalBobotPerilaku = res.data.data.perilaku.stBobot;
 
                         for (let i = 0; i < res.data.data.kualitas.detail.length; i++) {
                             tempNilaiBobotKualitas += res.data.data.kualitas.detail[i].bobot;
