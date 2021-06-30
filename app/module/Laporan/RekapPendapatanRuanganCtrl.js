@@ -20,24 +20,28 @@ define(['initialize'], function (initialize) {
 
             var initLoadData = function () {
                 $scope.gridData = {
-                    toolbar: ["excel"],
-                    excel: {
-                        allPages: true,
-                        fileName: "RSAB HK Export Rekapitulasi Pendapatan Ruangan (Harian) - " + dateHelper.formatDate(new Date(), 'DD-MMM-YYYY HH:mm:ss') + ".xlsx"
-                    },
-                    excelExport: function (e) {
-                        var sheet = e.workbook.sheets[0];
-                        sheet.frozenRows = 2;
-                        sheet.mergedCells = ["A1:K1"];
-                        sheet.name = dateHelper.formatDate($scope.item.tglAwal, 'DD MMM YYYY') + " - " + dateHelper.formatDate($scope.item.tglAkhir, 'DD MMM YYYY');
-                        var myHeaders = [{
-                            value: "Rekapitulasi Pendapatan Ruangan Periode " + dateHelper.formatDate($scope.item.tglAwal, 'DD MMM YYYY') + " - " + dateHelper.formatDate($scope.item.tglAkhir, 'DD MMM YYYY'),
-                            fontSize: 14,
-                            textAlign: "center",
-                            background: "#ffffff",
-                        }];
-                        sheet.rows.splice(0, 0, { cells: myHeaders, type: "header", height: 30 });
-                    },
+                    toolbar: [{
+                        text: "export",
+                        name: "Export detail",
+                        template: '<button ng-click="exportExcel()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
+                    }],
+                    // excel: {
+                    //     allPages: true,
+                    //     fileName: "RSAB HK Export Rekapitulasi Pendapatan Ruangan (Harian) - " + dateHelper.formatDate(new Date(), 'DD-MMM-YYYY HH:mm:ss') + ".xlsx"
+                    // },
+                    // excelExport: function (e) {
+                    //     var sheet = e.workbook.sheets[0];
+                    //     sheet.frozenRows = 2;
+                    //     sheet.mergedCells = ["A1:K1"];
+                    //     sheet.name = dateHelper.formatDate($scope.item.tglAwal, 'DD MMM YYYY') + " - " + dateHelper.formatDate($scope.item.tglAkhir, 'DD MMM YYYY');
+                    //     var myHeaders = [{
+                    //         value: "Rekapitulasi Pendapatan Ruangan Periode " + dateHelper.formatDate($scope.item.tglAwal, 'DD MMM YYYY') + " - " + dateHelper.formatDate($scope.item.tglAkhir, 'DD MMM YYYY'),
+                    //         fontSize: 14,
+                    //         textAlign: "center",
+                    //         background: "#ffffff",
+                    //     }];
+                    //     sheet.rows.splice(0, 0, { cells: myHeaders, type: "header", height: 30 });
+                    // },
                     pageable: false,
                     columns: [
                         {
@@ -93,7 +97,7 @@ define(['initialize'], function (initialize) {
                             attributes: {
                                 style: "text-align: right;"
                             },
-                            footerTemplate: "{{item.alatCanggih}}",
+                            footerTemplate: "{{item.alatcanggih}}",
                             footerAttributes: { style: "text-align : right" }
                         },
                         {
@@ -111,11 +115,105 @@ define(['initialize'], function (initialize) {
                             attributes: {
                                 style: "text-align: right;"
                             },
-                            footerTemplate: "{{item.obatAlkes}}",
+                            footerTemplate: "{{item.obatalkes}}",
                             footerAttributes: { style: "text-align : right" }
                         },
                     ]
                 };
+            };
+
+            $scope.exportExcel = function () {
+                var tempDataExport = [];
+                var rows = [{
+                    cells: [{
+                        value: "Ruangan"
+                    }, {
+                        value: "Admintrasi"
+                    }, {
+                        value: "Visite"
+                    }, {
+                        value: "Konsultasi"
+                    }, {
+                        value: "Akomodasi"
+                    }, {
+                        value: "Alat Canggih"
+                    }, {
+                        value: "Tindakan"
+                    }, {
+                        value: "Obat Alkes"
+                    }]
+                }];
+
+                tempDataExport = $scope.dataSourceRekap;
+                tempDataExport.fetch(function () {
+                    var data = this.data();
+                    console.log(data);
+                    for (var i = 0; i < data.length; i++) {
+                        //push single row for every record
+                        rows.push({
+                            cells: [{
+                                value: data[i].namaruangan
+                            }, {
+                                value: parseInt(data[i].administrasi ? data[i].administrasi : 0)
+                            }, {
+                                value: parseInt(data[i].visite ? data[i].visite : 0)
+                            }, {
+                                value: parseInt(data[i].konsultasi ? data[i].konsultasi : 0)
+                            }, {
+                                value: parseInt(data[i].akomodasi ? data[i].akomodasi : 0)
+                            }, {
+                                value: parseInt(data[i].alatcanggih ? data[i].alatcanggih : 0)
+                            }, {
+                                value: parseInt(data[i].tindakan ? data[i].tindakan : 0)
+                            }, {
+                                value: parseInt(data[i].obatalkes ? data[i].obatalkes : 0)
+                            }]
+                        })
+                    }
+                    var myHeaders = [{
+                        value: "Rekapitulasi Pendapatan Ruangan Periode " + dateHelper.formatDate($scope.item.tglAwal, 'DD MMM YYYY') + " - " + dateHelper.formatDate($scope.item.tglAkhir, 'DD MMM YYYY'),
+                        fontSize: 14,
+                        textAlign: "center",
+                        background: "#ffffff",
+                    }];
+                    rows.splice(0, 0, { cells: myHeaders, type: "header", height: 30 });
+                    var workbook = new kendo.ooxml.Workbook({
+                        sheets: [{
+                            freezePane: {
+                                rowSplit: 1
+                            },
+                            frozenRows: 2,
+                            mergedCells: ["A1:K1"],
+                            columns: [{
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }],
+                            name: dateHelper.formatDate($scope.item.tglAwal, 'DD MMM YYYY') + " - " + dateHelper.formatDate($scope.item.tglAkhir, 'DD MMM YYYY'),
+                            title: "Rekapitulasi Pendapatan Ruangan",
+                            rows: rows
+                        }]
+                    });
+                    //save the file as Excel file with extension xlsx
+                    kendo.saveAs({
+                        dataURI: workbook.toDataURL(),
+                        fileName: "RSAB HK Export Rekapitulasi Pendapatan Ruangan - " + dateHelper.formatDate(new Date(), 'DD-MMM-YYYY HH:mm:ss') + ".xlsx"
+                    });
+                });
             };
 
             $scope.init = function () {

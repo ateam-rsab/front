@@ -1,0 +1,41 @@
+<md-toolbar md-scroll-shrink class="shadow">
+    <div class="md-toolbar-tools">Rekapitulasi Penilaian Kinerja Individu</div>
+</md-toolbar>
+
+
+<div class="grid_12">
+    <div class="grid_1">
+        <label><strong>Bulan</strong></label>
+        <input style="width: 100%;" k-ng-model="item.bulan" k-options="monthSelectorOptions" kendo-date-picker
+            placeholer="mm-yyyy" k-format="'MM-yyyy'" />
+    </div>
+    <div class="grid_3">
+        <label><strong>Unit Kerja</strong></label>
+        <input kendo-combo-box k-filter="'contains'" k-ng-model="item.unitKerja" k-data-text-field="'name'"
+            k-data-value-field="'id'" k-data-source="listOfUnitKerja"
+            k-on-change="getSubUnitKerja(item.unitKerja.id)" />
+    </div>
+    <div class="grid_3">
+        <label><strong>Sub Unit Kerja</strong></label>
+        <input kendo-combo-box k-filter="'contains'" k-ng-model="item.subUnitKerja" k-data-text-field="'name'"
+            k-data-value-field="'id'" k-data-source="listOfSubUnitKerja" />
+    </div>
+    <div class="grid_3">
+        <label><strong>Pegawai</strong></label>
+        <input kendo-combo-box k-filter="'contains'" k-ng-model="item.pegawai" k-data-text-field="'namaLengkap'"
+            k-data-value-field="'id'" k-data-source="listOfPegawai" />
+    </div>
+    <div class="grid_1" style="margin-top: 1.6em;">
+        <md-button class="md-raised md-primary medium-button" ng-click="getData()">
+            <span style="margin-right: 5px;">Cari</span>
+            <i class="fa fa-search"></i>
+        </md-button>
+    </div>
+</div>
+
+<div class="grid_12">
+    <div kendo-grid k-data-source="dataSource" k-selectable="'row'"
+    options="optGrid" k-ng-model="selectedData"></div>
+</div>
+
+<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
