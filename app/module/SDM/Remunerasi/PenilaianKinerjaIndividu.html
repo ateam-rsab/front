@@ -1,14 +1,6 @@
-<style>
-    md-checkbox.md-checked.green .md-icon {
-        background-color: #38c4b2;
-    }
-</style>
-
 <md-toolbar md-scroll-shrink class="shadow">
     <div class="md-toolbar-tools">Penilaian Kinerja Individu</div>
 </md-toolbar>
-
-
 
 <div class="grid_12">
     <div class="grid_1">
@@ -35,23 +27,42 @@
     </div>
 </div>
 
-<div class="grid_12">
-    <div class="grid_4">
-        <label style="display: block; font-weight: bolder; color: rgb(90, 90, 90);">IKI</label>
+<hr>
+
+<div class="grid_12" style="text-align: center;">
+    <div class="grid_2"></div>
+    <div class="grid_2">
+        <label style="display: block; font-weight: normal; color: rgb(16,196,178);">
+            <h3>IKI</h3>
+        </label>
         <label
             style="display: block; font-weight: bolder; color: rgb(44, 44, 44); font-style: italic;">{{nilaiIki}}</label>
     </div>
-    <div class="grid_4">
-        <label style="display: block; font-weight: bolder; color: rgb(90, 90, 90);">Total Bobot</label>
+    <div class="grid_2">
+        <label style="display: block; font-weight: normal; color: rgb(16,196,178);">
+            <h3>Total Bobot</h3>
+        </label>
         <label
-            style="display: block; font-weight: bolder; color: rgb(44, 44, 44);font-style: italic;">{{totalBobot}}</label>
+            style="display: block; font-weight: bolder; color: rgb(44, 44, 44);font-style: italic;">{{totalBobot}}%</label>
     </div>
-    <div class="grid_4">
-        <label style="display: block; font-weight: bolder; color: rgb(90, 90, 90);">Total Hasil</label>
+    <div class="grid_2">
+        <label style="display: block; font-weight: normal; color: rgb(16,196,178);">
+            <h3>Total Hasil</h3>
+        </label>
         <label
-            style="display: block; font-weight: bolder; color: rgb(44, 44, 44);font-style: italic;">{{totalHasil}}</label>
+            style="display: block; font-weight: bolder; color: rgb(44, 44, 44);font-style: italic;">{{totalHasil}}%</label>
     </div>
+    <div class="grid_3">
+        <label style="display: block; font-weight: normal; color: rgb(16,196,178);">
+            <h3>Kriteria</h3>
+        </label>
+        <label
+            style="display: block; font-weight: bolder; color: rgb(44, 44, 44);font-style: italic;">{{kriteria}}</label>
+    </div>
+    <div class="grid_1"></div>
 </div>
+
+<hr>
 
 <div class="grid_12">
     <h3>Kuantitas ({{nilaiMax.kuantitas}}%)</h3>
@@ -69,153 +80,4 @@
     <h3>Perilaku ({{nilaiMax.perilaku}}%)</h3>
     <div kendo-grid k-data-source="dataSourceKontrakKinerja.perilaku" k-selectable="'row'"
         options="optGridKontrakKinerjaPerilaku" k-ng-model="selectedData"></div>
-</div>
-
-<div ng-include='"../app/module/Shared/TemplateLoading"' ng-hide="isPopup"></div>
-
-<div kendo-window="popupTambah" k-title="'Input Data Kontrak Kinerja'" k-width="1200" k-visible="false"
-    k-on-open="win2visible= true" k-on-close="win2visible= false">
-    <div class="panel panel-default container_12" style="padding: 0px 10px;">
-        <md-card>
-            <div class="grid_12">
-                <div class="grid_5">
-                    <label><strong>Indikator Kinerja</strong></label>
-                    <input c-text-box type="input" filter="" class="k-textbox"
-                        ng-model="item.indikatorKerja.namaIndikator" ng-disabled="true" />
-                </div>
-                <div class="grid_1">
-                    <label><strong>Target</strong></label>
-                    <input id="targetGrid" filter="'numeric'" class="k-textbox" ng-model="item.target"
-                        ng-disabled="isNotEditable1" />
-                </div>
-                <div class="grid_2" style="margin-top: 2em; margin-right: auto;">
-                    <label><strong>{{item.satuanIndikator}}</strong></label>
-                </div>
-                <div class="grid_1">
-                    <label><strong>Bobot</strong></label>
-                    <input id="bobotGrid" filter="'numeric'" class="k-textbox" ng-model="item.bobot"
-                        ng-disabled="isNotEditable2" />
-                </div>
-                <div class="grid_1" style="margin-top: 2em; margin-right: auto;">
-                    <label><strong>%</strong></label>
-                </div>
-                <div class="grid_2" ng-show="isVerifGranted">
-                    <md-checkbox ng-model="item.statusVerif" aria-label="verified" style="margin-top:24px"
-                        class="green">
-                        Status Verifikasi
-                    </md-checkbox>
-                </div>
-            </div>
-        </md-card>
-
-        <div class="k-edit-buttons k-state-default" style="margin-top:10px">
-            <div class="grid_8"></div>
-            <div class="grid_2">
-                <md-button class="md-raised md-warn medium-button" ng-click="closePopUp()">
-                    <span style="margin-right: 5px;">Batal</span>
-                    <i class="fa fa-close"></i>
-                </md-button>
-            </div>
-            <div class="grid_2">
-                <md-button class="md-raised md-primary medium-button" ng-click="simpanData('save')">
-                    <span style="margin-right: 5px;">Simpan</span>
-                    <i class="fa fa-save"></i>
-                </md-button>
-            </div>
-        </div>
-    </div>
-
-    <div ng-include='"../app/module/Shared/TemplateLoading"' ng-show="isPopup"></div>
-</div>
-
-<div kendo-window="popupTambahIndikator" k-title="'Tambah Data Kontrak Kinerja'" k-width="1200" k-visible="false"
-    k-on-open="win2visible= true" k-on-close="win2visible= false">
-    <div class="panel panel-default container_12" style="padding: 0px 10px;">
-        <md-card>
-            <div class="grid_12">
-                <div class="grid_2">
-                    <label><strong>Bulan</strong></label>
-                    <input style="width: 100%;" k-options="monthSelectorOptions" k-ng-model="indikator.bulan"
-                        kendo-date-picker placeholer="mm-yyyy" k-format="'MM-yyyy'" />
-                </div>
-                <div class="grid_4">
-                    <label><strong>Pegawai</strong></label>
-                    <input kendo-combo-box k-filter="'contains'" k-ng-model="indikator.pegawai"
-                        k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-data-source="listPegawaiPengusul"
-                        disabled />
-                </div>
-                <div class="grid_4">
-                    <label><strong>Jabatan</strong></label>
-                    <input kendo-combo-box k-filter="'contains'" k-ng-model="indikator.jabatan"
-                        k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-data-source="listJabatan" />
-                </div>
-            </div>
-
-            <div class="grid_12">
-                <div class="grid_2">
-                    <label><strong>Jenis Indikator Kinerja</strong></label>
-                    <input kendo-combo-box k-filter="'contains'" k-ng-model="indikator.jenisIndikator"
-                        k-data-text-field="'jenisIndikator'" k-data-value-field="'id'"
-                        k-data-source="listJenisIndikator"
-                        k-on-change="getIndikatorKerja(indikator.jenisIndikator.id)" />
-                </div>
-                <div class="grid_4">
-                    <label><strong>Indikator Kinerja</strong></label>
-                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="indikator.namaIndikator" />
-                </div>
-
-                <div class="grid_1">
-                    <label><strong>Target</strong></label>
-                    <input id="targetPop" filter="'numeric'" class="k-textbox" ng-model="indikator.target" />
-                </div>
-                <div class="grid_3">
-                    <label><strong>Satuan Indikator</strong></label>
-                    <input kendo-combo-box k-filter="'contains'" k-ng-model="indikator.satuanIndikator"
-                        k-data-text-field="'satuanIndikator'" k-data-value-field="'id'"
-                        k-data-source="listDataSatuanIndikator" />
-                </div>
-                <div class="grid_1">
-                    <label><strong>Bobot</strong></label>
-                    <input id="bobotPop" filter="'numeric'" class="k-textbox" ng-model="indikator.bobot" />
-                </div>
-                <div class="grid_1" style="margin-top: 2em;">
-                    <label><strong>%</strong></label>
-                </div>
-            </div>
-        </md-card>
-
-        <div class="k-edit-buttons k-state-default" style="margin-top:10px">
-            <div class="grid_6"></div>
-            <div class="grid_2">
-                <md-button class="md-raised md-warn medium-button" ng-click="closePopUpPengajuan()">
-                    <span style="margin-right: 5px;">Batal</span>
-                    <i class="fa fa-close"></i>
-                </md-button>
-            </div>
-            <div class="grid_2">
-                <md-button class="md-raised md-warn medium-button" ng-click="resetDataPengajuan()">
-                    <span style="margin-right: 5px;">Reset</span>
-                    <i class="fa fa-refresh"></i>
-                </md-button>
-            </div>
-            <div class="grid_2">
-                <md-button class="md-raised md-primary medium-button" ng-click="simpanPengajuanIndikator()">
-                    <span style="margin-right: 5px;">Simpan</span>
-                    <i class="fa fa-save"></i>
-                </md-button>
-            </div>
-        </div>
-    </div>
-
-    <div ng-include='"../app/module/Shared/TemplateLoading"' ng-show="isPopup"></div>
-</div>
-
-<div kendo-window="popupDetailIndikator" k-title="'Detail Indikator'" k-width="500" k-visible="false"
-    k-on-open="win2visible= true" k-on-close="win2visible= false">
-    <div class="panel panel-default container_12" style="padding: 0px 10px;">
-        <md-card>
-            <div kendo-grid k-data-source="dataSourceDetailIndikator" k-selectable="'row'"
-                options="optGridDetailIndikator" k-ng-model="selectedDataDetail"></div>
-        </md-card>
-    </div>
 </div>

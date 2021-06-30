@@ -65,7 +65,7 @@ define(['initialize'], function (initialize) {
                     width: 50
                 }, {
                     field: "status",
-                    title: "<h3>Status<br>(%)</h3>",
+                    title: "<h3>Status</h3>",
                     width: 70
                 }, {
                     command: [{
