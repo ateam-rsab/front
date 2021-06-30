@@ -8,8 +8,12 @@
         <input style="width: 100%;" k-options="monthSelectorOptions" k-ng-model="item.bulan" kendo-date-picker
             placeholer="mm-yyyy" k-format="'MM-yyyy'" />
     </div>
-
-    <div class="grid_2" style="margin-top: 20px;">
+    <div class="grid_2">
+        <label><strong>Kelompok Jabatan</strong></label>
+        <input kendo-combo-box k-filter="'contains'" k-ng-model="item.kelompokJabatan"
+            k-data-text-field="'namaKelompokJabatan'" k-data-value-field="'id'" k-data-source="listKelompokJabatan" />
+    </div>
+    <div class="grid_1" style="margin-top: 20px;">
         <md-button class="md-raised md-primary medium-button" ng-click="getData()">
             <span style="margin-right: 5px;">Cari</span>
             <i class="fa fa-search"></i>
@@ -21,7 +25,7 @@
     <div kendo-grid k-data-source="dataSource" k-selectable="'row'" options="optGrid" k-ng-model="selectedData"></div>
 </div>
 
-<div kendo-window="popupTambah" k-title="'Tambah Data'" k-width="800" k-visible="false" k-on-open="win2visible= true"
+<div kendo-window="popupTambah" k-title="'Tambah Data'" k-width="500" k-visible="false" k-on-open="win2visible= true"
     k-on-close="win2visible= false">
     <div class="panel panel-default container_12" style="padding: 0px 10px;">
 
@@ -32,71 +36,40 @@
                     <input style="width: 100%;" k-options="monthSelectorOptions" k-ng-model="data.bulan"
                         kendo-date-picker placeholer="mm-yyyy" k-format="'MM-yyyy'" ng-disabled="isEdit" />
                 </div>
-
                 <div class="grid_6">
                     <label><strong>Kelompok Jabatan</strong></label>
                     <input kendo-combo-box k-filter="'contains'" k-ng-model="data.kelompokJabatan"
                         k-data-text-field="'namaKelompokJabatan'" k-data-value-field="'id'"
-                        k-data-source="listKelompokJabatan" ng-disabled="isEdit && isEditJabatan" />
+                        k-data-source="listKelompokJabatan" ng-disabled="isEdit" />
                 </div>
             </div>
-
             <hr>
-            <!-- Kualitas -->
-
             <div class="grid_12" ng-repeat="ds in data.dataSave">
-                <div class="grid_4">
+                <div class="grid_6">
                     <label><strong>Jenis Indikator</strong></label>
                     <input kendo-combo-box k-filter="'contains'" k-ng-model="ds.jenisIndikator"
                         k-data-text-field="'name'" k-data-value-field="'id'" k-data-source="listJenisIndikator"
                         disabled />
                 </div>
-
-                <div class="grid_4">
+                <div class="grid_5">
                     <label><strong>Persentase</strong></label>
                     <input id="targetGrid" filter="'numeric'" class="k-textbox" ng-model="ds.persentase" />
                 </div>
-            </div>
-
-
-            <!-- <div class="grid_12">
-                <div class="grid_4">
-                    <label><strong>Jenis Indikator</strong></label>
-                    <input kendo-combo-box k-filter="'contains'" k-ng-model="data.kualitas"
-                        k-data-text-field="'name'" k-data-value-field="'id'"
-                        k-data-source="listJenisIndikator" disabled/>
-                </div>
-
-                <div class="grid_4">
-                    <label><strong>Persentase</strong></label>
-                    <input id="targetGrid" filter="'numeric'" class="k-textbox" ng-model="data.persentase" />
+                <div class="grid_1" style="margin-top: 2em;">
+                    <label><strong>%</strong></label>
                 </div>
             </div>
-
-            <div class="grid_12">
-                <div class="grid_4">
-                    <label><strong>Jenis Indikator</strong></label>
-                    <input kendo-combo-box k-filter="'contains'" k-ng-model="data.perilaku"
-                        k-data-text-field="'name'" k-data-value-field="'id'"
-                        k-data-source="listJenisIndikator" disabled/>
-                </div>
-
-                <div class="grid_4">
-                    <label><strong>Persentase</strong></label>
-                    <input id="targetGrid" filter="'numeric'" class="k-textbox" ng-model="data.persentase" />
-                </div>
-            </div> -->
         </md-card>
 
         <div class="k-edit-buttons k-state-default" style="margin-top:10px">
-            <div class="grid_8"></div>
-            <div class="grid_2">
+            <div class="grid_6"></div>
+            <div class="grid_3">
                 <md-button class="md-raised md-warn medium-button" ng-click="closepopupTambah()">
                     <span style="margin-right: 5px;">Batal</span>
                     <i class="fa fa-close"></i>
                 </md-button>
             </div>
-            <div class="grid_2">
+            <div class="grid_3">
                 <md-button class="md-raised md-primary medium-button" ng-click="validasiDataDouble()">
                     <span style="margin-right: 5px;">Simpan</span>
                     <i class="fa fa-save"></i>
