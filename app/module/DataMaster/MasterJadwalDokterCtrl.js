@@ -14,7 +14,7 @@ define(['initialize'], function (initialize) {
 					nama: "Daftar Online",
 					id: 1
 				}, {
-					nama: "Telekonsul",
+					nama: "Telekonsultasi",
 					id: 2
 				}
 			]
