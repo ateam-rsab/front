@@ -9,6 +9,16 @@ define(['initialize'], function (initialize) {
 			loadData();
 			$scope.isRouteLoading = false;
 
+			$scope.listJenisJadwal = [
+				{
+					nama: "Daftar Online",
+					id: 1
+				}, {
+					nama: "Telekonsul",
+					id: 2
+				}
+			]
+
 			modelItemAkuntansi.getDataDummyPHP("humas/get-daftar-combo-pegawai", true, true, 20).then(function (data) {
 				$scope.listdokter = data;
 			});
@@ -74,6 +84,11 @@ define(['initialize'], function (initialize) {
 						width: "300px"
 					},
 					{
+						field: "jenis_jadwal",
+						title: "Jenis Jadwal",
+						width: "100px"
+					},
+					{
 						field: "quota",
 						title: "quota",
 						width: "75px"
@@ -104,7 +119,7 @@ define(['initialize'], function (initialize) {
 							imageClass: "k-icon k-delete"
 						}],
 						title: "",
-						width: "100px",
+						width: "200px",
 					}
 				],
 				sortable: {
@@ -260,6 +275,7 @@ define(['initialize'], function (initialize) {
 					quota: $scope.item.quota,
 					idruangan: $scope.item.ruangan2.id,
 					idjadwalpraktek: $scope.item.jam.id,
+					jenisjadwal: $scope.item.jenisJadwals.nama,
 					idpegawai: $scope.item.dokter.id,
 					idhari: $scope.item.hari2.id,
 					status: $scope.item.isAktif ? "Aktif" : "Tdk Aktif"
@@ -283,18 +299,19 @@ define(['initialize'], function (initialize) {
 					hr = $scope.item.hari.id
 				};
 				$scope.isRouteLoading = true;
-				manageSarprasPhp.getDataTableTransaksi("humas/get-data-jadwal?ruangan=" + rd + "&hari=" + hr + "&dokterId=" + ($scope.item.dokter ? $scope.item.dokter.id : '')).then(function (data) {
+				manageSarprasPhp.getDataTableTransaksi("humas/get-data-jadwal?ruangan=" + rd + "&hari=" + hr + "&dokterId=" + ($scope.item.dokter ? $scope.item.dokter.id : '') + "&jenisjadwal=" + ($scope.item.jenisJadwal ? $scope.item.jenisJadwal.nama: "")).then(function (data) {
 					$scope.isRouteLoading = false;
 
-					$scope.dataSource = {
+					console.log(data.data)
+					$scope.dataSource = new kendo.data.DataSource({
 						data: data.data,
-						_data: data.data,
+						// _data: data.data,
 						pageSize: 30,
-						selectable: true,
-						refresh: true,
-						total: data.data.length,
-						serverPaging: false,
-					};
+						// selectable: true,
+						// refresh: true,
+						// total: data.data.length,
+						// serverPaging: false,
+					});
 				});
 			};
 

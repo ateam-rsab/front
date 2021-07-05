@@ -46,7 +46,6 @@
 		</div> -->
 
 	<div class="grid_12">
-		<!-- Ruangan -->
 		<div class="grid_3">
 			<label c-label item="item" c-label-text="Dokter"></label>
 			<div class="grid_12">
@@ -54,6 +53,7 @@
 					k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listdokter" />
 			</div>
 		</div>
+
 		<div class="grid_3">
 			<div class="grid_12">
 				<label c-label item="item" c-label-text="Ruangan"></label>
@@ -66,9 +66,20 @@
 			</div>
 		</div>
 
+		<div class="grid_2">
+			<div class="grid_12">
+				<label c-label item="item" c-label-text="Jenis Jadwal"></label>
+			</div>
+			<div class="clear"></div>
+
+			<div class="grid_12">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisJadwal" k-data-text-field="'nama'"
+					k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisJadwal" />
+			</div>
+		</div>
 
 		<!-- Hari -->
-		<div class="grid_3">
+		<div class="grid_2">
 			<div class="grid_12">
 				<label c-label item="item" c-label-text="Hari"></label>
 			</div>
@@ -80,7 +91,7 @@
 			</div>
 		</div>
 
-		<div class="grid_3 k-edit-buttons  k-state-default " style="margin-top:23px">
+		<div class="grid_2 k-edit-buttons  k-state-default " style="margin-top:23px">
 			<button class="k-button k-button-icontext k-primary k-grid-update" ng-click="SearchData()"
 				style="width:100px"><span class="k-sprite k-icon k-i-search"></span>Cari </button>
 			<button class="k-button  k-button-icontext" ng-click="ClearData()" style="width:100px"><span
@@ -128,6 +139,17 @@
 						<input style="width: 100%;" kendo-combo-box k-ng-model="item.hari2"
 							k-data-text-field="'namahari'" k-data-value-field="'id'" k-filter="'contains'"
 							k-auto-bind="false" k-data-source="listHari" />
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Jenis Jadwal"></label>
+					</div>
+					<div class="clear"></div>
+		
+					<div class="grid_12">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisJadwals" k-data-text-field="'nama'"
+							k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisJadwal" />
 					</div>
 				</div>
 			</div>

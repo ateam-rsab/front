@@ -18,7 +18,7 @@
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     }
 
-    table.table-custom thead {
+    table.table-custom thead, table.table-custom tfoot {
         position: sticky;
         z-index: 1;
         top: 0;
@@ -159,13 +159,16 @@
             </tr>
 
         </tbody>
-        <tbody ng-if="dataSource.length !== 0">
+        <!-- <tbody ng-if="dataSource.length !== 0">
 
+        </tbody> -->
+
+        <tfoot>
             <tr>
                 <td colspan="3" style="font-style: italic; font-weight: bolder;">Grand Total</td>
                 <td style="text-align: center;">{{grandTotal}}</td>
             </tr>
-        </tbody>
+        </tfoot>
     </table>
 </div>
 
