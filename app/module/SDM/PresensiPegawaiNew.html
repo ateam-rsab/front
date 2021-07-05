@@ -128,7 +128,8 @@
 
 <!-- catch gamau kena -->
 <div class="notify notify-warning" ng-if="isGeolocationOff">
-    <strong>Perhatian </strong> Izin belum diberikan untuk menggunakan lokasi Anda. Harap berikan izin untuk bisa melanjutkan presensi
+    <strong>Perhatian </strong> Izin belum diberikan untuk menggunakan lokasi Anda. Harap berikan izin untuk bisa
+    melanjutkan presensi
 </div>
 
 <div class="container-presensi">
@@ -172,26 +173,26 @@
                 <label class="label-content">{{data.jadwal ? data.jadwal : "-"}}</label>
             </div>
             <!-- <div>
-                    <label class="label-name">Work From Home (WFH) : </label>
-                    <label class="label-content">{{data.isWFH ? 'Ya' : 'Tidak'}}</label>
-                </div> -->
+                <label class="label-name">Work From Home (WFH) : </label>
+                <label class="label-content">{{data.isWFH ? 'Ya' : 'Tidak'}}</label>
+            </div> -->
 
             <div>
-                <div class="grid_5" style="text-align: right;">
+                <div class="grid_5" style="text-align: center;">
                     <div id="date-part"></div>
-                    <!-- <div id="time-part"></div> -->
-                    <!-- <input kendo-time-picker ng-model="str" k-ng-model="tanggalPresensi" k-format="'HH:mm'"
-                            style="width: 100%;" disabled> -->
-                </div>
-                <div class="grid_2">
                     <div id="time-part"></div>
+                    <!-- <input kendo-time-picker ng-model="str" k-ng-model="tanggalPresensi" k-format="'HH:mm'"
+                        style="width: 100%;" disabled> -->
                 </div>
-                <!-- <div class="grid_4" style="margin-top: 20px;">
+                <!-- <div class="grid_2">
+                    <div id="time-part"></div>
+                </div> -->
+                <div class="grid_4" style="margin-top: 20px; text-align: center;">
                     <input type="checkbox" class="k-checkbox" name="wfh" id="wfh" ng-model="data.isWFH"
                         ng-disabled="isNotEditable">
                     <label c-label item="item" class="k-checkbox-label" for="wfh">Work From Home (WFH)</label>
-                </div> -->
-                <div class="grid_2" style="margin-top: 17px;">
+                </div>
+                <div class="grid_2" style="margin-top: 17px; text-align: center;">
                     <md-button class="md-raised md-primary medium-button" ng-click="savePresensi()"
                         ng-disabled="isDisablePresensi">
                         <span style="margin-right: 5px;">Simpan</span>

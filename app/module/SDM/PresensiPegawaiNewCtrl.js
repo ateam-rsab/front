@@ -8,7 +8,7 @@ define(['initialize'], function (initialize) {
             $scope.dataDevice = {};
             $scope.time = "";
             $scope.isRouteLoading = false;
-            // $scope.data.isWFH = false;
+            $scope.data.isWFH = false;
             $scope.isDisablePresensi = true;
             $scope.isNotEditable = false;
             $scope.dataPegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
@@ -132,7 +132,7 @@ define(['initialize'], function (initialize) {
                 getDataHistory();
                 ManageSdmNew.getListData('sdm/get-jadwal-pegawai?idPegawai=' + $scope.dataPegawaiLogin.id).then((res) => {
                     $scope.data = res.data.data;
-                    // checkEditableWFH()
+                    checkEditableWFH()
                 });
 
                 $scope.ip = getIPAddr();
@@ -248,7 +248,7 @@ define(['initialize'], function (initialize) {
                     pegawai: {
                         id: $scope.dataPegawaiLogin.id
                     },
-                    // processtatus: $scope.data.isWFH ? 1 : 0,
+                    processtatus: $scope.data.isWFH ? 1 : 0,
                     processtatus: 0,
                     ip_addr: $scope.ip,
                     latitude: $scope.userLocation.lat,
