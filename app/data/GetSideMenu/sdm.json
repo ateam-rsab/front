@@ -362,6 +362,10 @@
                         "link": "#/PenilaianKinerjaIndividu"
                     },
                     {
+                        "name": "Rekapitulasi Penilaian Kinerja Individu",
+                        "link": "#/RekapitulasiPenilaianKinerjaIndividu"
+                    },
+                    {
                         "name": "Logbook Kinerja Dokter",
                         "link": "#/LogbookKinerjaDokter"
                     },

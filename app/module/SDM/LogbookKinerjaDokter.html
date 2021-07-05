@@ -18,6 +18,12 @@
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     }
 
+    table.table-custom thead {
+        position: sticky;
+        z-index: 1;
+        top: 0;
+    }
+
     table.table-custom th,
     table.table-custom td {
         padding: 15px;
@@ -67,7 +73,8 @@
     }
 
     .cell-detail {
-        transition: .2s all cubic-bezier(0.22, 0.61, 0.36, 1);;
+        transition: .2s all cubic-bezier(0.22, 0.61, 0.36, 1);
+        ;
     }
 
     .cell-detail:hover {
@@ -109,17 +116,19 @@
             <th scope="col" style="min-width: 50px; text-align: center;">Jumlah</th>
             <th scope="col" style="min-width: 50px; text-align: center;">Skor</th>
             <th scope="col" style="min-width: 50px; text-align: center;">Total Skor</th>
-            <th scope="col" ng-repeat="head in headerTable" style="min-width: 20px; text-align: center;">{{head.title}}</th>
+            <th scope="col" ng-repeat="head in headerTable" style="min-width: 20px; text-align: center;">{{head.title}}
+            </th>
         </thead>
 
         <tbody ng-repeat="ds in dataSource">
-           
-            <tr >
-                <td style="font-weight: bolder; background-color: #3d3d3d; color: white;" colspan="35">{{ds.label}}</td>
+
+            <tr>
+                <td style="font-weight: bolder; background-color: #3d3d3d; color: white; " colspan="35">{{ds.label}}
+                </td>
             </tr>
 
             <tr ng-repeat="detailProduk in ds.detail">
-               
+
                 <td>
                     <span style="padding-left:10px">
                         {{detailProduk.namaProduk}}
@@ -128,7 +137,8 @@
                 <td style="text-align: center;">{{detailProduk.jumlah}}</td>
                 <td style="text-align: center;">{{detailProduk.skor}}</td>
                 <td style="text-align: center;">{{detailProduk.totalSkor}}</td>
-                <td style="text-align: center;" class="cell-detail"  ng-repeat="dataTgl in detailProduk.dataDetail" ng-click="detailTindakan(ds, detailProduk, dataTgl)">
+                <td style="text-align: center;" class="cell-detail" ng-repeat="dataTgl in detailProduk.dataDetail"
+                    ng-click="detailTindakan(ds, detailProduk, dataTgl)">
                     <md-tooltip md-direction="top">
                         Klik Detail
                     </md-tooltip>
@@ -150,7 +160,7 @@
 
         </tbody>
         <tbody ng-if="dataSource.length !== 0">
-            
+
             <tr>
                 <td colspan="3" style="font-style: italic; font-weight: bolder;">Grand Total</td>
                 <td style="text-align: center;">{{grandTotal}}</td>
@@ -159,14 +169,14 @@
     </table>
 </div>
 
-<div kendo-window="popupDetail" k-title="'Detail Data'" k-width="1200" k-visible="false"
-    k-on-open="win2visible= true" k-on-close="win2visible= false">
+<div kendo-window="popupDetail" k-title="'Detail Data'" k-width="1200" k-visible="false" k-on-open="win2visible= true"
+    k-on-close="win2visible= false">
     <div class="panel panel-default container_12" style="padding: 0px 10px;">
 
         <md-card>
             <div class="grid_12">
-                <kendo-grid  k-data-source="dataSourceDetailTindakan" k-pageable="true" k-selectable="'row'" k-columns="columnGrid"  >
-            	</kendo-grid>
+                <kendo-grid k-data-source="dataSourceDetailTindakan" k-pageable="true" k-columns="columnGrid">
+                </kendo-grid>
             </div>
         </md-card>
 
@@ -178,7 +188,7 @@
                     <i class="fa fa-close"></i>
                 </md-button>
             </div>
-         
+
         </div>
     </div>
 </div>

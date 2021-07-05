@@ -17,14 +17,26 @@ define(['initialize'], function (initialize) {
                 "field": "tglPelayananFormatted",
                 "title": "Tanggal<br>Pelayanan",
                 "width": "20%"
-            },{
+            }, {
+                "field": "noCm",
+                "title": "No.<br>Rekam Medis",
+                "width": "20%"
+            }, {
                 "field": "noRegistrasi",
                 "title": "No. Registrasi",
-                "width": "10%"
+                "width": "20%"
             }, {
                 "field": "namaPasien",
                 "title": "Nama Pasien",
                 "width": "30%"
+            }, {
+                "field": "namaRuangan",
+                "title": "Nama Ruangan",
+                "width": "30%"
+            }, {
+                "field": "jenisPetugas",
+                "title": "Jenis Petugas",
+                "width": "20%"
             }, {
                 "field": "namaProduk",
                 "title": "Nama Layanan",
