@@ -224,6 +224,7 @@ define(['initialize'], function (initialize) {
                             .cancel('Tidak');
                         $mdDialog.show(confirm).then(function () {
                             $scope.isHapus = true
+                            $scope.isEdit = true
                             $scope.simpanData('hapus');
                         }, function () {
                             $scope.reset();
