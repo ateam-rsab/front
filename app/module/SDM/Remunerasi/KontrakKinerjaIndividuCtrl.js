@@ -338,16 +338,16 @@ define(['initialize'], function (initialize) {
                 $scope.isRouteLoading = true;
                 $scope.isPopup = true;
 
-                var tglBatasSimpan = new Date($scope.item.srcBulan);
-                tglBatasSimpan.setDate(4);
-                tglBatasSimpan.setHours(23, 59, 59, 999);
-                if (dateHelper.toTimeStamp(now) > tglBatasSimpan
-                    && monthDiff(new Date($scope.item.pegawai.tglMasuk), tglBatasSimpan) > 0) {
-                    toastr.warning("Batas masa simpan kontrak kinerja individu sudah lewat", "Peringatan")
+                // var tglBatasSimpan = new Date($scope.item.srcBulan);
+                // tglBatasSimpan.setDate(4);
+                // tglBatasSimpan.setHours(23, 59, 59, 999);
+                // if (dateHelper.toTimeStamp(now) > tglBatasSimpan
+                //     && monthDiff(new Date($scope.item.pegawai.tglMasuk), tglBatasSimpan) > 0) {
+                //     toastr.warning("Batas masa simpan kontrak kinerja individu sudah lewat", "Peringatan")
 
-                    $scope.isRouteLoading = false;
-                    return
-                }
+                //     $scope.isRouteLoading = false;
+                //     return
+                // }
 
                 let statusEnabled = method === 'save' || method === 'update';
 
