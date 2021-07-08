@@ -9,25 +9,12 @@ define(['initialize'], function (initialize) {
                 depth: "year",
                 format: "MMMM yyyy"
             };
-            $scope.grandTotal = 0;
             $scope.dataSource = [];
             $scope.item.periode = new Date();
 
             $scope.columnGrid = [{
-                "field": "tglPelayananFormatted",
-                "title": "Tanggal<br>Pelayanan",
-                "width": "20%"
-            }, {
-                "field": "noCm",
-                "title": "No.<br>Rekam Medis",
-                "width": "20%"
-            }, {
-                "field": "noRegistrasi",
-                "title": "No. Registrasi",
-                "width": "20%"
-            }, {
-                "field": "namaPasien",
-                "title": "Nama Pasien",
+                "field": "namaProduk",
+                "title": "Nama Layanan",
                 "width": "30%"
             }, {
                 "field": "namaRuangan",
@@ -38,14 +25,26 @@ define(['initialize'], function (initialize) {
                 "title": "Jenis Petugas",
                 "width": "20%"
             }, {
-                "field": "namaProduk",
-                "title": "Nama Layanan",
+                "field": "noRegistrasi",
+                "title": "No. Registrasi",
+                "width": "20%"
+            }, {
+                "field": "tglPelayananFormatted",
+                "title": "Tanggal<br>Pelayanan",
+                "width": "20%"
+            }, {
+                "field": "noCm",
+                "title": "No.<br>Rekam Medis",
+                "width": "20%"
+            }, {
+                "field": "namaPasien",
+                "title": "Nama Pasien",
                 "width": "30%"
             }];
 
             let groupJSON = function (xs, key) {
                 return xs.reduce(function (rv, x) {
-                    
+
                     (rv[x[key]] = rv[x[key]] || []).push(x);
                     return rv;
                 }, {});
@@ -96,7 +95,10 @@ define(['initialize'], function (initialize) {
                 let dataTemp = [];
                 ManageSdmNew.getListData(`iki-remunerasi/get-logbook-skoring-dokter?bulan=${$scope.item.periode ? dateHelper.toTimeStamp($scope.item.periode) : dateHelper.toTimeStamp(new Date())}&pegawaiId=${$scope.item.pegawai.id}`).then(res => {
                     let periode = new Date($scope.item.periode), bln = periode.getMonth(), thn = periode.getFullYear();
-                    console.log(bln, thn)
+                    // console.log(bln, thn)
+
+                    $scope.grandTotal = 0;
+                    $scope.grandJumlah = 0;
                     for (let i = 0; i < res.data.data.length; i++) {
                         dataTemp.push({
                             namaIndikator: res.data.data[i].namaIndikator,
@@ -116,7 +118,7 @@ define(['initialize'], function (initialize) {
                             dataTemp[i].dataDetail.push({
                                 tgl: ii + 1,
                                 tglPelayanan: `${thn}-${frmtBln}-${frmtDate}`,
-                                jmlLayanan: 0
+                                jmlLayanan: ''
                             })
 
                         }
@@ -141,24 +143,29 @@ define(['initialize'], function (initialize) {
                     let groupedJSON = groupJSON(dataTemp, 'namaIndikator');
                     let formattedJSON = Object.keys(groupedJSON).map((key) => [(key), groupedJSON[key]]);
                     let dataGet = [];
-                    
-                    for(let i = 0; i < formattedJSON.length; i++) {
+
+                    for (let i = 0; i < formattedJSON.length; i++) {
                         dataGet.push({
-                            label:formattedJSON[i][0],
+                            label: formattedJSON[i][0],
                             detail: [],
-                            subTotalSkor:0,
+                            subTotalSkor: 0,
                             subJumlah: 0,
                             subSkor: 0
                         })
 
-                        for(let ii = 0; ii < formattedJSON[i][1].length; ii++) {
+                        for (let ii = 0; ii < formattedJSON[i][1].length; ii++) {
                             dataGet[i].detail.push(formattedJSON[i][1][ii]);
-                            dataGet[i].subJumlah += formattedJSON[i][1][ii].totalSkor;
                             dataGet[i].subSkor += formattedJSON[i][1][ii].skor;
+                            dataGet[i].subJumlah += formattedJSON[i][1][ii].jumlah;
                             dataGet[i].subTotalSkor += formattedJSON[i][1][ii].totalSkor;
                         }
+                        dataGet[i].subTotalSkor = parseFloat(dataGet[i].subTotalSkor.toFixed(2));
+
+                        $scope.grandJumlah = dataGet[i].subJumlah + $scope.grandJumlah;
                         $scope.grandTotal = dataGet[i].subTotalSkor + $scope.grandTotal;
-                    }   
+                    }
+                    $scope.grandTotal = parseFloat($scope.grandTotal.toFixed(2));
+
                     $scope.dataSource = dataGet;
                     $scope.isRouteLoading = false;
                 })
@@ -258,7 +265,7 @@ define(['initialize'], function (initialize) {
             };
 
             $scope.detailTindakan = (ds, detail, data) => {
-                if(data.jmlLayanan === 0) {
+                if (data.jmlLayanan === "") {
                     toastr.info("Tidak ada data");
                     return;
                 }

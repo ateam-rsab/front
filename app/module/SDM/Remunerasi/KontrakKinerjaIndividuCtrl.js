@@ -351,6 +351,14 @@ define(['initialize'], function (initialize) {
 
                 let statusEnabled = method === 'save' || method === 'update';
 
+                if ((!$scope.item.target || $scope.item.target <= 0) && (!$scope.item.bobot || $scope.item.bobot <= 0)) {
+                    toastr.warning('Target dan Bobot harus diisi dan lebih besar dari 0')
+
+                    $scope.isRouteLoading = false;
+                    $scope.isPopup = true;
+                    return
+                }
+
                 if (!$scope.item.target || $scope.item.target <= 0) {
                     toastr.warning('Target harus diisi dan lebih besar dari 0')
 
@@ -361,14 +369,6 @@ define(['initialize'], function (initialize) {
 
                 if (!$scope.item.bobot || $scope.item.bobot <= 0) {
                     toastr.warning('Bobot harus diisi dan lebih besar dari 0')
-
-                    $scope.isRouteLoading = false;
-                    $scope.isPopup = true;
-                    return
-                }
-
-                if ((!$scope.item.target || $scope.item.target <= 0) && (!$scope.item.bobot || $scope.item.bobot <= 0)) {
-                    toastr.warning('Target dan Bobot harus diisi dan lebih besar dari 0')
 
                     $scope.isRouteLoading = false;
                     $scope.isPopup = true;
