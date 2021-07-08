@@ -68,6 +68,11 @@ define(['initialize'], function (initialize) {
                         width: 200
                     },
                     {
+                        field: "jenis",
+                        title: "<h3>Jenis Daftar</h3>",
+                        width: 100
+                    },
+                    {
                         field: "status",
                         title: "<h3>Status</h3>",
                         width: 100

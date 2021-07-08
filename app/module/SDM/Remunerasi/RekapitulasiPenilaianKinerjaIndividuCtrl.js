@@ -22,7 +22,7 @@ define(['initialize'], function (initialize) {
                     title: "<h3>Unit Kerja</h3>",
                     width: 200,
                 }, {
-                    field: "",
+                    field: "subunitKerja",
                     title: "<h3>Sub Unit Kerja</h3>",
                     width: 200
                 }, {
@@ -192,10 +192,11 @@ define(['initialize'], function (initialize) {
                                 { value: data[i].unitKerja },
                                 { value: data[i].subunitKerja },
                                 { value: data[i].namaLengkap },
-                                { value: data[i].bobotKualitas },
-                                { value: data[i].hasilKualitas },
+                                
                                 { value: data[i].bobotKuantitas },
                                 { value: data[i].hasilKuantitas },
+                                { value: data[i].bobotKualitas },
+                                { value: data[i].hasilKualitas },
                                 { value: data[i].bobotPerilaku },
                                 { value: data[i].hasilPerilaku },
                                 { value: data[i].iki },
@@ -357,7 +358,7 @@ define(['initialize'], function (initialize) {
                                         size: 1
                                     },
                                 }, {
-                                    value: "Kualitas",
+                                    value: "Kuantitas",
                                     textAlign: "center",
                                     verticalAlign: "center",
                                     background: "#d3e0ea",
@@ -379,7 +380,7 @@ define(['initialize'], function (initialize) {
                                         size: 1
                                     },
                                 }, {
-                                    value: "Kuantitas",
+                                    value: "Kualitas",
                                     textAlign: "center",
                                     index: 5,
                                     verticalAlign: "center",
