@@ -249,7 +249,6 @@ define(['initialize'], function (initialize) {
                         id: $scope.dataPegawaiLogin.id
                     },
                     processtatus: $scope.data.isWFH ? 1 : 0,
-                    processtatus: 0,
                     ip_addr: $scope.ip,
                     latitude: $scope.userLocation.lat,
                     longitude: $scope.userLocation.lng,
