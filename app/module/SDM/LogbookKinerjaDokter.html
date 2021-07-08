@@ -64,10 +64,6 @@
         background-color: rgba(85, 85, 85, 0.3);
     }
 
-    table.table-custom tbody td {
-        /* position: relative; */
-    }
-
     table.table-custom tbody td:hover:before {
         content: "";
         /* position: absolute; */
@@ -116,12 +112,11 @@
 </div>
 
 <div class="container-table">
-
     <table class="table-custom">
         <thead>
             <th scope="col" style="min-width: 200px;">Nama Kegiatan</th>
-            <th scope="col" style="min-width: 50px; text-align: center;">Jumlah</th>
             <th scope="col" style="min-width: 50px; text-align: center;">Skor</th>
+            <th scope="col" style="min-width: 50px; text-align: center;">Jumlah</th>
             <th scope="col" style="min-width: 50px; text-align: center;">Total Skor</th>
             <th scope="col" ng-repeat="head in headerTable" style="min-width: 20px; text-align: center;">{{head.title}}
             </th>
@@ -141,38 +136,38 @@
                         {{detailProduk.namaProduk}}
                     </span>
                 </td>
-                <td style="text-align: center;">{{detailProduk.jumlah}}</td>
                 <td style="text-align: center;">{{detailProduk.skor}}</td>
+                <td style="text-align: center;">{{detailProduk.jumlah}}</td>
                 <td style="text-align: center;">{{detailProduk.totalSkor}}</td>
                 <td style="text-align: center;" class="cell-detail" ng-repeat="dataTgl in detailProduk.dataDetail"
                     ng-click="detailTindakan(ds, detailProduk, dataTgl)">
-                    <md-tooltip md-direction="top">
-                        Klik Detail
+                    <md-tooltip md-direction="top" ng-if="dataTgl.jmlLayanan != '' && dataTgl.jmlLayanan > 0">
+                        Klik untuk lihat detail
                     </md-tooltip>
                     {{dataTgl.jmlLayanan}}
                 </td>
             </tr>
 
             <tr>
-                <td style="font-style: italic;"><strong>Sub Total</strong></td>
+                <td colspan="2" style="font-style: italic; text-align: right;"><strong>Sub Total</strong></td>
                 <td style="text-align: center;">{{ds.subJumlah}}</td>
-                <td style="text-align: center;">{{ds.subSkor}}</td>
                 <td style="text-align: center;">{{ds.subTotalSkor}}</td>
             </tr>
         </tbody>
+
         <tbody>
             <tr ng-if="dataSource.length === 0">
                 <td colspan="35" style="text-align: center;">Tidak ada data</td>
             </tr>
 
         </tbody>
-        <!-- <tbody ng-if="dataSource.length !== 0">
 
-        </tbody> -->
+        <!-- <tbody ng-if="dataSource.length !== 0"></tbody> -->
 
         <tfoot>
             <tr>
-                <td colspan="3" style="font-style: italic; font-weight: bolder;">Grand Total</td>
+                <td colspan="2" style="font-style: italic; font-weight: bolder; text-align: right;">Grand Total</td>
+                <td style="text-align: center;">{{grandJumlah}}</td>
                 <td style="text-align: center;">{{grandTotal}}</td>
             </tr>
         </tfoot>
@@ -190,7 +185,7 @@
             </div>
         </md-card>
 
-        <div class="k-edit-buttons k-state-default" style="margin-top:10px">
+        <!-- <div class="k-edit-buttons k-state-default" style="margin-top:10px">
             <div class="grid_10"></div>
             <div class="grid_2">
                 <md-button class="md-raised md-warn medium-button" ng-click="closePopUp()">
@@ -198,8 +193,8 @@
                     <i class="fa fa-close"></i>
                 </md-button>
             </div>
-
-        </div>
+        </div> -->
     </div>
 </div>
+
 <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
