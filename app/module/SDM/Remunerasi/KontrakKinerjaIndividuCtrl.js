@@ -338,20 +338,20 @@ define(['initialize'], function (initialize) {
                 $scope.isRouteLoading = true;
                 $scope.isPopup = true;
 
-                var tglBatasSimpan = new Date($scope.item.srcBulan);
-                tglBatasSimpan.setDate(4);
-                tglBatasSimpan.setHours(23, 59, 59, 999);
-                if (dateHelper.toTimeStamp(now) > tglBatasSimpan
-                    && monthDiff(new Date($scope.item.pegawai.tglMasuk), tglBatasSimpan) > 0) {
-                    toastr.warning("Batas masa simpan kontrak kinerja individu sudah lewat", "Peringatan")
+                // var tglBatasSimpan = new Date($scope.item.srcBulan);
+                // tglBatasSimpan.setDate(4);
+                // tglBatasSimpan.setHours(23, 59, 59, 999);
+                // if (dateHelper.toTimeStamp(now) > tglBatasSimpan
+                //     && monthDiff(new Date($scope.item.pegawai.tglMasuk), tglBatasSimpan) > 0) {
+                //     toastr.warning("Batas masa simpan kontrak kinerja individu sudah lewat", "Peringatan")
 
-                    $scope.isRouteLoading = false;
-                    return
-                }
+                //     $scope.isRouteLoading = false;
+                //     return
+                // }
 
                 let statusEnabled = method === 'save' || method === 'update';
 
-                if (!$scope.item.target && $scope.item.target <= 0) {
+                if (!$scope.item.target || $scope.item.target <= 0) {
                     toastr.warning('Target harus diisi dan lebih besar dari 0')
 
                     $scope.isRouteLoading = false;
@@ -359,8 +359,16 @@ define(['initialize'], function (initialize) {
                     return
                 }
 
-                if (!$scope.item.bobot && $scope.item.bobot <= 0) {
+                if (!$scope.item.bobot || $scope.item.bobot <= 0) {
                     toastr.warning('Bobot harus diisi dan lebih besar dari 0')
+
+                    $scope.isRouteLoading = false;
+                    $scope.isPopup = true;
+                    return
+                }
+
+                if ((!$scope.item.target || $scope.item.target <= 0) && (!$scope.item.bobot || $scope.item.bobot <= 0)) {
+                    toastr.warning('Target dan Bobot harus diisi dan lebih besar dari 0')
 
                     $scope.isRouteLoading = false;
                     $scope.isPopup = true;
