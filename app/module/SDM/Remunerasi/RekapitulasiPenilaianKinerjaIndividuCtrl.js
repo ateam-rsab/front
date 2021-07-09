@@ -214,7 +214,7 @@ define(['initialize'], function (initialize) {
                             //     rowSplit: 1
                             // },
                             mergedCells: [
-                                "A1:M1", "A2:A3", "B2:B3", "C2:C3", "D2:E2", "F2:G2", "H2:I2", "J2:J3", "K2:K3", "L2:L3", "M2:M3"
+                                "A1:K1", "L1:M1", "A2:A3", "B2:B3", "C2:C3", "D2:E2", "F2:G2", "H2:I2", "J2:J3", "K2:K3", "L2:L3", "M2:M3"
                             ],
                             columns: [
                                 // Column settings (width)
@@ -301,6 +301,12 @@ define(['initialize'], function (initialize) {
                                     cells: [
                                         {
                                             value: "Periode " + periode + " " + tahun,
+                                            fontSize: 20,
+                                        }, {
+                                            value: `${dateHelper.formatDate(new Date(), "DD-MM-YYYY")}`,
+                                            fontSize: 10,
+                                            textAlign: "center",
+                                            index: 11,
                                         },
                                     ],
                                 },
@@ -658,7 +664,7 @@ define(['initialize'], function (initialize) {
                         }]
                     });
                     //save the file as Excel file with extension xlsx
-                    kendo.saveAs({ dataURI: workbook.toDataURL(), fileName: "Rekapitulasi Penilaian Kinerja Individu.xlsx" });
+                    kendo.saveAs({ dataURI: workbook.toDataURL(), fileName: "rekapitulasi-penilaian-kinerja-individu-periode-"+ periode +"-"+ tahun +"(" + dateHelper.formatDate(new Date(), "DDMMYYYY") + ").xlsx" });
                 });
 
             }
