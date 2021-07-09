@@ -161,7 +161,7 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.exportExcel = function () {
-                let periode = dateHelper.toMonth(new Date($scope.item.bulan).getDate());
+                let periode = dateHelper.toMonth(new Date($scope.item.bulan).getMonth());
                 let tahun = new Date($scope.item.bulan).getFullYear();
                 console.log(periode)
                 let tempDataExport = [];
