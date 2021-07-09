@@ -358,20 +358,20 @@
                         "link": "#/KontrakKinerjaIndividu"
                     },
                     {
-                        "name": "Penilaian Kinerja Individu",
-                        "link": "#/PenilaianKinerjaIndividu"
-                    },
-                    {
-                        "name": "Rekapitulasi Penilaian Kinerja Individu",
-                        "link": "#/RekapitulasiPenilaianKinerjaIndividu"
+                        "name": "Verifikasi Catatan Kegiatan Harian",
+                        "link": "#/VerifikasiCatatanKegiatanHarian"
                     },
                     {
                         "name": "Logbook Kinerja Dokter",
                         "link": "#/LogbookKinerjaDokter"
                     },
                     {
-                        "name": "Verifikasi Catatan Kegiatan Harian",
-                        "link": "#/VerifikasiCatatanKegiatanHarian"
+                        "name": "Penilaian Kinerja Individu",
+                        "link": "#/PenilaianKinerjaIndividu"
+                    },
+                    {
+                        "name": "Rekapitulasi Penilaian Kinerja Individu",
+                        "link": "#/RekapitulasiPenilaianKinerjaIndividu"
                     }
                 ]
             }

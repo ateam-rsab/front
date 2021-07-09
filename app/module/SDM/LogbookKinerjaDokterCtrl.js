@@ -3,6 +3,7 @@ define(['initialize'], function (initialize) {
     initialize.controller('LogbookKinerjaDokterCtrl', ['$q', 'ManagePegawai', 'FindPegawai', 'DateHelper', 'FindSdm', 'ModelItem', 'ManageSdm', 'ManageSdmNew', '$state', '$rootScope', '$scope',
         function ($q, managePegawai, findPegawai, dateHelper, findSdm, modelItem, manageSdm, ManageSdmNew, $state, $rootScope, $scope) {
             $scope.item = {};
+            $scope.dataVOloaded = true;
             $scope.isRouteLoading = false;
             $scope.monthly = {
                 start: "year",
@@ -10,7 +11,7 @@ define(['initialize'], function (initialize) {
                 format: "MMMM yyyy"
             };
             $scope.dataSource = [];
-            $scope.item.periode = new Date();
+            // $scope.item.periode = new Date();
 
             $scope.columnGrid = [{
                 "field": "namaProduk",
@@ -44,7 +45,6 @@ define(['initialize'], function (initialize) {
 
             let groupJSON = function (xs, key) {
                 return xs.reduce(function (rv, x) {
-
                     (rv[x[key]] = rv[x[key]] || []).push(x);
                     return rv;
                 }, {});
@@ -52,7 +52,7 @@ define(['initialize'], function (initialize) {
 
             let getHeaderTable = () => {
                 $scope.headerTable = [];
-                var dt = new Date($scope.item.periode);
+                var dt = new Date();
                 var month = dt.getMonth() + 1;
                 var year = dt.getFullYear();
                 $scope.daysInMonth = new Date(year, month, 0).getDate();
@@ -87,11 +87,14 @@ define(['initialize'], function (initialize) {
             $scope.getDataLogbook = () => {
                 getHeaderTable();
 
+                $scope.isRouteLoading = true;
+
                 if (!$scope.item.pegawai) {
                     toastr.info("Harap pilih pegawai terlebih dahulu");
+                    $scope.isRouteLoading = false;
                     return;
                 }
-                $scope.isRouteLoading = true;
+
                 let dataTemp = [];
                 ManageSdmNew.getListData(`iki-remunerasi/get-logbook-skoring-dokter?bulan=${$scope.item.periode ? dateHelper.toTimeStamp($scope.item.periode) : dateHelper.toTimeStamp(new Date())}&pegawaiId=${$scope.item.pegawai.id}`).then(res => {
                     let periode = new Date($scope.item.periode), bln = periode.getMonth(), thn = periode.getFullYear();
@@ -120,9 +123,7 @@ define(['initialize'], function (initialize) {
                                 tglPelayanan: `${thn}-${frmtBln}-${frmtDate}`,
                                 jmlLayanan: ''
                             })
-
                         }
-
                     }
 
                     for (let i = 0; i < res.data.data.length; i++) {
@@ -135,7 +136,6 @@ define(['initialize'], function (initialize) {
                                     break;
                                 }
                             }
-
                         }
                     }
 
@@ -168,7 +168,9 @@ define(['initialize'], function (initialize) {
 
                     $scope.dataSource = dataGet;
                     $scope.isRouteLoading = false;
-                })
+                }, (error) => {
+                    $scope.isRouteLoading = false;
+                });
             }
             // $scope.getDataLogbook();
 
@@ -194,6 +196,7 @@ define(['initialize'], function (initialize) {
                             dataTemp.push(data[i].detail[ii]);
                         }
                     }
+
                     let dataTgl = []
                     for (var i = 0; i < dataTemp.length; i++) {
                         dataTgl = [];
@@ -223,6 +226,7 @@ define(['initialize'], function (initialize) {
                             ]
                         })
                     }
+
                     let month = new Date($scope.item.periode);
                     rows.unshift({
                         cells: [{ value: "Logbook Kinerja " + $scope.item.pegawai.namaLengkap + " Periode " + dateHelper.toMonth(month.getMonth()), }]
@@ -254,9 +258,8 @@ define(['initialize'], function (initialize) {
                             rows: rows
                         }]
                     });
+
                     // save the file as Excel file with extension xlsx
-
-
                     kendo.saveAs({
                         dataURI: workbook.toDataURL(),
                         fileName: "logbook-kinerja-dokter" + $scope.item.pegawai.namaLengkap + "-periode=" + dateHelper.toMonth(month.getMonth()) + ".xlsx"
@@ -269,6 +272,7 @@ define(['initialize'], function (initialize) {
                     toastr.info("Tidak ada data");
                     return;
                 }
+
                 ManageSdmNew.getListData("iki-remunerasi/get-detail-pasien-dokter?pegawaiId=" + $scope.item.pegawai.id + "&indikatorId=" + detail.indikatorId + "&produkId=" + detail.produkId + "&tglPelayanan=" + data.tglPelayanan + "&jenisPetugasId=" + detail.jenisPetugasId + "&skor=" + detail.skor).then((res) => {
                     $scope.dataSourceDetailTindakan = new kendo.data.DataSource({
                         data: res.data.data,
@@ -276,7 +280,6 @@ define(['initialize'], function (initialize) {
                     })
                     $scope.popupDetail.open().center();
                 })
-
             }
         }
     ])
