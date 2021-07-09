@@ -46,7 +46,9 @@ define(['initialize'], function (initialize) {
                     });
                     $scope.isRouteLoading = false;
                     $scope.isGridShowed = true;
-                })
+                }, (error) => {
+                    $scope.isRouteLoading = false;
+                });
             };
 
             $scope.data2 = function (dataItem) {

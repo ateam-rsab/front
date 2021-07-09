@@ -3,31 +3,19 @@ define(['initialize'], function (initialize) {
     initialize.controller('LogbookKinerjaDokterCtrl', ['$q', 'ManagePegawai', 'FindPegawai', 'DateHelper', 'FindSdm', 'ModelItem', 'ManageSdm', 'ManageSdmNew', '$state', '$rootScope', '$scope',
         function ($q, managePegawai, findPegawai, dateHelper, findSdm, modelItem, manageSdm, ManageSdmNew, $state, $rootScope, $scope) {
             $scope.item = {};
+            $scope.dataVOloaded = true;
             $scope.isRouteLoading = false;
             $scope.monthly = {
                 start: "year",
                 depth: "year",
                 format: "MMMM yyyy"
             };
-            $scope.grandTotal = 0;
             $scope.dataSource = [];
-            $scope.item.periode = new Date();
+            // $scope.item.periode = new Date();
 
             $scope.columnGrid = [{
-                "field": "tglPelayananFormatted",
-                "title": "Tanggal<br>Pelayanan",
-                "width": "20%"
-            }, {
-                "field": "noCm",
-                "title": "No.<br>Rekam Medis",
-                "width": "20%"
-            }, {
-                "field": "noRegistrasi",
-                "title": "No. Registrasi",
-                "width": "20%"
-            }, {
-                "field": "namaPasien",
-                "title": "Nama Pasien",
+                "field": "namaProduk",
+                "title": "Nama Layanan",
                 "width": "30%"
             }, {
                 "field": "namaRuangan",
@@ -38,14 +26,25 @@ define(['initialize'], function (initialize) {
                 "title": "Jenis Petugas",
                 "width": "20%"
             }, {
-                "field": "namaProduk",
-                "title": "Nama Layanan",
+                "field": "noRegistrasi",
+                "title": "No. Registrasi",
+                "width": "20%"
+            }, {
+                "field": "tglPelayananFormatted",
+                "title": "Tanggal<br>Pelayanan",
+                "width": "20%"
+            }, {
+                "field": "noCm",
+                "title": "No.<br>Rekam Medis",
+                "width": "20%"
+            }, {
+                "field": "namaPasien",
+                "title": "Nama Pasien",
                 "width": "30%"
             }];
 
             let groupJSON = function (xs, key) {
                 return xs.reduce(function (rv, x) {
-                    
                     (rv[x[key]] = rv[x[key]] || []).push(x);
                     return rv;
                 }, {});
@@ -53,7 +52,7 @@ define(['initialize'], function (initialize) {
 
             let getHeaderTable = () => {
                 $scope.headerTable = [];
-                var dt = new Date($scope.item.periode);
+                var dt = new Date();
                 var month = dt.getMonth() + 1;
                 var year = dt.getFullYear();
                 $scope.daysInMonth = new Date(year, month, 0).getDate();
@@ -88,15 +87,21 @@ define(['initialize'], function (initialize) {
             $scope.getDataLogbook = () => {
                 getHeaderTable();
 
+                $scope.isRouteLoading = true;
+
                 if (!$scope.item.pegawai) {
                     toastr.info("Harap pilih pegawai terlebih dahulu");
+                    $scope.isRouteLoading = false;
                     return;
                 }
-                $scope.isRouteLoading = true;
+
                 let dataTemp = [];
                 ManageSdmNew.getListData(`iki-remunerasi/get-logbook-skoring-dokter?bulan=${$scope.item.periode ? dateHelper.toTimeStamp($scope.item.periode) : dateHelper.toTimeStamp(new Date())}&pegawaiId=${$scope.item.pegawai.id}`).then(res => {
                     let periode = new Date($scope.item.periode), bln = periode.getMonth(), thn = periode.getFullYear();
-                    console.log(bln, thn)
+                    // console.log(bln, thn)
+
+                    $scope.grandTotal = 0;
+                    $scope.grandJumlah = 0;
                     for (let i = 0; i < res.data.data.length; i++) {
                         dataTemp.push({
                             namaIndikator: res.data.data[i].namaIndikator,
@@ -116,11 +121,9 @@ define(['initialize'], function (initialize) {
                             dataTemp[i].dataDetail.push({
                                 tgl: ii + 1,
                                 tglPelayanan: `${thn}-${frmtBln}-${frmtDate}`,
-                                jmlLayanan: 0
+                                jmlLayanan: ''
                             })
-
                         }
-
                     }
 
                     for (let i = 0; i < res.data.data.length; i++) {
@@ -133,7 +136,6 @@ define(['initialize'], function (initialize) {
                                     break;
                                 }
                             }
-
                         }
                     }
 
@@ -141,27 +143,34 @@ define(['initialize'], function (initialize) {
                     let groupedJSON = groupJSON(dataTemp, 'namaIndikator');
                     let formattedJSON = Object.keys(groupedJSON).map((key) => [(key), groupedJSON[key]]);
                     let dataGet = [];
-                    
-                    for(let i = 0; i < formattedJSON.length; i++) {
+
+                    for (let i = 0; i < formattedJSON.length; i++) {
                         dataGet.push({
-                            label:formattedJSON[i][0],
+                            label: formattedJSON[i][0],
                             detail: [],
-                            subTotalSkor:0,
+                            subTotalSkor: 0,
                             subJumlah: 0,
                             subSkor: 0
                         })
 
-                        for(let ii = 0; ii < formattedJSON[i][1].length; ii++) {
+                        for (let ii = 0; ii < formattedJSON[i][1].length; ii++) {
                             dataGet[i].detail.push(formattedJSON[i][1][ii]);
-                            dataGet[i].subJumlah += formattedJSON[i][1][ii].totalSkor;
                             dataGet[i].subSkor += formattedJSON[i][1][ii].skor;
+                            dataGet[i].subJumlah += formattedJSON[i][1][ii].jumlah;
                             dataGet[i].subTotalSkor += formattedJSON[i][1][ii].totalSkor;
                         }
+                        dataGet[i].subTotalSkor = parseFloat(dataGet[i].subTotalSkor.toFixed(2));
+
+                        $scope.grandJumlah = dataGet[i].subJumlah + $scope.grandJumlah;
                         $scope.grandTotal = dataGet[i].subTotalSkor + $scope.grandTotal;
-                    }   
+                    }
+                    $scope.grandTotal = parseFloat($scope.grandTotal.toFixed(2));
+
                     $scope.dataSource = dataGet;
                     $scope.isRouteLoading = false;
-                })
+                }, (error) => {
+                    $scope.isRouteLoading = false;
+                });
             }
             // $scope.getDataLogbook();
 
@@ -187,6 +196,7 @@ define(['initialize'], function (initialize) {
                             dataTemp.push(data[i].detail[ii]);
                         }
                     }
+
                     let dataTgl = []
                     for (var i = 0; i < dataTemp.length; i++) {
                         dataTgl = [];
@@ -216,6 +226,7 @@ define(['initialize'], function (initialize) {
                             ]
                         })
                     }
+
                     let month = new Date($scope.item.periode);
                     rows.unshift({
                         cells: [{ value: "Logbook Kinerja " + $scope.item.pegawai.namaLengkap + " Periode " + dateHelper.toMonth(month.getMonth()), }]
@@ -247,9 +258,8 @@ define(['initialize'], function (initialize) {
                             rows: rows
                         }]
                     });
+
                     // save the file as Excel file with extension xlsx
-
-
                     kendo.saveAs({
                         dataURI: workbook.toDataURL(),
                         fileName: "logbook-kinerja-dokter" + $scope.item.pegawai.namaLengkap + "-periode=" + dateHelper.toMonth(month.getMonth()) + ".xlsx"
@@ -258,10 +268,11 @@ define(['initialize'], function (initialize) {
             };
 
             $scope.detailTindakan = (ds, detail, data) => {
-                if(data.jmlLayanan === 0) {
+                if (data.jmlLayanan === "") {
                     toastr.info("Tidak ada data");
                     return;
                 }
+
                 ManageSdmNew.getListData("iki-remunerasi/get-detail-pasien-dokter?pegawaiId=" + $scope.item.pegawai.id + "&indikatorId=" + detail.indikatorId + "&produkId=" + detail.produkId + "&tglPelayanan=" + data.tglPelayanan + "&jenisPetugasId=" + detail.jenisPetugasId + "&skor=" + detail.skor).then((res) => {
                     $scope.dataSourceDetailTindakan = new kendo.data.DataSource({
                         data: res.data.data,
@@ -269,7 +280,6 @@ define(['initialize'], function (initialize) {
                     })
                     $scope.popupDetail.open().center();
                 })
-
             }
         }
     ])

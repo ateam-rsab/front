@@ -177,6 +177,8 @@ define(['initialize'], function (initialize) {
 
                         };
                         // console.log($scope.dataDetailDashboardKinerja);
+                    }, (error) => {
+                        $scope.isRouteLoading = false;
                     });
             }
 
