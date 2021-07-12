@@ -35,6 +35,16 @@ define(['initialize'], function (initialize) {
                     text: "Lihat",
                     template: '<button ng-click="lihatJadwalDokter()" class="k-button k-button-icontext k-grid-upload" href="\\#">Lihat Jadwal Dokter</button>'
                 }],
+                filterable: {
+                    extra: false,
+                    operators: {
+                        string: {
+                            startswith: "Dimulai dengan",
+                            contains: "mengandung kata",
+                            neq: "Tidak mengandung kata"
+                        }
+                    }
+                },
                 pageable: true,
                 scrollable: true,
                 columns: [{
