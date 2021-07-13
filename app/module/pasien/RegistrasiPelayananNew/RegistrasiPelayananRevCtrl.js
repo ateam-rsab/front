@@ -72,6 +72,12 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                     }
                 });
 
+            $scope.resetDataBed = () => {
+                $scope.item.kelas = null;
+                $scope.item.kamar = null;
+                $scope.item.nomorTempatTidur = null;
+            }
+
             function loadPertama() {
 
                 var cacheRegisOnline = cacheHelper.get('CacheRegisOnline');
@@ -238,6 +244,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
              * 1. per bulan April 2021 Kelas VIP A dan VIP B tidak dapat dipilih lagi karena sudah gabung menjadi VIP saja
              */
             $scope.pilihRuangan = function (id) {
+                $scope.resetDataBed();
                 // get ruangan with condition (rawat jalan or rawat inap)
                 if ($scope.model.rawatInap === true) {
                     var ruanganId = id;
@@ -302,7 +309,6 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                         }
                     });
             });
-
 
             $scope.$watch('item.kelompokPasien', function (e) {
                 if (e === undefined) return;

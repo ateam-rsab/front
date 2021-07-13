@@ -3,7 +3,7 @@ define([], function () {
   var baseURLFrontend =
       window.location.hostname === "192.168.12.3"
         ? "http://192.168.12.3"
-        : "http://172.16.3.231",
+        : "http://172.16.10.119",
     portFrontend =
       window.location.hostname === "192.168.12.3" ? "4444" : "4444",
     baseURLPhp = "http://192.168.12.3",
