@@ -405,6 +405,8 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.getDetail = function (data) {
+                $scope.hideLocation();
+
                 if (!$scope.isBebasValidasi) {
                     toastr.warning("Tidak ada akses!");
                     return;

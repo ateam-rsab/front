@@ -67,6 +67,10 @@
         margin: 10px 0;
     }
 
+    md-checkbox.md-checked.green .md-icon {
+        background-color: #38c4b2;
+    }
+
     #wifi-icon {
         color: green;
     }
@@ -187,12 +191,22 @@
                 <!-- <div class="grid_2">
                     <div id="time-part"></div>
                 </div> -->
-                <div class="grid_4" style="margin-top: 20px; text-align: center;">
+
+                <div class="grid_1">
+                    <md-checkbox style="margin-left: 2em; margin-bottom: 2em;" ng-disabled="isNotEditable" name="wfh"
+                        id="wfh" aria-label="wfh" ng-model="data.isWFH" class="green">
+                    </md-checkbox>
+                </div>
+                <div class="grid_3" style="margin-top: 2.25em; text-align: left;">
+                    <strong>Work From Home (WFH)</strong>
+                </div>
+                <!-- <div class="grid_4" style="margin-top: 20px; text-align: center;">
                     <input type="checkbox" class="k-checkbox" name="wfh" id="wfh" ng-model="data.isWFH"
                         ng-disabled="isNotEditable">
                     <label c-label item="item" class="k-checkbox-label" for="wfh">Work From Home (WFH)</label>
-                </div>
-                <div class="grid_2" style="margin-top: 17px; text-align: center;">
+                </div> -->
+
+                <div class="grid_2" style="margin-top: 2em; text-align: center;">
                     <md-button class="md-raised md-primary medium-button" ng-click="savePresensi()"
                         ng-disabled="isDisablePresensi">
                         <span style="margin-right: 5px;">Simpan</span>
