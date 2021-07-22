@@ -2545,6 +2545,10 @@
       "urlDep": "module/Dashboard/DashbboardSDMCtrl"
     },
     {
+      "nameDep": "LogbookSkorDokterCtrl",
+      "urlDep": "module/Dashboard/LogbookSkorDokterCtrl"
+    },
+    {
       "nameDep": "DemoLineChartKendoCtrl",
       "urlDep": "module/Dashboard/DemoLineChartKendoCtrl"
     },

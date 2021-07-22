@@ -14770,6 +14770,26 @@
     ]
   },
   {
+    "name": "LogbookSkorDokter",
+    "url": "/LogbookSkorDokter",
+    "templateurl": "module/Dashboard/LogbookSkorDokter.html",
+    "controller": "LogbookSkorDokterCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      }
+    ]
+  },
+  {
     "name": "DemoLineChart",
     "url": "/DemoLineChart",
     "templateurl": "module/Dashboard/DemoLineChartKendo.html",
