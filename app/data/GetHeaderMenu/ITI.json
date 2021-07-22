@@ -1,5 +1,12 @@
-[{
-    "caption": "SDM",
-    "link": "#/DashbboardSDM",
-    "shortcut": "ctrl+1"
-}]  
+[
+    {
+        "caption": "Logbook Poin",
+        "link": "#/DashbboardSDM",
+        "shortcut": "ctrl+1"
+    },
+    {
+        "caption": "Logbook Skor Dokter",
+        "link": "#/LogbookSkorDokter",
+        "shortcut": "ctrl+1"
+    }
+]

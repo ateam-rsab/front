@@ -96,7 +96,7 @@ define(['initialize'], function (initialize) {
                 }
 
                 let dataTemp = [];
-                ManageSdmNew.getListData(`iki-remunerasi/get-logbook-skoring-dokter?bulan=${$scope.item.periode ? dateHelper.toTimeStamp($scope.item.periode) : dateHelper.toTimeStamp(new Date())}&pegawaiId=${$scope.item.pegawai.id}`).then(res => {
+                ManageSdmNew.getListData(`iki-remunerasi/get-logbook-skoring-dokter-jam-kerja?bulan=${$scope.item.periode ? dateHelper.toTimeStamp($scope.item.periode) : dateHelper.toTimeStamp(new Date())}&pegawaiId=${$scope.item.pegawai.id}`).then(res => {
                     let periode = new Date($scope.item.periode), bln = periode.getMonth(), thn = periode.getFullYear();
                     // console.log(bln, thn)
 
@@ -117,7 +117,7 @@ define(['initialize'], function (initialize) {
                         });
 
                         for (let ii = 0; ii < $scope.daysInMonth; ii++) {
-                            let frmtBln = bln + 1 > 10 ? bln + 1 : '0' + (bln + 1), frmtDate = ii + 1 > 10 ? ii + 1 : '0' + (ii + 1);
+                            let frmtBln = bln + 1 > 9 ? bln + 1 : '0' + (bln + 1), frmtDate = ii + 1 > 9 ? ii + 1 : '0' + (ii + 1);
                             dataTemp[i].dataDetail.push({
                                 tgl: ii + 1,
                                 tglPelayanan: `${thn}-${frmtBln}-${frmtDate}`,
@@ -273,7 +273,7 @@ define(['initialize'], function (initialize) {
                     return;
                 }
 
-                ManageSdmNew.getListData("iki-remunerasi/get-detail-pasien-dokter?pegawaiId=" + $scope.item.pegawai.id + "&indikatorId=" + detail.indikatorId + "&produkId=" + detail.produkId + "&tglPelayanan=" + data.tglPelayanan + "&jenisPetugasId=" + detail.jenisPetugasId + "&skor=" + detail.skor).then((res) => {
+                ManageSdmNew.getListData("iki-remunerasi/get-detail-pasien-dokter-jam-kerja?pegawaiId=" + $scope.item.pegawai.id + "&indikatorId=" + detail.indikatorId + "&produkId=" + detail.produkId + "&tglPelayanan=" + data.tglPelayanan + "&jenisPetugasId=" + detail.jenisPetugasId + "&skor=" + detail.skor).then((res) => {
                     $scope.dataSourceDetailTindakan = new kendo.data.DataSource({
                         data: res.data.data,
                         pageSize: 5
