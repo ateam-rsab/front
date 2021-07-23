@@ -350,8 +350,12 @@
                         "link": "#/SkoringTindakanMedis"
                     },
                     {
-                        "name": "Target dan Capaian Pelayanan",
-                        "link": "#/CapaianTargetPelayanan"
+                        "name": "Target dan Capaian Kelompok Kerja",
+                        "link": "#/TargetCapaianKelompokKerja"
+                    },
+                    {
+                        "name": "Target dan Capaian Dokter",
+                        "link": "#/TargetCapaianDokter"
                     },
                     {
                         "name": "Kontrak Kinerja Individu",
