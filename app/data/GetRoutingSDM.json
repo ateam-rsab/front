@@ -4560,10 +4560,34 @@
     ]
   },
   {
-    "name": "CapaianTargetPelayananCtrl",
-    "url": "/CapaianTargetPelayanan",
-    "templateurl": "module/SDM/Remunerasi/CapaianTargetPelayanan.html",
-    "controller": "CapaianTargetPelayananCtrl",
+    "name": "TargetCapaianKelompokKerjaCtrl",
+    "url": "/TargetCapaianKelompokKerja",
+    "templateurl": "module/SDM/Remunerasi/TargetCapaianKelompokKerja.html",
+    "controller": "TargetCapaianKelompokKerjaCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      }
+    ]
+  },
+  {
+    "name": "TargetCapaianDokterCtrl",
+    "url": "/TargetCapaianDokter",
+    "templateurl": "module/SDM/Remunerasi/TargetCapaianDokter.html",
+    "controller": "TargetCapaianDokterCtrl",
     "deps": [
       {
         "module": "Services",

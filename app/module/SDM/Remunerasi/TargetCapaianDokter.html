@@ -1,0 +1,53 @@
+<div>
+    <div ng-show="dataVOloaded">
+        <md-toolbar md-scroll-shrink class="shadow">
+            <div class="md-toolbar-tools">Target dan Capaian Dokter</div>
+        </md-toolbar>
+        <div class="panel panel-default container_12">
+            <div class="panel-body">
+                <div>
+                    <div class="grid_2">
+                        <label><b>Periode</b></label>
+                        <input kendo-date-picker k-max="now" k-ng-model="item.periode" style="width: 100%"
+                            k-options="yearSelected" />
+                    </div>
+                    <div class="grid_1" style="margin-top:5px">
+                        <label c-label c-label-text=""></label>
+                        <md-button class="md-raised md-primary medium-button" ng-click="cari()">
+                            <span>Cari</span>
+                        </md-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid_12 containerBorderBox">
+            <div kendo-grid id="kGrid" options="gridTargetLayanan" data-source="dataSourceTargetLayanan"
+                k-groupable="'true'" k-selectable="'row'" k-pageable="'true'" k-sortable="'true'">
+                <div k-detail-template>
+                    <kendo-tabstrip>
+                        <div>
+                            <div id="kGridDetail" kendo-grid k-options="data2(dataItem)" k-sortable="'true'"
+                                k-selectable="'row'" k-ng-model="dataSelected2" ng-click="klikDetail(dataSelected2)">
+                            </div>
+                        </div>
+                    </kendo-tabstrip>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+
+<style>
+    .k-grid .k-grid-header .k-header .k-link {
+        height: auto;
+    }
+
+    .k-grid .k-grid-header .k-header {
+        white-space: normal;
+    }
+
+    .k-grid .k-grid-header .k-header {
+        text-align: center;
+    }
+</style>
