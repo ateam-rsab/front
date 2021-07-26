@@ -805,8 +805,8 @@
       "urlDep": "module/SDM/Remunerasi/TargetPelayananJamKerjaCtrl"
     },
     {
-      "nameDep": "TargetCapaianDokterCtrl",
-      "urlDep": "module/SDM/Remunerasi/TargetCapaianDokterCtrl"
+      "nameDep": "TargetPelayananLuarJamKerjaCtrl",
+      "urlDep": "module/SDM/Remunerasi/TargetPelayananLuarJamKerjaCtrl"
     },
     {
       "nameDep": "MonitoringPoinDokterCtrl",

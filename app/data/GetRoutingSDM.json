@@ -4584,10 +4584,10 @@
     ]
   },
   {
-    "name": "TargetCapaianDokterCtrl",
-    "url": "/TargetCapaianDokter",
-    "templateurl": "module/SDM/Remunerasi/TargetCapaianDokter.html",
-    "controller": "TargetCapaianDokterCtrl",
+    "name": "TargetPelayananLuarJamKerjaCtrl",
+    "url": "/TargetPelayananLuarJamKerja",
+    "templateurl": "module/SDM/Remunerasi/TargetPelayananLuarJamKerja.html",
+    "controller": "TargetPelayananLuarJamKerjaCtrl",
     "deps": [
       {
         "module": "Services",
