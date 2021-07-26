@@ -13,6 +13,15 @@ define(['initialize'], function (initialize) {
             $scope.dataSourceDJK = [];
             $scope.dataSourceLJK = [];
 
+            $scope.isIT = true;
+            var userLogin = JSON.parse(localStorage.getItem('datauserlogin'));
+            if (userLogin.id === 28253) {
+                $scope.isIT = false;
+            } else {
+                $scope.isIT = true;
+            }
+            $scope.item.pegawai = modelItem.getPegawai();
+
             $scope.columnGrid = [{
                 "field": "namaProduk",
                 "title": "Nama Layanan",
