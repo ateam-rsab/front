@@ -4560,10 +4560,10 @@
     ]
   },
   {
-    "name": "TargetCapaianKelompokKerjaCtrl",
-    "url": "/TargetCapaianKelompokKerja",
-    "templateurl": "module/SDM/Remunerasi/TargetCapaianKelompokKerja.html",
-    "controller": "TargetCapaianKelompokKerjaCtrl",
+    "name": "TargetPelayananJamKerjaCtrl",
+    "url": "/TargetPelayananJamKerja",
+    "templateurl": "module/SDM/Remunerasi/TargetPelayananJamKerja.html",
+    "controller": "TargetPelayananJamKerjaCtrl",
     "deps": [
       {
         "module": "Services",
@@ -4584,10 +4584,10 @@
     ]
   },
   {
-    "name": "TargetCapaianDokterCtrl",
-    "url": "/TargetCapaianDokter",
-    "templateurl": "module/SDM/Remunerasi/TargetCapaianDokter.html",
-    "controller": "TargetCapaianDokterCtrl",
+    "name": "TargetPelayananLuarJamKerjaCtrl",
+    "url": "/TargetPelayananLuarJamKerja",
+    "templateurl": "module/SDM/Remunerasi/TargetPelayananLuarJamKerja.html",
+    "controller": "TargetPelayananLuarJamKerjaCtrl",
     "deps": [
       {
         "module": "Services",

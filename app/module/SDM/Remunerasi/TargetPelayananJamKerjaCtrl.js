@@ -1,6 +1,6 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('TargetCapaianDokterCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm', 'ManageSdmNew', 'DateHelper', 'FindPegawai', 'FindSdm', '$timeout', '$mdDialog',
+    initialize.controller('TargetPelayananJamKerjaCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm', 'ManageSdmNew', 'DateHelper', 'FindPegawai', 'FindSdm', '$timeout', '$mdDialog',
         function ($q, $rootScope, $scope, ModelItem, $state, ManageSdm, ManageSdmNew, dateHelper, FindPegawai, FindSdm, $timeout, $mdDialog) {
             $scope.item = {};
             $scope.dataVOloaded = true;
@@ -21,12 +21,8 @@ define(['initialize'], function (initialize) {
                     title: "Indikator",
                     width: "60px",
                 }, {
-                    field: "namaLengkap",
-                    title: "Dokter",
-                    width: "60px",
-                }, {
-                    field: "namaJabatan",
-                    title: "Jabatan",
+                    field: "namaKelompokKerja",
+                    title: "Kelompok Kerja",
                     width: "60px",
                 }]
             };
@@ -34,21 +30,18 @@ define(['initialize'], function (initialize) {
             $scope.cari = function () {
                 $scope.isGridShowed = false;
                 $scope.isRouteLoading = true;
-                ManageSdmNew.getListData("iki-remunerasi/get-all-target-dan-capaian-layanan-luar-jam-kerja?periode=" + dateHelper.getFormatMonthPicker($scope.item.periode)).then(function (data) {
+                ManageSdmNew.getListData("iki-remunerasi/get-all-target-dan-capaian-layanan-jam-kerja?periode=" + dateHelper.getFormatMonthPicker($scope.item.periode)).then(function (data) {
 
                     for (let i = 0; i < data.data.data.length; i++) {
                         data.data.data[i].detailIndikator = data.data.data[i].indikator.detailIndikator;
-                        data.data.data[i].namaLengkap = data.data.data[i].pegawai.namaLengkap;
-                        data.data.data[i].namaJabatan = data.data.data[i].jabatan.namaJabatan;
+                        data.data.data[i].namaKelompokKerja = data.data.data[i].kelompokKerja.name;
                     }
 
                     $scope.dataSourceTargetLayanan = new kendo.data.DataSource({
                         data: data.data.data,
                         pageSize: 20,
                         group: [{
-                            field: "namaLengkap"
-                        }, {
-                            field: "namaJabatan"
+                            field: "namaKelompokKerja"
                         }],
                     });
                     $scope.isRouteLoading = false;
