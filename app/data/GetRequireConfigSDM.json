@@ -801,8 +801,8 @@
       "urlDep": "module/SDM/Remunerasi/IndeksKinerjaIndividuCtrl"
     },
     {
-      "nameDep": "TargetCapaianKelompokKerjaCtrl",
-      "urlDep": "module/SDM/Remunerasi/TargetCapaianKelompokKerjaCtrl"
+      "nameDep": "TargetPelayananJamKerjaCtrl",
+      "urlDep": "module/SDM/Remunerasi/TargetPelayananJamKerjaCtrl"
     },
     {
       "nameDep": "TargetCapaianDokterCtrl",

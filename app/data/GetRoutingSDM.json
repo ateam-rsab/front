@@ -4560,10 +4560,10 @@
     ]
   },
   {
-    "name": "TargetCapaianKelompokKerjaCtrl",
-    "url": "/TargetCapaianKelompokKerja",
-    "templateurl": "module/SDM/Remunerasi/TargetCapaianKelompokKerja.html",
-    "controller": "TargetCapaianKelompokKerjaCtrl",
+    "name": "TargetPelayananJamKerjaCtrl",
+    "url": "/TargetPelayananJamKerja",
+    "templateurl": "module/SDM/Remunerasi/TargetPelayananJamKerja.html",
+    "controller": "TargetPelayananJamKerjaCtrl",
     "deps": [
       {
         "module": "Services",
