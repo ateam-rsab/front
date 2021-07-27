@@ -244,7 +244,7 @@ define(['initialize'], function (initialize) {
 
             $scope.simpanData = () => {
                 let dataSave = {
-                    namaKegiatan: $scope.item.namaKegiatan,
+                    namaKegiatan: $scope.item.namaKegiatan ? $scope.item.namaKegiatan : $scope.labelData,
                     capaian: $scope.item.hasilKegiatan,
                     catatan: $scope.item.catatanKegiatan,
                     statusVerifikasi: false,
