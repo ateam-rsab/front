@@ -117,6 +117,7 @@ define(['initialize'], function (initialize) {
 
                 if ($scope.item.jabatan && !$scope.item.jabatan.isCariAkses) {
                     toastr.warning("Tidak ada akses untuk menampilkan data", "Peringatan")
+                    $scope.isRouteLoading = false;
                     return
                 }
 
