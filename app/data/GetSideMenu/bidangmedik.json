@@ -207,6 +207,10 @@
             {
                 "name": "Verifikasi Catatan Kegiatan Harian",
                 "link": "#/VerifikasiCatatanKegiatanHarian"
+            },
+            {
+                "name": "Logbook Kinerja Dokter",
+                "link": "#/LogbookKinerjaDokter"
             }
         ]
     },

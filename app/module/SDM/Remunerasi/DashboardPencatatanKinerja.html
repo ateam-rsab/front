@@ -273,7 +273,7 @@
             <md-card-body style="padding: 10px;">
                 <h5>{{labelData}}</h5>
                 <div class="grid_12">
-                    <div class="grid_12">
+                    <div class="grid_12" ng-show="!showInputHasil">
                         <label><strong>Kegiatan</strong></label>
                         <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaKegiatan" />
                     </div>

@@ -13,6 +13,8 @@ define(['initialize'], function (initialize) {
             $scope.dataSource = [];
             // $scope.item.periode = new Date();
 
+            $scope.pegawaiLogin = modelItem.getPegawai();
+
             $scope.columnGrid = [{
                 "field": "namaProduk",
                 "title": "Nama Layanan",
@@ -77,7 +79,7 @@ define(['initialize'], function (initialize) {
             }
 
             let init = () => {
-                ManageSdmNew.getListData(`service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled,namaLengkap&values=true,!'-'&order=namaLengkap:asc`).then(res => {
+                ManageSdmNew.getListData(`iki-remunerasi/get-akses-pegawai-verifikasi-logbook-dokter?pegawaiId=` + $scope.pegawaiLogin.id).then(res => {
                     $scope.listPegawai = res.data;
                 })
                 getHeaderTable();
@@ -280,6 +282,33 @@ define(['initialize'], function (initialize) {
                     })
                     $scope.popupDetail.open().center();
                 })
+            }
+
+            $scope.Verify = function () {
+                $scope.isRouteLoading = true;
+
+                if (!$scope.item.pegawai.isVerifAkses) {
+                    toastr.warning("Tidak memiliki akses", "Peringatan")
+                    $scope.isRouteLoading = false
+                    return
+                }
+
+                var dataSend = {
+                    "bulan": dateHelper.toTimeStamp($scope.item.periode),
+                    "capaian": $scope.grandTotal,
+                    "pegawai": {
+                        "id": $scope.item.pegawai.id
+                    },
+                    "indikatorKinerja": {
+                        "id": 466 //indikator jumlah pelayanan medis di jam kerja
+                    }
+                }
+
+                ManageSdmNew.saveData(dataSend, "iki-remunerasi/verifikasi-logbook-dokter").then(function (e) {
+                    $scope.isRouteLoading = false;
+                }, (error) => {
+                    $scope.isRouteLoading = false;
+                });
             }
         }
     ])

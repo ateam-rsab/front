@@ -1,11 +1,11 @@
 [
     {
-        "caption": "Logbook Poin",
+        "caption": "Logbook Dokter (Poin)",
         "link": "#/DashbboardSDM",
         "shortcut": "ctrl+1"
     },
     {
-        "caption": "Logbook Skor Dokter",
+        "caption": "Logbook Dokter (Skor)",
         "link": "#/LogbookSkorDokter",
         "shortcut": "ctrl+1"
     }

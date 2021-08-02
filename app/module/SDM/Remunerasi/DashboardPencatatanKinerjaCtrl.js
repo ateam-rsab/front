@@ -117,6 +117,7 @@ define(['initialize'], function (initialize) {
 
                 if ($scope.item.jabatan && !$scope.item.jabatan.isCariAkses) {
                     toastr.warning("Tidak ada akses untuk menampilkan data", "Peringatan")
+                    $scope.isRouteLoading = false;
                     return
                 }
 
@@ -244,7 +245,7 @@ define(['initialize'], function (initialize) {
 
             $scope.simpanData = () => {
                 let dataSave = {
-                    namaKegiatan: $scope.item.namaKegiatan,
+                    namaKegiatan: $scope.item.namaKegiatan ? $scope.item.namaKegiatan : $scope.labelData,
                     capaian: $scope.item.hasilKegiatan,
                     catatan: $scope.item.catatanKegiatan,
                     statusVerifikasi: false,

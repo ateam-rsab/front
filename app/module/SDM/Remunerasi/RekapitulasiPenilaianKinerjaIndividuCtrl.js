@@ -14,7 +14,7 @@ define(['initialize'], function (initialize) {
                     text: "export",
                     name: "Export detail",
                     template: '<button ng-click="exportExcel()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
-                },],
+                }],
                 pageable: true,
                 scrollable: true,
                 columns: [{
@@ -163,30 +163,14 @@ define(['initialize'], function (initialize) {
             $scope.exportExcel = function () {
                 let periode = dateHelper.toMonth(new Date($scope.item.bulan).getMonth());
                 let tahun = new Date($scope.item.bulan).getFullYear();
-                console.log(periode)
+                // console.log(periode)
                 let tempDataExport = [];
                 let rows = []
-                // var rows = [{
-                //     cells: [
-                //         { value: "Unit Kerja" },
-                //         { value: "Sub Unit Kerja" },
-                //         { value: "Nama Pegawai" },
-
-                //         { value: "Kualitas" },
-                //         { value: "Kuantitas" },
-                //         { value: "Perilaku" },
-
-                //         { value: "IKI" },
-                //         { value: "Kriteria" },
-                //         { value: "P1" },
-                //         { value: "P2" },
-                //     ]
-                // }];
 
                 tempDataExport = $scope.dataSource;
                 tempDataExport.fetch(function () {
                     var data = this.data();
-                    console.log(data);
+                    // console.log(data);
                     for (var i = 0; i < data.length; i++) {
                         //push single row for every record
                         rows.push({
@@ -194,7 +178,6 @@ define(['initialize'], function (initialize) {
                                 { value: data[i].unitKerja },
                                 { value: data[i].subunitKerja },
                                 { value: data[i].namaLengkap },
-
                                 { value: data[i].bobotKuantitas },
                                 { value: data[i].hasilKuantitas },
                                 { value: data[i].bobotKualitas },
@@ -210,322 +193,289 @@ define(['initialize'], function (initialize) {
                     }
                     var workbook = new kendo.ooxml.Workbook({
                         sheets: [{
-                            // freezePane: {
-                            //     rowSplit: 1
-                            // },
                             mergedCells: [
                                 "A1:K1", "L1:M1", "A2:A3", "B2:B3", "C2:C3", "D2:E2", "F2:G2", "H2:I2", "J2:J3", "K2:K3", "L2:L3", "M2:M3"
                             ],
-                            columns: [
-                                // Column settings (width)
-                                {
-                                    autoWidth: true
-                                },
-                                {
-                                    autoWidth: true
-                                },
-                                {
-                                    autoWidth: true
-                                },
-                                {
-                                    autoWidth: true
-                                },
-                                {
-                                    autoWidth: true
-                                },
-                                {
-                                    autoWidth: true
-                                },
-                                {
-                                    autoWidth: true
-                                },
-                                {
-                                    autoWidth: true
-                                },
-                                {
-                                    autoWidth: true
-                                },
-                                {
-                                    autoWidth: true
-                                },
-                                {
-                                    autoWidth: true
-                                },
-                                {
-                                    autoWidth: true
-                                },
-                                {
-                                    autoWidth: true
-                                }, {
-                                    autoWidth: true
-                                },
-                                {
-                                    autoWidth: true
-                                },
-                                {
-                                    autoWidth: true
-                                },
-                                {
-                                    autoWidth: true
-                                },
-                                {
-                                    autoWidth: true
-                                },
-                                {
-                                    autoWidth: true
-                                },
-                                {
-                                    autoWidth: true
-                                },
-                                {
-                                    autoWidth: true
-                                },
-                                {
-                                    autoWidth: true
-                                },
-                                {
-                                    autoWidth: true
-                                },
-                                {
-                                    autoWidth: true
-                                },
-                                {
-                                    autoWidth: true
-                                }
-                            ],
+                            // Column settings (width)
+                            columns: [{
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }, {
+                                autoWidth: true
+                            }],
                             // Title of the sheet
                             title: "Rekapitulasi Penilaian Kinerja Individu",
                             // Rows of the sheet
-                            rows: [
-                                {
-                                    cells: [
-                                        {
-                                            value: "Periode " + periode + " " + tahun,
-                                            fontSize: 20,
-                                        }, {
-                                            value: `${dateHelper.formatDate(new Date(), "DD-MM-YYYY")}`,
-                                            fontSize: 10,
-                                            textAlign: "center",
-                                            index: 11,
-                                        },
-                                    ],
-                                },
-                                {
-                                cells: [
-                                    {
-                                        value: "Unit Kerja",
-                                        textAlign: "center",
-                                        verticalAlign: "center",
-                                        background: "#d3e0ea",
-                                        borderRight: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                        borderTop: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                        borderLeft: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                        borderBottom: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                    }, {
-                                        value: "Sub Unit Kerja",
-                                        textAlign: "center",
-                                        verticalAlign: "center",
-                                        background: "#d3e0ea",
-                                        borderRight: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                        borderTop: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                        borderLeft: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                        borderBottom: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                    }, {
-                                        value: "Nama Pegawai",
-                                        textAlign: "center",
-                                        verticalAlign: "center",
-                                        background: "#d3e0ea",
-                                        borderRight: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                        borderTop: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                        borderLeft: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                        borderBottom: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                    }, {
-                                        value: "Kuantitas",
-                                        textAlign: "center",
-                                        verticalAlign: "center",
-                                        background: "#d3e0ea",
-                                        index: 3,
-                                        borderRight: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                        borderTop: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                        borderLeft: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                        borderBottom: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                    }, {
-                                        value: "Kualitas",
-                                        textAlign: "center",
-                                        index: 5,
-                                        verticalAlign: "center",
-                                        background: "#d3e0ea",
-                                        borderRight: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                        borderTop: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                        borderLeft: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                        borderBottom: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                    }, {
-                                        value: "Perilaku",
-                                        textAlign: "center",
-                                        verticalAlign: "center",
-                                        index: 7,
-                                        background: "#d3e0ea",
-                                        borderRight: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                        borderTop: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                        borderLeft: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                        borderBottom: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                    }, {
-                                        value: "IKI",
-                                        textAlign: "center",
-                                        background: "#d3e0ea",
-                                        index: 9,
-                                        borderRight: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                        borderTop: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                        borderLeft: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                        borderBottom: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                    }, {
-                                        value: "Kriteria",
-                                        index: 10,
-                                        textAlign: "center",
-                                        background: "#d3e0ea",
-                                        borderRight: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                        borderTop: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                        borderLeft: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                        borderBottom: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                    }, {
-                                        value: "P1",
-                                        textAlign: "center",
-                                        background: "#d3e0ea",
-                                        index: 11,
-                                        borderRight: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                        borderTop: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                        borderLeft: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                        borderBottom: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                    }, {
-                                        value: "P2",
-                                        textAlign: "center",
-                                        background: "#d3e0ea",
-                                        index: 12,
-                                        borderRight: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                        borderTop: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                        borderLeft: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                        borderBottom: {
-                                            color: "#f2f2f2f",
-                                            size: 1
-                                        },
-                                    },]
+                            rows: [{
+                                cells: [{
+                                    value: "Periode " + periode + " " + tahun,
+                                    fontSize: 20,
+                                }, {
+                                    value: `${dateHelper.formatDate(new Date(), "DD-MM-YYYY")}`,
+                                    fontSize: 10,
+                                    textAlign: "center",
+                                    index: 11,
+                                }],
+                            }, {
+                                cells: [{
+                                    value: "Unit Kerja",
+                                    textAlign: "center",
+                                    verticalAlign: "center",
+                                    background: "#d3e0ea",
+                                    borderRight: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderTop: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderLeft: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderBottom: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    }
+                                }, {
+                                    value: "Sub Unit Kerja",
+                                    textAlign: "center",
+                                    verticalAlign: "center",
+                                    background: "#d3e0ea",
+                                    borderRight: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderTop: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderLeft: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderBottom: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    }
+                                }, {
+                                    value: "Nama Pegawai",
+                                    textAlign: "center",
+                                    verticalAlign: "center",
+                                    background: "#d3e0ea",
+                                    borderRight: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderTop: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderLeft: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderBottom: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    }
+                                }, {
+                                    value: "Kuantitas",
+                                    textAlign: "center",
+                                    verticalAlign: "center",
+                                    background: "#d3e0ea",
+                                    index: 3,
+                                    borderRight: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderTop: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderLeft: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderBottom: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    }
+                                }, {
+                                    value: "Kualitas",
+                                    textAlign: "center",
+                                    index: 5,
+                                    verticalAlign: "center",
+                                    background: "#d3e0ea",
+                                    borderRight: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderTop: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderLeft: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderBottom: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    }
+                                }, {
+                                    value: "Perilaku",
+                                    textAlign: "center",
+                                    verticalAlign: "center",
+                                    index: 7,
+                                    background: "#d3e0ea",
+                                    borderRight: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderTop: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderLeft: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderBottom: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    }
+                                }, {
+                                    value: "IKI",
+                                    textAlign: "center",
+                                    background: "#d3e0ea",
+                                    index: 9,
+                                    borderRight: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderTop: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderLeft: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderBottom: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    }
+                                }, {
+                                    value: "Kriteria",
+                                    index: 10,
+                                    textAlign: "center",
+                                    background: "#d3e0ea",
+                                    borderRight: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderTop: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderLeft: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderBottom: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    }
+                                }, {
+                                    value: "P1",
+                                    textAlign: "center",
+                                    background: "#d3e0ea",
+                                    index: 11,
+                                    borderRight: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderTop: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderLeft: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderBottom: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    }
+                                }, {
+                                    value: "P2",
+                                    textAlign: "center",
+                                    background: "#d3e0ea",
+                                    index: 12,
+                                    borderRight: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderTop: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderLeft: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    },
+                                    borderBottom: {
+                                        color: "#f2f2f2f",
+                                        size: 1
+                                    }
+                                }]
                             }, {
                                 cells: [{
                                     value: "Bobot (%)",
@@ -548,7 +498,7 @@ define(['initialize'], function (initialize) {
                                     borderBottom: {
                                         color: "#f2f2f2f",
                                         size: 1
-                                    },
+                                    }
                                 }, {
                                     value: "Hasil (%)",
                                     textAlign: "center",
@@ -570,7 +520,7 @@ define(['initialize'], function (initialize) {
                                     borderBottom: {
                                         color: "#f2f2f2f",
                                         size: 1
-                                    },
+                                    }
                                 }, {
                                     value: "Bobot (%)",
                                     textAlign: "center",
@@ -592,7 +542,7 @@ define(['initialize'], function (initialize) {
                                     borderBottom: {
                                         color: "#f2f2f2f",
                                         size: 1
-                                    },
+                                    }
                                 }, {
                                     value: "Hasil (%)",
                                     textAlign: "center",
@@ -614,7 +564,7 @@ define(['initialize'], function (initialize) {
                                     borderBottom: {
                                         color: "#f2f2f2f",
                                         size: 1
-                                    },
+                                    }
                                 }, {
                                     value: "Bobot (%)",
                                     textAlign: "center",
@@ -636,7 +586,7 @@ define(['initialize'], function (initialize) {
                                     borderBottom: {
                                         color: "#f2f2f2f",
                                         size: 1
-                                    },
+                                    }
                                 }, {
                                     value: "Hasil (%)",
                                     textAlign: "center",
@@ -658,13 +608,13 @@ define(['initialize'], function (initialize) {
                                     borderBottom: {
                                         color: "#f2f2f2f",
                                         size: 1
-                                    },
-                                },]
+                                    }
+                                }]
                             }, ...rows]
                         }]
                     });
                     //save the file as Excel file with extension xlsx
-                    kendo.saveAs({ dataURI: workbook.toDataURL(), fileName: "rekapitulasi-penilaian-kinerja-individu-periode-"+ periode +"-"+ tahun +"(" + dateHelper.formatDate(new Date(), "DDMMYYYY") + ").xlsx" });
+                    kendo.saveAs({ dataURI: workbook.toDataURL(), fileName: "rekapitulasi-penilaian-kinerja-individu-periode-" + periode + "-" + tahun + "(" + dateHelper.formatDate(new Date(), "DDMMYYYY") + ").xlsx" });
                 });
 
             }

@@ -44,6 +44,10 @@
         cursor: pointer;
     }
 
+    table.table-custom thead {
+        position: sticky;
+    }
+
     table.table-custom thead th {
         background-color: #3d3d3d;
         table-layout: fixed;
@@ -91,7 +95,8 @@
         <div class="grid_4">
             <label><b>Pegawai</b></label>
             <input kendo-combo-box k-ng-model="item.pegawai" k-data-value-field="'id'" k-data-text-field="'namaLengkap'"
-                k-filter="'contains'" k-auto-bind="true" k-data-source="listPegawai" style="width:100%" />
+                k-filter="'contains'" k-auto-bind="true" k-data-source="listPegawai" style="width:100%"
+                ng-disabled="isIT" />
         </div>
         <div class="grid_1" style="margin-top:22px">
             <md-button class="md-raised md-primary medium-button" ng-click="getDataLogbook()">

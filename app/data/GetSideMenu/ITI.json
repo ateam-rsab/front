@@ -2521,6 +2521,10 @@
                 "link": "#/VerifikasiUraianTugasPegawaiLogin"
             },
             {
+                "name": "Logbook Kinerja Dokter",
+                "link": "#/LogbookKinerjaDokter"
+            },
+            {
                 "name": "Pengajuan Pelatihan",
                 "children": [
                     {
