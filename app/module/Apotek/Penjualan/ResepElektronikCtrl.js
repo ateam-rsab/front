@@ -151,10 +151,10 @@ define(['initialize'], function (initialize) {
                 $state.go('DashboardResepElektronik');
             }
 
-            $scope.item.namaDept = {
-                namaRuangan: 'Instalasi Rawat Jalan',
-                id: 18
-            }
+            // $scope.item.namaDept = {
+            //     namaRuangan: 'Instalasi Rawat Jalan',
+            //     id: 18
+            // }
 
             LoadCache();
             function LoadCache() {

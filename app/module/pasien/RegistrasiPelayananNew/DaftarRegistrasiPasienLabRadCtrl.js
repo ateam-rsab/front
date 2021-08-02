@@ -213,7 +213,7 @@ define(["initialize"], function (initialize) {
 
         window.open(
           "http://172.16.44.33:7777/service-reporting/cetak-sep/" +
-            dataItem.norec,
+          dataItem.norec,
           "_blank",
           "fullscreen=yes"
         );
@@ -275,17 +275,17 @@ define(["initialize"], function (initialize) {
         $q.all([
           manageTataRekening.getDataTableTransaksi(
             "lab-radiologi/get-daftar-registrasi-pasien?" +
-              "tglAwal=" +
-              tglAwal +
-              "&tglAkhir=" +
-              tglAkhir +
-              reg +
-              rm +
-              nm +
-              ins +
-              rg +
-              kp +
-              dk
+            "tglAwal=" +
+            tglAwal +
+            "&tglAkhir=" +
+            tglAkhir +
+            reg +
+            rm +
+            nm +
+            ins +
+            rg +
+            kp +
+            dk
           ),
         ]).then(function (data) {
           $scope.isRouteLoading = false;
@@ -416,7 +416,7 @@ define(["initialize"], function (initialize) {
           manageTataRekening
             .getDataTableTransaksi(
               "operator/identifikasi-kartu-pasien?norec_pd=" +
-                $scope.dataPasienSelected.norec
+              $scope.dataPasienSelected.norec
             )
             .then(function (data) {
               var datas = data.data;
@@ -430,8 +430,8 @@ define(["initialize"], function (initialize) {
           var client = new HttpClient();
           client.get(
             "http://127.0.0.1:1237/printvb/Pendaftaran?cetak-kartupasien=1&norec=" +
-              $scope.dataPasienSelected.nocmfk +
-              "&view=false",
+            $scope.dataPasienSelected.nocmfk +
+            "&view=false",
             function (response) {
               // do something with response
             }
@@ -511,7 +511,7 @@ define(["initialize"], function (initialize) {
           };
           manageTataRekening
             .postJurnalAkuntansi(objSave)
-            .then(function (data) {});
+            .then(function (data) { });
           var obj = {
             noRegistrasi: $scope.dataPasienSelected.noregistrasi,
           };
@@ -571,11 +571,11 @@ define(["initialize"], function (initialize) {
         var client = new HttpClient();
         client.get(
           "http://127.0.0.1:1237/printvb/kasir?cetak-kip-pasien=1&noregistrasi=" +
-            noReg +
-            "&strIdPegawai=" +
-            $scope.dataLogin.namaLengkap +
-            "&view=" +
-            stt,
+          noReg +
+          "&strIdPegawai=" +
+          $scope.dataLogin.namaLengkap +
+          "&view=" +
+          stt,
           function (response) {
             // do something with response
           }
@@ -613,9 +613,9 @@ define(["initialize"], function (initialize) {
             manageTataRekening
               .getDataTableTransaksi(
                 "operator/identifikasi-label?norec_pd=" +
-                  $scope.dataPasienSelected.norec +
-                  "&islabel=" +
-                  qtyhasil
+                $scope.dataPasienSelected.norec +
+                "&islabel=" +
+                qtyhasil
               )
               .then(function (data) {
                 var datas = data.data;
@@ -625,9 +625,9 @@ define(["initialize"], function (initialize) {
             var client = new HttpClient();
             client.get(
               "http://127.0.0.1:1237/printvb/Pendaftaran?cetak-labelpasien=1&norec=" +
-                $scope.dataPasienSelected.noregistrasi +
-                "&view=false&qty=" +
-                qty,
+              $scope.dataPasienSelected.noregistrasi +
+              "&view=false&qty=" +
+              qty,
               function (response) {
                 // do something with response
               }
@@ -648,7 +648,7 @@ define(["initialize"], function (initialize) {
           manageTataRekening
             .getDataTableTransaksi(
               "operator/identifikasi-sum-list?norec_pd=" +
-                $scope.dataPasienSelected.norec
+              $scope.dataPasienSelected.norec
             )
             .then(function (data) {
               var datas = data.data;
@@ -658,8 +658,8 @@ define(["initialize"], function (initialize) {
           var client = new HttpClient();
           client.get(
             "http://127.0.0.1:1237/printvb/Pendaftaran?cetak-summarylist=1&norec=" +
-              $scope.dataPasienSelected.nocm +
-              "&view=false",
+            $scope.dataPasienSelected.nocm +
+            "&view=false",
             function (response) {
               // do something with response
             }
@@ -671,7 +671,7 @@ define(["initialize"], function (initialize) {
         if ($scope.dataPasienSelected.nocmfk != undefined) {
           var fixUrlLaporan = cetakHelper.open(
             "registrasi-pelayanan/gelangPasien?id=" +
-              $scope.dataPasienSelected.nocmfk
+            $scope.dataPasienSelected.nocmfk
           );
           window.open(fixUrlLaporan, "", "width=800,height=600");
         }
@@ -686,7 +686,7 @@ define(["initialize"], function (initialize) {
           manageTataRekening
             .getDataTableTransaksi(
               "operator/identifikasi-tracer?norec_pd=" +
-                $scope.dataPasienSelected.norec
+              $scope.dataPasienSelected.norec
             )
             .then(function (data) {
               var datas = data.data;
@@ -697,8 +697,8 @@ define(["initialize"], function (initialize) {
           var client = new HttpClient();
           client.get(
             "http://127.0.0.1:1237/printvb/Pendaftaran?cetak-tracer=1&norec=" +
-              $scope.dataPasienSelected.noregistrasi +
-              "&view=false",
+            $scope.dataPasienSelected.noregistrasi +
+            "&view=false",
             function (response) {
               // do something with response
             }
@@ -719,7 +719,7 @@ define(["initialize"], function (initialize) {
           manageTataRekening
             .getDataTableTransaksi(
               "operator/identifikasi-sep?norec_pd=" +
-                $scope.dataPasienSelected.norec
+              $scope.dataPasienSelected.norec
             )
             .then(function (data) {
               var datas = data.data;
@@ -731,8 +731,8 @@ define(["initialize"], function (initialize) {
           var client = new HttpClient();
           client.get(
             "http://127.0.0.1:1237/printvb/Pendaftaran?cetak-sep-new=1&norec=" +
-              $scope.dataPasienSelected.noregistrasi +
-              "&view=false",
+            $scope.dataPasienSelected.noregistrasi +
+            "&view=false",
             function (response) {
               // do something with response
             }
@@ -838,7 +838,7 @@ define(["initialize"], function (initialize) {
                 manageTataRekening
                   .getDataTableTransaksi(
                     "operator/identifikasi-rmk?norec_pd=" +
-                      $scope.dataPasienSelected.norec
+                    $scope.dataPasienSelected.norec
                   )
                   .then(function (data) {
                     var datas = data.data;
@@ -848,9 +848,9 @@ define(["initialize"], function (initialize) {
                 var client = new HttpClient();
                 client.get(
                   "http://127.0.0.1:1237/printvb/Pendaftaran?cetak-lembarmasukkeluar-byNorec=1&norec=" +
-                    dataDiagnosa.norec_apd +
-                    "&view=false",
-                  function (response) {}
+                  dataDiagnosa.norec_apd +
+                  "&view=false",
+                  function (response) { }
                 );
                 // $scope.cetakBro();
               });
@@ -862,7 +862,7 @@ define(["initialize"], function (initialize) {
         $scope.icd10.close();
       };
 
-      $scope.cetakBro = function () {};
+      $scope.cetakBro = function () { };
 
       $scope.BatalPeriksa = function () {
         var norReg = "";
@@ -972,9 +972,9 @@ define(["initialize"], function (initialize) {
           manageTataRekening
             .getDataTableTransaksi(
               "registrasipasien/get-apd?noregistrasi=" +
-                $scope.dataPasienSelected.noregistrasi +
-                "&objectruanganlastfk=" +
-                $scope.dataPasienSelected.objectruanganlastfk
+              $scope.dataPasienSelected.noregistrasi +
+              "&objectruanganlastfk=" +
+              $scope.dataPasienSelected.objectruanganlastfk
             )
             .then(function (data) {
               var dataAntrian = data.data.data[0];
@@ -1000,7 +1000,7 @@ define(["initialize"], function (initialize) {
           manageTataRekening
             .getDataTableTransaksi(
               "registrasipasien/get-apd?noregistrasi=" +
-                $scope.dataPasienSelected.noregistrasi
+              $scope.dataPasienSelected.noregistrasi
             )
             .then(function (data) {
               var dataAntrian = data.data.data[0];
@@ -1029,18 +1029,18 @@ define(["initialize"], function (initialize) {
           var client = new HttpClient();
           client.get(
             "http://127.0.0.1:1237/printvb/Pendaftaran?cetak-buktilayanan=1&norec=" +
-              $scope.dataPasienSelected.noregistrasi +
-              "&strIdPegawai=" +
-              $scope.pegawai.id +
-              "&view=false",
-            function (response) {}
+            $scope.dataPasienSelected.noregistrasi +
+            "&strIdPegawai=" +
+            $scope.pegawai.id +
+            "&view=false",
+            function (response) { }
           );
 
           //##save identifikasibuktiLayanan
           manageTataRekening
             .getDataTableTransaksi(
               "operator/identifikasi-buktiLayanan?norec_pd=" +
-                $scope.dataPasienSelected.norec
+              $scope.dataPasienSelected.norec
             )
             .then(function (data) {
               var datas = data.data;
@@ -1058,7 +1058,7 @@ define(["initialize"], function (initialize) {
         manageTataRekening
           .getDataTableTransaksi(
             "tatarekening/get-sudah-verif?noregistrasi=" +
-              $scope.dataPasienSelected.noregistrasi
+            $scope.dataPasienSelected.noregistrasi
           )
           .then(function (e) {
             status = e.data.status;
@@ -1072,7 +1072,7 @@ define(["initialize"], function (initialize) {
             manageTataRekening
               .getDataTableTransaksi(
                 "operator/get-apd?noregistrasi=" +
-                  $scope.dataPasienSelected.noregistrasi
+                $scope.dataPasienSelected.noregistrasi
               )
               .then(function (data) {
                 $scope.listRuanganApd = data.data.ruangan;
@@ -1101,11 +1101,11 @@ define(["initialize"], function (initialize) {
           var client = new HttpClient();
           client.get(
             "http://127.0.0.1:1237/printvb/Pendaftaran?cetak-buktilayanan=1&norec=" +
-              $scope.dataPasienSelected.noregistrasi +
-              "&strIdPegawai=" +
-              $scope.pegawai.id +
-              "&view=false",
-            function (response) {}
+            $scope.dataPasienSelected.noregistrasi +
+            "&strIdPegawai=" +
+            $scope.pegawai.id +
+            "&view=false",
+            function (response) { }
           );
         }
       };
@@ -1116,8 +1116,8 @@ define(["initialize"], function (initialize) {
 
           client.get(
             "http://127.0.0.1:1237/printvb/Pendaftaran?cetak-buktipendaftaran=1&norec=" +
-              $scope.dataPasienSelected.noregistrasi +
-              "&view=false",
+            $scope.dataPasienSelected.noregistrasi +
+            "&view=false",
             function (response) {
               // do something with response
             }

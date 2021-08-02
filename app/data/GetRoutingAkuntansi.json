@@ -2596,6 +2596,41 @@
     ]
   },
   {
+    "name": "InputResepElektronik",
+    "url": "/InputResepElektronik",
+    "templateurl": "module/Radiologi/InputResepElektronik.html",
+    "controller": "InputResepElektronikCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "PasienService",
+        "define": "PasienService"
+      },
+      {
+        "module": "ProdukService",
+        "define": "ProdukService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      },
+      {
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
+      },
+      {
+        "define": "RekamMedisCtrl"
+      }
+    ]
+  },
+  {
     "name": "TransaksiPelayananRadiologi",
     "url": "/TransaksiPelayananRadiologi",
     "templateurl": "module/Radiologi/TransaksiPelayananRadiologi.html",

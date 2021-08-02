@@ -3,7 +3,7 @@ define([], function () {
   var baseURLFrontend =
       window.location.hostname === "192.168.12.3"
         ? "http://192.168.12.3"
-        : "http://172.16.10.119",
+        : "http://172.16.191.11",
     portFrontend =
       window.location.hostname === "192.168.12.3" ? "4444" : "4444",
     baseURLPhp = "http://192.168.12.3",
@@ -23,14 +23,14 @@ define([], function () {
       urlSocket: "http://smart.rsabhk.co.id:2222",
 
       urlPrinting: "http://smart.rsabhk.co.id:2222/jasamedika-web/",
-      baseUrlListData:
-        "http://smart.rsabhk.co.id:2222/jasamedika-web/simrs_harkit/service/list-generic/?view=",
+      baseUrlListData: "http://smart.rsabhk.co.id:2222/jasamedika-web/simrs_harkit/service/list-generic/?view=",
       baseApiUrlData: "http://smart.rsabhk.co.id:2222/jasamedika-web/",
       baseApiPostData: "http://smart.rsabhk.co.id:2222/jasamedika-web/",
       baseUrlData: "http://smart.rsabhk.co.id:2222/app/data/",
       baseUrlAction: "http://smart.rsabhk.co.id:2222/jasamedika-web/",
       //baseUrlLogin: "http://smart.rsabhk.co.id:2222/jasamedika-web/auth/sign-in",
       //baseUrlLogout: "http://smart.rsabhk.co.id:2222/jasamedika-web/auth/sign-out",
+      baseUrlLogistik: "https://smart.rsabhk.co.id:2222/logistik-rsabhk-service/",
       baseBridiging: "http://smart.rsabhk.co.id/Bridging/",
       urlRoute: "http://smart.rsabhk.co.id:2222/app/data/GetRouting",
 

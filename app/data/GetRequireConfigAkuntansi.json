@@ -523,6 +523,9 @@
     {
       "nameDep": "DaftarPasienRadiologiCtrl",
       "urlDep": "module/Radiologi/DaftarPasienRadiologiCtrl"
+    }, {
+      "nameDep": "InputResepElektronikCtrl",
+      "urlDep": "module/Radiologi/InputResepElektronikCtrl"
     },
     {
       "nameDep": "TransaksiPelayananRadiologiCtrl",

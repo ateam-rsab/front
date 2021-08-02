@@ -229,6 +229,10 @@ define(['initialize'], function (initialize) {
                         var umur = dateHelper.CountAge(tanggalLahir, tanggal);
                         dat.data.data[i].umur = umur.year + ' thn ' + umur.month + ' bln ' + umur.day + ' hari';
                         dat.data.data[i].dpjp = dat.data.data[i].dpjp ? dat.data.data[i].dpjp : "-";
+
+                        if(dat.data.data[i].status === "SELESAI DIPERIKSA") {
+                            dat.data.data[i].status = "SELESAI DI VERIFIKASI";
+                        }
                     }
 
                     $scope.listDataPasien = new kendo.data.DataSource({

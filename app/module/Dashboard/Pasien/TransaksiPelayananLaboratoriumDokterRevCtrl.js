@@ -168,8 +168,6 @@ define(['initialize'], function (initialize) {
             function init() {
                 $scope.isDokter = getJenisPegawai === "DOKTER";
 
-                console.log($scope.isDokter);
-
                 manageLogistikPhp.getDataTableTransaksi("rekam-medis/get-combo").then(function (e) {
                     $scope.listDokter = e.data.dokter;
                 });
@@ -211,7 +209,7 @@ define(['initialize'], function (initialize) {
             
             $scope.selectedDataProduk = [];
             $scope.updateSelectedData = (data, i) => {
-                
+                $scope.selectedDataProduk = [];
                 $scope.listLayanan[i].checked = !$scope.listLayanan[i].checked;
 
                 for (let i in $scope.listLayanan) {

@@ -103,7 +103,7 @@ define(['initialize'], function (initialize) {
                 })
                 if (norec_apd != null) {
 
-                    manageLogistikPhp.getDataTableTransaksi("lab-radiologi/get-rincian-pelayanan?noregistrasifk=" + norec_apd
+                    manageLogistikPhp.getDataTableTransaksi("lab-radiologi/get-rincian-pelayanan?nocm=" + $scope.item.noMr
                         , true).then(function (dat) {
                             for (var i = 0; i < dat.data.data.length; i++) {
                                 dat.data.data[i].no = i + 1

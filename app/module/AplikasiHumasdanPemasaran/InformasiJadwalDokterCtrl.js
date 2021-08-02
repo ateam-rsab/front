@@ -63,7 +63,7 @@ define(['initialize'], function (initialize) {
 					"field": "status",
 					"title": "Status",
 					"width": "100px",
-				}, ]
+				},]
 			};
 
 			function loadDataCombo() {
@@ -96,37 +96,44 @@ define(['initialize'], function (initialize) {
 					"&tglAkhir=" + tglAkhir +
 					"&dokterId=" + dokter +
 					"&ruanganId=" + ruangan, true).then(function (dat) {
-					var datas = dat.callback;
-					$scope.sourceJadwal = new kendo.data.DataSource({
-						data: datas, //data[0].details,
-						// pageSize: 20,
-						group: [{
-							field: "namaruangan"
-						}],
-						// pageSize: 10,
+						var datas = dat.callback;
+						$scope.sourceJadwal = new kendo.data.DataSource({
+							data: datas, //data[0].details,
+							// pageSize: 20,
+							group: [{
+								field: "namaruangan"
+							}],
+							// pageSize: 10,
+						});
 					});
-				});
 			}
 
 			$scope.columndata = [{
-					"field": "namalengkap",
-					"title": "Dokter",
-					"width": "120px"
-				},
-				{
-					"field": "start",
-					"title": "Jadwal Awa",
-					"width": "120px"
-				},
-				{
-					"field": "end",
-					"title": "Jadwal Akhir",
-					"width": "100px"
+				"field": "namalengkap",
+				"title": "Dokter",
+				"width": "120px"
+			},
+			{
+				"field": "start",
+				"title": "Jadwal Awa",
+				"width": "120px"
+			},
+			{
+				"field": "end",
+				"title": "Jadwal Akhir",
+				"width": "100px"
 
-				}
+			}
 			];
 
+			let getCookie = (name) => {
+				const value = `; ${document.cookie}`;
+				const parts = value.split(`; ${name}=`);
+				if (parts.length === 2) return parts.pop().split(';').shift();
+			}
+
 			$scope.getData = () => {
+				let token = getCookie('authorization');
 				// if (!$scope.item.dokter) {
 				// 	toastr.warning("Harap isi nama Dokter");
 				// 	return;
@@ -138,7 +145,7 @@ define(['initialize'], function (initialize) {
 				$scope.isRouteLoading = false;
 
 				$.ajax({
-					url: "http://192.168.12.3:5775/kehadiranpasien-service/get-jml-pasien-dokter?X-AUTH-TOKEN=234567890kjdsfkjf&idDokter=" + ($scope.item.dokter ? $scope.item.dokter.id : "") + "&idRuangan=" + ($scope.item.ruangan ? $scope.item.ruangan.id : "") + "&bulan=" + ($scope.item.bulan ? bln + 1 : "") + "&tahun=" + ($scope.item.bulan ? thn : ""),
+					url: "http://172.16.44.33:9111/pelayanan-service/get-jml-pasien-dokter?X-AUTH-TOKEN=" + token + "&namaDokter=" + ($scope.item.dokter ? $scope.item.dokter.namalengkap : "") + "&namaRuangan=" + ($scope.item.ruangan ? $scope.item.ruangan.namaruangan : "") + "&bulan=" + ($scope.item.bulan ? bln + 1 : "") + "&tahun=" + ($scope.item.bulan ? thn : ""),
 					method: "GET",
 					success: (data) => {
 						console.log(data);

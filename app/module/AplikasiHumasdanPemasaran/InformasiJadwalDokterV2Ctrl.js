@@ -122,6 +122,9 @@ define(['initialize'], function (initialize) {
         $.ajax({
           url: "http://172.16.44.33:9111/pelayanan-service/get-jml-pasien-dokter?namaDokter=" + ($scope.item.dokter ? $scope.item.dokter.namalengkap : "") + "&namaRuangan=" + ($scope.item.ruangan ? $scope.item.ruangan.namaruangan : "") + "&bulan=" + ($scope.item.bulan ? bln + 1 : "") + "&tahun=" + ($scope.item.bulan ? thn : "") + "&X-AUTH-TOKEN=" + token,
           method: "GET",
+          headers: {
+            "X-AUTH-TOKEN": token
+          },
           success: (data) => {
 
             for (var i = 0; i < data.length; i++) {
@@ -135,7 +138,7 @@ define(['initialize'], function (initialize) {
                 description: `<strong>Quota:</strong> ${data[i].totalQuota ? data[i].totalQuota : 0}<br><strong>Jumlah Daftar:</strong> ${data[i].jmlDaftar ? data[i].jmlDaftar : 0}<br><strong>Sisa Quota:</strong> ${data[i].sisaQuota ? data[i].sisaQuota : 0}<br> 
                 <button class="custom-button" onclick='detailData(${JSON.stringify(data[i])}, ${$scope.item.ruangan.id}, ${$scope.item.dokter.id})'>Detail</button>`,
                 date: data[i].tglDokter,
-                type: "event",
+                type: data[i].jenisJadwal === "Telekonsultasi" ? "birthday" : "event",
                 everyYear: !0,
               });
 

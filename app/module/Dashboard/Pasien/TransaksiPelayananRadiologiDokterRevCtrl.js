@@ -192,7 +192,7 @@ define(['initialize'], function (initialize) {
             $scope.filterPelayanan("A");
 
             function getDataRiwayat() {
-                manageLogistikPhp.getDataTableTransaksi('lab-radiologi/get-riwayat-rad?noregistrasi=' + $scope.item.noregistrasi).then((e) => {
+                manageLogistikPhp.getDataTableTransaksi('lab-radiologi/get-riwayat-rad?NoCM=' + $scope.item.noMr).then((e) => {
                     for (let i = e.data.daftar.length - 1; i >= 0; i--) {
                         e.data.daftar[i].no = i + 1
                     }
