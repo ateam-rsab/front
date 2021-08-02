@@ -147,8 +147,8 @@ define(['initialize'], function (initialize) {
                     $scope.listOfUnitKerja = res.data;
                 })
 
-                ManageSdmNew.getListData("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled,kategoryPegawaiId&values=true,(1;10;14)&order=namaLengkap:asc").then((res) => {
-                    $scope.listOfPegawai = res.data;
+                ManageSdmNew.getListData(`iki-remunerasi/pegawai-remun-unit-kerja?unitKerjaId=${$scope.item.unitKerja ? $scope.item.unitKerja.id : ""}&subunitKerjaId=${$scope.item.subUnitKerja ? $scope.item.subUnitKerja.id : ""}`).then((res) => {
+                    $scope.listOfPegawai = res.data.data;
                 })
             }
 
@@ -157,6 +157,20 @@ define(['initialize'], function (initialize) {
             $scope.getSubUnitKerja = (id) => {
                 ManageSdmNew.getListData("service/list-generic/?view=SubUnitKerjaPegawai&select=id,name&criteria=statusEnabled,id,unitKerjaId&values=true,!0," + id + "&order=name:asc").then((res) => {
                     $scope.listOfSubUnitKerja = res.data;
+                })
+
+                $scope.item.pegawai = {}
+                $scope.listOfPegawai = []
+                ManageSdmNew.getListData(`iki-remunerasi/pegawai-remun-unit-kerja?unitKerjaId=${id}&subunitKerjaId=${$scope.item.subUnitKerja ? $scope.item.subUnitKerja.id : ""}`).then((res) => {
+                    $scope.listOfPegawai = res.data.data;
+                })
+            }
+
+            $scope.getPegawai = (id) => {
+                $scope.item.pegawai = {}
+                $scope.listOfPegawai = []
+                ManageSdmNew.getListData(`iki-remunerasi/pegawai-remun-unit-kerja?unitKerjaId=${$scope.item.unitKerja ? $scope.item.unitKerja.id : ""}&subunitKerjaId=${id}`).then((res) => {
+                    $scope.listOfPegawai = res.data.data;
                 })
             }
 
