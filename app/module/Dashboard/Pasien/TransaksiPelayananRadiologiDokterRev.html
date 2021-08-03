@@ -61,88 +61,6 @@
     <md-tabs md-dynamic-height md-border-bottom>
         <md-tab label="Order Radiologi" md-on-select="onChangeTab(1)">
             <div class="grid_12">
-
-                <!-- <div class="grid_4">
-
-                    <div class="grid_12">
-
-                        <div class="grid_6">
-                            <div class="grid_12">
-                                <label c-label item="item">Ruangan Asal</label>
-                            </div>
-                            <div class="grid_12">
-                                <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.ruanganAsal"
-                                    ng-disabled="true" />
-                            </div>
-                        </div>
-                        <div class="grid_6">
-                            <div class="grid_12">
-                                <label c-label item="item">Ruangan Tujuan</label>
-                            </div>
-                            <div class="grid_12">
-                                <input kendo-combo-box k-ng-model="item.ruangantujuan" k-data-text-field="'namaruangan'"
-                                    k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
-                                    k-data-source="listRuanganTujuan" />
-
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
-                <div class="grid_8">
-
-                    <div class="grid_12">
-                        <div class="grid_1">
-                            <div class="grid_12">
-                                <label c-label item="item">No</label>
-                            </div>
-                            <div class="grid_12">
-                                <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.no"
-                                    disabled="" />
-                            </div>
-                        </div>
-                        <div class="grid_6">
-                            <div class="grid_12">
-                                <label c-label item="item">Layanan</label>
-                            </div>
-                            <div class="grid_12">
-                                <input kendo-combo-box k-ng-model="item.layanan" k-data-text-field="'namaproduk'"
-                                    k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
-                                    k-data-source="listLayanan" />
-                            </div>
-                        </div>
-                        <div class="grid_2">
-                            <div class="grid_12">
-                                <label c-label item="item">Qty</label>
-                            </div>
-                            <div class="grid_12">
-                                <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.qty" />
-                            </div>
-                        </div>
-
-                        <div class="grid_1" style="margin-top: 22px">
-                            <md-button class="md-raised medium-button md-primary" ng-click="add()">Tambah</md-button>
-                        </div>
-                        <div class="grid_1" style="margin-top: 22px">
-                            <md-button class="md-raised medium-button md-danger" ng-click="hapus()">Hapus</md-button>
-                        </div>
-                        <div class="grid_1" style="margin-top: 22px">
-                            <md-button class="md-raised medium-button" ng-click="batal()">Batal</md-button>
-                        </div>
-                    </div>
-                </div> -->
-
-                <!-- <div class="grid_12">
-                    <div class="grid_2">
-                        <label c-label item="item">Klinik/Ruangan Asal</label>
-                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruanganAsal"
-                            k-data-text-field="'namaruangan'" k-data-value-field="'id'" k-filter="'contains'"
-                            k-auto-bind="false" k-data-source="listRuangan"
-                            k-on-change="onChangeRuangan(item.ruanganAsal.id)" />
-                    </div>
-                </div> -->
-
                 <div class="grid_12">
                     <div class="grid_3">
                         <label c-label item="item">Klinis</label>
@@ -153,22 +71,6 @@
                         <label c-label item="item">Catatan Khusus</label>
                         <input c-text-box type="input" class="k-textbox" ng-model="item.catatanKhusus" />
                     </div>
-
-                    <!-- <div class="grid_3">
-                        <label c-label item="item">Catatan Tambahan</label>
-                        <input c-text-box type="input" class="k-textbox" ng-model="item.catatanTambahan" />
-                    </div> -->
-
-                    <!-- <div class="grid_3">
-                        <label c-label item="item">Riwayat Pemeriksaan Radiologi</label>
-                        <input c-text-box type="input" class="k-textbox" ng-model="item.riwayatRadiologi" />
-                    </div> -->
-
-                    <!--  -->
-                    <!-- <div class="grid_3">
-                        <label c-label item="item">Persiapan</label>
-                        <input c-text-box type="input" class="k-textbox" ng-model="item.persiapan" />
-                    </div> -->
 
                     <div class="grid_3">
                         <label c-label item="item">Konsultasi Anestesi</label>
@@ -511,7 +413,7 @@
         </md-tab>
         <md-tab label="Riwayat" md-on-select="onChangeTab(2)">
             <div class="grid_12">
-                <div class="grid_12 borderBox">
+                <div class="grid_12">
                     <div id="kGrid" kendo-grid k-data-source="dataGridRiwayat" k-selectable="'row'"
                         k-columns="columnGridRiwayat" k-pageable="'true'" k-sortable="'true'"
                         k-ng-model="dataSelectedRiwayat" ng-click="click(dataSelectedRiwayat)">

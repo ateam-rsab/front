@@ -497,13 +497,23 @@ define(['initialize'], function (initialize) {
                             field: "namaproduk",
                             title: "Deskripsi",
                             width: "300px"
-                        },
-                        {
+                        }, {
+                            field: "konsul_anest",
+                            title: "Konsultasi Anestesi",
+                            width: "100px"
+                        }, {
+                            field: "pemeriksaan_radiologi",
+                            title: "Pemeriksaan Radiologi",
+                            width: "100px"
+                        }, {
+                            field: "perisapan_radiologi",
+                            title: "Perisapan Radiologi",
+                            width: "100px"
+                        },{
                             field: "qtyproduk",
                             title: "Qty",
                             width: "100px"
-                        }
-                    ]
+                        }]
                 };
             };
 
