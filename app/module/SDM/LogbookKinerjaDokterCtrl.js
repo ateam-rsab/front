@@ -91,6 +91,12 @@ define(['initialize'], function (initialize) {
 
                 $scope.isRouteLoading = true;
 
+                if (!$scope.item.periode) {
+                    toastr.info("Harap pilih periode terlebih dahulu");
+                    $scope.isRouteLoading = false;
+                    return;
+                }
+
                 if (!$scope.item.pegawai) {
                     toastr.info("Harap pilih pegawai terlebih dahulu");
                     $scope.isRouteLoading = false;
