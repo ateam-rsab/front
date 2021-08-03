@@ -19,7 +19,8 @@ define(['initialize'], function (initialize) {
                 { name: 'Direktorat Pelayanan Medik, Keperawatan, dan Penunjang', id: 1 },
                 { name: 'Direktorat Perencanaan, Organisasi, dan Umum', id: 2 },
                 { name: 'Direktorat Sumber Daya Manusia, Pendidikan, dan Penelitian', id: 3 },
-                { name: 'Direktur Utama', id: 5 }
+                { name: 'Direktur Utama', id: 5 },
+                { name: 'Komite', id: 6 }
             ];
 
             $scope.daftarJabatanOpt = {
@@ -48,6 +49,9 @@ define(['initialize'], function (initialize) {
                         };
                         if ($(this).text() == 'Direktur Utama') {
                             $(this).addClass('du')
+                        };
+                        if ($(this).text() == 'Komite') {
+                            $(this).addClass('kmt')
                         };
                     })
                 },
@@ -309,6 +313,8 @@ define(['initialize'], function (initialize) {
                                     res.data.data[i].levelDireksiFormatted = "Direktorat Keuangan dan Barang Milik Negara";
                                 } else if (res.data.data[i].levelDireksi === 5) {
                                     res.data.data[i].levelDireksiFormatted = "Direktur Utama";
+                                } else if (res.data.data[i].levelDireksi === 6) {
+                                    res.data.data[i].levelDireksiFormatted = "Komite";
                                 } else {
                                     res.data.data[i].levelDireksiFormatted = "";
                                 }
@@ -422,20 +428,29 @@ define(['initialize'], function (initialize) {
                         dataSave.id = $scope.data.jabatanId;
                     }
 
-                    if ($scope.msgIsDuplikatData != "" && $scope.isEdit) {
-                        toastr.warning($scope.msgIsDuplikatData + ", mohon untuk memberi Nama Jabatan unik/ sesuai Unit Kerja", "Peringatan")
-                        return
-                    } else if ($scope.msgIsDuplikatData != "" && !$scope.isHapus) {
-                        toastr.warning($scope.msgIsDuplikatData, "Peringatan")
-                        return
-                    }
+                    $scope.msgIsDuplikatData = ""
+                    ManageSdmNew.getListData("jabatan/validate-nama-jabatan/?idJabatan=" + ($scope.data.jabatanId ? $scope.data.jabatanId : "")
+                        + "&namaJabatan=" + encodeURIComponent($scope.data.namaJabatan).replace(/%20/g, "+")
+                        + "&idJenisJabatan=" + $scope.data.jenisJabatan.id
+                        + "&idUnitKerja=" + $scope.data.unitKerja.id, true).then(function (dat) {
+                            if (dat.data.data.msg) {
+                                $scope.msgIsDuplikatData = dat.data.data.msg
 
-                    // console.log(dataSave);
-                    ManageSdmNew.saveData(dataSave, "jabatan/save-master-jabatan").then(function (e) {
-                        $scope.reset();
-                        $scope.closepopupTambah();
-                        $scope.getDataJabatan();
-                    });
+                                if ($scope.msgIsDuplikatData != "" && $scope.isEdit) {
+                                    toastr.warning($scope.msgIsDuplikatData + ", mohon untuk memberi Nama Jabatan unik/ sesuai Unit Kerja", "Peringatan")
+                                    return
+                                } else if ($scope.msgIsDuplikatData != "" && !$scope.isHapus) {
+                                    toastr.warning($scope.msgIsDuplikatData, "Peringatan")
+                                    return
+                                }
+                            } else {
+                                ManageSdmNew.saveData(dataSave, "jabatan/save-master-jabatan").then(function (e) {
+                                    $scope.reset();
+                                    $scope.closepopupTambah();
+                                    $scope.getDataJabatan();
+                                });
+                            }
+                        });
                 } else {
                     ModelItem.showMessages(isValid.messages);
                 }
@@ -456,20 +471,6 @@ define(['initialize'], function (initialize) {
                 $scope.data.levelJabatan = null;
                 $scope.isEdit = false;
                 $scope.isHapus = false;
-            }
-
-            $scope.getValJabatan = function (idJabatan, namaJabatan, idJenisJabatan, idUnitKerja) {
-                if (!namaJabatan && !idJenisJabatan && !idUnitKerja) return
-
-                $scope.msgIsDuplikatData = ""
-                ManageSdmNew.getListData("jabatan/validate-nama-jabatan/?idJabatan=" + (idJabatan ? idJabatan : "")
-                    + "&namaJabatan=" + encodeURIComponent(namaJabatan).replace(/%20/g, "+")
-                    + "&idJenisJabatan=" + idJenisJabatan
-                    + "&idUnitKerja=" + idUnitKerja, true).then(function (dat) {
-                        if (dat.data.data.msg) {
-                            $scope.msgIsDuplikatData = dat.data.data.msg
-                        }
-                    });
             }
         }
     ]);
