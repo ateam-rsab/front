@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('RincianPelayananLabRadCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper', 'ManagePasien', 'ManageServicePhp', '$window','ManageTataRekening',
-        function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper, managePasien, manageServicePhp, $window,manageTataRekening) {
+    initialize.controller('RincianPelayananLabRadCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper', 'ManagePasien', 'ManageServicePhp', '$window', 'ManageTataRekening',
+        function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper, managePasien, manageServicePhp, $window, manageTataRekening) {
             $scope.item = {};
             // $scope.dataVOloaded = true;
             $scope.now = new Date();
@@ -25,8 +25,8 @@ define(['initialize'], function (initialize) {
                     $scope.item.jenisKelamin = chacePeriode[2]
                     $scope.item.noregistrasi = chacePeriode[3]
                     $scope.item.kelompokPasien = chacePeriode[13]
-                    $scope.item.noSbm =chacePeriode[16]
-                    $scope.item.nostruk =chacePeriode[17]
+                    $scope.item.noSbm = chacePeriode[16]
+                    $scope.item.nostruk = chacePeriode[17]
                     $scope.item.umur = chacePeriode[4]
                     $scope.listKelas = ([{ id: chacePeriode[5], namakelas: chacePeriode[6] }])
                     $scope.item.kelas = { id: chacePeriode[5], namakelas: chacePeriode[6] }
@@ -37,10 +37,9 @@ define(['initialize'], function (initialize) {
                     namaRuanganFk = chacePeriode[10]
                     norec_pd = chacePeriode[11]
                     norec_so = chacePeriode[12]
-                    manageServicePhp.getDataTableTransaksi("tatarekening/get-sudah-verif?noregistrasi=" +
-                        $scope.item.noregistrasi, true).then(function (dat) {
-                            $scope.item.statusVerif = dat.data.status
-                        });
+                    manageServicePhp.getDataTableTransaksi("tatarekening/get-sudah-verif?noregistrasi=" + $scope.item.noregistrasi, true).then(function (dat) {
+                        $scope.item.statusVerif = dat.data.status
+                    });
 
 
                     if (norec_apd == null) {
@@ -77,16 +76,10 @@ define(['initialize'], function (initialize) {
 
                         })
                     }
-
-
                     $scope.item.ruanganAsal = namaRuangan;
 
-                    manageServicePhp.getDataTableTransaksi("tatarekening/get-sudah-verif?noregistrasi=" +
-                        $scope.item.noregistrasi, true).then(function (dat) {
-                            $scope.item.statusVerif = dat.data.status
-                        });
 
-                    init()
+                    init();
 
                 } else {
 
@@ -103,49 +96,48 @@ define(['initialize'], function (initialize) {
                 })
                 if (norec_apd != null) {
 
-                    manageLogistikPhp.getDataTableTransaksi("lab-radiologi/get-rincian-pelayanan?nocm=" + $scope.item.noMr
-                        , true).then(function (dat) {
-                            for (var i = 0; i < dat.data.data.length; i++) {
-                                dat.data.data[i].no = i + 1
-                                dat.data.data[i].statCheckbox = false;
-                                if (dat.data.data[i].statusbridging == "Sudah Dikirim") {
-                                    dat.data.data[i].statusbridging = "✔";
-                                    // ✅
-                                    // ✔
-                                } else {
-                                    dat.data.data[i].statusbridging = "✘";
-                                    // ✘
-                                    // ❎
-                                }
-
-                            }
-                            if (dat.data.data.length > 0) {
-                                if (dat.data.data[0].objectdepartemenfk == 3)
-                                    $scope.disableRad = true
-                                if (dat.data.data[0].objectdepartemenfk == 27)
-                                    $scope.disableLab = true
-                            }
-                            $scope.isRouteLoading = false;
-
-                            $scope.dataGrid = {
-                                data: dat.data.data,
-                                _data: dat.data.data,
-                                // pageSize: 10,
-                                selectable: true,
-                                refresh: true,
-                                total: dat.data.data.length,
-                                serverPaging: false,
-                                aggregate: [
-                                    { field: 'total', aggregate: 'sum' },
-                                ]
-
-                            };
-
-                            if (dat.data.data[0].objectdepartemenfk == 27) {
-                                $scope.showRadiologi = true;
+                    manageLogistikPhp.getDataTableTransaksi("lab-radiologi/get-rincian-pelayanan?nocm=" + $scope.item.noMr, true).then(function (dat) {
+                        for (var i = 0; i < dat.data.data.length; i++) {
+                            dat.data.data[i].no = i + 1
+                            dat.data.data[i].statCheckbox = false;
+                            if (dat.data.data[i].statusbridging == "Sudah Dikirim") {
+                                dat.data.data[i].statusbridging = "✔";
+                                // ✅
+                                // ✔
+                            } else {
+                                dat.data.data[i].statusbridging = "✘";
+                                // ✘
+                                // ❎
                             }
 
-                        });
+                        }
+                        if (dat.data.data.length > 0) {
+                            if (dat.data.data[0].objectdepartemenfk == 3)
+                                $scope.disableRad = true
+                            if (dat.data.data[0].objectdepartemenfk == 27)
+                                $scope.disableLab = true
+                        }
+                        $scope.isRouteLoading = false;
+
+                        $scope.dataGrid = {
+                            data: dat.data.data,
+                            _data: dat.data.data,
+                            // pageSize: 10,
+                            selectable: true,
+                            refresh: true,
+                            total: dat.data.data.length,
+                            serverPaging: false,
+                            aggregate: [
+                                { field: 'total', aggregate: 'sum' },
+                            ]
+
+                        };
+
+                        if (dat.data.data[0].objectdepartemenfk == 27) {
+                            $scope.showRadiologi = true;
+                        }
+
+                    });
                 } else {
                     $scope.isRouteLoading = false;
                 }
@@ -387,7 +379,7 @@ define(['initialize'], function (initialize) {
                     window.messageContainer.error("Pelayanan yang sudah di Verif tidak bisa di ubah!");
                     return;
                 }
-                var logData =[]
+                var logData = []
                 var dataDel = []
                 for (var i = 0; i < $scope.dataGrid._data.length; i++) {
                     if ($scope.dataGrid._data[i].statCheckbox) {
@@ -395,17 +387,17 @@ define(['initialize'], function (initialize) {
                             "norec_pp": $scope.dataGrid._data[i].norec_pp,
                         }
                         dataDel.push(data)
-                       
-                       logData.push({
-                        "norec_apd": $scope.dataGrid._data[i].norec_apd,
-                        "tglPelayanan": $scope.dataGrid._data[i].tglpelayanan,
-                        "diskon": $scope.dataGrid._data[i].hargadiscount,
-                        "harga": $scope.dataGrid._data[i].hargasatuan,
-                        "jumlah": $scope.dataGrid._data[i].jumlah,
-                        "klid":6,
-                        "prid": $scope.dataGrid._data[i].produkfk,
-                        "jasa": 0,
-                          
+
+                        logData.push({
+                            "norec_apd": $scope.dataGrid._data[i].norec_apd,
+                            "tglPelayanan": $scope.dataGrid._data[i].tglpelayanan,
+                            "diskon": $scope.dataGrid._data[i].hargadiscount,
+                            "harga": $scope.dataGrid._data[i].hargasatuan,
+                            "jumlah": $scope.dataGrid._data[i].jumlah,
+                            "klid": 6,
+                            "prid": $scope.dataGrid._data[i].produkfk,
+                            "jasa": 0,
+
                         })
                     }
                 }
@@ -416,11 +408,11 @@ define(['initialize'], function (initialize) {
                 if (dataDel.length > 0) {
 
                     manageServicePhp.deletePelayananPasien(objDelete).then(function (e) {
-                      var objLog={ 
-                              "pelayananpasiendelete":logData
-                               } 
-                        manageTataRekening.saveLogHapusTindakan(objLog).then(function(e){
-                
+                        var objLog = {
+                            "pelayananpasiendelete": logData
+                        }
+                        manageTataRekening.saveLogHapusTindakan(objLog).then(function (e) {
+
                         })
                         init()
                     })
@@ -429,15 +421,15 @@ define(['initialize'], function (initialize) {
                     toastr.error('Ceklis yang mau di hapus')
                 }
             }
-            $scope.saveLogging=function(jenis,referensi,noreff,ket){
+            $scope.saveLogging = function (jenis, referensi, noreff, ket) {
 
-                manageServicePhp.getDataTableTransaksi("logging/save-log-all?jenislog="+ jenis
-                    + "&referensi="+referensi
-                    + "&noreff="+noreff
-                    + "&keterangan="+ ket
-                    ).then(function(data) {
-        
-                }) 
+                manageServicePhp.getDataTableTransaksi("logging/save-log-all?jenislog=" + jenis
+                    + "&referensi=" + referensi
+                    + "&noreff=" + noreff
+                    + "&keterangan=" + ket
+                ).then(function (data) {
+
+                })
             }
             $scope.BridgingZeta = function () {
                 for (var i = 0; i < $scope.dataGrid._data.length; i++) {
@@ -669,51 +661,52 @@ define(['initialize'], function (initialize) {
 
 
             $scope.LihatHasil = function () {
-                if(  $scope.dataSelected == undefined){
-             
+                if ($scope.dataSelected == undefined) {
+
                     toastr.error('Pilih No Order dulu')
                     return
                 }
                 $scope.noOrder = $scope.dataSelected.noorder;
-                if($scope.showRadiologi ==true){
+                if ($scope.showRadiologi == true) {
                     manageLogistikPhp.getDataTableTransaksi("dokter/get-acc-number-radiologi?noOrder=" + $scope.noOrder)
-                    .then(function (e) {
-                        $scope.dataRisOrder = e.data.data[0];
+                        .then(function (e) {
+                            $scope.dataRisOrder = e.data.data[0];
 
-                        if ($scope.dataRisOrder != undefined) {
-                            $window.open("http://182.23.26.34:1111/URLCall.do?LID=dok&LPW=dok&LICD=003&PID=" + $scope.item.noMr + '&ACN=' + $scope.dataRisOrder.accession_num, "_blank");
-                        } else {
-                            toastr.error('Pilih data dulu')
-                        }
-                    })
-                }else{
+                            if ($scope.dataRisOrder != undefined) {
+                                $window.open("http://182.23.26.34:1111/URLCall.do?LID=dok&LPW=dok&LICD=003&PID=" + $scope.item.noMr + '&ACN=' + $scope.dataRisOrder.accession_num, "_blank");
+                            } else {
+                                toastr.error('Pilih data dulu')
+                            }
+                        })
+                } else {
                     if (norec_apd != null) {
-                        var arrStr ={ 0 : $scope.dataSelected.nocm ,
-                            1 : $scope.dataSelected.namapasien,
-                            2 : $scope.dataSelected.jeniskelamin,
-                            3 : $scope.item.noregistrasi, 
-                            4 : $scope.item.umur,
-                            5 : $scope.item.kelompokPasien,
-                            6 :  $scope.item.tglRegistrasi ,
-                            7 : norec_apd,
-                            8 : norec_pd,
-                            9 :  $scope.item.kelas.id,
-                            10 :  $scope.item.kelas.namakelas,
-                            11 : namaRuanganFk,
-                            12 :namaRuangan
+                        var arrStr = {
+                            0: $scope.dataSelected.nocm,
+                            1: $scope.dataSelected.namapasien,
+                            2: $scope.dataSelected.jeniskelamin,
+                            3: $scope.item.noregistrasi,
+                            4: $scope.item.umur,
+                            5: $scope.item.kelompokPasien,
+                            6: $scope.item.tglRegistrasi,
+                            7: norec_apd,
+                            8: norec_pd,
+                            9: $scope.item.kelas.id,
+                            10: $scope.item.kelas.namakelas,
+                            11: namaRuanganFk,
+                            12: namaRuangan
                         }
                         cacheHelper.set('TransaksiPelayananLaboratoriumDokterRevCtrl', arrStr);
-            
+
                         $state.go('HasilLaboratorium', {
                             norecPd: norec_pd,
-                            noOrder:  $scope.noOrder,
-                            norecApd:norec_apd
+                            noOrder: $scope.noOrder,
+                            norecApd: norec_apd
                         })
                     } else {
                         toastr.info('Hasil Lab belum ada')
                     }
                 }
-                
+
             }
             $scope.cetakBuktiLayanan = function () {
                 if ($scope.item.noregistrasi != undefined && norec_apd != null) {

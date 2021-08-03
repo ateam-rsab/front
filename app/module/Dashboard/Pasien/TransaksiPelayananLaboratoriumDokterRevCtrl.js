@@ -443,7 +443,7 @@ define(['initialize'], function (initialize) {
             function exportToPdf(e) {
                 e.preventDefault();
                 let dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-                window.open('http://192.168.12.4:7777/service-reporting/lap-lab/' + dataItem.noregistrasi);
+                window.open('https://smart.rsabhk.co.id:2222/service-reporting/lap-lab/' + dataItem.noregistrasi);
             }
 
             $scope.detailGridOptions = function (dataItem) {

@@ -29,6 +29,63 @@
             k-format="'dd-MM-yyyy HH:mm'" />
     </div>
 
+    <div class="grid_2">
+        <div class="grid_12">
+            <label c-label item="item">Nama Ruangan</label>
+        </div>
+
+        <div class="grid_12">
+            <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaRuangan" />
+        </div>
+    </div>
+
+    <div class="grid_2">
+        <div class="grid_12">
+            <label c-label item="item">Nama Pasien</label>
+        </div>
+
+        <div class="grid_12">
+            <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaPasien" />
+        </div>
+    </div>
+
+    <div class="grid_1">
+        <div class="grid_12">
+            <label c-label item="item">No. Order</label>
+        </div>
+
+        <div class="grid_12">
+            <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noOrder" />
+        </div>
+    </div>
+
+    <div class="grid_2">
+        <div class="grid_12">
+            <label c-label item="item">No. Registrasi</label>
+        </div>
+
+        <div class="grid_12">
+            <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noReg" />
+        </div>
+    </div>
+
+    <div class="grid_1">
+        <div class="grid_12">
+            <label c-label item="item">No. RM</label>
+        </div>
+
+        <div class="grid_12">
+            <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noRM" />
+        </div>
+    </div>
+
+    <div class="grid_2">
+        <div class="grid_12">
+            <label c-label item="item">Status</label>
+        </div>
+        <input style="width: 100%;" kendo-combo-box k-ng-model="item.statusData" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listStatus"/>
+    </div>
+
     <div class="grid_1" style="margin-top: 20px;">
         <md-button class="md-raised md-primary medium-button" ng-click="getDataOrder()">
             <span style="margin-right: 5px;">Cari</span>

@@ -6,6 +6,7 @@ define(['initialize'], function (initialize) {
             $scope.isRouteLoading = false;
             $scope.dataOrderRadiologi = JSON.parse(localStorage.getItem("dataOrderRadiologi"));
             console.log($scope.dataOrderRadiologi);
+            $scope.isDetail = $scope.dataOrderRadiologi.status === "SELESAI DIVERIFIKASI";
             $scope.totalHargaProduk = 'Rp. 0,00';
 
             let dataLogin = JSON.parse(localStorage.getItem("pegawai"));
@@ -209,6 +210,28 @@ define(['initialize'], function (initialize) {
                     $state.go("DaftarOrderRadiologi");
                 });
             };
+
+            $scope.cetakBuktiLayanan = function () {
+                if (!$scope.item.noregistrasi && !norec_apd) {
+                    //cetakan langsung service VB6 by grh
+                    var stt = 'false'
+                    if (confirm('View Bukti Layanan? ')) {
+                        // Save it!
+                        stt = 'true';
+                    } else {
+                        // Do nothing!
+                        stt = 'false'
+                    }
+                    var client = new HttpClient();
+
+                    client.get('http://127.0.0.1:1237/printvb/Pendaftaran?cetak-buktilayanan-ruangan=1&norec='
+                        + $scope.item.noregistrasi + '&strIdPegawai=' + $scope.pegawai.id +
+                        '&strIdRuangan=ORDERRADIOLOGI' + norec_apd + '&view=' + stt, function (response) {
+                            // do something with response
+                        });
+
+                }
+            }
 
             $scope.simpanData = () => {
 

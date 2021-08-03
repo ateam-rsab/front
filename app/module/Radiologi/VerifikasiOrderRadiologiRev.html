@@ -374,17 +374,22 @@
 </div>
 
 <div class="grid_12" style="margin-top: 5vh;">
-    <div class="grid_2">
+    <div class="grid_2" ng-hide="isDetail">
         <md-button class="md-raised md-primary" ng-click="simpanData()">
             <span style="margin-right: 5px;">Simpan Data</span>
             <i class="fa fa-save"></i>
         </md-button>
     </div>
 
-    <div class="grid_2">
-        <md-button class="md-raised md-danger">
+    <div class="grid_2" ng-hide="isDetail">
+        <md-button class="md-raised md-danger" >
             <span style="margin-right: 5px;" ng-click="resetData()">Reset</span>
             <i class="fa fa-cancel"></i>
+        </md-button>
+    </div>
+    <div class="grid_2" ng-hide="!isDetail">
+        <md-button class="md-raised md-primary" ng-click="cetakBuktiLayanan()">
+            <span>Cetak Bukti Layanan</span>
         </md-button>
     </div>
     <div class="grid_2">

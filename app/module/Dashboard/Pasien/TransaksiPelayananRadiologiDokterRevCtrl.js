@@ -476,14 +476,16 @@ define(['initialize'], function (initialize) {
                 manageLogistikPhp.getDataTableTransaksi("dokter/get-acc-number-radiologi?noOrder=" + dataItem.noOrder).then(function (e) {
                     $scope.dataRisOrder = e.data.data[0];
                     console.log(e);
+
+                    if (!$scope.dataRisOrder) {
+                        toastr.info('Hasil tidak ada');
+                        return;
+                    }
+    
+                    $window.open("http://182.23.26.34:1111/URLCall.do?LID=dok&LPW=dok&LICD=003&PID=" + $scope.item.noMr + '&ACN=' + $scope.dataRisOrder.accession_num, "_blank");
                 })
 
-                if (!$scope.dataRisOrder) {
-                    toastr.info('Hasil tidak ada');
-                    return;
-                }
-
-                $window.open("http://182.23.26.34:1111/URLCall.do?LID=dok&LPW=dok&LICD=003&PID=" + $scope.item.noMr + '&ACN=' + $scope.dataRisOrder.accession_num, "_blank");
+                
             }
 
             $scope.detailGridOptions = function (dataItem) {
