@@ -17,7 +17,8 @@
     <div class="grid_3">
         <label><strong>Sub Unit Kerja</strong></label>
         <input kendo-combo-box k-filter="'contains'" k-ng-model="item.subUnitKerja" k-data-text-field="'name'"
-            k-data-value-field="'id'" k-data-source="listOfSubUnitKerja" />
+            k-data-value-field="'id'" k-data-source="listOfSubUnitKerja"
+            k-on-change="getPegawai(item.subUnitKerja.id)" />
     </div>
     <div class="grid_3">
         <label><strong>Pegawai</strong></label>
@@ -33,8 +34,7 @@
 </div>
 
 <div class="grid_12">
-    <div kendo-grid k-data-source="dataSource" k-selectable="'row'"
-    options="optGrid" k-ng-model="selectedData"></div>
+    <div kendo-grid k-data-source="dataSource" k-selectable="'row'" options="optGrid" k-ng-model="selectedData"></div>
 </div>
 
 <div ng-include='"../app/module/Shared/TemplateLoading"'></div>

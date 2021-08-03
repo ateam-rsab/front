@@ -21,9 +21,9 @@ define(['initialize'], function (initialize) {
             }];
 
             $scope.nilaiMax = {
-                kuantitas: 40,
-                kualitas: 30,
-                perilaku: 30
+                kuantitas: 60,
+                kualitas: 20,
+                perilaku: 20
             }
 
             let now = new Date();
@@ -121,6 +121,8 @@ define(['initialize'], function (initialize) {
                     return
                 }
 
+                $scope.getBobotJenisByJabatan()
+
                 $scope.isRouteLoading = true;
                 $scope.isPopup = false;
 
@@ -170,7 +172,7 @@ define(['initialize'], function (initialize) {
 
             $scope.getBobotJenisByJabatan = () => {
                 ManageSdmNew.getListData("iki-remunerasi/get-bobot-jenis-by-jabatan?periode=" + dateHelper.toTimeStamp($scope.item.srcBulan) + "&jabatanId=" + ($scope.item.jabatan ? $scope.item.jabatan.id : "")).then((res) => {
-                    console.log(res.data.data)
+                    // console.log(res.data.data)
                     if (res.data.data.length != 0) {
                         $scope.nilaiMax = {
                             kuantitas: res.data.data[0],
@@ -375,12 +377,14 @@ define(['initialize'], function (initialize) {
                     return
                 }
 
-                if ((($scope.currentNilaiBobot[$scope.selectedJenisIndikator] - $scope.tempSelectedBobot) + parseFloat($scope.item.bobot)) > $scope.nilaiMax[$scope.selectedJenisIndikator]) {
-                    toastr.info('Total Nilai Bobot ' + $scope.selectedJenisIndikator.toUpperCase() + ' Tidak Boleh Lebih dari ' + $scope.nilaiMax[$scope.selectedJenisIndikator]);
+                if ($scope.norecData == null || ($scope.norecData && $scope.item.statusVerif)) {
+                    if ((($scope.currentNilaiBobot[$scope.selectedJenisIndikator] - $scope.tempSelectedBobot) + parseFloat($scope.item.bobot)) > $scope.nilaiMax[$scope.selectedJenisIndikator]) {
+                        toastr.info('Total Nilai Bobot ' + $scope.selectedJenisIndikator.toUpperCase() + ' Tidak Boleh Lebih dari ' + $scope.nilaiMax[$scope.selectedJenisIndikator]);
 
-                    $scope.isRouteLoading = false;
-                    $scope.isPopup = true;
-                    return;
+                        $scope.isRouteLoading = false;
+                        $scope.isPopup = true;
+                        return;
+                    }
                 }
 
                 let dataSave = {
