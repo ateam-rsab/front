@@ -43,6 +43,10 @@ define(['initialize'], function (initialize) {
                 "field": "namaPasien",
                 "title": "Nama Pasien",
                 "width": "30%"
+            }, {
+                "field": "kelompokPasien",
+                "title": "Kelompok Pasien",
+                "width": "30%"
             }];
 
             let groupJSON = function (xs, key) {
