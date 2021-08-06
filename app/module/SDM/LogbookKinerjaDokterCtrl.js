@@ -43,6 +43,10 @@ define(['initialize'], function (initialize) {
                 "field": "namaPasien",
                 "title": "Nama Pasien",
                 "width": "30%"
+            }, {
+                "field": "kelompokPasien",
+                "title": "Kelompok Pasien",
+                "width": "30%"
             }];
 
             let groupJSON = function (xs, key) {
@@ -90,6 +94,12 @@ define(['initialize'], function (initialize) {
                 getHeaderTable();
 
                 $scope.isRouteLoading = true;
+
+                if (!$scope.item.periode) {
+                    toastr.info("Harap pilih periode terlebih dahulu");
+                    $scope.isRouteLoading = false;
+                    return;
+                }
 
                 if (!$scope.item.pegawai) {
                     toastr.info("Harap pilih pegawai terlebih dahulu");
