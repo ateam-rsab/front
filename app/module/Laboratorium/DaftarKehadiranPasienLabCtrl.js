@@ -26,9 +26,9 @@ define(['initialize'], function (initialize) {
                     "width": 100,
                 }, {
                     command: [{
-                        text: "Verifikasi",
+                        text: "Kirim Ke LIS",
                         click: verifikasi,
-                        imageClass: "k-icon k-i-pencil"
+                        // imageClass: "k-icon k-i-pencil"
                     }],
                     title: "",
                     width: 70
@@ -55,14 +55,39 @@ define(['initialize'], function (initialize) {
             function verifikasi(e) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-
+                console.log(dataItem);
                 let dataSave = {
                     norec_order: dataItem.norecSO
                 }
 
+                let dataSysmex = []
+
+                for (let i = 0; i < dataItem.bridging.length; i++) {
+                    dataSysmex.push({
+                        produkid: dataItem.bridging[i].produkid,
+                        hargasatuan: dataItem.bridging[i].hargasatuan,
+                        qtyproduk: dataItem.bridging[i].qtyproduk,
+                        komponenharga: dataItem.bridging[i].komponenharga,
+                    })
+                }
+                var itemsaveBridge = {
+                    bridging: dataSysmex,
+                    norec_pp: dataItem.norec_pp,
+                    noorder: dataItem.noorder,
+                    norec_so: dataItem.norec_so,
+                    objectkelasfk: dataItem.objectkelasfk,
+                    norec_pd: dataItem.norec_pd,
+                    objectruangantujuanfk: dataItem.objectruangantujuanfk,
+                    objectpegawaiorderfk: dataItem.objectpegawaiorderfk,
+                    iddokterverif: dataItem.iddokterverif,
+                    namadokterverif: dataItem.namadokterverif,
+                    iddokterorder: dataItem.iddokterorder,
+                    namadokterorder: dataItem.namadokterorder,
+                }
+
                 let confirm = $mdDialog.confirm()
-                    .title('Apakah anda yakin akan Verifikasi?')
-                    .textContent(`${dataItem.noRegistrasi} akan di Verifikasi`)
+                    .title('Apakah anda yakin mengirim data ke LIS?')
+                    .textContent(`${dataItem.noRegistrasi} akan di kirim ke LIS`)
                     .ariaLabel('Lucky day')
                     .targetEvent(e)
                     .ok('Simpan')
@@ -70,6 +95,9 @@ define(['initialize'], function (initialize) {
 
                 $mdDialog.show(confirm).then(function () {
                     manageLogistikPhp.saveData("transaksi/lab-radiologi/save-selesai", dataSave).then((res) => {
+                        manageServicePhp.saveBridingSysmex(itemsaveBridge).then(function (e) {
+
+                        });
                         $scope.getDataKehadiran();
                     })
                 }, function () {

@@ -705,8 +705,8 @@ define(['initialize'], function (initialize) {
                     var departemen = $scope.sourceVerif._data[0].objectdepartemenfk;
                     if (departemen == 3) {
                         /*lab */
-                        manageServicePhp.saveBridingSysmex(itemsave)
-                            .then(function (e) {});
+                        // manageServicePhp.saveBridingSysmex(itemsave)
+                        //     .then(function (e) {});
                         // manageServicePhp.saveHasilPemeriksaan(itemsave)
                         //     .then(function(e) {
                         // });
