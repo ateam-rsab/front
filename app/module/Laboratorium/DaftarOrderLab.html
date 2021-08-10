@@ -33,11 +33,13 @@
         background-color: #6bf4a4;
         color: #323232;
     }
+
     .masuk {
         background-color: #6bd5fc;
         color: #ffffff;
         font-weight: bolder;
     }
+
     .dipanggil {
         background-color: #00d199;
     }
@@ -325,7 +327,12 @@
     <!-- <fieldset> -->
     <!-- <legend>Verifikasi</legend> -->
     <div class="panel panel-default container_12">
-
+        <div class="grid_12" style="float: right;">
+            <label c-label item="item" class="k-checkbox-label" for="diskon">Tandai sebagai Karyawan/ Keluarga
+                Karyawan</label>
+            <input type="checkbox" class="k-checkbox" name="diskon" id="diskon" ng-model="isDiskonKaryawanKeluargaInti"
+                ng-click="toogleClick($event)" k-on-change="diskonKaryawan()">
+        </div>
         <div class="grid_6">
             <div class="grid_12">
                 <label c-label item="item" c-label-text="No Order"></label>
