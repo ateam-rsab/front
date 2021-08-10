@@ -680,12 +680,6 @@ define(['initialize'], function (initialize) {
                 $scope.popUpVerif.close();
             }
 
-            $scope.diskonKaryawan = function (data) {
-                if ($scope.isDiskonKaryawanKeluargaInti) {
-                    loadDataVerif()
-                }
-            }
-
             $scope.simpanVerifikasi = function () {
                 if ($scope.item.dokterVerif == undefined) {
                     toastr.error('Dokter Verifikasi harus di isi')
@@ -775,6 +769,13 @@ define(['initialize'], function (initialize) {
                     anHttpRequest.send(null);
                 }
             }
+
+            $scope.toogleClick = function (ev) {
+                var checked = ev.target.checked;
+                if (checked) {
+                    loadDataVerif()
+                }
+            };
 
             $scope.cetakBuktiLayanan = function () {
 
