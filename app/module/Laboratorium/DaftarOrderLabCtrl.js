@@ -714,6 +714,7 @@ define(['initialize'], function (initialize) {
                     "norec_so": $scope.dataSelected.norec_so,
                     "objectkelasfk": $scope.dataSelected.objectkelasfk,
                     "norec_pd": $scope.dataSelected.norec_pd,
+                    "jenisdiskon": $scope.item.diskonpegawai,
                     "objectruangantujuanfk": $scope.dataSelected.objectruangantujuanfk,
                     "objectpegawaiorderfk": $scope.dataSelected.objectpegawaiorderfk,
                     "iddokterverif": $scope.item.dokterVerif.id,
