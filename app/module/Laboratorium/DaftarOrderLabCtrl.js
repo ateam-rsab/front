@@ -14,7 +14,7 @@ define(['initialize'], function (initialize) {
             var loginRadiologi = false
             if ($scope.item.belumVerifikasi) $scope.cekBelumVerifs = true;
             else $scope.cekBelumVerifs = false;
-            $scope.isDiskonKaryawanKeluargaInti = false;
+            $scope.item.diskonpegawai = 0;
 
             $scope.cekbelumVerifikasi = function (data) {
                 if (data === true) {
@@ -776,9 +776,14 @@ define(['initialize'], function (initialize) {
                     $scope.isAsPegOrKel = true
                 } else {
                     $scope.isAsPegOrKel = false
+                    $scope.item.diskonpegawai = 0
                 }
                 loadDataVerif()
             };
+
+            $scope.loadDataVerif = function () {
+                loadDataVerif()
+            }
 
             $scope.cetakBuktiLayanan = function () {
 
