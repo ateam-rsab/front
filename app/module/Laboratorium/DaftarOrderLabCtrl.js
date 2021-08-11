@@ -488,10 +488,10 @@ define(['initialize'], function (initialize) {
                     toastr.error('Pilih data dulu');
                     return
                 }
-                // if ($scope.dataSelected.nostruk != null) {
-                //     toastr.error('Data Sudah DiClosing Hubungi Tata Rekening');
-                //     return
-                // }
+                if ($scope.dataSelected.nostruk != null) {
+                    toastr.error('Data Sudah DiClosing Hubungi Tata Rekening');
+                    return
+                }
                 if ($scope.dataSelected.status == 'SELESAI DIPERIKSA') {
                     toastr.error('Data Sudah Di Verifikasi');
                     return
@@ -504,6 +504,10 @@ define(['initialize'], function (initialize) {
                     id: $scope.dataSelected.objectdpjp,
                     namalengkap: $scope.dataSelected.dpjp
                 };
+
+                $scope.isDiskonKaryawanKeluargaInti = false;
+                $scope.isAsPegOrKel = false;
+                $scope.item.diskonpegawai = 0;
                 $scope.popUpVerif.center().open();
                 loadDataVerif();
 
