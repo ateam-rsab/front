@@ -529,7 +529,7 @@ define(['initialize'], function (initialize) {
                 let tempDiskon = 0;
                 manageServicePhp.getDataTableTransaksi("lab-radiologi/get-order-pelayanan-new?norec_so=" + $scope.dataSelected.norec_so +
                     "&objectkelasfk=" + $scope.dataSelected.objectkelasfk +
-                    "&isempfam=" + $scope.isDiskonKaryawanKeluargaInti, true).then(function (dat) {
+                    "&jenisdiskon=" + $scope.item.diskonpegawai, true).then(function (dat) {
 
                         var dataSource = dat.data.data;
                         // $scope.catatanOrder = dat.data.
@@ -773,8 +773,11 @@ define(['initialize'], function (initialize) {
             $scope.toogleClick = function (ev) {
                 var checked = ev.target.checked;
                 if (checked) {
-                    loadDataVerif()
+                    $scope.isAsPegOrKel = true
+                } else {
+                    $scope.isAsPegOrKel = false
                 }
+                loadDataVerif()
             };
 
             $scope.cetakBuktiLayanan = function () {
