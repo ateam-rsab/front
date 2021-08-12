@@ -3,9 +3,27 @@ define(['initialize'], function (initialize) {
     initialize.controller('DaftarKehadiranPasienLabCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper', 'DateHelper', 'ManageServicePhp', '$window', '$mdDialog',
         function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper, dateHelper, manageServicePhp, $window, $mdDialog) {
             $scope.item = {};
-
+            $scope.jumlahLayanan = 2000;
             $scope.item.tglAwal = dateHelper.setJamAwal(new Date());
             $scope.item.tglAkhir = dateHelper.setJamAkhir(new Date());
+
+            $scope.optDetailLIS = {
+                columns: [{
+                    "field": "namaProduk",
+                    "title": "Nama Produk",
+                    "width": 100,
+                    footerTemplate: "Jumlah"
+                }, {
+                    "field": "qtyproduk",
+                    "title": "Jumlah",
+                    "width": 100,
+                }, {
+                    "field": "hargasatuanFormatted",
+                    "title": "Harga Satuan",
+                    "width": 200,
+                    footerTemplate: "<span>{{jumlahLayanan}}</span>"
+                }]
+            }
 
             $scope.optGridKehadiran = {
                 columns: [{
@@ -55,7 +73,29 @@ define(['initialize'], function (initialize) {
             function verifikasi(e) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-                console.log(dataItem);
+                $scope.selectedDataLIS = dataItem;
+                $scope.jumlahLayanan = 0;
+                for (let i = 0; i < dataItem.bridging.length; i++) {
+                    let subTotal = parseInt(dataItem.bridging[i].qtyproduk) * parseInt(dataItem.bridging[i].hargasatuan);
+                    dataItem.bridging[i].hargasatuanFormatted = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(parseInt(dataItem.bridging[i].hargasatuan));
+
+                    $scope.jumlahLayanan += subTotal;
+                }
+
+                $scope.jumlahLayanan = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format($scope.jumlahLayanan);
+                $scope.dataSourceDetailLIS = new kendo.data.DataSource({
+                    data: dataItem.bridging,
+                    pageSize: 10
+                });
+
+                $scope.popUpVerif.open().center();
+
+
+            }
+
+            $scope.kirimKeLis = () => {
+                $scope.popUpVerif.close();
+                let dataItem = $scope.selectedDataLIS;
                 let dataSave = {
                     norec_order: dataItem.norecSO
                 }
@@ -89,18 +129,19 @@ define(['initialize'], function (initialize) {
                     .title('Apakah anda yakin mengirim data ke LIS?')
                     .textContent(`${dataItem.noRegistrasi} akan di kirim ke LIS`)
                     .ariaLabel('Lucky day')
-                    .targetEvent(e)
+                    // .targetEvent(e)
                     .ok('Simpan')
                     .cancel('Batal');
 
                 $mdDialog.show(confirm).then(function () {
                     manageLogistikPhp.saveData("transaksi/lab-radiologi/save-selesai", dataSave).then((res) => {
                         manageServicePhp.saveBridingSysmex(itemsaveBridge).then(function (e) {
-
+                            $scope.popUpVerif.close();
                         });
                         $scope.getDataKehadiran();
                     })
                 }, function () {
+                    $scope.popUpVerif.open().center();
                     console.log("Batal")
                 });
             }

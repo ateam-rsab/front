@@ -28,6 +28,41 @@
     </div>
 </div>
 
+<div kendo-window="popUpVerif" k-title="'Data yang akan dikirim ke LIS'" k-visible="false" k-width="1000"
+    k-on-open="win2visible = true">
+    <!-- <fieldset> -->
+    <!-- <legend>Verifikasi</legend> -->
+    <div class="panel panel-default container_12">
+
+        <div class="grid_12">
+            <div id="kGrid" kendo-grid k-data-source="dataSourceDetailLIS" k-selectable="'row'" k-options="optDetailLIS"
+                k-pageable="'true'" k-sortable="'true'">
+            </div>
+        </div>
+
+        <div class="grid_12">
+                <div class="grid_8"></div>
+                <div class="grid_2">
+                    <md-button class="md-raised md-danger medium-button" ng-click="popUpVerif.close()">
+                        <span>Tutup</span>
+                        
+                    </md-button>
+                </div>
+                <div class="grid_2">
+                    <md-button class="md-raised md-primary medium-button" ng-click="kirimKeLis()">
+                        <span style="margin-right: 5px;">Kirim Ke LIS</span>
+                        <i class="fa fa-send-o"></i>
+                    </md-button>
+                </div>
+                
+
+
+        </div>
+    </div>
+
+    <!-- </fieldset> -->
+</div>
+
 <div class="grid_12" style="margin-top:60px">
     <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
 </div>
