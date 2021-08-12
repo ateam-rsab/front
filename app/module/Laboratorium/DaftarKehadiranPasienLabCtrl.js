@@ -9,7 +9,7 @@ define(['initialize'], function (initialize) {
 
             $scope.optDetailLIS = {
                 columns: [{
-                    "field": "namaProduk",
+                    "field": "namaproduk",
                     "title": "Nama Produk",
                     "width": 100,
                     footerTemplate: "Jumlah"
