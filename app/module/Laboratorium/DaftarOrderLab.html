@@ -33,11 +33,13 @@
         background-color: #6bf4a4;
         color: #323232;
     }
+
     .masuk {
         background-color: #6bd5fc;
         color: #ffffff;
         font-weight: bolder;
     }
+
     .dipanggil {
         background-color: #00d199;
     }
@@ -325,7 +327,25 @@
     <!-- <fieldset> -->
     <!-- <legend>Verifikasi</legend> -->
     <div class="panel panel-default container_12">
-
+        <div class="grid_6"></div>
+        <div class="grid_6">
+            <input type="checkbox" class="k-checkbox" name="diskon" id="diskon" ng-model="isDiskonKaryawanKeluargaInti"
+                ng-click="toogleClick($event)">
+            <label c-label item="item" class="k-checkbox-label" for="diskon">Tandai sebagai Pegawai RSAB Harapan
+                Kita/ Anggota Keluarga Inti Pegawai RSAB Harapan Kita</label>
+        </div>
+        <div class="grid_6"></div>
+        <div class="grid_6">
+            <input type="radio" name="diskonpegawai" ng-model="item.diskonpegawai" value="1" id="diskonpegawai"
+                class="k-radio" ng-disabled="!isAsPegOrKel" ng-click="loadDataVerif()">
+            <label class="k-radio-label" for="diskonpegawai">Pegawai RSAB Harapan Kita</label>
+        </div>
+        <div class="grid_6"></div>
+        <div class="grid_6">
+            <input type="radio" name="diskonpegawai" ng-model="item.diskonpegawai" value="2" id="diskonkeluarga"
+                class="k-radio" ng-disabled="!isAsPegOrKel" ng-click="loadDataVerif()">
+            <label class="k-radio-label" for="diskonkeluarga">Anggota Keluarga Inti Pegawai RSAB Harapan Kita</label>
+        </div>
         <div class="grid_6">
             <div class="grid_12">
                 <label c-label item="item" c-label-text="No Order"></label>

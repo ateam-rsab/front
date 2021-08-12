@@ -14,6 +14,7 @@ define(['initialize'], function (initialize) {
             var loginRadiologi = false
             if ($scope.item.belumVerifikasi) $scope.cekBelumVerifs = true;
             else $scope.cekBelumVerifs = false;
+            $scope.item.diskonpegawai = 0;
 
             $scope.cekbelumVerifikasi = function (data) {
                 if (data === true) {
@@ -96,8 +97,8 @@ define(['initialize'], function (initialize) {
                 // }
                 manageLogistikPhp.getDataTableTransaksi("lab-radiologi/get-apd?noregistrasi=" + $scope.dataSelected.noregistrasi +
                     "&noorder=" + $scope.dataSelected.noorder + "&idruangan=" + $scope.dataSelected.objectruangantujuanfk).then(function (e) {
-                    $scope.norec_apd = e.data.data[0].norec
-                })
+                        $scope.norec_apd = e.data.data[0].norec
+                    })
             }
 
 
@@ -150,7 +151,7 @@ define(['initialize'], function (initialize) {
                         id: 1256,
                         namalengkap: "dr. Isabelle Deli, Sp.PA"
                     }]
-                 
+
                 });
             }
 
@@ -221,26 +222,26 @@ define(['initialize'], function (initialize) {
                     dok +
                     noOrderan +
                     jmlRow, true).then(function (dat) {
-                    $scope.isRouteLoading = false;
-                    for (var i = 0; i < dat.data.data.length; i++) {
-                        dat.data.data[i].no = i + 1
-                        var tanggal = $scope.now;
-                        var tanggalLahir = new Date(dat.data.data[i].tgllahir);
-                        var umur = dateHelper.CountAge(tanggalLahir, tanggal);
-                        dat.data.data[i].umur = umur.year + ' thn ' + umur.month + ' bln ' + umur.day + ' hari';
-                        dat.data.data[i].dpjp = dat.data.data[i].dpjp ? dat.data.data[i].dpjp : "-";
+                        $scope.isRouteLoading = false;
+                        for (var i = 0; i < dat.data.data.length; i++) {
+                            dat.data.data[i].no = i + 1
+                            var tanggal = $scope.now;
+                            var tanggalLahir = new Date(dat.data.data[i].tgllahir);
+                            var umur = dateHelper.CountAge(tanggalLahir, tanggal);
+                            dat.data.data[i].umur = umur.year + ' thn ' + umur.month + ' bln ' + umur.day + ' hari';
+                            dat.data.data[i].dpjp = dat.data.data[i].dpjp ? dat.data.data[i].dpjp : "-";
 
-                        if(dat.data.data[i].status === "SELESAI DIPERIKSA") {
-                            dat.data.data[i].status = "SELESAI DI VERIFIKASI";
+                            if (dat.data.data[i].status === "SELESAI DIPERIKSA") {
+                                dat.data.data[i].status = "SELESAI DI VERIFIKASI";
+                            }
                         }
-                    }
 
-                    $scope.listDataPasien = new kendo.data.DataSource({
-                        data: dat.data.data,
-                        pageSize: 100
+                        $scope.listDataPasien = new kendo.data.DataSource({
+                            data: dat.data.data,
+                            pageSize: 100
+                        });
+
                     });
-
-                });
 
             }
 
@@ -296,79 +297,79 @@ define(['initialize'], function (initialize) {
             // }
 
             $scope.columnGrid = [{
-                    "field": "no",
-                    "title": "No",
-                    "width": "30px",
-                },
+                "field": "no",
+                "title": "No",
+                "width": "30px",
+            },
 
-                {
-                    "field": "noorder",
-                    "title": "No Order",
-                    "width": "120px",
-                },
-                {
-                    "field": "tglorder",
-                    "title": "Tgl Order",
-                    "width": "120px",
-                    "template": "<span class='style-center'>{{formatTanggal('#: tglorder #')}}</span>"
-                },
-                {
-                    "field": "noregistrasi",
-                    "title": "No Registrasi",
-                    "width": "100px",
-                },
-                {
-                    "field": "nocm",
-                    "title": "No MR",
-                    "width": "70px",
-                },
-                {
-                    "field": "namapasien",
-                    "title": "Nama Pasien",
-                    "width": "150px",
-                },
-                {
-                    "field": "namaruangan",
-                    "title": "Ruangan Order",
-                    "width": "130px",
-                },
-                {
-                    "field": "ruangantujuan",
-                    "title": "Ruangan Tujuan",
-                    "width": "130px",
-                }, {
-                    "field": "umur",
-                    "title": "Umur",
-                    "width": "100px"
-                },
-                {
-                    "field": "pegawaiorder",
-                    "title": "Pengorder",
-                    "width": "100px"
-                },
-                // {
-                //     "field": "kelompokpasien",
-                //     "title": "Kelompok Pasien",
-                //     "width" : "100px",
-                // },
+            {
+                "field": "noorder",
+                "title": "No Order",
+                "width": "120px",
+            },
+            {
+                "field": "tglorder",
+                "title": "Tgl Order",
+                "width": "120px",
+                "template": "<span class='style-center'>{{formatTanggal('#: tglorder #')}}</span>"
+            },
+            {
+                "field": "noregistrasi",
+                "title": "No Registrasi",
+                "width": "100px",
+            },
+            {
+                "field": "nocm",
+                "title": "No MR",
+                "width": "70px",
+            },
+            {
+                "field": "namapasien",
+                "title": "Nama Pasien",
+                "width": "150px",
+            },
+            {
+                "field": "namaruangan",
+                "title": "Ruangan Order",
+                "width": "130px",
+            },
+            {
+                "field": "ruangantujuan",
+                "title": "Ruangan Tujuan",
+                "width": "130px",
+            }, {
+                "field": "umur",
+                "title": "Umur",
+                "width": "100px"
+            },
+            {
+                "field": "pegawaiorder",
+                "title": "Pengorder",
+                "width": "100px"
+            },
+            // {
+            //     "field": "kelompokpasien",
+            //     "title": "Kelompok Pasien",
+            //     "width" : "100px",
+            // },
 
-                // {
-                //     "field": "namakelas",
-                //     "title": "Nama Kelas",
-                //     "width" : "80px",
-                // },
-                {
-                    "field": "tglregistrasi",
-                    "title": "Tgl Registrasi",
-                    "width": "100px",
-                    "template": "<span class='style-center'>{{formatTanggal('#: tglregistrasi #')}}</span>"
-                },
-                {
-                    "field": "tglpulang",
-                    "title": "Tgl Pulang",
-                    "width": "100px",
-                    "template": "<span class='style-center'>{{formatTanggal('#: tglpulang #')}}</span>"
-                },
+            // {
+            //     "field": "namakelas",
+            //     "title": "Nama Kelas",
+            //     "width" : "80px",
+            // },
+            {
+                "field": "tglregistrasi",
+                "title": "Tgl Registrasi",
+                "width": "100px",
+                "template": "<span class='style-center'>{{formatTanggal('#: tglregistrasi #')}}</span>"
+            },
+            {
+                "field": "tglpulang",
+                "title": "Tgl Pulang",
+                "width": "100px",
+                "template": "<span class='style-center'>{{formatTanggal('#: tglpulang #')}}</span>"
+            },
 
                 // {
                 //     "field": "",
@@ -387,23 +388,23 @@ define(['initialize'], function (initialize) {
 
                     }),
                     columns: [{
-                            "field": "tglpelayanan",
-                            "title": "Tgl Pelayanan",
-                            "width": "50px",
-                            "template": "<span class='style-center'>{{formatTanggal('#: tglpelayanan #')}}</span>"
-                        },
-                        {
-                            "field": "namaproduk",
-                            "title": "Layanan",
-                            "width": "150px",
+                        "field": "tglpelayanan",
+                        "title": "Tgl Pelayanan",
+                        "width": "50px",
+                        "template": "<span class='style-center'>{{formatTanggal('#: tglpelayanan #')}}</span>"
+                    },
+                    {
+                        "field": "namaproduk",
+                        "title": "Layanan",
+                        "width": "150px",
 
-                        },
-                        {
-                            "field": "qtyproduk",
-                            "title": "Jumlah",
-                            "width": "50px",
+                    },
+                    {
+                        "field": "qtyproduk",
+                        "title": "Jumlah",
+                        "width": "50px",
 
-                        }
+                    }
 
                     ]
                 }
@@ -503,6 +504,10 @@ define(['initialize'], function (initialize) {
                     id: $scope.dataSelected.objectdpjp,
                     namalengkap: $scope.dataSelected.dpjp
                 };
+
+                $scope.isDiskonKaryawanKeluargaInti = false;
+                $scope.isAsPegOrKel = false;
+                $scope.item.diskonpegawai = 0;
                 $scope.popUpVerif.center().open();
                 loadDataVerif();
 
@@ -523,34 +528,44 @@ define(['initialize'], function (initialize) {
 
                 });
                 $scope.totalHarga = 'Rp. 0, 00';
+                $scope.totalDiskon = 'Rp. 0, 00';
                 let tempHarga = 0;
+                let tempDiskon = 0;
                 manageServicePhp.getDataTableTransaksi("lab-radiologi/get-order-pelayanan-new?norec_so=" + $scope.dataSelected.norec_so +
-                    "&objectkelasfk=" + $scope.dataSelected.objectkelasfk, true).then(function (dat) {
+                    "&objectkelasfk=" + $scope.dataSelected.objectkelasfk +
+                    "&jenisdiskon=" + $scope.item.diskonpegawai, true).then(function (dat) {
 
-                    var dataSource = dat.data.data;
-                    // $scope.catatanOrder = dat.data.
-                    for (let i = 0; i < dataSource.length; i++) {
-                        dataSource[i].statCheckbox = false;
-                        dataSource[i].no = i + 1;
+                        var dataSource = dat.data.data;
+                        // $scope.catatanOrder = dat.data.
+                        for (let i = 0; i < dataSource.length; i++) {
+                            dataSource[i].statCheckbox = false;
+                            dataSource[i].no = i + 1;
 
-                        dataSource[i].hargaSatuanFormatted = formatCurrency(dataSource[i].hargasatuan);
-                        tempHarga += parseInt(dataSource[i].hargasatuan) * parseInt(dataSource[i].qtyproduk);
-                    }
+                            dataSource[i].hargaSatuanFormatted = formatCurrency(dataSource[i].hargasatuan);
+                            dataSource[i].hargaDiskonFormatted = formatCurrency(dataSource[i].hargadiskon);
+                            tempHarga += parseInt(dataSource[i].hargasatuan) * parseInt(dataSource[i].qtyproduk);
+                            tempDiskon += parseInt(dataSource[i].hargadiskon) * parseInt(dataSource[i].qtyproduk);
+                        }
 
-                    $scope.totalHarga = tempHarga.toLocaleString('id-ID', {
-                        style: 'currency',
-                        currency: 'IDR'
+                        $scope.totalHarga = tempHarga.toLocaleString('id-ID', {
+                            style: 'currency',
+                            currency: 'IDR'
+                        });
+
+                        $scope.totalDiskon = tempDiskon.toLocaleString('id-ID', {
+                            style: 'currency',
+                            currency: 'IDR'
+                        });
+
+                        $scope.sourceVerif = new kendo.data.DataSource({
+                            data: dataSource,
+                            pageSize: 10,
+                            total: dataSource.length,
+                            serverPaging: false,
+
+                        });
+
                     });
-
-                    $scope.sourceVerif = new kendo.data.DataSource({
-                        data: dataSource,
-                        pageSize: 10,
-                        total: dataSource.length,
-                        serverPaging: false,
-
-                    });
-
-                });
             }
 
 
@@ -594,6 +609,12 @@ define(['initialize'], function (initialize) {
                     "title": "Harga",
                     "width": "140px",
                     "footerTemplate": "<span>{{totalHarga}}</span>"
+                },
+                {
+                    "field": "hargaDiskonFormatted",
+                    "title": "Diskon",
+                    "width": "140px",
+                    "footerTemplate": "<span>{{totalDiskon}}</span>"
                 },
                 {
                     "field": "ruangantujuan",
@@ -674,6 +695,7 @@ define(['initialize'], function (initialize) {
                     var datasys = {
                         "produkid": $scope.sourceVerif._data[i].prid,
                         "hargasatuan": $scope.sourceVerif._data[i].hargasatuan,
+                        "hargadiskon": $scope.sourceVerif._data[i].hargadiskon ? $scope.sourceVerif._data[i].hargadiskon : 0,
                         "qtyproduk": $scope.sourceVerif._data[i].qtyproduk,
                         "komponenharga": $scope.sourceVerif._data[i].details,
                     }
@@ -692,6 +714,7 @@ define(['initialize'], function (initialize) {
                     "norec_so": $scope.dataSelected.norec_so,
                     "objectkelasfk": $scope.dataSelected.objectkelasfk,
                     "norec_pd": $scope.dataSelected.norec_pd,
+                    "jenisdiskon": $scope.item.diskonpegawai,
                     "objectruangantujuanfk": $scope.dataSelected.objectruangantujuanfk,
                     "objectpegawaiorderfk": $scope.dataSelected.objectpegawaiorderfk,
                     "iddokterverif": $scope.item.dokterVerif.id,
@@ -712,16 +735,16 @@ define(['initialize'], function (initialize) {
                         // });
                     } else if (departemen == 27) {
                         manageServicePhp.saveBrigdingZeta(itemsave)
-                            .then(function (e) {});
+                            .then(function (e) { });
 
                     }
 
                     manageServicePhp.saveDataTransaksi("lab-radiologi/save-pelayanan-pasien-new", itemsave).then(function (e) {
-                            // $scope.btnSimpanVis = false;
-                            // $scope.popUpVerif.close();
-                            init()
+                        // $scope.btnSimpanVis = false;
+                        // $scope.popUpVerif.close();
+                        init()
 
-                        });
+                    });
                 } else {
                     toastr.error('Belum ada data yang dipilih');
                 }
@@ -750,6 +773,21 @@ define(['initialize'], function (initialize) {
                     anHttpRequest.open("GET", aUrl, true);
                     anHttpRequest.send(null);
                 }
+            }
+
+            $scope.toogleClick = function (ev) {
+                var checked = ev.target.checked;
+                if (checked) {
+                    $scope.isAsPegOrKel = true
+                } else {
+                    $scope.isAsPegOrKel = false
+                    $scope.item.diskonpegawai = 0
+                }
+                loadDataVerif()
+            };
+
+            $scope.loadDataVerif = function () {
+                loadDataVerif()
             }
 
             $scope.cetakBuktiLayanan = function () {
