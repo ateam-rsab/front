@@ -695,7 +695,7 @@ define(['initialize'], function (initialize) {
                     var datasys = {
                         "produkid": $scope.sourceVerif._data[i].prid,
                         "hargasatuan": $scope.sourceVerif._data[i].hargasatuan,
-                        "hargadiskon": $scope.sourceVerif._data[i].hargadiskon ? $scope.sourceVerif._data[i].hargadiskon : 0,
+                        "hargadiskon": $scope.sourceVerif._data[i].hargadiskon,
                         "qtyproduk": $scope.sourceVerif._data[i].qtyproduk,
                         "komponenharga": $scope.sourceVerif._data[i].details,
                     }
