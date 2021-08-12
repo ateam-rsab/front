@@ -147,8 +147,21 @@
 				<div class="grid_12" style="margin-bottom: 10px; margin-left: 10px;" ng-show="isDiskonRSAB">
 					<input type="checkbox" class="k-checkbox" name="diskon" id="diskon"
 						ng-model="isDiskonKaryawanKeluargaInti" ng-click="toogleClick($event)">
-					<label c-label item="item" class="k-checkbox-label" for="diskon">Diskon Karyawan/ Keluarga Inti
-						Karyawan</label>
+					<label c-label item="item" class="k-checkbox-label" for="diskon">Diskon Pegawai/
+						Anggota
+						Keluarga Inti
+						Pegawai RSAB Harapan Kita</label>
+				</div>
+				<div class="grid_12" style="margin-bottom: 10px; margin-left: 10px;" ng-show="isDiskonRSAB">
+					<input type="radio" name="diskonpegawai" ng-model="item.diskonpegawai" value="1" id="diskonpegawai"
+						class="k-radio" ng-disabled="!isAsPegOrKel" ng-click="loadDataVerif()">
+					<label class="k-radio-label" for="diskonpegawai">Pegawai RSAB Harapan Kita</label>
+				</div>
+				<div class="grid_12" style="margin-bottom: 10px; margin-left: 10px;" ng-show="isDiskonRSAB">
+					<input type="radio" name="diskonpegawai" ng-model="item.diskonpegawai" value="2" id="diskonkeluarga"
+						class="k-radio" ng-disabled="!isAsPegOrKel" ng-click="loadDataVerif()">
+					<label class="k-radio-label" for="diskonkeluarga">Anggota Keluarga Inti Pegawai RSAB Harapan
+						Kita</label>
 				</div>
 
 				<!-- TotalBilling -->
@@ -192,7 +205,7 @@
 
 					<div class="grid_12">
 						<input c-text-box type="input" class="k-textbox" ng-model="item.totalKlaim"
-							ng-show="showTtlKlaim" />
+							ng-show="showTtlKlaim" ng-disabled="true" />
 						<div class="grid_12" ng-show="showTtlKlaim2">
 							{{item.totalKlaim | currency: "Rp. "}}
 						</div>
