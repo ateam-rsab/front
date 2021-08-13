@@ -56,8 +56,6 @@ define(['initialize'], function (initialize) {
 			// }
 			// showButton();
 
-			$scope.loadDataVerif()
-
 			$scope.loadDataVerif = function () {
 				$scope.isRouteLoading = true
 
@@ -77,12 +75,12 @@ define(['initialize'], function (initialize) {
 								// $scope.item.totalKlaim = $scope.item.jumlahBayar //Old
 								$scope.item.totalKlaim = $scope.item.jumlahBayarNew //New
 							}
-							$scope.showTtlKlaim = true
-							$scope.showTtlKlaim2 = false
+							// $scope.showTtlKlaim = true
+							// $scope.showTtlKlaim2 = false
 							if ($scope.item.diskonpegawai == 1 || $scope.item.diskonpegawai == 2) {
 								if (data.jenisPasien == 'Umum/Pribadi') {
-									$scope.showTtlKlaim = false
-									$scope.showTtlKlaim2 = true
+									// $scope.showTtlKlaim = false
+									// $scope.showTtlKlaim2 = true
 									$scope.item.totalKlaim = data.totalDiskonPegawai
 								}
 							}
@@ -90,6 +88,8 @@ define(['initialize'], function (initialize) {
 						$scope.isRouteLoading = false
 					})
 			}
+
+			$scope.loadDataVerif()
 
 			$scope.Cetak = function () {
 				$scope.pageCetak = true;
@@ -236,18 +236,19 @@ define(['initialize'], function (initialize) {
 
 			$scope.toogleClick = function (ev) {
 				var checked = ev.target.checked;
-				var inputId = ev.currentTarget.id;
-				if (inputId.indexOf("diskon") >= 0 && checked) {
-					$scope.showTtlKlaim = true
-					$scope.showTtlKlaim2 = false
+				// var inputId = ev.currentTarget.id;
+				if (checked) {
+					// $scope.showTtlKlaim = true
+					// $scope.showTtlKlaim2 = false
 					$scope.isAsPegOrKel = true
 				} else {
-					$scope.showTtlKlaim = false
-					$scope.showTtlKlaim2 = true
-					$scope.item.totalKlaim = 0
+					// $scope.showTtlKlaim = false
+					// $scope.showTtlKlaim2 = true
 					$scope.isAsPegOrKel = false
+					$scope.item.totalKlaim = 0
 					$scope.item.diskonpegawai = 0
 				}
+				$scope.loadDataVerif()
 			};
 		}
 	]);

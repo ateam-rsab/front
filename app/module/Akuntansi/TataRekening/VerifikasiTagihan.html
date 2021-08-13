@@ -204,9 +204,12 @@
 					<div class="clear"></div>
 
 					<div class="grid_12">
-						<input c-text-box type="input" class="k-textbox" ng-model="item.totalKlaim"
+						<!-- <input c-text-box type="input" class="k-textbox" ng-model="item.totalKlaim"
 							ng-show="showTtlKlaim" ng-disabled="true" />
 						<div class="grid_12" ng-show="showTtlKlaim2">
+							{{item.totalKlaim | currency: "Rp. "}}
+						</div> -->
+						<div class="grid_12">
 							{{item.totalKlaim | currency: "Rp. "}}
 						</div>
 					</div>
