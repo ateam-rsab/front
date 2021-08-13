@@ -64,6 +64,7 @@ define(['initialize'], function (initialize) {
 						if (data.statResponse) {
 							$scope.isDiskonRSAB = data.kelompokPasienID === 1;
 
+							let jenisDiskon = $scope.item.diskonpegawai
 							$scope.item = data;
 							if (data.needDokument) {
 								$scope.showKelengkapanDokumen = true;
