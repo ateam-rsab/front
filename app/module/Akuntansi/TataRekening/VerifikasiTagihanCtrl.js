@@ -64,7 +64,6 @@ define(['initialize'], function (initialize) {
 						if (data.statResponse) {
 							$scope.isDiskonRSAB = data.kelompokPasienID === 1;
 
-							let jenisDiskon = $scope.item.diskonpegawai
 							$scope.item = data;
 							if (data.needDokument) {
 								$scope.showKelengkapanDokumen = true;
@@ -76,12 +75,15 @@ define(['initialize'], function (initialize) {
 								// $scope.item.totalKlaim = $scope.item.jumlahBayar //Old
 								$scope.item.totalKlaim = $scope.item.jumlahBayarNew //New
 							}
-							$scope.showTtlKlaim = true
-							$scope.showTtlKlaim2 = false
+							if (data.kelompokPasienID == 1) {
+								$scope.showTtlKlaim = false
+								$scope.showTtlKlaim2 = true
+							} else {
+								$scope.showTtlKlaim = true
+								$scope.showTtlKlaim2 = false
+							}
 							if ($scope.item.diskonpegawai == 1 || $scope.item.diskonpegawai == 2) {
 								if (data.jenisPasien == 'Umum/Pribadi') {
-									$scope.showTtlKlaim = false
-									$scope.showTtlKlaim2 = true
 									$scope.item.totalKlaim = data.totalDiskonPegawai
 								}
 							}
@@ -239,12 +241,8 @@ define(['initialize'], function (initialize) {
 				var checked = ev.target.checked;
 				// var inputId = ev.currentTarget.id;
 				if (checked) {
-					$scope.showTtlKlaim = true
-					$scope.showTtlKlaim2 = false
 					$scope.isAsPegOrKel = true
 				} else {
-					$scope.showTtlKlaim = false
-					$scope.showTtlKlaim2 = true
 					$scope.isAsPegOrKel = false
 					$scope.item.totalKlaim = 0
 					$scope.item.diskonpegawai = 0
