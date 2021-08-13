@@ -58,7 +58,6 @@ define(['initialize'], function (initialize) {
 
 			$scope.loadDataVerif = function () {
 				$scope.isRouteLoading = true
-				$scope.autoDiscount = false
 
 				modelItemAkuntansi.getDataTableTransaksi("tatarekening/verifikasi-tagihan2/"
 					+ $scope.dataParams.noRegistrasi + "?jenisdiskon=" + $scope.item.diskonpegawai).then(function (data) {
@@ -83,7 +82,6 @@ define(['initialize'], function (initialize) {
 								if (data.jenisPasien == 'Umum/Pribadi') {
 									$scope.showTtlKlaim = false
 									$scope.showTtlKlaim2 = true
-									$scope.autoDiscount = true
 									$scope.item.totalKlaim = data.totalDiskonPegawai
 								}
 							}
