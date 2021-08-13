@@ -164,57 +164,73 @@
 						Kita</label>
 				</div>
 
-				<!-- TotalBilling -->
-				<div class="grid_6" style="margin-top: 10px;">
-					<div class="grid_12">
-						<label c-label item="item" c-label-text="TotalBilling"></label>
-					</div>
-					<div class="clear"></div>
+				<div class="grid_12" style="margin-bottom: 10px; margin-left: 10px;">
+					<!-- TotalBilling -->
+					<div class="grid_6">
+						<div class="grid_12">
+							<label c-label item="item" c-label-text="TotalBilling"></label>
+						</div>
+						<div class="clear"></div>
 
-					<div class="grid_12" style="margin-top: 10px">
-						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.billing"
-							ng-disabled="true" ng-show="showBilling" />
-						{{item.billing | currency: "Rp. "}}
+						<div class="grid_12" style="margin-top: 10px">
+							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.billing"
+								ng-disabled="true" ng-show="showBilling" />
+							{{item.billing | currency: "Rp. "}}
+						</div>
+					</div>
+
+					<!-- JumlahBayar -->
+					<div class="grid_6">
+						<div class="grid_12">
+							<label c-label item="item" c-label-text="JumlahBayar"></label>
+						</div>
+						<div class="clear"></div>
+
+						<div class="grid_12" style="margin-top: 10px">
+							<input c-text-box type="input" filter="'numeric'" class="k-textbox"
+								ng-model="item.jumlahBayar" ng-disabled="true" ng-show="showBilling" />
+							{{item.jumlahBayar | currency: "Rp. "}}
+						</div>
 					</div>
 				</div>
 
-				<!-- JumlahBayar -->
-				<div class="grid_6">
-					<div class="grid_12">
-						<label c-label item="item" c-label-text="JumlahBayar"></label>
-					</div>
-					<div class="clear"></div>
+				<div class="grid_12" style="margin-bottom: 10px; margin-left: 10px;">
+					<!-- TotalKlaim -->
+					<div class="grid_6">
+						<div class="grid_12" ng-hide="isDiskonKaryawanKeluargaInti">
+							<label c-label item="item" c-label-text="TotalKlaim"></label>
+						</div>
+						<div class="grid_12" ng-show="isDiskonKaryawanKeluargaInti">
+							<label c-label item="item" c-label-text="Diskon"></label>
+						</div>
+						<div class="clear"></div>
 
-					<div class="grid_12" style="margin-top: 10px">
-						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlahBayar"
-							ng-disabled="true" ng-show="showBilling" />
-						{{item.jumlahBayar | currency: "Rp. "}}
-					</div>
-				</div>
-				<div class="clear"></div>
-
-				<!-- TotalKlaim -->
-				<div class="grid_6">
-					<div class="grid_12" ng-hide="isDiskonKaryawanKeluargaInti">
-						<label c-label item="item" c-label-text="TotalKlaim"></label>
-					</div>
-					<div class="grid_12" ng-show="isDiskonKaryawanKeluargaInti">
-						<label c-label item="item" c-label-text="Diskon"></label>
-					</div>
-					<div class="clear"></div>
-
-					<div class="grid_12">
-						<!-- <input c-text-box type="input" class="k-textbox" ng-model="item.totalKlaim"
+						<div class="grid_12">
+							<!-- <input c-text-box type="input" class="k-textbox" ng-model="item.totalKlaim"
 							ng-show="showTtlKlaim" ng-disabled="true" />
 						<div class="grid_12" ng-show="showTtlKlaim2">
 							{{item.totalKlaim | currency: "Rp. "}}
 						</div> -->
+							<div class="grid_12" style="margin-top: 10px">
+								{{item.totalKlaim | currency: "Rp. "}}
+							</div>
+						</div>
+					</div>
+
+					<!-- TotalDeposit -->
+					<div class="grid_6">
+						<div class="grid_12">
+							<label c-label item="item" c-label-text="TotalDeposit"></label>
+						</div>
+						<div class="clear"></div>
+
 						<div class="grid_12" style="margin-top: 10px">
-							{{item.totalKlaim | currency: "Rp. "}}
+							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.deposit"
+								ng-disabled="true" ng-show="showBilling" />
+							{{item.deposit | currency: "Rp. "}}
 						</div>
 					</div>
 				</div>
-				<div class="clear"></div>
 				<!-- JumlahPiutang -->
 				<!--<div class="grid_6">
 					<div class="grid_12">
@@ -227,21 +243,6 @@
 					</div>
 				</div>
 				<div class="clear"></div>-->
-
-				<!-- TotalDeposit -->
-				<div class="grid_6">
-					<div class="grid_12">
-						<label c-label item="item" c-label-text="TotalDeposit"></label>
-					</div>
-					<div class="clear"></div>
-
-					<div class="grid_12" style="margin-top: 10px">
-						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.deposit"
-							ng-disabled="true" ng-show="showBilling" />
-						{{item.deposit | currency: "Rp. "}}
-					</div>
-				</div>
-				<div class="clear"></div>
 			</div>
 		</div>
 		<div class="clear"></div>
