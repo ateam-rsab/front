@@ -58,6 +58,7 @@ define(['initialize'], function (initialize) {
 
 			$scope.loadDataVerif = function () {
 				$scope.isRouteLoading = true
+				$scope.autoDiscount = false
 
 				modelItemAkuntansi.getDataTableTransaksi("tatarekening/verifikasi-tagihan2/"
 					+ $scope.dataParams.noRegistrasi + "?jenisdiskon=" + $scope.item.diskonpegawai).then(function (data) {
@@ -76,12 +77,13 @@ define(['initialize'], function (initialize) {
 								// $scope.item.totalKlaim = $scope.item.jumlahBayar //Old
 								$scope.item.totalKlaim = $scope.item.jumlahBayarNew //New
 							}
-							// $scope.showTtlKlaim = true
-							// $scope.showTtlKlaim2 = false
+							$scope.showTtlKlaim = true
+							$scope.showTtlKlaim2 = false
 							if ($scope.item.diskonpegawai == 1 || $scope.item.diskonpegawai == 2) {
 								if (data.jenisPasien == 'Umum/Pribadi') {
-									// $scope.showTtlKlaim = false
-									// $scope.showTtlKlaim2 = true
+									$scope.showTtlKlaim = false
+									$scope.showTtlKlaim2 = true
+									$scope.autoDiscount = true
 									$scope.item.totalKlaim = data.totalDiskonPegawai
 								}
 							}
@@ -239,12 +241,12 @@ define(['initialize'], function (initialize) {
 				var checked = ev.target.checked;
 				// var inputId = ev.currentTarget.id;
 				if (checked) {
-					// $scope.showTtlKlaim = true
-					// $scope.showTtlKlaim2 = false
+					$scope.showTtlKlaim = true
+					$scope.showTtlKlaim2 = false
 					$scope.isAsPegOrKel = true
 				} else {
-					// $scope.showTtlKlaim = false
-					// $scope.showTtlKlaim2 = true
+					$scope.showTtlKlaim = false
+					$scope.showTtlKlaim2 = true
 					$scope.isAsPegOrKel = false
 					$scope.item.totalKlaim = 0
 					$scope.item.diskonpegawai = 0
