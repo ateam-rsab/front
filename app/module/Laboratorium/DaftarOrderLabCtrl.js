@@ -32,7 +32,7 @@ define(['initialize'], function (initialize) {
                         if ($(this).text() == 'MASUK') {
                             $(this).addClass('masuk')
                         };
-                        if ($(this).text() == 'SELESAI DIPERIKSA') {
+                        if ($(this).text() == 'SELESAI DI VERIFIKASI') {
                             $(this).addClass('selesai')
                         };
                         // DIPANGGIL_SUSTER
