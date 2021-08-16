@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
 	'use strict';
-	initialize.controller('HargaNettoProdukByKelasEditRevCtrl', ['$q', '$rootScope', '$state', '$scope', 'IPSRSService', 'ModelItem', 'ModelItemAkuntansi', 'CacheHelper', 'ManageKasir', 'DateHelper',
-		function ($q, $rootScope, $state, $scope, IPSRSService, ModelItem, modelItemAkuntansi, cacheHelper, manageKasir, dateHelper) {
+	initialize.controller('HargaNettoProdukByKelasEditRevCtrl', ['$q', '$rootScope', '$state', '$scope', 'IPSRSService', 'ModelItem', 'ModelItemAkuntansi', 'ManageSdmNew', 'CacheHelper', 'ManageKasir', 'DateHelper',
+		function ($q, $rootScope, $state, $scope, IPSRSService, ModelItem, modelItemAkuntansi, manageSdmNew, cacheHelper, manageKasir, dateHelper) {
 			$scope.item = {};
 			$scope.dataVOloaded = true;
 			$scope.now = new Date();
@@ -473,13 +473,22 @@ define(['initialize'], function (initialize) {
 						// "detail":dataObjPostD
 						"detail": data2
 					};
-					manageKasir.SaveHargaNetto(dataObjPost).then(function (e) {
-						// debugger;
-						Idsakarepmu = e.data.id;//arrPeriode(0);
-						// $scope.produkInput = true;
-						// $scope.produkCombo = false;
-						LoadData();
-					})
+
+					manageSdmNew.getListData("pelayanan/check-existing-harga-produk-kelas?kelasId="
+						+ STR_kelas + "&produkId=" + objectprodukfkS).then(function (res) {
+							if (res.data.data.length > 0) {
+								toastr.warning("Mapping sudah tersedia", "Peringatan")
+								return
+							} else {
+								manageKasir.SaveHargaNetto(dataObjPost).then(function (e) {
+									// debugger;
+									Idsakarepmu = e.data.id;//arrPeriode(0);
+									// $scope.produkInput = true;
+									// $scope.produkCombo = false;
+									LoadData();
+								})
+							}
+						})
 
 					$state.go("HargaNettoProdukByKelasRev");
 				}
