@@ -22,7 +22,7 @@
         margin-bottom: 10px;
     }
 
-    .filters span {
+    .filters a {
         padding: 2px;
         border: 1px solid gray;
         border-radius: 3px;
@@ -30,6 +30,19 @@
         cursor: pointer;
         min-width: 15px;
         text-align: center;
+    }
+
+    .filters a:hover {
+        background-color: #8a8787;
+        font-weight: bolder;
+        color: #ffffff;
+        transform: scale(1.5);
+    }
+
+    .filtering-actived {
+        background-color: #5a5a5a;
+        font-weight: bolder;
+        color: #ffffff;
     }
 
     .window-footer {
@@ -292,7 +305,7 @@
                 k-visible="false" k-on-open="win2visible = true">
                 <div class="panel panel-default container_12" style="padding: 0px 10px;">
                     <div class="filters">
-                        <span ng-repeat="data in listFilters" ng-click="filterPelayanan(data)">{{data}}</span>
+                        <a ng-repeat="data in listFilters track by $index" ng-class="{'filtering-actived': data.actived}" ng-click="filterPelayanan(data, $index)">{{data.val}}</a>
                     </div>
                     <div class="grid_12">
                         <div class="grid_4">

@@ -22,7 +22,7 @@
         margin-bottom: 10px;
     }
 
-    .filters span {
+    .filters a {
         padding: 2px;
         border: 1px solid gray;
         border-radius: 3px;
@@ -30,6 +30,20 @@
         cursor: pointer;
         min-width: 15px;
         text-align: center;
+        transition: .2s all cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+
+    .filters a:hover {
+        background-color: #8a8787;
+        font-weight: bolder;
+        color: #ffffff;
+        transform: scale(1.5);
+    }
+
+    .filtering-actived {
+        background-color: #5a5a5a;
+        font-weight: bolder;
+        color: #ffffff;
     }
 
     .window-footer {
@@ -68,7 +82,7 @@
                             <label c-label item="item">DPJP</label>
                             <input kendo-combo-box k-ng-model="item.dpjp" k-data-text-field="'namalengkap'"
                                 k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
-                                k-data-source="listDokter"/>
+                                k-data-source="listDokter" />
                         </div>
 
                         <div class="grid_12">
@@ -191,8 +205,8 @@
     k-on-open="win2visible = true">
     <div class="panel panel-default container_12" style="padding: 0px 10px;">
 
-        <div class="filters">
-            <span ng-repeat="data in listFilters" ng-click="filterPelayanan(data)">{{data}}</span>
+        <div id="filterHeader" class="filters">
+            <a class="button-filtering" ng-repeat="data in listFilters track by $index" ng-class="{'filtering-actived': data.actived}" ng-click="filterPelayanan(data, $index)">{{data.val}}</a>
 
             <md-button class="md-raised md-primary medium-button" ng-click="filterPelayanan('')">
                 Reset

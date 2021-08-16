@@ -137,8 +137,9 @@ define(['initialize'], function (initialize) {
                     manageLogistikPhp.saveData("transaksi/lab-radiologi/save-selesai", dataSave).then((res) => {
                         manageServicePhp.saveBridingSysmex(itemsaveBridge).then(function (e) {
                             $scope.popUpVerif.close();
+                            $scope.getDataKehadiran();
                         });
-                        $scope.getDataKehadiran();
+                        
                     })
                 }, function () {
                     $scope.popUpVerif.open().center();

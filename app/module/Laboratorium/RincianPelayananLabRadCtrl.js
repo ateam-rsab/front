@@ -73,15 +73,13 @@ define(['initialize'], function (initialize) {
                                 15: chacePeriode[15]
                             }
                             cacheHelper.set('RincianPelayananLabRadCtrl', arrStr);
-
+                            init();
                         })
                     }
                     $scope.item.ruanganAsal = namaRuangan;
 
 
-                    init();
-
-                } else {
+                    // init();
 
                 }
 

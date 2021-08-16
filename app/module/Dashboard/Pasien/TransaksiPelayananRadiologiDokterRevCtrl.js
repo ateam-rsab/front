@@ -21,10 +21,156 @@ define(['initialize'], function (initialize) {
             let dataPengkajian = JSON.parse(localStorage.getItem("cacheHelper"));
             dataPengkajian = dataPengkajian[0].value;
             let kelompokPasien = dataPengkajian[5];
-            $scope.listFilters = [
-                "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
-                "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
-            ];
+            // $scope.listFilters = [
+            //     "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+            //     "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
+            // ];
+
+            $scope.listFilters = [{
+                val: "0",
+                actived: false
+            },
+            {
+                val: "1",
+                actived: false
+            },
+            {
+                val: "2",
+                actived: false
+            },
+            {
+                val: "3",
+                actived: false
+            },
+            {
+                val: "4",
+                actived: false
+            },
+            {
+                val: "5",
+                actived: false
+            },
+            {
+                val: "6",
+                actived: false
+            },
+            {
+                val: "7",
+                actived: false
+            },
+            {
+                val: "8",
+                actived: false
+            },
+            {
+                val: "9",
+                actived: false
+            },
+            {
+                val: "A",
+                actived: true
+            },
+            {
+                val: "B",
+                actived: false
+            },
+            {
+                val: "C",
+                actived: false
+            },
+            {
+                val: "D",
+                actived: false
+            },
+            {
+                val: "E",
+                actived: false
+            },
+            {
+                val: "F",
+                actived: false
+            },
+            {
+                val: "G",
+                actived: false
+            },
+            {
+                val: "H",
+                actived: false
+            },
+            {
+                val: "I",
+                actived: false
+            },
+            {
+                val: "J",
+                actived: false
+            },
+            {
+                val: "K",
+                actived: false
+            },
+            {
+                val: "L",
+                actived: false
+            },
+            {
+                val: "M",
+                actived: false
+            },
+            {
+                val: "N",
+                actived: false
+            },
+            {
+                val: "O",
+                actived: false
+            },
+            {
+                val: "P",
+                actived: false
+            },
+            {
+                val: "Q",
+                actived: false
+            },
+            {
+                val: "R",
+                actived: false
+            },
+            {
+                val: "S",
+                actived: false
+            },
+            {
+                val: "T",
+                actived: false
+            },
+            {
+                val: "U",
+                actived: false
+            },
+            {
+                val: "V",
+                actived: false
+            },
+            {
+                val: "W",
+                actived: false
+            },
+            {
+                val: "X",
+                actived: false
+            },
+            {
+                val: "Y",
+                actived: false
+            },
+            {
+                val: "Z",
+                actived: false
+            }];
+
 
             $scope.item.ruangantujuan = {
                 id: 35,
@@ -67,8 +213,8 @@ define(['initialize'], function (initialize) {
                     }
                     manageLogistikPhp.getDataTableTransaksi("tatarekening/get-sudah-verif?noregistrasi=" +
                         $scope.item.noregistrasi, true).then(function (dat) {
-                        $scope.item.statusVerif = dat.data.status
-                    });
+                            $scope.item.statusVerif = dat.data.status
+                        });
                 }
                 init();
             }
@@ -149,14 +295,19 @@ define(['initialize'], function (initialize) {
                 $scope.popupAddLayanan.close();
             }
 
-            $scope.filterPelayanan = function (data) {
-                if (!data && !$scope.filterContain) {
-                    toastr.warning("Harap pilih salah satu alphabet atau isi Kata Pencarian", "Perhatian");
-                    return;
+            $scope.filterPelayanan = function (data, index) {
+                for (let i = 0; i < $scope.listFilters.length; i++) {
+                    $scope.listFilters[i].actived = false;
                 }
 
+                if (index) $scope.listFilters[index].actived = true;
+                // if (!data && !$scope.filterContain) {
+                //     toastr.warning("Harap pilih salah satu alphabet atau isi Kata Pencarian", "Perhatian");
+                //     return;
+                // }
+
                 $scope.isLoading = true;
-                manageLogistikPhp.getDataTableTransaksi("pelayanan/get-order-penunjang?departemenfk=27&nocm=" + nocm_str + "&norec_apd=" + norec_apd + "&filter_huruf=" + (data ? data.toLowerCase() : "") + "&filter_contain=" + ($scope.filterContain ? $scope.filterContain : ""), true).then(function (dat) {
+                manageLogistikPhp.getDataTableTransaksi("pelayanan/get-order-penunjang?departemenfk=27&nocm=" + nocm_str + "&norec_apd=" + norec_apd + "&filter_huruf=" + (data ? data.val.toLowerCase() : "A") + "&filter_contain=" + ($scope.filterContain ? $scope.filterContain : ""), true).then(function (dat) {
                     $scope.item.ruanganAsal = dat.data.data[0].namaruangan
                     $scope.listRuanganTujuan = dat.data.ruangantujuan;
                     // $scope.item.ruangantujuan = {
@@ -173,23 +324,23 @@ define(['initialize'], function (initialize) {
 
                     $scope.showInputKhusus = namaRuanganFk === 328 || namaRuanganFk === 76;
                     $scope.item.konsultasiAnestesi = "Tidak",
-                    $scope.item.pemeriksaanLab = "Tidak",
-                    // $scope.item.prosesPersalinan = $scope.showInputKhusus ? "Normal" : null,
-                    $scope.item.kelainanKonengital = $scope.showInputKhusus ? "Tidak" : null,
-                    $scope.item.klinisPneumonia = $scope.showInputKhusus ? "Tidak" : null,
-                    $scope.item.terpasangOksigen = $scope.showInputKhusus ? "Tidak" : null,
-                    $scope.item.terpasangEtt = $scope.showInputKhusus ? "Tidak" : null,
-                    $scope.item.umbilicalCatheter = $scope.showInputKhusus ? "Tidak" : null,
-                    $scope.item.PICC = $scope.showInputKhusus ? "Tidak" : null,
-                    $scope.item.catheterDrain = $scope.showInputKhusus ? "Tidak" : null,
-                    
-                    norec_pd = dat.data.data[0].noregistrasifk
+                        $scope.item.pemeriksaanLab = "Tidak",
+                        // $scope.item.prosesPersalinan = $scope.showInputKhusus ? "Normal" : null,
+                        $scope.item.kelainanKonengital = $scope.showInputKhusus ? "Tidak" : null,
+                        $scope.item.klinisPneumonia = $scope.showInputKhusus ? "Tidak" : null,
+                        $scope.item.terpasangOksigen = $scope.showInputKhusus ? "Tidak" : null,
+                        $scope.item.terpasangEtt = $scope.showInputKhusus ? "Tidak" : null,
+                        $scope.item.umbilicalCatheter = $scope.showInputKhusus ? "Tidak" : null,
+                        $scope.item.PICC = $scope.showInputKhusus ? "Tidak" : null,
+                        $scope.item.catheterDrain = $scope.showInputKhusus ? "Tidak" : null,
+
+                        norec_pd = dat.data.data[0].noregistrasifk
                     $scope.isLoading = false;
                 });
             }
 
 
-            $scope.filterPelayanan("A");
+            $scope.filterPelayanan("");
 
             function getDataRiwayat() {
                 manageLogistikPhp.getDataTableTransaksi('lab-radiologi/get-riwayat-rad?NoCM=' + $scope.item.noMr).then((e) => {
@@ -446,7 +597,7 @@ define(['initialize'], function (initialize) {
                     text: "Hapus",
                     click: hapusOrderRad,
                     imageClass: "k-icon k-i-cancel"
-                }, ],
+                },],
                 title: "",
                 width: 70
 
@@ -481,11 +632,11 @@ define(['initialize'], function (initialize) {
                         toastr.info('Hasil tidak ada');
                         return;
                     }
-    
+
                     $window.open("http://182.23.26.34:1111/URLCall.do?LID=dok&LPW=dok&LICD=003&PID=" + $scope.item.noMr + '&ACN=' + $scope.dataRisOrder.accession_num, "_blank");
                 })
 
-                
+
             }
 
             $scope.detailGridOptions = function (dataItem) {
@@ -494,26 +645,26 @@ define(['initialize'], function (initialize) {
                         data: dataItem.details
                     }),
                     columns: [{
-                            field: "namaproduk",
-                            title: "Deskripsi",
-                            width: "300px"
-                        }, {
-                            field: "konsul_anest",
-                            title: "Konsultasi Anestesi",
-                            width: "100px"
-                        }, {
-                            field: "pemeriksaan_radiologi",
-                            title: "Pemeriksaan Radiologi",
-                            width: "100px"
-                        }, {
-                            field: "perisapan_radiologi",
-                            title: "Perisapan Radiologi",
-                            width: "100px"
-                        },{
-                            field: "qtyproduk",
-                            title: "Qty",
-                            width: "100px"
-                        }]
+                        field: "namaproduk",
+                        title: "Deskripsi",
+                        width: "300px"
+                    }, {
+                        field: "konsul_anest",
+                        title: "Konsultasi Anestesi",
+                        width: "100px"
+                    }, {
+                        field: "pemeriksaan_radiologi",
+                        title: "Pemeriksaan Radiologi",
+                        width: "100px"
+                    }, {
+                        field: "perisapan_radiologi",
+                        title: "Perisapan Radiologi",
+                        width: "100px"
+                    }, {
+                        field: "qtyproduk",
+                        title: "Qty",
+                        width: "100px"
+                    }]
                 };
             };
 
@@ -709,7 +860,7 @@ define(['initialize'], function (initialize) {
                     return;
                 }
 
-                if(!$scope.item.prosesPersalinan && (namaRuanganFk === 328 || namaRuanganFk === 76)) {
+                if (!$scope.item.prosesPersalinan && (namaRuanganFk === 328 || namaRuanganFk === 76)) {
                     toastr.warning("Harap pilih Proses Persalinan!");
                     return;
                 }
@@ -730,16 +881,16 @@ define(['initialize'], function (initialize) {
                     catatanKusus: $scope.item.catatanKhusus,
                     konsultasiAnest: $scope.item.konsultasiAnestesi,
                     periksaLab: $scope.item.pemeriksaanLab === "lainnya" ? $scope.item.pemeriksaanLabLainnya : $scope.item.pemeriksaanLab,
-	   	    prematur: $scope.item.prematur ? $scope.item.prematur : "",
-scOrNormal: $scope.item.prosesPersalinan ? $scope.item.prosesPersalinan : "",
-apgar: $scope.item.apgar ? $scope.item.apgar : "",
-konengital: $scope.item.kelainanKonengital ? $scope.item.kelainanKonengital : "",
-pneumonia: $scope.item.klinisPneumonia ? $scope.item.klinisPneumonia : "",
-oksigen: $scope.item.terpasangOksigen ? $scope.item.terpasangOksigen : "",
-ett: $scope.item.terpasangEtt ? $scope.item.terpasangEtt : "",
-umbCathe: $scope.item.umbilicalCatheter ? $scope.item.umbilicalCatheter : "",
-picc: $scope.item.PICC ? $scope.item.PICC : "",
-drainCath: $scope.item.catheterDrain ? $scope.item.catheterDrain : "",
+                    prematur: $scope.item.prematur ? $scope.item.prematur : "",
+                    scOrNormal: $scope.item.prosesPersalinan ? $scope.item.prosesPersalinan : "",
+                    apgar: $scope.item.apgar ? $scope.item.apgar : "",
+                    konengital: $scope.item.kelainanKonengital ? $scope.item.kelainanKonengital : "",
+                    pneumonia: $scope.item.klinisPneumonia ? $scope.item.klinisPneumonia : "",
+                    oksigen: $scope.item.terpasangOksigen ? $scope.item.terpasangOksigen : "",
+                    ett: $scope.item.terpasangEtt ? $scope.item.terpasangEtt : "",
+                    umbCathe: $scope.item.umbilicalCatheter ? $scope.item.umbilicalCatheter : "",
+                    picc: $scope.item.PICC ? $scope.item.PICC : "",
+                    drainCath: $scope.item.catheterDrain ? $scope.item.catheterDrain : "",
                     details: data2
                 }
 
@@ -748,7 +899,7 @@ drainCath: $scope.item.catheterDrain ? $scope.item.catheterDrain : "",
                     $scope.selectedDataProduk = [];
                     $scope.BatalOrder();
                     getDataRiwayat();
-                    manageLogistikPhp.postLogging('Order Radiologi', 'Norec strukorder_t', e.data.strukorder.norec, 'Menu Dokter').then(function (res) {})
+                    manageLogistikPhp.postLogging('Order Radiologi', 'Norec strukorder_t', e.data.strukorder.norec, 'Menu Dokter').then(function (res) { })
                 })
             }
             $scope.formatRupiah = function (value, currency) {

@@ -28,6 +28,157 @@ define(['initialize'], function (initialize) {
                 "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
                 "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
             ];
+
+            $scope.listFilters = [{
+                val: "0",
+                actived: false
+            },
+            {
+                val: "1",
+                actived: false
+            },
+            {
+                val: "2",
+                actived: false
+            },
+            {
+                val: "3",
+                actived: false
+            },
+            {
+                val: "4",
+                actived: false
+            },
+            {
+                val: "5",
+                actived: false
+            },
+            {
+                val: "6",
+                actived: false
+            },
+            {
+                val: "7",
+                actived: false
+            },
+            {
+                val: "8",
+                actived: false
+            },
+            {
+                val: "9",
+                actived: false
+            },
+            {
+                val: "A",
+                actived: false
+            },
+            {
+                val: "B",
+                actived: false
+            },
+            {
+                val: "C",
+                actived: false
+            },
+            {
+                val: "D",
+                actived: false
+            },
+            {
+                val: "E",
+                actived: false
+            },
+            {
+                val: "F",
+                actived: false
+            },
+            {
+                val: "G",
+                actived: false
+            },
+            {
+                val: "H",
+                actived: false
+            },
+            {
+                val: "I",
+                actived: false
+            },
+            {
+                val: "J",
+                actived: false
+            },
+            {
+                val: "K",
+                actived: false
+            },
+            {
+                val: "L",
+                actived: false
+            },
+            {
+                val: "M",
+                actived: false
+            },
+            {
+                val: "N",
+                actived: false
+            },
+            {
+                val: "O",
+                actived: false
+            },
+            {
+                val: "P",
+                actived: false
+            },
+            {
+                val: "Q",
+                actived: false
+            },
+            {
+                val: "R",
+                actived: false
+            },
+            {
+                val: "S",
+                actived: false
+            },
+            {
+                val: "T",
+                actived: false
+            },
+            {
+                val: "U",
+                actived: false
+            },
+            {
+                val: "V",
+                actived: false
+            },
+            {
+                val: "W",
+                actived: false
+            },
+            {
+                val: "X",
+                actived: false
+            },
+            {
+                val: "Y",
+                actived: false
+            },
+            {
+                val: "Z",
+                actived: false
+            }];
+
+
+            // $("#filterHeader a.button-filtering").on('click', () => {
+            //     $("a.button-filtering").removeClass("filtering-actived");
+            //     $(this).addClass("filtering-actived");
+            // })
             LoadCacheHelper();
 
             function LoadCacheHelper() {
@@ -57,8 +208,8 @@ define(['initialize'], function (initialize) {
                     }
                     manageLogistikPhp.getDataTableTransaksi("tatarekening/get-sudah-verif?noregistrasi=" +
                         $scope.item.noregistrasi, true).then(function (dat) {
-                        $scope.item.statusVerif = dat.data.status
-                    });
+                            $scope.item.statusVerif = dat.data.status
+                        });
                 }
                 init()
             }
@@ -115,9 +266,15 @@ define(['initialize'], function (initialize) {
                 baseURLFiltering = (data ? "idjenisperiksapenunjang=" : "idpaket=") + (id ? id : "");
             }
 
-            $scope.filterPelayanan = function (data) {
+            $scope.filterPelayanan = function (data, index) {
+                for(let i = 0; i < $scope.listFilters.length; i++) {
+                    $scope.listFilters[i].actived = false;
+                }
+
+                if(index) $scope.listFilters[index].actived = true;
+                
                 $scope.isLoading = true;
-                manageLogistikPhp.getDataTableTransaksi("pelayanan/get-order-penunjang?departemenfk=3&nocm=" + nocm_str + '&norec_apd=' + norec_apd + "&" + baseURLFiltering + "&filter_huruf=" + (data ? data.toLowerCase() : "") + "&filter_contain=" + ($scope.filterContain ? $scope.filterContain : ""), true).then(function (dat) {
+                manageLogistikPhp.getDataTableTransaksi("pelayanan/get-order-penunjang?departemenfk=3&nocm=" + nocm_str + '&norec_apd=' + norec_apd + "&" + baseURLFiltering + "&filter_huruf=" + (data ? data.val.toLowerCase() : "") + "&filter_contain=" + ($scope.filterContain ? $scope.filterContain : ""), true).then(function (dat) {
                     for (let i in dat.data.produk) {
                         dat.data.produk[i].checked = false;
                         dat.data.produk[i].jmlLayanan = 0;
@@ -163,7 +320,7 @@ define(['initialize'], function (initialize) {
                 "field": "statusorder",
                 "title": "Status Order",
                 "width": 100,
-            }, ]
+            },]
 
             function init() {
                 $scope.isDokter = getJenisPegawai === "DOKTER";
@@ -206,7 +363,7 @@ define(['initialize'], function (initialize) {
                     });
                 }
             }
-            
+
             $scope.selectedDataProduk = [];
             $scope.updateSelectedData = (data, i) => {
                 $scope.selectedDataProduk = [];
@@ -224,7 +381,7 @@ define(['initialize'], function (initialize) {
             }
 
 
-            
+
             $scope.tambahData = () => {
 
                 for (let i in $scope.selectedDataProduk) {
@@ -306,79 +463,79 @@ define(['initialize'], function (initialize) {
 
 
             $scope.columnGrid = [{
-                    "field": "no",
-                    "title": "No",
-                    "width": "10px",
-                },
-                {
-                    "field": "tglorder",
-                    "title": "Tgl Order",
-                    "width": "90px",
-                },
-                {
-                    "field": "ruangan",
-                    "title": "Nama Ruangan",
-                    "width": "140px"
-                },
-                {
-                    "field": "produkfk",
-                    "title": "Kode",
-                    "width": "40px",
-                },
-                {
-                    "field": "namaproduk",
-                    "title": "Layanan",
-                    "width": "160px",
-                },
-                {
-                    "field": "jumlah",
-                    "title": "Qty",
-                    "width": "40px",
-                },
-                {
-                    "field": "hargasatuan",
-                    "title": "Harga Satuan",
-                    "width": "80px",
-                    "template": "<span class='style-right'>{{formatRupiah('#: hargasatuan #', '')}}</span>"
-                },
-                {
-                    "field": "hargadiscount",
-                    "title": "Diskon",
-                    "width": "80px",
-                    "template": "<span class='style-right'>{{formatRupiah('#: hargadiscount #', '')}}</span>"
-                },
-                {
-                    "field": "total",
-                    "title": "Total",
-                    "width": "80px",
-                    "template": "<span class='style-right'>{{formatRupiah('#: total #', '')}}</span>"
-                },
-                {
-                    "field": "nostruk",
-                    "title": "No Struk",
-                    "width": "80px"
-                }
+                "field": "no",
+                "title": "No",
+                "width": "10px",
+            },
+            {
+                "field": "tglorder",
+                "title": "Tgl Order",
+                "width": "90px",
+            },
+            {
+                "field": "ruangan",
+                "title": "Nama Ruangan",
+                "width": "140px"
+            },
+            {
+                "field": "produkfk",
+                "title": "Kode",
+                "width": "40px",
+            },
+            {
+                "field": "namaproduk",
+                "title": "Layanan",
+                "width": "160px",
+            },
+            {
+                "field": "jumlah",
+                "title": "Qty",
+                "width": "40px",
+            },
+            {
+                "field": "hargasatuan",
+                "title": "Harga Satuan",
+                "width": "80px",
+                "template": "<span class='style-right'>{{formatRupiah('#: hargasatuan #', '')}}</span>"
+            },
+            {
+                "field": "hargadiscount",
+                "title": "Diskon",
+                "width": "80px",
+                "template": "<span class='style-right'>{{formatRupiah('#: hargadiscount #', '')}}</span>"
+            },
+            {
+                "field": "total",
+                "title": "Total",
+                "width": "80px",
+                "template": "<span class='style-right'>{{formatRupiah('#: total #', '')}}</span>"
+            },
+            {
+                "field": "nostruk",
+                "title": "No Struk",
+                "width": "80px"
+            }
             ];
 
             $scope.columnGridOrder = [{
-                    "field": "no",
-                    "title": "No",
-                    "width": "10px",
-                },
-                {
-                    "field": "namaproduk",
-                    "title": "Layanan",
-                    "width": "160px",
-                },
-                {
-                    "field": "qtyproduk",
-                    "title": "Qty",
-                    "width": "40px",
-                }, {
-                    "field": "catatanOrder",
-                    "title": "Catatan",
-                    "width": "40px",
-                }
+                "field": "no",
+                "title": "No",
+                "width": "10px",
+            },
+            {
+                "field": "namaproduk",
+                "title": "Layanan",
+                "width": "160px",
+            },
+            {
+                "field": "qtyproduk",
+                "title": "Qty",
+                "width": "40px",
+            }, {
+                "field": "catatanOrder",
+                "title": "Catatan",
+                "width": "40px",
+            }
             ];
 
             $scope.gridOrderOption = {
@@ -452,15 +609,15 @@ define(['initialize'], function (initialize) {
                         data: dataItem.details
                     }),
                     columns: [{
-                            field: "namaproduk",
-                            title: "Deskripsi",
-                            width: "300px"
-                        },
-                        {
-                            field: "qtyproduk",
-                            title: "Qty",
-                            width: "100px"
-                        }
+                        field: "namaproduk",
+                        title: "Deskripsi",
+                        width: "300px"
+                    },
+                    {
+                        field: "qtyproduk",
+                        title: "Qty",
+                        width: "100px"
+                    }
                     ]
                 };
             };
@@ -628,7 +785,7 @@ define(['initialize'], function (initialize) {
                     return;
                 }
 
-                if(!$scope.isDokter && !$scope.item.dpjp) {
+                if (!$scope.isDokter && !$scope.item.dpjp) {
                     toastr.warning("Harap pilih DPJP terlebih dahulu!");
                     return;
                 }
@@ -654,7 +811,7 @@ define(['initialize'], function (initialize) {
                 manageLogistikPhp.saveData("transaksi/lab-radiologi/save-order-layanan-new", objSave).then(function (e) {
                     init();
                     $scope.BatalOrder();
-                    manageLogistikPhp.postLogging('Order Laboratorium', 'Norec strukorder_t', e.data.strukorder.norec, 'Menu Dokter').then(function (res) {})
+                    manageLogistikPhp.postLogging('Order Laboratorium', 'Norec strukorder_t', e.data.strukorder.norec, 'Menu Dokter').then(function (res) { })
                     // $scope.item.resep = e.data.noresep.norec
                     // var stt = 'false'
                     // if (confirm('View resep? ')) {

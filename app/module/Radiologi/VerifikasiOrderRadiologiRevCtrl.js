@@ -3,6 +3,7 @@ define(['initialize'], function (initialize) {
     initialize.controller('VerifikasiOrderRadiologiRevCtrl', ['FindProduk', 'CacheHelper', 'ManagePasien', 'socket', '$rootScope', '$scope', 'ModelItem', '$state', 'RegistrasiPasienBaru', 'FindPasien', 'FindPasienRadiologi', 'DateHelper', '$mdDialog',
         function (produkService, cacheHelper, managePasien, socket, $rootScope, $scope, ModelItem, $state, RegistrasiPasienBaru, findPasien, findPasienRadiologi, dateHelper, $mdDialog) {
             $scope.item = {};
+            $scope.pegawai = JSON.parse(window.localStorage.getItem('pegawai'));
             $scope.isRouteLoading = false;
             $scope.dataOrderRadiologi = JSON.parse(localStorage.getItem("dataOrderRadiologi"));
             console.log($scope.dataOrderRadiologi);
@@ -19,7 +20,7 @@ define(['initialize'], function (initialize) {
                 namalengkap: "dr. Ido Narpati Bramantya, Sp.Rad"
             }, {
                 id: 22632,
-                namalengkap: "dr. Gita Maria, Sp.Rad"
+                namalengkap: "dr. Gita Maria, Sp.Rads"
             }, {
                 id: 1420,
                 namalengkap: "dr. Ade Satrijani Sutarto, Sp.Rad"
@@ -28,11 +29,12 @@ define(['initialize'], function (initialize) {
 
             let init = () => {
                 $scope.isRouteLoading = true;
-                // http://192.168.12.3:5555/simrs_harkit/service/transaksi/lab-radiologi/get-compnonen-rad
                 findPasienRadiologi.getData("lab-radiologi/get-daftar-order-detail?strukorder=" + $state.params.norec).then((res) => {
                     $scope.isRouteLoading = false;
                     $scope.detailOrderRadiologi = res.data;
+                    $scope.norec_apd = res.data.norec_apd;
 
+                    console.log($scope.norec_apd);
                     $scope.dataSourceDetail = new kendo.data.DataSource({
                         data: res.data.detail,
                         pageSize: 20
@@ -201,35 +203,61 @@ define(['initialize'], function (initialize) {
             $scope.showAlertSuccess = function (ev) {
                 $mdDialog.show(
                     $mdDialog.alert()
-                    .clickOutsideToClose(true)
-                    .title('Verifikasi Berhasil')
-                    .textContent('Anda akan di arahkan ke laman Daftar Order Pasien Radiologi.')
-                    .ok('Ya')
-                    .targetEvent(ev)
+                        .clickOutsideToClose(true)
+                        .title('Verifikasi Berhasil')
+                        .textContent('Anda akan di arahkan ke laman Daftar Order Pasien Radiologi.')
+                        .ok('Ya')
+                        .targetEvent(ev)
                 ).then(() => {
                     $state.go("DaftarOrderRadiologi");
                 });
             };
 
             $scope.cetakBuktiLayanan = function () {
-                if (!$scope.item.noregistrasi && !norec_apd) {
-                    //cetakan langsung service VB6 by grh
-                    var stt = 'false'
-                    if (confirm('View Bukti Layanan? ')) {
-                        // Save it!
-                        stt = 'true';
-                    } else {
-                        // Do nothing!
-                        stt = 'false'
-                    }
-                    var client = new HttpClient();
+                let client = new HttpClient();
+                let confirm = $mdDialog.confirm()
+                    .title('Lihat Bukti Layanan?')
+                    .ariaLabel('Lucky day')
+                    .ok('Ya')
+                    .cancel('Tidak');
 
+                $mdDialog.show(confirm).then(function () {
                     client.get('http://127.0.0.1:1237/printvb/Pendaftaran?cetak-buktilayanan-ruangan=1&norec='
                         + $scope.item.noregistrasi + '&strIdPegawai=' + $scope.pegawai.id +
-                        '&strIdRuangan=ORDERRADIOLOGI' + norec_apd + '&view=' + stt, function (response) {
+                        '&strIdRuangan=ORDERRADIOLOGI' + $scope.norec_apd + '&view=true', function (response) {
                             // do something with response
                         });
+                }, function () {
+                    console.log("Batal");
+                });
+                // if (!$scope.item.noregistrasi && !norec_apd) {
+                //     //cetakan langsung service VB6 by grh
+                //     var stt = 'false'
+                //     if (confirm('View Bukti Layanan? ')) {
+                //         // Save it!
+                //         stt = 'true';
+                //     } else {
+                //         // Do nothing!
+                //         stt = 'false'
+                //     }
+                //     var client = new HttpClient();
 
+                   
+
+                // }
+            }
+
+
+            var HttpClient = function () {
+                this.get = function (aUrl, aCallback) {
+                    var anHttpRequest = new XMLHttpRequest();
+                    anHttpRequest.onreadystatechange = function () {
+                        if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+                            aCallback(anHttpRequest.responseText);
+                    }
+
+                    anHttpRequest.open("GET", aUrl, true);
+                    anHttpRequest.send(null);
                 }
             }
 
@@ -268,7 +296,7 @@ define(['initialize'], function (initialize) {
                         produkfk: dataSourceGrid[i].idProduk,
                         qtyproduk: dataSourceGrid[i].qtyproduk,
                         pemeriksaanRadiologi: dataSourceGrid[i].pemeriksaanRadiologi,
-                        persiapanRadiologi:dataSourceGrid[i].persiapanRadiologi,
+                        persiapanRadiologi: dataSourceGrid[i].persiapanRadiologi,
                         konsultasiAnestesi: dataSourceGrid[i].konsultasiAnestesi,
                     })
 
