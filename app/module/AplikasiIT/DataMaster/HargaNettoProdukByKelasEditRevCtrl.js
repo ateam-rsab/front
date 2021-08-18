@@ -475,7 +475,7 @@ define(['initialize'], function (initialize) {
 					};
 
 					manageSdmNew.getListData("pelayanan/check-existing-harga-produk-kelas?kelasId="
-						+ STR_kelas + "&produkId=" + objectprodukfkS).then(function (res) {
+						+ STR_kelas + "&produkId=" + objectprodukfkS + "&mappingId=" + STR_Id_hargaNetto_M).then(function (res) {
 							if (res.data.data.length > 0) {
 								toastr.warning("Mapping sudah tersedia", "Peringatan")
 								return

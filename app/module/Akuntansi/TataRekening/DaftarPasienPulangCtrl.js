@@ -236,7 +236,7 @@ define(["initialize"], function (initialize) {
             "Ok"
           );
 
-          $mdDialog.show(alertDialog).then(function () {});
+          $mdDialog.show(alertDialog).then(function () { });
         } else {
           //
           if ($scope.dataPasienSelected.noRegistrasi != undefined) {
@@ -251,11 +251,11 @@ define(["initialize"], function (initialize) {
             var client = new HttpClient();
             client.get(
               "http://127.0.0.1:1237/printvb/kasir?cetak-kip=1&noregistrasi=" +
-                $scope.dataPasienSelected.noRegistrasi +
-                "&strIdPegawai=" +
-                dataLogin.namauser +
-                "&STD=&view=" +
-                stt,
+              $scope.dataPasienSelected.noRegistrasi +
+              "&strIdPegawai=" +
+              dataLogin.namauser +
+              "&STD=&view=" +
+              stt,
               function (response) {
                 // aadc=response;
               }
@@ -296,7 +296,7 @@ define(["initialize"], function (initialize) {
           manageTataRekening
             .getItem(
               "transaksi/tatarekening/get-isverifikasi-farmasi?noregistrasifk=" +
-                $scope.dataPasienSelected.norec
+              $scope.dataPasienSelected.norec
             )
             .then((res) => {
               if (res.data === "Sdh diverikasi farmasi") {
@@ -319,7 +319,7 @@ define(["initialize"], function (initialize) {
                     manageTataRekening
                       .postData(
                         "tatarekening/batal-resep-oleh-pasien?noRegister=" +
-                          $scope.dataPasienSelected.noRegistrasi
+                        $scope.dataPasienSelected.noRegistrasi
                       )
                       .then((res) => {
                         // console.log(res);
@@ -373,9 +373,9 @@ define(["initialize"], function (initialize) {
         manageTataRekening
           .getDataTableTransaksi(
             "logging/save-log-unverifikasi-tarek?noregistrasi=" +
-              $scope.dataPasienSelected.noRegistrasi
+            $scope.dataPasienSelected.noRegistrasi
           )
-          .then(function (data) {});
+          .then(function (data) { });
       };
 
       $scope.KelengkapanDokumen = function () {
@@ -396,7 +396,7 @@ define(["initialize"], function (initialize) {
             ""
           );
 
-          $mdDialog.show(alertDialog).then(function () {});
+          $mdDialog.show(alertDialog).then(function () { });
         }
       };
 
@@ -418,13 +418,13 @@ define(["initialize"], function (initialize) {
         };
         manageTataRekening
           .postJurnalAkuntansiVerifikasi(objSave)
-          .then(function (data) {});
+          .then(function (data) { });
         var objSave = {
           noregistrasi: $scope.dataPasienSelected.noRegistrasi,
         };
         manageTataRekening
           .postJurnalAkuntansi(objSave)
-          .then(function (data) {});
+          .then(function (data) { });
         $scope.changePage("RincianTagihanTataRekening");
       };
 
@@ -432,6 +432,7 @@ define(["initialize"], function (initialize) {
         if ($scope.dataPasienSelected.noRegistrasi != undefined) {
           var obj = {
             noRegistrasi: $scope.dataPasienSelected.noRegistrasi,
+            diskonpegawai: $scope.dataPasienSelected.diskonpegawai ? $scope.dataPasienSelected.diskonpegawai : 0
           };
 
           $state.go(stateName, {
@@ -558,22 +559,22 @@ define(["initialize"], function (initialize) {
         modelItemAkuntansi
           .getDataTableTransaksi(
             "tatarekening/daftar-pasien-pulang?" +
-              "namaPasien=" +
-              tempNamaOrReg +
-              "&ruanganId=" +
-              tempRuanganId +
-              "&status=" +
-              tempStatus +
-              "&tglAwal=" +
-              tglAwal +
-              "&tglAkhir=" +
-              tglAkhir +
-              "&noReg=" +
-              tempNoReg +
-              "&instalasiId=" +
-              tempInstalasiId +
-              "&noRm=" +
-              tempNoRm
+            "namaPasien=" +
+            tempNamaOrReg +
+            "&ruanganId=" +
+            tempRuanganId +
+            "&status=" +
+            tempStatus +
+            "&tglAwal=" +
+            tglAwal +
+            "&tglAkhir=" +
+            tglAkhir +
+            "&noReg=" +
+            tempNoReg +
+            "&instalasiId=" +
+            tempInstalasiId +
+            "&noRm=" +
+            tempNoRm
           )
           .then(function (data) {
             $scope.isRouteLoading = false;

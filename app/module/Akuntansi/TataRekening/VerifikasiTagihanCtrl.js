@@ -10,12 +10,12 @@ define(['initialize'], function (initialize) {
 			$scope.showKelengkapanDokumen = false;
 
 			$scope.item = {};
-			$scope.item.diskonpegawai = 0;
 			$scope.tombolSaveIlang = true;
 			$scope.isDiskonRSAB = false;
 			$scope.isDiskonKaryawanKeluargaInti = false;
 
 			$scope.dataParams = JSON.parse($state.params.dataPasien);
+			$scope.item.diskonpegawai = $scope.dataParams.diskonpegawai;
 
 			// $q.all([
 			// 	modelItemAkuntansi.getDataTableTransaksi("tatarekening/verifikasi-tagihan2/"
@@ -60,11 +60,18 @@ define(['initialize'], function (initialize) {
 				$scope.isRouteLoading = true
 
 				modelItemAkuntansi.getDataTableTransaksi("tatarekening/verifikasi-tagihan2/"
-					+ $scope.dataParams.noRegistrasi + "?jenisdiskon=" + $scope.item.diskonpegawai).then(function (data) {
+					+ $scope.dataParams.noRegistrasi + "?jenisdiskon=" + ($scope.diskonpegawaiexisting ? $scope.diskonpegawaiexisting : $scope.item.diskonpegawai)).then(function (data) {
 						if (data.statResponse) {
 							$scope.isDiskonRSAB = data.kelompokPasienID === 1;
 
 							$scope.item = data;
+							if (data.diskonpegawaiexisting == 1 || data.diskonpegawaiexisting == 2) {
+								$scope.isDiskonKaryawanKeluargaInti = true
+								$scope.isAsPegOrKel = true
+								$scope.item.diskonpegawai = data.diskonpegawaiexisting
+								$scope.diskonpegawaiexisting = data.diskonpegawaiexisting
+							}
+
 							if (data.needDokument) {
 								$scope.showKelengkapanDokumen = true;
 								$scope.dataKelengkapanDokumen = new kendo.data.DataSource({
@@ -247,7 +254,7 @@ define(['initialize'], function (initialize) {
 					$scope.item.totalKlaim = 0
 					$scope.item.diskonpegawai = 0
 				}
-				$scope.loadDataVerif()
+				// $scope.loadDataVerif()
 			};
 		}
 	]);
