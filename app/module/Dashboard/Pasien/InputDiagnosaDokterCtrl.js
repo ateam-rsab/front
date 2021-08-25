@@ -116,6 +116,19 @@ define(['initialize'], function(initialize, pasienServices) {
                 });
             }
 
+            $scope.mainGridOptions = {
+                filterable: {
+                    extra: false,
+                    operators: {
+                        string: {
+                            startswith: "Dimulai dengan",
+                            contains: "mengandung kata",
+                            neq: "Tidak mengandung kata"
+                        }
+                    }
+                }
+            }
+
             $scope.columnDiagnosaIcd9= [{
                 "title": "No",
                 "template": "{{dataSourceDiagnosaIcd9.indexOf(dataItem) + 1}}",
@@ -147,10 +160,11 @@ define(['initialize'], function(initialize, pasienServices) {
                 "title": "Tgl Input",
                 "width": "200px"
             }];
+
             $scope.columnDiagnosaIcd10 = [{
                 "title": "No",
                 "template": "{{dataSourceDiagnosaIcd10.indexOf(dataItem) + 1}}",
-                "width": "30px"
+                "width": "50px"
             }, {
                 "field": "jenisdiagnosa",
                 "title": "Jenis Diagnosis",

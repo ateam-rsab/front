@@ -405,12 +405,23 @@ define(['initialize', 'Configuration'], function(initialize, configuration) {
                 var grid = $(this).data("mainGridOptions");
 
             }
+
             $scope.mainGridOptions = {
                 sortable: true,
                 // toolbar: [{
                 //     name: "create",
                 //     text: "Tambah"
                 // }],
+                filterable: {
+                  extra: false,
+                  operators: {
+                      string: {
+                          startswith: "Dimulai dengan",
+                          contains: "mengandung kata",
+                          neq: "Tidak mengandung kata"
+                      }
+                  }
+                },
                 autoSync: true,
                 change:onChange,
                 batch: true,

@@ -28,20 +28,46 @@ define(['initialize'], function (initialize) {
             $scope.layanan = {};
 
             let init = () => {
+                // let URL = $scope.isDetail ? "get-daftar-order-detail-after-verif" : "get-daftar-order-detail";
                 $scope.isRouteLoading = true;
+
+                if ($scope.isDetail) {
+                    findPasienRadiologi.getData("lab-radiologi/get-daftar-order-detail-after-verif?strukorder=" + $state.params.norec).then((res) => {
+                        $scope.isRouteLoading = false;
+                        // $scope.detailOrderRadiologi = res.data;
+                        // $scope.norec_apd = res.data.norec_apd;
+
+                        for (let i = 0; i < res.data.detail.length; i++) {
+                            res.data.detail[i].statCheckbox = false;
+                            res.data.detail[i].qtyproduk = res.data.detail[i].jumlah
+                            res.data.detail[i].persiapan = res.data.detail[i].perisapan_radiologi
+                            // res.data.detail[i].riwayat = res.data.detail[i].
+                            // res.data.detail[i].catatan_tambahan = res.data.detail[i].
+                            res.data.detail[i].jadualTindakan = res.data.detail[i].tglpelayanan
+                            res.data.detail[i].konsultasiAnestesi = res.data.detail[i].konsul_anest
+                            res.data.detail[i].pemeriksaanRadiologi = res.data.detail[i].pemeriksaan_radiologi
+                        }
+
+                        $scope.dataSourceVerified = new kendo.data.DataSource({
+                            data: res.data.detail,
+                            pageSize: 20
+                        })
+                    });
+                }
+
+
+
                 findPasienRadiologi.getData("lab-radiologi/get-daftar-order-detail?strukorder=" + $state.params.norec).then((res) => {
                     $scope.isRouteLoading = false;
                     $scope.detailOrderRadiologi = res.data;
                     $scope.norec_apd = res.data.norec_apd;
 
-                    console.log($scope.norec_apd);
                     $scope.dataSourceDetail = new kendo.data.DataSource({
                         data: res.data.detail,
                         pageSize: 20
                     })
                 });
 
-                // http://192.168.12.3:5555/simrs_harkit/service/transaksi/transaksi/lab-radiologi/get-compnonen-rad
                 findPasienRadiologi.getData("lab-radiologi/get-compnonen-rad", true).then(function (dat) {
                     $scope.listLayanan = dat.data.data;
                 });
@@ -78,7 +104,73 @@ define(['initialize'], function (initialize) {
                 width: 70
             }];
 
+            function reloadDataGrid(ds) {
+                var newDs = new kendo.data.DataSource({
+                    data: ds,
+                    _data: ds,
+                    pageSize: 10,
+                    total: ds.length,
+                    serverPaging: false,
+                    // aggregate: [
+                    //     { field: 'total', aggregate: 'sum' },
+                    // ]
+
+                });
+
+                var grid = $('#kGrids').data("kendoGrid");
+
+                grid.setDataSource(newDs);
+                grid.refresh();
+
+            }
+
+            $scope.selectRow = function (dataItem) {
+                var dataSelect = _.find($scope.dataSourceVerified._data, function (data) {
+                    return data.norec_pp == dataItem.norec_pp;
+                });
+
+                if (dataSelect.statCheckbox) {
+                    dataSelect.statCheckbox = false;
+                }
+                else {
+                    dataSelect.statCheckbox = true;
+                }
+
+                $scope.tempCheckbox = dataSelect.statCheckbox;
+
+                reloadDataGrid($scope.dataSourceVerified._data);
+
+            }
+
+            var isCheckAll = false
+            $scope.selectUnselectAllRow = function () {
+                var tempData = $scope.dataSourceVerified._data;
+
+                if (isCheckAll) {
+                    isCheckAll = false;
+                    for (var i = 0; i < tempData.length; i++) {
+                        tempData[i].statCheckbox = false;
+                    }
+                }
+                else {
+                    isCheckAll = true;
+                    for (var i = 0; i < tempData.length; i++) {
+                        tempData[i].statCheckbox = true;
+                    }
+                }
+
+                reloadDataGrid(tempData);
+            }
+
             $scope.columnsDetailOrderVerified = [{
+                title: "<input type='checkbox' class='checkbox' ng-click='selectUnselectAllRow()' />",
+                template: "# if (statCheckbox) { #" +
+                    "<input type='checkbox' class='checkbox' ng-click='selectRow(dataItem)' checked />" +
+                    "# } else { #" +
+                    "<input type='checkbox' class='checkbox' ng-click='selectRow(dataItem)' />" +
+                    "# } #",
+                width: "30px"
+            }, {
                 "field": "namaproduk",
                 "title": "Nama Layanan",
                 "width": 100,
@@ -214,6 +306,24 @@ define(['initialize'], function (initialize) {
             };
 
             $scope.cetakBuktiLayanan = function () {
+                
+                var daftarCetak = [];
+                for (var i = 0; i < $scope.dataSourceVerified._data.length; i++) {
+                    if ($scope.dataSourceVerified._data[i].statCheckbox) {
+                        daftarCetak.push($scope.dataSourceVerified._data[i].norec_pp)
+                    }
+                }
+
+                if(daftarCetak.length === 0) {
+                    toastr.warning("Harap pilih data terlebih dahulu!");
+                    return;
+                }
+
+                var resultCetak = daftarCetak.map(a => a).join("|");
+                // if (!$scope.selectedDataVerified) {
+                //     toastr.info("Harap pilih salah satu data!");
+                //     return;
+                // }
                 let client = new HttpClient();
                 let confirm = $mdDialog.confirm()
                     .title('Lihat Bukti Layanan?')
@@ -222,29 +332,12 @@ define(['initialize'], function (initialize) {
                     .cancel('Tidak');
 
                 $mdDialog.show(confirm).then(function () {
-                    client.get('http://127.0.0.1:1237/printvb/Pendaftaran?cetak-buktilayanan-ruangan=1&norec='
-                        + $scope.item.noregistrasi + '&strIdPegawai=' + $scope.pegawai.id +
-                        '&strIdRuangan=ORDERRADIOLOGI' + $scope.norec_apd + '&view=true', function (response) {
-                            // do something with response
-                        });
+                    client.get('http://127.0.0.1:1237/printvb/Pendaftaran?cetak-buktilayanan-norec_apd=1&norec=' + resultCetak + '&strIdPegawai=' + $scope.pegawai.id + '&strIdRuangan=-&view=true', function (response) {
+
+                    });
                 }, function () {
                     console.log("Batal");
                 });
-                // if (!$scope.item.noregistrasi && !norec_apd) {
-                //     //cetakan langsung service VB6 by grh
-                //     var stt = 'false'
-                //     if (confirm('View Bukti Layanan? ')) {
-                //         // Save it!
-                //         stt = 'true';
-                //     } else {
-                //         // Do nothing!
-                //         stt = 'false'
-                //     }
-                //     var client = new HttpClient();
-
-                   
-
-                // }
             }
 
 

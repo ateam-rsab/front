@@ -518,6 +518,16 @@ define(['initialize'], function (initialize) {
 
 
             $scope.columnHistoryResep = {
+                filterable: {
+                    extra: false,
+                    operators: {
+                        string: {
+                            startswith: "Dimulai dengan",
+                            contains: "mengandung kata",
+                            neq: "Tidak mengandung kata"
+                        }
+                    }
+                },
                 pageable: true,
                 columns: [{
                         field: "tglorder",

@@ -160,6 +160,16 @@ define(['initialize'], function (initialize) {
 				console.log($scope.item.umur);
 				$scope.item.noRegistrasi = $scope.cache[0];
 				$scope.optGridAsesmenGizi = {
+					filterable: {
+						extra: false,
+						operators: {
+							string: {
+								startswith: "Dimulai dengan",
+								contains: "mengandung kata",
+								neq: "Tidak mengandung kata"
+							}
+						}
+					},
 					toolbar: [{
 						name: "create",
 						text: "Input Baru",
@@ -209,6 +219,16 @@ define(['initialize'], function (initialize) {
 				};
 
 				$scope.optGridAsesmenGiziNotVerif = {
+					filterable: {
+						extra: false,
+						operators: {
+							string: {
+								startswith: "Dimulai dengan",
+								contains: "mengandung kata",
+								neq: "Tidak mengandung kata"
+							}
+						}
+					},
 					pageable: true,
 					scrollable: true,
 					columns: [{

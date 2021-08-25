@@ -8,6 +8,7 @@ define(['initialize'], function (initialize) {
             $scope.dataVOloaded = true
             $scope.isDisable = false
             $scope.isRouteLoading = false
+            $scope.isDetail = false;
             $scope.dataLogin = JSON.parse(localStorage.getItem('pegawai'));
             var cookie = document.cookie.split(';')
             var kelompokUser = cookie[0].split('=')
@@ -88,6 +89,16 @@ define(['initialize'], function (initialize) {
             //date : 01.05.2019
             $scope.cppt = {}
             $scope.gridCPPT = {
+                filterable: {
+                    extra: false,
+                    operators: {
+                        string: {
+                            startswith: "Dimulai dengan",
+                            contains: "mengandung kata",
+                            neq: "Tidak mengandung kata"
+                        }
+                    }
+                },
                 toolbar: [{
                     name: "create", text: "Input Baru",
                     template: '<button ng-click="inputBaru(1)" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah SOAP</button>'
@@ -554,6 +565,16 @@ define(['initialize'], function (initialize) {
 
             $scope.gridCPPTnotVerif = {
                 pageable: true,
+                filterable: {
+                    extra: false,
+                    operators: {
+                        string: {
+                            startswith: "Dimulai dengan",
+                            contains: "mengandung kata",
+                            neq: "Tidak mengandung kata"
+                        }
+                    }
+                },
                 columns: [
                     { field: "tglinput", title: "Tanggal/Jam", width: 100 },
                     { field: "namalengkap", title: "Pegawai", width: 150 },

@@ -11,6 +11,7 @@
          const parts = value.split(`; ${name}=`);
          if (parts.length === 2) return parts.pop().split(';').shift();
      }
+     
 
      httpServiceAkuntansi.service('ModelItemAkuntansi', ['$mdDialog', '$q', '$http', '$resource', 'TextHelper',
          function ($mdDialog, $q, $http, $resource, textHelper) {
@@ -553,15 +554,15 @@
                  getDataTableTransaksi: function (tableName) {
 
                      var deffer = $q.defer();
-                     var arr = document.cookie.split(';')
-                     var authorization = "" //"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdXN0ZXIifQ.N9hHxNwWtiKvGYpzaquS8PqFJ8E5yYVKIb48GoP4jQgowbKYJaUvSdSRdSqia-2VJyiwwatpJ7E-zleqcho2ng";
+                    //  var arr = document.cookie.split(';')
+                     var authorization = getCookie("authorization");//"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdXN0ZXIifQ.N9hHxNwWtiKvGYpzaquS8PqFJ8E5yYVKIb48GoP4jQgowbKYJaUvSdSRdSqia-2VJyiwwatpJ7E-zleqcho2ng";
 
-                     for (var i = 0; i < arr.length; i++) {
-                         var element = arr[i].split('=');
-                         if (element[0].indexOf('authorization') > 0) {
-                             authorization = element[1];
-                         }
-                     }
+                    //  for (var i = 0; i < arr.length; i++) {
+                    //      var element = arr[i].split('=');
+                    //      if (element[0].indexOf('authorization') > 0) {
+                    //          authorization = element[1];
+                    //      }
+                    //  }
 
                      var url = urlDataTableTransaksi + tableName;
 
@@ -761,14 +762,14 @@
              post: function (obj, data) {
                  console.log(JSON.stringify(data));
                  var deffer = $q.defer();
-                 var authorization = "" //"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdXN0ZXIifQ.N9hHxNwWtiKvGYpzaquS8PqFJ8E5yYVKIb48GoP4jQgowbKYJaUvSdSRdSqia-2VJyiwwatpJ7E-zleqcho2ng";
-                 var arr = document.cookie.split(';')
-                 for (var i = 0; i < arr.length; i++) {
-                     var element = arr[i].split('=');
-                     if (element[0].indexOf('authorization') > 0) {
-                         authorization = element[1];
-                     }
-                 }
+                 var authorization = getCookie("authorization"); //"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdXN0ZXIifQ.N9hHxNwWtiKvGYpzaquS8PqFJ8E5yYVKIb48GoP4jQgowbKYJaUvSdSRdSqia-2VJyiwwatpJ7E-zleqcho2ng";
+                //  var arr = document.cookie.split(';')
+                //  for (var i = 0; i < arr.length; i++) {
+                //      var element = arr[i].split('=');
+                //      if (element[0].indexOf('authorization') > 0) {
+                //          authorization = element[1];
+                //      }
+                //  }
                  var url = "";
                  if (obj.url.indexOf("?") >= 0) {
                      url = obj.url;

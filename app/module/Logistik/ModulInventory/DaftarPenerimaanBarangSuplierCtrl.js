@@ -209,21 +209,21 @@ define(['initialize'], function (initialize) {
                     noSppb +
                     asalProduk +
                     ruangan, true).then(function (dat) {
-                    $scope.isRouteLoading = false;
-                    for (var i = 0; i < dat.data.daftar.length; i++) {
-                        dat.data.daftar[i].no = i + 1
-                        // var tanggal = $scope.now;
-                        // var tanggalLahir = new Date(dat.data.daftar[i].tgllahir);
-                        // var umur = dateHelper.CountAge(tanggalLahir, tanggal);
-                        // dat.data.daftar[i].umur =umur.year + ' thn ' + umur.month + ' bln ' + umur.day + ' hari'
-                        //itungUsia(dat.data[i].tgllahir)
-                    }
-                    $scope.dataGrid = new kendo.data.DataSource({
-                        data: dat.data.daftar,
-                        pageSize: 20
+                        $scope.isRouteLoading = false;
+                        for (var i = 0; i < dat.data.daftar.length; i++) {
+                            dat.data.daftar[i].no = i + 1
+                            // var tanggal = $scope.now;
+                            // var tanggalLahir = new Date(dat.data.daftar[i].tgllahir);
+                            // var umur = dateHelper.CountAge(tanggalLahir, tanggal);
+                            // dat.data.daftar[i].umur =umur.year + ' thn ' + umur.month + ' bln ' + umur.day + ' hari'
+                            //itungUsia(dat.data[i].tgllahir)
+                        }
+                        $scope.dataGrid = new kendo.data.DataSource({
+                            data: dat.data.daftar,
+                            pageSize: 20
+                        });
+                        pegawaiUser = dat.data.datalogin
                     });
-                    pegawaiUser = dat.data.datalogin
-                });
                 var objSave = {
                     tglAwal: tglAwal,
                     tglAkhir: tglAkhir
@@ -368,70 +368,70 @@ define(['initialize'], function (initialize) {
 
 
             $scope.columnGrid = [{
-                    "field": "no",
-                    "title": "No",
-                    "width": "45px",
-                },
-                {
-                    "field": "nofaktur",
-                    "title": "No Dokumen",
-                    "width": "100px",
-                },
-                {
-                    "field": "nosppb",
-                    "title": "No PO",
-                    "width": "100px",
-                    "template": "#if (nosppb) {# #= nosppb # #} else {# - #} #",
-                },
-                // {
-                //     "field": "nostruk",
-                //     "title": "NoTerima",
-                //     "width" : "85px",
-                // },
-                // {
-                //     "field": "nokontrak",
-                //     "title": "NoKontrak",
-                //     "width" : "85px",
-                // },
-                {
-                    "field": "tglstruk",
-                    "title": "Tanggal",
-                    "width": "35px",
-                    "template": "<span class='style-right'>{{formatTanggal('#: tglstruk #', '')}}</span>"
-                },
-                // {
-                //     "field": "tglfaktur",
-                //     "title": "Tgl Dokumen",
-                //     "width" : "80px",
-                //                 "template": "<span class='style-right'>{{formatTanggal('#: tglfaktur #', '')}}</span>"
-                // },
-                {
-                    "field": "namarekanan",
-                    "title": "Supplier",
-                    "width": "120px",
-                },
-                {
-                    "field": "jmlitem",
-                    "title": "Item",
-                    "width": "35px",
-                    "template": "<span class='style-right'>#= kendo.toString(jmlitem) #</span>",
-                },
-                // {
-                //     "field": "namaruangan",
-                //     "title": "Nama Ruangan Penerima",
-                //     "width" : "100px",
-                // },
-                // {
-                //     "field": "namapenerima",
-                //     "title": "Nama Penerima",
-                //     "width" : "100px",
-                // },
-                {
-                    "field": "totalharusdibayar",
-                    "title": "Total Tagihan",
-                    "width": "100px",
-                    "template": "<span class='style-right'>{{formatRupiah('#: totalharusdibayar #', '')}}</span>"
-                },
+                "field": "no",
+                "title": "No",
+                "width": "45px",
+            },
+            {
+                "field": "nofaktur",
+                "title": "No Dokumen",
+                "width": "100px",
+            },
+            {
+                "field": "nosppb",
+                "title": "No PO",
+                "width": "100px",
+                "template": "#if (nosppb) {# #= nosppb # #} else {# - #} #",
+            },
+            // {
+            //     "field": "nostruk",
+            //     "title": "NoTerima",
+            //     "width" : "85px",
+            // },
+            // {
+            //     "field": "nokontrak",
+            //     "title": "NoKontrak",
+            //     "width" : "85px",
+            // },
+            {
+                "field": "tglstruk",
+                "title": "Tanggal",
+                "width": "35px",
+                "template": "<span class='style-right'>{{formatTanggal('#: tglstruk #', '')}}</span>"
+            },
+            // {
+            //     "field": "tglfaktur",
+            //     "title": "Tgl Dokumen",
+            //     "width" : "80px",
+            //                 "template": "<span class='style-right'>{{formatTanggal('#: tglfaktur #', '')}}</span>"
+            // },
+            {
+                "field": "namarekanan",
+                "title": "Supplier",
+                "width": "120px",
+            },
+            {
+                "field": "jmlitem",
+                "title": "Item",
+                "width": "35px",
+                "template": "<span class='style-right'>#= kendo.toString(jmlitem) #</span>",
+            },
+            // {
+            //     "field": "namaruangan",
+            //     "title": "Nama Ruangan Penerima",
+            //     "width" : "100px",
+            // },
+            // {
+            //     "field": "namapenerima",
+            //     "title": "Nama Penerima",
+            //     "width" : "100px",
+            // },
+            {
+                "field": "totalharusdibayar",
+                "title": "Total Tagihan",
+                "width": "100px",
+                "template": "<span class='style-right'>{{formatRupiah('#: totalharusdibayar #', '')}}</span>"
+            },
                 // {
                 //     "field": "nosbk",
                 //     "title": "SBK",
@@ -443,10 +443,10 @@ define(['initialize'], function (initialize) {
 
             $scope.mainGroupOpt = {
                 toolbar: [{
-                        text: "export",
-                        name: "Export detail",
-                        template: '<button ng-click="exportExcel()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
-                    }
+                    text: "export",
+                    name: "Export detail",
+                    template: '<button ng-click="exportExcel()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
+                }
 
                 ],
                 pageable: true,
@@ -458,26 +458,26 @@ define(['initialize'], function (initialize) {
                 var tempDataExport = [];
                 var rows = [{
                     cells: [{
-                            value: "No."
-                        },
-                        {
-                            value: "No. Dokumen"
-                        },
-                        {
-                            value: "No. PO"
-                        },
-                        {
-                            value: "Tanggal"
-                        },
-                        {
-                            value: "Supplier"
-                        },
-                        {
-                            value: "Item"
-                        },
-                        {
-                            value: "Total Tagihan"
-                        }
+                        value: "No."
+                    },
+                    {
+                        value: "No. Dokumen"
+                    },
+                    {
+                        value: "No. PO"
+                    },
+                    {
+                        value: "Tanggal"
+                    },
+                    {
+                        value: "Supplier"
+                    },
+                    {
+                        value: "Item"
+                    },
+                    {
+                        value: "Total Tagihan"
+                    }
                     ]
                 }];
 
@@ -488,26 +488,26 @@ define(['initialize'], function (initialize) {
                         //push single row for every record
                         rows.push({
                             cells: [{
-                                    value: data[i].no
-                                },
-                                {
-                                    value: data[i].nofaktur
-                                },
-                                {
-                                    value: data[i].nosppb
-                                },
-                                {
-                                    value: data[i].tglstruk
-                                },
-                                {
-                                    value: data[i].namarekanan
-                                },
-                                {
-                                    value: data[i].jmlitem
-                                },
-                                {
-                                    value: data[i].totalharusdibayar
-                                },
+                                value: data[i].no
+                            },
+                            {
+                                value: data[i].nofaktur
+                            },
+                            {
+                                value: data[i].nosppb
+                            },
+                            {
+                                value: data[i].tglstruk
+                            },
+                            {
+                                value: data[i].namarekanan
+                            },
+                            {
+                                value: data[i].jmlitem
+                            },
+                            {
+                                value: data[i].totalharusdibayar
+                            },
                             ]
                         })
                     }
@@ -555,60 +555,67 @@ define(['initialize'], function (initialize) {
             };
 
             $scope.data2 = function (dataItem) {
+                console.log(dataItem);
                 return {
                     dataSource: new kendo.data.DataSource({
                         data: dataItem.details
                     }),
+
+                    toolbar: [{
+                        text: "export",
+                        name: "Export detail",
+                        template: '<button ng-click="exportExcelDetail(dataItem)" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
+                    }],
                     columns: [{
-                            "field": "namaproduk",
-                            "title": "Nama Produk",
-                            "width": "100px",
-                        },
-                        {
-                            "field": "satuanstandar",
-                            "title": "Satuan",
-                            "width": "30px",
-                        },
-                        {
-                            "field": "qtyproduk",
-                            "title": "Qty",
-                            "width": "30px",
-                        },
-                        {
-                            "field": "hargasatuan",
-                            "title": "Harga Satuan",
-                            "width": "50px",
-                            "template": "<span class='style-right'>{{formatRupiah('#: hargasatuan #', '')}}</span>"
-                        },
-                        {
-                            "field": "hargadiscount",
-                            "title": "Discount",
-                            "width": "50px",
-                            "template": "<span class='style-right'>{{formatRupiah('#: hargadiscount #', '')}}</span>"
-                        },
-                        {
-                            "field": "hargappn",
-                            "title": "PPn",
-                            "width": "50px",
-                            "template": "<span class='style-right'>{{formatRupiah('#: hargappn #', '')}}</span>"
-                        },
-                        {
-                            "field": "total",
-                            "title": "Total",
-                            "width": "70px",
-                            "template": "<span class='style-right'>{{formatRupiah('#: total #', '')}}</span>"
-                        },
-                        {
-                            "field": "tglkadaluarsa",
-                            "title": "Tgl Kadaluarsa",
-                            "width": "70px",
-                            "template": "<span class='style-right'>{{formatTanggal('#: tglkadaluarsa #', '')}}</span>"
-                        },
-                        {
-                            "field": "nobatch",
-                            "title": "nobatch",
-                            "width": "50px"
-                        }
+                        "field": "namaproduk",
+                        "title": "Nama Produk",
+                        "width": "100px",
+                    },
+                    {
+                        "field": "satuanstandar",
+                        "title": "Satuan",
+                        "width": "30px",
+                    },
+                    {
+                        "field": "qtyproduk",
+                        "title": "Qty",
+                        "width": "30px",
+                    },
+                    {
+                        "field": "hargasatuan",
+                        "title": "Harga Satuan",
+                        "width": "50px",
+                        "template": "<span class='style-right'>{{formatRupiah('#: hargasatuan #', '')}}</span>"
+                    },
+                    {
+                        "field": "hargadiscount",
+                        "title": "Discount",
+                        "width": "50px",
+                        "template": "<span class='style-right'>{{formatRupiah('#: hargadiscount #', '')}}</span>"
+                    },
+                    {
+                        "field": "hargappn",
+                        "title": "PPn",
+                        "width": "50px",
+                        "template": "<span class='style-right'>{{formatRupiah('#: hargappn #', '')}}</span>"
+                    },
+                    {
+                        "field": "total",
+                        "title": "Total",
+                        "width": "70px",
+                        "template": "<span class='style-right'>{{formatRupiah('#: total #', '')}}</span>"
+                    },
+                    {
+                        "field": "tglkadaluarsa",
+                        "title": "Tgl Kadaluarsa",
+                        "width": "70px",
+                        "template": "<span class='style-right'>{{formatTanggal('#: tglkadaluarsa #', '')}}</span>"
+                    },
+                    {
+                        "field": "nobatch",
+                        "title": "nobatch",
+                        "width": "50px"
+                    }
                     ]
                 }
             };
@@ -619,6 +626,87 @@ define(['initialize'], function (initialize) {
             //     selectable: "row",
             //     scrollable: false
             // };
+
+            $scope.exportExcelDetail = (dataItem) => {
+                var rows = [{
+                    cells: [{
+                        value: "Nama Produk"
+                    }, {
+                        value: "Satuan"
+                    }, {
+                        value: "QTY"
+                    }, {
+                        value: "Harga Satuan"
+                    }, {
+                        value: "Diskon"
+                    }, {
+                        value: "PPn"
+                    }, {
+                        value: "Total"
+                    }, {
+                        value: "Tanggal Kadaluarsa"
+                    }, {
+                        value: "No. Batch"
+                    }]
+                }];
+
+                for (var i = 0; i < dataItem.details.length; i++) {
+                    //push single row for every record
+                    rows.push({
+                        cells: [{
+                            value: dataItem.details[i].namaproduk
+                        }, {
+                            value: dataItem.details[i].satuanstandar
+                        }, {
+                            value: dataItem.details[i].qtyproduk
+                        }, {
+                            value: dataItem.details[i].hargasatuan
+                        }, {
+                            value: dataItem.details[i].hargadiscount
+                        }, {
+                            value: dataItem.details[i].hargappn
+                        }, {
+                            value: dataItem.details[i].total
+                        }, {
+                            value: dataItem.details[i].tglkadaluarsa
+                        }, {
+                            value: dataItem.details[i].nobatch
+                        }]
+                    })
+                }
+
+                var workbook = new kendo.ooxml.Workbook({
+                    sheets: [{
+                        freezePane: {
+                            rowSplit: 1
+                        },
+                        columns: [{
+                            autoWidth: true
+                        }, {
+                            autoWidth: true
+                        }, {
+                            autoWidth: true
+                        }, {
+                            autoWidth: true
+                        }, {
+                            autoWidth: true
+                        }, {
+                            autoWidth: true
+                        }, {
+                            autoWidth: true
+                        }],
+                        // Title of the sheet
+                        title: "Detail Penerimaan Barang Dari Suplier (" + dataItem.nofaktur + ")",
+                        // Rows of the sheet
+                        rows: rows
+                    }]
+                });
+                //save the file as Excel file with extension xlsx
+                kendo.saveAs({
+                    dataURI: workbook.toDataURL(),
+                    fileName: "daftar-penerimaan-barang-suppler(" + dataItem.nofaktur + ").xlsx"
+                });
+            }
             $scope.formatRupiah = function (value, currency) {
                 return currency + " " + parseFloat(value).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
             }

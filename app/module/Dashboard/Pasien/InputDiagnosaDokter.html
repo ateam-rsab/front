@@ -164,8 +164,10 @@
 											k-data-source="dataSourceDiagnosaIcd10"
 											k-selectable="'row'"
 											k-pageable="'true'"
+											options="mainGridOptions"
 											k-columns="columnDiagnosaIcd10"
 											k-ng-model="dataIcd10Selected"
+
 											ng-click="klikIcd10(dataIcd10Selected)">
 										</div>
 									</div>
@@ -262,7 +264,6 @@
 
 
 											<div class="grid_3">
-												<md-button
 												<md-button class="md-raised
 													md-warn medium-button"
 													ng-click="deleteIcd9()">
@@ -304,6 +305,7 @@
 											k-data-source="dataSourceDiagnosaIcd9"
 											k-selectable="'row'"
 											k-pageable="'true'"
+											options="mainGridOptions"
 											k-columns="columnDiagnosaIcd9"
 											k-ng-model="dataIcd9Selected"
 											ng-click="klikIcd9(dataIcd9Selected)">

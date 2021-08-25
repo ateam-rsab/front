@@ -556,17 +556,30 @@ define(['initialize'], function (initialize) {
                 $scope.popupAddLayanan.open().center();
             }
 
+            $scope.optGridRiwayat = {
+                filterable: {
+                    extra: false,
+                    operators: {
+                        string: {
+                            startswith: "Dimulai dengan",
+                            contains: "mengandung kata",
+                            neq: "Tidak mengandung kata"
+                        }
+                    }
+                }
+            }
+
             $scope.columnGridRiwayat = [{
                 "field": "no",
                 "title": "No",
-                "width": "20px",
+                "width": "50px",
             }, {
                 "field": "noregistrasi",
                 "title": "No Registrasi",
                 "width": "70px",
             }, {
                 "field": "tglorder",
-                "title": "Tgl Order",
+                "title": "Tanggal<br> Order",
                 "width": "50px",
             }, {
                 "field": "noorder",

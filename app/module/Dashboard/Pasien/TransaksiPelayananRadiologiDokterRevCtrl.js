@@ -559,18 +559,31 @@ define(['initialize'], function (initialize) {
 
             }
 
+            $scope.optGridRiwayat = {
+                filterable: {
+                    extra: false,
+                    operators: {
+                        string: {
+                            startswith: "Dimulai dengan",
+                            contains: "mengandung kata",
+                            neq: "Tidak mengandung kata"
+                        }
+                    }
+                },
+            }
+
             $scope.columnGridRiwayat = [{
                 "field": "no",
                 "title": "No",
-                "width": "20px",
+                "width": "50px",
             }, {
                 "field": "noregistrasi",
                 "title": "No Registrasi",
                 "width": "70px",
             }, {
                 "field": "tglorder",
-                "title": "Tgl Order",
-                "width": "50px",
+                "title": "Tanggal<br> Order",
+                "width": "80px",
             }, {
                 "field": "noorder",
                 "title": "No Order",
@@ -599,7 +612,7 @@ define(['initialize'], function (initialize) {
                     imageClass: "k-icon k-i-cancel"
                 },],
                 title: "",
-                width: 70
+                width: 100
 
             }];
 

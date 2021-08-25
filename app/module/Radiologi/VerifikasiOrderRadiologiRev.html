@@ -129,14 +129,14 @@
 
 
 <div class="grid_12">
-    <div id="kGrid" kendo-grid k-data-source="dataSourceDetail" k-selectable="'row'" k-columns="columnsDetailOrder"
-        k-pageable="'true'" k-sortable="'true'" k-ng-model="selectedData" ng-click="onClickGrid(selectedData)">
+    <div id="kGrid" kendo-grid k-data-source="dataSourceDetail" k-columns="columnsDetailOrder"
+        k-pageable="'true'" k-sortable="'true'" k-ng-model="selectedDataNotVerified" ng-click="onClickGrid(selectedData)">
     </div>
 </div>
 
 <div class="grid_12" style="margin-top: 20px;">
-    <div id="kGrid" kendo-grid k-data-source="dataSourceVerified" k-selectable="'row'"
-        k-columns="columnsDetailOrderVerified" k-pageable="'true'" k-sortable="'true'" k-ng-model="selectedData"
+    <div id="kGrids" kendo-grid k-data-source="dataSourceVerified"
+        k-columns="columnsDetailOrderVerified" k-pageable="'true'" k-sortable="'true'" k-ng-model="selectedDataVerified"
         ng-click="onClickGrid(selectedData)">
     </div>
 </div>

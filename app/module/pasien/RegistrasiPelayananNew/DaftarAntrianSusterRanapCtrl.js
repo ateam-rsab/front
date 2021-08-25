@@ -291,7 +291,7 @@ define(['initialize'], function (initialize) {
                     for (var i = 0; i < datas.length; i++) {
                         datas[i].no = i + 1
                         var tanggal = $scope.now;
-                        var tanggalLahir = new Date(datas[i].tgllahir);
+                        var tanggalLahir = new Date(DateHelper.formatDate(datas[i].tgllahir, "YYYY-MM-DD"));
                         var umurzz = DateHelper.CountAge(tanggalLahir, tanggal);
                         datas[i].umurzz = umurzz.year + ' thn ' + umurzz.month + ' bln ' + umurzz.day + ' hari'
                     }
@@ -350,7 +350,7 @@ define(['initialize'], function (initialize) {
                 {
                     "field": "tglregistrasi",
                     "title": "Tgl Registrasi",
-                    "template": "#= new moment(new Date(tglregistrasi)).format('DD-MM-YYYY HH:mm') #",
+                    //  "template": "#= new moment(new Date(tglregistrasi)).format('DD-MM-YYYY HH:mm') #",
                     "width": "80px"
                 },
                 {

@@ -255,6 +255,16 @@ define(['initialize'], function (initialize) {
             init();
 
             $scope.columnDaftarJadwalBedah = {
+                filterable: {
+					extra: false,
+					operators: {
+						string: {
+							startswith: "Dimulai dengan",
+							contains: "mengandung kata",
+							neq: "Tidak mengandung kata"
+						}
+					}
+				},
                 toolbar: [{
                         name: "create",
                         text: "Input Baru",
@@ -535,6 +545,16 @@ define(['initialize'], function (initialize) {
             });
 
             $scope.columnDaftar = {
+                filterable: {
+					extra: false,
+					operators: {
+						string: {
+							startswith: "Dimulai dengan",
+							contains: "mengandung kata",
+							neq: "Tidak mengandung kata"
+						}
+					}
+				},
                 toolbar: [{
                     name: "create",
                     text: "Input Baru",

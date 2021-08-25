@@ -46,6 +46,16 @@ define(['initialize'], function (initialize) {
                 $scope.pasienId = $scope.current.objectpasienfk
             }
             $scope.mainGridOptions = {
+                filterable: {
+                    extra: false,
+                    operators: {
+                        string: {
+                            startswith: "Dimulai dengan",
+                            contains: "mengandung kata",
+                            neq: "Tidak mengandung kata"
+                        }
+                    }
+                },
                 pageable: true,
                 columns: [{
                     "field": "kdpap",
@@ -53,7 +63,7 @@ define(['initialize'], function (initialize) {
                     "width": "15%"
                 }, {
                     "field": "tglinput",
-                    "title": "Tgl Pengkajian Awal",
+                    "title": "Tanggal Pengkajian Awal",
                     "width": "20%",
                     template: "#= new moment(tglinput).format(\'DD-MM-YYYY HH:mm\') #",
                 }, {

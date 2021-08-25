@@ -25,6 +25,16 @@ define(['initialize'], function (initialize) {
 
             }
             $scope.resumeOpt = {
+                filterable: {
+					extra: false,
+					operators: {
+						string: {
+							startswith: "Dimulai dengan",
+							contains: "mengandung kata",
+							neq: "Tidak mengandung kata"
+						}
+					}
+				},
                 toolbar: [{
                     name: "create", text: "Input Baru",
                     template: '<button ng-click="inputBaru()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah Konsultasi</button>'

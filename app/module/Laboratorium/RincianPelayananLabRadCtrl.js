@@ -588,7 +588,9 @@ define(['initialize'], function (initialize) {
                                 objectruangantujuanfk: $scope.dataGrid._data[0].objectruanganfk,
                                 departemenfk: $scope.dataGrid._data[0].objectdepartemenfk,
                                 pegawaiorderfk: $scope.dataGrid._data[0].dokterid,
-                                details: data2
+                                details: data2,
+                                iddokterorder: dokter.id,
+                                namadokterorder: dokter.namalengkap,
                             }
 
 
