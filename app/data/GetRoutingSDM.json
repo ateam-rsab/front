@@ -6542,5 +6542,29 @@
         "define": "PhpService"
       }
     ]
+  },
+  {
+    "name": "VerifikasiKehadiran",
+    "url": "/VerifikasiKehadiran",
+    "templateurl": "module/SDM/Remunerasi/VerifikasiKehadiran.html",
+    "controller": "VerifikasiKehadiranCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "PhpService",
+        "define": "PhpService"
+      }
+    ]
   }
 ]

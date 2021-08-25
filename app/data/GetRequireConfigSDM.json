@@ -861,6 +861,10 @@
       "urlDep": "module/SDM/Remunerasi/VerifikasiCatatanKegiatanHarianCtrl"
     },
     {
+      "nameDep": "VerifikasiKehadiranCtrl",
+      "urlDep": "module/SDM/Remunerasi/VerifikasiKehadiranCtrl"
+    },
+    {
       "nameDep": "SimulasiPendapatanCtrl",
       "urlDep": "module/SDM/Remunerasi/SimulasiPendapatanCtrl"
     },

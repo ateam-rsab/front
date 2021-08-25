@@ -127,10 +127,6 @@
                 "link": "#/LaporanPendapatan"
             },
             {
-                "name": "Laporan Pendapatan Layanan",
-                "link": "#/LaporanPendapatanLayanan"
-            },
-            {
                 "name": "Laporan Pendapatan Ruangan",
                 "link": "#/LaporanPendapatanRuangan"
             },

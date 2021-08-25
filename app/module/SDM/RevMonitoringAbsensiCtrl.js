@@ -550,6 +550,8 @@ define(['initialize'], function (initialize) {
             function filterByStatus(item) {
                 if (item.absensiMasuk !== '-' && item.namaShift === 'Libur') {
                     return true;
+                } else if (item.absensiMasuk !== '-' && item.jadwalMasuk === null && item.jadwalPulang === null) {
+                    return true;
                 }
                 // invalidEntries++;
                 return false;
@@ -608,7 +610,7 @@ define(['initialize'], function (initialize) {
                             })
                         }
                     }
-                    console.log(groupHeula)
+                    // console.log(groupHeula)
                     if (groupHeula.length > 0) {
                         $scope.sourceNotif = new kendo.data.DataSource({
                             data: groupHeula,
@@ -623,12 +625,12 @@ define(['initialize'], function (initialize) {
                         })
                         $scope.dialogPopup.setOptions({
                             width: 500,
-                            title: 'Notifikasi Belum Koreksi Jadwal / Mengajukan Lembur'
+                            title: 'Notifikasi Belum Koreksi Jadwal / Rekomendasi Pengajuan Lembur'
                         })
                         var actions = $scope.dialogPopup.options.actions;
                         // Remove "Close" button
                         actions.splice(actions.indexOf("Close"), 1);
-                        actions.push("Maximize", "Minimize")
+                        // actions.push("Maximize", "Minimize")
                         // Set the new options
                         $scope.dialogPopup.setOptions({
                             actions: actions
@@ -819,7 +821,7 @@ define(['initialize'], function (initialize) {
                     var dataSend = {
                         "monitoringAbsen": datas
                     }
-                    console.log(JSON.stringify(dataSend));
+                    // console.log(JSON.stringify(dataSend));
                     // ManageSdm.saveDataUji(dataSend, "sdm/save-monitoring-absen/").then(function(e) {
                     ManageSdmNew.saveData(dataSend, "sdm/save-monitoring-absen/").then(function (e) {
                         $scope.isRouteLoading = false;
