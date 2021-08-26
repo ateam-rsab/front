@@ -65,7 +65,8 @@ define(['initialize'], function (initialize) {
 							$scope.isDiskonRSAB = data.kelompokPasienID === 1;
 
 							$scope.item = data;
-							if (data.diskonpegawaiexisting == 1 || data.diskonpegawaiexisting == 2) {
+							if (data.diskonpegawaiexisting == 1 || data.diskonpegawaiexisting == 2
+								|| data.diskonpegawaiexisting == 3 || data.diskonpegawaiexisting == 4) {
 								$scope.isDiskonKaryawanKeluargaInti = true
 								$scope.isAsPegOrKel = true
 								$scope.item.diskonpegawai = data.diskonpegawaiexisting
@@ -89,7 +90,8 @@ define(['initialize'], function (initialize) {
 								$scope.showTtlKlaim = true
 								$scope.showTtlKlaim2 = false
 							}
-							if ($scope.item.diskonpegawai == 1 || $scope.item.diskonpegawai == 2) {
+							if ($scope.item.diskonpegawai == 1 || $scope.item.diskonpegawai == 2
+								|| $scope.item.diskonpegawai == 3 || $scope.item.diskonpegawai == 4) {
 								if (data.jenisPasien == 'Umum/Pribadi') {
 									$scope.item.totalKlaim = data.totalDiskonPegawai
 								}

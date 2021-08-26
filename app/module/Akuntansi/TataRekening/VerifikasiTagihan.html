@@ -147,10 +147,7 @@
 				<div class="grid_12" style="margin-bottom: 10px; margin-left: 10px;" ng-show="isDiskonRSAB">
 					<input type="checkbox" class="k-checkbox" name="diskon" id="diskon"
 						ng-model="isDiskonKaryawanKeluargaInti" ng-click="toogleClick($event)">
-					<label c-label item="item" class="k-checkbox-label" for="diskon">Diskon Pegawai/
-						Anggota
-						Keluarga Inti
-						Pegawai RSAB Harapan Kita</label>
+					<label c-label item="item" class="k-checkbox-label" for="diskon">Ringankan Tagihan</label>
 				</div>
 				<div class="grid_12" style="margin-bottom: 10px; margin-left: 10px;" ng-show="isDiskonRSAB">
 					<input type="radio" name="diskonpegawai" ng-model="item.diskonpegawai" value="1" id="diskonpegawai"
@@ -162,6 +159,16 @@
 						class="k-radio" ng-disabled="!isAsPegOrKel" ng-click="loadDataVerif()">
 					<label class="k-radio-label" for="diskonkeluarga">Anggota Keluarga Inti Pegawai RSAB Harapan
 						Kita</label>
+				</div>
+				<div class="grid_12" style="margin-bottom: 10px; margin-left: 10px;" ng-show="isDiskonRSAB">
+					<input type="radio" name="diskonpegawai" ng-model="item.diskonpegawai" value="3" id="diskonpenunggu"
+						class="k-radio" ng-disabled="!isAsPegOrKel" ng-click="loadDataVerif()">
+					<label class="k-radio-label" for="diskonpenunggu">Penunggu Pasien Tidak Mampu Disetujui MPP</label>
+				</div>
+				<div class="grid_12" style="margin-bottom: 10px; margin-left: 10px;" ng-show="isDiskonRSAB">
+					<input type="radio" name="diskonpegawai" ng-model="item.diskonpegawai" value="4" id="diskonpasien"
+						class="k-radio" ng-disabled="!isAsPegOrKel" ng-click="loadDataVerif()">
+					<label class="k-radio-label" for="diskonpasien">Pasien Indikasi Tertentu Disetujui MPP</label>
 				</div>
 
 				<div class="grid_12" style="margin-bottom: 10px; margin-left: 10px;">
