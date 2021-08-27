@@ -288,6 +288,8 @@ define(['initialize'], function (initialize) {
 					$scope.isAsPegOrKel = false
 					$scope.item.totalKlaim = 0
 					$scope.item.diskonpegawai = 0
+					$scope.item.isPenungguPasien = false
+					$scope.item.isPasien = false
 				}
 				// $scope.loadDataVerif()
 			};

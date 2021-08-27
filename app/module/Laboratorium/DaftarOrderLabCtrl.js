@@ -832,6 +832,8 @@ define(['initialize'], function (initialize) {
                     } else {
                         $scope.isAsPegOrKel = false
                         $scope.item.diskonpegawai = 0
+                        $scope.item.isPenungguPasien = false
+                        $scope.item.isPasien = false
                     }
                     loadDataVerif()
                 } else {
