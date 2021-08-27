@@ -327,29 +327,27 @@
     <!-- <fieldset> -->
     <!-- <legend>Verifikasi</legend> -->
     <div class="panel panel-default container_12">
-        <div class="grid_6">
+        <div class="grid_12">
             <input type="checkbox" class="k-checkbox" name="diskon" id="diskon" ng-model="isDiskonKaryawanKeluargaInti"
                 ng-click="toogleClick($event)">
             <label c-label item="item" class="k-checkbox-label" for="diskon">Tandai untuk diskon</label>
         </div>
-        <div class="grid_6"></div>
-        <div class="grid_6">
+        <div class="grid_12">
             <input type="radio" name="diskonpegawai" ng-model="item.diskonpegawai" value="1" id="diskonpegawai"
                 class="k-radio" ng-disabled="!isAsPegOrKel" ng-click="loadDataVerif()">
             <label class="k-radio-label" for="diskonpegawai">Pegawai RSAB Harapan Kita</label>
         </div>
-        <div class="grid_6"></div>
-        <div class="grid_6">
+        <div class="grid_12">
             <input type="radio" name="diskonpegawai" ng-model="item.diskonpegawai" value="2" id="diskonkeluarga"
                 class="k-radio" ng-disabled="!isAsPegOrKel" ng-click="loadDataVerif()">
             <label class="k-radio-label" for="diskonkeluarga">Anggota Keluarga Inti Pegawai RSAB Harapan Kita</label>
         </div>
-        <div class="grid_6"></div>
         <div class="grid_6">
             <input type="radio" name="diskonpegawai" ng-model="item.diskonpegawai" value="3" id="diskonpenunggu"
                 class="k-radio" ng-disabled="!isAsPegOrKel" ng-click="loadDataVerif()">
             <label class="k-radio-label" for="diskonpenunggu">Penunggu Pasien Tidak Mampu Disetujui MPP</label>
         </div>
+        <div class="grid_6" ng-hide="isPenungguPasien"></div>
         <div class="grid_6" ng-show="isPenungguPasien">
             <input style="width: 100%;" kendo-combo-box k-ng-model="item.mppPenungguPasien"
                 k-data-text-field="'namalengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
@@ -360,6 +358,7 @@
                 class="k-radio" ng-disabled="!isAsPegOrKel" ng-click="loadDataVerif()">
             <label class="k-radio-label" for="diskonpasien">Pasien Indikasi Tertentu Disetujui MPP</label>
         </div>
+        <div class="grid_6" ng-hide="isPasien"></div>
         <div class="grid_6" ng-show="isPasien">
             <input style="width: 100%;" kendo-combo-box k-ng-model="item.mppPasien" k-data-text-field="'namalengkap'"
                 k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawaiMPP"

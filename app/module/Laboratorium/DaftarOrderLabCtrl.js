@@ -15,6 +15,8 @@ define(['initialize'], function (initialize) {
             if ($scope.item.belumVerifikasi) $scope.cekBelumVerifs = true;
             else $scope.cekBelumVerifs = false;
             $scope.item.diskonpegawai = 0;
+            $scope.isPenungguPasien = false
+            $scope.isPasien = false
 
             $scope.cekbelumVerifikasi = function (data) {
                 if (data === true) {
@@ -126,7 +128,7 @@ define(['initialize'], function (initialize) {
             function loadCombo() {
                 var datauserlogin = JSON.parse(window.localStorage.getItem("datauserlogin"));
                 manageLogistikPhp.getDataTableTransaksi("pegawai/data-pegawai").then(function (res) {
-                    listPegawaiMPP = res.data.data
+                    $scope.listPegawaiMPP = res.data.data
                 })
                 manageLogistikPhp.getDataTableTransaksi("pegawai/get-kelompok-user?luId=" + datauserlogin.id, true).then(function (e) {
                     if (e.data.data.kelompokuser.indexOf('radiologi') > -1) /* KEl USER ITI*/ {
