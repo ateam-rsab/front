@@ -505,6 +505,7 @@ define(['initialize'], function (initialize) {
                     namalengkap: $scope.dataSelected.dpjp
                 };
 
+                $scope.kelompokPasienId = $scope.dataSelected.objectkelompokpasienlastfk;
                 $scope.isDiskonKaryawanKeluargaInti = false;
                 $scope.isAsPegOrKel = false;
                 $scope.item.diskonpegawai = 0;
@@ -742,6 +743,7 @@ define(['initialize'], function (initialize) {
                     manageServicePhp.saveDataTransaksi("lab-radiologi/save-pelayanan-pasien-new", itemsave).then(function (e) {
                         // $scope.btnSimpanVis = false;
                         // $scope.popUpVerif.close();
+                        $scope.SaveLogUser();
                         init()
 
                     });
@@ -749,6 +751,14 @@ define(['initialize'], function (initialize) {
                     toastr.error('Belum ada data yang dipilih');
                 }
             }
+
+            $scope.SaveLogUser = function () {
+                manageServicePhp.getDataTableTransaksi("logging/save-log-verifikasi-order-lab?norec_so="
+                    + $scope.dataSelected.norec_so + "&mpp_id=").then(function (data) {
+                        //
+                    })
+            }
+
             $scope.hapusTindakan = function () {
                 if ($scope.dataSelectedVerif == undefined) {
                     toastr.error('Pilih data dahulu!');
@@ -776,14 +786,19 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.toogleClick = function (ev) {
-                var checked = ev.target.checked;
-                if (checked) {
-                    $scope.isAsPegOrKel = true
+                if ($scope.kelompokPasienId == 1) {
+                    var checked = ev.target.checked;
+                    if (checked) {
+                        $scope.isAsPegOrKel = true
+                    } else {
+                        $scope.isAsPegOrKel = false
+                        $scope.item.diskonpegawai = 0
+                    }
+                    loadDataVerif()
                 } else {
-                    $scope.isAsPegOrKel = false
-                    $scope.item.diskonpegawai = 0
+                    $scope.isDiskonKaryawanKeluargaInti = false;
+                    toastr.warning("Diskon hanya untuk pasien umum/ pribadi")
                 }
-                loadDataVerif()
             };
 
             $scope.loadDataVerif = function () {
