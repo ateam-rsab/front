@@ -333,7 +333,10 @@
                     ng-model="isDiskonKaryawanKeluargaInti" ng-click="toogleClick($event)">
                 <label c-label item="item" class="k-checkbox-label" for="diskon">Tandai untuk diskon</label>
             </div>
-            <div class="grid_6"></div>
+            <div class="grid_6">
+                <label c-label item="item" ng-show="isPenungguPasien || isPasien">Manager Pelayanan
+                    Pasien</label>
+            </div>
         </div>
         <div class="grid_12">
             <div class="grid_6">

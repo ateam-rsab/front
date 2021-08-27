@@ -61,7 +61,7 @@ define(['initialize'], function (initialize) {
 			$scope.loadDataVerif = function () {
 				$scope.isRouteLoading = true
 
-				modelItemAkuntansi.getDataTableTransaksi("pegawai/data-pegawai").then(function (res) {
+				manageTataRekening.getDataTableTransaksi("pegawai/data-pegawai").then(function (res) {
 					$scope.listPegawaiMPP = res.data
 				})
 
