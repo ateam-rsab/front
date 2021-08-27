@@ -13,6 +13,8 @@ define(['initialize'], function (initialize) {
 			$scope.tombolSaveIlang = true;
 			$scope.isDiskonRSAB = false;
 			$scope.isDiskonKaryawanKeluargaInti = false;
+			$scope.isPenungguPasien = false
+			$scope.isPasien = false
 
 			$scope.dataParams = JSON.parse($state.params.dataPasien);
 			$scope.item.diskonpegawai = $scope.dataParams.diskonpegawai;
@@ -59,6 +61,10 @@ define(['initialize'], function (initialize) {
 			$scope.loadDataVerif = function () {
 				$scope.isRouteLoading = true
 
+				modelItemAkuntansi.getDataTableTransaksi("pegawai/data-pegawai").then(function (res) {
+					$scope.listPegawaiMPP = res.data
+				})
+
 				modelItemAkuntansi.getDataTableTransaksi("tatarekening/verifikasi-tagihan2/"
 					+ $scope.dataParams.noRegistrasi + "?jenisdiskon=" + ($scope.diskonpegawaiexisting ? $scope.diskonpegawaiexisting : $scope.item.diskonpegawai)).then(function (data) {
 						if (data.statResponse) {
@@ -71,6 +77,16 @@ define(['initialize'], function (initialize) {
 								$scope.isAsPegOrKel = true
 								$scope.item.diskonpegawai = data.diskonpegawaiexisting
 								$scope.diskonpegawaiexisting = data.diskonpegawaiexisting
+							}
+
+							if ($scope.item.diskonpegawai == 3 || data.diskonpegawaiexisting == 3) {
+								$scope.item.mppPenungguPasien = null
+								$scope.isPenungguPasien = true
+								$scope.isPasien = false
+							} else if ($scope.item.diskonpegawai == 4 || data.diskonpegawaiexisting == 4) {
+								$scope.item.mppPasien = null
+								$scope.isPasien = true
+								$scope.isPenungguPasien = false
 							}
 
 							if (data.needDokument) {
@@ -139,6 +155,23 @@ define(['initialize'], function (initialize) {
 						// 	return
 						// } else {
 
+						if ($scope.item.diskonpegawai && $scope.item.diskonpegawai == 3 && !$scope.item.mppPenungguPasien) {
+							toastr.warning('Manager Pelayanan Pasien yang menyetujui harus diisi', 'Peringatan')
+							return
+						}
+
+						if ($scope.item.diskonpegawai && $scope.item.diskonpegawai == 4 && !$scope.item.mppPasien) {
+							toastr.warning('Manager Pelayanan Pasien yang menyetujui harus diisi', 'Peringatan')
+							return
+						}
+
+						$scope.mppId = ""
+						if ($scope.item.diskonpegawai && $scope.item.diskonpegawai == 3 && $scope.item.mppPenungguPasien) {
+							$scope.mppId = $scope.item.mppPenungguPasien.pegawaiId
+						} else if ($scope.item.diskonpegawai && $scope.item.diskonpegawai == 4 && $scope.item.mppPasien) {
+							$scope.mppId = $scope.item.mppPasien.pegawaiId
+						}
+
 						$scope.isRouteLoading = false
 						var confirm = $mdDialog.confirm()
 							.title('Konfirmasi Diskon Karyawan/ Keluarga Inti')
@@ -194,8 +227,8 @@ define(['initialize'], function (initialize) {
 			}
 			$scope.SaveLogUser = function () {
 				manageTataRekening.getDataTableTransaksi("logging/save-log-verifikasi-tarek?noregistrasi="
-					+ $scope.item.noRegistrasi).then(function (data) {
-
+					+ $scope.item.noRegistrasi + "&mppid=" + $scope.mppId).then(function (data) {
+						//
 					})
 			}
 			$scope.Back = function () {

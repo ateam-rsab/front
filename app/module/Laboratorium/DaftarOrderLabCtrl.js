@@ -539,7 +539,7 @@ define(['initialize'], function (initialize) {
                 let tempDiskon = 0;
                 manageServicePhp.getDataTableTransaksi("lab-radiologi/get-order-pelayanan-new?norec_so=" + $scope.dataSelected.norec_so +
                     "&objectkelasfk=" + $scope.dataSelected.objectkelasfk +
-                    "&jenisdiskon=" + ($scope.dataSelected.diskonpegawai ? $scope.dataSelected.diskonpegawai : 0), true).then(function (dat) {
+                    "&jenisdiskon=" + (($scope.dataSelected.diskonpegawai && $scope.dataSelected.diskonpegawai != 0) ? $scope.dataSelected.diskonpegawai : $scope.item.diskonpegawai), true).then(function (dat) {
 
                         if ($scope.dataSelected.diskonpegawai && $scope.dataSelected.diskonpegawai != 0) {
                             $scope.isDiskonKaryawanKeluargaInti = true
@@ -548,9 +548,11 @@ define(['initialize'], function (initialize) {
                         }
 
                         if ($scope.item.diskonpegawai == 3) {
+                            $scope.item.mppPenungguPasien = null
                             $scope.isPenungguPasien = true
                             $scope.isPasien = false
                         } else if ($scope.item.diskonpegawai == 4) {
+                            $scope.item.mppPasien = null
                             $scope.isPasien = true
                             $scope.isPenungguPasien = false
                         }
