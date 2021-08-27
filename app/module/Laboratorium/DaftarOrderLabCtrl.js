@@ -541,10 +541,12 @@ define(['initialize'], function (initialize) {
                     "&objectkelasfk=" + $scope.dataSelected.objectkelasfk +
                     "&jenisdiskon=" + (($scope.dataSelected.diskonpegawai && $scope.dataSelected.diskonpegawai != 0) ? $scope.dataSelected.diskonpegawai : $scope.item.diskonpegawai), true).then(function (dat) {
 
+                        $scope.diskonpegawaiexisting = 0;
                         if ($scope.dataSelected.diskonpegawai && $scope.dataSelected.diskonpegawai != 0) {
                             $scope.isDiskonKaryawanKeluargaInti = true
                             $scope.isAsPegOrKel = true
                             $scope.item.diskonpegawai = $scope.dataSelected.diskonpegawai
+                            $scope.diskonpegawaiexisting = $scope.dataSelected.diskonpegawai;
                         }
 
                         if ($scope.item.diskonpegawai == 3) {
@@ -830,10 +832,15 @@ define(['initialize'], function (initialize) {
                     if (checked) {
                         $scope.isAsPegOrKel = true
                     } else {
-                        $scope.isAsPegOrKel = false
-                        $scope.item.diskonpegawai = 0
-                        $scope.item.isPenungguPasien = false
-                        $scope.item.isPasien = false
+                        if ($scope.diskonpegawaiexisting && $scope.diskonpegawaiexisting != 0) {
+                            $scope.isAsPegOrKel = true
+                            $scope.isDiskonKaryawanKeluargaInti = true;
+                        } else {
+                            $scope.isAsPegOrKel = false
+                            $scope.item.diskonpegawai = 0
+                            $scope.item.isPenungguPasien = false
+                            $scope.item.isPasien = false
+                        }
                     }
                     loadDataVerif()
                 } else {

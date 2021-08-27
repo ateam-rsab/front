@@ -285,11 +285,16 @@ define(['initialize'], function (initialize) {
 				if (checked) {
 					$scope.isAsPegOrKel = true
 				} else {
-					$scope.isAsPegOrKel = false
-					$scope.item.totalKlaim = 0
-					$scope.item.diskonpegawai = 0
-					$scope.item.isPenungguPasien = false
-					$scope.item.isPasien = false
+					if ($scope.diskonpegawaiexisting && $scope.diskonpegawaiexisting != 0) {
+						$scope.isAsPegOrKel = true
+						$scope.isDiskonKaryawanKeluargaInti = true
+					} else {
+						$scope.isAsPegOrKel = false
+						$scope.item.totalKlaim = 0
+						$scope.item.diskonpegawai = 0
+						$scope.item.isPenungguPasien = false
+						$scope.item.isPasien = false
+					}
 				}
 				// $scope.loadDataVerif()
 			};
