@@ -722,9 +722,9 @@ define(['initialize'], function (initialize) {
 
                 $scope.mppId = ""
                 if ($scope.item.diskonpegawai && $scope.item.diskonpegawai == 3 && $scope.item.mppPenungguPasien) {
-                    $scope.mppId = $scope.item.mppPenungguPasien.id
+                    $scope.mppId = $scope.item.mppPenungguPasien.pegawaiId
                 } else if ($scope.item.diskonpegawai && $scope.item.diskonpegawai == 4 && $scope.item.mppPasien) {
-                    $scope.mppId = $scope.item.mppPasien.id
+                    $scope.mppId = $scope.item.mppPasien.pegawaiId
                 }
 
                 var dataPost = [];
