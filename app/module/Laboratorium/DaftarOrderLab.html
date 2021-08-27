@@ -327,7 +327,6 @@
     <!-- <fieldset> -->
     <!-- <legend>Verifikasi</legend> -->
     <div class="panel panel-default container_12">
-        <div class="grid_6"></div>
         <div class="grid_6">
             <input type="checkbox" class="k-checkbox" name="diskon" id="diskon" ng-model="isDiskonKaryawanKeluargaInti"
                 ng-click="toogleClick($event)">
@@ -351,21 +350,20 @@
                 class="k-radio" ng-disabled="!isAsPegOrKel" ng-click="loadDataVerif()">
             <label class="k-radio-label" for="diskonpenunggu">Penunggu Pasien Tidak Mampu Disetujui MPP</label>
         </div>
-        <div class="grid_6"></div>
+        <div class="grid_6" ng-show="isPenungguPasien">
+            <input style="width: 100%;" kendo-combo-box k-ng-model="item.mppPenungguPasien"
+                k-data-text-field="'namalengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
+                k-data-source="listPegawaiMPP" placeholder="pegawai MPP" />
+        </div>
         <div class="grid_6">
             <input type="radio" name="diskonpegawai" ng-model="item.diskonpegawai" value="4" id="diskonpasien"
                 class="k-radio" ng-disabled="!isAsPegOrKel" ng-click="loadDataVerif()">
             <label class="k-radio-label" for="diskonpasien">Pasien Indikasi Tertentu Disetujui MPP</label>
         </div>
-        <div class="grid_6">
-            <div class="grid_12">
-                <label c-label item="item" c-label-text="No Order"></label>
-            </div>
-            <div class="clear"></div>
-
-            <div class="grid_12">
-                <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noOrder" ng-disabled="true" />
-            </div>
+        <div class="grid_6" ng-show="isPasien">
+            <input style="width: 100%;" kendo-combo-box k-ng-model="item.mppPasien" k-data-text-field="'namalengkap'"
+                k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawaiMPP"
+                placeholder="pegawai MPP" />
         </div>
         <div class="grid_6">
             <div class="grid_12">
@@ -376,6 +374,16 @@
             <div class="grid_12">
                 <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaPasiens"
                     ng-disabled="true" />
+            </div>
+        </div>
+        <div class="grid_6">
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="No Order"></label>
+            </div>
+            <div class="clear"></div>
+
+            <div class="grid_12">
+                <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noOrder" ng-disabled="true" />
             </div>
         </div>
         <div class="grid_12 ">

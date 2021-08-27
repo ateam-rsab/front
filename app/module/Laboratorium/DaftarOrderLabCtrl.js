@@ -125,6 +125,9 @@ define(['initialize'], function (initialize) {
 
             function loadCombo() {
                 var datauserlogin = JSON.parse(window.localStorage.getItem("datauserlogin"));
+                manageLogistikPhp.getDataTableTransaksi("pegawai/data-pegawai").then(function (res) {
+                    listPegawaiMPP = res.data.data
+                })
                 manageLogistikPhp.getDataTableTransaksi("pegawai/get-kelompok-user?luId=" + datauserlogin.id, true).then(function (e) {
                     if (e.data.data.kelompokuser.indexOf('radiologi') > -1) /* KEl USER ITI*/ {
                         loginRadiologi = true
@@ -534,7 +537,21 @@ define(['initialize'], function (initialize) {
                 let tempDiskon = 0;
                 manageServicePhp.getDataTableTransaksi("lab-radiologi/get-order-pelayanan-new?norec_so=" + $scope.dataSelected.norec_so +
                     "&objectkelasfk=" + $scope.dataSelected.objectkelasfk +
-                    "&jenisdiskon=" + $scope.item.diskonpegawai, true).then(function (dat) {
+                    "&jenisdiskon=" + ($scope.dataSelected.diskonpegawai ? $scope.dataSelected.diskonpegawai : 0), true).then(function (dat) {
+
+                        if ($scope.dataSelected.diskonpegawai && $scope.dataSelected.diskonpegawai != 0) {
+                            $scope.isDiskonKaryawanKeluargaInti = true
+                            $scope.isAsPegOrKel = true
+                            $scope.item.diskonpegawai = $scope.dataSelected.diskonpegawai
+                        }
+
+                        if ($scope.item.diskonpegawai == 3) {
+                            $scope.isPenungguPasien = true
+                            $scope.isPasien = false
+                        } else if ($scope.item.diskonpegawai == 4) {
+                            $scope.isPasien = true
+                            $scope.isPenungguPasien = false
+                        }
 
                         var dataSource = dat.data.data;
                         // $scope.catatanOrder = dat.data.
@@ -690,6 +707,24 @@ define(['initialize'], function (initialize) {
                     toastr.error('Dokter Verifikasi harus di isi')
                     return
                 }
+
+                if ($scope.item.diskonpegawai && $scope.item.diskonpegawai == 3 && !$scope.item.mppPenungguPasien) {
+                    toastr.warning('Manager Pelayanan Pasien yang menyetujui harus diisi', 'Peringatan')
+                    return
+                }
+
+                if ($scope.item.diskonpegawai && $scope.item.diskonpegawai == 4 && !$scope.item.mppPasien) {
+                    toastr.warning('Manager Pelayanan Pasien yang menyetujui harus diisi', 'Peringatan')
+                    return
+                }
+
+                $scope.mppId = ""
+                if ($scope.item.diskonpegawai && $scope.item.diskonpegawai == 3 && $scope.item.mppPenungguPasien) {
+                    $scope.mppId = $scope.item.mppPenungguPasien.id
+                } else if ($scope.item.diskonpegawai && $scope.item.diskonpegawai == 4 && $scope.item.mppPasien) {
+                    $scope.mppId = $scope.item.mppPasien.id
+                }
+
                 var dataPost = [];
                 for (var i = 0; i < $scope.sourceVerif._data.length; i++) {
                     // if($scope.sourceVerif._data[i].statCheckbox){
@@ -754,7 +789,7 @@ define(['initialize'], function (initialize) {
 
             $scope.SaveLogUser = function () {
                 manageServicePhp.getDataTableTransaksi("logging/save-log-verifikasi-order-lab?norec_so="
-                    + $scope.dataSelected.norec_so + "&mpp_id=").then(function (data) {
+                    + $scope.dataSelected.norec_so + "&mpp_id=" + $scope.mppId).then(function (data) {
                         //
                     })
             }
