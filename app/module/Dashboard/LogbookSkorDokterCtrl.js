@@ -27,6 +27,10 @@ define(['initialize'], function (initialize) {
                 "title": "Nama Layanan",
                 "width": "30%"
             }, {
+                "field": "jumlah",
+                "title": "Jumlah<br/>Tindakan",
+                "width": "20%"
+            }, {
                 "field": "namaRuangan",
                 "title": "Nama Ruangan",
                 "width": "30%"

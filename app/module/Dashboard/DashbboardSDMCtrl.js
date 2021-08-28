@@ -866,6 +866,10 @@ define(['initialize'], function (initialize) {
 									"style": "text-align: right;"
 								}
 							}, {
+								"field": "jumlah",
+								"title": "Jumlah<br/>Tindakan",
+								"width": 90
+							}, {
 								"title": "Pasien",
 								"columns": [
 									{ "field": "noCm", "title": "No. CM", "width": 100 },
