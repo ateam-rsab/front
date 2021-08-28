@@ -333,10 +333,7 @@
                     ng-model="isDiskonKaryawanKeluargaInti" ng-click="toogleClick($event)">
                 <label c-label item="item" class="k-checkbox-label" for="diskon">Tandai untuk diskon</label>
             </div>
-            <div class="grid_6">
-                <label c-label item="item" ng-show="isPenungguPasien || isPasien">Manager Pelayanan
-                    Pasien</label>
-            </div>
+            <div class="grid_6"></div>
         </div>
         <div class="grid_12">
             <div class="grid_6">
@@ -363,6 +360,8 @@
             </div>
             <div class="grid_6" ng-show="!isPenungguPasien"></div>
             <div class="grid_6" ng-show="isPenungguPasien">
+                <label c-label item="item" ng-show="isPenungguPasien">Manager Pelayanan
+                    Pasien</label>
                 <input style="width: 100%;" kendo-combo-box k-ng-model="item.mppPenungguPasien"
                     k-data-text-field="'Name'" k-data-value-field="'pegawaiId'" k-filter="'contains'"
                     k-auto-bind="false" k-data-source="listPegawaiMPP" />
@@ -376,6 +375,8 @@
             </div>
             <div class="grid_6" ng-show="!isPasien"></div>
             <div class="grid_6" ng-show="isPasien">
+                <label c-label item="item" ng-show="isPasien">Manager Pelayanan
+                    Pasien</label>
                 <input style="width: 100%;" kendo-combo-box k-ng-model="item.mppPasien" k-data-text-field="'Name'"
                     k-data-value-field="'pegawaiId'" k-filter="'contains'" k-auto-bind="false"
                     k-data-source="listPegawaiMPP" />
