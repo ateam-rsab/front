@@ -549,12 +549,18 @@ define(['initialize'], function (initialize) {
                             $scope.diskonpegawaiexisting = $scope.dataSelected.diskonpegawai;
                         }
 
-                        if ($scope.item.diskonpegawai == 3) {
-                            $scope.item.mppPenungguPasien = null
+                        if ($scope.item.diskonpegawai == 1
+                            || $scope.item.diskonpegawai == 2) {
+                            $scope.item.mppPenungguPasien = undefined
+                            $scope.item.mppPasien = undefined
+                            $scope.isPenungguPasien = false
+                            $scope.isPasien = false
+                        } else if ($scope.item.diskonpegawai == 3) {
+                            $scope.item.mppPenungguPasien = undefined
                             $scope.isPenungguPasien = true
                             $scope.isPasien = false
                         } else if ($scope.item.diskonpegawai == 4) {
-                            $scope.item.mppPasien = null
+                            $scope.item.mppPasien = undefined
                             $scope.isPasien = true
                             $scope.isPenungguPasien = false
                         }

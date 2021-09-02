@@ -82,6 +82,7 @@ define(['initialize'], function (initialize) {
 							if ($scope.item.diskonpegawai == 1 || data.diskonpegawaiexisting == 1
 								|| $scope.item.diskonpegawai == 2 || data.diskonpegawaiexisting == 2) {
 								$scope.item.mppPenungguPasien = undefined
+								$scope.item.mppPasien = undefined
 								$scope.isPenungguPasien = false
 								$scope.isPasien = false
 							} else if ($scope.item.diskonpegawai == 3 || data.diskonpegawaiexisting == 3) {
