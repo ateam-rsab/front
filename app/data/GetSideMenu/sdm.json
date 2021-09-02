@@ -1,5 +1,30 @@
 [
     {
+        "name": "Master Penilaian Kinerja",
+        "children": [
+            {
+                "name": "Evaluasi Jabatan",
+                "link": "#/EvaluasiJabatan"
+            },
+            {
+                "name": "Rekapitulasi Evaluasi Jabatan",
+                "link": "#/RekapitulasiEvaluasiJabatan"
+            },
+            {
+                "name": "Master Satuan Indikator",
+                "link": "#/MasterSatuanIndikator"
+            },
+            {
+                "name": "Master Indikator Kinerja",
+                "link": "#/MasterIndikatorKinerja"
+            },
+            {
+                "name": "Skoring Tindakan Medis",
+                "link": "#/SkoringTindakanMedis"
+            }
+        ]
+    },
+    {
         "name": "Master Data SDM",
         "children": [
             {
@@ -314,74 +339,49 @@
         "name": "Aplikasi Remunerasi",
         "children": [
             {
-                "name": "Master",
-                "children": [
-                    {
-                        "name": "Evaluasi Jabatan",
-                        "link": "#/EvaluasiJabatan"
-                    },
-                    {
-                        "name": "Rekapitulasi Evaluasi Jabatan",
-                        "link": "#/RekapitulasiEvaluasiJabatan"
-                    },
-                    {
-                        "name": "Master Anggaran Remunerasi",
-                        "link": "#/MasterAnggaranRemunerasi"
-                    },
-                    {
-                        "name": "Master Bobot Jenis Indikator",
-                        "link": "#/PengaturanBobotJenisIndikator"
-                    },
-                    {
-                        "name": "Master Satuan Indikator",
-                        "link": "#/MasterSatuanIndikator"
-                    },
-                    {
-                        "name": "Master Indikator Kinerja",
-                        "link": "#/MasterIndikatorKinerja"
-                    }
-                ]
+                "name": "Master Anggaran Remunerasi",
+                "link": "#/MasterAnggaranRemunerasi"
             },
             {
-                "name": "Transaksi",
-                "children": [
-                    {
-                        "name": "Skoring Tindakan Medis",
-                        "link": "#/SkoringTindakanMedis"
-                    },
-                    {
-                        "name": "Target Pelayanan Jam Kerja",
-                        "link": "#/TargetPelayananJamKerja"
-                    },
-                    {
-                        "name": "Target Pelayanan Luar Jam Kerja",
-                        "link": "#/TargetPelayananLuarJamKerja"
-                    },
-                    {
-                        "name": "Kontrak Kinerja Individu",
-                        "link": "#/KontrakKinerjaIndividu"
-                    },
-                    {
-                        "name": "Verifikasi Catatan Kegiatan Harian",
-                        "link": "#/VerifikasiCatatanKegiatanHarian"
-                    },
-                    {
-                        "name": "Verifikasi Kehadiran",
-                        "link": "#/VerifikasiKehadiran"
-                    },
-                    {
-                        "name": "Logbook Kinerja Dokter",
-                        "link": "#/LogbookKinerjaDokter"
-                    },
-                    {
-                        "name": "Penilaian Kinerja Individu",
-                        "link": "#/PenilaianKinerjaIndividu"
-                    },
-                    {
-                        "name": "Rekapitulasi Penilaian Kinerja Individu",
-                        "link": "#/RekapitulasiPenilaianKinerjaIndividu"
-                    }
-                ]
+                "name": "Master Bobot Jenis Indikator",
+                "link": "#/PengaturanBobotJenisIndikator"
+            },
+            {
+                "name": "Target Pelayanan Jam Kerja",
+                "link": "#/TargetPelayananJamKerja"
+            },
+            {
+                "name": "Kontrak Kinerja Individu",
+                "link": "#/KontrakKinerjaIndividu"
+            },
+            {
+                "name": "Verifikasi Catatan Kegiatan Harian",
+                "link": "#/VerifikasiCatatanKegiatanHarian"
+            },
+            {
+                "name": "Verifikasi Kehadiran",
+                "link": "#/VerifikasiKehadiran"
+            },
+            {
+                "name": "Logbook Kinerja Dokter",
+                "link": "#/LogbookKinerjaDokter"
+            },
+            {
+                "name": "Penilaian Kinerja Individu",
+                "link": "#/PenilaianKinerjaIndividu"
+            },
+            {
+                "name": "Rekapitulasi Penilaian Kinerja Individu",
+                "link": "#/RekapitulasiPenilaianKinerjaIndividu"
+            }
+        ]
+    },
+    {
+        "name": "Aplikasi Fee For Service",
+        "children": [
+            {
+                "name": "Target Pelayanan Luar Jam Kerja",
+                "link": "#/TargetPelayananLuarJamKerja"
             }
         ]
     },
