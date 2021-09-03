@@ -68,9 +68,19 @@ define(['initialize'], function (initialize) {
 				modelItemAkuntansi.getDataTableTransaksi("tatarekening/verifikasi-tagihan2/"
 					+ $scope.dataParams.noRegistrasi + "?jenisdiskon=" + ($scope.diskonpegawaiexisting ? $scope.diskonpegawaiexisting : $scope.item.diskonpegawai)).then(function (data) {
 						if (data.statResponse) {
+							$scope.kelompokPasienID = data.kelompokPasienID
 							$scope.isDiskonRSAB = data.kelompokPasienID === 1;
 
 							$scope.item = data;
+							if ($scope.item.totalDiskonPegawai > 0 && $scope.item.diskonpegawaiexisting == null && $scope.item.diskonpegawai == 0) {
+								$scope.item.billing = $scope.item.billing + $scope.item.totalDiskonPegawai
+								$scope.item.totalKlaim = $scope.item.totalDiskonPegawai
+								$scope.awalbilling = $scope.item.billing
+							} else if ($scope.awalbilling && $scope.item.totalDiskonPegawai > 0 && $scope.item.diskonpegawai != 0) {
+								$scope.item.billing = $scope.awalbilling
+								$scope.item.jumlahBayar = $scope.item.billing - $scope.item.totalDiskonPegawai - $scope.item.deposit;
+							}
+
 							if (data.diskonpegawaiexisting == 1 || data.diskonpegawaiexisting == 2
 								|| data.diskonpegawaiexisting == 3 || data.diskonpegawaiexisting == 4) {
 								$scope.isDiskonKaryawanKeluargaInti = true
@@ -164,12 +174,14 @@ define(['initialize'], function (initialize) {
 						if ($scope.item.diskonpegawai && $scope.item.diskonpegawai == 3 && !$scope.item.mppPenungguPasien) {
 							toastr.warning('Manager Pelayanan Pasien yang menyetujui harus diisi', 'Peringatan')
 							$scope.isRouteLoading = false
+							$scope.tombolSaveIlang = false
 							return
 						}
 
 						if ($scope.item.diskonpegawai && $scope.item.diskonpegawai == 4 && !$scope.item.mppPasien) {
 							toastr.warning('Manager Pelayanan Pasien yang menyetujui harus diisi', 'Peringatan')
 							$scope.isRouteLoading = false
+							$scope.tombolSaveIlang = false
 							return
 						}
 
@@ -215,6 +227,17 @@ define(['initialize'], function (initialize) {
 
 						// }
 					} else {
+						if ($scope.kelompokPasienID == 1) {
+							/**
+							 * jika hanya jika pasien umum/ pribadi tidak diskon, 
+							 * tetapi harga diskon pelayanan pasien > 0
+							 * karena alasan lain seperti
+							 * 
+							 * 1. kemungkinan diskon saat input obat alkes
+							 *  
+							 **/
+							$scope.item.totalKlaim = 0;
+						}
 						manageTataRekening.saveVerifikasiTagihan($scope.item)
 							.then(function (e) {
 								$scope.SaveLogUser();
