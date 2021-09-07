@@ -169,10 +169,34 @@
                     </div>
                 </div>
             </div>
-            <div ng-include='"../app/module/Shared/TemplateButtonSimpan"'></div>
 
-
+            <div class="grid_12" style="float:left;">
+                <div class="grid_3" style="float:right">
+                    <md-button class="md-raised md-primary" ng-click="Save()">
+                        <span style="margin-right: 5px;">Simpan</span>
+                        <i class="fa fa-save"></i>
+                    </md-button>
+                </div>
+                <div class="grid_3" style="float:right">
+                    <md-button class="md-raised md-warn" ng-click="Back()">
+                        <span style="margin-right: 5px;">Batal</span>
+                        <i class="fa fa-remove"></i>
+                    </md-button>
+                </div>
+                <div class="grid_3" style="float:right;">
+                    <md-button class="md-raised md-primary" ng-click="cetak()">
+                        <span style="margin-right: 5px;">Cetak</span>
+                        <i class="fa fa-print"></i>
+                    </md-button>
+                </div>
+                <div ng-show='showButtonInputJadwalDinas' class="grid_3" style="float:right;">
+                    <md-button class="md-raised md-primary" ng-click="klikInputJadwalDinas()">
+                        <span>Input Jadwal Dinas</span>
+                    </md-button>
+                </div>
+            </div>
         </c-panel>
+        
         <div kendo-window="dialogPopup" k-visible="false">
             <kendo-grid data-source="sourceNotif" options="mainGridNotif" k-selectable="'row'" k-sortable="'true'"
                 k-resizable="'true'" k-pageable="'true'">

@@ -23,8 +23,6 @@ define(['initialize'], function (initialize) {
             $scope.dataVOloaded = true;
             $scope.isRouteLoading = false;
             var validate = 2;
-            var validateAll = 0;
-            // var listPegawaiAdminSDM = [141,621,1107,1146,1344] //Para Pembesar SDM
             $scope.paramURl = '';
             //1 by tanggal
             //2 by nama pegawai
@@ -35,8 +33,6 @@ define(['initialize'], function (initialize) {
                 start: "year",
                 depth: "year"
             };
-            // $scope.isRouteLoading = true;
-            $scope.isReport = true;
             $scope.cbAll = function () {
                 if ($scope.vals === true) {
                     validateAll = 1;
@@ -46,14 +42,11 @@ define(['initialize'], function (initialize) {
             }
 
             $q.all([
-                // manageSarprasPhp.getDataTableMaster("monitoringabsensi/get-status-create-jadwal?id=" + ModelItem.getPegawai().id),
                 ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-status-create-jadwal?id=" + ModelItem.getPegawai().id),
-                // manageSarprasPhp.getDataTableMaster("monitoringabsensi/get-drop-down-unit?id=" + ModelItem.getPegawai().id),
                 ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-drop-down-unit?id=" + ModelItem.getPegawai().id),
                 ManageSdmNew.getListData("pegawai/get-pegawai-sdm-for-cred"),
                 ManageSdmNew.getListData("sdm/get-jabatan-login-user?idPegawai=" + $scope.dataPegawaiLogin.id),
                 ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true")
-                //ManageSdm.getOrderList("sdm/get-pegawai-bawahan/" + ModelItem.getPegawai().id),
             ]).then(function (res) {
                 $scope.isSingle = false;
                 $scope.listUnitKerja = res[1].data.data.data;
@@ -81,9 +74,7 @@ define(['initialize'], function (initialize) {
                             $scope.listPegawai.push(dataTemp);
                         }
                     })
-                    // $scope.listPegawai = res[4].data;
                     $scope.isBebasValidasi = true;
-                    // FindSdm.getUnitKerja().then(function(dat) {
                     ManageSdmNew.getListData("sdm/get-all-unit-kerja").then(function (dat) {
                         var toRemove = [0],
                             listUnitKerja = dat.data.data;
@@ -93,7 +84,6 @@ define(['initialize'], function (initialize) {
                         });
                     });
                 } else
-                    // if($scope.showButtonInputJadwalDinas === false){
                     if ($scope.listUnitKerja.length == 1 && !$scope.isMonitoring) {
                         var single = res[0].data.data.dataSingle[0];
                         $scope.isSingle = true;
@@ -101,7 +91,6 @@ define(['initialize'], function (initialize) {
                             id: single.idUnit,
                             name: single.nameUnit
                         }];
-                        // $scope.listSubUnitKerja = [{id:single.idSub,name:single.nameSub}];
                         ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-drop-down-subunit?id=" + single.idPgw + "&idUnit=" + single.idUnit).then(function (data) {
                             $scope.item.subUnitKerja = {
                                 id: single.idSub,
@@ -117,7 +106,6 @@ define(['initialize'], function (initialize) {
                             id: single.idUnit,
                             name: single.nameUnit
                         };
-                        // $scope.item.subUnitKerja = {id:single.idSub,name:single.nameSub};
                         $scope.item.pegawai = {
                             id: single.idPgw,
                             namalengkap: single.namalengkap
@@ -129,7 +117,6 @@ define(['initialize'], function (initialize) {
                             id: single.idUnit,
                             name: single.nameUnit
                         }];
-                        // $scope.listSubUnitKerja = [{id:single.idSub,name:single.nameSub}];
                         ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-drop-down-subunit?id=" + single.idPgw + "&idUnit=" + single.idUnit).then(function (data) {
                             $scope.item.subUnitKerja = {
                                 id: single.idSub,
@@ -137,16 +124,12 @@ define(['initialize'], function (initialize) {
                             };
                             $scope.listSubUnitKerja = data.data.data;
                         });
-                        // $scope.listPegawai = [{id:single.idPgw,namalengkap:single.namalengkap}];
                         $scope.item.unitKerja = {
                             id: single.idUnit,
                             name: single.nameUnit
                         };
-                        // $scope.item.subUnitKerja = {id:single.idSub,name:single.nameSub};
-                        // $scope.item.pegawai = {id:single.idPgw,namalengkap:single.namalengkap}; 
                     }
                 $scope.isRouteLoading = false;
-                // $scope.jabatanLogin = res[3].data.data.idJabatan;
             });
 
             $scope.cariTgl = function () {
@@ -154,10 +137,8 @@ define(['initialize'], function (initialize) {
                     window.messageContainer.error("tanggal monitoring harus dipilih terlebih dahulu");
                     return;
                 } else {
-
                     $scope.paramURl = "sdm/get-kehadiran-all-pegawai/" + moment($scope.item.monitoringAwal).format("YYYY-MM-DD") + "/" + moment($scope.item.monitoringAkhir).format("YYYY-MM-DD");
                     $scope.pencarian();
-
                 }
             }
 
@@ -176,7 +157,7 @@ define(['initialize'], function (initialize) {
                 //1 by tanggal
                 //2 by nama pegawai
                 //3 by unit kerja
-                //get from validat
+                //get from validation
                 $scope.cs();
                 if ($scope.item.unitKerja === undefined && !$scope.isBebasValidasi) {
                     window.messageContainer.error("Unit Kerja harus dipilih terlebih dahulu!");
@@ -211,164 +192,110 @@ define(['initialize'], function (initialize) {
                 }]
             };
             $scope.mainGridOption = {
-                // editable: true,
-                columns: [
-                    //     {
-                    //     field: "idPegawai",
-                    //     title: "id",
-                    //     visible: false
-                    // },
-                    // {
-                    //     field: "jabatanInternal",
-                    //     title: "jabatanInternal",
-                    //     visible: false
-                    // },
-                    // {
-                    //     field: "namaRuangan",
-                    //     title: "namaRuangan",
-                    //     visible: false
-                    // },
-                    // {
-                    //     field: "idFinger",
-                    //     title: "Id Finger Print ",
-                    //     visible: false
-                    // },
-                    // {
-                    //     field: "nip",
-                    //     title: "nip",
-                    //     visible: false
-                    // },
-                    // {
-                    //     field: "idShift",
-                    //     title: "idShift",
-                    //     visible: false
-                    // },
-                    {
-                        field: "nama",
-                        headerAttributes: {
-                            style: "text-align : center"
-                        },
-                        title: "Nama Pegawai",
-                        width: "150px",
-                        footerTemplate: "{{item.titleFooter}}",
-                        aggregates: ["count"],
-                        // groupHeaderTemplate: "Nama Pegawai: #= value # (Jumlah: #= count#)"
+                columns: [{
+                    field: "nama",
+                    headerAttributes: {
+                        style: "text-align : center"
                     },
-                    {
-                        field: "tanggal",
-                        title: "Tanggal",
-                        headerAttributes: {
-                            style: "text-align : center"
-                        },
-                        width: "100px"
+                    title: "Nama Pegawai",
+                    width: "150px",
+                    footerTemplate: "{{item.titleFooter}}",
+                    aggregates: ["count"]
+                }, {
+                    field: "tanggal",
+                    title: "Tanggal",
+                    headerAttributes: {
+                        style: "text-align : center"
                     },
-                    {
-                        title: "Jadwal",
-                        headerAttributes: {
-                            style: "text-align : center"
-                        },
-                        columns: [{
-                            field: "jadwalMasuk",
-                            title: "Masuk",
-                            width: "45px"
-                        },
-                        {
-                            field: "jadwalPulang",
-                            title: "Pulang",
-                            width: "45px"
-                        }
-                        ],
-                    },
-                    {
-                        title: "Absensi ",
-                        headerAttributes: {
-                            style: "text-align : center"
-                        },
-                        columns: [{
-                            field: "absensiMasuk",
-                            title: "Masuk",
-                            width: "45px"
-                        },
-                        {
-                            field: "validMasuk",
-                            title: "V",
-                            width: "18px"
-                        },
-                        {
-                            field: "absensiPulang",
-                            title: "Pulang",
-                            width: "45px"
-                        },
-                        {
-                            field: "validPulang",
-                            title: "V",
-                            width: "18px"
-                        }
-                        ],
-                    },
-                    {
-                        field: "terlambat",
-                        title: "Terlam-<br/>bat (menit)",
-                        width: "50px",
-                        footerTemplate: "{{item.terlambat}}",
-                        headerAttributes: {
-                            style: "text-align : center"
-                        },
-                    },
-                    {
-                        field: "pulangAwal",
-                        title: "Pulang Awal (menit)",
-                        width: "50px",
-                        footerTemplate: "{{item.pulang}}",
-                        headerAttributes: {
-                            style: "text-align : center"
-                        },
-                    },
-                    {
-                        field: "kelebihanJamKerja",
-                        title: "Kelebih-<br/>an Menit Kerja",
-                        width: "50px",
-                        aggregates: ["sum"],
-                        footerTemplate: "{{item.kelebihan}}",
-                        headerAttributes: {
-                            style: "text-align : center"
-                        },
-                    },
-                    // { field: "jamEfektif", title: "<center>Jam Efektif</center>", width: "8%", aggregates: ["sum"], footerTemplate: "#= kendo.toString(sum,'n0')# (menit)" }, // jika jam efektif dikirim dari backend berupa integer, frontend dapat menghitung sendiri
-                    {
-                        field: "jamEfektif",
-                        title: "Jam Efektif",
-                        width: "50px",
-                        footerTemplate: "{{item.efektif}}",
-                        headerAttributes: {
-                            style: "text-align : center"
-                        },
-                    },
-                    {
-                        field: "namaShift",
-                        title: "Shift",
-                        width: "50px",
-                        headerAttributes: {
-                            style: "text-align : center"
-                        },
-                    },
-                    {
-                        field: "alasan",
-                        title: "Keterangan",
-                        width: "120px",
-                        headerAttributes: {
-                            style: "text-align : center"
-                        },
-                    },
-                    {
-                        field: "listTrNo",
-                        hidden: true
-                    },
-                    {
-                        width: "30px",
-                        template: "<p style='text-align:left'><button ng-click='getDetail(dataItem)' class='k-button k-button-icontext'><i class='fa fa-ellipsis-v'></i></button></p>"
+                    width: "100px"
+                }, {
+                    title: "Jadwal",
+                    headerAttributes: {
+                        style: "text-align : center"
+                    }, columns: [{
+                        field: "jadwalMasuk",
+                        title: "Masuk",
+                        width: "45px"
+                    }, {
+                        field: "jadwalPulang",
+                        title: "Pulang",
+                        width: "45px"
+                    }],
+                }, {
+                    title: "Absensi ",
+                    headerAttributes: {
+                        style: "text-align : center"
+                    }, columns: [{
+                        field: "absensiMasuk",
+                        title: "Masuk",
+                        width: "45px"
+                    }, {
+                        field: "validMasuk",
+                        title: "V",
+                        width: "18px"
+                    }, {
+                        field: "absensiPulang",
+                        title: "Pulang",
+                        width: "45px"
+                    }, {
+                        field: "validPulang",
+                        title: "V",
+                        width: "18px"
+                    }],
+                }, {
+                    field: "terlambat",
+                    title: "Terlam-<br/>bat (menit)",
+                    width: "50px",
+                    footerTemplate: "{{item.terlambat}}",
+                    headerAttributes: {
+                        style: "text-align : center"
                     }
-                ],
+                }, {
+                    field: "pulangAwal",
+                    title: "Pulang Awal (menit)",
+                    width: "50px",
+                    footerTemplate: "{{item.pulang}}",
+                    headerAttributes: {
+                        style: "text-align : center"
+                    }
+                }, {
+                    field: "kelebihanJamKerja",
+                    title: "Kelebih-<br/>an Menit Kerja",
+                    width: "50px",
+                    aggregates: ["sum"],
+                    footerTemplate: "{{item.kelebihan}}",
+                    headerAttributes: {
+                        style: "text-align : center"
+                    }
+                }, {
+                    field: "jamEfektif",
+                    title: "Jam Efektif",
+                    width: "50px",
+                    footerTemplate: "{{item.efektif}}",
+                    headerAttributes: {
+                        style: "text-align : center"
+                    }
+                }, {
+                    field: "namaShift",
+                    title: "Shift",
+                    width: "50px",
+                    headerAttributes: {
+                        style: "text-align : center"
+                    }
+                }, {
+                    field: "alasan",
+                    title: "Keterangan",
+                    width: "120px",
+                    headerAttributes: {
+                        style: "text-align : center"
+                    }
+                }, {
+                    field: "listTrNo",
+                    hidden: true
+                }, {
+                    width: "30px",
+                    template: "<p style='text-align:left'><button ng-click='getDetail(dataItem)' class='k-button k-button-icontext'><i class='fa fa-ellipsis-v'></i></button></p>"
+                }],
                 sortable: {
                     mode: "single",
                     allowUnsort: false,
@@ -376,24 +303,20 @@ define(['initialize'], function (initialize) {
 
             }
             $scope.mainGridNotif = {
-                // editable: true,
                 columns: [{
                     field: "nama",
                     title: "Nama Pegawai",
                     visible: false,
                     width: "40%"
-                },
-                {
+                }, {
                     field: "tanggal",
                     title: "Tanggal",
                     visible: false,
                     width: "60%"
-                },
-                ]
+                }]
             }
 
             $scope.seeLocation = (data) => {
-
                 ManageSdmNew.getListData("sdm/get-reverse-geocoding?latitude=" + data.latitude + "&longitude=" + data.longitude).then(function (res) {
                     $scope.showLocation = true;
                     $scope.reverseLocation = res.data.data;
@@ -434,134 +357,24 @@ define(['initialize'], function (initialize) {
                 })
             }
 
-            // $scope.mainGridOption = {
-            //     editable: true,
-            //     columns: [{
-            //         field: "idPegawai",
-            //         title: "id",
-            //         visible: false
-            //     },
-            //     {
-            //         field: "jabatanInternal",
-            //         title: "jabatanInternal",
-            //         visible: false
-            //     },
-            //     {
-            //         field: "namaRuangan",
-            //         title: "namaRuangan",
-            //         visible: false
-            //     },
-            //     {
-            //         field: "idFinger",
-            //         title: "Id Finger Print ",
-            //         visible: false
-            //     },
-            //     {
-            //         field: "nip",
-            //         title: "nip",
-            //         visible: false
-            //     },
-            //     {
-            //         field: "idShift",
-            //         title: "idShift",
-            //         visible: false
-            //     },
-            //     {
-            //         field: "nama",
-            //         headerAttributes: { style: "text-align : center" },
-            //         title: "Nama Pegawai",
-            //         width: "17%",
-            //         footerTemplate: "{{item.titleFooter}}",
-            //         aggregates: ["count"],
-            //         groupHeaderTemplate: "Nama Pegawai: #= value # (Jumlah: #= count#)"
-            //     },
-            //     {
-            //         field: "tanggal",
-            //         title: "<center>Tanggal</center>",
-            //         width: "12%"
-            //     },
-            //     {
-            //         title: "<center>Jadwal</center> ",
-            //         columns: [{
-            //             field: "jadwalMasuk",
-            //             title: "Masuk",
-            //             width: "5%"
-            //         },
-            //         {
-            //             field: "jadwalPulang",
-            //             title: "Pulang",
-            //             width: "5%"
-            //         }
-            //         ],
-            //     },
-            //     {
-            //         title: "<center>Absensi</center> ",
-            //         columns: [{
-            //             field: "absensiMasuk",
-            //             title: "Masuk",
-            //             width: "5%"
-            //         },
-            //         {
-            //             field: "absensiPulang",
-            //             title: "Pulang",
-            //             width: "5%"
-            //         }
-            //         ],
-            //     },
-            //     {
-            //         field: "terlambat",
-            //         title: "<center>Terlambat</center>",
-            //         width: "8%",
-            //         footerTemplate: "{{item.terlambat}}"
-            //     },
-            //     {
-            //         field: "pulangAwal",
-            //         title: "<center>Pulang Awal</center>",
-            //         width: "8%",
-            //         footerTemplate: "{{item.pulang}}"
-            //     },
-            //     {
-            //         field: "kelebihanJamKerja",
-            //         title: "<center>Kelebihan Jam Kerja</center>",
-            //         width: "8%",
-            //         aggregates: ["sum"],
-            //         footerTemplate: "#= kendo.toString(sum,'n0')#"
-            //     },
-            //         // { field: "jamEfektif", title: "<center>Jam Efektif</center>", width: "8%", aggregates: ["sum"], footerTemplate: "#= kendo.toString(sum,'n0')# (menit)" }, // jika jam efektif dikirim dari backend berupa integer, frontend dapat menghitung sendiri
-            //         {
-            //             field: "jamEfektif",
-            //             title: "<center>Jam Efektif</center>",
-            //             width: "8%",
-            //             footerTemplate: "{{item.efektif}}"
-            //         },
-            //         {
-            //             field: "namaShift",
-            //             title: "<center>Shift</center>",
-            //             width: "8%"
-            //         },
-            //         {
-            //             field: "alasan",
-            //             title: "<center>Alasan</center>",
-            //             width: "15%"
-            //         }
-            //         ]
-            //     }
-
             function filterByStatus(item) {
                 if (item.absensiMasuk !== '-' && item.namaShift === 'Libur') {
                     return true;
                 } else if (item.absensiMasuk !== '-' && item.jadwalMasuk === null && item.jadwalPulang === null) {
                     return true;
                 }
-                // invalidEntries++;
+
                 return false;
             }
+
             $scope.closeNotif = function () {
                 $scope.dialogPopup.close()
             }
+
             $scope.showNotif = function () {
                 $scope.dialogPopup.center().open()
             }
+
             $scope.addTimes = function (timeMap) {
                 var totalH = 0;
                 var totalM = 0;
@@ -581,17 +394,13 @@ define(['initialize'], function (initialize) {
 
                 return totalH + "." + totalM;
             }
+
             $scope.pencarian = function () {
                 $scope.isRouteLoading = true;
                 ManageSdmNew.getListData($scope.paramURl).then(function (dat) {
-
                     $scope.isRouteLoading = false;
 
-                    var belumDiInputJadwal = null;
-                    var jmlBelumDiinputJadwal = 0;
-
-                    // debugger
-                    belumDiInputJadwal = dat.data.data.listkehadiran.filter(filterByStatus);
+                    var belumDiInputJadwal = dat.data.data.listkehadiran.filter(filterByStatus);
                     var groupHeula = []
                     var sama = false
                     for (var i = 0; i < belumDiInputJadwal.length; i++) {
@@ -610,7 +419,7 @@ define(['initialize'], function (initialize) {
                             })
                         }
                     }
-                    // console.log(groupHeula)
+
                     if (groupHeula.length > 0) {
                         $scope.sourceNotif = new kendo.data.DataSource({
                             data: groupHeula,
@@ -630,7 +439,6 @@ define(['initialize'], function (initialize) {
                         var actions = $scope.dialogPopup.options.actions;
                         // Remove "Close" button
                         actions.splice(actions.indexOf("Close"), 1);
-                        // actions.push("Maximize", "Minimize")
                         // Set the new options
                         $scope.dialogPopup.setOptions({
                             actions: actions
@@ -641,13 +449,8 @@ define(['initialize'], function (initialize) {
                     }
                     $scope.item.jmlBelumDiinputJadwal = belumDiInputJadwal.length;
                     $scope.isAdaDataBelumDiinputJadwal = belumDiInputJadwal.length > 0 ? true : false;
-                    // if($scope.isAdaDataBelumDiinputJadwal==true){
-                    //     toastr.warning("Ada " + $scope.item.jmlBelumDiinputJadwal + " data yang belum koreksi jadwal");
-                    // }
 
-                    // $scope.isRouteLoading = true;
                     if (validate === 2) {
-
                         var terlambat = 0;
                         var pulang = 0;
                         var kelebihan = 0;
@@ -673,24 +476,21 @@ define(['initialize'], function (initialize) {
                                 }
                             }
                         }
+
                         var resSumHour = $scope.addTimes(timeArr)
-                        $scope.item.terlambat = terlambat //dat.data.data.jumlahTerlambat;
-                        $scope.item.pulang = pulang //dat.data.data.jumlahPulangAwal;
-                        $scope.item.kelebihan = kelebihan; //dat.data.data.jumlahKelebihanJamKerja;
-                        // if (dat.data.data.jumlahJamEfektif == undefined){
-                        //     dat.data.data.jumlahJamEfektif = 0
-                        //     $scope.item.efektif = resSumHour.toFixed(2)
-                        // } else {
-                        $scope.item.efektif = resSumHour //dat.data.data.jumlahJamEfektif.toFixed(2);
-                        // }
+                        $scope.item.terlambat = terlambat
+                        $scope.item.pulang = pulang
+                        $scope.item.kelebihan = kelebihan
+                        $scope.item.efektif = resSumHour
 
                         $scope.item.titleFooter = 'Jumlah : ';
                     } else {
                         $scope.item.terlambat = "";
                         $scope.item.pulang = "";
                         $scope.item.efektif = "";
-                        $scope.item.titleFooter = '';
                         $scope.item.kelebihan = '';
+
+                        $scope.item.titleFooter = '';
                     }
 
 
@@ -760,23 +560,17 @@ define(['initialize'], function (initialize) {
                         {
                             field: "jamEfektif",
                             aggregate: "sum"
-                        },
-                            // editable: "inline"
-                        ]
+                        }]
                     });
-
-
-
                     $scope.isRouteLoading = false;
                 }, function (error) {
                     $scope.isRouteLoading = false;
                 });
             }
 
-
             $scope.klik = function (current) {
-                // debugger;
                 if (!current) return;
+
                 $scope.current = current;
                 $scope.item.jabatan = current.jabatanInternal;
                 $scope.item.unitKerjatxt = current.unitKerja;
@@ -818,16 +612,16 @@ define(['initialize'], function (initialize) {
 
                         });
                     };
+
                     var dataSend = {
                         "monitoringAbsen": datas
                     }
-                    // console.log(JSON.stringify(dataSend));
-                    // ManageSdm.saveDataUji(dataSend, "sdm/save-monitoring-absen/").then(function(e) {
+
                     ManageSdmNew.saveData(dataSend, "sdm/save-monitoring-absen/").then(function (e) {
                         $scope.isRouteLoading = false;
-                        // console.log(JSON.stringify(e.dataSend));
                     }, function (err) {
                         $scope.isRouteLoading = true;
+
                         throw err;
                     });
                 }
@@ -835,7 +629,6 @@ define(['initialize'], function (initialize) {
             }
             $scope.cetak = function () {
                 var listRawRequired = [
-                    // "item.pegawai|k-ng-model|Pegawai",
                     "item.monitoringAwal|k-ng-model|Tanggal awal",
                     "item.monitoringAkhir|k-ng-model|Tanggal akhir",
                 ]
@@ -847,6 +640,7 @@ define(['initialize'], function (initialize) {
                     switch (validate) {
                         case 2:
                             idPegawai = $scope.item.pegawai.id;
+
                             if ($scope.isBebasValidasi && $scope.item.unitKerja == undefined) {
                                 unitKerja = "";
                             } else if ($scope.isBebasValidasi && $scope.item.unitKerja == "") {
@@ -854,6 +648,7 @@ define(['initialize'], function (initialize) {
                             } else {
                                 unitKerja = $scope.item.unitKerja.id;
                             }
+
                             if ($scope.isBebasValidasi && $scope.item.subUnitKerja == undefined) {
                                 subUnitKerja = "";
                             } else if ($scope.isBebasValidasi && $scope.item.subUnitKerja == "") {
@@ -861,23 +656,28 @@ define(['initialize'], function (initialize) {
                             } else {
                                 subUnitKerja = $scope.item.subUnitKerja.id;
                             }
+
                             if (!$scope.item.pegawai) {
                                 idPegawai = "";
                             };
+
                             if (!$scope.item.unitKerja && !$scope.isBebasValidasi) {
                                 messageContainer.error("Unit kerja belum di pilih");
                                 return
                             };
+
                             if (!$scope.item.subUnitKerja && !$scope.isBebasValidasi) {
                                 messageContainer.error("Sub unit kerja belum di pilih");
                                 return
                             };
+
                             break;
                         case 3:
                             if (!$scope.item.unitKerja && !$scope.isBebasValidasi) {
                                 messageContainer.error("Unit kerja belum di pilih");
                                 return
                             };
+
                             idPegawai = "";
                             if ($scope.isBebasValidasi && $scope.item.unitKerja == undefined) {
                                 unitKerja = "";
@@ -886,10 +686,9 @@ define(['initialize'], function (initialize) {
                             } else {
                                 unitKerja = $scope.item.unitKerja.id;
                             }
+
                             break;
                     }
-                    // var urlLaporan = reportHelper.open("reporting/lapMonitoringAbsensi?idPegawai=" + idPegawai + "&startDate=" + tanggalAwal + "&endDate=" + tanggalAkhir);
-                    // window.open(urlLaporan, '_blank');
 
                     var fixUrlLaporan = cetakHelper.openURLReporting("reporting/lapMonitoringAbsensi?idPegawai=" + idPegawai + "&startDate=" + tanggalAwal + "&endDate=" + tanggalAkhir + "&unitKerja=" + unitKerja + "&subUnitKerja=" + subUnitKerja);
                     window.open(fixUrlLaporan, "RincianAbsensi", "width=800, height=600");
@@ -897,9 +696,11 @@ define(['initialize'], function (initialize) {
                     ModelItem.showMessages(isValid.messages);
                 }
             };
+
             $scope.klikInputJadwalDinas = function () {
                 $state.go('JadwalAbsensiPegawai');
             }
+
             $scope.$watch('item.unitKerja', function (newVal, oldVal) {
                 if (!newVal) return;
                 if ((newVal && oldVal) && newVal.id == oldVal.id || $scope.isSingle === true) return;
@@ -914,13 +715,12 @@ define(['initialize'], function (initialize) {
                     });
                 }
             });
+
             $scope.$watch('item.subUnitKerja', function (newVal, oldVal) {
                 if (oldVal != undefined) {
                     if (!newVal) return;
                     if ((newVal && oldVal) && newVal.id == oldVal.id || $scope.isSingle === true) return;
                     if ($scope.item.subUnitKerja) {
-                        // manageSarprasPhp.getDataTableMaster("monitoringabsensi/get-dataPegawai?idUnit=" + $scope.item.unitKerja.id + "&idSubUnit=" + newVal.id).then(function(data) {
-                        // manageSarprasPhp.getDataTableMaster("monitoringabsensi/get-dataPegawai-rev?idUnit=" + $scope.item.unitKerja.id + "&idSubUnit=" + newVal.id).then(function(data) {
                         ManageSdmNew.getListData("sdm/get-dataPegawai-rev?idUnitKerja=" + $scope.item.unitKerja.id + "&idSubUnitKerja=" + newVal.id + "&idPegawaiLogin=" + $scope.pegawai.id).then(function (data) {
                             $scope.item.pegawai = "";
                             $scope.listPegawai = data.data;
@@ -931,8 +731,6 @@ define(['initialize'], function (initialize) {
                     }
                 } else {
                     if ($scope.item.subUnitKerja) {
-                        // manageSarprasPhp.getDataTableMaster("monitoringabsensi/get-dataPegawai?idUnit=" + $scope.item.unitKerja.id + "&idSubUnit=" + newVal.id).then(function(data) {
-                        // manageSarprasPhp.getDataTableMaster("monitoringabsensi/get-dataPegawai-rev?idUnit=" + $scope.item.unitKerja.id + "&idSubUnit=" + newVal.id).then(function(data) {
                         ManageSdmNew.getListData("sdm/get-dataPegawai-rev?idUnitKerja=" + $scope.item.unitKerja.id + "&idSubUnitKerja=" + newVal.id + "&idPegawaiLogin=" + $scope.pegawai.id).then(function (data) {
                             $scope.item.pegawai = "";
                             $scope.listPegawai = data.data.data;
@@ -947,6 +745,7 @@ define(['initialize'], function (initialize) {
                     }
                 }
             });
+
             var timeoutPromise;
             $scope.$watch('filter.namaPegawai', function (newVal, oldVal) {
                 $timeout.cancel(timeoutPromise);
@@ -989,7 +788,6 @@ define(['initialize'], function (initialize) {
                         $scope.isSingle = false;
                         $scope.listPegawai = data.data;
                         $scope.isBebasValidasi = true;
-                        // FindSdm.getUnitKerja().then(function(dat) {
                         ManageSdmNew.getListData("sdm/get-all-unit-kerja").then(function (dat) {
                             $scope.listUnitKerja = dat.data.data;
                         });
@@ -1002,6 +800,7 @@ define(['initialize'], function (initialize) {
                 gridData.dataSource.filter({});
                 $scope.filter = {};
             }
+
             $scope.resetFilters2 = function () {
                 resetAndCheckListPegawai();
                 $scope.item.unitKerja = "";
