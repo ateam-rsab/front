@@ -72,11 +72,13 @@ define(['initialize'], function (initialize) {
 							$scope.isDiskonRSAB = data.kelompokPasienID === 1;
 
 							$scope.item = data;
-							if ($scope.item.totalDiskonPegawai > 0 && $scope.item.diskonpegawaiexisting == null && $scope.item.diskonpegawai == 0) {
+							if ($scope.kelompokPasienID == 1 && $scope.item.totalDiskonPegawai > 0
+								&& $scope.item.diskonpegawaiexisting == null && $scope.item.diskonpegawai == 0) {
 								$scope.item.billing = $scope.item.billing + $scope.item.totalDiskonPegawai
 								$scope.item.totalKlaim = $scope.item.totalDiskonPegawai
 								$scope.awalbilling = $scope.item.billing
-							} else if ($scope.awalbilling && $scope.item.totalDiskonPegawai > 0 && $scope.item.diskonpegawai != 0) {
+							} else if ($scope.kelompokPasienID == 1 && $scope.awalbilling
+								&& $scope.item.totalDiskonPegawai > 0 && $scope.item.diskonpegawai != 0) {
 								$scope.item.billing = $scope.awalbilling
 								$scope.item.jumlahBayar = $scope.item.billing - $scope.item.totalDiskonPegawai - $scope.item.deposit;
 							}
@@ -122,6 +124,7 @@ define(['initialize'], function (initialize) {
 								$scope.showTtlKlaim = true
 								$scope.showTtlKlaim2 = false
 							}
+							
 							if ($scope.item.diskonpegawai == 1 || $scope.item.diskonpegawai == 2
 								|| $scope.item.diskonpegawai == 3 || $scope.item.diskonpegawai == 4) {
 								if (data.jenisPasien == 'Umum/Pribadi') {
