@@ -171,7 +171,7 @@ define(['initialize'], function (initialize) {
                 } else if (!$scope.item.subUnitKerja && !$scope.item.pegawai && $scope.isBebasValidasi) {
                     window.messageContainer.error("Subunit Kerja / Pegawai harus dipilih terlebih dahulu!");
                     return;
-                } else if ($scope.item.pegawai.id !== undefined) {
+                } else if ($scope.item.pegawai && $scope.item.pegawai.id !== undefined) {
                     $scope.paramURl = "sdm/get-kehadiran/" + $scope.item.pegawai.id + "/" + moment($scope.item.monitoringAwal).format("YYYY-MM-DD") + "/" + moment($scope.item.monitoringAkhir).format("YYYY-MM-DD");
                     $scope.pencarian();
                 } else {
@@ -639,7 +639,9 @@ define(['initialize'], function (initialize) {
                     var tanggalAkhir = dateHelper.formatDate($scope.item.monitoringAkhir, "YYYY-MM-DD");
                     switch (validate) {
                         case 2:
-                            idPegawai = $scope.item.pegawai.id;
+                            if ($scope.item.pegawai) {
+                                idPegawai = $scope.item.pegawai.id;
+                            }
 
                             if ($scope.isBebasValidasi && $scope.item.unitKerja == undefined) {
                                 unitKerja = "";
