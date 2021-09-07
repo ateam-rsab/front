@@ -456,7 +456,7 @@ define(['initialize'], function (initialize) {
 
             // #region Rekam Data Pegawai
             var initRekamDataPegawai = function () {
-                $scope.listIdKedudukan = [3, 4, 5, 24, 25]; // input kedudukan pegawai yang dijadikan parameter untuk set statusEnabled pegawai = false
+                $scope.listIdKedudukan = [3, 4, 5, 6, 24, 25, 26, 28, 29]; // input kedudukan pegawai yang dijadikan parameter untuk set statusEnabled pegawai = false
                 $scope.isRouteLoading = true;
             };
 
@@ -2691,7 +2691,7 @@ define(['initialize'], function (initialize) {
                             newModel.mappingJabatan = $scope.getTempJabatanInternal();
                         }
 
-                        if ($scope.item.idFinger) {
+                        if ($scope.item.idFinger && !$scope.listIdKedudukan.includes($scope.item.kedudukan.id)) {
                             ManageSdmNew.getListData('pegawai/check-existing-fingerid?fingerId=' + $scope.item.idFinger).then(res => {
                                 if (res.data.data.length > 0) {
                                     toastr.warning('Finger ID sudah dipakai', 'Peringatan');
