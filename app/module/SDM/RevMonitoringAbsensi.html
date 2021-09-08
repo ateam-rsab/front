@@ -51,6 +51,7 @@
         background: #B5B2B1;
     }
 </style>
+
 <div>
     <div ng-show="dataVOloaded">
         <c-panel item="item" header="'Monitoring Absensi'" disabled>
@@ -109,6 +110,7 @@
                                     k-format="'dd-MM-yyyy'" style="width: 100%" />
                             </div>
                         </div>
+
                         <div class="grid_1">
                             <div class="grid_12">
                                 <label c-label item="item">Tanggal Akhir</label>
@@ -121,8 +123,6 @@
                             </div>
                         </div>
 
-
-
                         <div class="grid_1 k-edit-buttons  k-state-default " style="margin-top:23px">
                             <button class="k-button k-button-icontext k-primary k-grid-update" ng-click="Cari()"
                                 style="width:100px"><span class="k-sprite k-icon k-i-search"></span>Cari </button>
@@ -134,10 +134,9 @@
                                 <span class="k-sprite k-icon k-delete"></span>Clear</button>
                         </div>
 
-
-
                     </div>
                 </div>
+
                 <div>
                     <div class="grid_12 borderBox containerBorderBox">
                         <div ng-show="isAdaDataBelumDiinputJadwal">
@@ -145,10 +144,11 @@
                                 ng-click="showNotif()">Ada {{item.jmlBelumDiinputJadwal}} data pegawai shift yang belum
                                 koreksi jadwal / pegawai nonshift dengan rekomendasi pengajuan lembur</span>
                         </div>
+
                         <div class="grid_12" style="margin: 10px 0 50px;">
                             <kendo-grid id="grid" data-source="sourceOrder" options="mainGridOption"></kendo-grid>
-                            <!-- <div kendo-grid="grid" id="grid" k-data-source="sourceOrder" options="mainGridOption" k-selectable="'row'" style="font-size: small;" k-ng-model="current" ng-click="klik(current)"></div> -->
                         </div>
+
                         <div class="grid_12" style="margin: 10px 0 50px;">
                             <div class="grid_2" ng-show="isSingle==false">
                                 <div class="grid_12">
@@ -173,22 +173,18 @@
             <div class="grid_12" style="float:left;">
                 <div class="grid_3" style="float:right">
                     <md-button class="md-raised md-primary" ng-click="Save()">
-                        <span style="margin-right: 5px;">Simpan</span>
+                        <span style="margin-right: 5px;">Verifikasi</span>
                         <i class="fa fa-save"></i>
                     </md-button>
                 </div>
-                <div class="grid_3" style="float:right">
-                    <md-button class="md-raised md-warn" ng-click="Back()">
-                        <span style="margin-right: 5px;">Batal</span>
-                        <i class="fa fa-remove"></i>
-                    </md-button>
-                </div>
+
                 <div class="grid_3" style="float:right;">
                     <md-button class="md-raised md-primary" ng-click="cetak()">
                         <span style="margin-right: 5px;">Cetak</span>
                         <i class="fa fa-print"></i>
                     </md-button>
                 </div>
+
                 <div ng-show='showButtonInputJadwalDinas' class="grid_3" style="float:right;">
                     <md-button class="md-raised md-primary" ng-click="klikInputJadwalDinas()">
                         <span>Input Jadwal Dinas</span>
@@ -196,7 +192,7 @@
                 </div>
             </div>
         </c-panel>
-        
+
         <div kendo-window="dialogPopup" k-visible="false">
             <kendo-grid data-source="sourceNotif" options="mainGridNotif" k-selectable="'row'" k-sortable="'true'"
                 k-resizable="'true'" k-pageable="'true'">
@@ -206,7 +202,9 @@
             </div>
 
         </div>
+
         <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+
         <div kendo-window="windDetailPresensi" k-title="'Detail Presensi'" k-width="1000" k-height="500"
             k-visible="false">
             <div class="panel panel-default container_12">
@@ -233,3 +231,5 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>

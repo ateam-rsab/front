@@ -2692,20 +2692,20 @@ define(['initialize'], function (initialize) {
                         }
 
                         if ($scope.item.idFinger && !$scope.listIdKedudukan.includes($scope.item.kedudukan.id)) {
-                            ManageSdmNew.getListData('pegawai/check-existing-fingerid?fingerId=' + $scope.item.idFinger).then(res => {
-                                if (res.data.data.length > 0) {
-                                    toastr.warning('Finger ID sudah dipakai', 'Peringatan');
+                            ManageSdmNew.getListData('pegawai/check-existing-fingerid?fingerId=' + $scope.item.idFinger
+                                + '&pegawaiId=' + ($state.params.idPegawai ? newModel.id : "")).then(res => {
+                                    if (res.data.data.length > 0) {
+                                        toastr.warning('Finger ID sudah dipakai', 'Peringatan');
 
-                                    $scope.isRouteLoading = false;
-                                    return
-                                } else {
-                                    $scope.SaveRekamDataPegawai(newModel)
-                                }
-                            })
+                                        $scope.isRouteLoading = false;
+                                        return
+                                    } else {
+                                        $scope.SaveRekamDataPegawai(newModel)
+                                    }
+                                })
                         } else {
                             $scope.SaveRekamDataPegawai(newModel)
                         }
-
                     } else {
                         messageContainer.error('Tidak ada perubahan data');
                     }
