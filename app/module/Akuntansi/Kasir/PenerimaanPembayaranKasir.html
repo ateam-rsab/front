@@ -1,34 +1,35 @@
 <style>
-.style-center{
-	display: inline-block;
-	text-align: center;
-	width: 100%;
-}
+	.style-center {
+		display: inline-block;
+		text-align: center;
+		width: 100%;
+	}
 
-.style-right{
-	display: inline-block;
-	text-align: right;
-	width: 100%;
-}
+	.style-right {
+		display: inline-block;
+		text-align: right;
+		width: 100%;
+	}
 
-.style-left{
-	display: inline-block;
-	text-align: left;
-	width: 100%;
-}
+	.style-left {
+		display: inline-block;
+		text-align: left;
+		width: 100%;
+	}
 </style>
-
 
 <div ng-show="dataVOloaded">
 	<div class="grid_12 headerBox">
-    	<h1 style="color: white;"><b>Penerimaan Pembayaran</b></h1>
-    </div>
-    <div class="clear"></div>
+		<h1 style="color: white;"><b>Penerimaan Pembayaran</b></h1>
+	</div>
 
-    <br/>
-   <div class="grid_2">
-   </div>
-<div class="grid_8">
+	<div class="clear"></div>
+	<br />
+
+	<div class="grid_2">
+	</div>
+
+	<div class="grid_8">
 		<!-- Kriteria -->
 		<div class="grid_12">
 			<div class="grid_12 borderBox containerBorderBox">
@@ -41,10 +42,10 @@
 						<div class="clear"></div>
 
 						<div class="grid_12">
-							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.totalTagihan" ng-disabled="true" style="text-align: right"/>
+							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.totalTagihan"
+								ng-disabled="true" style="text-align: right" />
 						</div>
 					</div>
-
 					<!-- TotalDeposit -->
 					<!--<div class="grid_12">
 						<div class="grid_12">
@@ -56,7 +57,6 @@
 							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.totalDeposit" ng-disabled="true"/>
 						</div>
 					</div>-->
-
 					<!-- BiayaAdministrasi -->
 					<div class="grid_12" ng-show="showBiayaADministrasi">
 						<div class="grid_12">
@@ -65,10 +65,10 @@
 						<div class="clear"></div>
 
 						<div class="grid_12">
-							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.biayaAdministrasi" />
+							<input c-text-box type="input" filter="" class="k-textbox"
+								ng-model="item.biayaAdministrasi" />
 						</div>
 					</div>
-
 					<!-- Diskon -->
 					<div class="grid_12" ng-show="showDiskon">
 						<div class="grid_12">
@@ -80,7 +80,6 @@
 							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.diskon" />
 						</div>
 					</div>
-
 					<!-- JumlahBayar -->
 					<div class="grid_12">
 						<div class="grid_12">
@@ -89,12 +88,11 @@
 						<div class="clear"></div>
 
 						<div class="grid_12">
-							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jumlahBayarFix" ng-disabled="true" style="text-align: right"/>
+							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jumlahBayarFix"
+								ng-disabled="true" style="text-align: right" />
 						</div>
 					</div>
-
 					<div class="clear"></div>
-
 					<!-- Kembali -->
 					<!--<div class="grid_12">
 						<div class="grid_12">
@@ -106,7 +104,6 @@
 							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kembali" />
 						</div>
 					</div>-->
-
 					<!-- Terbilang -->
 					<div class="grid_12">
 						<div class="grid_12">
@@ -115,7 +112,8 @@
 						<div class="clear"></div>
 
 						<div class="grid_12">
-							<textarea style="width: 99%; height: 40px;resize: none;" ng-disabled="true">{{item.terbilang}}</textarea>
+							<textarea style="width: 99%; height: 40px;resize: none;"
+								ng-disabled="true">{{item.terbilang}}</textarea>
 						</div>
 					</div>
 				</div>
@@ -129,12 +127,12 @@
 						<div class="clear"></div>
 
 						<div class="grid_12">
-							<input style="width: 100%;" kendo-combo-box k-ng-model="item.caraBayar" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listCaraBayar" />
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.caraBayar"
+								k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'"
+								k-auto-bind="false" k-data-source="listCaraBayar" />
 						</div>
 					</div>
-
 					<div class="clear"></div>
-
 					<!-- CC -->
 					<div class="grid_12" ng-show="showCC2" style="margin-top: 10px;">
 						<div class="grid_12 headerBox containerBorderBox" style="padding:0px">
@@ -149,10 +147,10 @@
 								<div class="clear"></div>
 
 								<div class="grid_12">
-									<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noKartu" />
+									<input c-text-box type="input" filter="" class="k-textbox"
+										ng-model="item.noKartu" />
 								</div>
 							</div>
-
 							<!-- NamaKartu -->
 							<div class="grid_12">
 								<div class="grid_12">
@@ -161,10 +159,10 @@
 								<div class="clear"></div>
 
 								<div class="grid_12">
-									<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaKartu" />
+									<input c-text-box type="input" filter="" class="k-textbox"
+										ng-model="item.namaKartu" />
 								</div>
 							</div>
-
 							<!-- JenisKartu -->
 							<div class="grid_12">
 								<div class="grid_12">
@@ -173,13 +171,14 @@
 								<div class="clear"></div>
 
 								<div class="grid_12">
-									<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisKartu" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisKartu" />
+									<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisKartu"
+										k-data-text-field="'namaExternal'" k-data-value-field="'id'"
+										k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisKartu" />
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="clear"></div>
-
 					<!-- nominal bayar -->
 					<div class="grid_12">
 						<div class="grid_12">
@@ -188,11 +187,11 @@
 						<div class="clear"></div>
 
 						<div class="grid_12">
-							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nominal"  style="text-align: right"/>
+							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nominal"
+								style="text-align: right" />
 						</div>
 					</div>
 					<div class="clear"></div>
-
 					<!-- Button Tambah Cara Bayar -->
 					<div class="grid_4">
 						<div class="grid_12">
@@ -201,7 +200,8 @@
 						<div class="clear"></div>
 
 						<div class="grid_12">
-							<button class="btnTemplate1" style="margin-left: 0;" ng-click="tambahCaraBayar()">Tambah Bayar</button>
+							<button class="btnTemplate1" style="margin-left: 0;" ng-click="tambahCaraBayar()">Tambah
+								Bayar</button>
 						</div>
 					</div>
 				</div>
@@ -217,25 +217,22 @@
 
 			<!-- grid table -->
 			<div class="grid_12 borderBox">
-				<div id="kGrid" kendo-grid 
-				k-data-source="daftarBayar"
-				k-selectable="'row'" 
-				k-ng-model="dataDaftarBayarSelected"
-				k-columns="columnDaftarBayar">
-				<div k-detail-template>
-	                <kendo-tabstrip>
-	                <div>
-	                    <div kendo-grid k-options="detailGridOptions(dataItem)"></div>
-	                </div>
-	                </kendo-tabstrip>
-	            </div>
+				<div id="kGrid" kendo-grid k-data-source="daftarBayar" k-selectable="'row'"
+					k-ng-model="dataDaftarBayarSelected" k-columns="columnDaftarBayar">
+					<div k-detail-template>
+						<kendo-tabstrip>
+							<div>
+								<div kendo-grid k-options="detailGridOptions(dataItem)"></div>
+							</div>
+						</kendo-tabstrip>
+					</div>
 				</div>
 			</div>
 			<div class="clear"></div>
 		</div>
 		<div class="clear"></div>
 
-		<div class="grid_6"  style="margin: 10px 0px 20px">
+		<div class="grid_6" style="margin: 10px 0px 20px">
 			<div class="grid_12 headerBox containerBorderBox" style="padding:0px">
 				<p>Detail</p>
 			</div>
@@ -251,6 +248,7 @@
 				</div>
 			</div>
 		</div>
+
 		<!-- Kriteria -->
 		<div class="grid_6" style="margin: 10px 0px 20px">
 			<div class="grid_12 headerBox containerBorderBox" style="padding:0px">
@@ -265,16 +263,16 @@
 					<div class="clear"></div>
 
 					<div class="grid_12">
-						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.totalFixBayar" ng-disabled="true" style="text-align: right" />
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.totalFixBayar"
+							ng-disabled="true" style="text-align: right" />
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="clear"></div>
 
-
-	<div class="grid_12" style="margin-top:30px">
-		<div ng-include='"../app/module/Shared/Keuangan/TemplateButtonKasir"'></div>
-	</div>
+		<div class="grid_12" style="margin-top:30px">
+			<div ng-include='"../app/module/Shared/keuangan/TemplateButtonKasir"'></div>
+		</div>
 	</div>
 </div>
