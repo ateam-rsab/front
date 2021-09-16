@@ -130,14 +130,29 @@ define(['initialize'], function (initialize) {
                     return
                 }
 
-                let bulan = dateHelper.toTimeStamp($scope.item.bulan)
+                if (!$scope.item.unitKerja) {
+                    toastr.warning("Silakan pilih unit kerja terlebih dahulu", "Peringatan")
 
-                ManageSdmNew.getListData(`iki-remunerasi/get-rekap-penilaian-kinerja-individu?bulan=${bulan}&unitKerjaId=${$scope.item.unitKerja ? $scope.item.unitKerja.id : ""}&subunitKerjaId=${$scope.item.subUnitKerja ? $scope.item.subUnitKerja.id : ""}&pegawaiId=${$scope.item.pegawai ? $scope.item.pegawai.id : ""}`).then((res) => {
+                    $scope.isRouteLoading = false;
+                    return
+                }
+
+                if (!$scope.item.subUnitKerja) {
+                    toastr.warning("Silakan pilih subunit kerja terlebih dahulu", "Peringatan")
+
+                    $scope.isRouteLoading = false;
+                    return
+                }
+
+                let bulan = dateHelper.toTimeStamp($scope.item.bulan)
+                ManageSdmNew.getListData(`iki-remunerasi/get-rekap-penilaian-kinerja-individu?bulan=${bulan}&unitKerjaId=${$scope.item.unitKerja.id}&subunitKerjaId=${$scope.item.subUnitKerja.id}&pegawaiId=${$scope.item.pegawai ? $scope.item.pegawai.id : ""}`).then((res) => {
                     $scope.dataSource = new kendo.data.DataSource({
                         data: res.data.data,
                         pageSize: 100
                     });
 
+                    $scope.isRouteLoading = false;
+                }, (error) => {
                     $scope.isRouteLoading = false;
                 })
             }
@@ -155,11 +170,12 @@ define(['initialize'], function (initialize) {
             init();
 
             $scope.getSubUnitKerja = (id) => {
+                $scope.item.subUnitKerja = undefined
                 ManageSdmNew.getListData("service/list-generic/?view=SubUnitKerjaPegawai&select=id,name&criteria=statusEnabled,id,unitKerjaId&values=true,!0," + id + "&order=name:asc").then((res) => {
                     $scope.listOfSubUnitKerja = res.data;
                 })
 
-                $scope.item.pegawai = {}
+                $scope.item.pegawai = undefined
                 $scope.listOfPegawai = []
                 ManageSdmNew.getListData(`iki-remunerasi/pegawai-remun-unit-kerja?unitKerjaId=${id}&subunitKerjaId=${$scope.item.subUnitKerja ? $scope.item.subUnitKerja.id : ""}`).then((res) => {
                     $scope.listOfPegawai = res.data.data;
@@ -167,7 +183,7 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.getPegawai = (id) => {
-                $scope.item.pegawai = {}
+                $scope.item.pegawai = undefined
                 $scope.listOfPegawai = []
                 ManageSdmNew.getListData(`iki-remunerasi/pegawai-remun-unit-kerja?unitKerjaId=${$scope.item.unitKerja ? $scope.item.unitKerja.id : ""}&subunitKerjaId=${id}`).then((res) => {
                     $scope.listOfPegawai = res.data.data;
