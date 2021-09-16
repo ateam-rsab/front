@@ -403,6 +403,10 @@
             {
                 "name": "Verifikasi Catatan Kegiatan Harian",
                 "link": "#/VerifikasiCatatanKegiatanHarian"
+            },
+            {
+                "name": "Penilaian Kinerja Individu",
+                "link": "#/PenilaianKinerjaIndividu"
             }
         ]
     },

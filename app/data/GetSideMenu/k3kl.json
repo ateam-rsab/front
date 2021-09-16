@@ -139,14 +139,17 @@
         ]
     },
     {
-        "name":"Laporan",
-        "children":[{
-            "name": "Laporan Kunjungan Pasien",
-            "link": "#/LaporanKunjunganPasien"
-        }, {
-            "name": "Laporan Layanan",
-            "link": "#/LaporanLayanan"
-        }]
+        "name": "Laporan",
+        "children": [
+            {
+                "name": "Laporan Kunjungan Pasien",
+                "link": "#/LaporanKunjunganPasien"
+            },
+            {
+                "name": "Laporan Layanan",
+                "link": "#/LaporanLayanan"
+            }
+        ]
     },
     {
         "name": "Inventori",
@@ -270,6 +273,10 @@
             {
                 "name": "Verifikasi Catatan Kegiatan Harian",
                 "link": "#/VerifikasiCatatanKegiatanHarian"
+            },
+            {
+                "name": "Penilaian Kinerja Individu",
+                "link": "#/PenilaianKinerjaIndividu"
             }
         ]
     },
