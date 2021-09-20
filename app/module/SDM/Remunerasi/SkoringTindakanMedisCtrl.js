@@ -5,11 +5,12 @@ define(['initialize'], function (initialize) {
             $scope.item = {};
             $scope.isRouteLoading = false;
             $scope.isEdit = false;
-            // $scope.regexDecimal = /^(\d{1,13})(?:,\d{1,2})?$/;
             $scope.isVerifStaf = false
             $scope.isDuplicated = false
+
             var userLogin = JSON.parse(localStorage.getItem('datauserlogin'));
             var pegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
+
             $scope.listStatusVerif = [{
                 id: 0,
                 statusVerif: "Belum Terverifikasi"
@@ -40,10 +41,6 @@ define(['initialize'], function (initialize) {
                     field: "namaProduk",
                     title: "<h3>Acuan Tindakan<br/>Pelayanan</h3>",
                     width: 150
-                    // }, {
-                    //     field: "unitKerja",
-                    //     title: "<h3>Unit Kerja</h3>",
-                    //     width: 150
                 }, {
                     field: "detailProduk",
                     title: "<h3>Tindakan Untuk<br/>Skoring</h3>",
@@ -68,7 +65,7 @@ define(['initialize'], function (initialize) {
                     }, {
                         text: "Hapus",
                         click: hapusData,
-                        imageClass: "k-icon k-i-pencil"
+                        imageClass: "k-icon k-i-cancel"
                     }],
                     title: "",
                     width: 100
@@ -85,13 +82,17 @@ define(['initialize'], function (initialize) {
                     listKK = $scope.listKk
                 }
 
-                ManageSdmNew.getListData("iki-remunerasi/get-all-skoring-tindakan-medis?listKelompokKerjaId=" + listKK + "&namaProduk=" + ($scope.item.srcNamaProduk ? $scope.item.srcNamaProduk.namaProduk : "") + "&detailProduk=" + ($scope.item.srcDetailTindakan ? $scope.item.srcDetailTindakan : "") + "&tglMulaiBerlaku=" + ($scope.item.srcTglBerlaku ? dateHelper.toTimeStamp($scope.item.srcTglBerlaku) : "") + "&isStatusVerifikasi=" + ($scope.item.srcStatusVerif ? ($scope.item.srcStatusVerif.id == 1 ? true : false) : "")).then((res) => {
-                    $scope.dataSourceSkoring = new kendo.data.DataSource({
-                        data: res.data.data,
-                        pageSize: 20
-                    });
-                    $scope.isRouteLoading = false;
-                })
+                ManageSdmNew.getListData("iki-remunerasi/get-all-skoring-tindakan-medis?listKelompokKerjaId=" + listKK
+                    + "&namaProduk=" + ($scope.item.srcNamaProduk ? $scope.item.srcNamaProduk.namaProduk : "")
+                    + "&detailProduk=" + ($scope.item.srcDetailTindakan ? $scope.item.srcDetailTindakan : "")
+                    + "&tglMulaiBerlaku=" + ($scope.item.srcTglBerlaku ? dateHelper.toTimeStamp($scope.item.srcTglBerlaku) : "")
+                    + "&isStatusVerifikasi=" + ($scope.item.srcStatusVerif ? ($scope.item.srcStatusVerif.id == 1 ? true : false) : "")).then((res) => {
+                        $scope.dataSourceSkoring = new kendo.data.DataSource({
+                            data: res.data.data,
+                            pageSize: 20
+                        });
+                        $scope.isRouteLoading = false;
+                    })
             }
 
             let init = () => {
@@ -120,24 +121,31 @@ define(['initialize'], function (initialize) {
 
                     $scope.getAllData();
 
-                    ManageSdmNew.getListData("service/list-generic/?view=UnitKerjaPegawai&select=id,name&criteria=id,statusEnabled&values=(" + listUK + "),true&order=name:asc").then((rsUK) => {
-                        $scope.listUnitKerjKSM = rsUK.data;
-                    });
+                    ManageSdmNew.getListData("service/list-generic/?view=UnitKerjaPegawai&select="
+                        + "id,name&criteria=id,statusEnabled&values=(" + listUK + "),true&order=name:asc").then((rsUK) => {
+                            $scope.listUnitKerjKSM = rsUK.data;
+                        });
 
-                    ManageSdmNew.getListData("service/list-generic/?view=SubUnitKerjaPegawai&select=id,name&criteria=statusEnabled,unitKerjaId,name&values=true,(" + listUK + "),KK&order=name:asc").then((rsSK) => {
-                        $scope.listKKMedis = rsSK.data;
-                    });
+                    ManageSdmNew.getListData("service/list-generic/?view=SubUnitKerjaPegawai&select="
+                        + "id,name&criteria=statusEnabled,unitKerjaId,name&values=true,(" + listUK + "),KK&order=name:asc").then((rsSK) => {
+                            $scope.listKKMedis = rsSK.data;
+                        });
                 });
 
-                ManageSdmNew.getListData("service/list-generic/?view=Departemen&select=id,namaDepartemen&criteria=statusEnabled,id&values=true,(3;16;18;24;25;26;27;28;35)&order=namaDepartemen:asc").then((res) => {
-                    // console.log(res);
-                    $scope.listDepartemen = res.data;
-                });
+                ManageSdmNew.getListData("service/list-generic/?view=Departemen&select="
+                    + "id,namaDepartemen&criteria=statusEnabled,id&values=true,(3;16;18;24;25;26;27;28;35)&order=namaDepartemen:asc").then((res) => {
+                        $scope.listDepartemen = res.data;
+                    });
             }
 
             init();
 
             $scope.tambahData = () => {
+                if (!$scope.isHapusGranted) {
+                    toastr.warning("Tidak memiliki akses menambah data!");
+                    return
+                }
+
                 $scope.reset();
                 $scope.isEdit = false
                 $scope.isVerifStaf = false
@@ -198,7 +206,6 @@ define(['initialize'], function (initialize) {
                     $scope.saveData('delete');
                 }, function () {
                     $scope.reset();
-                    // console.error('Tidak jadi hapus');
                 });
             }
 
@@ -277,7 +284,6 @@ define(['initialize'], function (initialize) {
                     if ($scope.norecData) {
                         dataSave.noRec = $scope.norecData;
                     }
-                    // console.table(dataSave);
 
                     if ($scope.isDuplicated && method != 'delete') {
                         toastr.warning("Data mapping skoring sudah tersedia!")
@@ -296,16 +302,18 @@ define(['initialize'], function (initialize) {
 
             $scope.getDataKelompokKerja = (id) => {
                 $scope.item.kelompokKerja = null;
-                ManageSdmNew.getListData("service/list-generic/?view=SubUnitKerjaPegawai&select=id,name&criteria=unitKerjaId,statusEnabled,name&values=" + id + ",true,KK&order=name:asc").then((res) => {
-                    $scope.listKelompokKerja = res.data;
-                });
+                ManageSdmNew.getListData("service/list-generic/?view=SubUnitKerjaPegawai&select="
+                    + "id,name&criteria=unitKerjaId,statusEnabled,name&values=" + id + ",true,KK&order=name:asc").then((res) => {
+                        $scope.listKelompokKerja = res.data;
+                    });
             }
 
             $scope.getDataRuangan = (id) => {
                 $scope.item.namaProduk = null;
-                ManageSdmNew.getListData("service/list-generic/?view=Ruangan&select=id,namaRuangan&criteria=departemenId,statusEnabled&values=" + id + ",true&order=namaRuangan:asc").then((res) => {
-                    $scope.listRuangan = res.data;
-                });
+                ManageSdmNew.getListData("service/list-generic/?view=Ruangan&select="
+                    + "id,namaRuangan&criteria=departemenId,statusEnabled&values=" + id + ",true&order=namaRuangan:asc").then((res) => {
+                        $scope.listRuangan = res.data;
+                    });
             }
 
             $scope.getProduk = (id) => {
@@ -335,38 +343,82 @@ define(['initialize'], function (initialize) {
 
             $scope.$watch('item.namaProduk', function (e) {
                 if (!e) return;
-                ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=" + ($scope.norecData ? $scope.norecData : "") + "&namaProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+") + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.detailTindakan).replace(/%20/g, "+") + "&skor=" + $scope.item.skor).then(res => {
-                    if (res.data.data.length > 0) {
-                        $scope.isDuplicated = true
-                    }
-                })
+                if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.detailTindakan && $scope.item.skor && $scope.item.tglBerlaku) {
+                    ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=" + ($scope.norecData ? $scope.norecData : "")
+                        + "&namaProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
+                        + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.detailTindakan).replace(/%20/g, "+")
+                        + "&skor=" + $scope.item.skor + "&tglBerlaku=" + $scope.item.tglBerlaku).then(res => {
+                            if (res.data.data.length > 0) {
+                                $scope.isDuplicated = true
+                            } else {
+                                $scope.isDuplicated = false
+                            }
+                        })
+                }
             })
 
             $scope.$watch('item.kelompokKerja', function (e) {
                 if (!e) return;
-                ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=" + ($scope.norecData ? $scope.norecData : "") + "&namaProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+") + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.detailTindakan).replace(/%20/g, "+") + "&skor=" + $scope.item.skor).then(res => {
-                    if (res.data.data.length > 0) {
-                        $scope.isDuplicated = true
-                    }
-                })
+                if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.detailTindakan && $scope.item.skor && $scope.item.tglBerlaku) {
+                    ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=" + ($scope.norecData ? $scope.norecData : "")
+                        + "&namaProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
+                        + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.detailTindakan).replace(/%20/g, "+")
+                        + "&skor=" + $scope.item.skor + "&tglBerlaku=" + dateHelper.toTimeStamp($scope.item.tglBerlaku)).then(res => {
+                            if (res.data.data.length > 0) {
+                                $scope.isDuplicated = true
+                            } else {
+                                $scope.isDuplicated = false
+                            }
+                        })
+                }
             })
 
             $scope.$watch('item.detailTindakan', function (e) {
                 if (!e) return;
-                ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=" + ($scope.norecData ? $scope.norecData : "") + "&namaProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+") + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.detailTindakan).replace(/%20/g, "+") + "&skor=" + $scope.item.skor).then(res => {
-                    if (res.data.data.length > 0) {
-                        $scope.isDuplicated = true
-                    }
-                })
+                if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.detailTindakan && $scope.item.skor && $scope.item.tglBerlaku) {
+                    ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=" + ($scope.norecData ? $scope.norecData : "")
+                        + "&namaProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
+                        + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.detailTindakan).replace(/%20/g, "+")
+                        + "&skor=" + $scope.item.skor + "&tglBerlaku=" + dateHelper.toTimeStamp($scope.item.tglBerlaku)).then(res => {
+                            if (res.data.data.length > 0) {
+                                $scope.isDuplicated = true
+                            } else {
+                                $scope.isDuplicated = false
+                            }
+                        })
+                }
             })
 
             $scope.$watch('item.skor', function (e) {
                 if (!e) return;
-                ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=" + ($scope.norecData ? $scope.norecData : "") + "&namaProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+") + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.detailTindakan).replace(/%20/g, "+") + "&skor=" + $scope.item.skor).then(res => {
-                    if (res.data.data.length > 0) {
-                        $scope.isDuplicated = true
-                    }
-                })
+                if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.detailTindakan && $scope.item.skor && $scope.item.tglBerlaku) {
+                    ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=" + ($scope.norecData ? $scope.norecData : "")
+                        + "&namaProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
+                        + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.detailTindakan).replace(/%20/g, "+")
+                        + "&skor=" + $scope.item.skor + "&tglBerlaku=" + dateHelper.toTimeStamp($scope.item.tglBerlaku)).then(res => {
+                            if (res.data.data.length > 0) {
+                                $scope.isDuplicated = true
+                            } else {
+                                $scope.isDuplicated = false
+                            }
+                        })
+                }
+            })
+
+            $scope.$watch('item.tglBerlaku', function (e) {
+                if (!e) return;
+                if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.detailTindakan && $scope.item.skor && $scope.item.tglBerlaku) {
+                    ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=" + ($scope.norecData ? $scope.norecData : "")
+                        + "&namaProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
+                        + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.detailTindakan).replace(/%20/g, "+")
+                        + "&skor=" + $scope.item.skor + "&tglBerlaku=" + dateHelper.toTimeStamp($scope.item.tglBerlaku)).then(res => {
+                            if (res.data.data.length > 0) {
+                                $scope.isDuplicated = true
+                            } else {
+                                $scope.isDuplicated = false
+                            }
+                        })
+                }
             })
         }
     ])
