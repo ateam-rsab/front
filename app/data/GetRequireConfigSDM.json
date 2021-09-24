@@ -825,6 +825,10 @@
       "urlDep": "module/SDM/Remunerasi/SkoringTindakanPerawatCtrl"
     },
     {
+      "nameDep": "SkoringTindakanNakesCtrl",
+      "urlDep": "module/SDM/Remunerasi/SkoringTindakanNakesCtrl"
+    },
+    {
       "nameDep": "RiwayatEvaluasiJabatanCtrl",
       "urlDep": "module/SDM/Remunerasi/RiwayatEvaluasiJabatanCtrl"
     },
