@@ -1,30 +1,5 @@
 [
     {
-        "name": "Master Penilaian Kinerja",
-        "children": [
-            {
-                "name": "Evaluasi Jabatan",
-                "link": "#/EvaluasiJabatan"
-            },
-            {
-                "name": "Rekapitulasi Evaluasi Jabatan",
-                "link": "#/RekapitulasiEvaluasiJabatan"
-            },
-            {
-                "name": "Master Satuan Indikator",
-                "link": "#/MasterSatuanIndikator"
-            },
-            {
-                "name": "Master Indikator Kinerja",
-                "link": "#/MasterIndikatorKinerja"
-            },
-            {
-                "name": "Skoring Tindakan Medis",
-                "link": "#/SkoringTindakanMedis"
-            }
-        ]
-    },
-    {
         "name": "Master Data SDM",
         "children": [
             {
@@ -182,6 +157,39 @@
             {
                 "name": "Map Kelompok Kerja To Pegawai",
                 "link": "#/MapKelompokKerjaToPegawai"
+            }
+        ]
+    },
+    {
+        "name": "Master Penilaian Kinerja",
+        "children": [
+            {
+                "name": "Evaluasi Jabatan",
+                "link": "#/EvaluasiJabatan"
+            },
+            {
+                "name": "Rekapitulasi Evaluasi Jabatan",
+                "link": "#/RekapitulasiEvaluasiJabatan"
+            },
+            {
+                "name": "Master Satuan Indikator",
+                "link": "#/MasterSatuanIndikator"
+            },
+            {
+                "name": "Master Indikator Kinerja",
+                "link": "#/MasterIndikatorKinerja"
+            },
+            {
+                "name": "Skoring Tindakan Medis",
+                "link": "#/SkoringTindakanMedis"
+            },
+            {
+                "name": "Skoring Tindakan Perawat",
+                "link": "#/SkoringTindakanPerawat"
+            },
+            {
+                "name": "Skoring Tindakan Nakes",
+                "link": "#/SkoringTindakanNakes"
             }
         ]
     },

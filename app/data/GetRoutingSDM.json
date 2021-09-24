@@ -4728,6 +4728,30 @@
     ]
   },
   {
+    "name": "SkoringTindakanNakes",
+    "url": "/SkoringTindakanNakes",
+    "templateurl": "module/SDM/Remunerasi/SkoringTindakanNakes.html",
+    "controller": "SkoringTindakanNakesCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      }
+    ]
+  },
+  {
     "name": "EvaluasiJabatanCtrl",
     "url": "/EvaluasiJabatan",
     "templateurl": "module/SDM/Remunerasi/EvaluasiJabatanList.html",

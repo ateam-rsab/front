@@ -127,11 +127,6 @@ define(['initialize'], function (initialize) {
             init();
 
             $scope.tambahData = () => {
-                if (!$scope.isHapusGranted) {
-                    toastr.warning("Tidak memiliki akses menambah data!");
-                    return
-                }
-
                 $scope.reset();
                 getProduk();
                 $scope.isEdit = false

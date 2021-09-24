@@ -348,6 +348,10 @@
         "name": "Aplikasi Remunerasi",
         "children": [
             {
+                "name": "Skoring Tindakan KTKL",
+                "link": "#/SkoringTindakanNakes"
+            },
+            {
                 "name": "Kontrak Kinerja Individu",
                 "link": "#/KontrakKinerjaIndividu"
             },
