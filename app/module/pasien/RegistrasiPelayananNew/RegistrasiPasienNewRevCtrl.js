@@ -338,7 +338,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                     'idpasien': $scope.idPasien != undefined ? $scope.idPasien : '',
                     'pasien': {
                         'namaPasien': $scope.item.namaPasien,
-                        'noCmIbu': ($scope.isBayi ? $scope.item.noCmIbu : $scope.item.namaPasien), //untuk simpan di pasien_m.reportdisplay
+                        'noCmIbu': ($scope.isBayi ? $scope.item.noCmIbu : null), //untuk simpan di pasien_m.reportdisplay
                         'noIdentitas': $scope.item.noIdentitas != undefined ? $scope.item.noIdentitas : null,
                         'namaSuamiIstri': $scope.item.namaSuamiIstri != undefined ? $scope.item.namaSuamiIstri : null,
                         'noAsuransiLain': $scope.item.noAsuransiLain != undefined ? $scope.item.noAsuransiLain : null,
