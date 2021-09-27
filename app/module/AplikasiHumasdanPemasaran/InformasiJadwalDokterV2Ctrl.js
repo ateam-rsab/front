@@ -79,21 +79,34 @@ define(['initialize'], function (initialize) {
             }
           })
         }, function (res) {
-          
+
         });
       }
 
       $('#calendar').on('selectDate', function (event, activeMonth, monthIndex) {
         // console.log(event);
         var activeEvent = $('#calendar').evoCalendar('getActiveEvents');
-        console.log(activeEvent.length);
-        let kelompokUser = getCookie("statusCode");
-        if (kelompokUser === "humas") {
+        console.log(activeEvent);
 
+        // console.log(activeEvent.length);
+        let kelompokUser = getCookie("statusCode");
+        if (kelompokUser === "humas" || kelompokUser === "operator") {
+          // if(!activeEvent.isCanCancel) {
+          //   toastr.info("Tidak bisa membatalkan jadwal karna slot sudah ada yg terisi!");
+          //   return;
+          // }
           if (activeEvent.length === 0) {
             toastr.info("Tidak ada jadwal");
             return;
           }
+
+          for (let i = 0; i < activeEvent.length; i++) {
+            if (!activeEvent[i].isCanCancel) {
+              toastr.info("Tidak bisa membatalkan jadwal karna slot sudah ada yg terisi!");
+              return;
+            }
+          }
+
           var confirm = $mdDialog.prompt()
             .title('Anda akan membatalkan praktek Dokter?')
             .textContent('Silahkan isi Keterangan terlebih dahulu')
@@ -138,6 +151,7 @@ define(['initialize'], function (initialize) {
                 description: `<strong>Quota:</strong> ${data[i].totalQuota ? data[i].totalQuota : 0}<br><strong>Jumlah Daftar:</strong> ${data[i].jmlDaftar ? data[i].jmlDaftar : 0}<br><strong>Sisa Quota:</strong> ${data[i].sisaQuota ? data[i].sisaQuota : 0}<br> 
                 <button class="custom-button" onclick='detailData(${JSON.stringify(data[i])}, ${$scope.item.ruangan.id}, ${$scope.item.dokter.id})'>Detail</button>`,
                 date: data[i].tglDokter,
+                isCanCancel: !(data[i].sisaQuota < data[i].totalQuota),
                 type: data[i].jenisJadwal === "Telekonsultasi" ? "birthday" : "event",
                 everyYear: !0,
               });

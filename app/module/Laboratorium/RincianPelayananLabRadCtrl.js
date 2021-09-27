@@ -542,8 +542,8 @@ define(['initialize'], function (initialize) {
 
             }
             $scope.simpanDokter = function (dokter) {
-                if (dokter == undefined) {
-                    toastr.error('Pilih dokter dulu')
+                if (!dokter) {
+                    toastr.error('Pilih dokter dulu');
                     return
                 }
                 for (var i = 0; i < $scope.dataGrid._data.length; i++) {
@@ -589,6 +589,8 @@ define(['initialize'], function (initialize) {
                                 departemenfk: $scope.dataGrid._data[0].objectdepartemenfk,
                                 pegawaiorderfk: $scope.dataGrid._data[0].dokterid,
                                 details: data2,
+                                iddokterorder: dokter.id,
+                                namadokterorder: dokter.namalengkap,
                                 iddokterorder: dokter.id,
                                 namadokterorder: dokter.namalengkap,
                             }

@@ -620,6 +620,10 @@
       "urlDep": "module/Akuntansi/TataRekening/RincianTagihanCtrl"
     },
     {
+      "nameDep": "RekapKeringananTagihanPelayananCtrl",
+      "urlDep": "module/Akuntansi/TataRekening/RekapKeringananTagihanPelayananCtrl"
+    },
+    {
       "nameDep": "PulangPasienTatarekeningCtrl",
       "urlDep": "module/Daftar/Antrian/Pasien/PulangPasienTatarekeningCtrl"
     },

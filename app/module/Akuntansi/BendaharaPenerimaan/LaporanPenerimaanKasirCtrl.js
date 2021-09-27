@@ -193,6 +193,161 @@ define(['initialize'], function (initialize) {
                 return currency + " " + parseFloat(value).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
             }
 
+            $scope.optPenerimaanKasir = {
+                toolbar: [
+                    { text: "export", name: "Export detail", template: '<button ng-click="exportExcel()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>' }
+                ]
+            }
+
+            $scope.optPenerimaanKasirPerusahaan = {
+                toolbar: [
+                    { text: "export", name: "Export detail", template: '<button ng-click="exportExcelPerusahaan()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>' }
+                ]
+            }
+
+            $scope.exportExcel = function () {
+                var rows = [
+                    {
+                        cells: [
+                            { value: "No. Registrasi" },
+                            { value: "Tanggal Bayar" },
+                            { value: "No. RM" },
+                            { value: "Nama" },
+                            { value: "Ruangan" },
+                            { value: "Kelompok Pasien" },
+                            { value: "Dokter" },
+                            { value: "Kasir" },
+                            { value: "Total Biaya" },
+                            { value: "Hutang Penjamin" },
+                            { value: "Jumlah Bayar" },
+                            { value: "Tunai" },
+                            { value: "Card/CC" }
+                        ]
+                    }
+                ];
+
+                let tempDataExport = $scope.dataPenerimaanKasir;
+                console.log(tempDataExport);
+                for (let i = 0; i < tempDataExport._data.length; i++) {
+                    rows.push({
+                        cells: [
+                            { value: tempDataExport._data[i].noregistrasi },
+                            { value: tempDataExport._data[i].tglsbm },
+                            { value: tempDataExport._data[i].nocm },
+                            { value: tempDataExport._data[i].namapasien },
+                            { value: tempDataExport._data[i].namaruangan },
+                            { value: tempDataExport._data[i].kelompokpasien },
+                            { value: tempDataExport._data[i].namalengkap },
+                            { value: tempDataExport._data[i].kasir },
+                            { value: tempDataExport._data[i].totalharusdibayar },
+                            { value: tempDataExport._data[i].hutangpenjamin },
+                            { value: tempDataExport._data[i].totaldibayar },
+                            { value: tempDataExport._data[i].tunai },
+                            { value: tempDataExport._data[i].nontunai }
+                        ]
+                    })
+                }
+
+                var workbook = new kendo.ooxml.Workbook({
+                    sheets: [
+                        {
+                            freezePane: { rowSplit: 1 },
+                            columns: [
+                                // Column settings (width)
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true }
+                            ],
+                            // Title of the sheet
+                            title: "Laporan Penerimaan Kasir",
+                            // Rows of the sheet
+                            rows: rows
+                        }
+                    ]
+                });
+                //save the file as Excel file with extension xlsx
+                kendo.saveAs({ dataURI: workbook.toDataURL(), fileName: "lap-penerimaan-kasir.xlsx" });
+            }
+
+            $scope.exportExcelPerusahaan = function () {
+                var rows = [
+                    {
+                        cells: [
+                            { value: "No. Registrasi" },
+                            { value: "Tanggal Bayar" },
+                            { value: "No. RM" },
+                            { value: "Nama" },
+                            { value: "Ruangan" },
+                            { value: "Kelompok Pasien" },
+                            { value: "Dokter" },
+                            { value: "Kasir" },
+                            { value: "Total Biaya" },
+                            { value: "Piutang Penjamin" },
+                            { value: "Di Tanggung Pasien" }
+                        ]
+                    }
+                ];
+
+                let tempDataExport = $scope.dataPenerimaanKasirPerusahaan;
+                console.log(tempDataExport);
+                for (let i = 0; i < tempDataExport._data.length; i++) {
+                    rows.push({
+                        cells: [
+                            { value: tempDataExport._data[i].noregistrasi },
+                            { value: tempDataExport._data[i].tglsbm },
+                            { value: tempDataExport._data[i].nocm },
+                            { value: tempDataExport._data[i].namapasien },
+                            { value: tempDataExport._data[i].namaruangan },
+                            { value: tempDataExport._data[i].kelompokpasien },
+                            { value: tempDataExport._data[i].namalengkap },
+                            { value: tempDataExport._data[i].totalharusdibayar },
+                            { value: tempDataExport._data[i].totalppenjamin },
+                            { value: tempDataExport._data[i].sisabayar }
+                        ]
+                    })
+                }
+
+                var workbook = new kendo.ooxml.Workbook({
+                    sheets: [
+                        {
+                            freezePane: { rowSplit: 1 },
+                            columns: [
+                                // Column settings (width)
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true }
+                            ],
+                            // Title of the sheet
+                            title: "Laporan Penerimaan Kasir Perusahaan",
+                            // Rows of the sheet
+                            rows: rows
+                        }
+                    ]
+                });
+                //save the file as Excel file with extension xlsx
+                kendo.saveAs({ dataURI: workbook.toDataURL(), fileName: "lap-penerimaan-kasir-perusahaan.xlsx" });
+            }
+
             $scope.columnPenerimaanKasir = [
                 {
                     "field": "noregistrasi",
@@ -271,6 +426,7 @@ define(['initialize'], function (initialize) {
 
 
             ];
+
             $scope.columnPenerimaanKasirPerusahaan = [
                 {
                     "field": "noregistrasi",

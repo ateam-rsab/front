@@ -34,7 +34,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="grid_1" style="margin-top:5px">
+                <div class="grid_2" style="margin-top:5px">
                     <label c-label real>No RM</label>
                     <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.noCm" ng-keypress="($event.which == 13)?
                         SearchEnter():item.noCm" />
@@ -45,35 +45,36 @@
                         ng-keypress="($event.which == 13)?
                         SearchEnter():item.noRegistrasi" />
                 </div>
-                <div class="grid_2" style="margin-top:5px">
+                <div class="grid_4" style="margin-top:5px">
                     <label c-label real>Nama Pasien</label>
                     <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.namaPasien"
                         ng-keypress="($event.which == 13)?
                         SearchEnter():item.namaPasien" />
                 </div>
-                <div class="grid_2" style="margin-top:5px">
+                <div class="grid_4" style="margin-top:5px">
                     <label c-label c-label-text="namaRuangan" real></label>
                     <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan"
                         k-data-text-field="'namaruangan'" k-data-value-field="'id'" k-filter="'contains'"
                         k-auto-bind="false" k-data-source="listRuangan" />
                     <!--<input style="width: 100%;" kendo-combo-box k-ng-model="item.Ruangan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ruangans"/>-->
                 </div>
+                <div class="grid_4" style="margin-top:5px">
+                    <label c-label c-label-text="namaDokter" real></label>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.dokter" k-data-text-field="'namalengkap'" 
+                            k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDokter" ng-disabled="isVerifikasi" />
+                </div>
+                
                 <div class="grid_1" style="margin-top:27px">
                     <md-button class="md-raised md-primary medium-button" ng-click="findData()">
                         <span style="margin-right: 5px;">Cari</span>
                         <i class="fa fa-search"></i>
                     </md-button>
-                    <!-- <label c-label c-label-text=""></label>
-                    <em style="margin-top:6px;" ng-click='findData()'
-                        id="iconButton" data-role="button" class="k-button
-                        k-button-icon" role="button" aria-disabled="false"
-                        tabindex="0"><span class="k-sprite k-icon k-i-refresh">Refresh</span></em> -->
                 </div>
             </div>
             <div class="grid_12">
                 <div class="grid_12">
 
-                    <div kendo-grid id="grid" k-groupable="'true'" k-aggregate='aggregate'
+                    <div kendo-grid id="grid" k-groupable="'true'" k-aggregate='aggregate' k-options="optGrid"
                         k-ng-model="dataPasienSelected" k-data-source="GridPasien" k-selectable="'row'"
                         k-sortable="'true'" k-pageable="'true'" k-columns="ColumnPasien"
                         ng-click="klikGrid(dataPasienSelected)">

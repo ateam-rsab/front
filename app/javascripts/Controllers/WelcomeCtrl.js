@@ -9,6 +9,17 @@ define(['initialize'], function (initialize) {
                 messageAbsensi: false
             };
 
+            $scope.dataPemberitahuan = [{
+                path: "data/dokumen/prosedur-dan-form-pengajuan-klaim-asuransi-kematian-taspen-bagi-pns.pdf",
+                fileName: "Prosedur Dan Form Pengajuan Klaim Asuransi Kematian TASPEN bagi PNS"
+            }, {
+                path: "data/dokumen/prosedur-pembuatan-kartu-e-id-kepesertaan-bpjs-kesehatan-pegawai.pdf",
+                fileName: "Prosedur Pembuatan Kartu E-ID Kepesertaan BPJS Kesehatan Pegawai"
+            }, {
+                path: "data/dokumen/prosedur-pembuatan-daftar-uang-makan-bagi-pns.pdf",
+                fileName: "Prosedur Pembuatan Daftar Uang Makan bagi PNS"
+            }]
+
             $scope.OnInit = () => {
                 $scope.videoPlayed = {
                     title: '6 Langkah Cuci Tangan Pakai Sabun (CTPS)',

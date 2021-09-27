@@ -918,8 +918,7 @@ define(['initialize'], function (initialize) {
                 $scope.counterID = 0;
 
                 var confirm = $mdDialog.prompt()
-                    .title('Isi Nomor sesuai Jenis Pasien : BPJS, Umum dan Ranap?')
-                    // .textContent('Bowser is a common name.')
+                    .title('Isi Nomor Counter?')
                     .placeholder('Nomor')
                     .initialValue("0")
                     .ok('Ya')

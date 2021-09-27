@@ -117,7 +117,7 @@
 
     <div class="grid_12 borderBox">
         <div id="kGrid" kendo-grid k-data-source="dataPenerimaanKasir"
-            k-selectable="'row'" k-columns="columnPenerimaanKasir"
+            k-selectable="'row'" options="optPenerimaanKasir" k-columns="columnPenerimaanKasir"
             k-pageable="'true'"
             k-sortable="'true'" k-ng-model="dataPasienSelected"
             ng-click="click(dataPasienSelected)">
@@ -134,7 +134,7 @@
 
     <div class="grid_12 borderBox">
         <div id="kGrid" kendo-grid k-data-source="dataPenerimaanKasirPerusahaan"
-            k-selectable="'row'" k-columns="columnPenerimaanKasirPerusahaan"
+            k-selectable="'row'" options="optPenerimaanKasirPerusahaan" k-columns="columnPenerimaanKasirPerusahaan"
             k-pageable="'true'" k-sortable="'true'"
             k-ng-model="dataPasienSelected"
             ng-click="click(dataPasienSelected)">

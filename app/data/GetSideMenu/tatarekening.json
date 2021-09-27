@@ -47,6 +47,10 @@
                 "link": "#/DaftarKonsultasiKosong"
             },
             {
+                "name": "Rekapitulasi Keringanan Tagihan Pelayanan",
+                "link": "#/RekapKeringananTagihanPelayanan"
+            },
+            {
                 "name": "IKI Dirut",
                 "link": "#/IkiDirutCapaian"
             },
@@ -296,6 +300,14 @@
                     {
                         "name": "Daftar Distribusi Barang",
                         "link": "#/DaftarDistribusiBarang"
+                    },
+                    {
+                        "name": "Daftar Amprahan Hpp",
+                        "link": "#/DaftarAmprahanHpp"
+                    },
+                    {
+                        "name": "Daftar Pengeluaran Barang",
+                        "link": "#/DaftarDistribusiBarangPerUnit"
                     }
                 ]
             }

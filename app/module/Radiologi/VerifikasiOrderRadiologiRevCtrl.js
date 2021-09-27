@@ -239,6 +239,7 @@ define(['initialize'], function (initialize) {
                     return
                 }
                 let data = {
+                    statCheckbox: false,
                     namaproduk: $scope.layanan.iptProduk.namaproduk,
                     detailKomponenHarga: $scope.layanan.iptProduk.detailKomponenHarga,
                     hargasatuan: $scope.layanan.iptProduk.hargasatuan,

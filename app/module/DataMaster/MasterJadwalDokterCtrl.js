@@ -205,6 +205,7 @@ define(['initialize'], function (initialize) {
 			$scope.createNew = function () {
 				clearField();
 				$scope.popUpJadwal.center().open();
+				$scope.item.isAktif = true;
 				// Get current actions
 				var actions = $scope.popUpJadwal.options.actions;
 				// Remove "Close" button

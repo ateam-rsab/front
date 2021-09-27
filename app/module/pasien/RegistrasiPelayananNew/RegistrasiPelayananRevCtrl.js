@@ -20,7 +20,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
             $scope.model.tglSEP = $scope.now;
             $scope.model.tglRujukan = $scope.now;
             $scope.model.tglPelayanan = $scope.now;
-
+            console.log($scope.currentNoCm)
             manageServicePhp.getDataTableTransaksi("registrasipasien/get-pasienbynocm?noCm=" + $scope.currentNoCm)
                 .then(function (e) {
                     $scope.isRouteLoading = false;
@@ -499,6 +499,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                     tglregistrasi: moment($scope.item.tglRegistrasi).format('YYYY-MM-DD HH:mm:ss'),
                     tglregistrasidate: moment($scope.item.tglRegistrasi).format('YYYY-MM-DD'),
                     nocmfk: $scope.item.nocmfk,
+                    noCm:$scope.currentNoCm,
                     objectruanganfk: $scope.item.ruangan.id,
                     objectdepartemenfk: $scope.item.ruangan.objectdepartemenfk,
                     objectkelasfk: kelasId,

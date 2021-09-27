@@ -184,7 +184,18 @@
                         <md-tabs class="md-primary" md-dynamic-height md-center-tabs>
                             <md-tab label="Pemberitahuan">
                                 <md-content class="md-padding">
-                                    <h2 class="md-display-1">Belum ada Pemberitahuan</h2>
+                                    <!-- <h2 class="md-display-1">Belum ada Pemberitahuan</h2> -->
+                                    <ul class="list-1">
+                                        <li ng-repeat="data in dataPemberitahuan">
+                                            <div class="doc-description">
+                                                {{data.fileName}}
+                                            </div>
+                                            <div class="doc-action">
+                                                <a href="data/dokumen/pedoman-covid19.pdf" download>Download PDF</a>
+                                            </div>
+                                        </li>
+    
+                                    </ul>
                                 </md-content>
                             </md-tab>
                             

@@ -1,22 +1,7 @@
 define(["initialize"], function (initialize) {
   "use strict";
-  initialize.controller("TransaksiPelayananApotikCtrl", [
-    "$q",
-    "$rootScope",
-    "$scope",
-    "ManageLogistikPhp",
-    "$state",
-    "CacheHelper",
-    "$mdDialog",
-    function (
-      $q,
-      $rootScope,
-      $scope,
-      manageLogistikPhp,
-      $state,
-      cacheHelper,
-      $mdDialog
-    ) {
+  initialize.controller("TransaksiPelayananApotikCtrl", ["$q", "$rootScope", "$scope", "ManageLogistikPhp", "$state", "CacheHelper", "$mdDialog",
+    function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper, $mdDialog) {
       $scope.item = {};
       $scope.dataVOloaded = true;
       $scope.now = new Date();
@@ -78,9 +63,9 @@ define(["initialize"], function (initialize) {
           manageLogistikPhp
             .getDataTableTransaksi(
               "logistik/get-transaksi-pelayanan?nocm=" +
-                $scope.item.noMr +
-                "&noregistrasifk=" +
-                norec_apd,
+              $scope.item.noMr +
+              "&noregistrasifk=" +
+              norec_apd,
               true
             )
             .then(function (dat) {
@@ -103,9 +88,9 @@ define(["initialize"], function (initialize) {
             manageLogistikPhp
               .getDataTableTransaksi(
                 "logistik/get-transaksi-pelayanan?nocm=" +
-                  $scope.item.noMr +
-                  "&norec_resep=" +
-                  noresep,
+                $scope.item.noMr +
+                "&norec_resep=" +
+                noresep,
                 true
               )
               .then(function (dat) {
@@ -332,7 +317,7 @@ define(["initialize"], function (initialize) {
             $scope.jmlBungkusMiniR45 = result;
             $scope.BridgingMiniR45();
           },
-          function () {}
+          function () { }
         );
       };
 
@@ -346,7 +331,7 @@ define(["initialize"], function (initialize) {
         console.log(objSave);
         manageLogistikPhp
           .postpost("bridging/save-mini-r45-rev-1", objSave)
-          .then(function (e) {});
+          .then(function (e) { });
       };
 
       $scope.prompBridgingConsisD = () => {
@@ -363,7 +348,7 @@ define(["initialize"], function (initialize) {
 
         var confirm = $mdDialog
           .prompt()
-          .title("Isi Nomor sesuai Jenis Pasien : BPJS, Umum dan Ranap?")
+          .title("Isi Nomor Counter?")
           // .textContent('Bowser is a common name.')
           .placeholder("Nomor")
           .initialValue("0")
@@ -375,7 +360,7 @@ define(["initialize"], function (initialize) {
             $scope.counterID = result;
             $scope.BridgingConsisD();
           },
-          function () {}
+          function () { }
         );
       };
 
@@ -385,7 +370,7 @@ define(["initialize"], function (initialize) {
           counterid: parseInt($scope.counterID),
         };
 
-        manageLogistikPhp.saveconsisobatbebas(objSave).then(function (e) {});
+        manageLogistikPhp.saveconsisobatbebas(objSave).then(function (e) { });
       };
       $scope.TambahObat = function () {
         // if ($scope.dataSelected.nostruk != undefined) {
@@ -424,7 +409,7 @@ define(["initialize"], function (initialize) {
           manageLogistikPhp
             .getDataTableTransaksi(
               "tatarekening/get-sudah-verif?noregistrasi=" +
-                $scope.dataSelected.noregistrasi,
+              $scope.dataSelected.noregistrasi,
               true
             )
             .then(function (dat) {
@@ -458,7 +443,7 @@ define(["initialize"], function (initialize) {
           manageLogistikPhp
             .getDataTableTransaksi(
               "tatarekening/get-sudah-verif?noregistrasi=" +
-                $scope.item.noregistrasi,
+              $scope.item.noregistrasi,
               true
             )
             .then(function (dat) {
@@ -500,8 +485,8 @@ define(["initialize"], function (initialize) {
         manageLogistikPhp
           .getDataTableTransaksi(
             "logistik-stok/get-daftar-paket-obat-pasien?" +
-              "noregistrasi=" +
-              $scope.item.noregistrasi,
+            "noregistrasi=" +
+            $scope.item.noregistrasi,
             true
           )
           .then(function (dat) {
@@ -520,7 +505,7 @@ define(["initialize"], function (initialize) {
         manageLogistikPhp
           .getDataTableTransaksi(
             "tatarekening/get-sudah-verif?noregistrasi=" +
-              $scope.item.noregistrasi,
+            $scope.item.noregistrasi,
             true
           )
           .then(function (dat) {
@@ -596,7 +581,7 @@ define(["initialize"], function (initialize) {
         manageLogistikPhp
           .getDataTableTransaksi(
             "tatarekening/get-sudah-verif?noregistrasi=" +
-              $scope.dataSelected.noregistrasi,
+            $scope.dataSelected.noregistrasi,
             true
           )
           .then(function (dat) {
@@ -633,7 +618,7 @@ define(["initialize"], function (initialize) {
         manageLogistikPhp
           .getDataTableTransaksi(
             "akutansi/get-sudah-posting?tgl=" +
-              $scope.dataSelected.tglpelayanan,
+            $scope.dataSelected.tglpelayanan,
             true
           )
           .then(function (dat) {
@@ -657,7 +642,7 @@ define(["initialize"], function (initialize) {
         manageLogistikPhp
           .getDataTableTransaksi(
             "tatarekening/get-sudah-verif?noregistrasi=" +
-              $scope.dataSelected.noregistrasi,
+            $scope.dataSelected.noregistrasi,
             true
           )
           .then(function (dat) {
@@ -710,7 +695,7 @@ define(["initialize"], function (initialize) {
         manageLogistikPhp
           .getDataTableTransaksi(
             "tatarekening/get-sudah-verif?noregistrasi=" +
-              $scope.dataSelected.noregistrasi,
+            $scope.dataSelected.noregistrasi,
             true
           )
           .then(function (dat) {
@@ -741,9 +726,9 @@ define(["initialize"], function (initialize) {
               manageLogistikPhp
                 .getDataTableTransaksi(
                   "logging/save-log-hapus-resep?norec_resep=" +
-                    $scope.dataSelected.norec_resep
+                  $scope.dataSelected.norec_resep
                 )
-                .then(function (data) {});
+                .then(function (data) { });
               //##end
             }
           });
@@ -752,8 +737,8 @@ define(["initialize"], function (initialize) {
         var client = new HttpClient();
         client.get(
           "http://127.0.0.1:1237/printvb/farmasiApotik?cetak-label-etiket=1&norec=" +
-            $scope.dataSelected.norec_resep +
-            "&cetak=1",
+          $scope.dataSelected.norec_resep +
+          "&cetak=1",
           function (response) {
             // aadc=response;
           }
@@ -775,11 +760,11 @@ define(["initialize"], function (initialize) {
         var client = new HttpClient();
         client.get(
           "http://127.0.0.1:1237/printvb/farmasiApotik?cetak-strukresep=1&nores=" +
-            $scope.dataSelected.norec_resep +
-            "&view=" +
-            stt +
-            "&user=" +
-            $scope.dataSelected.detail.userData.namauser,
+          $scope.dataSelected.norec_resep +
+          "&view=" +
+          stt +
+          "&user=" +
+          $scope.dataSelected.detail.userData.namauser,
           function (response) {
             // aadc=response;
           }
@@ -801,11 +786,11 @@ define(["initialize"], function (initialize) {
         var client = new HttpClient();
         client.get(
           "http://127.0.0.1:1237/printvb/farmasi?cetak-LabelFarmasi=" +
-            $scope.dataSelected.norec_resep +
-            "&view=" +
-            stt +
-            "&user=" +
-            $scope.dataSelected.detail.userData.namauser,
+          $scope.dataSelected.norec_resep +
+          "&view=" +
+          stt +
+          "&user=" +
+          $scope.dataSelected.detail.userData.namauser,
           function (response) {
             // aadc=response;
           }
@@ -827,11 +812,11 @@ define(["initialize"], function (initialize) {
         var client = new HttpClient();
         client.get(
           "http://127.0.0.1:1237/printvb/farmasi?cetak-LabelFarmasiAdmin=" +
-            $scope.dataSelected.norec_resep +
-            "&view=" +
-            stt +
-            "&user=" +
-            $scope.dataSelected.detail.userData.namauser,
+          $scope.dataSelected.norec_resep +
+          "&view=" +
+          stt +
+          "&user=" +
+          $scope.dataSelected.detail.userData.namauser,
           function (response) {
             // aadc=response;
           }
@@ -853,11 +838,11 @@ define(["initialize"], function (initialize) {
         var client = new HttpClient();
         client.get(
           "http://127.0.0.1:1237/printvb/farmasi?cetak-LabelFarmasiKemo=" +
-            $scope.dataSelected.norec_resep +
-            "&view=" +
-            stt +
-            "&user=" +
-            $scope.dataSelected.detail.userData.namauser,
+          $scope.dataSelected.norec_resep +
+          "&view=" +
+          stt +
+          "&user=" +
+          $scope.dataSelected.detail.userData.namauser,
           function (response) {
             // aadc=response;
           }
@@ -879,11 +864,11 @@ define(["initialize"], function (initialize) {
         var client = new HttpClient();
         client.get(
           "http://127.0.0.1:1237/printvb/farmasi?cetak-LabelFarmasiTPN=" +
-            $scope.dataSelected.norec_resep +
-            "&view=" +
-            stt +
-            "&user=" +
-            $scope.dataSelected.detail.userData.namauser,
+          $scope.dataSelected.norec_resep +
+          "&view=" +
+          stt +
+          "&user=" +
+          $scope.dataSelected.detail.userData.namauser,
           function (response) {
             // aadc=response;
           }

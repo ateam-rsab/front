@@ -20,7 +20,7 @@ define(['initialize'], function (initialize) {
 			loadCombo();
 			// loadData();
 			getSisrute()
-			postKunjunganYankes()
+			postKunjunganYankes();
 
 			function loadCombo() {
 				var chacePeriode = cacheHelper.get('DaftarRegistrasiPasienCtrl');

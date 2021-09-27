@@ -857,6 +857,10 @@
       "urlDep": "module/SDM/Remunerasi/KontrakKinerjaIndividuCtrl"
     },
     {
+      "nameDep": "InputKegiatanPelayananPerawatCtrl",
+      "urlDep": "module/SDM/Remunerasi/InputKegiatanPelayananPerawatCtrl"
+    },
+    {
       "nameDep": "VerifikasiCatatanKegiatanHarianCtrl",
       "urlDep": "module/SDM/Remunerasi/VerifikasiCatatanKegiatanHarianCtrl"
     },

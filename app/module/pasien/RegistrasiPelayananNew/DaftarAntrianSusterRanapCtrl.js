@@ -45,6 +45,19 @@ define(['initialize'], function (initialize) {
                 $scope.listDokter = data.data.dokter;
             });
 
+            $scope.optGrid = {
+                filterable: {
+                    extra: false,
+                    operators: {
+                        string: {
+                            startswith: "Dimulai dengan",
+                            contains: "mengandung kata",
+                            neq: "Tidak mengandung kata"
+                        }
+                    }
+                }
+            }
+
             $scope.konsulOpt = {
                 pageable: true,
                 scrollable: true,
@@ -931,10 +944,18 @@ define(['initialize'], function (initialize) {
                 }
             }
 
+            // $scope.cetakGelang = function () {
+            //     if ($scope.item != undefined) {
+            //         var fixUrlLaporan = cetakHelper.open("registrasi-pelayanan/gelangPasien?id=" + $scope.item.nocmfk);
+            //         window.open(fixUrlLaporan, '_blank')
+            //     }
+            // }
+
             $scope.cetakGelang = function () {
                 if ($scope.item != undefined) {
-                    var fixUrlLaporan = cetakHelper.open("registrasi-pelayanan/gelangPasien?id=" + $scope.item.nocmfk);
-                    window.open(fixUrlLaporan, '_blank')
+                    var fixUrlLaporan = "http://192.168.12.4:7777/service-reporting/gelang-pasien/" + $scope.item.noregistrasi;
+                    // var fixUrlLaporan = cetakHelper.open("registrasi-pelayanan/gelangPasien?id=" + $scope.item.nocmfk);
+                    window.open(fixUrlLaporan, '', 'width=800,height=600')
                 }
             }
             $scope.pasienPulang = function () {

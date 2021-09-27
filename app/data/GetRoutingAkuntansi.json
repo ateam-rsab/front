@@ -3203,6 +3203,34 @@
     ]
   },
   {
+    "name": "RekapKeringananTagihanPelayanan",
+    "url": "/RekapKeringananTagihanPelayanan",
+    "templateurl": "module/Akuntansi/TataRekening/RekapKeringananTagihanPelayanan.html",
+    "controller": "RekapKeringananTagihanPelayananCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "TataRekeningService",
+        "define": "TataRekeningService"
+      },
+      {
+        "module": "KasirService",
+        "define": "KasirService"
+      },
+      {
+        "module": "PasienService",
+        "define": "PasienService"
+      }
+    ]
+  },
+  {
     "name": "PasienPulangTatarekening",
     "url": "/DaftarAntrianPasien",
     "controller": "PulangPasienTatarekeningCtrl",

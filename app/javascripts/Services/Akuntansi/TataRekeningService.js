@@ -4,12 +4,18 @@
    var baseUrlApiPostAction = config.baseApiPostData;
    var baseTransaksi = config.urlDataTableTransaksi_Akuntansi;
    var urlPrinting = config.urlPrinting;
+   var urlReporting = config.urlReporting;
    var akuntansiService = angular.module('TataRekeningService', ['ngResource', 'HttpServicesAkuntansi', 'Services']);
    akuntansiService.service('ManageTataRekening', ['R_Akuntansi', function(r) {
        return {
             getItemExpress: function(url) {
               return r.get({
                 url: baseExpressService + url
+              })
+            },
+            getReporting: function(url) {
+              return r.get({
+                url: urlReporting + url
               })
             },
             postDataExpress: function(url, data) {

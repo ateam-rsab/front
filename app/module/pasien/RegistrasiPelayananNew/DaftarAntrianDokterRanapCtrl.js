@@ -330,6 +330,19 @@ define(['initialize'], function(initialize) {
                 buttonCount: 5
             }
 
+            $scope.optGrid = {
+                filterable: {
+                    extra: false,
+                    operators: {
+                        string: {
+                            startswith: "Dimulai dengan",
+                            contains: "mengandung kata",
+                            neq: "Tidak mengandung kata"
+                        }
+                    }
+                }
+            }
+
             $scope.diagnosaICD10 = function() {
                 debugger;
                 // $state.go('RiwayatRegistrasi3', {

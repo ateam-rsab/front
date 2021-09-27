@@ -300,13 +300,14 @@
   let token = getCookie('authorization');
 
   function detailData(data, idRuangan, idDokter) {
-    modal.style.display = "block"
-    console.log("deb")
+    
     $.ajax({
       // https://smart.rsabhk.co.id:2222/pelayanan-service/get-detail-pasien-by-dokter?idDokter=16054&idRuangan=564&tglKunjungan=2021-04-29&jamPraktek=11:30-13:30&X-AUTH-TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbi5vcGVyYXRvciJ9.2yCoQiRKSoXJhCzSdbLxvLWPPx02jzPgkUpT2f0uDLeKKPIK00xLbLlUeTlS7eNq6cLOE7XM03sOWgmQ5TLvVA
       url: "http://172.16.44.33:9111/pelayanan-service/get-detail-pasien-by-dokter?&idDokter=" + idDokter + "&idRuangan=" + idRuangan + "&tglKunjungan=" + data.tglDokter + "&jamPraktek=" + data.jamPraktik + "&X-AUTH-TOKEN=" + token,
       method: "GET",
       success: (data) => {
+        console.log(data);
+        modal.style.display = "block";
         $("table.rwd-table #dataDetail").html('');
         for (let i = 0; i < data.length; i++) {
           

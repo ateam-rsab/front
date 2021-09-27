@@ -12,7 +12,7 @@ define(['initialize'], function (initialize) {
             $scope.item.periodeAwal = new Date();
             $scope.item.periodeAkhir = new Date();
             $scope.item.periodeAwal = dateHelper.setJamAwal(new Date());
-            $scope.item.periodeAkhir = new Date();
+            $scope.item.periodeAkhir = dateHelper.setJamAkhir(new Date());
             $scope.dataPasienSelected = {};
             $scope.isRouteLoading = false;
             $rootScope.isOpen = true;
@@ -60,7 +60,7 @@ define(['initialize'], function (initialize) {
                     var arrPeriode = chacePeriode.split('~');
                     $scope.item.periodeAwal = new Date(arrPeriode[0]);
                     $scope.item.periodeAwal = new Date(dateHelper.setJamAwal(new Date()));
-                    $scope.item.periodeAkhir = new Date(arrPeriode[1]);
+                    $scope.item.periodeAkhir = dateHelper.setJamAkhir(new Date(arrPeriode[1]));
                     // $scope.item.tglpulang = new Date(arrPeriode[2]);                
                 } else {
                     $scope.item.periodeAwal = new Date();
@@ -118,7 +118,7 @@ define(['initialize'], function (initialize) {
                     for (var i = 0; i < datas.length; i++) {
                         datas[i].no = i + 1
                         var tanggal = $scope.now;
-                        var tanggalLahir = new Date(datas[i].tgllahir);
+                        var tanggalLahir = new Date(dateHelper.formatDate(datas[i].tgllahir, "YYYY-MM-DD"));
                         var umurzz = dateHelper.CountAge(tanggalLahir, tanggal);
                         datas[i].umurzz = umurzz.year + ' thn ' + umurzz.month + ' bln ' + umurzz.day + ' hari'
 

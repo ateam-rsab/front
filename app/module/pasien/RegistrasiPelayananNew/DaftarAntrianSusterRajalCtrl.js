@@ -354,14 +354,13 @@ define(['initialize'], function (initialize) {
                 if ($scope.item.noRegistrasi != undefined) {
                     var noRegistrasi = "&noreg=" + $scope.item.noRegistrasi
                 }
-                var dokId = ""
-                if ($scope.pegawai.id != undefined) {
-                    var dokId = "&dokId=" + $scope.pegawai.id
-                }
+
                 var ruangId = ""
                 if ($scope.item.ruangan != undefined) {
                     var ruangId = "&ruangId=" + $scope.item.ruangan.id
                 }
+                
+                var dokId = $scope.item.dokter ? `&dokId=${$scope.item.dokter.id}` : '';
 
                 $q.all([
                     manageSarprasPhp.getDataTableTransaksi("dokter/get-daftar-antrian-rajal?" +
@@ -369,8 +368,8 @@ define(['initialize'], function (initialize) {
                         "&tglAkhir=" + tglAkhir +
                         "&norm=" + nocm +
                         "&noreg=" + noRegistrasi +
-                        "&nama=" + nama +
-                        ruangId),
+                        "&nama=" + nama + dokId
+                         + ruangId),
                 ]).then(function (data) {
                     $scope.isRouteLoading = false;
                     var datas = data[0].data;
@@ -396,6 +395,19 @@ define(['initialize'], function (initialize) {
                     var chacePeriode = tglAwal + "~" + tglAkhir;
                     // cacheHelper.set('DaftarAntrianDokterRajalCtrl', chacePeriode);
                 });
+            }
+
+            $scope.optGrid = {
+                filterable: {
+                    extra: false,
+                    operators: {
+                        string: {
+                            startswith: "Dimulai dengan",
+                            contains: "mengandung kata",
+                            neq: "Tidak mengandung kata"
+                        }
+                    }
+                }
             }
 
             $scope.klikGrid = function (dataPasienSelected) {

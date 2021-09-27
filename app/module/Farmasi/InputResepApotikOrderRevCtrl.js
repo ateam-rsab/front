@@ -119,6 +119,7 @@ define(['initialize'], function (initialize) {
                 let listTempObat = [];
                 manageLogistikPhp.getDataTableTransaksi("logistik/get-datacombo", true).then(function (dat) {
                     $scope.listOfProduk = dat.data.produk;
+                    $scope.listDokter = dat.data.penulisresep;
                     for (let i = 0; i < dat.data.produk.length; i++) {
                         $scope.dataTempObat.push(dat.data.produk[i].namaproduk);
                         listTempObat.push({
@@ -147,6 +148,9 @@ define(['initialize'], function (initialize) {
 
             var init = function () {
                 getNamaObat();
+                manageLogistikPhp.getDataTableMaster("produk/master-paket?idjenispaket=5").then(res => {
+                    $scope.listPaketResep = res.data
+                })
                 $scope.item.idLogin = JSON.parse(localStorage.getItem('pegawai'));
                 $scope.listObat = [{
                     key: 1 + $scope.listObat.length,
@@ -167,6 +171,47 @@ define(['initialize'], function (initialize) {
                 // });
             }
             init();
+
+            $scope.getDetailPaketResep = (data) => {
+                if(!data) return;
+                // http://192.168.12.3:5555/simrs_harkit/service/transaksi/logistik/daftar-resep-paket?idpaket=97
+                manageLogistikPhp.getDataTableTransaksi("logistik/daftar-resep-paket?idpaket=" + data.id).then(res => {
+                    for(let i = 0; i < res.data.length; i++) {
+                        res.data[i].checked = true;
+                        res.data[i].jmlPaketObat = 0;
+                        res.data[i].instruksi = '';
+                    }
+                    $scope.dataListResepByPaket = res.data;
+                    $scope.popUpPaket.open().center();
+                })
+            }
+
+            $scope.updateCheckedData = (index) => {
+                $scope.dataListResepByPaket[index].checked = !$scope.dataListResepByPaket[index].checked;
+            }
+
+            $scope.simpanPaket = () => {
+                for(let i = 0; i < $scope.dataListResepByPaket.length; i++) {
+                    let resep = {
+                        resepKe: $scope.tempListResep.length + 1,
+                        jenisKemasan: false,
+                        jumlah: $scope.dataListResepByPaket[i].jmlPaketObat,
+                        namaObat: $scope.dataListResepByPaket[i].namaproduk,
+                        pieces: 0,
+                    }
+                    $scope.tempListResep.push({
+                        // intruksi: $scope.dataListResepByPaket[i].instruksi,
+                        keterangan: $scope.dataListResepByPaket[i].instruksi,
+                        resep: [
+                            resep
+                        ]
+                    });
+                }
+
+                console.log($scope.tempListResep);
+                
+                $scope.popUpPaket.close();
+            }
 
             // untuk Konversi ke romawi
             function convertToRoman(number) {
@@ -390,9 +435,11 @@ define(['initialize'], function (initialize) {
                     }
                 }
 
+                console.log(dataResep);
+
                 $scope.tempListResep.push(dataResep);
                 $scope.dataResepDokter.add(dataResep);
-
+                console.log($scope.tempListResep)
                 clear();
                 init();
 
@@ -400,9 +447,7 @@ define(['initialize'], function (initialize) {
 
             $scope.cetakResep = function () {
                 window.open("http://192.168.12.4:7777/service-reporting/resep-pasien/" + $scope.item.norec_so);
-                $.get('http://www.geoplugin.net/json.gp', function (data) {
-                    console.log(data)
-                })
+               
             }
 
             // clear out variable

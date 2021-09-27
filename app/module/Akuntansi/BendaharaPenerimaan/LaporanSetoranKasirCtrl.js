@@ -465,6 +465,9 @@ define(['initialize'], function (initialize) {
             // select * from pegawai_m where id=349
 
             $scope.columnSetoranKasir = {
+                toolbar: [
+                    { text: "export", name: "Export detail", template: '<button ng-click="exportExcel()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>' }
+                ],
                 columns: [
                     {
                         "field": "noSbm",
@@ -537,10 +540,10 @@ define(['initialize'], function (initialize) {
                         "width": "50px"
                     },
                     {
-                    	"field": "noClosing",
-                    	"title": "No Closing",
-                    	"template": "<span class='style-center'>#: noClosing #</span>",
-                    	"width":"50px"
+                        "field": "noClosing",
+                        "title": "No Closing",
+                        "template": "<span class='style-center'>#: noClosing #</span>",
+                        "width": "50px"
                     }
                 ],
                 sortable: {
@@ -557,225 +560,293 @@ define(['initialize'], function (initialize) {
             };
 
 
+            $scope.exportExcel = function () {
 
+                console.log($scope.dataSetoranKasir);
+                var rows = [
+                    {
+                        cells: [
+                            { value: "No. SBM" },
+                            { value: "Nama Ruangan" },
+                            { value: "Tanggal" },
+                            { value: "Nama" },
+                            { value: "Deskripsi" },
+                            { value: "Keterangan" },
+                            { value: "Cara Bayar" },
+                            { value: "Total Penerimaan" },
+                            { value: "Kasir" },
+                            { value: "Status" },
+                            { value: "No. Closing" }
+                        ]
+                    }
+                ];
+
+                let tempDataExport = $scope.dataSetoranKasir;
+                console.log(tempDataExport);
+                for (let i = 0; i < tempDataExport.data.length; i++) {
+                    rows.push({
+                        cells: [
+                            { value: tempDataExport.data[i].noSbm },
+                            { value: tempDataExport.data[i].namaruangan },
+                            { value: tempDataExport.data[i].tglSbm },
+                            { value: tempDataExport.data[i].namapasien },
+                            { value: tempDataExport.data[i].namapasien_klien },
+                            { value: tempDataExport.data[i].keterangan },
+                            { value: tempDataExport.data[i].caraBayar },
+                            { value: tempDataExport.data[i].totalPenerimaan },
+                            { value: tempDataExport.data[i].namaPenerima },
+                            { value: tempDataExport.data[i].status },
+                            { value: tempDataExport.data[i].noClosing }
+                        ]
+                    })
+                }
+
+                var workbook = new kendo.ooxml.Workbook({
+                    sheets: [
+                        {
+                            freezePane: { rowSplit: 1 },
+                            columns: [
+                                // Column settings (width)
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true }
+                            ],
+                            // Title of the sheet
+                            title: "Penerimaan Kasir",
+                            // Rows of the sheet
+                            rows: rows
+                        }
+                    ]
+                });
+                //save the file as Excel file with extension xlsx
+                kendo.saveAs({ dataURI: workbook.toDataURL(), fileName: "penerimaan-kasir.xlsx" });
+            }
 
 
             $scope.columnCaraBayar = [
-                {
-                    "field": "caraBayar",
-                    "title": "Cara Bayar"
-                },
-                {
-                    "field": "totalPenerimaan",
-                    "title": "Total Penerimaan",
-                    "template": "<span class='style-right'>{{formatRupiah('#: totalPenerimaan #', 'Rp.')}}</span>",
+        {
+            "field": "caraBayar",
+            "title": "Cara Bayar"
+        },
+        {
+            "field": "totalPenerimaan",
+            "title": "Total Penerimaan",
+            "template": "<span class='style-right'>{{formatRupiah('#: totalPenerimaan #', 'Rp.')}}</span>",
 
-                },
-                {
-                    "field": "totalSetor",
-                    "title": "Total Setor",
-                    "template": "<span class='style-right'>{{formatRupiah('#: totalSetor #', 'Rp.')}}</span>",
-                },
-                {
-                    "field": "sisa",
-                    "title": "Sisa",
-                    "template": "<span class='style-right'>{{formatRupiah('#: sisa #', 'Rp.')}}</span>",
-                }
+        },
+        {
+            "field": "totalSetor",
+            "title": "Total Setor",
+            "template": "<span class='style-right'>{{formatRupiah('#: totalSetor #', 'Rp.')}}</span>",
+        },
+        {
+            "field": "sisa",
+            "title": "Sisa",
+            "template": "<span class='style-right'>{{formatRupiah('#: sisa #', 'Rp.')}}</span>",
+        }
 
-            ];
-            $scope.formatRupiah = function (value, currency) {
-                if (value == "null")
-                    value = 0
-                return currency + " " + parseFloat(value).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+    ];
+$scope.formatRupiah = function (value, currency) {
+    if (value == "null")
+        value = 0
+    return currency + " " + parseFloat(value).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+}
+$scope.dataCaraBayar2 = function (dataItem) {
+    return {
+        dataSource: new kendo.data.DataSource({
+            data: dataItem.detail
+        }),
+        //toolbar: "<button class='btnTemplate1'  style='width:10%;height:50%' ng-click='tambahCaraBayar()'>Tambah Data</button>",
+        //editable : true,
+        //scrollable:false,
+        columns: [
+            {
+                "field": "no",
+                "title": "No",
+                "width": "15px",
+                "hidden": true
+            },
+            {
+                "field": "caraBayar",
+                "title": "Cara Bayar",
+                "width": "100px"
+            },
+
+
+            // {
+            // 	"field": "bankAccount",
+            // 	"title": "Bank Account",
+            // 	"width":"200px"
+            // 	//,"template": "<input kendo-combo-box k-ng-model='dataModelGrid[#: id #].NamabankAccount' k-data-text-field=\"'namaExternal'\" k-data-value-field=\"'id'\" k-filter=\"'contains'\" k-auto-bind='false' k-data-source='listNamabankAccount' />"
+            // },
+            {
+                "field": "caraSetor",
+                "title": "Cara Setor",
+                "width": "100px"
+                //,"template": "<input kendo-combo-box k-ng-model='dataModelGrid[#: id #].NamabankAccount' k-data-text-field=\"'namaExternal'\" k-data-value-field=\"'id'\" k-filter=\"'contains'\" k-auto-bind='false' k-data-source='listNamabankAccount' />"
+            },
+            {
+                "field": "jumlah",
+                "title": "Total Setor",
+                "width": "100px",
+                "template": "<span class='style-right'>{{formatRupiah('#: jumlah #', 'Rp.')}}</span>",
+
+                //,"template": "<input c-text-box type='input' ng-model='dataModelGrid[#: id #].total' filter='numeric' class='k-textbox'  style='text-align: right;'/>"
+            },
+            {
+                "field": "pegawaipenerima",
+                "title": "Penerima",
+                "width": "100px"
             }
-            $scope.dataCaraBayar2 = function (dataItem) {
-                return {
-                    dataSource: new kendo.data.DataSource({
-                        data: dataItem.detail
-                    }),
-                    //toolbar: "<button class='btnTemplate1'  style='width:10%;height:50%' ng-click='tambahCaraBayar()'>Tambah Data</button>",
-                    //editable : true,
-                    //scrollable:false,
-                    columns: [
-                        {
-                            "field": "no",
-                            "title": "No",
-                            "width": "15px",
-                            "hidden": true
-                        },
-                        {
-                            "field": "caraBayar",
-                            "title": "Cara Bayar",
-                            "width": "100px"
-                        },
+            // , {
+            // 	command: [{
+            // 		name: "edit",
+            // 		text: "Ubah"
+            // 	}, {
+            // 		name: "destroy",
+            // 		text: "Hapus",
+            // 	}],"width":"100px"
+            // }
+        ]
+    }
+};
+
+// var noID = 1;
+// $scope.tambahCaraBayar = function(){
+// 	var grid = $('#kGridDetail').data("kendoGrid");
+
+// 	noID += 1;
+
+// 	$scope.dataModelGrid[noID] = {};
+
+// 	grid.dataSource.add({
+// 		id: noID
+// 	});	
+// };
+
+$scope.formatRupiah = function (value, currency) {
+    return currency + " " + parseFloat(value).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+}
+var HttpClient = function () {
+    this.get = function (aUrl, aCallback) {
+        var anHttpRequest = new XMLHttpRequest();
+        anHttpRequest.onreadystatechange = function () {
+            if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+                aCallback(anHttpRequest.responseText);
+        }
+
+        anHttpRequest.open("GET", aUrl, true);
+        anHttpRequest.send(null);
+    }
+}
 
 
-                        // {
-                        // 	"field": "bankAccount",
-                        // 	"title": "Bank Account",
-                        // 	"width":"200px"
-                        // 	//,"template": "<input kendo-combo-box k-ng-model='dataModelGrid[#: id #].NamabankAccount' k-data-text-field=\"'namaExternal'\" k-data-value-field=\"'id'\" k-filter=\"'contains'\" k-auto-bind='false' k-data-source='listNamabankAccount' />"
-                        // },
-                        {
-                            "field": "caraSetor",
-                            "title": "Cara Setor",
-                            "width": "100px"
-                            //,"template": "<input kendo-combo-box k-ng-model='dataModelGrid[#: id #].NamabankAccount' k-data-text-field=\"'namaExternal'\" k-data-value-field=\"'id'\" k-filter=\"'contains'\" k-auto-bind='false' k-data-source='listNamabankAccount' />"
-                        },
-                        {
-                            "field": "jumlah",
-                            "title": "Total Setor",
-                            "width": "100px",
-                            "template": "<span class='style-right'>{{formatRupiah('#: jumlah #', 'Rp.')}}</span>",
+$scope.Cetak = function () {
+    $scope.pegawai = JSON.parse(window.localStorage.getItem('pegawai'));
+    var Skasir = "";
+    if ($scope.item.namaKasir != undefined) {
+        Skasir = $scope.item.namaKasir.id;
 
-                            //,"template": "<input c-text-box type='input' ng-model='dataModelGrid[#: id #].total' filter='numeric' class='k-textbox'  style='text-align: right;'/>"
-                        },
-                        {
-                            "field": "pegawaipenerima",
-                            "title": "Penerima",
-                            "width": "100px"
-                        }
-                        // , {
-                        // 	command: [{
-                        // 		name: "edit",
-                        // 		text: "Ubah"
-                        // 	}, {
-                        // 		name: "destroy",
-                        // 		text: "Hapus",
-                        // 	}],"width":"100px"
-                        // }
-                    ]
-                }
-            };
+        // if($scope.item != undefined){
+        var tglAwal = moment($scope.item.tanggalAwal).format('YYYY-MM-DD HH:mm');
+        var tglAkhir = moment($scope.item.tanggalAkhir).format('YYYY-MM-DD HH:mm');
+        // var fixUrlLaporan = cetakHelper.open("reporting/lapBuktiPelayanan?noRegistrasi=" + $scope.item.pasien.pasienDaftar.noRegistrasi);
+        // window.open(fixUrlLaporan, '', 'width=800,height=600')
 
-            // var noID = 1;
-            // $scope.tambahCaraBayar = function(){
-            // 	var grid = $('#kGridDetail').data("kendoGrid");
+        //cetakan langsung service VB6 by grh
+        var client = new HttpClient();
+        client.get('http://127.0.0.1:1237/printvb/kasir?cetak-setoranKasir=1&tglAwal=' + tglAwal
+            + '&tglAkhir=' + tglAkhir + '&kasirId=' + Skasir + '&strIdPegawai=' + $scope.pegawai.namaLengkap + '&view=true', function (response) {
+                // do something with response
+                // });
 
-            // 	noID += 1;
+            })
+    }
+}
 
-            // 	$scope.dataModelGrid[noID] = {};
+$scope.BatalSetor = function () {
+    var tgl = moment($scope.item.tanggalAwal).format('YYYY-MM-DD')
+    var tglAwal = moment($scope.item.tanggalAwal).format('YYYY-MM-DD HH:mm')
+    var tglAkhir = moment($scope.item.tanggalAkhir).format('YYYY-MM-DD HH:mm')
+    var objSave = {
+        "tglAwal": tglAwal,
+        "tglAkhir": tglAkhir,
+        "kdPegawai": $scope.item.namaKasir.id,
+        "kdPegawaiLu": $scope.item.namaKasir.luid,
 
-            // 	grid.dataSource.add({
-            // 		id: noID
-            // 	});	
-            // };
+    }
 
-            $scope.formatRupiah = function (value, currency) {
-                return currency + " " + parseFloat(value).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+    manageKasir.batalSetoranKasir(objSave).then(function () {
+        var data = $scope.dataSetoranKasir.data
+        var listNoClos = ""
+        if (data.length != 0) {
+            var a = ""
+            var b = ""
+            for (var i = data.length - 1; i >= 0; i--) {
+                var c = data[i].noClosing
+                b = "," + c
+                a = a + b
             }
-            var HttpClient = function () {
-                this.get = function (aUrl, aCallback) {
-                    var anHttpRequest = new XMLHttpRequest();
-                    anHttpRequest.onreadystatechange = function () {
-                        if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
-                            aCallback(anHttpRequest.responseText);
-                    }
+            listNoClos = a.slice(1, a.length)
+        }
+        var objBatal = {
+            'noclosing': listNoClos
+        }
+        manageKasir.postTransaksi('kasir/hapus-jurnal-setorankasir', objBatal).then(function () {
+        })
+        loadData();
+    })
+}
+$scope.CetakLaporanPenerimaanHarian = function () {
+    var dokter = ''
+    if ($scope.item.namaPegawai != undefined) {
+        dokter = $scope.item.namaPegawai.id
+    }
+    var ruanganId = ''
+    if ($scope.item.ruangan != undefined) {
+        ruanganId = $scope.item.ruangan.id
+    }
+    var idPegawai = ''
+    if ($scope.item.namaKasir != undefined) {
+        idPegawai = $scope.item.namaKasir.id
+    }
+    var tglAwal = moment($scope.item.tanggalAwal).format('YYYY-MM-DD HH:mm:ss');
+    var tglAkhir = moment($scope.item.tanggalAkhir).format('YYYY-MM-DD HH:mm:ss');
+    var client = new HttpClient();
+    client.get('http://127.0.0.1:1237/printvb/kasir?cetak-laporan-penerimaan-kasir=' + $scope.dataLogin.namalengkap + '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&idPegawai=' + idPegawai + '&idRuangan=' + ruanganId + '&idDokter=' + dokter + '&view=true', function (response) {
+    });
 
-                    anHttpRequest.open("GET", aUrl, true);
-                    anHttpRequest.send(null);
-                }
-            }
+}
+$scope.CetaklapPenerimaanPertransaksi = function () {
+    var dokter = ''
+    if ($scope.item.namaPegawai != undefined) {
+        dokter = $scope.item.namaPegawai.id
+    }
+    var ruanganId = ''
+    if ($scope.item.ruangan != undefined) {
+        ruanganId = $scope.item.ruangan.id
+    }
 
+    var kasirId = ''
+    if ($scope.item.namaKasir != undefined) {
+        kasirId = $scope.item.namaKasir.id
+    }
+    var tglAwal = moment($scope.item.tanggalAwal).format('YYYY-MM-DD HH:mm:ss');
+    var tglAkhir = moment($scope.item.tanggalAkhir).format('YYYY-MM-DD HH:mm:ss');
+    var client = new HttpClient();
+    client.get('http://127.0.0.1:1237/printvb/kasir?cetak-laporan-penerimaan-pertransaksi=' + kasirId +
+        '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&idRuangan=' + ruanganId + '&idDokter=' + dokter + '&strIdPegawai=' + $scope.dataLogin.namaLengkap + '&view=true', function (response) {
 
-            $scope.Cetak = function () {
-                $scope.pegawai = JSON.parse(window.localStorage.getItem('pegawai'));
-                var Skasir = "";
-                if ($scope.item.namaKasir != undefined) {
-                    Skasir = $scope.item.namaKasir.id;
-
-                    // if($scope.item != undefined){
-                    var tglAwal = moment($scope.item.tanggalAwal).format('YYYY-MM-DD HH:mm');
-                    var tglAkhir = moment($scope.item.tanggalAkhir).format('YYYY-MM-DD HH:mm');
-                    // var fixUrlLaporan = cetakHelper.open("reporting/lapBuktiPelayanan?noRegistrasi=" + $scope.item.pasien.pasienDaftar.noRegistrasi);
-                    // window.open(fixUrlLaporan, '', 'width=800,height=600')
-
-                    //cetakan langsung service VB6 by grh
-                    var client = new HttpClient();
-                    client.get('http://127.0.0.1:1237/printvb/kasir?cetak-setoranKasir=1&tglAwal=' + tglAwal
-                        + '&tglAkhir=' + tglAkhir + '&kasirId=' + Skasir + '&strIdPegawai=' + $scope.pegawai.namaLengkap + '&view=true', function (response) {
-                            // do something with response
-                            // });
-
-                        })
-                }
-            }
-
-            $scope.BatalSetor = function () {
-                var tgl = moment($scope.item.tanggalAwal).format('YYYY-MM-DD')
-                var tglAwal = moment($scope.item.tanggalAwal).format('YYYY-MM-DD HH:mm')
-                var tglAkhir = moment($scope.item.tanggalAkhir).format('YYYY-MM-DD HH:mm')
-                var objSave = {
-                    "tglAwal": tglAwal,
-                    "tglAkhir": tglAkhir,
-                    "kdPegawai": $scope.item.namaKasir.id,
-                    "kdPegawaiLu": $scope.item.namaKasir.luid,
-
-                }
-
-                manageKasir.batalSetoranKasir(objSave).then(function () {
-                    var data = $scope.dataSetoranKasir.data
-                    var listNoClos = ""
-                    if (data.length != 0) {
-                        var a = ""
-                        var b = ""
-                        for (var i = data.length - 1; i >= 0; i--) {
-                            var c = data[i].noClosing
-                            b = "," + c
-                            a = a + b
-                        }
-                        listNoClos = a.slice(1, a.length)
-                    }
-                    var objBatal = {
-                        'noclosing': listNoClos
-                    }
-                    manageKasir.postTransaksi('kasir/hapus-jurnal-setorankasir', objBatal).then(function () {
-                    })
-                    loadData();
-                })
-            }
-            $scope.CetakLaporanPenerimaanHarian = function () {
-                var dokter = ''
-                if ($scope.item.namaPegawai != undefined) {
-                    dokter = $scope.item.namaPegawai.id
-                }
-                var ruanganId = ''
-                if ($scope.item.ruangan != undefined) {
-                    ruanganId = $scope.item.ruangan.id
-                }
-                var idPegawai = ''
-                if ($scope.item.namaKasir != undefined) {
-                    idPegawai = $scope.item.namaKasir.id
-                }
-                var tglAwal = moment($scope.item.tanggalAwal).format('YYYY-MM-DD HH:mm:ss');
-                var tglAkhir = moment($scope.item.tanggalAkhir).format('YYYY-MM-DD HH:mm:ss');
-                var client = new HttpClient();
-                client.get('http://127.0.0.1:1237/printvb/kasir?cetak-laporan-penerimaan-kasir=' + $scope.dataLogin.namalengkap + '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&idPegawai=' + idPegawai + '&idRuangan=' + ruanganId + '&idDokter=' + dokter + '&view=true', function (response) {
-                });
-
-            }
-            $scope.CetaklapPenerimaanPertransaksi = function () {
-                var dokter = ''
-                if ($scope.item.namaPegawai != undefined) {
-                    dokter = $scope.item.namaPegawai.id
-                }
-                var ruanganId = ''
-                if ($scope.item.ruangan != undefined) {
-                    ruanganId = $scope.item.ruangan.id
-                }
-
-                var kasirId = ''
-                if ($scope.item.namaKasir != undefined) {
-                    kasirId = $scope.item.namaKasir.id
-                }
-                var tglAwal = moment($scope.item.tanggalAwal).format('YYYY-MM-DD HH:mm:ss');
-                var tglAkhir = moment($scope.item.tanggalAkhir).format('YYYY-MM-DD HH:mm:ss');
-                var client = new HttpClient();
-                client.get('http://127.0.0.1:1237/printvb/kasir?cetak-laporan-penerimaan-pertransaksi=' + kasirId +
-                    '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&idRuangan=' + ruanganId + '&idDokter=' + dokter + '&strIdPegawai=' + $scope.dataLogin.namaLengkap + '&view=true', function (response) {
-
-                    });
-            }
+        });
+}
 
 
 
