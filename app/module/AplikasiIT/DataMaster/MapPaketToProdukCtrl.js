@@ -167,7 +167,6 @@ define(['initialize'], function (initialize) {
 
 			//fungsi klik untuk edit
 			$scope.klik = function (current) {
-				$scope.isRouteLoading = true;
 				$scope.isEdit = true;
 				$scope.showEdit = true;
 				$scope.current = current;
@@ -185,7 +184,10 @@ define(['initialize'], function (initialize) {
 				// $scope.item.namaExternal = current.namaExternal;
 				// $scope.item.statusEnabled = current.statusEnabled;
 
-				$scope.klikFunction();
+				if (current) {
+					$scope.isRouteLoading = true;
+					$scope.klikFunction();
+				}
 			};
 
 			$scope.disableData = function () {
@@ -219,7 +221,7 @@ define(['initialize'], function (initialize) {
 					toastr.warning('Belum setting satuan di master produk!');
 					return
 				}
-					
+
 				var data = {
 					"class": "MapPaketToProduk",
 					"listField": {
@@ -239,7 +241,7 @@ define(['initialize'], function (initialize) {
 					}
 				}
 				IPSRSService.saveDataMaster(data, "save-master-table").then(function (e) {
-					console.log(JSON.stringify(e.data));
+					// console.log(JSON.stringify(e.data));
 					init();
 					$scope.item = {};
 
@@ -271,7 +273,7 @@ define(['initialize'], function (initialize) {
 					}
 				}
 				IPSRSService.saveDataMaster(data, "update-master-table").then(function (e) {
-					console.log(JSON.stringify(e.data));
+					// console.log(JSON.stringify(e.data));
 					init();
 				});
 			}

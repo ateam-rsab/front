@@ -15,6 +15,8 @@ define(['initialize'], function (initialize) {
             if ($scope.item.belumVerifikasi) $scope.cekBelumVerifs = true;
             else $scope.cekBelumVerifs = false;
             $scope.item.diskonpegawai = 0;
+            $scope.isPenungguPasien = false
+            $scope.isPasien = false
 
             $scope.cekbelumVerifikasi = function (data) {
                 if (data === true) {
@@ -32,7 +34,7 @@ define(['initialize'], function (initialize) {
                         if ($(this).text() == 'MASUK') {
                             $(this).addClass('masuk')
                         };
-                        if ($(this).text() == 'SELESAI DIPERIKSA') {
+                        if ($(this).text() == 'SELESAI DI VERIFIKASI') {
                             $(this).addClass('selesai')
                         };
                         // DIPANGGIL_SUSTER
@@ -125,6 +127,9 @@ define(['initialize'], function (initialize) {
 
             function loadCombo() {
                 var datauserlogin = JSON.parse(window.localStorage.getItem("datauserlogin"));
+                manageLogistikPhp.getDataTableTransaksi("pegawai/data-pegawai").then(function (res) {
+                    $scope.listPegawaiMPP = res.data
+                })
                 manageLogistikPhp.getDataTableTransaksi("pegawai/get-kelompok-user?luId=" + datauserlogin.id, true).then(function (e) {
                     if (e.data.data.kelompokuser.indexOf('radiologi') > -1) /* KEl USER ITI*/ {
                         loginRadiologi = true
@@ -505,6 +510,7 @@ define(['initialize'], function (initialize) {
                     namalengkap: $scope.dataSelected.dpjp
                 };
 
+                $scope.kelompokPasienId = $scope.dataSelected.objectkelompokpasienlastfk;
                 $scope.isDiskonKaryawanKeluargaInti = false;
                 $scope.isAsPegOrKel = false;
                 $scope.item.diskonpegawai = 0;
@@ -533,7 +539,31 @@ define(['initialize'], function (initialize) {
                 let tempDiskon = 0;
                 manageServicePhp.getDataTableTransaksi("lab-radiologi/get-order-pelayanan-new?norec_so=" + $scope.dataSelected.norec_so +
                     "&objectkelasfk=" + $scope.dataSelected.objectkelasfk +
-                    "&jenisdiskon=" + $scope.item.diskonpegawai, true).then(function (dat) {
+                    "&jenisdiskon=" + (($scope.dataSelected.diskonpegawai && $scope.dataSelected.diskonpegawai != 0) ? $scope.dataSelected.diskonpegawai : $scope.item.diskonpegawai), true).then(function (dat) {
+
+                        $scope.diskonpegawaiexisting = 0;
+                        if ($scope.dataSelected.diskonpegawai && $scope.dataSelected.diskonpegawai != 0) {
+                            $scope.isDiskonKaryawanKeluargaInti = true
+                            $scope.isAsPegOrKel = true
+                            $scope.item.diskonpegawai = $scope.dataSelected.diskonpegawai
+                            $scope.diskonpegawaiexisting = $scope.dataSelected.diskonpegawai;
+                        }
+
+                        if ($scope.item.diskonpegawai == 1
+                            || $scope.item.diskonpegawai == 2) {
+                            $scope.item.mppPenungguPasien = undefined
+                            $scope.item.mppPasien = undefined
+                            $scope.isPenungguPasien = false
+                            $scope.isPasien = false
+                        } else if ($scope.item.diskonpegawai == 3) {
+                            $scope.item.mppPenungguPasien = undefined
+                            $scope.isPenungguPasien = true
+                            $scope.isPasien = false
+                        } else if ($scope.item.diskonpegawai == 4) {
+                            $scope.item.mppPasien = undefined
+                            $scope.isPasien = true
+                            $scope.isPenungguPasien = false
+                        }
 
                         var dataSource = dat.data.data;
                         // $scope.catatanOrder = dat.data.
@@ -689,13 +719,31 @@ define(['initialize'], function (initialize) {
                     toastr.error('Dokter Verifikasi harus di isi')
                     return
                 }
+
+                if ($scope.item.diskonpegawai && $scope.item.diskonpegawai == 3 && !$scope.item.mppPenungguPasien) {
+                    toastr.warning('MPP yang menyetujui harus diisi', 'Peringatan')
+                    return
+                }
+
+                if ($scope.item.diskonpegawai && $scope.item.diskonpegawai == 4 && !$scope.item.mppPasien) {
+                    toastr.warning('MPP yang menyetujui harus diisi', 'Peringatan')
+                    return
+                }
+
+                $scope.mppId = ""
+                if ($scope.item.diskonpegawai && $scope.item.diskonpegawai == 3 && $scope.item.mppPenungguPasien) {
+                    $scope.mppId = $scope.item.mppPenungguPasien.pegawaiId
+                } else if ($scope.item.diskonpegawai && $scope.item.diskonpegawai == 4 && $scope.item.mppPasien) {
+                    $scope.mppId = $scope.item.mppPasien.pegawaiId
+                }
+
                 var dataPost = [];
                 for (var i = 0; i < $scope.sourceVerif._data.length; i++) {
                     // if($scope.sourceVerif._data[i].statCheckbox){
                     var datasys = {
                         "produkid": $scope.sourceVerif._data[i].prid,
                         "hargasatuan": $scope.sourceVerif._data[i].hargasatuan,
-                        "hargadiskon": $scope.sourceVerif._data[i].hargadiskon ? $scope.sourceVerif._data[i].hargadiskon : 0,
+                        "hargadiskon": $scope.sourceVerif._data[i].hargadiskon,
                         "qtyproduk": $scope.sourceVerif._data[i].qtyproduk,
                         "komponenharga": $scope.sourceVerif._data[i].details,
                     }
@@ -742,6 +790,7 @@ define(['initialize'], function (initialize) {
                     manageServicePhp.saveDataTransaksi("lab-radiologi/save-pelayanan-pasien-new", itemsave).then(function (e) {
                         // $scope.btnSimpanVis = false;
                         // $scope.popUpVerif.close();
+                        $scope.SaveLogUser();
                         init()
 
                     });
@@ -749,6 +798,14 @@ define(['initialize'], function (initialize) {
                     toastr.error('Belum ada data yang dipilih');
                 }
             }
+
+            $scope.SaveLogUser = function () {
+                manageServicePhp.getDataTableTransaksi("logging/save-log-verifikasi-order-lab?norec_so="
+                    + $scope.dataSelected.norec_so + "&mpp_id=" + $scope.mppId).then(function (data) {
+                        //
+                    })
+            }
+
             $scope.hapusTindakan = function () {
                 if ($scope.dataSelectedVerif == undefined) {
                     toastr.error('Pilih data dahulu!');
@@ -776,14 +833,26 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.toogleClick = function (ev) {
-                var checked = ev.target.checked;
-                if (checked) {
-                    $scope.isAsPegOrKel = true
+                if ($scope.kelompokPasienId == 1) {
+                    var checked = ev.target.checked;
+                    if (checked) {
+                        $scope.isAsPegOrKel = true
+                    } else {
+                        if ($scope.diskonpegawaiexisting && $scope.diskonpegawaiexisting != 0) {
+                            $scope.isAsPegOrKel = true
+                            $scope.isDiskonKaryawanKeluargaInti = true;
+                        } else {
+                            $scope.isAsPegOrKel = false
+                            $scope.item.diskonpegawai = 0
+                            $scope.item.isPenungguPasien = false
+                            $scope.item.isPasien = false
+                        }
+                    }
+                    loadDataVerif()
                 } else {
-                    $scope.isAsPegOrKel = false
-                    $scope.item.diskonpegawai = 0
+                    $scope.isDiskonKaryawanKeluargaInti = false;
+                    toastr.warning("Diskon hanya untuk pasien umum/ pribadi")
                 }
-                loadDataVerif()
             };
 
             $scope.loadDataVerif = function () {

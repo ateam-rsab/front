@@ -1,17 +1,17 @@
 <style>
-	.style-center{
+	.style-center {
 		display: inline-block;
 		text-align: center;
 		width: 100%;
 	}
 
-	.style-right{
+	.style-right {
 		display: inline-block;
 		text-align: right;
 		width: 100%;
 	}
 
-	.style-left{
+	.style-left {
 		display: inline-block;
 		text-align: left;
 		width: 100%;
@@ -44,10 +44,9 @@
 			<div class="clear"></div>
 
 			<div class="grid_12">
-				<input style="width: 100%;" kendo-combo-box k-ng-model="item.instalasi"
-					k-data-text-field="'departemen'" k-data-value-field="'id'"
-					k-filter="'contains'" k-auto-bind="false" k-data-source="listDepartemen"
-					k-on-change='getIsiComboRuangan()'/>
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.instalasi" k-data-text-field="'departemen'"
+					k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDepartemen"
+					k-on-change='getIsiComboRuangan()' />
 			</div>
 		</div>
 		<!-- Ruangan -->
@@ -58,9 +57,8 @@
 			<div class="clear"></div>
 
 			<div class="grid_12">
-				<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan"
-					k-data-text-field="'ruangan'" k-data-value-field="'id'"
-					k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'ruangan'"
+					k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
 			</div>
 		</div>
 		<!-- Periode Pulang -->
@@ -74,17 +72,16 @@
 				<!-- AwalPeriode -->
 				<div class="grid_6 padDatePicker">
 					<div class="grid_12">
-						<input style="width: 100%" k-ng-model="item.tanggalRegistrasiAwal"
-							kendo-datetimepicker k-max="now" placeholer="yyyy-MM-dd HH:mm"
-							k-format="'yyyy-MM-dd HH:mm'" />
+						<input style="width: 100%" k-ng-model="item.tanggalRegistrasiAwal" kendo-datetimepicker
+							k-max="now" placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" />
 					</div>
 				</div>
 
 				<!-- AkhirPeriode -->
 				<div class="grid_6 padDatePicker">
 					<div class="grid_12">
-						<input style="width: 100%" k-ng-model="item.tanggalRegistrasiAkhir"
-							kendo-datetimepicker placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd
+						<input style="width: 100%" k-ng-model="item.tanggalRegistrasiAkhir" kendo-datetimepicker
+							placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd
 							HH:mm'" />
 					</div>
 				</div>
@@ -98,20 +95,18 @@
 			<div class="grid_12" style="margin-top: -5px">
 				<div class="grid_6">
 					<input style="width: 100%;" kendo-combo-box k-ng-model="item.status"
-						k-data-text-field="'namaExternal'" k-data-value-field="'id'"
-						k-filter="'contains'" k-auto-bind="false" k-data-source="listStatus" />
+						k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'"
+						k-auto-bind="false" k-data-source="listStatus" />
 				</div>
 				<div class="grid_3" style="margin-top: 7px;">
-					<md-button class="md-raised md-primary medium-button"
-						ng-click="SearchData()">
+					<md-button class="md-raised md-primary medium-button" ng-click="SearchData()">
 						<span style="margin-right: 5px;">Cari</span>
 						<i class="fa fa-search"></i>
 					</md-button>
 					<!-- <button class="btnTemplate1" ng-click="SearchData()">Cari</button> -->
 				</div>
 				<div class="grid_3" style="margin-top: 7px;">
-					<md-button class="md-raised md-warn medium-button"
-						ng-click="ClearSearch()">
+					<md-button class="md-raised md-warn medium-button" ng-click="ClearSearch()">
 						<span style="margin-right: 5px;">Clear</span>
 						<i class="fa fa-remove"></i>
 					</md-button>
@@ -123,74 +118,67 @@
 	</div>
 	<div class="clear"></div>
 
-	<br/>
+	<br />
 
-		<!-- Data Pasien Pulang -->
-		<div class="grid_12" style="margin-top:10px">
-			<div class="headerBox">
-				<p>Data Pasien Pulang</p>
+	<!-- Data Pasien Pulang -->
+	<div class="grid_12" style="margin-top:10px">
+		<div class="headerBox">
+			<p>Data Pasien Pulang</p>
+		</div>
+		<div class="clear"></div>
+
+		<!-- grid table -->
+		<div class="grid_12">
+			<div id="kGrid" kendo-grid k-data-source="dataPasienPulang" k-selectable="'row'"
+				k-columns="columnPasienPulang" k-pageable="'true'" k-sortable="'true'" k-ng-model="dataPasienSelected"
+				ng-click="click(dataPasienSelected)">
 			</div>
-			<div class="clear"></div>
+		</div>
+		<div class="grid_12">
+			<!-- No Rm-->
+			<div class="grid_1">
+				<div class="grid_12">
+					<label c-label item="item">No CM</label>
+				</div>
+				<div class="clear"></div>
 
-			<!-- grid table -->
-			<div class="grid_12">
-				<div id="kGrid" kendo-grid
-					k-data-source="dataPasienPulang"
-					k-selectable="'row'"
-					k-columns="columnPasienPulang"
-					k-pageable="'true'"
-					k-sortable="'true'"
-					k-ng-model="dataPasienSelected" ng-click="click(dataPasienSelected)">
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noRm" />
 				</div>
 			</div>
-			<div class="grid_12">
-				<!-- No Rm-->
-				<div class="grid_1">
-					<div class="grid_12">
-						<label c-label item="item">No CM</label>
-					</div>
-					<div class="clear"></div>
-
-					<div class="grid_12">
-						<input c-text-box type="input" filter="" class="k-textbox"
-							ng-model="item.noRm" />
-					</div>
+			<!-- No Reg -->
+			<div class="grid_2">
+				<div class="grid_12">
+					<label c-label item="item">No Registrasi</label>
 				</div>
-				<!-- No Reg -->
-				<div class="grid_2">
-					<div class="grid_12">
-						<label c-label item="item">No Registrasi</label>
-					</div>
-					<div class="clear"></div>
+				<div class="clear"></div>
 
-					<div class="grid_12">
-						<input c-text-box type="input" filter="" class="k-textbox"
-							ng-model="item.noReg" />
-					</div>
-				</div>
-				<!-- Nama Reg -->
-				<div class="grid_2">
-					<div class="grid_12">
-						<label c-label item="item" c-label-text="Nama"></label>
-					</div>
-					<div class="clear"></div>
-
-					<div class="grid_12">
-						<input c-text-box type="input" filter="" class="k-textbox"
-							ng-model="item.namaOrReg" />
-					</div>
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noReg" />
 				</div>
 			</div>
-			<div class="grid_12" style="margin-top:60px">
-				<!-- app/module/Shared/keuangan/TemplateButtonTataRekening.html -->
-				<div ng-include='"../app/module/Shared/keuangan/TemplateButtonTataRekening" '></div>
-			</div>
+			<!-- Nama Reg -->
+			<div class="grid_2">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Nama"></label>
+				</div>
+				<div class="clear"></div>
 
-			<div class="grid_12" style="margin-top:60px">
-				<div ng-include='" ../app/module/Shared/TemplateLoading" '></div>
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaOrReg" />
+				</div>
 			</div>
-
+		</div>
+		<div class="grid_12" style="margin-top:60px">
+			<!-- app/module/Shared/keuangan/TemplateButtonTataRekening.html -->
+			<div ng-include='"../app/module/Shared/keuangan/TemplateButtonTataRekening" '></div>
 		</div>
 
+		<div class="grid_12" style="margin-top:60px">
+			<div ng-include='" ../app/module/Shared/TemplateLoading" '></div>
+		</div>
 
 	</div>
+
+
+</div>

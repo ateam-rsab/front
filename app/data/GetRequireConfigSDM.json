@@ -821,6 +821,14 @@
       "urlDep": "module/SDM/Remunerasi/SkoringTindakanMedisCtrl"
     },
     {
+      "nameDep": "SkoringTindakanPerawatCtrl",
+      "urlDep": "module/SDM/Remunerasi/SkoringTindakanPerawatCtrl"
+    },
+    {
+      "nameDep": "SkoringTindakanNakesCtrl",
+      "urlDep": "module/SDM/Remunerasi/SkoringTindakanNakesCtrl"
+    },
+    {
       "nameDep": "RiwayatEvaluasiJabatanCtrl",
       "urlDep": "module/SDM/Remunerasi/RiwayatEvaluasiJabatanCtrl"
     },
@@ -863,6 +871,10 @@
     {
       "nameDep": "VerifikasiCatatanKegiatanHarianCtrl",
       "urlDep": "module/SDM/Remunerasi/VerifikasiCatatanKegiatanHarianCtrl"
+    },
+    {
+      "nameDep": "VerifikasiKehadiranCtrl",
+      "urlDep": "module/SDM/Remunerasi/VerifikasiKehadiranCtrl"
     },
     {
       "nameDep": "SimulasiPendapatanCtrl",

@@ -139,14 +139,17 @@
         ]
     },
     {
-        "name":"Laporan",
-        "children":[{
-            "name": "Laporan Kunjungan Pasien",
-            "link": "#/LaporanKunjunganPasien"
-        }, {
-            "name": "Laporan Layanan",
-            "link": "#/LaporanLayanan"
-        }]
+        "name": "Laporan",
+        "children": [
+            {
+                "name": "Laporan Kunjungan Pasien",
+                "link": "#/LaporanKunjunganPasien"
+            },
+            {
+                "name": "Laporan Layanan",
+                "link": "#/LaporanLayanan"
+            }
+        ]
     },
     {
         "name": "Inventori",
@@ -264,12 +267,20 @@
         "name": "Aplikasi Remunerasi",
         "children": [
             {
+                "name": "Skoring Tindakan KTKL",
+                "link": "#/SkoringTindakanNakes"
+            },
+            {
                 "name": "Kontrak Kinerja Individu",
                 "link": "#/KontrakKinerjaIndividu"
             },
             {
                 "name": "Verifikasi Catatan Kegiatan Harian",
                 "link": "#/VerifikasiCatatanKegiatanHarian"
+            },
+            {
+                "name": "Penilaian Kinerja Individu",
+                "link": "#/PenilaianKinerjaIndividu"
             }
         ]
     },

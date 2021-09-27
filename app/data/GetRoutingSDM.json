@@ -4704,6 +4704,54 @@
     ]
   },
   {
+    "name": "SkoringTindakanPerawat",
+    "url": "/SkoringTindakanPerawat",
+    "templateurl": "module/SDM/Remunerasi/SkoringTindakanPerawat.html",
+    "controller": "SkoringTindakanPerawatCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      }
+    ]
+  },
+  {
+    "name": "SkoringTindakanNakes",
+    "url": "/SkoringTindakanNakes",
+    "templateurl": "module/SDM/Remunerasi/SkoringTindakanNakes.html",
+    "controller": "SkoringTindakanNakesCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      }
+    ]
+  },
+  {
     "name": "EvaluasiJabatanCtrl",
     "url": "/EvaluasiJabatan",
     "templateurl": "module/SDM/Remunerasi/EvaluasiJabatanList.html",
@@ -6552,6 +6600,30 @@
     "url": "/MonitoringAbsensiPegawai",
     "templateurl": "module/SDM/RevMonitoringAbsensi.html",
     "controller": "RevMonitoringAbsensiCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "PhpService",
+        "define": "PhpService"
+      }
+    ]
+  },
+  {
+    "name": "VerifikasiKehadiran",
+    "url": "/VerifikasiKehadiran",
+    "templateurl": "module/SDM/Remunerasi/VerifikasiKehadiran.html",
+    "controller": "VerifikasiKehadiranCtrl",
     "deps": [
       {
         "module": "Services",

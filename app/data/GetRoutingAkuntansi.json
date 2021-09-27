@@ -6050,6 +6050,10 @@
       {
         "module": "SarprasService",
         "define": "SarprasService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
       }
     ]
   },

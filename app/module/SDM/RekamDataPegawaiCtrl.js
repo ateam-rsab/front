@@ -456,7 +456,7 @@ define(['initialize'], function (initialize) {
 
             // #region Rekam Data Pegawai
             var initRekamDataPegawai = function () {
-                $scope.listIdKedudukan = [3, 4, 5, 24, 25]; // input kedudukan pegawai yang dijadikan parameter untuk set statusEnabled pegawai = false
+                $scope.listIdKedudukan = [3, 4, 5, 6, 24, 25, 26, 28, 29]; // input kedudukan pegawai yang dijadikan parameter untuk set statusEnabled pegawai = false
                 $scope.isRouteLoading = true;
             };
 
@@ -669,7 +669,7 @@ define(['initialize'], function (initialize) {
                     .ok('Ya')
                     .cancel('Tidak');
                 $mdDialog.show(confirm).then(function () {
-                    if($scope.isEdit) {
+                    if ($scope.isEdit) {
                         $scope.isRouteLoading = true;
                         ManageSdmNew.saveData(dataSave, "map-pegawai-jabatan-unitkerja/hapus-map").then(function (res) {
                             var isEmptyModel = _.isEmpty(res.data.data.data[1]);
@@ -693,12 +693,12 @@ define(['initialize'], function (initialize) {
                         });
                         return;
                     }
-                    
+
                     // $("#gridJabatanInternal").on("click", ".btn-hapus", function() {
-                        var $tr = $(e.target).closest("tr"),
-                            grid = $("#gridJabatanInternal").data("kendoGrid");
-                    
-                        grid.removeRow($tr);
+                    var $tr = $(e.target).closest("tr"),
+                        grid = $("#gridJabatanInternal").data("kendoGrid");
+
+                    grid.removeRow($tr);
                     // });
                 }, function () {
                     // console.error('Tidak jadi hapus');
@@ -2537,7 +2537,7 @@ define(['initialize'], function (initialize) {
                     )
                 }
                 var isValid = ModelItem.setValidation($scope, listRawRequired);
-                
+
                 if (isValid.status) {
 
                     if (_.contains($scope.item.tglLahir, '-')) {
@@ -2691,44 +2691,21 @@ define(['initialize'], function (initialize) {
                             newModel.mappingJabatan = $scope.getTempJabatanInternal();
                         }
 
-                        console.log(newModel);
-                        ManageSdmNew.saveData(newModel, "sdm/save-rekam-data-pegawai").then(function (dat) {
-                            if (dat.data.data.noRec) {
-                                var idPegawai = dat.data.data.noRec;
-                                if (!$state.params.idPegawai) {
-                                    $state.go('DataPegawai');
-                                } else {
-                                    $scope.ubahDataPegawai();
-                                    initRiwayatPerubahandData();
-                                    var confirm = $mdDialog.confirm()
-                                        .title('Apakah anda akan melanjutkan edit data?')
-                                        .ariaLabel('Lucky day')
-                                        .ok('Ya')
-                                        .cancel('Kembali ke Data Pegawai');
-                                    $mdDialog.show(confirm).then(function () {
-                                        getDataPegawai($state.params.idPegawai);
-                                    }, function () {
-                                        $state.go('DataPegawai');
-                                    });
-                                }
-                                if ($scope.item.noSip) {
-                                    $scope.item.tglTerbitSip = _.contains($scope.item.tglTerbitSip, '-') ? $scope.item.tglTerbitSip : dateHelper.formatDate($scope.item.tglTerbitSip, "DD-MM-YYYY");
-                                    $scope.item.tglBerakhirSip = _.contains($scope.item.tglBerakhirSip, '-') ? $scope.item.tglBerakhirSip : dateHelper.formatDate($scope.item.tglBerakhirSip, "DD-MM-YYYY");
-                                }
-                                if ($scope.item.noStr) {
-                                    $scope.item.tglTerbitStr = _.contains($scope.item.tglTerbitStr, '-') ? $scope.item.tglTerbitStr : dateHelper.formatDate($scope.item.tglTerbitStr, "DD-MM-YYYY");
-                                    $scope.item.tglBerakhirStr = _.contains($scope.item.tglBerakhirStr, '-') ? $scope.item.tglBerakhirStr : dateHelper.formatDate($scope.item.tglBerakhirStr, "DD-MM-YYYY");
-                                }
-                            } else {
-                                $scope.item = {
-                                    "tglLahir": new Date(),
-                                    "tglMasuk": new Date(),
-                                    "tglkeluar": new Date()
-                                };
-                            }
-                        }, (error) => {
-                            getDataPegawai($state.params.idPegawai);
-                        });
+                        if ($scope.item.idFinger && !$scope.listIdKedudukan.includes($scope.item.kedudukan.id)) {
+                            ManageSdmNew.getListData('pegawai/check-existing-fingerid?fingerId=' + $scope.item.idFinger
+                                + '&pegawaiId=' + ($state.params.idPegawai ? newModel.id : "")).then(res => {
+                                    if (res.data.data.length > 0) {
+                                        toastr.warning('Finger ID sudah dipakai', 'Peringatan');
+
+                                        $scope.isRouteLoading = false;
+                                        return
+                                    } else {
+                                        $scope.SaveRekamDataPegawai(newModel)
+                                    }
+                                })
+                        } else {
+                            $scope.SaveRekamDataPegawai(newModel)
+                        }
                     } else {
                         messageContainer.error('Tidak ada perubahan data');
                     }
@@ -2736,6 +2713,47 @@ define(['initialize'], function (initialize) {
                     ModelItem.showMessages(isValid.messages);
                     $scope.isRouteLoading = false;
                 }
+            };
+
+            $scope.SaveRekamDataPegawai = function (newModel) {
+                // console.log(newModel);
+                ManageSdmNew.saveData(newModel, "sdm/save-rekam-data-pegawai").then(function (dat) {
+                    if (dat.data.data.noRec) {
+                        var idPegawai = dat.data.data.noRec;
+                        if (!$state.params.idPegawai) {
+                            $state.go('DataPegawai');
+                        } else {
+                            $scope.ubahDataPegawai();
+                            initRiwayatPerubahandData();
+                            var confirm = $mdDialog.confirm()
+                                .title('Apakah anda akan melanjutkan edit data?')
+                                .ariaLabel('Lucky day')
+                                .ok('Ya')
+                                .cancel('Kembali ke Data Pegawai');
+                            $mdDialog.show(confirm).then(function () {
+                                getDataPegawai($state.params.idPegawai);
+                            }, function () {
+                                $state.go('DataPegawai');
+                            });
+                        }
+                        if ($scope.item.noSip) {
+                            $scope.item.tglTerbitSip = _.contains($scope.item.tglTerbitSip, '-') ? $scope.item.tglTerbitSip : dateHelper.formatDate($scope.item.tglTerbitSip, "DD-MM-YYYY");
+                            $scope.item.tglBerakhirSip = _.contains($scope.item.tglBerakhirSip, '-') ? $scope.item.tglBerakhirSip : dateHelper.formatDate($scope.item.tglBerakhirSip, "DD-MM-YYYY");
+                        }
+                        if ($scope.item.noStr) {
+                            $scope.item.tglTerbitStr = _.contains($scope.item.tglTerbitStr, '-') ? $scope.item.tglTerbitStr : dateHelper.formatDate($scope.item.tglTerbitStr, "DD-MM-YYYY");
+                            $scope.item.tglBerakhirStr = _.contains($scope.item.tglBerakhirStr, '-') ? $scope.item.tglBerakhirStr : dateHelper.formatDate($scope.item.tglBerakhirStr, "DD-MM-YYYY");
+                        }
+                    } else {
+                        $scope.item = {
+                            "tglLahir": new Date(),
+                            "tglMasuk": new Date(),
+                            "tglkeluar": new Date()
+                        };
+                    }
+                }, (error) => {
+                    getDataPegawai($state.params.idPegawai);
+                });
             };
 
             $scope.ubahDataPegawai = function () {

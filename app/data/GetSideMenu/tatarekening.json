@@ -430,6 +430,10 @@
             {
                 "name": "Logbook Kinerja Dokter",
                 "link": "#/LogbookKinerjaDokter"
+            },
+            {
+                "name": "Penilaian Kinerja Individu",
+                "link": "#/PenilaianKinerjaIndividu"
             }
         ]
     },

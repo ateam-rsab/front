@@ -8,9 +8,9 @@ define(['initialize'], function (initialize) {
             $scope.item = {};
             $scope.ma = {};
             $scope.ListBoolean = [
-				{ name: 'Tidak', id: 0 },
-				{ name: 'Ya', id: 1 }
-			];
+                { name: 'Tidak', id: 0 },
+                { name: 'Ya', id: 1 }
+            ];
 
             var initAkomodasi = function () {
                 $scope.gridAkomodasi = {
@@ -38,7 +38,7 @@ define(['initialize'], function (initialize) {
                         },
                         {
                             field: "isRawatGabung",
-                            title: "<h3 class='small-font'>Status<br>Rawat Gabung</h3>", 
+                            title: "<h3 class='small-font'>Status<br>Rawat Gabung</h3>",
                             template: "# if (isRawatGabung === 1) {# #= 'Ya' # #} else {# #= '-' # #}#",
                             width: "150px"
                         },
@@ -72,7 +72,7 @@ define(['initialize'], function (initialize) {
 
             $scope.init = function () {
                 $q.all([
-                    ManageSdm.getOrderList("service/list-generic/?view=Ruangan&select=id,namaRuangan&criteria=statusEnabled&values=true&order=namaRuangan:asc", true)
+                    ManageSdm.getOrderList("service/list-generic/?view=Ruangan&select=id,namaRuangan&criteria=statusEnabled,departemenId&values=true,16&order=namaRuangan:asc", true)
                 ]).then(function (res) {
                     $scope.ListRuangan = res[0].data;
                     $scope.ListRuanganFilter = [];
@@ -281,7 +281,7 @@ define(['initialize'], function (initialize) {
                         })
                     })
                 }
-                
+
             });
 
             $scope.$watch('item.ruangan', function (newVal, oldVal) {

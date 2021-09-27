@@ -327,33 +327,57 @@
     <!-- <fieldset> -->
     <!-- <legend>Verifikasi</legend> -->
     <div class="panel panel-default container_12">
-        <div class="grid_6"></div>
-        <div class="grid_6">
-            <input type="checkbox" class="k-checkbox" name="diskon" id="diskon" ng-model="isDiskonKaryawanKeluargaInti"
-                ng-click="toogleClick($event)">
-            <label c-label item="item" class="k-checkbox-label" for="diskon">Tandai sebagai Pegawai RSAB Harapan
-                Kita/ Anggota Keluarga Inti Pegawai RSAB Harapan Kita</label>
-        </div>
-        <div class="grid_6"></div>
-        <div class="grid_6">
-            <input type="radio" name="diskonpegawai" ng-model="item.diskonpegawai" value="1" id="diskonpegawai"
-                class="k-radio" ng-disabled="!isAsPegOrKel" ng-click="loadDataVerif()">
-            <label class="k-radio-label" for="diskonpegawai">Pegawai RSAB Harapan Kita</label>
-        </div>
-        <div class="grid_6"></div>
-        <div class="grid_6">
-            <input type="radio" name="diskonpegawai" ng-model="item.diskonpegawai" value="2" id="diskonkeluarga"
-                class="k-radio" ng-disabled="!isAsPegOrKel" ng-click="loadDataVerif()">
-            <label class="k-radio-label" for="diskonkeluarga">Anggota Keluarga Inti Pegawai RSAB Harapan Kita</label>
-        </div>
-        <div class="grid_6">
-            <div class="grid_12">
-                <label c-label item="item" c-label-text="No Order"></label>
+        <div class="grid_12">
+            <div class="grid_6">
+                <input type="checkbox" class="k-checkbox" name="diskon" id="diskon"
+                    ng-model="isDiskonKaryawanKeluargaInti" ng-click="toogleClick($event)">
+                <label c-label item="item" class="k-checkbox-label" for="diskon">Tandai untuk diskon</label>
             </div>
-            <div class="clear"></div>
-
-            <div class="grid_12">
-                <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noOrder" ng-disabled="true" />
+            <div class="grid_6"></div>
+        </div>
+        <div class="grid_12">
+            <div class="grid_6">
+                <input type="radio" name="diskonpegawai" ng-model="item.diskonpegawai" value="1" id="diskonpegawai"
+                    class="k-radio" ng-disabled="!isAsPegOrKel" ng-click="loadDataVerif()">
+                <label class="k-radio-label" for="diskonpegawai">Pegawai RSAB Harapan Kita</label>
+            </div>
+            <div class="grid_6"></div>
+        </div>
+        <div class="grid_12">
+            <div class="grid_6">
+                <input type="radio" name="diskonpegawai" ng-model="item.diskonpegawai" value="2" id="diskonkeluarga"
+                    class="k-radio" ng-disabled="!isAsPegOrKel" ng-click="loadDataVerif()">
+                <label class="k-radio-label" for="diskonkeluarga">Anggota Keluarga Inti Pegawai RSAB Harapan
+                    Kita</label>
+            </div>
+            <div class="grid_6"></div>
+        </div>
+        <div class="grid_12">
+            <div class="grid_6">
+                <input type="radio" name="diskonpegawai" ng-model="item.diskonpegawai" value="3" id="diskonpenunggu"
+                    class="k-radio" ng-disabled="!isAsPegOrKel" ng-click="loadDataVerif()">
+                <label class="k-radio-label" for="diskonpenunggu">Penunggu Pasien Tidak Mampu Disetujui MPP</label>
+            </div>
+            <div class="grid_6" ng-show="!isPenungguPasien"></div>
+            <div class="grid_6" ng-show="isPenungguPasien">
+                <label c-label item="item" ng-show="isPenungguPasien">MPP</label>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.mppPenungguPasien"
+                    k-data-text-field="'Name'" k-data-value-field="'pegawaiId'" k-filter="'contains'"
+                    k-auto-bind="false" k-data-source="listPegawaiMPP" />
+            </div>
+        </div>
+        <div class="grid_12">
+            <div class="grid_6">
+                <input type="radio" name="diskonpegawai" ng-model="item.diskonpegawai" value="4" id="diskonpasien"
+                    class="k-radio" ng-disabled="!isAsPegOrKel" ng-click="loadDataVerif()">
+                <label class="k-radio-label" for="diskonpasien">Pasien Indikasi Tertentu Disetujui MPP</label>
+            </div>
+            <div class="grid_6" ng-show="!isPasien"></div>
+            <div class="grid_6" ng-show="isPasien">
+                <label c-label item="item" ng-show="isPasien">MPP</label>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.mppPasien" k-data-text-field="'Name'"
+                    k-data-value-field="'pegawaiId'" k-filter="'contains'" k-auto-bind="false"
+                    k-data-source="listPegawaiMPP" />
             </div>
         </div>
         <div class="grid_6">
@@ -365,6 +389,16 @@
             <div class="grid_12">
                 <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaPasiens"
                     ng-disabled="true" />
+            </div>
+        </div>
+        <div class="grid_6">
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="No Order"></label>
+            </div>
+            <div class="clear"></div>
+
+            <div class="grid_12">
+                <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noOrder" ng-disabled="true" />
             </div>
         </div>
         <div class="grid_12 ">
@@ -380,7 +414,7 @@
         </div> -->
         <div class="grid_3">
             <div class="grid_12">
-                <label c-label item="item" c-label-text="DPJP"></label>
+                <label c-label item="item" c-label-text="Dokter Order"></label>
             </div>
             <div class="clear"></div>
 

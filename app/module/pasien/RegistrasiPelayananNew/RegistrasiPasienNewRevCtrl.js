@@ -19,7 +19,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                     $scope.title = 'Pendaftaran Pasien Bayi';
                     $scope.item.tglLahir = $scope.now
                     getPasienBayi();
-                    cacheHelper.set('CacheRegisBayi',undefined)
+                    cacheHelper.set('CacheRegisBayi', undefined)
                 }
                 else if ($state.params.idPasien != undefined && $state.params.idPasien != 0 && $state.params.idPasien != "") {
                     $scope.idPasien = parseInt($state.params.idPasien)
@@ -216,7 +216,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
 
                     }
 
-                }, function(error){
+                }, function (error) {
                     $scope.isRouteLoading = false
                 })
             }
@@ -338,6 +338,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                     'idpasien': $scope.idPasien != undefined ? $scope.idPasien : '',
                     'pasien': {
                         'namaPasien': $scope.item.namaPasien,
+                        'noCmIbu': ($scope.isBayi ? $scope.item.noCmIbu : null), //untuk simpan di pasien_m.reportdisplay
                         'noIdentitas': $scope.item.noIdentitas != undefined ? $scope.item.noIdentitas : null,
                         'namaSuamiIstri': $scope.item.namaSuamiIstri != undefined ? $scope.item.namaSuamiIstri : null,
                         'noAsuransiLain': $scope.item.noAsuransiLain != undefined ? $scope.item.noAsuransiLain : null,
