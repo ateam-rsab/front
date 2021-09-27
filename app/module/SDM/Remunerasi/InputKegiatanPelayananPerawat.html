@@ -1,0 +1,100 @@
+<md-toolbar md-scroll-shrink class="shadow">
+    <div class="md-toolbar-tools">Input Kegiatan Pelayanan Perawat</div>
+</md-toolbar>
+
+
+<h3 style="margin: 5px 0;font-weight: bolder;">Data Pasien</h3>
+<hr style="margin: 5px 0;">
+<div class="grid_12">
+    <div class="grid_2">
+        <label c-label item="item">No. Registrasi</label>
+        <input c-text-box type="input" class="k-textbox" disabled ng-model="pasien.noregistrasi" />
+    </div>
+    <div class="grid_2">
+        <label c-label item="item">No. Rekam Medis</label>
+        <input c-text-box type="input" class="k-textbox" disabled ng-model="pasien.nocm" />
+    </div>
+    <div class="grid_2">
+        <label c-label item="item">Nama Pasien</label>
+        <input c-text-box type="input" class="k-textbox" disabled ng-model="pasien.namapasien" />
+    </div>
+    <div class="grid_2">
+        <label c-label item="item">Tanggal Registrasi</label>
+        <input c-text-box type="input" class="k-textbox" disabled ng-model="pasien.tglregistrasi" />
+        <!-- <input style="width: 100%;" k-disabled ng-model="pasien.tglregistrasi" kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" /> -->
+    </div>
+    <div class="grid_2">
+        <label c-label item="item">Jenis Kelamin</label>
+        <input c-text-box type="input" class="k-textbox" disabled ng-model="pasien.jeniskelamin" />
+    </div>
+    <div class="grid_2">
+        <label c-label item="item">Tanggal Lahir</label>
+        <input c-text-box type="input" class="k-textbox" disabled ng-model="pasien.tgllahir" />
+        <!-- <input style="width: 100%;" k-disabled ng-model="pasien.tgllahir" kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" /> -->
+    </div>
+</div>
+
+<div class="grid_12">
+    <div class="grid_4">
+        <label c-label item="item">Alamat</label>
+        <input c-text-box type="input" class="k-textbox" disabled ng-model="pasien.alamatlengkap" />
+    </div>
+    <div class="grid_2">
+        <label c-label item="item">Kelas</label>
+        <input c-text-box type="input" class="k-textbox" disabled ng-model="pasien.namakelas" />
+    </div>
+    <div class="grid_2">
+        <label c-label item="item">Ruangan</label>
+        <input c-text-box type="input" class="k-textbox" disabled ng-model="pasien.namaruangan" />
+    </div>
+    <div class="grid_2">
+        <label c-label item="item">Pendidikan</label>
+        <input c-text-box type="input" class="k-textbox" disabled ng-model="pasien.pendidikan" />
+    </div>
+    <div class="grid_2">
+        <label c-label item="item">Jenis Pelayanan</label>
+        <input c-text-box type="input" class="k-textbox" disabled ng-model="pasien.jenispelayanan" />
+    </div>
+</div>
+
+<hr style="margin: 5px 0;">
+<h3 style="margin: 5px 0;font-weight: bolder;">Kegiatan Perawat</h3>
+<hr style="margin: 5px 0;">
+
+<div class="grid_12">
+    <div class="grid_3">
+        <label c-label item="item">Perawat Pelaksana</label>
+        <input c-text-box type="input" class="k-textbox" disabled ng-model="perawat.perawatPelaksana" />
+    </div>
+    <div class="grid_2">
+        <label c-label item="item">Tanggal pelayanan</label>
+        <input style="width: 100%;" k-ng-model="perawat.tglPelayanan" kendo-date-time-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy HH:mm'" />
+    </div>
+    <div class="grid_4">
+        <label c-label item="item">Kegiatan</label>
+        <input kendo-combo-box k-filter="'contains'" k-ng-model="perawat.kegiatan" ng-disabled="isEdit" k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-data-source="listProduk" />
+    </div>
+    <div class="grid_1">
+        <label c-label item="item">Jumlah</label>
+        <input c-text-box type="number" class="k-textbox" ng-model="perawat.jmlLayanan" />
+    </div>
+    <div class="grid_1" style="margin-top: 1.6em;">
+        <md-button class="md-raised md-primary medium-button" ng-click="tambahKegiatan()">
+            <span>{{labelButtonSave}}</span>
+        </md-button>
+    </div>
+    <div class="grid_1" style="margin-top: 1.6em;">
+        <md-button class="md-raised md-danger medium-button" ng-click="reset()">
+            <span>reset</span>
+        </md-button>
+    </div>
+</div>
+
+
+<div class="grid_12">
+    <div kendo-grid k-data-source="dataSource" ng-click="klikGrid(selectedData)" k-selectable="'row'" options="optGrid" k-ng-model="selectedData"></div>
+</div>
+
+<div class="grid_12" style="margin-top:60px">
+    <div ng-include='" ../app/module/Shared/TemplateLoading" '></div>
+</div>
