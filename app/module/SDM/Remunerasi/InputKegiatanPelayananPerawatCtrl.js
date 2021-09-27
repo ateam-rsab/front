@@ -103,7 +103,7 @@ define(['initialize'], function (initialize) {
             $scope.init = () => {
                 // console.log($state.params.noRec)
                 $scope.perawat.perawatPelaksana = $scope.perawat.data.namaLengkap;
-                manageServicePhp.getDataTableTransaksi(`registrasipasien/get-pasien-bynorec/${$scope.pasien.data.norec_pd}/${$scope.pasien.data.norec_apd}`).then(res => {
+                manageServicePhp.getDataTableTransaksi(`registrasipasien/get-pasien-bynorec/${$scope.pasien.data.norec_pd}/${$scope.pasien.data.norec}`).then(res => {
                     $scope.pasien = res.data[0];
                 })
                 $scope.getDataGrid();
