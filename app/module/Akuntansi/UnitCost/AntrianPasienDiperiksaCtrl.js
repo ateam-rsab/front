@@ -25,6 +25,19 @@ define(['initialize'], function (initialize) {
 				}
 				toastr.info("Harap pilih pasien terlebih dahulu");
 			}
+			$scope.inputKegiatanNakesLain = () => {
+				$scope.dataSelected.norec_apd = $scope.item.norec_apd;
+				$scope.dataSelected.norec_pd = $scope.item.norec_pd;
+				if($scope.dataSelected) {
+					localStorage.setItem('dataAPD', JSON.stringify($scope.dataSelected));
+					$state.go('InputKegiatanPelayananNakes', {
+						noRec: $scope.dataSelected.norec
+					});
+					
+					return;
+				}
+				toastr.info("Harap pilih pasien terlebih dahulu");
+			}
 			$scope.item = {};
 			$scope.konsul = {}
 			$scope.isRouteLoading = false;

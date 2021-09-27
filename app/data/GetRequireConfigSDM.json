@@ -869,6 +869,10 @@
       "urlDep": "module/SDM/Remunerasi/InputKegiatanPelayananPerawatCtrl"
     },
     {
+      "nameDep": "InputKegiatanPelayananNakesCtrl",
+      "urlDep": "module/SDM/Remunerasi/InputKegiatanPelayananNakesCtrl"
+    },
+    {
       "nameDep": "VerifikasiCatatanKegiatanHarianCtrl",
       "urlDep": "module/SDM/Remunerasi/VerifikasiCatatanKegiatanHarianCtrl"
     },

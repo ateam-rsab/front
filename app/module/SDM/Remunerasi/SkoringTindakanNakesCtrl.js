@@ -269,9 +269,10 @@ define(['initialize'], function (initialize) {
 
             $scope.getProduk = (profesiId) => {
                 $scope.item.namaProduk = null;
-                ManageSdmNew.getListData("iki-remunerasi/get-produk-nakes?profesiId=" + profesiId).then((res) => {
-                    $scope.listNamaProduk = res.data.data;
-                });
+                ManageSdmNew.getListData("service/list-generic/?view=ProdukNakes&"
+                    + "select=id,namaProduk&criteria=statusEnabled,profesiId&values=true," + profesiId + "&order=namaProduk:asc").then(res => {
+                        $scope.listNamaProduk = res.data;
+                    })
             }
 
             $scope.closePopUp = () => {
