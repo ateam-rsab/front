@@ -11,6 +11,7 @@ define(['initialize'], function (initialize) {
             $scope.nakes.tglPelayanan = new Date();
             $scope.nakes.data = JSON.parse(localStorage.getItem('pegawai'));
             $scope.pasien.data = JSON.parse(localStorage.getItem('dataAPD'));
+            $scope.norec_apd = $scope.pasien.data.norec;
             $scope.nakes.jmlLayanan = 0;
             $scope.optGrid = {
                 pageable: true,
@@ -69,6 +70,7 @@ define(['initialize'], function (initialize) {
                 };
                 $scope.nakes.jmlLayanan = data.jumlah;
 
+                $scope.noRecAPD = data.noRecAPD
                 $scope.item.norecEdit = data.noRec
                 // console.log($scope.item.norecEdit)
             }
@@ -133,10 +135,12 @@ define(['initialize'], function (initialize) {
                 $scope.nakes.jmlLayanan = 0;
                 $scope.labelButtonSave = "Tambah";
                 $scope.isEdit = false;
+
+                $scope.item.norecEdit = undefined
             }
 
-            $scope.tambahKegiatan = (method) => {
-                let norecApd = method === "edit" ? $scope.item.noRecAPD : $scope.pasien.norec_apd;
+            $scope.tambahKegiatan = () => {
+                let norecApd = $scope.labelButtonSave === "Edit" ? $scope.noRecAPD : $scope.norec_apd;
                 // let statusEnabled = method === "hapus" ? false : true;
                 if (!$scope.nakes.tglPelayanan) {
                     toastr.warning("Harap pilih tanggal pelayanan");
