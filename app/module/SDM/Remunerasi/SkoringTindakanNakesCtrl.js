@@ -97,9 +97,15 @@ define(['initialize'], function (initialize) {
                         if (res.data.data.isStaf) {
                             $scope.isVerifHidden = true
                             $scope.isHapusGranted = false
+                            $scope.isTambahGranted = true
                         } else if (res.data.data.isAtasan || res.data.data.isSuperuser) {
                             $scope.isVerifHidden = false
                             $scope.isHapusGranted = true
+                            $scope.isTambahGranted = true
+                        } else {
+                            $scope.isVerifHidden = true
+                            $scope.isHapusGranted = false
+                            $scope.isTambahGranted = false
                         }
                     } else {
                         $scope.listId = [21]
@@ -116,6 +122,11 @@ define(['initialize'], function (initialize) {
             init();
 
             $scope.tambahData = () => {
+                if (!$scope.isTambahGranted) {
+                    toastr.warning("Tidak memiliki akses menambah data!")
+                    return
+                }
+
                 $scope.reset();
                 getProfesi();
                 $scope.isEdit = false
