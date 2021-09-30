@@ -122,10 +122,10 @@ define(['initialize'], function (initialize) {
             init();
 
             $scope.tambahData = () => {
-                if (!$scope.isTambahGranted) {
-                    toastr.warning("Tidak memiliki akses menambah data!")
-                    return
-                }
+                // if (!$scope.isTambahGranted) {
+                //     toastr.warning("Tidak memiliki akses menambah data!")
+                //     return
+                // }
 
                 $scope.reset();
                 getProfesi();
