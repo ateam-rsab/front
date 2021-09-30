@@ -180,14 +180,14 @@ define(['initialize'], function (initialize) {
 						if ($scope.item.diskonpegawai && $scope.item.diskonpegawai == 3 && !$scope.item.mppPenungguPasien) {
 							toastr.warning('Manager Pelayanan Pasien yang menyetujui harus diisi', 'Peringatan')
 							$scope.isRouteLoading = false
-							$scope.tombolSaveIlang = false
+							$scope.tombolSaveIlang = true
 							return
 						}
 
 						if ($scope.item.diskonpegawai && $scope.item.diskonpegawai == 4 && !$scope.item.mppPasien) {
 							toastr.warning('Manager Pelayanan Pasien yang menyetujui harus diisi', 'Peringatan')
 							$scope.isRouteLoading = false
-							$scope.tombolSaveIlang = false
+							$scope.tombolSaveIlang = true
 							return
 						}
 
