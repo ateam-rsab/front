@@ -84,7 +84,8 @@ define(['initialize'], function (initialize) {
 							}
 
 							if (data.diskonpegawaiexisting == 1 || data.diskonpegawaiexisting == 2
-								|| data.diskonpegawaiexisting == 3 || data.diskonpegawaiexisting == 4) {
+								|| data.diskonpegawaiexisting == 3 || data.diskonpegawaiexisting == 4
+								|| data.diskonpegawaiexisting == 5) {
 								$scope.isDiskonKaryawanKeluargaInti = true
 								$scope.isAsPegOrKel = true
 								$scope.item.diskonpegawai = data.diskonpegawaiexisting
@@ -92,7 +93,8 @@ define(['initialize'], function (initialize) {
 							}
 
 							if ($scope.item.diskonpegawai == 1 || data.diskonpegawaiexisting == 1
-								|| $scope.item.diskonpegawai == 2 || data.diskonpegawaiexisting == 2) {
+								|| $scope.item.diskonpegawai == 2 || data.diskonpegawaiexisting == 2
+								|| $scope.item.diskonpegawai == 5 || data.diskonpegawaiexisting == 5) {
 								$scope.item.mppPenungguPasien = undefined
 								$scope.item.mppPasien = undefined
 								$scope.isPenungguPasien = false
@@ -124,9 +126,10 @@ define(['initialize'], function (initialize) {
 								$scope.showTtlKlaim = true
 								$scope.showTtlKlaim2 = false
 							}
-							
+
 							if ($scope.item.diskonpegawai == 1 || $scope.item.diskonpegawai == 2
-								|| $scope.item.diskonpegawai == 3 || $scope.item.diskonpegawai == 4) {
+								|| $scope.item.diskonpegawai == 3 || $scope.item.diskonpegawai == 4
+								|| $scope.item.diskonpegawai == 5) {
 								if (data.jenisPasien == 'Umum/Pribadi') {
 									$scope.item.totalKlaim = data.totalDiskonPegawai
 								}
