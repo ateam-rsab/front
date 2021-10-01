@@ -23,6 +23,7 @@ define(['initialize'], function (initialize) {
             $scope.now = new Date();
             $scope.dataVOloaded = true;
             $scope.isRouteLoading = false;
+            $scope.isVerifPresensi = false
             var validate = 2;
             $scope.paramURl = '';
             //1 by tanggal
@@ -352,8 +353,9 @@ define(['initialize'], function (initialize) {
                 }
 
                 ManageSdmNew.getListData("sdm/get-detail-presensi?listTrNo=" + listTrNo).then(function (res) {
+                    $scope.isVerifPresensi = true
                     $scope.dataDetail = res.data.data;
-                    $scope.windDetailPresensi.center().open();
+                    // $scope.windDetailPresensi.center().open();
                 })
             }
 
@@ -571,12 +573,26 @@ define(['initialize'], function (initialize) {
             $scope.klik = function (current) {
                 if (!current) return;
 
-                $scope.current = current;
-                $scope.item.jabatan = current.jabatanInternal;
-                $scope.item.unitKerjatxt = current.unitKerja;
-                $scope.item.idFingerPrint = current.idFinger;
-                $scope.item.nip = current.nip;
-                $scope.item.nama = current.nama;
+                // $scope.current = current;
+                // $scope.item.jabatan = current.jabatanInternal;
+                // $scope.item.unitKerjatxt = current.unitKerja;
+                // $scope.item.idFingerPrint = current.idFinger;
+                // $scope.item.nip = current.nip;
+                // $scope.item.nama = current.nama;
+
+                $scope.hideLocation();
+
+                if (!$scope.isBebasValidasi) {
+                    toastr.warning("Tidak ada akses!");
+                    return;
+                }
+
+                if (!current) {
+                    messageContainer.error("Data Tidak Ditemukan");
+                    return;
+                }
+                var dataItem = current;
+                $scope.loadDetail(dataItem);
             };
 
             $scope.cs = function () {

@@ -160,27 +160,29 @@ define(['initialize'], function (initialize) {
                     jabatanId = ($scope.item.jabatan ? $scope.item.jabatan.id : "")
                 }
 
-                ManageSdmNew.getListData("iki-remunerasi/get-dashboard-kinerja?pegawaiId=" + pegawaiId
-                    + "&jabatanId=" + jabatanId
-                    + "&bulan=" + date).then((res) => {
-                        $scope.isRouteLoading = false;
+                if (pegawaiId && jabatanId && date) {
+                    ManageSdmNew.getListData("iki-remunerasi/get-dashboard-kinerja?pegawaiId=" + pegawaiId
+                        + "&jabatanId=" + jabatanId
+                        + "&bulan=" + date).then((res) => {
+                            $scope.isRouteLoading = false;
 
-                        $scope.dataDashboard = res.data.data;
-                        // console.log($scope.dataDashboard);
+                            $scope.dataDashboard = res.data.data.data[0];
+                            // console.log($scope.dataDashboard);
 
-                        $scope.dataDetailDashboardKinerja = {
-                            kuantitas: res.data.data.listJenisIndikator[0],
-                            kualitas: res.data.data.listJenisIndikator[1],
-                            perilaku: res.data.data.listJenisIndikator[2],
-                            persentaseCapaianKuntitas: res.data.data.listJenisIndikator[0].persenCapaianDibulatkan,
-                            persentaseCapaianKualitas: res.data.data.listJenisIndikator[1].persenCapaianDibulatkan,
-                            persentaseCapaianPerilaku: res.data.data.listJenisIndikator[2].persenCapaianDibulatkan,
+                            $scope.dataDetailDashboardKinerja = {
+                                kuantitas: res.data.data.data[0].listJenisIndikator[0],
+                                kualitas: res.data.data.data[0].listJenisIndikator[1],
+                                perilaku: res.data.data.data[0].listJenisIndikator[2],
+                                persentaseCapaianKuntitas: res.data.data.data[0].listJenisIndikator[0].persenCapaianDibulatkan,
+                                persentaseCapaianKualitas: res.data.data.data[0].listJenisIndikator[1].persenCapaianDibulatkan,
+                                persentaseCapaianPerilaku: res.data.data.data[0].listJenisIndikator[2].persenCapaianDibulatkan,
 
-                        };
-                        // console.log($scope.dataDetailDashboardKinerja);
-                    }, (error) => {
-                        $scope.isRouteLoading = false;
-                    });
+                            };
+                            // console.log($scope.dataDetailDashboardKinerja);
+                        }, (error) => {
+                            $scope.isRouteLoading = false;
+                        });
+                }
             }
 
             $scope.detailData = (state) => {
