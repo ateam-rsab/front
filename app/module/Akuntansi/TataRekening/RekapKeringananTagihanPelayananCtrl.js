@@ -22,7 +22,7 @@ define(['initialize'], function (initialize) {
                     }
                 },
                 scrollable: true,
-                columns:[{
+                columns: [{
                     field: "no",
                     title: "<h3>No</h3>",
                     width: "40px"
@@ -40,7 +40,7 @@ define(['initialize'], function (initialize) {
                     width: "40px"
                 }]
             }
-            
+
             $scope.optGrid = {
                 filterable: {
                     extra: false,
@@ -102,13 +102,13 @@ define(['initialize'], function (initialize) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
 
-                manageTataRekening.getReporting(`reporting/log-rekapitulasi-diskon?norecPd=${dataItem.norecPd}&norecSp=${dataItem.norecSp}`).then(res => { 
-                    for(let i = 0; i < res.data.length; i++) {
+                manageTataRekening.getReporting(`reporting/log-rekapitulasi-diskon?norecPd=${dataItem.norecPd}&norecSp=${dataItem.norecSp}`).then(res => {
+                    for (let i = 0; i < res.data.length; i++) {
                         res.data[i].no = i + 1;
                         res.data[i].keterangan = res.data[i].keterangan ? res.data[i].keterangan : '-';
                         res.data[i].tanggalFormatted = res.data[i].tanggal ? DateHelper.formatDate(res.data[i].tanggal, "YYYY-MM-DD") : "-";
                     }
-                    
+
                     $scope.dataSourceDetail = new kendo.data.DataSource({
                         data: res.data.data,
                         pageSize: 20
@@ -122,37 +122,25 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.getData = () => {
+                // console.log(res);
+                $scope.isRouteLoading = true;
+                manageTataRekening.getReporting(`reporting/rekapitulasi-diskon?periode=${$scope.item.bulan ? DateHelper.toTimeStamp($scope.item.bulan) : ''}`).then(res => {
+                    for (let i = 0; i < res.data.data.length; i++) {
 
-                for (let i = 0; i < res.data.data.length; i++) {
+                        res.data.data[i].no = i + 1;
+                        res.data.data[i].biayaJasaFarmasiFormatted = res.data.data[i].biayaJasaFarmasi ? formatCurrency(res.data.data[i].biayaJasaFarmasi) : "-";
+                        res.data.data[i].totalTagihanFormatted = res.data.data[i].totalTagihan ? formatCurrency(res.data.data[i].totalTagihan) : 0;
+                        res.data.data[i].totalDiskonFormatted = res.data.data[i].totalDiskon ? formatCurrency(res.data.data[i].totalDiskon) : 0;
+                    }
+                    $scope.isRouteLoading = false;
 
-                    res.data.data[i].no = i + 1;
-                    res.data.data[i].biayaJasaFarmasiFormatted = res.data.data[i].biayaJasaFarmasi ? formatCurrency(res.data.data[i].biayaJasaFarmasi) : "-";
-                    res.data.data[i].totalTagihanFormatted = res.data.data[i].totalTagihan ? formatCurrency(res.data.data[i].totalTagihan) : 0;
-                    res.data.data[i].totalDiskonFormatted = res.data.data[i].totalDiskon ? formatCurrency(res.data.data[i].totalDiskon) : 0;
-                }
-
-                $scope.dataSource = new kendo.data.DataSource({
-                    data: res.data.data,
-                    pageSize: 10
+                    $scope.dataSource = new kendo.data.DataSource({
+                        data: res.data.data,
+                        pageSize: 10
+                    })
                 })
-                console.log(res);
-                // $scope.isRouteLoading = true;
-                // manageTataRekening.getReporting(`reporting/rekapitulasi-diskon?periode=${$scope.item.bulan ? DateHelper.toTimeStamp($scope.item.bulan) : ''}`).then(res => {
-                //     for (let i = 0; i < res.data.data.length; i++) {
-
-                //         res.data.data[i].no = i + 1;
-                //         res.data.data[i].biayaJasaFarmasiFormatted = res.data.data[i].biayaJasaFarmasi ? formatCurrency(res.data.data[i].biayaJasaFarmasi) : "-";
-                //         res.data.data[i].totalTagihanFormatted = res.data.data[i].totalTagihan ? formatCurrency(res.data.data[i].totalTagihan) : 0;
-                //         res.data.data[i].totalDiskonFormatted = res.data.data[i].totalDiskon ? formatCurrency(res.data.data[i].totalDiskon) : 0;
-                //     }
-                //     $scope.isRouteLoading = false;
-
-                //     $scope.dataSource = new kendo.data.DataSource({
-                //         data: res.data.data,
-                //         pageSize: 10
-                //     })
-                // })
             }
+            
             $scope.getData();
 
             $scope.search = () => {
