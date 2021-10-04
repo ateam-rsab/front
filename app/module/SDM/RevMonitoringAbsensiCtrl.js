@@ -193,6 +193,16 @@ define(['initialize'], function (initialize) {
                 }]
             };
             $scope.mainGridOption = {
+                dataBound: function (e) {
+                    $('td').each(function () {
+                        if ($(this).text() == 'V') {
+                            $(this).addClass('verified')
+                        };
+                        if ($(this).text() == 'X') {
+                            $(this).addClass('unverified')
+                        };
+                    })
+                },
                 columns: [{
                     field: "nama",
                     headerAttributes: {
@@ -294,8 +304,9 @@ define(['initialize'], function (initialize) {
                     field: "listTrNo",
                     hidden: true
                 }, {
-                    width: "30px",
-                    template: "<p style='text-align:left'><button ng-click='getDetail(dataItem)' class='k-button k-button-icontext'><i class='fa fa-ellipsis-v'></i></button></p>"
+                    field: "verifikasi",
+                    title: "V",
+                    width: "18px"
                 }],
                 sortable: {
                     mode: "single",
@@ -317,46 +328,72 @@ define(['initialize'], function (initialize) {
                 }]
             }
 
-            $scope.seeLocation = (data) => {
+            $scope.seeLocation = (data, idDetail) => {
                 ManageSdmNew.getListData("sdm/get-reverse-geocoding?latitude=" + data.latitude + "&longitude=" + data.longitude).then(function (res) {
-                    $scope.showLocation = true;
-                    $scope.reverseLocation = res.data.data;
+                    if (idDetail == 1) {
+                        $scope.dataDetail1.showLocation = true;
+                        $scope.dataDetail1.reverseLocation = res.data.data;
+                    } else if (idDetail == 2) {
+                        $scope.dataDetail2.showLocation = true;
+                        $scope.dataDetail2.reverseLocation = res.data.data;
+                    }
                 })
             }
 
-            $scope.hideLocation = () => {
-                $scope.showLocation = false;
+            $scope.hideLocation = (idDetail) => {
+                if (idDetail == 1) {
+                    $scope.dataDetail1.showLocation = false;
+                } else if (idDetail == 2) {
+                    $scope.dataDetail2.showLocation = false;
+                }
             }
 
-            $scope.getDetail = function (data) {
-                $scope.hideLocation();
+            // $scope.getDetail = function (data) {
+            //     $scope.hideLocation();
 
-                if (!$scope.isBebasValidasi) {
-                    toastr.warning("Tidak ada akses!");
-                    return;
-                }
+            //     if (!$scope.isBebasValidasi) {
+            //         toastr.warning("Tidak ada akses!");
+            //         return;
+            //     }
 
-                if (!data) {
-                    messageContainer.error("Data Tidak Ditemukan");
-                    return;
-                }
-                var dataItem = data;
-                $scope.loadDetail(dataItem);
-            };
+            //     if (!data) {
+            //         messageContainer.error("Data Tidak Ditemukan");
+            //         return;
+            //     }
+            //     var dataItem = data;
+            //     $scope.loadDetail(dataItem);
+            // };
 
             $scope.loadDetail = function (data) {
                 $scope.dataDetail = [];
-                $scope.listTrNo = data.listTrNo;
-                var listTrNo = [];
-                for (let index = 0; index < data.listTrNo.length; index++) {
-                    listTrNo.push(data.listTrNo[index])
-                }
+                $scope.dataDetail1 = undefined
+                $scope.dataDetail2 = undefined
+                if (data.listTrNo) {
+                    $scope.listTrNo = data.listTrNo;
+                    var listTrNo = [];
+                    for (let index = 0; index < data.listTrNo.length; index++) {
+                        listTrNo.push(data.listTrNo[index])
+                    }
 
-                ManageSdmNew.getListData("sdm/get-detail-presensi?listTrNo=" + listTrNo).then(function (res) {
-                    $scope.isVerifPresensi = true
-                    $scope.dataDetail = res.data.data;
-                    // $scope.windDetailPresensi.center().open();
-                })
+                    ManageSdmNew.getListData("sdm/get-detail-presensi?listTrNo=" + listTrNo).then(function (res) {
+                        $scope.isVerifPresensi = true
+                        // $scope.dataDetail = res.data.data;
+                        // $scope.windDetailPresensi.center().open();
+                        if (res.data.data.length == 1) {
+                            $scope.isDetail1Exist = true;
+                            $scope.isDetail2Exist = false;
+                            $scope.dataDetail1 = res.data.data[0];
+                        } else if (res.data.data.length == 2) {
+                            $scope.isDetail1Exist = true;
+                            $scope.isDetail2Exist = true;
+                            $scope.dataDetail1 = res.data.data[0];
+                            $scope.dataDetail2 = res.data.data[1];
+                        }
+                    })
+                } else {
+                    $scope.isDetail1Exist = false;
+                    $scope.isDetail2Exist = false;
+                }
             }
 
             function filterByStatus(item) {
@@ -399,6 +436,9 @@ define(['initialize'], function (initialize) {
 
             $scope.pencarian = function () {
                 $scope.isRouteLoading = true;
+                $scope.isDetail1Exist = false;
+                $scope.isDetail2Exist = false;
+                $scope.dataSelected = undefined
                 ManageSdmNew.getListData($scope.paramURl).then(function (dat) {
                     $scope.isRouteLoading = false;
 
@@ -580,7 +620,11 @@ define(['initialize'], function (initialize) {
                 // $scope.item.nip = current.nip;
                 // $scope.item.nama = current.nama;
 
-                $scope.hideLocation();
+                // $scope.hideLocation();
+                $scope.dataSelected = current
+                $scope.item.isFotoSesuai = current.isFotoSesuai
+                $scope.item.isLokasiSesuai = current.isLokasiSesuai
+                $scope.item.isAtributLengkap = current.isAtributLengkap
 
                 if (!$scope.isBebasValidasi) {
                     toastr.warning("Tidak ada akses!");
@@ -604,50 +648,58 @@ define(['initialize'], function (initialize) {
             };
 
             $scope.Save = function () {
-                var data = $scope.sourceOrder._data;
-                var datas = [];
-                if (data.length > 0) {
-                    $scope.isRouteLoading = true;
-                    for (var x = 0; x < data.length; x++) {
-                        datas.push({
-                            "pulangAwal": data[x].pulangAwal,
-                            "kelebihanJamKerja": data[x].kelebihanJamKerja,
-                            "jadwalPulang": data[x].jadwalPulang,
-                            "absensiPulang": data[x].absensiPulang,
-                            "shiftKerja": {
-                                "id": data[x].idShift
-                            },
-                            "terlambat": data[x].terlambat,
-                            "alasan": data[x].alasan,
-                            "pegawai": {
-                                "id": data[x].idPegawai
-                            },
-                            "absensiMasuk": data[x].absensiMasuk,
-                            "jadwalmasuk": data[x].jadwalMasuk,
-                            "jamEfektif": data[x].jamEfektif,
-                            "tanggal": data[x].tanggal
-
-                        });
-                    };
-
-                    var dataSend = {
-                        "monitoringAbsen": datas,
-                        "loginUser": {
-                            "id": $scope.dataLoginUser.id
-                        },
-                        "pegawaiLogin": {
-                            "id": $scope.dataPegawaiLogin.id
-                        }
-                    }
-
-                    ManageSdmNew.saveData(dataSend, "sdm/save-monitoring-absen/").then(function (e) {
-                        $scope.isRouteLoading = false;
-                    }, function (err) {
-                        $scope.isRouteLoading = true;
-
-                        throw err;
-                    });
+                if (!$scope.dataSelected) {
+                    toastr.warning("Silakan pilih pegawai terlebih dahulu", "Peringatan")
+                    return
                 }
+
+                // var data = $scope.sourceOrder._data;
+                var datas = [];
+                // if (data.length > 0) {
+                $scope.isRouteLoading = true;
+                // for (var x = 0; x < data.length; x++) {
+                datas.push({
+                    "pulangAwal": $scope.dataSelected.pulangAwal,
+                    "kelebihanJamKerja": $scope.dataSelected.kelebihanJamKerja,
+                    "jadwalPulang": $scope.dataSelected.jadwalPulang,
+                    "absensiPulang": $scope.dataSelected.absensiPulang,
+                    "shiftKerja": {
+                        "id": $scope.dataSelected.idShift
+                    },
+                    "terlambat": $scope.dataSelected.terlambat,
+                    "alasan": $scope.dataSelected.alasan,
+                    "pegawai": {
+                        "id": $scope.dataSelected.idPegawai
+                    },
+                    "absensiMasuk": $scope.dataSelected.absensiMasuk,
+                    "jadwalmasuk": $scope.dataSelected.jadwalMasuk,
+                    "jamEfektif": $scope.dataSelected.jamEfektif,
+                    "tanggal": $scope.dataSelected.tanggal,
+                    "isFotoSesuai": $scope.item.isFotoSesuai,
+                    "isLokasiSesuai": $scope.item.isLokasiSesuai,
+                    "isAtributLengkap": $scope.item.isAtributLengkap
+                });
+                // };
+
+                var dataSend = {
+                    "monitoringAbsen": datas,
+                    "loginUser": {
+                        "id": $scope.dataLoginUser.id
+                    },
+                    "pegawaiLogin": {
+                        "id": $scope.dataPegawaiLogin.id
+                    }
+                }
+
+                ManageSdmNew.saveData(dataSend, "sdm/save-monitoring-absen/").then(function (e) {
+                    $scope.isRouteLoading = false;
+                    $scope.Cari();
+                }, function (err) {
+                    $scope.isRouteLoading = true;
+
+                    throw err;
+                });
+                // }
 
             }
             $scope.cetak = function () {
@@ -833,6 +885,10 @@ define(['initialize'], function (initialize) {
                 $scope.item.pegawai = "";
                 $scope.item.monitoringAwal = $scope.now;
                 $scope.item.monitoringAkhir = $scope.now;
+
+                $scope.isDetail1Exist = false;
+                $scope.isDetail2Exist = false;
+                $scope.dataSelected = undefined
             }
         }
 

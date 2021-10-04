@@ -1,4 +1,16 @@
 <style>
+    .unverified {
+        background-color: #ff5e5e;
+        color: #2d2d2d;
+        font-weight: bold;
+    }
+
+    .verified {
+        background-color: #74ff61;
+        color: #2d2d2d;
+        font-weight: bold;
+    }
+
     .label-name {
         display: block;
         font-size: .8em;
@@ -49,6 +61,10 @@
 
     button:disabled {
         background: #B5B2B1;
+    }
+
+    md-checkbox.md-checked.green .md-icon {
+        background-color: #38c4b2;
     }
 </style>
 
@@ -145,7 +161,7 @@
                                 koreksi jadwal / pegawai nonshift dengan rekomendasi pengajuan lembur</span>
                         </div>
 
-                        <div class="grid_12" style="margin: 10px 0 50px;">
+                        <div class="grid_12" style="margin: 10px 0 23px;">
                             <kendo-grid id="grid" data-source="sourceOrder" k-selectable="'row'"
                                 options="mainGridOption" k-sortable="'true'" k-ng-model="dataSelected"
                                 ng-click="klik(dataSelected)"></kendo-grid>
@@ -169,30 +185,104 @@
                             </div>
                         </div> -->
 
-                        <div class="grid_12" style="margin: 10px 0 50px;" ng-show="isVerifPresensi">
+                        <div class="grid_12" style="margin: 0 0 23px;" ng-show="isVerifPresensi">
                             <div class="panel panel-default container_12">
-                                <div class="grid_6 borderBox" ng-repeat="item in dataDetail"
-                                    style="margin-bottom: 10px;">
+                                <div class="grid_12 borderBox" style="margin-bottom: 10px;" ng-show="isDetail1Exist">
+                                    <div class="grid_6" ng-show="isDetail1Exist">
+                                        <div class="grid_4">
+                                            <img src="{{dataDetail1.imageURLData}}" width="200">
+                                        </div>
+                                        <div class="grid_8">
+                                            <div style="font-size:15px;color:black">
+                                                <label class="label-name">Tanggal : </label>
+                                                <label class="label-content">{{dataDetail1.date}}</label>
+                                            </div>
+                                            <br /> <br /> <br /> <br />
+                                            <div style="font-size:15px;color:black">
+                                                <label class="label-name">Lokasi : </label>
+                                                <label class="label-content" ng-if="dataDetail1.accuracy">&#8804;
+                                                    {{dataDetail1.accuracy}} meter
+                                                    sekitar
+                                                    <a style="color:rgb(82, 168, 244); cursor: pointer;"
+                                                        ng-click="seeLocation(dataDetail1,1)"
+                                                        ng-show="!dataDetail1.showLocation">{{dataDetail1.location}}</a>
+                                                    <a style="color:rgb(82, 168, 244); cursor: pointer;"
+                                                        ng-click="hideLocation(1)"
+                                                        ng-show="dataDetail1.showLocation">{{dataDetail1.reverseLocation}}</a>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="grid_6" ng-show="isDetail2Exist">
+                                        <div class="grid_4">
+                                            <img src="{{dataDetail2.imageURLData}}" width="200">
+                                        </div>
+                                        <div class="grid_8">
+                                            <div style="font-size:15px;color:black">
+                                                <label class="label-name">Tanggal : </label>
+                                                <label class="label-content">{{dataDetail2.date}}</label>
+                                            </div>
+                                            <br /> <br /> <br /> <br />
+                                            <div style="font-size:15px;color:black">
+                                                <label class="label-name">Lokasi : </label>
+                                                <label class="label-content" ng-if="dataDetail2.accuracy">&#8804;
+                                                    {{dataDetail2.accuracy}} meter
+                                                    sekitar
+                                                    <a style="color:rgb(82, 168, 244); cursor: pointer;"
+                                                        ng-click="seeLocation(dataDetail2,2)"
+                                                        ng-show="!dataDetail2.showLocation">{{dataDetail2.location}}</a>
+                                                    <a style="color:rgb(82, 168, 244); cursor: pointer;"
+                                                        ng-click="hideLocation(2)"
+                                                        ng-show="dataDetail2.showLocation">{{dataDetail2.reverseLocation}}</a>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="grid_6 borderBox" style="margin-bottom: 10px;" ng-show="isDetail2Exist">
                                     <div class="grid_4">
-                                        <img src="{{item.imageURLData}}" width="200">
+                                        <img src="{{dataDetail2.imageURLData}}" width="200">
                                     </div>
                                     <div class="grid_8">
                                         <div style="font-size:15px;color:black">
                                             <label class="label-name">Tanggal : </label>
-                                            <label class="label-content">{{item.date}}</label>
+                                            <label class="label-content">{{dataDetail2.date}}</label>
                                         </div>
                                         <hr>
                                         <div style="font-size:15px;color:black">
                                             <label class="label-name">Lokasi : </label>
-                                            <label class="label-content">&#8804; {{item.accuracy}} meter sekitar
+                                            <label class="label-content">&#8804; {{dataDetail2.accuracy}} meter sekitar
                                                 <a style="color:rgb(82, 168, 244); cursor: pointer;"
-                                                    ng-click="seeLocation(item)"
-                                                    ng-show="!showLocation">{{item.location}}</a>
+                                                    ng-click="seeLocation(dataDetail2,2)"
+                                                    ng-show="!dataDetail2.showLocation">{{dataDetail2.location}}</a>
                                                 <a style="color:rgb(82, 168, 244); cursor: pointer;"
-                                                    ng-click="hideLocation(item)"
-                                                    ng-show="showLocation">{{reverseLocation}}</a>
+                                                    ng-click="hideLocation(2)"
+                                                    ng-show="dataDetail2.showLocation">{{dataDetail2.reverseLocation}}</a>
                                             </label>
                                         </div>
+                                    </div>
+                                </div> -->
+                                <div class="grid_12" ng-show="isDetail1Exist || isDetail2Exist">
+                                    <div class="grid_6">
+                                        <!--  -->
+                                    </div>
+                                    <div class="grid_2">
+                                        <md-checkbox ng-model="item.isFotoSesuai" aria-label="isfotosesuai"
+                                            style="margin-top:24px" class="green">
+                                            Foto Sesuai
+                                        </md-checkbox>
+                                    </div>
+                                    <div class="grid_2">
+                                        <md-checkbox ng-model="item.isLokasiSesuai" aria-label="islokasisesuai"
+                                            style="margin-top:24px" class="green">
+                                            Lokasi Sesuai
+                                        </md-checkbox>
+                                    </div>
+                                    <div class="grid_2">
+                                        <md-checkbox ng-model="item.isAtributLengkap" aria-label="isatributlengkap"
+                                            style="margin-top:24px" class="green">
+                                            Atribut Lengkap
+                                        </md-checkbox>
                                     </div>
                                 </div>
                             </div>
@@ -236,7 +326,7 @@
 
         <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
 
-        <div kendo-window="windDetailPresensi" k-title="'Detail Presensi'" k-width="1000" k-height="500"
+        <!-- <div kendo-window="windDetailPresensi" k-title="'Detail Presensi'" k-width="1000" k-height="500"
             k-visible="false">
             <div class="panel panel-default container_12">
                 <div class="grid_12 borderBox" ng-repeat="item in dataDetail" style="margin-bottom: 10px;">
@@ -261,6 +351,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
