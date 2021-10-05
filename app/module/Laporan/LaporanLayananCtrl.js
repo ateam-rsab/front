@@ -172,6 +172,9 @@ define(['initialize'], function(initialize) {
         //     {no:6, tglpelayanan:'11/01/20',nocm: 116,namapasien:'Jajang',dokter:'Sukmawan', inap:'y', rekanan:'BPJS', unit:'4',ruangan:'Delima',layanan:'kasur',tarif:100000+'/hari',jumlah:1,statusbayar:'y'},            
         // ]
         $scope.mainGroupOptionsLapLayananDok = {
+            toolbar: [
+                "excel",
+            ],
             pageable:{
                 // pageSize: 5,
                 // previousNext: false,

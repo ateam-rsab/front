@@ -86,7 +86,7 @@
                 <div class="grid_12">
                     <div class="grid_2">
                         <label><b>Tanggal</b></label>
-                        <input style="width: 100%" kendo-date-time-picker k-ng-model="item.tglJadwalPembedahan"
+                        <input style="width: 100%" kendo-date-time-picker k-ng-model="item.tglJadwalPembedahan" k-min="now" k-max="maxOrderDate"
                             placeholer="Hari-Bln-Thn" ng-disabled="isVerif" k-format="'dd-MM-yyyy HH:mm'"
                             ng-disabled="isSuster" />
                     </div>
@@ -162,6 +162,10 @@
                 </div>
             </div>
 
+            <div class="grid_12">
+                <select kendo-multi-select k-options="selectOptions" k-filter="'contains'" k-data-source="dataMasterPetugas" ng-disabled="isVerif" k-data-text-field="'namaLengkap'"
+                k-data-value-field="'id'" k-ng-model="selectedDokter"></select>
+            </div>
 
             <div class="k-edit-buttons k-state-default" style="margin-top:10px">
                 <div class="grid_8"></div>

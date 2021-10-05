@@ -138,14 +138,44 @@
         color: rgb(23 84 86);
         background: rgb(23 84 86);
     }
+
+    .widget-dashboard-kinerja {
+        margin-bottom: 5px;
+    }
+
+    .widget-dashboard-kinerja label {
+        font-weight: bolder;
+        margin: 5px 0;
+    }
 </style>
 
 <div ng-controller="WelcomeCtrl">
+    <md-card>
+        <md-card-header>
+            <h4>Dashboard Kinerja</h4>
+        </md-card-header>
+
+        <md-card-content>
+            <div class="widget-dashboard-kinerja">
+                <!-- <label>Progress Kinerja</label> -->
+                <div ng-repeat="data in dataDashboardKinerja" style="margin-bottom: 5px;">
+                    <md-tooltip md-direction="top">{{data.persenCapaianDibulatkan}}</md-tooltip>
+                    <md-progress-linear md-mode="determinate" value="{{data.persenCapaianDibulatkan}}">
+                        
+                    </md-progress-linear>
+                </div>
+                
+            </div>
+        </md-card-content>
+    </md-card>
+
     <md-card class="card-list-notification">
         <md-card-header>
             <h4>Pemberitahuan</h4>
         </md-card-header>
         <md-card-content>
+            
+            
             <div class="notify" ng-if="isShowSIPExpired">
                 <strong>Info </strong> {{messageNotif}}
             </div>

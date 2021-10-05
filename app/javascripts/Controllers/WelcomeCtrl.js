@@ -1,8 +1,9 @@
 define(['initialize'], function (initialize) {
-    initialize.controller('WelcomeCtrl', ['$scope', '$state', 'R', '$rootScope', 'MenuService', 'LoginHelper', '$mdDialog', 'DateHelper',
-        function ($scope, $state, r, $rootScope, MenuService, LoginHelper, $mdDialog, DateHelper) {
+    initialize.controller('WelcomeCtrl', ['$scope', '$state', 'R', '$rootScope', 'MenuService', 'LoginHelper', '$mdDialog', 'DateHelper', 'ManageSdmNew',
+        function ($scope, $state, r, $rootScope, MenuService, LoginHelper, $mdDialog, DateHelper, ManageSdmNew) {
             $scope.showSIPExpired = false;
             $scope.messageAbsensi = "Tidak ada";
+            let dataLogin = JSON.parse(localStorage.getItem("pegawai"));
             $scope.showNotif = {
                 changePassword: false,
                 formISARC: true,
@@ -25,6 +26,14 @@ define(['initialize'], function (initialize) {
                     title: '6 Langkah Cuci Tangan Pakai Sabun (CTPS)',
                     src: 'https://smart.rsabhk.co.id:2222/vid/masker.mp4'
                 }
+
+                let dateNow = DateHelper.toTimeStamp(new Date().setMonth(4));
+
+                ManageSdmNew.getListData(`iki-remunerasi/widget-dashboard-kinerja?pegawaiId=${dataLogin.id}&bulan=${dateNow}`).then((res) => {
+                    $scope.dataDashboardKinerja = res.data.data.data;
+                    console.log(res.data.data);
+                })
+
             }
 
             $scope.OnInit();

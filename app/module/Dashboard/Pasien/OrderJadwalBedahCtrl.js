@@ -24,6 +24,13 @@ define(['initialize'], function (initialize) {
             $scope.CmdOrderPelayanan = true;
             $scope.OrderPelayanan = false;
             $scope.showTombol = false;
+            $scope.selectedDokter = [];
+            // set max order date 2 minggu
+            $scope.maxOrderDate = new Date(new Date().setDate(new Date().getDate() + 14));
+            console.log($scope.maxOrderDate, $scope.now)
+            $scope.selectOptions = {
+                placeholder: "Pilih Asisten Dokter",
+            };
 
             $scope.item.notelp = localStorage.getItem("nomorTelpPasien");
             $scope.isEdit = false;
@@ -120,6 +127,7 @@ define(['initialize'], function (initialize) {
             };
 
             function init() {
+
                 $scope.item.dokterJadwalBedah = {
                     namaLengkap: $scope.pegawaiLogin.namaLengkap,
                     id: $scope.pegawaiLogin.id
@@ -345,7 +353,7 @@ define(['initialize'], function (initialize) {
             }
 
             function clearJadwal() {
-                $scope.item.tglJadwalPembedahan = "";
+                $scope.item.tglJadwalPembedahan = new Date();
                 $scope.item.lamaOperasi = null;
                 // $scope.item.dokterJadwalBedah = null;
 
@@ -360,7 +368,7 @@ define(['initialize'], function (initialize) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
                 // console.log(dataItem);
-
+                $scope.selectedDokter = [];
                 $scope.isEdit = true;
                 $scope.item.jenisBedah = "Jenis Operasi Elektif";
                 $scope.isVerif = dataItem.tglverifikasi ? true : false;
@@ -370,6 +378,13 @@ define(['initialize'], function (initialize) {
                     namaLengkap: dataItem.namaDokterTujuan,
                     id: dataItem.doktertujuanfk
                 };
+                // 
+                for(let i = 0; i < dataItem.asistendokter.length; i++) {
+                    $scope.selectedDokter.push({
+                        namaLengkap: dataItem.asistendokter[i].namalengkap,
+                        id: dataItem.asistendokter[i].objectpegawaifk
+                    })
+                }
                 $scope.norecJadwalBedah = dataItem.norec;
                 $scope.item.diagnosaJadwalBedah = dataItem.diagnosa;
                 $scope.item.tindakanJadwalBedah = dataItem.tindakan;
@@ -400,7 +415,10 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.saveOrderBedah = function () {
+                
                 let nocm = $("#idNoCM").val();
+                // console.log($scope.selectedDokter);
+                // return;
                 // console.log(nocm);
                 // bugs, kadang no cm hilang
                 if (!$scope.item.noMr) {
@@ -462,9 +480,17 @@ define(['initialize'], function (initialize) {
                     posisikhusus: $scope.item.posisiKhusus,
                     macamanestesi: $scope.item.macamAnastesi,
                     lamaoperasi: $scope.item.lamaOperasi,
-                    
+                    drasisten:[],
                     telp: $scope.item.notelp
                 };
+
+                if($scope.selectedDokter) {
+                    for(let i = 0; i < $scope.selectedDokter.length; i++) {
+                        data.drasisten.push({
+                            asistendokterfk: $scope.selectedDokter[i].id
+                        })
+                    }
+                }
                 console.log(data);
 
                 managePhp.postData(data, 'rekam-medis/save-jadwal-operasi/save').then(function (e) {
@@ -508,6 +534,14 @@ define(['initialize'], function (initialize) {
             };
 
             $scope.inputBaruJadwalBedah = function () {
+                let jam = new Date($scope.item.tglJadwalPembedahan).getHours();
+                $scope.isEdit = false;
+                $scope.isVerif = false;
+                $scope.selectedDokter = [];
+                if(jam >= 21) {
+                    toastr.warning("Tidak bisa input Order Jadwal Bedah")
+                    return;
+                }
                 $scope.item.dokterJadwalBedah = {
                     namaLengkap: $scope.pegawaiLogin.namaLengkap,
                     id: $scope.pegawaiLogin.id

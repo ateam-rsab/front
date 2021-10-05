@@ -2054,6 +2054,10 @@
       {
         "module": "PhpServices",
         "define": "PhpServices"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
       }
     ]
   },

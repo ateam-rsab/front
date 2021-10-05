@@ -77,9 +77,9 @@
                         k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
                         k-data-source="listPaketResep" k-on-change="getDetailPaketResep(resep.paketResep)" />
                 </div>
-                <div class="grid_3">
+                <div class="grid_3" ng-if="showInputDokter">
                     <!-- <label> -->
-                        <strong>Pilih Paket Resep </strong>
+                        <strong>Pilih Dokter </strong>
                     <!-- </label> -->
                     <input style="width: 100%;" kendo-combo-box k-ng-model="item.dokter" k-data-text-field="'namalengkap'" 
                             k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDokter" ng-disabled="isVerifikasi" />

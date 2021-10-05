@@ -7,6 +7,9 @@ define(['initialize'], function (initialize) {
                 data: []
             });
 
+            $scope.showInputDokter = $scope.dataLogin.id === 320263 //320263;
+            // console.log($scope.showInputDokter)
+
             $scope.listTipeResep = [{
                     name: "Cito",
                     id: 1
@@ -349,7 +352,7 @@ define(['initialize'], function (initialize) {
 
                 let getJenisPegawai = $scope.dataLogin.jenisPegawai.jenispegawai ? $scope.dataLogin.jenisPegawai.jenispegawai : $scope.dataLogin.jenisPegawai.jenisPegawai;
 
-                if (getJenisPegawai !== "DOKTER") {
+                if (getJenisPegawai !== "DOKTER" || $scope.dataLogin.id !== 320263) {
                     toastr.info('Anda tidak memiliki akses menambahkan Resep Elektronik');
                     return;
                 }
@@ -475,7 +478,8 @@ define(['initialize'], function (initialize) {
 
             // method untuk kirim resep ke farmasi
             $scope.kirimKeFarmasi = function () {
-                if ($scope.dataLogin.jenisPegawai.jenispegawai !== "DOKTER") {
+                let getJenisPegawai = $scope.dataLogin.jenisPegawai.jenispegawai ? $scope.dataLogin.jenisPegawai.jenispegawai : $scope.dataLogin.jenisPegawai.jenisPegawai;
+                if (getJenisPegawai !== "DOKTER" || $scope.dataLogin.id !== 320263) {
                     toastr.info('Anda tidak memiliki akses menambahkan Resep Elektronik');
                     return;
                 }
@@ -501,7 +505,7 @@ define(['initialize'], function (initialize) {
                 let dataTemp = [{
                     "strukorder": {
                         "tglresep": moment($scope.item.tglResep).format('YYYY-MM-DD HH:mm:ss'),
-                        "penulisresepfk": $scope.item.idLogin.id,
+                        "penulisresepfk": $scope.showInputDokter ? $scope.item.dokter.id : $scope.item.idLogin.id,
                         "ruanganfk": $scope.item.idRuangan,
                         "noregistrasifk": norec_apd,
                         "cito": $scope.isCito ? $scope.isCito : false,
@@ -542,23 +546,23 @@ define(['initialize'], function (initialize) {
                     }
                 }
                 dataResep.push(dataTemp[0]);
-                console.log(JSON.stringify($scope.tempListResep));
-                manageLogistikPhp.postpost('farmasi/resep-dokter?strukorder=' + norec_apd, dataResep).then(function (res) {
-                    $scope.tempListResep = [];
-                    $scope.resep.beratBadan = '';
-                    dataResep = [];
-                    $scope.isRouteLoading = false;
-                    $scope.isResepEmpty = true;
-                    $scope.item.izinPerubahanObat = '';
-                    $scope.isCito = '';
-                    $scope.isSegeraPulang = '';
-                    if (res.status === 400) {
-                        $scope.isRouteLoading = false;
-                        console.error('error');
-                    }
-                }, (error) => {
-                    console.log(error);
-                })
+                console.log(dataResep);
+                // manageLogistikPhp.postpost('farmasi/resep-dokter?strukorder=' + norec_apd, dataResep).then(function (res) {
+                //     $scope.tempListResep = [];
+                //     $scope.resep.beratBadan = '';
+                //     dataResep = [];
+                //     $scope.isRouteLoading = false;
+                //     $scope.isResepEmpty = true;
+                //     $scope.item.izinPerubahanObat = '';
+                //     $scope.isCito = '';
+                //     $scope.isSegeraPulang = '';
+                //     if (res.status === 400) {
+                //         $scope.isRouteLoading = false;
+                //         console.error('error');
+                //     }
+                // }, (error) => {
+                //     console.log(error);
+                // })
             }
 
 
