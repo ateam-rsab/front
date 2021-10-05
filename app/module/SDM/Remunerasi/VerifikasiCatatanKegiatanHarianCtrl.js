@@ -16,6 +16,10 @@ define(['initialize'], function (initialize) {
                     pageable: true,
                     scrollable: true,
                     columns: [{
+                        field: "jenisIndikator",
+                        title: "Jenis Indikator",
+                        hidden: true
+                    }, {
                         field: "namaIndikator",
                         title: "<h3>Indikator</h3>",
                         width: 120
@@ -104,7 +108,10 @@ define(['initialize'], function (initialize) {
                 ManageSdmNew.getListData(URL).then((res) => {
                     $scope.dataSource = new kendo.data.DataSource({
                         data: res.data.data,
-                        pageSize: 50
+                        pageSize: 50,
+                        group: [{
+                            field: "jenisIndikator"
+                        }]
                     });
 
                     $scope.isRouteLoading = false;

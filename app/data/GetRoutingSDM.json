@@ -4900,6 +4900,34 @@
     ]
   },
   {
+    "name": "InputKegiatanPelayananNakes",
+    "url": "/InputKegiatanPelayananNakes/:noRec",
+    "templateurl": "module/SDM/Remunerasi/InputKegiatanPelayananNakes.html",
+    "controller": "InputKegiatanPelayananNakesCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "PhpServices",
+        "define": "PhpServices"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      }
+    ]
+  },
+  {
     "name": "PengaturanBobotJenisIndikator",
     "url": "/PengaturanBobotJenisIndikator",
     "templateurl": "module/SDM/Remunerasi/PengaturanBobotJenisIndikator.html",

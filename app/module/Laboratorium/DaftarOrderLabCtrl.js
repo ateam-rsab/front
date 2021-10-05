@@ -550,7 +550,8 @@ define(['initialize'], function (initialize) {
                         }
 
                         if ($scope.item.diskonpegawai == 1
-                            || $scope.item.diskonpegawai == 2) {
+                            || $scope.item.diskonpegawai == 2
+                            || $scope.item.diskonpegawai == 5) {
                             $scope.item.mppPenungguPasien = undefined
                             $scope.item.mppPasien = undefined
                             $scope.isPenungguPasien = false

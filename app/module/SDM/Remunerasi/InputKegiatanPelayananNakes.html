@@ -1,5 +1,5 @@
 <md-toolbar md-scroll-shrink class="shadow">
-    <div class="md-toolbar-tools">Input Kegiatan Pelayanan Perawat</div>
+    <div class="md-toolbar-tools">Input Kegiatan Pelayanan TKL</div>
 </md-toolbar>
 <hr style="margin: 5px 0;">
 <h3 style="margin: 5px 0;font-weight: bolder;">Data Pasien</h3>
@@ -56,27 +56,33 @@
 </div>
 
 <hr style="margin: 5px 0;">
-<h3 style="margin: 5px 0;font-weight: bolder;">Kegiatan Perawat</h3>
+<h3 style="margin: 5px 0;font-weight: bolder;">Kegiatan TKL</h3>
 <hr style="margin: 5px 0;">
 
 <div class="grid_12">
-    <div class="grid_4">
-        <label c-label item="item">Perawat Pelaksana</label>
-        <input c-text-box type="input" class="k-textbox" disabled ng-model="perawat.perawatPelaksana" />
+    <div class="grid_3">
+        <label c-label item="item">Nakes Pelaksana</label>
+        <input c-text-box type="input" class="k-textbox" disabled ng-model="nakes.nakesPelaksana" />
     </div>
     <div class="grid_2">
         <label c-label item="item">Tanggal pelayanan</label>
-        <input style="width: 100%;" k-ng-model="perawat.tglPelayanan" kendo-date-time-picker placeholer="dd-mm-yyyy"
+        <input style="width: 100%;" k-ng-model="nakes.tglPelayanan" kendo-date-time-picker placeholer="dd-mm-yyyy"
             k-format="'dd-MM-yyyy HH:mm'" />
     </div>
-    <div class="grid_5">
+    <div class="grid_2">
+        <label c-label item="item">Profesi pelaksana</label>
+        <input kendo-combo-box k-filter="'contains'" k-ng-model="nakes.profesi" ng-disabled="isEdit"
+            k-data-text-field="'namaProfesi'" k-data-value-field="'id'" k-data-source="listProfesi"
+            k-on-change="getListProduk(nakes.profesi.id)" />
+    </div>
+    <div class="grid_4">
         <label c-label item="item">Kegiatan</label>
-        <input kendo-combo-box k-filter="'contains'" k-ng-model="perawat.kegiatan" ng-disabled="isEdit"
+        <input kendo-combo-box k-filter="'contains'" k-ng-model="nakes.kegiatan" ng-disabled="isEdit"
             k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-data-source="listProduk" />
     </div>
     <div class="grid_1">
         <label c-label item="item">Jumlah</label>
-        <input c-text-box type="number" class="k-textbox" ng-model="perawat.jmlLayanan" />
+        <input c-text-box type="number" class="k-textbox" ng-model="nakes.jmlLayanan" />
     </div>
 </div>
 <div class="grid_12">
