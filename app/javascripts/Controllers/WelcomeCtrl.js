@@ -21,22 +21,28 @@ define(['initialize'], function (initialize) {
                 fileName: "Prosedur Pembuatan Daftar Uang Makan bagi PNS"
             }]
 
+            $scope.widgetKinerja = () => {
+                let dateNow = DateHelper.toTimeStamp(new Date());
+
+                ManageSdmNew.getListData(`iki-remunerasi/widget-dashboard-kinerja?pegawaiId=${dataLogin.id}&bulan=${dateNow}`).then((res) => {
+                    $scope.dataDashboardKinerja = res.data.data.data;
+                })
+            }
+
             $scope.OnInit = () => {
                 $scope.videoPlayed = {
                     title: '6 Langkah Cuci Tangan Pakai Sabun (CTPS)',
                     src: 'https://smart.rsabhk.co.id:2222/vid/masker.mp4'
                 }
 
-                let dateNow = DateHelper.toTimeStamp(new Date().setMonth(4));
-
-                ManageSdmNew.getListData(`iki-remunerasi/widget-dashboard-kinerja?pegawaiId=${dataLogin.id}&bulan=${dateNow}`).then((res) => {
-                    $scope.dataDashboardKinerja = res.data.data.data;
-                    console.log(res.data.data);
-                })
-
+                $scope.widgetKinerja()
             }
 
             $scope.OnInit();
+
+            $scope.linkDashboardKinerja = () => {
+                $state.go('DashboardPencatatanKinerja');
+            }
 
             let getDataAbsensi = () => {
                 let today = DateHelper.formatDate(new Date(), "YYYY-MM-DD");
