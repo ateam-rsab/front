@@ -182,6 +182,8 @@ define(['initialize'], function (initialize) {
                         }, (error) => {
                             $scope.isRouteLoading = false;
                         });
+                } else {
+                    $scope.isRouteLoading = false;
                 }
             }
 
