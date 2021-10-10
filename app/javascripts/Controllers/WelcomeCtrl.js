@@ -4,6 +4,11 @@ define(['initialize'], function (initialize) {
             $scope.showSIPExpired = false;
             $scope.messageAbsensi = "Tidak ada";
             let dataLogin = JSON.parse(localStorage.getItem("pegawai"));
+            let remunId = [1, 10, 14]
+            $scope.isRemun = false;
+            if (dataLogin.kategoryPegawai && remunId.includes(dataLogin.kategoryPegawai.id)) {
+                $scope.isRemun = true;
+            }
             $scope.showNotif = {
                 changePassword: false,
                 formISARC: true,
