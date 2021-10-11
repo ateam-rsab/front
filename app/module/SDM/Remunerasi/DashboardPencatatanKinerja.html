@@ -1,17 +1,18 @@
 <style>
     body {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
 
-    textarea, input {
+    textarea,
+    input {
         user-select: text;
     }
-    
+
     .mt-progress-bar {
         border: 1px solid #38c4b2;
         border-radius: .25em;
@@ -74,6 +75,22 @@
 
     .fa-ellipsis-v {
         color: black;
+        cursor: pointer;
+    }
+
+    .fa-ellipsis-v:hover {
+        color: rgb(92, 92, 92);
+        cursor: pointer;
+    }
+
+    .fa-refresh {
+        color: #37d3d7;
+        cursor: pointer;
+    }
+
+    .fa-refresh:hover {
+        color: #79e5e9;
+        cursor: pointer;
     }
 
     progress.mt-progress-bar:before {
@@ -107,10 +124,15 @@
         <md-card-title>
             <md-card-title-text>
                 <span class="md-subhead">
-                    <div class="grid_11"></div>
-                    <div class="grid_1">
-                        <input style="width: 100%;" k-ng-model="item.bulan" k-options="monthSelectorOptions"
-                            kendo-date-picker placeholer="mmm-yyyy" k-format="'MMM-yyyy'" k-max="endOfDay" />
+                    <div class="grid_12">
+                        <span style="float: right; margin: -1em 0.5em 2em 1em; font-size: larger;"
+                            ng-click="getDataDashboard()"><i class="fa fa-refresh" aria-hidden="true"></i></span>
+                    </div>
+                    <div class="grid_12">
+                        <div style="float: right;">
+                            <input width="100%" k-ng-model="item.bulan" k-options="monthSelectorOptions"
+                                kendo-date-picker placeholer="mmm-yyyy" k-format="'MMM-yyyy'" k-max="endOfDay" />
+                        </div>
                     </div>
                 </span>
                 <div class="grid_6" ng-if="showIsSinglePegawai" style="margin-left: -0.4em;">

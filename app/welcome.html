@@ -147,24 +147,54 @@
         font-weight: bolder;
         margin: 5px 0;
     }
+
+    .fa-refresh {
+        color: #37d3d7;
+        cursor: pointer;
+    }
+
+    .fa-refresh:hover {
+        color: #79e5e9;
+        cursor: pointer;
+    }
+
+    .fa-external-link {
+        color: #37d3d7;
+        cursor: pointer;
+    }
+
+    .fa-external-link:hover {
+        color: #79e5e9;
+        cursor: pointer;
+    }
 </style>
 
 <div ng-controller="WelcomeCtrl">
-    <md-card>
+    <md-card ng-show="isRemun">
         <md-card-header>
-            <h4>Dashboard Kinerja</h4>
+            <div class="grid_12">
+                <div class="grid_6">
+                    <h4 style="text-align: left;">Perkembangan Kinerja Bulan Ini</h4>
+                </div>
+                <div class="grid_6">
+                    <span style="float: right; margin-left: 1em; font-size: larger;"
+                        ng-click="linkDashboardKinerja()"><i class="fa fa-external-link"
+                            aria-hidden="true"></i></i></span>
+                    <span style="float: right; margin-left: 1em; font-size: larger;" ng-click="widgetKinerja()"><i
+                            class="fa fa-refresh" aria-hidden="true"></i></span>
+                </div>
+            </div>
         </md-card-header>
 
         <md-card-content>
             <div class="widget-dashboard-kinerja">
                 <!-- <label>Progress Kinerja</label> -->
                 <div ng-repeat="data in dataDashboardKinerja" style="margin-bottom: 5px;">
-                    <md-tooltip md-direction="top">{{data.persenCapaianDibulatkan}}</md-tooltip>
+                    <md-tooltip md-direction="top">{{data.persenCapaianDibulatkan}}%</md-tooltip>
                     <md-progress-linear md-mode="determinate" value="{{data.persenCapaianDibulatkan}}">
-                        
+
                     </md-progress-linear>
                 </div>
-                
             </div>
         </md-card-content>
     </md-card>
@@ -174,8 +204,6 @@
             <h4>Pemberitahuan</h4>
         </md-card-header>
         <md-card-content>
-            
-            
             <div class="notify" ng-if="isShowSIPExpired">
                 <strong>Info </strong> {{messageNotif}}
             </div>
@@ -224,11 +252,10 @@
                                                 <a href="data/dokumen/pedoman-covid19.pdf" download>Download PDF</a>
                                             </div>
                                         </li>
-    
                                     </ul>
                                 </md-content>
                             </md-tab>
-                            
+
                             <md-tab label="Dokumen Terkait COVID-19">
                                 <ul class="list-1">
                                     <li>
@@ -266,7 +293,6 @@
                             <md-tab label="Pembaruan">
                                 <md-content class="md-padding">
                                     <h2 class="md-display-1">Belum ada Pembaruan</h2>
-                                    
                                 </md-content>
                             </md-tab>
                         </md-tabs>
