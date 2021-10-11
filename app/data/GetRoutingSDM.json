@@ -4928,6 +4928,90 @@
     ]
   },
   {
+    "name": "MasterProdukTKL",
+    "url": "/MasterProdukTKL",
+    "templateurl": "module/SDM/Remunerasi/MasterProdukTKL.html",
+    "controller": "MasterProdukTKLCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "PhpServices",
+        "define": "PhpServices"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      }
+    ]
+  },
+  {
+    "name": "MasterProfesiTKL",
+    "url": "/MasterProfesiTKL",
+    "templateurl": "module/SDM/Remunerasi/MasterProfesiTKL.html",
+    "controller": "MasterProfesiTKLCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "PhpServices",
+        "define": "PhpServices"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      }
+    ]
+  },
+  {
+    "name": "MasterProdukPerawat",
+    "url": "/MasterProdukPerawat",
+    "templateurl": "module/SDM/Remunerasi/MasterProdukPerawat.html",
+    "controller": "MasterProdukPerawatCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "PhpServices",
+        "define": "PhpServices"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      }
+    ]
+  },
+  {
     "name": "PengaturanBobotJenisIndikator",
     "url": "/PengaturanBobotJenisIndikator",
     "templateurl": "module/SDM/Remunerasi/PengaturanBobotJenisIndikator.html",

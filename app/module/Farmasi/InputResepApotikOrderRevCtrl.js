@@ -352,9 +352,11 @@ define(['initialize'], function (initialize) {
 
                 let getJenisPegawai = $scope.dataLogin.jenisPegawai.jenispegawai ? $scope.dataLogin.jenisPegawai.jenispegawai : $scope.dataLogin.jenisPegawai.jenisPegawai;
 
-                if (getJenisPegawai !== "DOKTER" || $scope.dataLogin.id !== 320263) {
-                    toastr.info('Anda tidak memiliki akses menambahkan Resep Elektronik');
-                    return;
+                if ($scope.dataLogin.id != 320263) {
+                    if(getJenisPegawai !== "DOKTER") {
+                        toastr.info('Anda tidak memiliki akses menambahkan Resep Elektronik');
+                        return;
+                    }
                 }
 
                 var keteranganPenggunaan = '',
@@ -479,10 +481,18 @@ define(['initialize'], function (initialize) {
             // method untuk kirim resep ke farmasi
             $scope.kirimKeFarmasi = function () {
                 let getJenisPegawai = $scope.dataLogin.jenisPegawai.jenispegawai ? $scope.dataLogin.jenisPegawai.jenispegawai : $scope.dataLogin.jenisPegawai.jenisPegawai;
-                if (getJenisPegawai !== "DOKTER" || $scope.dataLogin.id !== 320263) {
-                    toastr.info('Anda tidak memiliki akses menambahkan Resep Elektronik');
+
+                if($scope.dataLogin.id === 320263 && !$scope.item.dokter) { 
+                    toastr.info('Harap isi Dokter terlebih dahulu');
                     return;
                 }
+                if($scope.dataLogin.id !== 320263) {
+                    if (getJenisPegawai !== "DOKTER") {
+                        toastr.info('Anda tidak memiliki akses menambahkan Resep Elektronik');
+                        return;
+                    }
+                }
+                
 
                 $scope.isRouteLoading = true;
 
@@ -547,22 +557,22 @@ define(['initialize'], function (initialize) {
                 }
                 dataResep.push(dataTemp[0]);
                 console.log(dataResep);
-                // manageLogistikPhp.postpost('farmasi/resep-dokter?strukorder=' + norec_apd, dataResep).then(function (res) {
-                //     $scope.tempListResep = [];
-                //     $scope.resep.beratBadan = '';
-                //     dataResep = [];
-                //     $scope.isRouteLoading = false;
-                //     $scope.isResepEmpty = true;
-                //     $scope.item.izinPerubahanObat = '';
-                //     $scope.isCito = '';
-                //     $scope.isSegeraPulang = '';
-                //     if (res.status === 400) {
-                //         $scope.isRouteLoading = false;
-                //         console.error('error');
-                //     }
-                // }, (error) => {
-                //     console.log(error);
-                // })
+                manageLogistikPhp.postpost('farmasi/resep-dokter?strukorder=' + norec_apd, dataResep).then(function (res) {
+                    $scope.tempListResep = [];
+                    $scope.resep.beratBadan = '';
+                    dataResep = [];
+                    $scope.isRouteLoading = false;
+                    $scope.isResepEmpty = true;
+                    $scope.item.izinPerubahanObat = '';
+                    $scope.isCito = '';
+                    $scope.isSegeraPulang = '';
+                    if (res.status === 400) {
+                        $scope.isRouteLoading = false;
+                        console.error('error');
+                    }
+                }, (error) => {
+                    console.log(error);
+                })
             }
 
 

@@ -190,6 +190,18 @@
             {
                 "name": "Skoring Tindakan TKL",
                 "link": "#/SkoringTindakanNakes"
+            },
+            {
+                "name": "Master Profesi TKL",
+                "link": "#/MasterProfesiTKL"
+            },
+            {
+                "name": "Master Produk Perawat",
+                "link": "#/MasterProdukPerawat"
+            },
+            {
+                "name": "Master Produk TKL",
+                "link": "#/MasterProdukTKL"
             }
         ]
     },
