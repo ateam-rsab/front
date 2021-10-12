@@ -677,7 +677,8 @@ define(['initialize'], function (initialize) {
                     "tanggal": $scope.dataSelected.tanggal,
                     "isFotoSesuai": $scope.item.isFotoSesuai,
                     "isLokasiSesuai": $scope.item.isLokasiSesuai,
-                    "isAtributLengkap": $scope.item.isAtributLengkap
+                    "isAtributLengkap": $scope.item.isAtributLengkap,
+                    "tglPresensi": $scope.dataSelected.dates
                 });
                 // };
 

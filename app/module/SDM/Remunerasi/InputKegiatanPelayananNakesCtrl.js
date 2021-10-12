@@ -124,7 +124,7 @@ define(['initialize'], function (initialize) {
 
             $scope.getListProduk = (profesiId) => {
                 $scope.nakes.kegiatan = null;
-                manageSdmNew.getListData("service/list-generic/?view=ProdukNakes&select=id,namaProduk&criteria=statusEnabled,profesiId&values=true," + profesiId + "&order=namaProduk:asc").then(res => {
+                manageSdmNew.getListData("service/list-generic/?view=ProdukNakes&select=id,namaProduk&criteria=statusEnabled,profesiId&values=true,(" + profesiId + ")&order=namaProduk:asc").then(res => {
                     $scope.listProduk = res.data;
                 })
             }
