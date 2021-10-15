@@ -653,6 +653,11 @@ define(['initialize'], function (initialize) {
                     return
                 }
 
+                if ($scope.dataSelected.isVerifikasi) {
+                    toastr.warning("Kehadiran sudah terverifikasi", "Peringatan")
+                    return
+                }
+
                 // var data = $scope.sourceOrder._data;
                 var datas = [];
                 // if (data.length > 0) {
@@ -678,7 +683,8 @@ define(['initialize'], function (initialize) {
                     "isFotoSesuai": $scope.item.isFotoSesuai,
                     "isLokasiSesuai": $scope.item.isLokasiSesuai,
                     "isAtributLengkap": $scope.item.isAtributLengkap,
-                    "tglPresensi": $scope.dataSelected.dates
+                    "tglPresensi": $scope.dataSelected.dates,
+                    "waktuIstirahat": $scope.dataSelected.waktuIstirahat
                 });
                 // };
 

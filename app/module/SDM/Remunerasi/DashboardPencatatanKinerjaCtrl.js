@@ -209,8 +209,9 @@ define(['initialize'], function (initialize) {
                 }
             }
 
+            let autoIndikator = [466, 350, 351, 357]
             $scope.showDetail = (data) => {
-                if (data.idIndikator != 466) {
+                if (!autoIndikator.includes(data.idIndikator)) {
                     $scope.labelDetail = data.namaIndikator
 
                     let URL = "iki-remunerasi/catatan-kegiatan-harian-indikator?pegawaiId=" + data.idPegawai
@@ -238,6 +239,11 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.addData = (data) => {
+                if (autoIndikator.includes(data.idIndikator)) {
+                    toastr.info("Indikator ini dihitung otomatis", "Informasi")
+                    return
+                }
+
                 $scope.dataAdd = data;
                 $scope.labelData = data.namaIndikator;
 
