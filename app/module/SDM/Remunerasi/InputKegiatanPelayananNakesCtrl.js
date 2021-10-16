@@ -116,7 +116,7 @@ define(['initialize'], function (initialize) {
                     $scope.pasien = res.data[0];
                 })
                 $scope.getDataGrid();
-                manageSdmNew.getListData("service/list-generic/?view=Profesi&select=id,namaProfesi&criteria=statusEnabled&values=true&order=namaProfesi:asc").then(res => {
+                manageSdmNew.getListData("service/list-generic/?view=Profesi&select=id,namaProfesi&criteria=statusEnabled,jenisProfesi&values=true,(1)&order=namaProfesi:asc").then(res => {
                     $scope.listProfesi = res.data;
                 })
             }
@@ -124,7 +124,7 @@ define(['initialize'], function (initialize) {
 
             $scope.getListProduk = (profesiId) => {
                 $scope.nakes.kegiatan = null;
-                manageSdmNew.getListData("service/list-generic/?view=ProdukNakes&select=id,namaProduk&criteria=statusEnabled,profesiId&values=true,(" + profesiId + ")&order=namaProduk:asc").then(res => {
+                manageSdmNew.getListData("service/list-generic/?view=ProdukNakes&select=id,namaProduk&criteria=statusEnabled,profesiId,kdProduk&values=true,(" + profesiId + "),(1)&order=namaProduk:asc").then(res => {
                     $scope.listProduk = res.data;
                 })
             }
