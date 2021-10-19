@@ -387,11 +387,6 @@ define(['initialize'], function (initialize) {
                     }
                 }
 
-                if ($scope.item.indikatorKerja && $scope.item.indikatorKerja.id == 350) {
-                    toastr.info("Indikator ini dihitung otomatis", "Informasi")
-                    return
-                }
-
                 let dataSave = {
                     bulan: dateHelper.toTimeStamp($scope.item.srcBulan),
                     target: $scope.item.target,
@@ -418,6 +413,10 @@ define(['initialize'], function (initialize) {
                     $scope.getAllData();
                     $scope.closePopUp();
 
+                    if ($scope.item.indikatorKerja && $scope.item.indikatorKerja.id == 350) {
+                        toastr.info("Target indikator ini dihitung otomatis", "Informasi")
+                    }
+
                     $scope.isRouteLoading = false;
                     $scope.isPopup = true;
                 }, (error) => {
@@ -435,8 +434,7 @@ define(['initialize'], function (initialize) {
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
 
                 if (dataItem.indikatorId == 350) {
-                    toastr.info("Indikator ini dihitung otomatis", "Informasi")
-                    return
+                    toastr.info("Target indikator ini dihitung otomatis", "Informasi")
                 }
 
                 if (dataItem.bobot != null) {
