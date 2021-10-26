@@ -361,13 +361,198 @@ define(['initialize'], function (initialize) {
                         text: "export",
                         name: "Export detail",
                         template: '<button ng-click="exportExcel()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
-                    }
+                    }, {
+                        text: "export",
+                        name: "Export detail",
+                        template: '<button ng-click="exportExcelDetail()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export Detail</button>'
+                    },
 
                 ],
                 pageable: true,
                 scrollable: true,
                 columns: $scope.columnGrid
             };
+
+            $scope.exportExcelDetail = function () {
+
+                let dataGridPSR = $scope.dataGrid.data();
+                let dataTempSourceExportPB = [];
+                console.log(dataGridPSR)
+
+                for (let i = 0; i < dataGridPSR.length; i++) {
+
+                    for (let ii = 0; ii < dataGridPSR[i].details.length; ii++) {
+                        let dataTemp2 = {
+                            nostruk: dataGridPSR[i].nostruk,
+                            keterangan: dataGridPSR[i].keterangan,
+                            namaruangan: dataGridPSR[i].namaruangan,
+                            tglstruk: dataGridPSR[i].tglstruk,
+                            namapegawai: dataGridPSR[i].namapegawai,
+                            // tglorder: dataGridPSR[i].tglorder,
+                            kodeProduk:dataGridPSR[i].details[ii].kdproduk,
+                            namaproduk:dataGridPSR[i].details[ii].namaproduk,
+                            satuanstandar: dataGridPSR[i].details[ii].satuanstandar,
+                            qtyproduk: dataGridPSR[i].details[ii].qtyproduk,
+                            qtyterimalast: dataGridPSR[i].details[ii].qtyterimalast,
+                            hargasatuan: dataGridPSR[i].details[ii].hargasatuan,
+                            hargadiscount: dataGridPSR[i].details[ii].hargadiscount,
+                            hargappn: dataGridPSR[i].details[ii].hargappn,
+                            total: dataGridPSR[i].details[ii].total,
+                            qtyprodukkonfirmasi: dataGridPSR[i].details[ii].qtyprodukkonfirmasi
+                        }
+                        dataTempSourceExportPB.push(dataTemp2);
+                    }
+
+                }
+
+                $scope.dataSourceExportPB = new kendo.data.DataSource({
+                    data: dataTempSourceExportPB
+                });
+
+                console.log($scope.dataSourceExportPB);
+
+                var tempDataExport = [];
+                var rows = [{
+                    cells: [{
+                            value: "Tanggal"
+                        },
+                        {
+                            value: "No. Pemakaian"
+                        },
+                        {
+                            value: "Ruangan"
+                        },
+                        {
+                            value: "Deskripsi"
+                        }, 
+                        {
+                            value: "Kode Produk"
+                        },
+                        {
+                            value: "Satuan"
+                        },
+                        {
+                            value: "QTY"
+                        },
+                        {
+                            value: "Harga Satuan"
+                        },
+                        {
+                            value: "Disc%"
+                        },
+                        {
+                            value: "PPN%"
+                        },
+                        {
+                            value: "Total"
+                        },
+                        {
+                            value: "Keterangan"
+                        },
+                        {
+                            value: "Pegawai"
+                        },
+                    ]
+                }];
+
+                tempDataExport = $scope.dataSourceExportPB;
+                tempDataExport.fetch(function () {
+                    var data = this.data();
+                    console.log(data);
+                    for (var i = 0; i < data.length; i++) {
+                        //push single row for every record
+                        rows.push({
+                            cells: [{
+                                    value: data[i].tglstruk
+                                },
+                                {
+                                    value: data[i].nostruk
+                                },
+                                {
+                                    value: data[i].namaruangan
+                                },
+                                {
+                                    value: data[i].namaproduk
+                                },
+                                {
+                                    value: data[i].kodeProduk
+                                },
+                                {
+                                    value: data[i].satuanstandar
+                                },
+                                {
+                                    value: data[i].qtyproduk
+                                },
+                                {
+                                    value: data[i].hargasatuan
+                                },
+                                {
+                                    value: data[i].hargadiscount
+                                },
+                                {
+                                    value: data[i].hargappn
+                                },
+                                {
+                                    value: data[i].total
+                                },
+                                {
+                                    value: data[i].keterangan
+                                },
+                                {
+                                    value: data[i].namapegawai
+                                }
+                            ]
+                        })
+                    }
+                    var workbook = new kendo.ooxml.Workbook({
+                        sheets: [{
+                            freezePane: {
+                                rowSplit: 1
+                            },
+                            columns: [{
+                                    autoWidth: true
+                                },
+                                {
+                                    autoWidth: true
+                                },
+                                {
+                                    autoWidth: true
+                                },
+                                {
+                                    autoWidth: true
+                                },
+                                {
+                                    autoWidth: true
+                                },
+                                {
+                                    autoWidth: true
+                                }, {
+                                    autoWidth: true
+                                }, {
+                                    autoWidth: true
+                                }, {
+                                    autoWidth: true
+                                }, {
+                                    autoWidth: true
+                                }, {
+                                    autoWidth: true
+                                }, {
+                                    autoWidth: true
+                                }
+                            ],
+                            // Title of the sheet
+                            title: "Detail Pemakaian Stok Ruangan",
+                            // Rows of the sheet
+                            rows: rows
+                        }]
+                    });
+                    //save the file as Excel file with extension xlsx
+                    kendo.saveAs({
+                        dataURI: workbook.toDataURL(),
+                        fileName: "detail-pemakaian-stok-ruangan.xlsx"
+                    });
+                });
+            }
 
             $scope.exportExcel = function () {
 

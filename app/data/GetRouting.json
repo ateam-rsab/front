@@ -48420,6 +48420,26 @@
     ]
   },
   {
+    "name": "DaftarBayiLahir",
+    "url": "/DaftarBayiLahir",
+    "templateurl": "module/Akuntansi/TataRekening/DaftarBayiLahir.html",
+    "controller": "DaftarBayiLahirCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      }
+    ]
+  },
+  {
     "name": "DaftarKonsultasiKosong",
     "url": "/DaftarKonsultasiKosong",
     "templateurl": "module/Akuntansi/TataRekening/DaftarKonsultasiKosong.html",
