@@ -20,6 +20,23 @@ define(['initialize'], function (initialize) {
                 $scope.showSyaratKetentuan = true
             }
 
+            let getListMaster = () => {
+                $q.all([
+                    ManageSdmNew.getListData("service/list-generic/?view=Profesi&select=id,namaProfesi&criteria=statusEnabled&values=true&order=namaProfesi:asc")
+                ]).then(function (res) {
+                    $scope.listProfesi = res[0].data;
+                })
+            }
+
+            getListMaster();
+
+            $scope.getListProduk = (profesiId) => {
+                $scope.nakes.kegiatan = null;
+                ManageSdmNew.getListData("service/list-generic/?view=ProdukNakes&select=id,namaProduk&criteria=statusEnabled,profesiId,kdProduk&values=true,(" + profesiId + "),(2)&order=namaProduk:asc").then(res => {
+                    $scope.listProduk = res.data;
+                })
+            }
+
             let getListPegawai = () => {
                 ManageSdmNew.getListData("iki-remunerasi/get-akses-pegawai-kontrak-kinerja?pegawaiId=" + $scope.dataLogin.id).then((res) => {
                     $scope.showIsSinglePegawai = res.data.data.length === 1;
@@ -74,7 +91,7 @@ define(['initialize'], function (initialize) {
             $scope.getJabatanPegawai($scope.dataLogin.id);
 
             $scope.init = () => {
-                $scope.optGrid = {
+                $scope.optGrid1 = {
                     pageable: true,
                     scrollable: true,
                     columns: [{
@@ -101,6 +118,40 @@ define(['initialize'], function (initialize) {
                         field: "statusVerifikasi",
                         title: "<h3>Status</h3>",
                         width: 50
+                    }],
+                }
+
+                $scope.optGrid2 = {
+                    pageable: true,
+                    scrollable: true,
+                    columns: [{
+                        field: "tglPelayananFormatted",
+                        title: "<h3>Tanggal</h3>",
+                        width: 70
+                    }, {
+                        field: "namaProduk",
+                        title: "<h3>Kegiatan</h3>",
+                        width: 120
+                    }, {
+                        field: "namaProfesi",
+                        title: "<h3>Profesi Pelaksana</h3>",
+                        width: 50
+                    }, {
+                        field: "jumlah",
+                        title: "<h3>Jumlah</h3>",
+                        width: 30
+                    }, {
+                        field: "skor",
+                        title: "<h3>Skor</h3>",
+                        width: 30
+                    }, {
+                        field: "tSkor",
+                        title: "<h3>Total<br/>Skor</h3>",
+                        width: 30
+                    }, {
+                        field: "catatan",
+                        title: "<h3>Catatan</h3>",
+                        width: 150
                     }],
                 }
             }
@@ -209,23 +260,40 @@ define(['initialize'], function (initialize) {
                 }
             }
 
+            let autoIndikator = [466, 350, 351, 357, 672]
             $scope.showDetail = (data) => {
-                if (data.idIndikator != 466) {
+                if (!autoIndikator.includes(data.idIndikator)) {
                     $scope.labelDetail = data.namaIndikator
 
-                    let URL = "iki-remunerasi/catatan-kegiatan-harian-indikator?pegawaiId=" + data.idPegawai
-                        + "&jabatanId=" + data.idJabatan
-                        + "&bulan=" + dateHelper.toTimeStamp($scope.item.bulan)
-                        + "&indikatorId=" + data.idIndikator
+                    if (data.idIndikator == 673) {
+                        let URL = "iki-remunerasi/get-pelayanan-nakes?bulan=" + dateHelper.toTimeStamp($scope.item.bulan)
+                            + "&pegawaiId=" + data.idPegawai
 
-                    ManageSdmNew.getListData(URL).then((res) => {
-                        $scope.dataSource = new kendo.data.DataSource({
-                            data: res.data.data,
-                            pageSize: 5
-                        });
+                        ManageSdmNew.getListData(URL).then((res) => {
+                            $scope.dataSource2 = new kendo.data.DataSource({
+                                data: res.data.data,
+                                pageSize: 5
+                            });
 
-                        $scope.popupDetail.open().center();
-                    })
+                            $scope.popupDetail2.open().center();
+                        })
+                    } else {
+                        let URL = "iki-remunerasi/catatan-kegiatan-harian-indikator?pegawaiId=" + data.idPegawai
+                            + "&jabatanId=" + data.idJabatan
+                            + "&bulan=" + dateHelper.toTimeStamp($scope.item.bulan)
+                            + "&indikatorId=" + data.idIndikator
+
+                        ManageSdmNew.getListData(URL).then((res) => {
+                            $scope.dataSource1 = new kendo.data.DataSource({
+                                data: res.data.data,
+                                pageSize: 5
+                            });
+
+                            $scope.popupDetail1.open().center();
+                        })
+                    }
+                } else {
+                    toastr.info("Indikator ini dihitung otomatis", "Informasi")
                 }
             }
 
@@ -238,16 +306,27 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.addData = (data) => {
+                if (autoIndikator.includes(data.idIndikator)) {
+                    toastr.info("Indikator ini dihitung otomatis", "Informasi")
+                    return
+                }
+
                 $scope.dataAdd = data;
                 $scope.labelData = data.namaIndikator;
 
 
                 $scope.showInputHasil = data.satuanId === 11743 && (data.jenisIndikator === "Kualitas" || data.jenisIndikator === "Perilaku");
                 // console.log($scope.showInputHasil);
-                $scope.popupAdd.open().center();
+                if (data.idIndikator == 673) {
+                    $scope.resetForm2()
+                    $scope.popupAdd2.open().center();
+                } else {
+                    $scope.resetForm1()
+                    $scope.popupAdd1.open().center();
+                }
             }
 
-            $scope.simpanData = () => {
+            $scope.simpanData1 = () => {
                 let dataSave = {
                     namaKegiatan: $scope.item.namaKegiatan ? $scope.item.namaKegiatan : $scope.labelData,
                     capaian: $scope.item.hasilKegiatan,
@@ -261,20 +340,59 @@ define(['initialize'], function (initialize) {
                 }
 
                 ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-working-record").then(res => {
-                    $scope.closepopUp();
+                    $scope.closepopUp1();
                     $scope.getDataDashboard();
                 })
             }
 
-            $scope.resetForm = () => {
-                $scope.item.namaKegiatan = null;
-                $scope.item.hasilKegiatan = null;
-                $scope.item.catatanKegiatan = null;
+            $scope.simpanData2 = () => {
+                let dataSave = {
+                    kdProfile: 0,
+                    statusEnabled: true,
+                    produk: {
+                        id: $scope.nakes.kegiatan.id
+                    },
+                    tglPelayanan: dateHelper.toTimeStamp($scope.nakes.tglPelayanan),
+                    jumlah: $scope.nakes.jmlLayanan,
+                    pegawai: {
+                        id: $scope.item.pegawai.id
+                    },
+                    catatan: $scope.nakes.catatan
+                }
+
+                ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-pelayanan-nakes").then(res => {
+                    $scope.closepopUp2();
+                    $scope.getDataDashboard();
+                }, (error) => {
+                    if (error.status == 400) {
+                        toastr.error("Tanggal kegiatan harus diisi dengan tanggal di bulan berjalan", "Informasi")
+                    }
+                })
             }
 
-            $scope.closepopUp = () => {
-                $scope.resetForm();
-                $scope.popupAdd.close();
+            $scope.resetForm1 = () => {
+                if ($scope.item) {
+                    $scope.item.namaKegiatan = null
+                    $scope.item.hasilKegiatan = null
+                    $scope.item.catatanKegiatan = null
+                } else {
+                    $scope.item = undefined
+                }
+            }
+
+            $scope.resetForm2 = () => {
+                $scope.nakes = undefined
+                $scope.listProduk = undefined
+            }
+
+            $scope.closepopUp1 = () => {
+                $scope.resetForm1();
+                $scope.popupAdd1.close();
+            }
+
+            $scope.closepopUp2 = () => {
+                $scope.resetForm2();
+                $scope.popupAdd2.close();
             }
 
             document.querySelector("#hasil").addEventListener("keypress", function (evt) {

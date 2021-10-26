@@ -98,7 +98,7 @@ define(['initialize'], function (initialize) {
                             $scope.isVerifHidden = true
                             $scope.isHapusGranted = false
                             $scope.isTambahGranted = true
-                        } else if (res.data.data.isAtasan || res.data.data.isSuperuser) {
+                        } else if (res.data.data.isSuperuser) {
                             $scope.isVerifHidden = false
                             $scope.isHapusGranted = true
                             $scope.isTambahGranted = true
@@ -108,9 +108,9 @@ define(['initialize'], function (initialize) {
                             $scope.isTambahGranted = false
                         }
                     } else {
-                        $scope.listId = [21]
+                        $scope.listId = [30, 31, 32, 33, 34, 35, 36, 37, 38, 41, 57, 71, 83]
                         $scope.listSk = []
-                        listUK = "21"
+                        listUK = "30;31;32;33;34;35;36;37;38;41;57;71;83"
                     }
 
                     $scope.getAllData();
@@ -281,7 +281,7 @@ define(['initialize'], function (initialize) {
             $scope.getProduk = (profesiId) => {
                 $scope.item.namaProduk = null;
                 ManageSdmNew.getListData("service/list-generic/?view=ProdukNakes&"
-                    + "select=id,namaProduk&criteria=statusEnabled,profesiId&values=true," + profesiId + "&order=namaProduk:asc").then(res => {
+                    + "select=id,namaProduk&criteria=statusEnabled,profesiId&values=true,(" + profesiId + ")&order=namaProduk:asc").then(res => {
                         $scope.listNamaProduk = res.data;
                     })
             }
