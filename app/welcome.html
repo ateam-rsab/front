@@ -1,4 +1,8 @@
 <style>
+    .badge {
+        position: static;
+    }
+
     .smart-container-home {
         display: flex;
         font-family: ProximaNovaLight !important
@@ -15,12 +19,12 @@
 
     .card-list-dokumen {
         border-top: solid #37d3d7;
-        width: 30%
+        width: 40%
     }
 
     .card-list-video {
         border-top: solid #37d3d7;
-        width: 70%
+        width: 60%
     }
 
     .card-list-video video {
@@ -63,8 +67,7 @@
         width: 60%;
         max-width: 60%;
         font-weight: 400;
-        color: #303030;
-        line-height: 25px;
+        color: #303030
     }
 
     .doc-action {
@@ -84,6 +87,15 @@
         margin: auto auto;
         height: 15px;
         font-size: 12px;
+        white-space: nowrap;
+    }
+
+    .error {
+        background-color: #ff2d2d;
+        padding: 5px;
+        font-weight: bolder;
+        color: #fdfdfd;
+        border-radius: 4px;
     }
 
     .notify {
@@ -103,9 +115,10 @@
         background-color: #ffcf77
     }
 
+
     .notify-danger {
         background-color: #ff6f6f;
-        color: #d7d7d7;
+        color: white;
     }
 
     md-pagination-wrapper.md-center-tabs,
@@ -167,92 +180,184 @@
         color: #79e5e9;
         cursor: pointer;
     }
+
+
+    .content-widget-verifikasi {
+        display: flex;
+        justify-content: space-evenly;
+
+    }
+
+    .content-widget-verifikasi h1 {
+        color: #494949;
+        font-weight: bolder;
+        font-size: 15px;
+        background-color: #e1e0e0;
+        border-radius: 5px;
+        padding: 10px;
+    }
+
+    .content-widget-verifikasi h1 span {
+        font-size: 25px;
+    }
+
+    /* .container-widget {
+        width: 50%;
+    }
+    .container-notify {
+        width: 50%;
+    } */
 </style>
 
 <div ng-controller="WelcomeCtrl">
-    <md-card ng-show="isRemun">
-        <md-card-header>
-            <div class="grid_12">
-                <div class="grid_6">
-                    <h4 style="text-align: left;">Perkembangan Kinerja Bulan Ini</h4>
-                </div>
-                <div class="grid_6">
-                    <span style="float: right; margin-left: 1em; font-size: larger;"
-                        ng-click="linkDashboardKinerja()"><i class="fa fa-external-link"
-                            aria-hidden="true"></i></i></span>
-                    <span style="float: right; margin-left: 1em; font-size: larger;" ng-click="widgetKinerja()"><i
-                            class="fa fa-refresh" aria-hidden="true"></i></span>
-                </div>
-            </div>
-        </md-card-header>
-
-        <md-card-content>
-            <div class="widget-dashboard-kinerja">
-                <!-- <label>Progress Kinerja</label> -->
-                <div ng-repeat="data in dataDashboardKinerja" style="margin-bottom: 5px;">
-                    <md-tooltip md-direction="top">{{data.persenCapaianDibulatkan}}%</md-tooltip>
-                    <md-progress-linear md-mode="determinate" value="{{data.persenCapaianDibulatkan}}">
-
-                    </md-progress-linear>
-                </div>
-            </div>
-        </md-card-content>
-    </md-card>
+   
 
     <md-card class="card-list-notification">
         <md-card-header>
             <h4>Pemberitahuan</h4>
         </md-card-header>
         <md-card-content>
-            <div class="notify" ng-if="isShowSIPExpired">
-                <strong>Info </strong> {{messageNotif}}
+
+
+            <div class="container-widget grid_6">
+                <div class="grid_6">
+                    <md-card>
+                        <md-card-title style="border-bottom: 1px solid #dddddd">
+                            <md-card-title-text>
+                                <span class="md-headline">Status Verifikasi</span>
+                            </md-card-title-text>
+
+                        </md-card-title>
+                        <md-card-body>
+                            <div class="container-widget-verifikasi">
+                                <div class="content-widget-verifikasi">
+                                    <h1><span>{{dataWidgetStatusVerifikasi.statusVerifikasi.belumDiverifikasi}}</span> Belum Diverifkasi</h1>
+                                    <h1><span>{{dataWidgetStatusVerifikasi.statusVerifikasi.sudahDiverifikasi}}</span> Sudah Diverifkasi</h1>
+                                </div>
+                            </div>
+                        </md-card-body>
+                    </md-card>
+                </div>
+                <div class="grid_6">
+                    <md-card>
+                        <md-card-title style="border-bottom: 1px solid #dddddd">
+                            <md-card-title-text>
+                                <span class="md-headline">Tugas Verifikasi</span>
+                            </md-card-title-text>
+
+                        </md-card-title>
+                        <md-card-body>
+                            <div class="container-widget-verifikasi">
+                                <div class="content-widget-verifikasi">
+                                    <h1><span>{{dataWidgetStatusVerifikasi.tugasVerifikasi.belumDiverifikasi}}</span> Belum Diverifkasi</h1>
+                                    <h1><span>{{dataWidgetStatusVerifikasi.tugasVerifikasi.sudahDiverifikasi}}</span> Sudah Diverifkasi</h1>
+                                </div>
+                            </div>
+                        </md-card-body>
+                    </md-card>
+                </div>
+                <div class="grid_12">
+                    <md-card>
+                        <md-card-header>
+                            <div class="grid_12">
+                                <div class="grid_6">
+                                    <h4 style="text-align: left;">Perkembangan Kinerja Bulan Ini</h4>
+                                </div>
+                                <div class="grid_6">
+                                    <span style="float: right; margin-left: 1em; font-size: larger;"
+                                        ng-click="linkDashboardKinerja()"><i class="fa fa-external-link"
+                                            aria-hidden="true"></i></i></span>
+                                    <span style="float: right; margin-left: 1em; font-size: larger;" ng-click="widgetKinerja()"><i
+                                            class="fa fa-refresh" aria-hidden="true"></i></span>
+                                </div>
+                            </div>
+                        </md-card-header>
+                
+                        <md-card-content>
+                            <div class="widget-dashboard-kinerja">
+                                <!-- <label>Progress Kinerja</label> -->
+                                <div ng-repeat="data in dataDashboardKinerja" style="margin-bottom: 5px;">
+                                    <md-tooltip md-direction="top">{{data.persenCapaianDibulatkan}}%</md-tooltip>
+                                    <md-progress-linear md-mode="determinate" value="{{data.persenCapaianDibulatkan}}">
+                
+                                    </md-progress-linear>
+                                </div>
+                            </div>
+                        </md-card-content>
+                    </md-card>
+                </div>
+               
             </div>
 
-            <div class="notify" ng-if="showPPDSNotif">
-                <strong>Info </strong> {{pesanPemberitahuan}}
-            </div>
+            <div class="container-notify grid_6">
+                <div class="notify" ng-if="isShowSIPExpired">
+                    <strong>Info </strong> {{messageNotif}}
+                </div>
 
-            <div class="notify notify-danger" ng-if="showNotif.messageAbsensi">
-                <strong>Info </strong> {{messageAbsensi}}
-            </div>
+                <div class="notify" ng-if="showPPDSNotif">
+                    <strong>Info </strong> {{pesanPemberitahuan}}
+                </div>
 
-            <div class="notify notify-warn" ng-if="showNotif.changePassword">
-                <strong>Perhatian </strong> Harap kepada pengguna SMART untuk mengganti Kata Kunci/Password pengguna
-                anda
-            </div>
+                <div class="notify notify-danger" ng-if="showNotif.messageAbsensi">
+                    <strong>Info </strong> {{messageAbsensi}}
+                </div>
 
-            <div class="notify notify-warn" ng-if="showNotif.formISARC">
-                <strong>Perhatian </strong> Kepada seluruh karyawan Rumah Sakit Harapan Kita. Harap mengisi form
-                Instrumen Self Assessment Risiko COVID-19 <strong style="font-size:12px; font-style:italic">(<a
-                        href="https://bit.ly/selfassessmentcovid19rsabhk" target="_blank">Klik disini</a>)</strong>
+                <div class="notify notify-warn" ng-if="showNotif.changePassword">
+                    <strong>Perhatian </strong> Harap kepada pengguna SMART untuk mengganti Kata Kunci/Password pengguna
+                    anda
+                </div>
+
+                <div class="notify notify-warn" ng-if="showNotif.formISARC">
+                    <strong>Perhatian </strong> Kepada seluruh karyawan Rumah Sakit Harapan Kita. Harap mengisi form
+                    Instrumen Self Assessment Risiko COVID-19 <strong style="font-size:12px; font-style:italic">(<a
+                            href="https://bit.ly/selfassessmentcovid19rsabhk" target="_blank">Klik disini</a>)</strong>
+                </div>
             </div>
         </md-card-content>
     </md-card>
     <div class="smart-container-home">
-
         <md-card class="card-list-dokumen">
-            <!-- <md-card-header>
-                <h4>Dokumen Terkait COVID-19</h4>
-            </md-card-header> -->
             <md-card-content>
-
 
                 <div ng-cloak style="height: 100%;">
                     <md-content>
                         <md-tabs class="md-primary" md-dynamic-height md-center-tabs>
-                            <md-tab label="Pemberitahuan">
+                            <md-tab label="Informasi Terkini">
                                 <md-content class="md-padding">
                                     <!-- <h2 class="md-display-1">Belum ada Pemberitahuan</h2> -->
                                     <ul class="list-1">
                                         <li ng-repeat="data in dataPemberitahuan">
                                             <div class="doc-description">
-                                                {{data.fileName}}
+                                                <strong>{{data.fileName}}</strong>
                                             </div>
                                             <div class="doc-action">
-                                                <a href="data/dokumen/pedoman-covid19.pdf" download>Download PDF</a>
+                                                <a href="{{data.path}}" download>Download PDF</a>
                                             </div>
+                                            <span class="badge error">NEW</span>
                                         </li>
+
                                     </ul>
+                                </md-content>
+                            </md-tab>
+
+                            <md-tab label="Info Penting">
+                                <md-content class="md-padding">
+                                    <!-- <h2 class="md-display-1">Belum ada Pembaruan</h2> -->
+                                    <md-content class="md-padding">
+                                        <!-- <h2 class="md-display-1">Belum ada Pemberitahuan</h2> -->
+                                        <ul class="list-1">
+                                            <li ng-repeat="data in dataBerkasAdministrasi">
+                                                <div class="doc-description">
+                                                    <strong>{{data.fileName}}</strong>
+                                                </div>
+                                                <div class="doc-action">
+                                                    <a href="{{data.path}}" download>Download PDF</a>
+                                                </div>
+                                                <!-- <span class="badge error">NEW</span> -->
+                                            </li>
+
+                                        </ul>
+                                    </md-content>
                                 </md-content>
                             </md-tab>
 
@@ -289,12 +394,6 @@
                                     </li>
                                 </ul>
                             </md-tab>
-
-                            <md-tab label="Pembaruan">
-                                <md-content class="md-padding">
-                                    <h2 class="md-display-1">Belum ada Pembaruan</h2>
-                                </md-content>
-                            </md-tab>
                         </md-tabs>
                     </md-content>
                 </div>
@@ -309,6 +408,13 @@
                 <div class="list-video">
                     <ul class="list-2">
                         <li
+                            ng-click="changeVideo('https://smart.rsabhk.co.id:2222/vid/zona-integritas.mp4', 'Profil Zona Integritas WBK dan WBBM RSAB Harapan Kita 2021')">
+                            Profil Zona Integritas WBK dan WBBM RSAB Harapan Kita 2021
+                        </li>
+                        <li ng-click="changeVideo('https://smart.rsabhk.co.id:2222/vid/senam.mp4', 'Senam Kebugaran')">
+                            Senam
+                        </li>
+                        <li
                             ng-click="changeVideo('https://smart.rsabhk.co.id:2222/vid/masker.mp4', 'Maskerku Melindungi Kamu, Maskermu Melindungi Aku')">
                             Maskerku Melindungi Kamu, Maskermu Melindungi Aku
                         </li>
@@ -322,8 +428,8 @@
                     </ul>
                 </div>
                 <!-- <embed src="https://smart.rsabhk.co.id:2222/vid/jaga-jarak.mp4"width="500" height="500" > -->
-                <video name="media" id="video-kampanye" src="https://smart.rsabhk.co.id:2222/vid/masker.mp4" autobuffer
-                    loop controls>
+                <video name="media" id="video-kampanye" src="https://smart.rsabhk.co.id:2222/vid/zona-integritas.mp4"
+                    autoplay loop controls>
                     Your browser does not support HTML video.
                 </video>
             </md-card-content>
@@ -333,7 +439,7 @@
     <div kendo-window="popUp" id="winSipStr" k-title="'Pemberitahuan'" k-width="550" k-visible="false"
         k-on-open="win2visible= true" k-on-close="ji.idGridInternalJabatan= null">
         <div class="panel panel-default container_12" style="padding:
-            0px 10px;">
+             0px 10px;">
             <label>{{messageNotif}}</label>
         </div>
     </div>

@@ -869,6 +869,18 @@
       "urlDep": "module/SDM/Remunerasi/InputKegiatanPelayananPerawatCtrl"
     },
     {
+      "nameDep": "MasterProfesiTKLCtrl",
+      "urlDep": "module/SDM/Remunerasi/MasterProfesiTKLCtrl"
+    },
+    {
+      "nameDep": "MasterProdukTKLCtrl",
+      "urlDep": "module/SDM/Remunerasi/MasterProdukTKLCtrl"
+    },
+    {
+      "nameDep": "MasterProdukPerawatCtrl",
+      "urlDep": "module/SDM/Remunerasi/MasterProdukPerawatCtrl"
+    },
+    {
       "nameDep": "InputKegiatanPelayananNakesCtrl",
       "urlDep": "module/SDM/Remunerasi/InputKegiatanPelayananNakesCtrl"
     },

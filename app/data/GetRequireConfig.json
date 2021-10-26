@@ -8265,6 +8265,10 @@
       "urlDep": "module/Akuntansi/TataRekening/DaftarRegistrasiPasienCtrl"
     },
     {
+      "nameDep": "DaftarBayiLahirCtrl",
+      "urlDep": "module/Akuntansi/TataRekening/DaftarBayiLahirCtrl"
+    },
+    {
       "nameDep": "DaftarKonsultasiKosongCtrl",
       "urlDep": "module/Akuntansi/TataRekening/DaftarKonsultasiKosongCtrl"
     },
