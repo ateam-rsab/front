@@ -1202,6 +1202,11 @@ define(['initialize', 'Configuration'], function(initialize, configuration) {
                             // debugger;
                             delete tmpData.pegawai;
                         }
+
+                        if ($scope.item.jenisPasien && !$scope.item.pegawai) {
+                            toastr("Harap pilih dokter pemeriksa", "Peringatan")   
+                            return
+                        }
                         // console.log(JSON.stringify(tmpData));
                         ManageSarprasPhp.saveMutasiPindahPasien(tmpData).then(function(e) {
                                    // managePasien.saveRegistrasiPelayanan(tmpData).then(function(e) {
