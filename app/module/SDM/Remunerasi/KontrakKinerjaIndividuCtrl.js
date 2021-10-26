@@ -462,7 +462,7 @@ define(['initialize'], function (initialize) {
                         $scope.isNotEditable1 = true;
                         $scope.isNotEditable2 = true;
                     } else {
-                        if (dataItem.detail) {
+                        if (dataItem.detail || dataItem.isNotEditable) {
                             $scope.isNotEditable1 = true;
                             $scope.isNotEditable2 = false;
                         } else {
