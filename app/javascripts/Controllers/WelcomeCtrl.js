@@ -72,10 +72,6 @@ define(['initialize'], function (initialize) {
                     path: "data/dokumen/PEMBERITAHUAN-SK-KPO-dan-NON-KPO-an.-Suprapto.pdf",
                     fileName: "PEMBERITAHUAN - SK KPO dan NON KPO an. Suprapto"
                 },
-                {
-                    path: "data/dokumen/rekrutmen-internal-JABFUNG-di-lingkungan-RSABHK-tahun-2021.pdf",
-                    fileName: "Rekrutmen Internal Jabatan Fungsional di Lingkungan RSAB HK tahun 2021"
-                },
             ]
 
             $scope.dataBerkasAdministrasi = [{
@@ -90,7 +86,15 @@ define(['initialize'], function (initialize) {
                 path: "data/dokumen/prosedur-pembuatan-daftar-uang-makan-bagi-pns.pdf",
                 fileName: "Prosedur Pembuatan Daftar Uang Makan bagi PNS",
                 new: false
+            }, {
+                path: "data/dokumen/rekrutmen-internal-JABFUNG-di-lingkungan-RSABHK-tahun-2021.pdf",
+                fileName: "Rekrutmen Internal Jabatan Fungsional di Lingkungan RSAB HK tahun 2021"
             }]
+
+            $scope.lihatDokumen = (url) => {
+
+                window.open(`${window.location.origin}/app/${url}`, '_blank');
+            }
 
             $scope.OnInit();
 
