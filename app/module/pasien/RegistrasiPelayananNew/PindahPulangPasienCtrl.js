@@ -33,7 +33,7 @@ define(['initialize'], function (initialize) {
 
                 manageServicePhp.getDataTableTransaksi("pindahpasien/get-combo-pindahpasien")
                     .then(function (e) {
-                        $scope.listpegawai = e.data.dpjp;
+                        $scope.listDpjp = e.data.listdpjp;
                         $scope.listStatusKeluar = e.data.statuskeluar;
                         $scope.listKondisiPasien = e.data.kondisipasien;
                         // $scope.listKelas=e.data.kelas; 
@@ -148,7 +148,7 @@ define(['initialize'], function (initialize) {
                 }
             }
             $scope.SavePindah = function () {
-                if (!$scope.item.pegawai) {
+                if (!$scope.item.dokter) {
                     toastr.warning("Harap pilih DPJP!");
                     return;
                 }
@@ -251,7 +251,7 @@ define(['initialize'], function (initialize) {
                     norec_apd: $scope.item.pasien.norec_apd,
                     keteranganpindah: keterangans,
                     israwatgabung: $scope.item.rawatGabung === true ? 1 : 0,
-                    objectpegawaifk: $scope.item.pegawai.id
+                    objectpegawaifk: dokterId
                 }
 
                 var objSave = {

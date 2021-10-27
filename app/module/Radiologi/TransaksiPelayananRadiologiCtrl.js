@@ -293,6 +293,10 @@ define(['initialize'], function(initialize) {
                     alert("Pilih Ruangan Tujuan terlebih dahulu!!")
                     return
                 }
+                if ($scope.item.dokter == undefined) {
+                    alert("Pilih Dokter terlebih dahulu!!")
+                    return
+                }
                 if (data2.length == 0) {
                     alert("Pilih layanan terlebih dahulu!!")
                     return
