@@ -208,12 +208,7 @@ define(['initialize', 'Configuration'], function(initialize, configuration) {
                             toastr.warning("Harap pilih Kelas")
                             return
                         }
-
-                        if (!$scope.item.dokter) {
-                            toastr.warning("Harap pilih Dokter Pemeriksa")
-                            return
-                        }
-            
+                        
                         var kelasId = "";
                         if ( $scope.item.kelas == undefined||$scope.item.kelas == "") {
                             kelasId = null;
