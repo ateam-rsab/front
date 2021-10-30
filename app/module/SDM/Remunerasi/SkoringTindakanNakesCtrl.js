@@ -98,7 +98,7 @@ define(['initialize'], function (initialize) {
                             $scope.isVerifHidden = true
                             $scope.isHapusGranted = false
                             $scope.isTambahGranted = true
-                        } else if (res.data.data.isSuperuser) {
+                        } else if (res.data.data.isAtasan || res.data.data.isSuperuser) {
                             $scope.isVerifHidden = false
                             $scope.isHapusGranted = true
                             $scope.isTambahGranted = true
