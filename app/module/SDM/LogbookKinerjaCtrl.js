@@ -2,16 +2,17 @@ define(['initialize'], function (initialize) {
     'use strict';
     initialize.controller('LogbookKinerjaCtrl', ['$q', '$http', '$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm', 'ManageSdmNew', 'DateHelper', 'ReportHelper', 'FindPegawai', 'CetakHelper', 'FindSdm',
         function ($q, $http, $rootScope, $scope, ModelItem, $state, ManageSdm, ManageSdmNew, dateHelper, reportHelper, findPegawai, cetakHelper, FindSdm) {
-            $scope.now = new Date();
             $scope.item = {};
+            $scope.now = new Date();
             $scope.isLoading = true;
+            $scope.isRouteLoading = true;
             $scope.dataVOloaded = true;
             $scope.yearSelected = {
                 format: "MMMM yyyy",
                 start: "year",
                 depth: "year"
             };
-            $scope.isRouteLoading = true;
+
             $q.all([
                 ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true"),
                 ManageSdmNew.getListData("pegawai/get-all-pegawai-custom/")
@@ -25,13 +26,7 @@ define(['initialize'], function (initialize) {
                 }
                 $scope.isRouteLoading = false;
             })
-            // ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true").then(function(dat) {
-            //     $scope.listPegawai = dat.data;
-            //     $scope.isRouteLoading = false;
-            // }, (error) => {
-            //     throw(error);
-            //     $scope.isRouteLoading = false;
-            // });
+
             $scope.cari = function () {
                 var listRawRequired = [
                     "item.pegawai|k-ng-model|Nama pegawai",
@@ -63,22 +58,18 @@ define(['initialize'], function (initialize) {
                                                 } else {
                                                     customData[key] = subElement["count"];
                                                 };
-                                                // Object.defineProperty(customData, "["+key+"]", {
-                                                //     value: subElement["count"]
-                                                // });
                                             });
+
                                             break;
                                         default:
                                             customData[key] = element[key];
-                                            // Object.defineProperty(customData, key, {
-                                            //     value: element[key],
-                                            //     writable: false
-                                            // });
+
                                             break;
                                     }
                                 };
                                 dataGrid.push(customData);
                             });
+
                             $scope.mainGridOption = {
                                 toolbar: ["excel"],
                                 excel: {
@@ -94,131 +85,240 @@ define(['initialize'], function (initialize) {
                                         value: "Logbook " + $scope.item.pegawai.namaLengkap + "(Periode " + dateHelper.getPeriodFormat($scope.item.periode) + ") ",
                                         fontSize: 14,
                                         textAlign: "left",
-                                        background: "#ffffff",// color:"#ffffff"
+                                        background: "#ffffff",
                                     }];
                                     sheet.rows.splice(0, 0, { cells: myHeaders, type: "header", height: 30 });
                                 },
                                 editable: false,
                                 scrollable: true,
                                 selectable: "row",
-                                columns: [
-                                    { field: "namaProduk", title: "Tugas", width: 400 },
-                                    { field: "namaKelas", title: "Kelas", width: 100 },
-                                    { field: "produkId", title: "idProduk", hidden: true },
-                                    {
-                                        field: "poin", title: "Poin", headerAttributes: { style: "text-align: center" }, width: 80, format: "{0:n2}", attributes: {
-                                            "class": "table-cell", style: "text-align: right;"
-                                        }
+                                columns: [{
+                                    field: "namaProduk",
+                                    title: "Tugas",
+                                    width: 400
+                                }, {
+                                    field: "namaKelas",
+                                    title: "Kelas",
+                                    width: 100
+                                }, {
+                                    field: "produkId",
+                                    title: "idProduk",
+                                    hidden: true
+                                }, {
+                                    field: "poin",
+                                    title: "Poin",
+                                    headerAttributes: {
+                                        style: "text-align: center"
                                     },
-                                    {
-                                        field: "hargaKelas1",
-                                        title: "Tarif (Rp.)",
-                                        "template": '# if( hargaKelas1 != null ) {# #= hargaKelas1# #} else {# #= harga# #} #',
-                                        format: "{0:n0}",
-                                        width: 100,
+                                    width: 80,
+                                    format: "{0:n2}",
+                                    attributes: {
+                                        class: "table-cell",
+                                        style: "text-align: right;"
+                                    }
+                                }, {
+                                    field: "hargaKelas1",
+                                    title: "Tarif (Rp.)",
+                                    template: '# if( hargaKelas1 != null ) {# #= hargaKelas1# #} else {# #= harga# #} #',
+                                    format: "{0:n0}",
+                                    width: 100,
+                                    headerAttributes: {
+                                        style: "text-align: center"
+                                    },
+                                    attributes: {
+                                        class: "table-cell",
+                                        style: "text-align: right; font-size: 14px;"
+                                    }
+                                }, {
+                                    field: "Pencapaian",
+                                    headerAttributes: {
+                                        style: "text-align: center"
+                                    },
+                                    columns: $scope.generateGridColumn()
+                                }, {
+                                    title: "Total",
+                                    headerAttributes: {
+                                        style: "text-align: center"
+                                    },
+                                    columns: [{
+                                        field: "totalKonsul",
+                                        title: "Konsultasi",
+                                        width: 80,
                                         headerAttributes: {
                                             style: "text-align: center"
                                         },
                                         attributes: {
-                                            "class": "table-cell",
-                                            style: "text-align: right; font-size: 14px;"
+                                            style: "text-align: right;"
+                                        },
+                                        aggregates: ["sum"],
+                                        footerTemplate: "#= sum #",
+                                        footerAttributes: {
+                                            "class": "table-footer-cell",
+                                            style: "text-align: right;"
+                                        }
+                                    }, {
+                                        field: "totalVisit",
+                                        title: "Visite",
+                                        width: 80,
+                                        headerAttributes: {
+                                            style: "text-align: center"
+                                        },
+                                        attributes: {
+                                            style: "text-align: right;"
+                                        },
+                                        aggregates: ["sum"],
+                                        footerTemplate: "#= sum #",
+                                        footerAttributes: {
+                                            class: "table-footer-cell",
+                                            style: "text-align: right;"
                                         }
                                     },
-                                    { field: "Pencapaian", headerAttributes: { style: "text-align: center" }, columns: $scope.generateGridColumn() },
                                     {
-                                        title: "Total", headerAttributes: { style: "text-align: center" }, columns: [
-                                            {
-                                                field: "totalKonsul",
-                                                title: "Konsultasi",
-                                                width: 80,
-                                                headerAttributes: { style: "text-align: center" }, attributes: { style: "text-align: right;" }, aggregates: ["sum"],
-                                                footerTemplate: "#= sum #",
-                                                footerAttributes: {
-                                                    "class": "table-footer-cell",
-                                                    style: "text-align: right;"
-                                                }
-                                            },
-                                            {
-                                                field: "totalVisit",
-                                                title: "Visite",
-                                                width: 80,
-                                                headerAttributes: { style: "text-align: center" }, attributes: { style: "text-align: right;" }, aggregates: ["sum"],
-                                                footerTemplate: "#= sum #",
-                                                footerAttributes: {
-                                                    "class": "table-footer-cell",
-                                                    style: "text-align: right;"
-                                                }
-                                            },
-                                            {
-                                                field: "totalTindakan",
-                                                title: "Tindakan",
-                                                width: 80,
-                                                headerAttributes: { style: "text-align: center" }, attributes: { style: "text-align: right;" }, aggregates: ["sum"],
-                                                footerTemplate: "#= sum #",
-                                                footerAttributes: {
-                                                    "class": "table-footer-cell",
-                                                    style: "text-align: right;"
-                                                }
-                                            },
-                                            {
-                                                field: "totalProduk",
-                                                title: "Total",
-                                                width: 80,
-                                                headerAttributes: { style: "text-align: center" }, attributes: { style: "text-align: right;" }, aggregates: ["sum"],
-                                                footerTemplate: "#= sum #",
-                                                footerAttributes: {
-                                                    "class": "table-footer-cell",
-                                                    style: "text-align: right;"
-                                                }
-                                            },
-                                            {
-                                                field: "pointQty", title: "Poin", width: 80, headerAttributes: { style: "text-align: center" },
-                                                attributes: { style: "text-align: right;" },
-                                                aggregates: ["sum"], format: "{0:n2}",
-                                                footerTemplate: " #= kendo.toString(sum, 'n2') #",
-                                                footerAttributes: {
-                                                    "class": "table-footer-cell",
-                                                    style: "text-align: right;"
-                                                }
-                                            },
-                                        ]
+                                        field: "totalTindakan",
+                                        title: "Tindakan",
+                                        width: 80,
+                                        headerAttributes: {
+                                            style: "text-align: center"
+                                        },
+                                        attributes: {
+                                            style: "text-align: right;"
+                                        },
+                                        aggregates: ["sum"],
+                                        footerTemplate: "#= sum #",
+                                        footerAttributes: {
+                                            class: "table-footer-cell",
+                                            style: "text-align: right;"
+                                        }
                                     },
-                                    { field: "idKelas", title: "idKelas", hidden: true }
-                                ],
+                                    {
+                                        field: "totalProduk",
+                                        title: "Total",
+                                        width: 80,
+                                        headerAttributes: {
+                                            style: "text-align: center"
+                                        },
+                                        attributes: {
+                                            style: "text-align: right;"
+                                        },
+                                        aggregates: ["sum"],
+                                        footerTemplate: "#= sum #",
+                                        footerAttributes: {
+                                            class: "table-footer-cell",
+                                            style: "text-align: right;"
+                                        }
+                                    },
+                                    {
+                                        field: "kontribusi",
+                                        footerTemplate: "#= sum #",
+                                        hidden: true
+                                    },
+                                    {
+                                        field: "pointQty",
+                                        title: "Poin",
+                                        width: 80,
+                                        headerAttributes: {
+                                            style: "text-align: center"
+                                        },
+                                        attributes: {
+                                            style: "text-align: right;"
+                                        },
+                                        aggregates: ["sum"],
+                                        format: "{0:n2}",
+                                        footerTemplate: " #= kendo.toString(sum, 'n2') #",
+                                        footerAttributes: {
+                                            class: "table-footer-cell",
+                                            style: "text-align: right;"
+                                        }
+                                    }
+                                    ]
+                                }, {
+                                    field: "idKelas",
+                                    title: "idKelas",
+                                    hidden: true
+                                }],
                                 dataBound: $scope.onDataBound
                             };
+
                             $scope.dataSource = new kendo.data.DataSource({
                                 data: dataGrid, aggregate: [
                                     { field: "totalKonsul", aggregate: "sum" },
                                     { field: "totalVisit", aggregate: "sum" },
                                     { field: "totalTindakan", aggregate: "sum" },
                                     { field: "totalProduk", aggregate: "sum" },
-                                    { field: "pointQty", aggregate: "sum" }
+                                    { field: "pointQty", aggregate: "sum" },
+                                    { field: "kontribusi", aggregate: "sum" }
                                 ]
                             })
+
                             $scope.isLoading = false;
                             $scope.isRouteLoading = false;
                         }
+
                         if (res[1].statResponse) {
                             // define grid uraian tugas and show grid data
                             $scope.showGridUraian = true;
                             $scope.opsiGridUraianTugas = {
                                 selectable: "row",
                                 scrollable: true,
-                                columns: [
-                                    { "field": "rincianKegiatanId", "title": "Id", width: 1, visible: false },
-                                    { "field": "rincianKegiatan", "title": "Uraian Tugas", "width": 420 },
-                                    { "field": "target", "title": "<center>Target<br/>(/Bulan)</center>", "template": "<span class=\"pull-right\"> #= target # </span>", "width": 60 },
-                                    { "field": "bobot", "title": "<center>Bobot</center>", "template": "<span class=\"pull-right\"> #= bobot # </span>", "width": 60 },
-                                    { "field": "satuan", "title": "<center>Satuan</center>", "width": 60 },
-                                    // { "field": "capaian", "title": "<center>Capaian</center>", "template": "<span class=\"pull-right\"> #= capaian # </span>", "width": 60 }, 
-                                    { "headerTemplate": getHeader("Capaian"), "columns": $scope.generateGridColumn(), "attributes": { "style": "text-align:center" } },
-                                    { field: "total", title: "Total", width: "100px", format: "{0:n2}", attributes: { "class": "table-cell-right" } },
-                                    { field: "nilai", title: "Nilai", "width": "100px", format: "{0:n2}", attributes: { "class": "table-cell-right" } },
-                                    { field: "hasil", title: "Hasil", width: "100px", format: "{0:n2}", aggregates: ["sum"], footerTemplate: " #= kendo.toString(sum,'0.00')#", attributes: { "class": "table-cell-right" } }
-                                ],
+                                columns: [{
+                                    field: "rincianKegiatanId",
+                                    title: "Id",
+                                    width: 1,
+                                    visible: false
+                                }, {
+                                    field: "rincianKegiatan",
+                                    title: "Uraian Tugas",
+                                    width: 420
+                                }, {
+                                    field: "target",
+                                    title: "<center>Target<br/>(/Bulan)</center>",
+                                    template: "<span class=\"pull-right\"> #= target # </span>",
+                                    width: 60
+                                }, {
+                                    field: "bobot",
+                                    title: "<center>Bobot</center>",
+                                    template: "<span class=\"pull-right\"> #= bobot # </span>",
+                                    width: 60
+                                }, {
+                                    field: "satuan",
+                                    title: "<center>Satuan</center>",
+                                    width: 60
+                                }, {
+                                    headerTemplate: getHeader("Capaian"),
+                                    columns: $scope.generateGridColumn(),
+                                    attributes: {
+                                        style: "text-align:center"
+                                    }
+                                }, {
+                                    field: "total",
+                                    title: "Total",
+                                    width: "100px",
+                                    format: "{0:n2}",
+                                    attributes: {
+                                        class: "table-cell-right"
+                                    }
+                                }, {
+                                    field: "nilai",
+                                    title: "Nilai",
+                                    width: "100px",
+                                    format: "{0:n2}",
+                                    attributes: {
+                                        class: "table-cell-right"
+                                    }
+                                }, {
+                                    field: "hasil",
+                                    title: "Hasil",
+                                    width: "100px",
+                                    format: "{0:n2}",
+                                    aggregates: ["sum"],
+                                    footerTemplate: " #= kendo.toString(sum,'0.00')#",
+                                    attributes: {
+                                        class: "table-cell-right"
+                                    }
+                                }],
                                 editable: false
                             };
+
                             $scope.gridUraianTugas = new kendo.data.DataSource({
                                 data: res[1].data.data.uraianTugas,
                                 schema: {
@@ -287,6 +387,7 @@ define(['initialize'], function (initialize) {
 
                 var myWindow = $("#winPopUpCetak");
                 myWindow.data("kendoWindow").center().open();
+
                 $scope.isShowPopUp = true;
             }
 
@@ -304,7 +405,10 @@ define(['initialize'], function (initialize) {
                 ]
                 var isValid = ModelItem.setValidation($scope, listRawRequired);
                 if (isValid.status) {
-                    var fixUrlLaporan = cetakHelper.openURLReporting("reporting/logbookTindakanDokterDetailPasien?periode=" + dateHelper.getFormatMonthPicker($scope.item.periode) + "&idPegawai=" + $scope.item.pegawai.id + "&idJabatan=" + $scope.item.jabatanCetak.id + "&idAtasan=" + $scope.item.atasanCetak.id + "&idJabatanAtasan=" + $scope.item.jabatanAtasanCetak.id + "&ffs=false");
+                    var fixUrlLaporan = cetakHelper.openURLReporting("reporting/logbookTindakanDokterDetailPasien?periode=" + dateHelper.getFormatMonthPicker($scope.item.periode)
+                        + "&idPegawai=" + $scope.item.pegawai.id + "&idJabatan=" + $scope.item.jabatanCetak.id + "&idAtasan=" + $scope.item.atasanCetak.id
+                        + "&idJabatanAtasan=" + $scope.item.jabatanAtasanCetak.id + "&ffs=false");
+
                     window.open(fixUrlLaporan, '', 'width=800,height=600')
                 } else {
                     ModelItem.showMessages(isValid.messages);
@@ -321,19 +425,25 @@ define(['initialize'], function (initialize) {
                         field: "[" + (i + 1) + "]",
                         title: (i + 1).toString(),
                         width: "50px", attributes: { style: "text-align: right;" },
-                        headerAttributes: { style: "text-align: center;  " }//font-size: 14px"} 
+                        headerAttributes: { style: "text-align: center;" }
                     };
                     listDay.push(data);
                 }
+
                 return listDay;
             }
 
             $scope.onDataBound = function (e) {
                 var grid = $("#gridLogKinerja").data("kendoGrid");
                 var totalCapaian = grid.dataSource.aggregates().pointQty.sum;
+                var totalKontribusi = grid.dataSource.aggregates().kontribusi.sum;
+
                 $scope.totalCapaian = totalCapaian.toFixed(2);
+                $scope.totalKontribusi = totalKontribusi.toFixed(2);
                 $(grid.tbody).on("click", "td", function (e) {
-                    if (e.currentTarget.innerText === "") return; // disable show popup on empty cell date value
+                    // disable show popup on empty cell date value
+                    if (e.currentTarget.innerText === "") return;
+
                     var row = $(this).closest("tr");
                     var selectedData = grid.dataItem(row);
                     var colIdx = $("td", row).index(this);
@@ -353,6 +463,7 @@ define(['initialize'], function (initialize) {
                     }
                 });
             }
+
             $scope.showDetail = function (idProduk, idKelas, idPegawai, tgl, diskon, statusDiskon) {
                 $scope.isRouteLoading = true;
                 ManageSdmNew.getListData("sdm/get-detail-pasien/" + idProduk + "/" + idKelas + "/" + idPegawai + "/" + tgl + "/" + false
@@ -362,67 +473,78 @@ define(['initialize'], function (initialize) {
                         $scope.detilGridOptions = {
                             scrollable: true,
                             columns: [{
-                                "field": "namaProduk",
-                                "title": "Nama Tindakan",
-                                "width": 400
+                                field: "namaProduk",
+                                title: "Nama Tindakan",
+                                width: 400
                             }, {
-                                "field": "tglpelayanan",
-                                "title": "Tanggal",
-                                "template": "#= kendo.toString(kendo.parseDate(new Date(tglpelayanan)), 'dd-MM-yyyy') #",
-                                "width": 90,
-                                "attibutes": {
-                                    "class": "table-cell",
-                                    "style": "text-align: center;"
+                                field: "tglpelayanan",
+                                title: "Tanggal",
+                                template: "#= kendo.toString(kendo.parseDate(new Date(tglpelayanan)), 'dd-MM-yyyy') #",
+                                width: 90,
+                                attibutes: {
+                                    class: "table-cell",
+                                    style: "text-align: center;"
                                 }
                             }, {
-                                "field": "tglpelayanan",
-                                "title": "Jam",
-                                "template": "#= kendo.toString(kendo.parseDate(new Date(tglpelayanan)), 'HH:mm') #",
-                                "width": 90,
-                                "attibutes": {
-                                    "class": "table-cell",
-                                    "style": "text-align: center;"
+                                field: "tglpelayanan",
+                                title: "Jam",
+                                template: "#= kendo.toString(kendo.parseDate(new Date(tglpelayanan)), 'HH:mm') #",
+                                width: 90,
+                                attibutes: {
+                                    class: "table-cell",
+                                    style: "text-align: center;"
                                 }
                             }, {
-                                "field": "ruangan",
-                                "title": "Ruangan",
-                                "width": 200
+                                field: "ruangan",
+                                title: "Ruangan",
+                                width: 200
                             }, {
-                                "field": "namaKelas",
-                                "title": "Kelas",
-                                "width": 100
+                                field: "namaKelas",
+                                title: "Kelas",
+                                width: 100
                             }, {
-                                "field": "harga",
-                                "title": "Harga",
-                                "template": "#= kendo.toString(harga, 'n0') #",
-                                "width": 120,
-                                "attibutes": {
-                                    "class": "table-cell",
-                                    "style": "text-align: right;"
+                                field: "harga",
+                                title: "Harga",
+                                template: "#= kendo.toString(harga, 'n0') #",
+                                width: 120,
+                                attibutes: {
+                                    class: "table-cell",
+                                    style: "text-align: right;"
                                 }
                             }, {
-                                "title": "Pasien",
-                                "columns": [
-                                    { "field": "noCm", "title": "No. CM", "width": 100 },
-                                    { "field": "noRegistrasi", "title": "No. Reg", "width": 150 },
-                                    { "field": "namapasien", "title": "Nama", "width": 300 }
-                                ]
+                                title: "Pasien",
+                                columns: [{
+                                    field: "noCm",
+                                    title: "No. CM",
+                                    width: 100
+                                }, {
+                                    field: "noRegistrasi",
+                                    title: "No. Reg",
+                                    width: 150
+                                }, {
+                                    field: "namapasien",
+                                    title: "Nama",
+                                    width: 300
+                                }]
                             }, {
-                                "field": "jenisPetugas", "title": "Petugas", "width": 150
+                                field: "jenisPetugas",
+                                title: "Petugas",
+                                width: 150
                             }]
                         }
+
                         $scope.dataDetil = new kendo.data.DataSource({
-                            data: data.data.data,
-                            // aggregate: [
-                            //     { field: "point", aggregate: "sum" }
-                            // ]
+                            data: data.data.data
                         });
+
                         $scope.isRouteLoading = false;
+
                         $scope.winDialog.center().open();
                     }, (error) => {
                         $scope.isRouteLoading = false;
                     })
             }
+
             $scope.cetak = function () {
                 var listRawRequired = [
                     "item.periode|k-ng-model|Periode",
@@ -430,16 +552,20 @@ define(['initialize'], function (initialize) {
                 ];
                 var isValid = ModelItem.setValidation($scope, listRawRequired);
                 if (isValid.status) {
-                    var fixUrlLaporan = cetakHelper.openURLReporting("reporting/lapLogbookKinerjaStaffMedis?idDokter=" + $scope.item.pegawai.id + "&idJabatan=" + $scope.item.jabatanCetak.id + "&periode=" + dateHelper.getFormatMonthPicker($scope.item.periode));
+                    var fixUrlLaporan = cetakHelper.openURLReporting("reporting/lapLogbookKinerjaStaffMedis?idDokter=" + $scope.item.pegawai.id + "&idJabatan=" + $scope.item.jabatanCetak.id
+                        + "&periode=" + dateHelper.getFormatMonthPicker($scope.item.periode));
+
                     window.open(fixUrlLaporan, '', 'width=800,height=600')
                 } else {
                     ModelItem.showMessages(isValid.messages);
                 }
             }
+
             function getHeader(e) {
                 var kolomTitle = e + " : " + dateHelper.getBulanFormatted(new Date($scope.item.periode));
                 return kolomTitle;
             }
+
             $scope.toogleCheckVerifikasi = function (current) {
                 if (current) {
                     $scope.daftarListPegawai = $scope.listPegawaiPensiun;
@@ -447,6 +573,7 @@ define(['initialize'], function (initialize) {
                     $scope.daftarListPegawai = $scope.listPegawai;
                 }
             }
+
             $scope.$watch('item.pegawai', function (e) {
                 if (!e) return;
                 if (e.id === undefined && e.idPegawai) {

@@ -216,8 +216,8 @@ define(['initialize'], function (initialize) {
                                 { value: data[i].hasilPerilaku },
                                 { value: data[i].iki },
                                 { value: data[i].kriteria },
-                                { value: data[i].rpP1 },
-                                { value: data[i].rpP2 },
+                                { value: data[i].p1 },
+                                { value: data[i].p2 },
                             ]
                         })
                     }
