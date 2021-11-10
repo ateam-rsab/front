@@ -55,49 +55,6 @@
                 "link": "#/IkiDirutCapaian"
             },
             {
-                "name": "Integrasi BIOS G2",
-                "children": [
-                    {
-                        "name": "Layanan Kesehatan",
-                        "link": "#/LapBIOSLayananKesehatan"
-                    },
-                    {
-                        "name": "Layanan Lainnya",
-                        "children": [
-                            {
-                                "name": "Jumlah Pasien",
-                                "link": "#/LapBIOSJumlahPasien"
-                            },
-                            {
-                                "name": "Indikator Pelayanan",
-                                "link": "#/LapBIOSIndikatorPelayanan"
-                            },
-                            {
-                                "name": "Indikator Lainnya",
-                                "link": "#/LapBIOSIndikatorLainnya"
-                            }
-                        ]
-                    },
-                    {
-                        "name": "Layanan Keuangan",
-                        "children": [
-                            {
-                                "name": "Penerimaan",
-                                "link": "#/LapBIOSPenerimaanKeuangan"
-                            },
-                            {
-                                "name": "Pengeluaran",
-                                "link": "#/LapBIOSPengeluaranKeuangan"
-                            },
-                            {
-                                "name": "Data Saldo",
-                                "link": "#/LapBIOSSaldoKeuangan"
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
                 "name": "Permintaan Label",
                 "link": "#/PermintaanLabel"
             }
