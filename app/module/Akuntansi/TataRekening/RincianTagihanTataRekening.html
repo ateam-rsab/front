@@ -841,38 +841,57 @@
 			</div>
 		</div>
 	</div>
+
 	</br>
+
 	<div class="panel panel-default container_12">
 		<div class="panel panel-default container_12">
-			<div class="grid_6">
-				<div class="grid_12">
-					<label c-label item="item" c-label-text="Jenis Pelaksana"></label>
+			<div class="grid_12">
+				<div class="grid_6">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Jenis Pelaksana"></label>
+					</div>
+					<div class="clear"></div>
+	
+					<div class="grid_12">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="model.jenisPelaksana"
+							k-data-text-field="'jenisPetugasPelaksana'" k-data-value-field="'id'" k-filter="'contains'" k-on-change="toggleJenisPelaksana()"
+							k-auto-bind="false" k-data-source="listJenisPelaksana" />
+					</div>
+					<!-- <div class="grid_12">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="model.jenisPelaksana" k-data-text-field="'jenisPetugasPelaksana'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisPelaksana" 
+							k-on-change='init()'
+							/>
+						</div> -->
 				</div>
-				<div class="clear"></div>
-
-				<div class="grid_12">
-					<input style="width: 100%;" kendo-combo-box k-ng-model="model.jenisPelaksana"
-						k-data-text-field="'jenisPetugasPelaksana'" k-data-value-field="'id'" k-filter="'contains'"
-						k-auto-bind="false" k-data-source="listJenisPelaksana" />
+				<div class="grid_6">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Pegawai"></label>
+					</div>
+					<div class="clear"></div>
+	
+					<div class="grid_12">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="model.pegawais"
+							k-data-text-field="'namalengkap'" k-data-value-field="'id'" k-filter="'contains'"
+							k-auto-bind="false" k-data-source="listPegawaiPemeriksa" />
+					</div>
 				</div>
-				<!-- <div class="grid_12">
-						<input style="width: 100%;" kendo-combo-box k-ng-model="model.jenisPelaksana" k-data-text-field="'jenisPetugasPelaksana'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisPelaksana" 
-						k-on-change='init()'
-						/>
-					</div> -->
+	
+				<div class="grid_6" ng-if="showJenisKlasifikasi">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Jenis Klasifikasi"></label>
+					</div>
+					<div class="clear"></div>
+	
+					<div class="grid_12">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="model.selectedJenisKlasifikasi"
+							k-data-text-field="'jenisasa'" k-data-value-field="'id'" k-filter="'contains'"
+							k-auto-bind="false" k-data-source="listJenisKlasifikasi" />
+					</div>
+				</div>
 			</div>
-			<div class="grid_6">
-				<div class="grid_12">
-					<label c-label item="item" c-label-text="Pegawai"></label>
-				</div>
-				<div class="clear"></div>
+		
 
-				<div class="grid_12">
-					<input style="width: 100%;" kendo-combo-box k-ng-model="model.pegawais"
-						k-data-text-field="'namalengkap'" k-data-value-field="'id'" k-filter="'contains'"
-						k-auto-bind="false" k-data-source="listPegawaiPemeriksa" />
-				</div>
-			</div>
 			<div class="pull-right" style="margin-top:4%">
 				<button class="k-button" ng-click="simpanDokterPelaksana()">Simpan</button>
 				<button class="k-button" ng-click="hapusDokterPelaksana()">Hapus</button>

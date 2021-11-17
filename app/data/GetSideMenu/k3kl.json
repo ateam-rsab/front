@@ -146,6 +146,10 @@
                 "link": "#/LaporanKunjunganPasien"
             },
             {
+                "name": "Laporan Pasien Daftar",
+                "link": "#/LaporanPasienDaftar"
+            },
+            {
                 "name": "Laporan Layanan",
                 "link": "#/LaporanLayanan"
             }

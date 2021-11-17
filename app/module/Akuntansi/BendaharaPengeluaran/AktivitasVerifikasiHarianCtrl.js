@@ -349,6 +349,16 @@ define(['initialize'], function (initialize) {
                     }
 
                 ],
+                filterable: {
+                    extra: false,
+                    operators: {
+                        string: {
+                            startswith: "Dimulai dengan",
+                            contains: "mengandung kata",
+                            neq: "Tidak mengandung kata"
+                        }
+                    }
+                },
                 pageable: true,
                 scrollable: true,
                 columns: $scope.columnGrid

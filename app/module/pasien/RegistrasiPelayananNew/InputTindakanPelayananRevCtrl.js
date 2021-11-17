@@ -87,6 +87,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
       manageServicePhp.getDataTableTransaksi("inputtindakan/get-combo")
         .then(function (da) {
           $scope.listJenisPelaksana = da.data.jenispelaksana;
+          $scope.listJenisKlasifikasi = da.data.jenisklasifikasi;
         })
       function getPegawaiById(id, input, output) {
         var selectedData = $parse(output);
@@ -179,7 +180,6 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
           }
         }
 
-
         var nomor = 0
         if ($scope.dataTindakan == undefined) {
           nomor = 1
@@ -212,6 +212,9 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
 
         // detail grid goes here
         if ($scope.item.jenisPelaksana && $scope.selectedPegawai) {
+          for(let i = 0; $scope.item.jenisPelaksana.id === 6 && i < $scope.selectedPegawai.length; i++) {
+            $scope.selectedPegawai[i].asaid = $scope.item.selectedJenisKlasifikasi.id;
+          }
           var pushData = {
             "idParent": data.rowNumber,
             "jenisPetugas": {
@@ -222,7 +225,11 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
           }
           $scope.gridPetugasPelaksana.add(pushData);
         }
+        
         if ($scope.item.jenisPelaksana2 && $scope.selectedPegawai2) {
+          for(let i = 0; $scope.item.jenisPelaksana2.id === 6 && i < $scope.selectedPegawai2.length; i++) {
+            $scope.selectedPegawai[i].asaid = $scope.item.selectedJenisKlasifikasi.id;
+          }
           var pushData = {
             "idParent": data.rowNumber,
             "jenisPetugas": {
@@ -235,7 +242,11 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
           $scope.showJenisPelaksana2 = false;
           delete $scope.item.jenisPelaksana2;
         }
+
         if ($scope.item.jenisPelaksana3 && $scope.selectedPegawai3) {
+          for(let i = 0; $scope.item.jenisPelaksana3.id === 6 && i < $scope.selectedPegawai3.length; i++) {
+            $scope.selectedPegawai[i].asaid = $scope.item.selectedJenisKlasifikasi.id;
+          }
           var pushData = {
             "idParent": data.rowNumber,
             "jenisPetugas": {
@@ -248,7 +259,11 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
           $scope.showJenisPelaksana3 = false;
           delete $scope.item.jenisPelaksana3;
         }
+
         if ($scope.item.jenisPelaksana4 && $scope.selectedPegawai4) {
+          for(let i = 0; $scope.item.jenisPelaksana4.id === 6 && i < $scope.selectedPegawai4.length; i++) {
+            $scope.selectedPegawai[i].asaid = $scope.item.selectedJenisKlasifikasi.id;
+          }
           var pushData = {
             "idParent": data.rowNumber,
             "jenisPetugas": {
@@ -261,7 +276,11 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
           $scope.showJenisPelaksana4 = false;
           delete $scope.item.jenisPelaksana4;
         }
+
         if ($scope.item.jenisPelaksana5 && $scope.selectedPegawai5) {
+          for(let i = 0; $scope.item.jenisPelaksana5.id === 6 && i < $scope.selectedPegawai5.length; i++) {
+            $scope.selectedPegawai[i].asaid = $scope.item.selectedJenisKlasifikasi.id;
+          }
           var pushData = {
             "idParent": data.rowNumber,
             "jenisPetugas": {
@@ -274,7 +293,11 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
           $scope.showJenisPelaksana5 = false;
           delete $scope.item.jenisPelaksana5;
         }
+
         if ($scope.item.jenisPelaksana6 && $scope.selectedPegawai6) {
+          for(let i = 0; $scope.item.jenisPelaksana6.id === 6 && i < $scope.selectedPegawai6.length; i++) {
+            $scope.selectedPegawai[i].asaid = $scope.item.selectedJenisKlasifikasi.id;
+          }
           var pushData = {
             "idParent": data.rowNumber,
             "jenisPetugas": {
@@ -287,7 +310,11 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
           $scope.showJenisPelaksana6 = false;
           delete $scope.item.jenisPelaksana6;
         }
+
         if ($scope.item.jenisPelaksana7 && $scope.selectedPegawai7) {
+          for(let i = 0; $scope.item.jenisPelaksana7.id === 6 && i < $scope.selectedPegawai7.length; i++) {
+            $scope.selectedPegawai[i].asaid = $scope.item.selectedJenisKlasifikasi.id;
+          }
           var pushData = {
             "idParent": data.rowNumber,
             "jenisPetugas": {
@@ -300,7 +327,11 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
           $scope.showJenisPelaksana7 = false;
           delete $scope.item.jenisPelaksana7;
         }
+
         if ($scope.item.jenisPelaksana8 && $scope.selectedPegawai8) {
+          for(let i = 0; $scope.item.jenisPelaksana8.id === 6 && i < $scope.selectedPegawai8.length; i++) {
+            $scope.selectedPegawai[i].asaid = $scope.item.selectedJenisKlasifikasi.id;
+          }
           var pushData = {
             "idParent": data.rowNumber,
             "jenisPetugas": {
@@ -313,7 +344,11 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
           $scope.showJenisPelaksana8 = false;
           delete $scope.item.jenisPelaksana8;
         }
+
         if ($scope.item.jenisPelaksana9 && $scope.selectedPegawai9) {
+          for(let i = 0; $scope.item.jenisPelaksana9.id === 6 && i < $scope.selectedPegawai9.length; i++) {
+            $scope.selectedPegawai[i].asaid = $scope.item.selectedJenisKlasifikasi.id;
+          }
           var pushData = {
             "idParent": data.rowNumber,
             "jenisPetugas": {
@@ -326,7 +361,11 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
           $scope.showJenisPelaksana9 = false;
           delete $scope.item.jenisPelaksana9;
         }
+
         if ($scope.item.jenisPelaksana10 && $scope.selectedPegawai10) {
+          for(let i = 0; $scope.item.jenisPelaksana10.id === 6 && i < $scope.selectedPegawai10.length; i++) {
+            $scope.selectedPegawai[i].asaid = $scope.item.selectedJenisKlasifikasi.id;
+          }
           var pushData = {
             "idParent": data.rowNumber,
             "jenisPetugas": {

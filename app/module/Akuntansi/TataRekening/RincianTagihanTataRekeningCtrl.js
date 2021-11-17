@@ -3,7 +3,7 @@ define(['initialize'], function (initialize) {
 	initialize.controller('RincianTagihanTataRekeningCtrl', ['$sce', '$state', '$q', '$rootScope', '$scope', '$window', 'ModelItemAkuntansi', 'ManageTataRekening', 'ManageKasir', 'ManagePasien', '$mdDialog',
 		function ($sce, $state, $q, $rootScope, $scope, window, modelItemAkuntansi, manageTataRekening, manageKasir, managePasien, $mdDialog) {
 			$scope.now = new Date();
-
+			$scope.showJenisKlasifikasi = false;
 			$scope.dataParams = JSON.parse($state.params.dataPasien);
 			// debugger;
 			$scope.showBilling = false;
@@ -1194,13 +1194,23 @@ define(['initialize'], function (initialize) {
 				$scope.popup_editor.center().open();
 
 			}
+
+			$scope.toggleJenisPelaksana = () => {
+				$scope.showJenisKlasifikasi = $scope.model.jenisPelaksana.id === 6;
+				$scope.model.selectedJenisKlasifikasi = null;
+			}
+
 			$scope.click = function (dataDokterSelected) {
+				$scope.showJenisKlasifikasi = dataDokterSelected.jpp_id === 6;
+				$scope.model.selectedJenisKlasifikasi = null;
 				if (dataDokterSelected != undefined) {
 					// var id = $scope.dataDokterSelected.jpp_id;
 					// 	manageTataRekening.getDataTableTransaksi("pelayananpetugas/get-pegawaibyjenispetugaspe?objectjenispetugaspefk="+id).then(function(data){
 					//         $scope.dataSource = data.data.pegawai;
 
 					//     });
+
+					console.log(dataDokterSelected)
 					modelItemAkuntansi.getDataTableTransaksi("pelayananpetugas/get-pegawai-saeutik?namapegawai=" + dataDokterSelected.namalengkap, true, true, 10)
 						.then(function (data) {
 
@@ -1225,6 +1235,7 @@ define(['initialize'], function (initialize) {
 				manageTataRekening.getDataTableTransaksi("pelayananpetugas/get-data-combo").then(function (data) {
 					$scope.listJenisPelaksana = data.data.jenispetugaspelaksana;
 					// $scope.listPegawaiPemeriksa = data.data.pegawai;
+					$scope.listJenisKlasifikasi = data.data.jenisklasifikasi;
 
 				});
 				modelItemAkuntansi.getDataDummyPHP("pelayananpetugas/get-pegawai-saeutik", true, true, 10).then(function (data) {
@@ -1255,6 +1266,10 @@ define(['initialize'], function (initialize) {
 			}
 			];
 			$scope.simpanDokterPelaksana = function () {
+				if($scope.showJenisKlasifikasi && !$scope.model.selectedJenisKlasifikasi) {
+					toastr.info("Harap pilih jenis klasifikasi");
+					return;
+				}
 				if ($scope.model.jenisPelaksana == undefined || $scope.model.jenisPelaksana == "") {
 					messageContainer.error("Jenis Pelaksana Tidak Boleh Kosong")
 					return
@@ -1288,6 +1303,7 @@ define(['initialize'], function (initialize) {
 				var pelayananpasienpetugas = {
 					norec_ppp: norec_ppp,
 					norec_pp: $scope.dataSelected.norec,
+					asa_id: $scope.model.selectedJenisKlasifikasi.id,
 					norec_apd: $scope.dataSelected.norec_apd,
 					objectjenispetugaspefk: $scope.model.jenisPelaksana.id,
 					objectpegawaifk: $scope.model.pegawais.id,
@@ -1306,6 +1322,8 @@ define(['initialize'], function (initialize) {
 					// LoadData();
 					$scope.model.jenisPelaksana = "";
 					$scope.model.pegawais = "";
+
+					$scope.model.selectedJenisKlasifikasi = null;
 					$scope.dataDokterSelected = undefined;
 
 					// $scope.popup_editor.center().close();

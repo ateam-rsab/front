@@ -73,6 +73,10 @@ define(['initialize'], function (initialize) {
                     fileName: "PEMBERITAHUAN - SK KPO dan NON KPO an. Suprapto"
                 },
             ]
+            $scope.lihatDokumen = (url) => {
+                console.log(url)
+                window.open(`${window.location.origin}/data/dokumen/Daftar-Nama-Pegawai-Yang-Dapat-Diusulkan-Kenaikan-Jabfung-Ahli.pdf`, '_blank');
+            }
 
             $scope.dataBerkasAdministrasi = [{
                 path: "data/dokumen/rekrutmen-internal-JABFUNG-di-lingkungan-RSABHK-tahun-2021.pdf",

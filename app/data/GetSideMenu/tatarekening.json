@@ -3,6 +3,10 @@
         "name": "Tata Rekening",
         "children": [
             {
+                "name": "Daftar Bayi Lahir",
+                "link": "#/DaftarBayiLahir"
+            },
+            {
                 "name": "Daftar Pasien Pulang",
                 "link": "#/DaftarPasienPulang"
             },

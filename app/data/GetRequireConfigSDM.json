@@ -549,6 +549,10 @@
       "urlDep": "module/SDM/MonitoringAbsensiCtrl"
     },
     {
+      "nameDep": "MonitoringVisiteDokterCtrl",
+      "urlDep": "module/SDM/MonitoringVisiteDokterCtrl"
+    },
+    {
       "nameDep": "MasterUangHarianCtrl",
       "urlDep": "module/SDM/MasterUangHarianCtrl"
     },

@@ -116,6 +116,10 @@
         "name": "SDM",
         "children": [
             {
+                "name": "Monitoring Visite Dokter",
+                "link": "#/MonitoringVisiteDokter"
+            },
+            {
                 "name": "Target Bobot Uraian Tugas Per Tahun",
                 "link": "#/TargetBobotYear"
             },
