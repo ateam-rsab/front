@@ -4,7 +4,7 @@ define(['initialize'], function (initialize) {
             $scope.showSIPExpired = false;
             $scope.messageAbsensi = "Tidak ada";
             let dataLogin = JSON.parse(localStorage.getItem("pegawai"));
-           
+
             let remunId = [1, 10, 14]
             $scope.isRemun = false;
             if (dataLogin.kategoryPegawai && remunId.includes(dataLogin.kategoryPegawai.id)) {
@@ -23,7 +23,7 @@ define(['initialize'], function (initialize) {
                 ManageSdmNew.getListData(`iki-remunerasi/widget-dashboard-kinerja?pegawaiId=${dataLogin.id}&bulan=${dateNow}`).then((res) => {
                     $scope.dataDashboardKinerja = res.data.data.data;
                 });
-                
+
                 ManageSdmNew.getListData(`/iki-remunerasi/widget-status-verifikasi-kinerja?pegawaiId=${dataLogin.id}&bulan=${dateNow}`).then((res) => {
                     console.log(res.data.data);
                     $scope.dataWidgetStatusVerifikasi = res.data.data;
@@ -36,15 +36,30 @@ define(['initialize'], function (initialize) {
 
             $scope.OnInit = () => {
                 $scope.videoPlayed = {
-		    title: 'Profil Zona Integritas WBK dan WBBM RSAB Harapan Kita 2021',
+                    title: 'Profil Zona Integritas WBK dan WBBM RSAB Harapan Kita 2021',
                     src: 'https://smart.rsabhk.co.id:2222/vid/zona-integritas.mp4'
                 }
 
                 $scope.widgetKinerja()
             }
 
-	    $scope.dataPemberitahuan = [
-		{
+            $scope.dataPemberitahuan = [
+                {
+                    path: "data/dokumen/hasil-seleksi-rekrutmen-internal-jabfung-RSABHarapanKita.pdf",
+                    fileName: "Hasil Seleksi Rekrutmen Internal Jabfung RSAB Harapan Kita"
+                },
+                {
+                    path: "data/dokumen/SURAT-PENUNDAAN-PINDAH.pdf",
+                    fileName: "SURAT PENUNDAAN PINDAH"
+                },
+                {
+                    path: "data/dokumen/nodin-informasi-data-kepegawaian.pdf",
+                    fileName: "Nodin Informasi Data Kepegawaian"
+                }, {
+                    path: "data/dokumen/pemberitahuan-kgb-tmt-1-desember-2021-ade-kurniah-dkk",
+                    fileName: "PEMBERITAHUAN - KGB TMT 1 Desember 2021 Ade Kurniah dkk"
+                },
+                {
                     path: "data/dokumen/Daftar-Nama-Pegawai-Yang-Dapat-Diusulkan-Kenaikan-Jabfung-Ahli.pdf",
                     fileName: "Daftar Nama Pegawai yang dapat Diusulkan Kenaikan Jabfung Ahli"
                 },
@@ -64,13 +79,18 @@ define(['initialize'], function (initialize) {
                     path: "data/dokumen/PEMBERITAHUAN-SK-KPO-dan-NON-KPO-an.-Suprapto.pdf",
                     fileName: "PEMBERITAHUAN - SK KPO dan NON KPO an. Suprapto"
                 },
-		{
+                {
                     path: "data/dokumen/rekrutmen-internal-JABFUNG-di-lingkungan-RSABHK-tahun-2021.pdf",
                     fileName: "Rekrutmen Internal Jabatan Fungsional di Lingkungan RSAB HK tahun 2021"
                 },
-            ]
 
-	     $scope.dataBerkasAdministrasi = [{
+            ]
+            $scope.lihatDokumen = (url) => {
+                console.log(url)
+                window.open(`${window.location.origin}/data/dokumen/Daftar-Nama-Pegawai-Yang-Dapat-Diusulkan-Kenaikan-Jabfung-Ahli.pdf`, '_blank');
+            }
+
+            $scope.dataBerkasAdministrasi = [{
                 path: "data/dokumen/rekrutmen-internal-JABFUNG-di-lingkungan-RSABHK-tahun-2021.pdf",
                 fileName: "Rekrutmen Internal Jabatan Fungsional di Lingkungan RSAB HK tahun 2021",
                 new: true
@@ -88,33 +108,33 @@ define(['initialize'], function (initialize) {
 
             let getDataAbsensi = () => {
                 let today = DateHelper.formatDate(new Date(), "YYYY-MM-DD");
-		let dataPegawai = JSON.parse(localStorage.getItem("pegawai"));
+                let dataPegawai = JSON.parse(localStorage.getItem("pegawai"));
 
-                MenuService.getNotification('sdm/get-kehadiran/' + dataPegawai.id + '/' + today + '/' + today).then(res => { 
+                MenuService.getNotification('sdm/get-kehadiran/' + dataPegawai.id + '/' + today + '/' + today).then(res => {
                     let dataKehadiran = res.data.data.listkehadiran[0];
-		    
+
 
                     dataKehadiran.isAbsensiPulang = dataKehadiran.absensiPulang === '-' ? false : true;
                     dataKehadiran.isAbsensiMasuk = dataKehadiran.absensiMasuk === '-' ? false : true;
                     console.log(dataKehadiran);
 
-                    if(dataKehadiran.namaShift === "Libur") {
+                    if (dataKehadiran.namaShift === "Libur") {
                         $scope.showNotif.messageAbsensi = false;
                         return;
                     }
 
-                    if(!dataKehadiran.isAbsensiMasuk) {
+                    if (!dataKehadiran.isAbsensiMasuk) {
                         $scope.showNotif.messageAbsensi = true;
                         $scope.messageAbsensi = "Anda belum presensi masuk hari ini";
                         return;
                     }
 
-                    if(!dataKehadiran.isAbsensiPulang) {
+                    if (!dataKehadiran.isAbsensiPulang) {
                         $scope.showNotif.messageAbsensi = true;
                         $scope.messageAbsensi = "Anda belum presensi pulang hari ini";
                         return;
                     }
-                    
+
                 });
             }
             getDataAbsensi();
@@ -126,9 +146,9 @@ define(['initialize'], function (initialize) {
                 }
                 document.getElementById('video-kampanye').setAttribute('src', $scope.videoPlayed.src);
                 document.getElementById('video-kampanye').play();
-		// document.getElementById('video-kampanye').load();
+                // document.getElementById('video-kampanye').load();
             }
-	    $scope.changeVideo('https://smart.rsabhk.co.id:2222/vid/zona-integritas.mp4', 'Profil Zona Integritas WBK dan WBBM RSAB Harapan Kita 2021');
+            $scope.changeVideo('https://smart.rsabhk.co.id:2222/vid/zona-integritas.mp4', 'Profil Zona Integritas WBK dan WBBM RSAB Harapan Kita 2021');
             var getNotif = function () {
                 MenuService.getNotification('sdm/get-sip-str-expired-pegawai').then(res => {
                     $scope.messageNotif = '';

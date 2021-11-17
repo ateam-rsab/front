@@ -48,12 +48,12 @@ define(['initialize'], function (initialize) {
                 selectable: 'row',
                 pageable: true,
                 columns: [{
-                    "field": "tglDaftar",
+                    "field": "tglDaftarFormatted",
                     "title": "Tanggal Daftar",
                     "width": "80px",
                 },
                 {
-                    "field": "tglLahir",
+                    "field": "tglLahirFormatted",
                     "title": "Tanggal Lahir",
                     "width": "80px"
                 },
@@ -86,6 +86,10 @@ define(['initialize'], function (initialize) {
                     tglAkhir = dateHelper.toTimeStamp($scope.item.tglAkhir);
                 ReportService.getListData(`reporting/daftar-ibu-dan-anak?tglAwal=${tglAwal}&tglAkhir=${tglAkhir}`, false).then(function (data) {
 
+                    for(let i = 0; i < data.data.data.length; i++) {
+                        data.data.data[i].tglLahirFormatted = dateHelper.formatDate(data.data.data[i].tglLahir);
+                        data.data.data[i].tglDaftarFormatted = dateHelper.formatDate(data.data.data[i].tglDaftar);
+                    }
                     $scope.dataBayiLahir = new kendo.data.DataSource({
                         data: [...data.data.data],
                         pageSize: 100

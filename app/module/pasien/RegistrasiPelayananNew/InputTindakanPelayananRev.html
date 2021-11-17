@@ -38,9 +38,17 @@
 
 
                         <div class="grid_12">
+                           
                             <div class="grid_2">
                                 <label c-label item="item">Jenis Pelaksana</label>
                                 <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPelaksana" k-data-text-field="'jenispetugaspe'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisPelaksana" k-on-change='init()'/>
+                            </div>
+                            <div class="grid_2" ng-show="item.jenisPelaksana.id === 6;">
+                                <label c-label item="item" c-label-text="Jenis Klasifikasi"></label>
+                            
+                                <input style="width: 100%;" kendo-combo-box k-ng-model="item.selectedJenisKlasifikasi"
+                                    k-data-text-field="'jenisasa'" k-data-value-field="'id'" k-filter="'contains'"
+                                    k-auto-bind="false" k-data-source="listJenisKlasifikasi" />
                             </div>
                             <div class="grid_5" style="margin-bottom:5px">
                                 <label c-label item="item">Petugas Pelaksana</label>
@@ -62,10 +70,20 @@
                             <label class="k-checkbox-label" for="pemeriksaanKeluar"><b>Pemeriksaan Luar</b></label>
                       </div>
                     </div>
+
+                    
                     <div class="grid_12" ng-show="showJenisPelaksana2">
                         <div class="grid_2">
                             <label c-label item="item">Jenis Pelaksana</label>
                             <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPelaksana2" k-data-text-field="'jenispetugaspe'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisPelaksana" k-on-change='init2()'/>
+                        </div>
+
+                        <div class="grid_2" ng-show="item.jenisPelaksana2.id === 6;">
+                            <label c-label item="item" c-label-text="Jenis Klasifikasi"></label>
+                        
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.selectedJenisKlasifikasi2"
+                                k-data-text-field="'jenisasa'" k-data-value-field="'id'" k-filter="'contains'"
+                                k-auto-bind="false" k-data-source="listJenisKlasifikasi" />
                         </div>
                         <div class="grid_5" style="margin-bottom:5px">
                             <label c-label item="item">Petugas Pelaksana</label>
@@ -92,6 +110,13 @@
                         <label c-label item="item">Jenis Pelaksana</label>
                         <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPelaksana3" k-data-text-field="'jenispetugaspe'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisPelaksana" k-on-change='init3()'/>
                     </div>
+                    <div class="grid_2" ng-show="item.jenisPelaksana3.id === 6;">
+                        <label c-label item="item" c-label-text="Jenis Klasifikasi"></label>
+                    
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.selectedJenisKlasifikasi3"
+                            k-data-text-field="'jenisasa'" k-data-value-field="'id'" k-filter="'contains'"
+                            k-auto-bind="false" k-data-source="listJenisKlasifikasi" />
+                    </div>
                     <div class="grid_5" style="margin-bottom:5px">
                         <label c-label item="item">Petugas Pelaksana</label>
                         <select 
@@ -108,10 +133,7 @@
                    <label ng-click="tambah3()"><img src="stylesheets/Addd.png" width="25" alt="Picture"></label>
                    <label ng-click="hapus2()"><img src="stylesheets/cancel.png" width="25" alt="Picture"></label>
                </div>  
-           </div>  
-
-
-
+           </div> 
            <div class="grid_12" ng-show="showJenisPelaksana4">
             <div class="grid_2">
 
@@ -119,24 +141,28 @@
                 <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPelaksana4" k-data-text-field="'jenispetugaspe'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisPelaksana" k-on-change='init4()'/>
 
             </div>
-
+            <div class="grid_2" ng-show="item.jenisPelaksana4.id === 6;">
+                <label c-label item="item" c-label-text="Jenis Klasifikasi"></label>
+            
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.selectedJenisKlasifikasi4"
+                    k-data-text-field="'jenisasa'" k-data-value-field="'id'" k-filter="'contains'"
+                    k-auto-bind="false" k-data-source="listJenisKlasifikasi" />
+            </div>
             <div class="grid_5" style="margin-bottom:5px">
                 <label c-label item="item">Petugas Pelaksana</label>
-                <select 
-                kendo-multi-select 
-                k-options="selectOptions" 
-                k-data-source="dataSource4"
-                k-data-text-field="'namalengkap'" 
-                k-data-value-field="'id'" 
-                k-ng-model="selectedPegawai4"
-                \>
-            </select>
-        </div>
-        <div class="grid_1" style="margin-top:20px" ng-show="show4">
-            <label ng-click="tambah4()"><img src="stylesheets/Addd.png" width="25" alt="Picture"></label>
-            <label ng-click="hapus3()"><img src="stylesheets/cancel.png" width="25" alt="Picture"></label>
+                <select kendo-multi-select 
+                    k-options="selectOptions" 
+                    k-data-source="dataSource4"
+                    k-data-text-field="'namalengkap'" 
+                    k-data-value-field="'id'" 
+                    k-ng-model="selectedPegawai4" \>
+                </select>
+            </div>
+            <div class="grid_1" style="margin-top:20px" ng-show="show4">
+                <label ng-click="tambah4()"><img src="stylesheets/Addd.png" width="25" alt="Picture"></label>
+                <label ng-click="hapus3()"><img src="stylesheets/cancel.png" width="25" alt="Picture"></label>
 
-        </div>  
+            </div>  
     </div>  
 
 
@@ -148,6 +174,14 @@
             <label c-label item="item">Jenis Pelaksana</label>
             <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPelaksana5" k-data-text-field="'jenispetugaspe'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisPelaksana" k-on-change='init5()'/>
 
+        </div>
+
+        <div class="grid_2" ng-show="item.jenisPelaksana5.id === 6;">
+            <label c-label item="item" c-label-text="Jenis Klasifikasi"></label>
+        
+            <input style="width: 100%;" kendo-combo-box k-ng-model="item.selectedJenisKlasifikasi5"
+                k-data-text-field="'jenisasa'" k-data-value-field="'id'" k-filter="'contains'"
+                k-auto-bind="false" k-data-source="listJenisKlasifikasi" />
         </div>
         <div class="grid_5" style="margin-bottom:5px">
             <label c-label item="item">Petugas Pelaksana</label>
@@ -176,7 +210,13 @@
         <label c-label item="item">Jenis Pelaksana</label>
         <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPelaksana6" k-data-text-field="'jenispetugaspe'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisPelaksana" k-on-change='init6()'/>
     </div>
-
+    <div class="grid_2" ng-show="item.jenisPelaksana6.id === 6;">
+        <label c-label item="item" c-label-text="Jenis Klasifikasi"></label>
+    
+        <input style="width: 100%;" kendo-combo-box k-ng-model="item.selectedJenisKlasifikasi6"
+            k-data-text-field="'jenisasa'" k-data-value-field="'id'" k-filter="'contains'"
+            k-auto-bind="false" k-data-source="listJenisKlasifikasi" />
+    </div>
 
     <div class="grid_5" style="margin-bottom:5px">
         <label c-label item="item">Petugas Pelaksana</label>
@@ -204,6 +244,14 @@
     <div class="grid_2">
         <label c-label item="item">Jenis Pelaksana</label>
         <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPelaksana7" k-data-text-field="'jenispetugaspe'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisPelaksana" k-on-change='init7()'/>
+    </div>
+
+    <div class="grid_2" ng-show="item.jenisPelaksana7.id === 6;">
+        <label c-label item="item" c-label-text="Jenis Klasifikasi"></label>
+    
+        <input style="width: 100%;" kendo-combo-box k-ng-model="item.selectedJenisKlasifikasi7"
+            k-data-text-field="'jenisasa'" k-data-value-field="'id'" k-filter="'contains'"
+            k-auto-bind="false" k-data-source="listJenisKlasifikasi" />
     </div>
 
 
@@ -234,6 +282,13 @@
         <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPelaksana8" k-data-text-field="'jenispetugaspe'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisPelaksana" k-on-change='init8()'/>
     </div>
 
+    <div class="grid_2" ng-show="item.jenisPelaksana8.id === 6;">
+        <label c-label item="item" c-label-text="Jenis Klasifikasi"></label>
+    
+        <input style="width: 100%;" kendo-combo-box k-ng-model="item.selectedJenisKlasifikasi8"
+            k-data-text-field="'jenisasa'" k-data-value-field="'id'" k-filter="'contains'"
+            k-auto-bind="false" k-data-source="listJenisKlasifikasi" />
+    </div>
 
     <div class="grid_5" style="margin-bottom:5px">
         <label c-label item="item">Petugas Pelaksana</label>
@@ -265,6 +320,14 @@
         <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPelaksana9" k-data-text-field="'jenispetugaspe'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisPelaksana" k-on-change='init9()'/>
     </div>
 
+    <div class="grid_2" ng-show="item.jenisPelaksana9.id === 6;">
+        <label c-label item="item" c-label-text="Jenis Klasifikasi"></label>
+    
+        <input style="width: 100%;" kendo-combo-box k-ng-model="item.selectedJenisKlasifikasi9"
+            k-data-text-field="'jenisasa'" k-data-value-field="'id'" k-filter="'contains'"
+            k-auto-bind="false" k-data-source="listJenisKlasifikasi" />
+    </div>
+
     <div class="grid_5" style="margin-bottom:5px">
         <label c-label item="item">Petugas Pelaksana</label>
         <select 
@@ -293,6 +356,13 @@
         <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPelaksana10" k-data-text-field="'jenispetugaspe'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisPelaksana" k-on-change='init10()'/>
     </div>
 
+    <div class="grid_2" ng-show="item.jenisPelaksana10.id === 6;">
+        <label c-label item="item" c-label-text="Jenis Klasifikasi"></label>
+    
+        <input style="width: 100%;" kendo-combo-box k-ng-model="item.selectedJenisKlasifikasi10"
+            k-data-text-field="'jenisasa'" k-data-value-field="'id'" k-filter="'contains'"
+            k-auto-bind="false" k-data-source="listJenisKlasifikasi" />
+    </div>
 
     <div class="grid_5" style="margin-bottom:5px">
         <label c-label item="item">Petugas Pelaksana</label>

@@ -1,6 +1,42 @@
 <style>
-    .badge {
-        position: static;
+    .badge-2 {
+        display: flex;
+        align-items: center;
+        background-color: rgb(255, 50, 50);
+        border-radius: 50%;
+        color: #fff;
+        padding: 0.5em 0.75em;
+        position: relative;
+    }
+
+    .badge-2::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        animation: pulse 1s ease infinite;
+        border-radius: 50%;
+        border: 4px double rgb(255, 50, 50);
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        60% {
+            transform: scale(1.3);
+            opacity: 0.4;
+        }
+
+        100% {
+            transform: scale(1.4);
+            opacity: 0;
+        }
     }
 
     .smart-container-home {
@@ -74,7 +110,8 @@
         width: 40%;
         max-width: 40%;
         display: flex;
-        justify-content: center
+        flex-direction: column;
+        justify-content: center;
     }
 
     .doc-action a {
@@ -210,7 +247,7 @@
 </style>
 
 <div ng-controller="WelcomeCtrl">
-   
+
 
     <md-card class="card-list-notification">
         <md-card-header>
@@ -231,8 +268,10 @@
                         <md-card-body>
                             <div class="container-widget-verifikasi">
                                 <div class="content-widget-verifikasi">
-                                    <h1><span>{{dataWidgetStatusVerifikasi.statusVerifikasi.belumDiverifikasi}}</span> Belum Diverifkasi</h1>
-                                    <h1><span>{{dataWidgetStatusVerifikasi.statusVerifikasi.sudahDiverifikasi}}</span> Sudah Diverifkasi</h1>
+                                    <h1><span>{{dataWidgetStatusVerifikasi.statusVerifikasi.belumDiverifikasi}}</span>
+                                        Belum Diverifkasi</h1>
+                                    <h1><span>{{dataWidgetStatusVerifikasi.statusVerifikasi.sudahDiverifikasi}}</span>
+                                        Sudah Diverifkasi</h1>
                                 </div>
                             </div>
                         </md-card-body>
@@ -249,8 +288,10 @@
                         <md-card-body>
                             <div class="container-widget-verifikasi">
                                 <div class="content-widget-verifikasi">
-                                    <h1><span>{{dataWidgetStatusVerifikasi.tugasVerifikasi.belumDiverifikasi}}</span> Belum Diverifkasi</h1>
-                                    <h1><span>{{dataWidgetStatusVerifikasi.tugasVerifikasi.sudahDiverifikasi}}</span> Sudah Diverifkasi</h1>
+                                    <h1><span>{{dataWidgetStatusVerifikasi.tugasVerifikasi.belumDiverifikasi}}</span>
+                                        Belum Diverifkasi</h1>
+                                    <h1><span>{{dataWidgetStatusVerifikasi.tugasVerifikasi.sudahDiverifikasi}}</span>
+                                        Sudah Diverifkasi</h1>
                                 </div>
                             </div>
                         </md-card-body>
@@ -267,26 +308,27 @@
                                     <span style="float: right; margin-left: 1em; font-size: larger;"
                                         ng-click="linkDashboardKinerja()"><i class="fa fa-external-link"
                                             aria-hidden="true"></i></i></span>
-                                    <span style="float: right; margin-left: 1em; font-size: larger;" ng-click="widgetKinerja()"><i
-                                            class="fa fa-refresh" aria-hidden="true"></i></span>
+                                    <span style="float: right; margin-left: 1em; font-size: larger;"
+                                        ng-click="widgetKinerja()"><i class="fa fa-refresh"
+                                            aria-hidden="true"></i></span>
                                 </div>
                             </div>
                         </md-card-header>
-                
+
                         <md-card-content>
                             <div class="widget-dashboard-kinerja">
                                 <!-- <label>Progress Kinerja</label> -->
                                 <div ng-repeat="data in dataDashboardKinerja" style="margin-bottom: 5px;">
                                     <md-tooltip md-direction="top">{{data.persenCapaianDibulatkan}}%</md-tooltip>
                                     <md-progress-linear md-mode="determinate" value="{{data.persenCapaianDibulatkan}}">
-                
+
                                     </md-progress-linear>
                                 </div>
                             </div>
                         </md-card-content>
                     </md-card>
                 </div>
-               
+
             </div>
 
             <div class="container-notify grid_6">
@@ -331,9 +373,10 @@
                                                 <strong>{{data.fileName}}</strong>
                                             </div>
                                             <div class="doc-action">
-                                                <a href="{{data.path}}" download>Download PDF</a>
+                                                <a href="{{data.path}}" download>Download</a>
+                                                <a ng-click="lihatDokumen(data.path)">Lihat</a>
                                             </div>
-                                            <span class="badge error">NEW</span>
+                                            <div class="badge-2">NEW</div>
                                         </li>
 
                                     </ul>

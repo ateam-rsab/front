@@ -45,6 +45,10 @@
         "name": "Daftar Antrian",
         "children": [
             {
+                "name": "Daftar Bayi Lahir",
+                "link": "#/DaftarBayiLahir"
+            },
+            {
                 "name": "Daftar Antrian Pasien",
                 "link": "#/DaftarAntrianPasienOperatorNew"
             },
