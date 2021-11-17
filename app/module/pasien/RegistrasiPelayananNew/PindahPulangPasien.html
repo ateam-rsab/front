@@ -57,17 +57,22 @@
             </div>
 
             <div class="grid_12" ng-show="item.statusKeluar.id === 2" >
-                <div class="grid_4" ng-show="item.statusKeluar.id === 2">
+                <div class="grid_3">
+                    <label c-label item="item" c-label-text="DPJP"></label>
+                    <input style="width: 100%; " kendo-combo-box k-ng-model="item.dokter " k-data-text-field=" 'namalengkap'" k-filter=" 'contains' " k-data-value-field=" 'id' " k-auto-bind="false " k-data-source="listDpjp" />
+                    <!-- input style="width: 100%;" kendo-combo-box ng-model="item.kelasLoad" k-ng-model="item.kelas" k-data-text-field="'namaKelas'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="sourceKelas" k-on-change="cariRuangan()"/> -->
+                </div>
+                <div class="grid_3">
                     <label c-label item="item" c-label-text="kelas"></label>
                     <input style="width: 100%; " kendo-combo-box k-ng-model="item.kelas " k-data-text-field=" 'namakelas'" k-filter=" 'contains' " k-data-value-field=" 'value' " k-auto-bind="false " k-data-source="listKelas" />
                     <!-- input style="width: 100%;" kendo-combo-box ng-model="item.kelasLoad" k-ng-model="item.kelas" k-data-text-field="'namaKelas'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="sourceKelas" k-on-change="cariRuangan()"/> -->
                 </div>
-                <div class="grid_4">
+                <div class="grid_3">
                     <label c-label item="item" c-label-text="kamar"></label>
                     <input style="width: 100%;" kendo-combo-box k-ng-model="item.kamar" k-data-text-field="'namakamar'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKamar" />
                     <!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.kamar" k-data-text-field="'namaKamar'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="sourceKamar"  k-on-change="cariNoBed()"/> -->
                 </div>
-                <div class="grid_4">
+                <div class="grid_3">
                     <label c-label item="item" c-label-text="Nomor Tempat Tidur"></label>
                     <input style="width: 100%;" kendo-combo-box k-ng-model="item.nomorTempatTidur" k-data-text-field="'reportdisplay'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listNoBed" />
                     <!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.noBed" k-data-text-field="'nomorBed'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="sourceNoBed" /> -->

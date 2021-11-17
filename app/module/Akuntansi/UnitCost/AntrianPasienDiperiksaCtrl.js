@@ -633,6 +633,11 @@ define(['initialize'], function (initialize) {
 				}
 			}
 			$scope.simpanKonsul = function () {
+				if (!$scope.konsul.namaDokter) {
+					toastr.warning("DPJP harus diisi!", "Peringatan")
+					return
+				}
+
 				var current = $scope.currentRowData;
 				var length = $scope.dataRincianTagihan._data.length + 1;
 				var dataKonsul = {

@@ -10,7 +10,7 @@
     }
 </style>
 <md-toolbar md-scroll-shrink class="shadow">
-    <div class="md-toolbar-tools">Verifikasi Catatan Kegiatan Harian</div>
+    <div class="md-toolbar-tools">Catatan Kegiatan Harian</div>
 </md-toolbar>
 
 <div class="grid_12">
@@ -39,7 +39,27 @@
 </div>
 
 <div class="grid_12">
-    <div kendo-grid k-data-source="dataSource" k-selectable="'row'" options="optGrid" k-ng-model="selectedData"></div>
+    <br />
+</div>
+
+<div class="panel-heading-white">
+    <span class="title" c-translate>Belum Terverifikasi</span>
+</div>
+<div class="grid_12">
+    <div kendo-grid k-data-source="dataSource1" k-selectable="'row'" options="optGrid1" k-ng-model="selectedData1">
+    </div>
+</div>
+
+<div class="grid_12">
+    <br />
+</div>
+
+<div class="panel-heading-white">
+    <span class="title" c-translate>Terverifikasi</span>
+</div>
+<div class="grid_12">
+    <div kendo-grid k-data-source="dataSource2" k-selectable="'row'" options="optGrid2" k-ng-model="selectedData2">
+    </div>
 </div>
 
 <div ng-include='"../app/module/Shared/TemplateLoading"'></div>

@@ -111,7 +111,7 @@
         max-width: 40%;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: center
     }
 
     .doc-action a {
@@ -121,7 +121,7 @@
         background-color: #f1f1f1;
         box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 2px 1px -1px rgba(0, 0, 0, .12);
         font-weight: 700;
-        margin: auto auto;
+        margin: 1.5px auto;
         height: 15px;
         font-size: 12px;
         white-space: nowrap;
@@ -218,11 +218,10 @@
         cursor: pointer;
     }
 
-
     .content-widget-verifikasi {
         display: flex;
         justify-content: space-evenly;
-
+        padding: 10px;
     }
 
     .content-widget-verifikasi h1 {
@@ -232,38 +231,37 @@
         background-color: #e1e0e0;
         border-radius: 5px;
         padding: 10px;
+        margin: 5px;
     }
 
     .content-widget-verifikasi h1 span {
         font-size: 25px;
     }
-
-    /* .container-widget {
-        width: 50%;
-    }
-    .container-notify {
-        width: 50%;
-    } */
 </style>
 
 <div ng-controller="WelcomeCtrl">
-
-
     <md-card class="card-list-notification">
         <md-card-header>
             <h4>Pemberitahuan</h4>
         </md-card-header>
         <md-card-content>
 
-
-            <div class="container-widget grid_6">
+            <div class="container-widget grid_6" ng-show="isRemun">
                 <div class="grid_6">
                     <md-card>
                         <md-card-title style="border-bottom: 1px solid #dddddd">
                             <md-card-title-text>
-                                <span class="md-headline">Status Verifikasi</span>
+                                <div class="grid-12">
+                                    <div class="grid_6">
+                                        <h4 style="text-align: left;">Catatan Kegiatan Kinerja Anda Bulan Ini</h4>
+                                    </div>
+                                    <div class="grid_6">
+                                        <span style="float: right; margin-left: 1em; font-size: larger;"
+                                            ng-click="widgetWorkingRecord()"><i class="fa fa-refresh"
+                                                aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
                             </md-card-title-text>
-
                         </md-card-title>
                         <md-card-body>
                             <div class="container-widget-verifikasi">
@@ -281,9 +279,20 @@
                     <md-card>
                         <md-card-title style="border-bottom: 1px solid #dddddd">
                             <md-card-title-text>
-                                <span class="md-headline">Tugas Verifikasi</span>
+                                <div class="grid-12">
+                                    <div class="grid_6">
+                                        <h4 style="text-align: left;">Tugas Verifikasi Kegiatan Kinerja Bulan Ini</h4>
+                                    </div>
+                                    <div class="grid_6">
+                                        <span style="float: right; margin-left: 1em; font-size: larger;"
+                                            ng-click="linkVerifWorkingRecord()"><i class="fa fa-external-link"
+                                                aria-hidden="true"></i></i></span>
+                                        <span style="float: right; margin-left: 1em; font-size: larger;"
+                                            ng-click="widgetWorkingRecord()"><i class="fa fa-refresh"
+                                                aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
                             </md-card-title-text>
-
                         </md-card-title>
                         <md-card-body>
                             <div class="container-widget-verifikasi">
@@ -314,10 +323,8 @@
                                 </div>
                             </div>
                         </md-card-header>
-
                         <md-card-content>
                             <div class="widget-dashboard-kinerja">
-                                <!-- <label>Progress Kinerja</label> -->
                                 <div ng-repeat="data in dataDashboardKinerja" style="margin-bottom: 5px;">
                                     <md-tooltip md-direction="top">{{data.persenCapaianDibulatkan}}%</md-tooltip>
                                     <md-progress-linear md-mode="determinate" value="{{data.persenCapaianDibulatkan}}">
@@ -328,35 +335,32 @@
                         </md-card-content>
                     </md-card>
                 </div>
-
             </div>
 
             <div class="container-notify grid_6">
                 <div class="notify" ng-if="isShowSIPExpired">
                     <strong>Info </strong> {{messageNotif}}
                 </div>
-
                 <div class="notify" ng-if="showPPDSNotif">
                     <strong>Info </strong> {{pesanPemberitahuan}}
                 </div>
-
                 <div class="notify notify-danger" ng-if="showNotif.messageAbsensi">
                     <strong>Info </strong> {{messageAbsensi}}
                 </div>
-
                 <div class="notify notify-warn" ng-if="showNotif.changePassword">
                     <strong>Perhatian </strong> Harap kepada pengguna SMART untuk mengganti Kata Kunci/Password pengguna
                     anda
                 </div>
-
                 <div class="notify notify-warn" ng-if="showNotif.formISARC">
                     <strong>Perhatian </strong> Kepada seluruh karyawan Rumah Sakit Harapan Kita. Harap mengisi form
                     Instrumen Self Assessment Risiko COVID-19 <strong style="font-size:12px; font-style:italic">(<a
                             href="https://bit.ly/selfassessmentcovid19rsabhk" target="_blank">Klik disini</a>)</strong>
                 </div>
             </div>
+
         </md-card-content>
     </md-card>
+
     <div class="smart-container-home">
         <md-card class="card-list-dokumen">
             <md-card-content>
@@ -366,14 +370,13 @@
                         <md-tabs class="md-primary" md-dynamic-height md-center-tabs>
                             <md-tab label="Informasi Terkini">
                                 <md-content class="md-padding">
-                                    <!-- <h2 class="md-display-1">Belum ada Pemberitahuan</h2> -->
                                     <ul class="list-1">
                                         <li ng-repeat="data in dataPemberitahuan">
                                             <div class="doc-description">
                                                 <strong>{{data.fileName}}</strong>
                                             </div>
                                             <div class="doc-action">
-                                                <a href="{{data.path}}" download>Download</a>
+                                                <a href="{{data.path}}" download>Download PDF</a>
                                                 <a ng-click="lihatDokumen(data.path)">Lihat</a>
                                             </div>
                                             <div class="badge-2">NEW</div>
@@ -385,9 +388,7 @@
 
                             <md-tab label="Info Penting">
                                 <md-content class="md-padding">
-                                    <!-- <h2 class="md-display-1">Belum ada Pembaruan</h2> -->
                                     <md-content class="md-padding">
-                                        <!-- <h2 class="md-display-1">Belum ada Pemberitahuan</h2> -->
                                         <ul class="list-1">
                                             <li ng-repeat="data in dataBerkasAdministrasi">
                                                 <div class="doc-description">
@@ -396,7 +397,6 @@
                                                 <div class="doc-action">
                                                     <a href="{{data.path}}" download>Download PDF</a>
                                                 </div>
-                                                <!-- <span class="badge error">NEW</span> -->
                                             </li>
 
                                         </ul>
@@ -440,6 +440,7 @@
                         </md-tabs>
                     </md-content>
                 </div>
+
             </md-card-content>
         </md-card>
 
@@ -448,6 +449,7 @@
                 <h4>{{videoPlayed.title}}</h4>
             </md-card-header>
             <md-card-content>
+
                 <div class="list-video">
                     <ul class="list-2">
                         <li
@@ -470,11 +472,12 @@
                         </li>
                     </ul>
                 </div>
-                <!-- <embed src="https://smart.rsabhk.co.id:2222/vid/jaga-jarak.mp4"width="500" height="500" > -->
+
                 <video name="media" id="video-kampanye" src="https://smart.rsabhk.co.id:2222/vid/zona-integritas.mp4"
                     autoplay loop controls>
                     Your browser does not support HTML video.
                 </video>
+
             </md-card-content>
         </md-card>
     </div>

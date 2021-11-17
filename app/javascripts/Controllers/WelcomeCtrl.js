@@ -23,15 +23,22 @@ define(['initialize'], function (initialize) {
                 ManageSdmNew.getListData(`iki-remunerasi/widget-dashboard-kinerja?pegawaiId=${dataLogin.id}&bulan=${dateNow}`).then((res) => {
                     $scope.dataDashboardKinerja = res.data.data.data;
                 });
+            }
+
+            $scope.widgetWorkingRecord = () => {
+                let dateNow = DateHelper.toTimeStamp(new Date());
 
                 ManageSdmNew.getListData(`/iki-remunerasi/widget-status-verifikasi-kinerja?pegawaiId=${dataLogin.id}&bulan=${dateNow}`).then((res) => {
-                    console.log(res.data.data);
                     $scope.dataWidgetStatusVerifikasi = res.data.data;
                 });
             }
 
             $scope.linkDashboardKinerja = () => {
                 $state.go('DashboardPencatatanKinerja');
+            }
+
+            $scope.linkVerifWorkingRecord = () => {
+                $state.go('VerifikasiCatatanKegiatanHarian');
             }
 
             $scope.OnInit = () => {
@@ -41,24 +48,10 @@ define(['initialize'], function (initialize) {
                 }
 
                 $scope.widgetKinerja()
+                $scope.widgetWorkingRecord()
             }
 
             $scope.dataPemberitahuan = [
-                {
-                    path: "data/dokumen/hasil-seleksi-rekrutmen-internal-jabfung-RSABHarapanKita.pdf",
-                    fileName: "Hasil Seleksi Rekrutmen Internal Jabfung RSAB Harapan Kita"
-                },
-                {
-                    path: "data/dokumen/SURAT-PENUNDAAN-PINDAH.pdf",
-                    fileName: "SURAT PENUNDAAN PINDAH"
-                },
-                {
-                    path: "data/dokumen/nodin-informasi-data-kepegawaian.pdf",
-                    fileName: "Nodin Informasi Data Kepegawaian"
-                }, {
-                    path: "data/dokumen/pemberitahuan-kgb-tmt-1-desember-2021-ade-kurniah-dkk",
-                    fileName: "PEMBERITAHUAN - KGB TMT 1 Desember 2021 Ade Kurniah dkk"
-                },
                 {
                     path: "data/dokumen/Daftar-Nama-Pegawai-Yang-Dapat-Diusulkan-Kenaikan-Jabfung-Ahli.pdf",
                     fileName: "Daftar Nama Pegawai yang dapat Diusulkan Kenaikan Jabfung Ahli"
@@ -79,11 +72,6 @@ define(['initialize'], function (initialize) {
                     path: "data/dokumen/PEMBERITAHUAN-SK-KPO-dan-NON-KPO-an.-Suprapto.pdf",
                     fileName: "PEMBERITAHUAN - SK KPO dan NON KPO an. Suprapto"
                 },
-                {
-                    path: "data/dokumen/rekrutmen-internal-JABFUNG-di-lingkungan-RSABHK-tahun-2021.pdf",
-                    fileName: "Rekrutmen Internal Jabatan Fungsional di Lingkungan RSAB HK tahun 2021"
-                },
-
             ]
             $scope.lihatDokumen = (url) => {
                 console.log(url)
@@ -102,7 +90,15 @@ define(['initialize'], function (initialize) {
                 path: "data/dokumen/prosedur-pembuatan-daftar-uang-makan-bagi-pns.pdf",
                 fileName: "Prosedur Pembuatan Daftar Uang Makan bagi PNS",
                 new: false
+            }, {
+                path: "data/dokumen/rekrutmen-internal-JABFUNG-di-lingkungan-RSABHK-tahun-2021.pdf",
+                fileName: "Rekrutmen Internal Jabatan Fungsional di Lingkungan RSAB HK tahun 2021"
             }]
+
+            $scope.lihatDokumen = (url) => {
+
+                window.open(`${window.location.origin}/app/${url}`, '_blank');
+            }
 
             $scope.OnInit();
 
@@ -116,7 +112,6 @@ define(['initialize'], function (initialize) {
 
                     dataKehadiran.isAbsensiPulang = dataKehadiran.absensiPulang === '-' ? false : true;
                     dataKehadiran.isAbsensiMasuk = dataKehadiran.absensiMasuk === '-' ? false : true;
-                    console.log(dataKehadiran);
 
                     if (dataKehadiran.namaShift === "Libur") {
                         $scope.showNotif.messageAbsensi = false;

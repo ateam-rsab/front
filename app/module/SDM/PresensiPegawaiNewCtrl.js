@@ -234,7 +234,7 @@ define(['initialize'], function (initialize) {
                         dataIP = http.responseText;
                     }
                 }
-                http.open("GET", "https://api.ipify.org", false);
+                http.open("GET", "https://rsabhk.co.id/getip", false);
                 http.send();
 
                 return dataIP;

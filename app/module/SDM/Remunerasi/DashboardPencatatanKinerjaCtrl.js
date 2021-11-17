@@ -135,7 +135,7 @@ define(['initialize'], function (initialize) {
                     }, {
                         field: "namaProfesi",
                         title: "<h3>Profesi Pelaksana</h3>",
-                        width: 50
+                        width: 70
                     }, {
                         field: "jumlah",
                         title: "<h3>Jumlah</h3>",

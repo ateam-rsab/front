@@ -12,13 +12,13 @@ define(['initialize'], function (initialize) {
             let dataPegawai = JSON.parse(localStorage.getItem('pegawai'));
 
             $scope.init = () => {
-                $scope.optGrid = {
+                $scope.optGrid1 = {
                     pageable: true,
                     scrollable: true,
                     columns: [{
                         field: "jenisIndikator",
-                        title: "Jenis Indikator",
-                        hidden: true
+                        title: "<h3>Jenis Indikator</h3>",
+                        width: 50
                     }, {
                         field: "namaIndikator",
                         title: "<h3>Indikator</h3>",
@@ -68,6 +68,50 @@ define(['initialize'], function (initialize) {
                     },
                 }
 
+                $scope.optGrid2 = {
+                    pageable: true,
+                    scrollable: true,
+                    columns: [{
+                        field: "jenisIndikator",
+                        title: "<h3>Jenis Indikator</h3>",
+                        width: 50
+                    }, {
+                        field: "namaIndikator",
+                        title: "<h3>Indikator</h3>",
+                        width: 120
+                    }, {
+                        field: "namaKegiatan",
+                        title: "<h3>Kegiatan</h3>",
+                        width: 120
+                    }, {
+                        field: "hasil",
+                        title: "<h3>Hasil</h3>",
+                        width: 50
+                    }, {
+                        field: "satuanIndikator",
+                        title: "<h3>Satuan</h3>",
+                        width: 50
+                    }, {
+                        field: "catatan",
+                        title: "<h3>Catatan</h3>",
+                        width: 120
+                    }, {
+                        field: "tglKegiatanFormat",
+                        title: "<h3>Tanggal</h3>",
+                        width: 50
+                    }, {
+                        field: "statusVerifikasi",
+                        title: "<h3>Status</h3>",
+                        width: 50
+                    }],
+                    dataBound: function (e) {
+                        $('td').each(function () {
+                            if ($(this).text() == 'Terverifikasi') { $(this).addClass('verified') };
+                            if ($(this).text() == 'Belum Terverifikasi') { $(this).addClass('unverified') };
+                        })
+                    },
+                }
+
                 ManageSdmNew.getListData("iki-remunerasi/get-akses-pegawai-verifikasi-kinerja?pegawaiId=" + dataPegawai.id).then((res) => {
                     $scope.listPegawai = res.data.data;
                 });
@@ -103,22 +147,29 @@ define(['initialize'], function (initialize) {
                 }
 
                 $scope.isRouteLoading = true;
-                let URL = "iki-remunerasi/get-catatan-kegiatan-harian?pegawaiId=" + ($scope.item.srcPegawai ? $scope.item.srcPegawai.id : "") + "&jabatanId=" + ($scope.item.srcJabatan ? $scope.item.srcJabatan.id : "") + "&bulan=" + ($scope.item.srcBulan ? dateHelper.toTimeStamp($scope.item.srcBulan) : '')
+                $q.all([
+                    ManageSdmNew.getListData("iki-remunerasi/catatan-kegiatan-harian-belum-verif?pegawaiId=" + ($scope.item.srcPegawai ? $scope.item.srcPegawai.id : "") + "&jabatanId=" + ($scope.item.srcJabatan ? $scope.item.srcJabatan.id : "") + "&bulan=" + ($scope.item.srcBulan ? dateHelper.toTimeStamp($scope.item.srcBulan) : '')),
+                    ManageSdmNew.getListData("iki-remunerasi/catatan-kegiatan-harian-sudah-verif?pegawaiId=" + ($scope.item.srcPegawai ? $scope.item.srcPegawai.id : "") + "&jabatanId=" + ($scope.item.srcJabatan ? $scope.item.srcJabatan.id : "") + "&bulan=" + ($scope.item.srcBulan ? dateHelper.toTimeStamp($scope.item.srcBulan) : ''))
+                ]).then(function (res) {
+                    $scope.dataSource1 = new kendo.data.DataSource({
+                        data: res[0].data.data,
+                        pageSize: 50
+                    });
 
-                ManageSdmNew.getListData(URL).then((res) => {
-                    $scope.dataSource = new kendo.data.DataSource({
-                        data: res.data.data,
-                        pageSize: 50,
-                        group: [{
-                            field: "jenisIndikator"
-                        }]
+                    $scope.dataSource2 = new kendo.data.DataSource({
+                        data: res[1].data.data,
+                        pageSize: 50
                     });
 
                     $scope.isRouteLoading = false;
+                }, (error) => {
+                    throw (error);
                 })
             }
 
             $scope.simpanVerif = (data, method) => {
+                $scope.isRouteLoading = true
+
                 let statusEnabled = method === "verif";
 
                 let dataSave = {

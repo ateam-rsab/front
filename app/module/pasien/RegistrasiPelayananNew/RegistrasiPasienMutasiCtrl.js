@@ -284,7 +284,15 @@ define(['initialize', 'Configuration'], function(initialize, configuration) {
             }
 
             $scope.SimpanRegistrasi= function () {
-          
+                        if (!$scope.item.kelas) {
+                            toastr.warning("Harap pilih kelas", "Peringatan")
+                            return
+                        }
+
+                        if (!$scope.item.dokter) {
+                            toastr.warning("Harap pilih dokter pemeriksa", "Peringatan")
+                            return
+                        }
             
                         var kelasId = "";
                         if ( $scope.item.kelas == undefined) {

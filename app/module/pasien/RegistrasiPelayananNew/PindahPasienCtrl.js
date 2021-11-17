@@ -34,6 +34,7 @@ define(['initialize'], function(initialize) {
                
                 manageServicePhp.getDataTableTransaksi("pindahpasien/get-combo-pindahpasien")         
                 .then(function (e) {
+                   $scope.listDpjp=e.data.listdpjp; 
                    $scope.listStatusKeluar=e.data.statuskeluar; 
                    $scope.listKondisiPasien=e.data.kondisipasien; 
                    $scope.listStatusPulang=e.data.statuspulang; 
@@ -116,6 +117,11 @@ define(['initialize'], function(initialize) {
                     } 
             }
             $scope.SavePindah=function(){
+                if (!$scope.item.dokter) {
+                    toastr.warning("Pilih Dokter terlebih dahulu", "Peringatan")
+                    return
+                }
+
                 var statusKeluarId = "";
                 if ( $scope.item.statusKeluar != undefined) {
                    statusKeluarId = $scope.item.statusKeluar.id;
@@ -195,6 +201,7 @@ define(['initialize'], function(initialize) {
                 var antrianpasiendiperiksa = {
                     tglregistrasi: moment($scope.item.pasien.tglregistrasi).format('YYYY-MM-DD HH:mm:ss'),
                     objectruanganasalfk:  $scope.item.pasien.objectruanganlastfk,
+                    objectpegawaifk:  dokterId,
                     objectruanganlastfk:  ruanganId,
                     objectkelasfk: kelasId,
                     objectkamarfk: kamarIds,
