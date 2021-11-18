@@ -4,38 +4,37 @@
 
 <div class="grid_12">
     <div class="grid_2">
-        <label c-label item="model">Tanggal Awal</label>
-        <input style="width: 100%" k-ng-model="item.tglAwal" kendo-datetimepicker placeholer="yyyy-MM-dd HH:mm"
-            k-format="'yyyy-MM-dd HH:mm'" />
-    </div>
-    <div class="grid_2">
-        <label c-label item="model">Tanggal Akhir</label>
-        <input style="width: 100%" k-ng-model="item.tglAkhir" kendo-datetimepicker placeholer="yyyy-MM-dd HH:mm"
-            k-format="'yyyy-MM-dd HH:mm'" />
-    </div>
-
-    <div class="grid_2">
         <label c-label item="model">Unit Kerja</label>
         <input style="width: 100%;" kendo-combo-box k-ng-model="item.unitKerja" k-data-text-field="'name'"
-            k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitKerja" k-on-change="getDataDokter()"/>
+            k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitKerja"
+            k-on-change="getDataDokter()" />
     </div>
-
     <div class="grid_2">
         <label c-label item="model">Kelompok Kerja</label>
         <input style="width: 100%;" kendo-combo-box k-ng-model="item.kelompokKerja" k-data-text-field="'name'"
-            k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKelompokKerja" k-on-change="getDataDokter()"/>
+            k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKelompokKerja"
+            k-on-change="getDataDokter()" />
     </div>
-
-    <div class="grid_2">
+    <div class="grid_3">
         <label c-label item="model">Dokter</label>
         <input style="width: 100%;" kendo-combo-box k-ng-model="item.dokter" k-data-text-field="'namaLengkap'"
             k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDokter" />
     </div>
+
+    <div class="grid_1">
+        <label c-label item="model">Tanggal Awal</label>
+        <input style="width: 100%" k-ng-model="item.tglAwal" kendo-datepicker placeholer="yyyy-MM-dd"
+            k-format="'yyyy-MM-dd'" />
+    </div>
+    <div class="grid_1">
+        <label c-label item="model">Tanggal Akhir</label>
+        <input style="width: 100%" k-ng-model="item.tglAkhir" kendo-datepicker placeholer="yyyy-MM-dd"
+            k-format="'yyyy-MM-dd'" />
+    </div>
     <div class="grid_2" style="margin-top: 8px;">
         <label c-label item="model">&nbsp;</label>
 
-        <md-button class="md-raised md-primary medium-button" style="width: 30%;"
-            ng-click="getDataVisite()">
+        <md-button class="md-raised md-primary medium-button" style="width: 30%;" ng-click="getDataVisite()">
             <span style="margin-right: 5px;">Cari</span>
             <i class="fa fa-search"></i>
         </md-button>
@@ -43,8 +42,8 @@
 </div>
 
 <div class="grid_12">
-    <kendo-grid id="grid" k-data-source="dataSourceVisite" k-options="optGrid" k-ng-model="dataSelectedRow" k-groupable="'true'"
-        ng-click="klikGrid(dataSelectedRow)">
+    <kendo-grid id="grid" k-data-source="dataSourceVisite" k-options="optGrid" k-ng-model="dataSelectedRow"
+        k-groupable="'true'" ng-click="klikGrid(dataSelectedRow)">
     </kendo-grid>
 </div>
 

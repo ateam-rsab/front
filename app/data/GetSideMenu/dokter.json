@@ -54,6 +54,10 @@
             {
                 "name": "Laporan Pendapatan",
                 "link": "#/LaporanPendapatan"
+            },
+            {
+                "name": "Monitoring Visite Dokter",
+                "link": "#/MonitoringVisiteDokter"
             }
         ]
     },
@@ -115,10 +119,6 @@
     {
         "name": "SDM",
         "children": [
-            {
-                "name": "Monitoring Visite Dokter",
-                "link": "#/MonitoringVisiteDokter"
-            },
             {
                 "name": "Target Bobot Uraian Tugas Per Tahun",
                 "link": "#/TargetBobotYear"

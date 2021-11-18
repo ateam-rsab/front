@@ -15,16 +15,12 @@ define(['initialize'], function (initialize) {
                         res.data.data[i].jam = res.data.data[i].strJamInput ? res.data.data[i].strJamInput : "-";
                         res.data.data[i].namaRuangan = res.data.data[i].namaRuangan ? res.data.data[i].namaRuangan : "-";
                         // res.data.data[i].isDpjp = res.data.data[i].isDpjp  ? "Ya" : "Tidak";
-                        res.data.data[i].isDpjp = res.data.data[i].isDpjp && res.data.data[i].cpptId ? "Ya" : res.data.data[i].isDpjp === null ? "-" : "Tidak";
+                        res.data.data[i].isDpjp = res.data.data[i].isDpjp && res.data.data[i].cpptId ? "DPJP" : res.data.data[i].isDpjp === null ? "-" : "Bukan DPJP";
 
                         console.log(new Date(res.data.data[i].tgl))
 
                     }
 
-                    let dataTemp = [];
-                    // res.data.data.map(a => {
-                    //     console.log(a)
-                    // })
                     $scope.dataSourceVisite = new kendo.data.DataSource({
                         data: res.data.data,
                         pageSize: 20
@@ -38,6 +34,16 @@ define(['initialize'], function (initialize) {
                 ManageSdmNew.getListData(`sdm/daftar-dokter?ksmId=${$scope.item.unitKerja ? $scope.item.unitKerja.id : ""}&kkId=${$scope.item.kelompokKerja ? $scope.item.kelompokKerja.id : ""}&drId=`).then((res) => {
                     $scope.listDokter = res.data;
                 });
+
+                if (!$scope.item.unitKerja) {
+                    $scope.listKelompokKerja = undefined
+                }
+
+                if ($scope.item.unitKerja) {
+                    ManageSdmNew.getListData("service/list-generic/?view=SubUnitKerjaPegawai&select=id,name&criteria=statusEnabled,name,unitKerjaId&values=true,KK," + $scope.item.unitKerja.id + "&order=name:asc").then((res) => {
+                        $scope.listKelompokKerja = res.data;
+                    })
+                }
             }
 
             $scope.init = () => {
@@ -65,23 +71,23 @@ define(['initialize'], function (initialize) {
                     columns: [
                         {
                             "field": "namaLengkap",
-                            "title": "<h3 align=center>Nama Lengkap</h3>",
+                            "title": "Nama Lengkap",
                             "width": 150
                         }, {
                             "field": "strTgl",
-                            "title": "<h3 align=center>Tanggal</h3>",
+                            "title": "Tanggal",
                             "width": 50
                         }, {
                             "field": "jam",
-                            "title": "<h3 align=center>Jam</h3>",
+                            "title": "Jam",
                             "width": 50
                         }, {
                             "field": "namaRuangan",
-                            "title": "<h3 align=center>Ruangan</h3>",
+                            "title": "Ruangan",
                             "width": 150
                         }, {
                             "field": "isDpjp",
-                            "title": "<h3 align=center>DPJP</h3>",
+                            "title": "DPJP",
                             "width": 50
                         }, {
                             hidden: true,
@@ -97,9 +103,9 @@ define(['initialize'], function (initialize) {
                     $scope.listUnitKerja = res.data;
                 })
 
-                ManageSdmNew.getListData("service/list-generic/?view=SubUnitKerjaPegawai&select=id,name&criteria=statusEnabled,name,unitKerjaId&values=true,KK,58&order=name:asc").then((res) => {
-                    $scope.listKelompokKerja = res.data;
-                })
+                // ManageSdmNew.getListData("service/list-generic/?view=SubUnitKerjaPegawai&select=id,name&criteria=statusEnabled,name,unitKerjaId&values=true,KK,58&order=name:asc").then((res) => {
+                //     $scope.listKelompokKerja = res.data;
+                // })
             }
 
             $scope.init();
