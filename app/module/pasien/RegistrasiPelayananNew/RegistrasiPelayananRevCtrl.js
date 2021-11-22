@@ -422,7 +422,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                     return
                 }
 
-                if (!$scope.item.dokter) {
+                if ($scope.model.rawatInap && !$scope.item.dokter) {
                     toastr.warning("Harap pilih Dokter Pemeriksa")
                     return
                 }
