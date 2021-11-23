@@ -422,11 +422,13 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
 
                 if ($scope.model.rawatInap && !$scope.item.kelas) {
                     toastr.warning("Harap pilih Kelas")
+                    $scope.isRouteLoading = false;
                     return
                 }
 
                 if ($scope.model.rawatInap && !$scope.item.dokter) {
                     toastr.warning("Harap pilih Dokter Pemeriksa")
+                    $scope.isRouteLoading = false;
                     return
                 }
                 
@@ -463,6 +465,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
 
                 if ($scope.model.rawatInap && !$scope.item.nomorTempatTidur) {
                     toastr.error("Harap isi Nomor Tempat Tidur", "Gagal");
+                    $scope.isRouteLoading = false;
                     return;
                 }
 
@@ -494,6 +497,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                     jenisPel = $scope.item.jenisPasien.id
                 else {
                     messageContainer.error("Jenis Pelayanan Harus Di isi")
+                    $scope.isRouteLoading = false;
                     return
                 }
                 var isRawatInap = ""
