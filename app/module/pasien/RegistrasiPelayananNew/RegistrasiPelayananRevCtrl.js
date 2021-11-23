@@ -126,6 +126,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                     tglReg)
                     .then(function (res) {
                         $scope.CekPasienDaftar = res.data.data;
+                        $scope.isRouteLoading = false;
                     })
 
 
