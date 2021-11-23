@@ -417,6 +417,8 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
             }
 
             $scope.SimpanRegistrasi = function () {
+                $scope.isRouteLoading = true;
+
                 if ($scope.model.rawatInap && !$scope.item.kelas) {
                     toastr.warning("Harap pilih Kelas")
                     return
@@ -582,11 +584,12 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                         }
 
                     }
-
+                    $scope.isRouteLoading = false;
                 }, function (error) {
                     // throw error;
                     $scope.isSimpan = false;
                     $scope.isBatal = false;
+                    $scope.isRouteLoading = false;
                 })
             }
             // end Save Function
