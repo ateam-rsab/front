@@ -421,13 +421,13 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                 $scope.isRouteLoading = true;
 
                 if ($scope.model.rawatInap && !$scope.item.kelas) {
-                    toastr.warning("Harap pilih Kelas")
+                    toastr.warning("Harap pilih Kelas", "Peringatan")
                     $scope.isRouteLoading = false;
                     return
                 }
 
                 if ($scope.model.rawatInap && !$scope.item.dokter) {
-                    toastr.warning("Harap pilih Dokter Pemeriksa")
+                    toastr.warning("Harap pilih Dokter Pemeriksa", "Peringatan")
                     $scope.isRouteLoading = false;
                     return
                 }
