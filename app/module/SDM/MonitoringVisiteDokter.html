@@ -3,13 +3,21 @@
 </md-toolbar>
 
 <div class="grid_12">
+<<<<<<< HEAD
     <div class="grid_2" ng-if="isKomiteMutu">
+=======
+    <div class="grid_2" ng-if="isAuthorized">
+>>>>>>> da971ce6945a21667e01ac968435e005352ad5ec
         <label c-label item="model">Unit Kerja</label>
         <input style="width: 100%;" kendo-combo-box k-ng-model="item.unitKerja" k-data-text-field="'name'"
             k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitKerja"
             k-on-change="getDataDokter()" />
     </div>
+<<<<<<< HEAD
     <div class="grid_2" ng-if="isKomiteMutu">
+=======
+    <div class="grid_2" ng-if="isAuthorized">
+>>>>>>> da971ce6945a21667e01ac968435e005352ad5ec
         <label c-label item="model">Kelompok Kerja</label>
         <input style="width: 100%;" kendo-combo-box k-ng-model="item.kelompokKerja" k-data-text-field="'name'"
             k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKelompokKerja"
@@ -17,8 +25,14 @@
     </div>
     <div class="grid_3">
         <label c-label item="model">Dokter</label>
+<<<<<<< HEAD
         <input style="width: 100%;" kendo-combo-box k-ng-model="item.dokter" k-data-text-field="'namaLengkap'" ng-disabled="!isKomiteMutu"
             k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDokter" />
+=======
+        <input style="width: 100%;" kendo-combo-box k-ng-model="item.dokter" k-data-text-field="'namaLengkap'"
+            k-data-value-field="'id'" ng-disabled="!isAuthorized" k-filter="'contains'" k-auto-bind="false"
+            k-data-source="listDokter" />
+>>>>>>> da971ce6945a21667e01ac968435e005352ad5ec
     </div>
 
     <div class="grid_1">

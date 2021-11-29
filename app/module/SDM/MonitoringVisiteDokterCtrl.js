@@ -6,7 +6,11 @@ define(['initialize'], function (initialize) {
             $scope.isRouteLoading = false;
             $scope.item.tglAwal = new Date();
             $scope.item.tglAkhir = new Date();
+<<<<<<< HEAD
             $scope.isKomiteMutu = false;
+=======
+            $scope.isAuthorized = false;
+>>>>>>> da971ce6945a21667e01ac968435e005352ad5ec
             const dataLogin = JSON.parse(localStorage.getItem("pegawai"));
 
             $scope.getDataVisite = () => {
@@ -19,6 +23,11 @@ define(['initialize'], function (initialize) {
                         // res.data.data[i].isDpjp = res.data.data[i].isDpjp  ? "Ya" : "Tidak";
                         res.data.data[i].isDpjp = res.data.data[i].isDpjp && res.data.data[i].cpptId ? "DPJP" : res.data.data[i].isDpjp === null ? "-" : "Bukan DPJP";
 
+<<<<<<< HEAD
+=======
+                        // console.log(new Date(res.data.data[i].tgl))
+
+>>>>>>> da971ce6945a21667e01ac968435e005352ad5ec
                     }
 
                     $scope.dataSourceVisite = new kendo.data.DataSource({
@@ -47,8 +56,13 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.init = () => {
+<<<<<<< HEAD
               
                 let dataSOTK = JSON.parse(localStorage.getItem('sotk_coor'));
+=======
+                let dataSOTK = JSON.parse(localStorage.getItem('sotk_coor'));
+
+>>>>>>> da971ce6945a21667e01ac968435e005352ad5ec
                 $scope.optGrid = {
                     toolbar: [
                         "excel",
@@ -104,6 +118,7 @@ define(['initialize'], function (initialize) {
                     $scope.listUnitKerja = res.data;
                 })
 
+<<<<<<< HEAD
 
                 $scope.isKomiteMutu = dataSOTK.reduce((res, item) =>{
                     // if(item.x === 51) return true;
@@ -111,6 +126,17 @@ define(['initialize'], function (initialize) {
                 })
 
                 $scope.item.dokter = $scope.isKomiteMutu ? null : { namaLengkap: dataLogin.namaLengkap, id: dataLogin.id}
+=======
+                // ManageSdmNew.getListData("service/list-generic/?view=SubUnitKerjaPegawai&select=id,name&criteria=statusEnabled,name,unitKerjaId&values=true,KK,58&order=name:asc").then((res) => {
+                //     $scope.listKelompokKerja = res.data;
+                // })
+                $scope.isAuthorized = dataSOTK.reduce((res, item) => {
+                    // if(item.x === 51) return true;
+                    return item.x === 51 || (item.x === 48 && item.y === 274) || (item.x === 57 && (dataLogin.id === 1005 || dataLogin.id === 1193 || dataLogin.id === 1201));
+                })
+
+                $scope.item.dokter = $scope.isAuthorized ? null : { namaLengkap: dataLogin.namaLengkap, id: dataLogin.id }
+>>>>>>> da971ce6945a21667e01ac968435e005352ad5ec
                 $scope.getDataVisite();
                 $scope.getDataDokter();
             }

@@ -126,6 +126,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                     tglReg)
                     .then(function (res) {
                         $scope.CekPasienDaftar = res.data.data;
+                        $scope.isRouteLoading = false;
                     })
 
 
@@ -417,13 +418,17 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
             }
 
             $scope.SimpanRegistrasi = function () {
+                $scope.isRouteLoading = true;
+
                 if ($scope.model.rawatInap && !$scope.item.kelas) {
-                    toastr.warning("Harap pilih Kelas")
+                    toastr.warning("Harap pilih Kelas", "Peringatan")
+                    $scope.isRouteLoading = false;
                     return
                 }
 
-                if (!$scope.item.dokter) {
-                    toastr.warning("Harap pilih Dokter Pemeriksa")
+                if ($scope.model.rawatInap && !$scope.item.dokter) {
+                    toastr.warning("Harap pilih Dokter Pemeriksa", "Peringatan")
+                    $scope.isRouteLoading = false;
                     return
                 }
                 
@@ -460,6 +465,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
 
                 if ($scope.model.rawatInap && !$scope.item.nomorTempatTidur) {
                     toastr.error("Harap isi Nomor Tempat Tidur", "Gagal");
+                    $scope.isRouteLoading = false;
                     return;
                 }
 
@@ -491,6 +497,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                     jenisPel = $scope.item.jenisPasien.id
                 else {
                     messageContainer.error("Jenis Pelayanan Harus Di isi")
+                    $scope.isRouteLoading = false;
                     return
                 }
                 var isRawatInap = ""
@@ -582,11 +589,12 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                         }
 
                     }
-
+                    $scope.isRouteLoading = false;
                 }, function (error) {
                     // throw error;
                     $scope.isSimpan = false;
                     $scope.isBatal = false;
+                    $scope.isRouteLoading = false;
                 })
             }
             // end Save Function

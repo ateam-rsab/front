@@ -149,12 +149,12 @@ define(['initialize'], function (initialize) {
             }
             $scope.SavePindah = function () {
                 if (!$scope.item.dokter) {
-                    toastr.warning("Harap pilih DPJP!");
+                    toastr.warning("Harap pilih DPJP!", "Peringatan");
                     return;
                 }
 
                 if (!$scope.item.kelas) {
-                    toastr.warning("Harap pilih Kelas!");
+                    toastr.warning("Harap pilih Kelas!", "Peringatan");
                     return;
                 }
 

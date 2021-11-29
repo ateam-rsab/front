@@ -187,6 +187,10 @@
                         "link": "#/LaporanKegiatanOperasionalDetail"
                     }
                 ]
+            },
+            {
+                "name": "Monitoring Visite Dokter",
+                "link": "#/MonitoringVisiteDokter"
             }
         ]
     },

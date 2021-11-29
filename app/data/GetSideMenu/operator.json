@@ -392,6 +392,10 @@
                         "link": "#/JumlahPasienKeluarMeninggal"
                     }
                 ]
+            },
+            {
+                "name": "Monitoring Visite Dokter",
+                "link": "#/MonitoringVisiteDokter"
             }
         ]
     },
