@@ -1303,7 +1303,7 @@ define(['initialize'], function (initialize) {
 				var pelayananpasienpetugas = {
 					norec_ppp: norec_ppp,
 					norec_pp: $scope.dataSelected.norec,
-					asa_id: $scope.model.selectedJenisKlasifikasi.id,
+					asa_id: $scope.model.selectedJenisKlasifikasi ? $scope.model.selectedJenisKlasifikasi.id : null,
 					norec_apd: $scope.dataSelected.norec_apd,
 					objectjenispetugaspefk: $scope.model.jenisPelaksana.id,
 					objectpegawaifk: $scope.model.pegawais.id,
