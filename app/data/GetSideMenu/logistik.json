@@ -312,6 +312,10 @@
             {
                 "name": "Laporan Peneriman dan Pengeluaran Bulanan",
                 "link": "#/LaporanBarangBulanan"
+            },
+            {
+                "name": "Monitoring Visite Dokter",
+                "link": "#/MonitoringVisiteDokter"
             }
         ]
     },

@@ -61,6 +61,15 @@
     ]
   },
   {
+    "name": "Laporan",
+    "children": [
+        {
+            "name": "Monitoring Visite Dokter",
+            "link": "#/MonitoringVisiteDokter"
+        }
+    ]
+  },
+  {
     "name": "Data Transaksi",
     "children": [
       {

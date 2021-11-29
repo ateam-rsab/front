@@ -6,18 +6,20 @@ define(['initialize'], function (initialize) {
             $scope.isRouteLoading = false;
             $scope.item.tglAwal = new Date();
             $scope.item.tglAkhir = new Date();
-            $scope.item.dataLogin = JSON.parse(localStorage.getItem("pegawai"));
+            $scope.isAuthorized = false;
+            const dataLogin = JSON.parse(localStorage.getItem("pegawai"));
+
             $scope.getDataVisite = () => {
                 $scope.isRouteLoading = true;
                 let tglAwal = dateHelper.toTimeStamp($scope.item.tglAwal), tglAkhir = dateHelper.toTimeStamp($scope.item.tglAkhir);
-                reportService.getListData(`reporting/presensi-visite-dokter?ksmId=${$scope.item.unitKerja ? $scope.item.unitKerja.id : ""}&kkId=${$scope.item.kelompokKerja ? $scope.item.kelompokKerja.id : ""}&drId=${$scope.item.dokter ? $scope.item.dokter.pegawaiId : ""}&startDate=${tglAwal}&endDate=${tglAkhir}`).then((res) => {
+                reportService.getListData(`reporting/presensi-visite-dokter?ksmId=${$scope.item.unitKerja ? $scope.item.unitKerja.id : ""}&kkId=${$scope.item.kelompokKerja ? $scope.item.kelompokKerja.id : ""}&drId=${$scope.item.dokter ? $scope.item.dokter.id ? $scope.item.dokter.id : $scope.item.dokter.pegawaiId : ""}&startDate=${tglAwal}&endDate=${tglAkhir}`).then((res) => {
                     for (let i = 0; i < res.data.data.length; i++) {
                         res.data.data[i].jam = res.data.data[i].strJamInput ? res.data.data[i].strJamInput : "-";
                         res.data.data[i].namaRuangan = res.data.data[i].namaRuangan ? res.data.data[i].namaRuangan : "-";
                         // res.data.data[i].isDpjp = res.data.data[i].isDpjp  ? "Ya" : "Tidak";
                         res.data.data[i].isDpjp = res.data.data[i].isDpjp && res.data.data[i].cpptId ? "DPJP" : res.data.data[i].isDpjp === null ? "-" : "Bukan DPJP";
 
-                        console.log(new Date(res.data.data[i].tgl))
+                        // console.log(new Date(res.data.data[i].tgl))
 
                     }
 
@@ -30,7 +32,7 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.getDataDokter = () => {
-                $scope.item.dokter = null;
+                // $scope.item.dokter = null;
                 ManageSdmNew.getListData(`sdm/daftar-dokter?ksmId=${$scope.item.unitKerja ? $scope.item.unitKerja.id : ""}&kkId=${$scope.item.kelompokKerja ? $scope.item.kelompokKerja.id : ""}&drId=`).then((res) => {
                     $scope.listDokter = res.data;
                 });
@@ -47,8 +49,8 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.init = () => {
-                $scope.getDataVisite();
-                $scope.getDataDokter();
+                let dataSOTK = JSON.parse(localStorage.getItem('sotk_coor'));
+
                 $scope.optGrid = {
                     toolbar: [
                         "excel",
@@ -106,6 +108,14 @@ define(['initialize'], function (initialize) {
                 // ManageSdmNew.getListData("service/list-generic/?view=SubUnitKerjaPegawai&select=id,name&criteria=statusEnabled,name,unitKerjaId&values=true,KK,58&order=name:asc").then((res) => {
                 //     $scope.listKelompokKerja = res.data;
                 // })
+                $scope.isAuthorized = dataSOTK.reduce((res, item) => {
+                    // if(item.x === 51) return true;
+                    return item.x === 51 || (item.x === 48 && item.y === 274) || (item.x === 57 && (dataLogin.id === 1005 || dataLogin.id === 1193 || dataLogin.id === 1201));
+                })
+
+                $scope.item.dokter = $scope.isAuthorized ? null : { namaLengkap: dataLogin.namaLengkap, id: dataLogin.id }
+                $scope.getDataVisite();
+                $scope.getDataDokter();
             }
 
             $scope.init();
