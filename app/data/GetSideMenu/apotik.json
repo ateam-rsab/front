@@ -276,6 +276,10 @@
         "name": "Surat Perintah Kerja",
         "link": "#/DaftarSPK"
       },
+       {
+        "name": "Daftar Pemesanan Barang",
+        "link": "#/DaftarPemesananBarang"
+      },
       {
         "name": "Penerimaan Barang Suplier",
         "children": [

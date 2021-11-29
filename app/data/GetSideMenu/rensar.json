@@ -110,6 +110,15 @@
         ]
     },
     {
+        "name": "Laporan",
+        "children": [
+            {
+                "name": "Daftar Hadir DPJP",
+                "link": "#/MonitoringVisiteDokter"
+            }
+        ]
+    },
+    {
         "name": "Akuntansi",
         "children": [
             {

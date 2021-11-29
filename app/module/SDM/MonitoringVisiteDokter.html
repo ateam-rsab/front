@@ -1,15 +1,15 @@
 <md-toolbar md-scroll-shrink class="shadow">
-    <div class="md-toolbar-tools">Monitoring Visite Dokter</div>
+    <div class="md-toolbar-tools">Daftar Hadir DPJP</div>
 </md-toolbar>
 
 <div class="grid_12">
-    <div class="grid_2">
+    <div class="grid_2" ng-if="isKomiteMutu">
         <label c-label item="model">Unit Kerja</label>
         <input style="width: 100%;" kendo-combo-box k-ng-model="item.unitKerja" k-data-text-field="'name'"
             k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitKerja"
             k-on-change="getDataDokter()" />
     </div>
-    <div class="grid_2">
+    <div class="grid_2" ng-if="isKomiteMutu">
         <label c-label item="model">Kelompok Kerja</label>
         <input style="width: 100%;" kendo-combo-box k-ng-model="item.kelompokKerja" k-data-text-field="'name'"
             k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKelompokKerja"
@@ -17,7 +17,7 @@
     </div>
     <div class="grid_3">
         <label c-label item="model">Dokter</label>
-        <input style="width: 100%;" kendo-combo-box k-ng-model="item.dokter" k-data-text-field="'namaLengkap'"
+        <input style="width: 100%;" kendo-combo-box k-ng-model="item.dokter" k-data-text-field="'namaLengkap'" ng-disabled="!isKomiteMutu"
             k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDokter" />
     </div>
 
