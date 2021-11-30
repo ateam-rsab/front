@@ -81,6 +81,51 @@
                 ]
             },
             {
+                "name": "Master Penilaian Kinerja",
+                "children": [
+                    {
+                        "name": "Evaluasi Jabatan",
+                        "link": "#/EvaluasiJabatan"
+                    },
+                    {
+                        "name": "Rekapitulasi Evaluasi Jabatan",
+                        "link": "#/RekapitulasiEvaluasiJabatan"
+                    },
+                    {
+                        "name": "Master Satuan Indikator",
+                        "link": "#/MasterSatuanIndikator"
+                    },
+                    {
+                        "name": "Master Indikator Kinerja",
+                        "link": "#/MasterIndikatorKinerja"
+                    },
+                    {
+                        "name": "Skoring Tindakan Medis",
+                        "link": "#/SkoringTindakanMedis"
+                    },
+                    {
+                        "name": "Skoring Tindakan Perawat",
+                        "link": "#/SkoringTindakanPerawat"
+                    },
+                    {
+                        "name": "Skoring Tindakan TKL",
+                        "link": "#/SkoringTindakanNakes"
+                    },
+                    {
+                        "name": "Master Profesi TKL",
+                        "link": "#/MasterProfesiTKL"
+                    },
+                    {
+                        "name": "Master Produk Perawat",
+                        "link": "#/MasterProdukPerawat"
+                    },
+                    {
+                        "name": "Master Produk TKL",
+                        "link": "#/MasterProdukTKL"
+                    }
+                ]
+            },
+            {
                 "name": "Login User",
                 "children": [
                     {
