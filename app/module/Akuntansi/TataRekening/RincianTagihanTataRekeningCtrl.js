@@ -1222,6 +1222,10 @@ define(['initialize'], function (initialize) {
 						id: dataDokterSelected.jpp_id,
 						jenisPetugasPelaksana: dataDokterSelected.jenispetugaspe
 					}
+					$scope.model.selectedJenisKlasifikasi = {
+						id: dataDokterSelected.asaid,
+						jenisasa: dataDokterSelected.asa
+					}
 					// $scope.model.pegawais={
 					// 	id:dataDokterSelected.pg_id,
 					// 	namalengkap:dataDokterSelected.namalengkap,
