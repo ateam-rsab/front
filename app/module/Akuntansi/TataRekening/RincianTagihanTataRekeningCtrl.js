@@ -1202,15 +1202,18 @@ define(['initialize'], function (initialize) {
 
 			$scope.click = function (dataDokterSelected) {
 				$scope.showJenisKlasifikasi = dataDokterSelected.jpp_id === 6;
-				$scope.model.selectedJenisKlasifikasi = null;
-				if (dataDokterSelected != undefined) {
+				// $scope.model.selectedJenisKlasifikasi = null;
+				$scope.selectedJenisKlasifikasi = {
+					jenisasa:dataDokterSelected.asa,
+					id:dataDokterSelected.asaid
+				}
+				if (dataDokterSelected) {
 					// var id = $scope.dataDokterSelected.jpp_id;
 					// 	manageTataRekening.getDataTableTransaksi("pelayananpetugas/get-pegawaibyjenispetugaspe?objectjenispetugaspefk="+id).then(function(data){
 					//         $scope.dataSource = data.data.pegawai;
 
 					//     });
-
-					console.log(dataDokterSelected)
+				
 					modelItemAkuntansi.getDataTableTransaksi("pelayananpetugas/get-pegawai-saeutik?namapegawai=" + dataDokterSelected.namalengkap, true, true, 10)
 						.then(function (data) {
 
@@ -1326,7 +1329,7 @@ define(['initialize'], function (initialize) {
 					$scope.model.selectedJenisKlasifikasi = null;
 					$scope.dataDokterSelected = undefined;
 
-					// $scope.popup_editor.center().close();
+					$scope.popup_editor.center().close();
 				})
 				var data = {};
 				if ($scope.dataSelected != undefined && $scope.model.jenisPelaksana.id == 4) {
