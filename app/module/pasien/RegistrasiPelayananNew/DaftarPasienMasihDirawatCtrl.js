@@ -10,6 +10,7 @@ define(['initialize'], function(initialize) {
 			$scope.item = {};
 				$scope.item.periodeAwal = $scope.now;
 				$scope.item.periodeAkhir = $scope.now;
+			$scope.item.jmlRows = 50
 
   		    // $scope.item.periodeAwal=$scope.now;
         //     $scope.item.tglRencanaKeluar=$scope.now;
@@ -158,10 +159,15 @@ define(['initialize'], function(initialize) {
 				}else{
 					var nm ="namaPasien=" +$scope.item.nama
 				}
+
+				var jmlRows = "";
+				if ($scope.item.jmlRows != undefined) {
+					jmlRows = $scope.item.jmlRows
+				}
 				$scope.isRouteLoading=true;
 				$q.all([
 					modelItemAkuntansi.getDataTableTransaksi("pindahpasien/get-pasien-masih-dirawat?"
-						+ nm + reg + rg + rm
+						+ nm + reg + rg + rm + '&jmlRows=' + jmlRows
 						// + "&tglAwal="+ tglAwal +"&tglAkhir="+ tglAkhir
 						),
 				]).then(function(data) {
