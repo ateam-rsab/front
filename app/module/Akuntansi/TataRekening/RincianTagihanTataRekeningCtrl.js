@@ -122,7 +122,7 @@ define(['initialize'], function (initialize) {
 					dataLogin = e.data.datalogin;
 					KelompokUser = e.data.kelompokuser;
 					$scope.listRuangAPD = e.data.listRuangan
-					// ruangaan2 = {id:e.data.listRuangan[0].id,namaruangan:e.data.listRuangan[0].namaruangan}
+					ruangaan2 = {id:e.data.listRuangan[0].id,namaruangan:e.data.listRuangan[0].namaruangan}
 					$scope.item.ruang2 = ruangaan2
 
 
