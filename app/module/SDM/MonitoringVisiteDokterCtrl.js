@@ -4,27 +4,29 @@ define(['initialize'], function (initialize) {
         function ($q, $rootScope, $scope, $state, ManageSdmNew, dateHelper, reportHelper, cetakHelper, reportService) {
             $scope.item = {};
             $scope.isRouteLoading = false;
-            $scope.item.tglAwal = new Date();
-            $scope.item.tglAkhir = new Date();
+            $scope.item.periode = new Date();
             $scope.isAuthorized = false;
+            $scope.monthly = {
+                start: "year",
+                depth: "year",
+                format: "MMMM yyyy"
+            };
             const dataLogin = JSON.parse(localStorage.getItem("pegawai"));
 
             $scope.getDataVisite = () => {
                 $scope.isRouteLoading = true;
-                let tglAwal = dateHelper.toTimeStamp($scope.item.tglAwal), tglAkhir = dateHelper.toTimeStamp($scope.item.tglAkhir);
-                reportService.getListData(`reporting/presensi-visite-dokter?ksmId=${$scope.item.unitKerja ? $scope.item.unitKerja.id : ""}&kkId=${$scope.item.kelompokKerja ? $scope.item.kelompokKerja.id : ""}&drId=${$scope.item.dokter ? $scope.item.dokter.id ? $scope.item.dokter.id : $scope.item.dokter.pegawaiId : ""}&startDate=${tglAwal}&endDate=${tglAkhir}`).then((res) => {
-                    for (let i = 0; i < res.data.data.length; i++) {
-                        res.data.data[i].jam = res.data.data[i].strJamInput ? res.data.data[i].strJamInput : "-";
-                        res.data.data[i].namaRuangan = res.data.data[i].namaRuangan ? res.data.data[i].namaRuangan : "-";
-                        // res.data.data[i].isDpjp = res.data.data[i].isDpjp  ? "Ya" : "Tidak";
-                        res.data.data[i].isDpjp = res.data.data[i].isDpjp && res.data.data[i].cpptId ? "DPJP" : res.data.data[i].isDpjp === null ? "-" : "Bukan DPJP";
-
-                        // console.log(new Date(res.data.data[i].tgl))
-
+                let periode = dateHelper.toTimeStamp($scope.item.periode);
+                reportService.getListData(`reporting/presensi-visite-dokter?ksmId=${$scope.item.unitKerja ? $scope.item.unitKerja.id : ""}&kkId=${$scope.item.kelompokKerja ? $scope.item.kelompokKerja.id : ""}&drId=${$scope.item.dokter ? $scope.item.dokter.id ? $scope.item.dokter.id : $scope.item.dokter.pegawaiId : ""}&periode=${periode}`).then((res) => {
+                    for (let i = 0; i < res.data.data.detail.length; i++) {
+                        res.data.data.detail[i].jam = res.data.data.detail[i].strJamInput ? res.data.data.detail[i].strJamInput : "-";
+                        res.data.data.detail[i].namaRuangan = res.data.data.detail[i].namaRuangan ? res.data.data.detail[i].namaRuangan : "-";
+                        res.data.data.detail[i].isDpjp = res.data.data.detail[i].isDpjp && res.data.data.detail[i].cpptId ? "DPJP" : res.data.data.detail[i].isDpjp === null ? "-" : "Bukan DPJP";
                     }
+                    $scope.persenTepatHadir = res.data.data.persenTepatHadir;
+                    $scope.item.viewTepatHadir = $scope.persenTepatHadir + "%";
 
                     $scope.dataSourceVisite = new kendo.data.DataSource({
-                        data: res.data.data,
+                        data: res.data.data.detail,
                         pageSize: 20
                     })
                     $scope.isRouteLoading = false;
@@ -32,7 +34,6 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.getDataDokter = () => {
-                // $scope.item.dokter = null;
                 ManageSdmNew.getListData(`sdm/daftar-dokter?ksmId=${$scope.item.unitKerja ? $scope.item.unitKerja.id : ""}&kkId=${$scope.item.kelompokKerja ? $scope.item.kelompokKerja.id : ""}&drId=`).then((res) => {
                     $scope.listDokter = res.data;
                 });
@@ -101,16 +102,11 @@ define(['initialize'], function (initialize) {
                     ]
                 }
 
-                console.log(dataSOTK)
                 ManageSdmNew.getListData("service/list-generic/?view=UnitKerjaPegawai&select=id,name&criteria=statusEnabled,id&values=true,(58;59;60;61;62;63;82)&order=name:asc").then((res) => {
                     $scope.listUnitKerja = res.data;
                 })
 
-                // ManageSdmNew.getListData("service/list-generic/?view=SubUnitKerjaPegawai&select=id,name&criteria=statusEnabled,name,unitKerjaId&values=true,KK,58&order=name:asc").then((res) => {
-                //     $scope.listKelompokKerja = res.data;
-                // })
                 $scope.isAuthorized = dataSOTK.reduce((res, item) => {
-                    // if(item.x === 51) return true;
                     return item.x === 51 || (item.x === 48 && item.y === 274) || (item.x === 57 && (dataLogin.id === 1005 || dataLogin.id === 1193 || dataLogin.id === 1201));
                 })
 
