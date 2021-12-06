@@ -3,6 +3,10 @@
 </md-toolbar>
 
 <div class="grid_12">
+    <div class="grid_2">
+        <label c-label item="model">Periode</label>
+        <input kendo-date-picker k-ng-model="item.periode" style="width: 100%" k-options="monthly" />
+    </div>
     <div class="grid_2" ng-if="isAuthorized">
         <label c-label item="model">Unit Kerja</label>
         <input style="width: 100%;" kendo-combo-box k-ng-model="item.unitKerja" k-data-text-field="'name'"
@@ -21,17 +25,6 @@
             k-data-value-field="'id'" ng-disabled="!isAuthorized" k-filter="'contains'" k-auto-bind="false"
             k-data-source="listDokter" />
     </div>
-
-    <div class="grid_1">
-        <label c-label item="model">Tanggal Awal</label>
-        <input style="width: 100%" k-ng-model="item.tglAwal" kendo-datepicker placeholer="yyyy-MM-dd"
-            k-format="'yyyy-MM-dd'" />
-    </div>
-    <div class="grid_1">
-        <label c-label item="model">Tanggal Akhir</label>
-        <input style="width: 100%" k-ng-model="item.tglAkhir" kendo-datepicker placeholer="yyyy-MM-dd"
-            k-format="'yyyy-MM-dd'" />
-    </div>
     <div class="grid_2" style="margin-top: 8px;">
         <label c-label item="model">&nbsp;</label>
 
@@ -46,6 +39,23 @@
     <kendo-grid id="grid" k-data-source="dataSourceVisite" k-options="optGrid" k-ng-model="dataSelectedRow"
         k-groupable="'true'" ng-click="klikGrid(dataSelectedRow)">
     </kendo-grid>
+</div>
+
+<div class="grid_12">
+    <div class="grid_9">
+        <!--  -->
+    </div>
+    <div class="grid_2">
+        <div class="grid_12">
+            <label style="text-align: right; margin-top: 0.8em;" c-label item="item">Ketepatan Kehadiran :</label>
+        </div>
+    </div>
+    <div class="grid_1">
+        <div class="grid_12">
+            <input disabled style="text-align: right;" c-text-box type="input" class="k-textbox"
+                ng-model="item.viewTepatHadir" />
+        </div>
+    </div>
 </div>
 
 <div ng-include=' "../app/module/Shared/TemplateLoading" '></div>
