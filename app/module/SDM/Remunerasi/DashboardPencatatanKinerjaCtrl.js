@@ -260,7 +260,7 @@ define(['initialize'], function (initialize) {
                 }
             }
 
-            let autoIndikator = [466, 350, 351, 357, 672]
+            let autoIndikator = [466, 350, 351, 357, 672, 674]
             $scope.showDetail = (data) => {
                 if (!autoIndikator.includes(data.idIndikator)) {
                     $scope.labelDetail = data.namaIndikator

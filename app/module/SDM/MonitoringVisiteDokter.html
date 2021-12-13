@@ -7,13 +7,13 @@
         <label c-label item="model">Periode</label>
         <input kendo-date-picker k-ng-model="item.periode" style="width: 100%" k-options="monthly" />
     </div>
-    <div class="grid_2" ng-if="isAuthorized">
+    <div class="grid_2" ng-if="isSuperuser">
         <label c-label item="model">Unit Kerja</label>
         <input style="width: 100%;" kendo-combo-box k-ng-model="item.unitKerja" k-data-text-field="'name'"
             k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitKerja"
             k-on-change="getDataDokter()" />
     </div>
-    <div class="grid_2" ng-if="isAuthorized">
+    <div class="grid_2" ng-if="isSuperuser">
         <label c-label item="model">Kelompok Kerja</label>
         <input style="width: 100%;" kendo-combo-box k-ng-model="item.kelompokKerja" k-data-text-field="'name'"
             k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKelompokKerja"
@@ -22,7 +22,7 @@
     <div class="grid_3">
         <label c-label item="model">Dokter</label>
         <input style="width: 100%;" kendo-combo-box k-ng-model="item.dokter" k-data-text-field="'namaLengkap'"
-            k-data-value-field="'id'" ng-disabled="!isAuthorized" k-filter="'contains'" k-auto-bind="false"
+            k-data-value-field="'id'" ng-disabled="!isSuperuser && !isKsm" k-filter="'contains'" k-auto-bind="false"
             k-data-source="listDokter" />
     </div>
     <div class="grid_2" style="margin-top: 8px;">
@@ -41,7 +41,7 @@
     </kendo-grid>
 </div>
 
-<div class="grid_12">
+<div class="grid_12" ng-hide="isSuperuser">
     <div class="grid_9">
         <!--  -->
     </div>
@@ -55,6 +55,15 @@
             <input disabled style="text-align: right;" c-text-box type="input" class="k-textbox"
                 ng-model="item.viewTepatHadir" />
         </div>
+    </div>
+</div>
+
+<div class="grid_12" ng-hide="isSuperuser || !isKsm">
+    <div class="grid_3" style="float: right;">
+        <md-button class="md-raised md-primary" ng-click="verify()">
+            <span style="margin-right: 5px;">Verifikasi</span>
+            <i class="fa fa-save"></i>
+        </md-button>
     </div>
 </div>
 

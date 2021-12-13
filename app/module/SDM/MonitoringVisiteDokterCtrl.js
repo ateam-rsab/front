@@ -5,7 +5,7 @@ define(['initialize'], function (initialize) {
             $scope.item = {};
             $scope.isRouteLoading = false;
             $scope.item.periode = new Date();
-            $scope.isAuthorized = false;
+            $scope.isSuperuser = false;
             $scope.monthly = {
                 start: "year",
                 depth: "year",
@@ -17,13 +17,16 @@ define(['initialize'], function (initialize) {
                 $scope.isRouteLoading = true;
                 let periode = dateHelper.toTimeStamp($scope.item.periode);
                 reportService.getListData(`reporting/presensi-visite-dokter?ksmId=${$scope.item.unitKerja ? $scope.item.unitKerja.id : ""}&kkId=${$scope.item.kelompokKerja ? $scope.item.kelompokKerja.id : ""}&drId=${$scope.item.dokter ? $scope.item.dokter.id ? $scope.item.dokter.id : $scope.item.dokter.pegawaiId : ""}&periode=${periode}`).then((res) => {
+                    $scope.verifyDataSend = res.data.data.indikator;
                     for (let i = 0; i < res.data.data.detail.length; i++) {
                         res.data.data.detail[i].jam = res.data.data.detail[i].strJamInput ? res.data.data.detail[i].strJamInput : "-";
                         res.data.data.detail[i].namaRuangan = res.data.data.detail[i].namaRuangan ? res.data.data.detail[i].namaRuangan : "-";
                         res.data.data.detail[i].isDpjp = res.data.data.detail[i].isDpjp && res.data.data.detail[i].cpptId ? "DPJP" : res.data.data.detail[i].isDpjp === null ? "-" : "Bukan DPJP";
                     }
-                    $scope.persenTepatHadir = res.data.data.persenTepatHadir;
-                    $scope.item.viewTepatHadir = $scope.persenTepatHadir + "%";
+                    if (res.data.data.indikator) {
+                        $scope.persenTepatHadir = res.data.data.persenTepatHadir;
+                        $scope.item.viewTepatHadir = $scope.persenTepatHadir + "%";
+                    }
 
                     $scope.dataSourceVisite = new kendo.data.DataSource({
                         data: res.data.data.detail,
@@ -34,9 +37,16 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.getDataDokter = () => {
-                ManageSdmNew.getListData(`sdm/daftar-dokter?ksmId=${$scope.item.unitKerja ? $scope.item.unitKerja.id : ""}&kkId=${$scope.item.kelompokKerja ? $scope.item.kelompokKerja.id : ""}&drId=`).then((res) => {
-                    $scope.listDokter = res.data;
-                });
+                if ($scope.isKsm) {
+                    ManageSdmNew.getListData(`sdm/daftar-dokter?ksmId=${$scope.unitKerjaId ? $scope.unitKerjaId : ""}&kkId=&drId=`).then((res) => {
+                        $scope.listDokter = res.data;
+                    });
+                } else {
+                    ManageSdmNew.getListData(`sdm/daftar-dokter?ksmId=${$scope.item.unitKerja ? $scope.item.unitKerja.id : ""}&kkId=${$scope.item.kelompokKerja ? $scope.item.kelompokKerja.id : ""}&drId=`).then((res) => {
+                        $scope.listDokter = res.data;
+                    });
+                }
+
 
                 if (!$scope.item.unitKerja) {
                     $scope.listKelompokKerja = undefined
@@ -106,16 +116,42 @@ define(['initialize'], function (initialize) {
                     $scope.listUnitKerja = res.data;
                 })
 
-                $scope.isAuthorized = dataSOTK.reduce((res, item) => {
+                $scope.isSuperuser = dataSOTK.reduce((res, item) => {
                     return item.x === 51 || (item.x === 48 && item.y === 274) || (item.x === 57 && (dataLogin.id === 1005 || dataLogin.id === 1193 || dataLogin.id === 1201));
                 })
 
-                $scope.item.dokter = $scope.isAuthorized ? null : { namaLengkap: dataLogin.namaLengkap, id: dataLogin.id }
+                $scope.isKsm = dataSOTK.reduce((res, item) => {
+                    return (item.x === 58 || item.x === 59 || item.x === 60 || item.x === 61 || item.x === 62 || item.x === 63 || item.x === 82) && item.z === 3;
+                })
+
+                dataSOTK.reduce((res, item) => {
+                    if ((item.x === 58 || item.x === 59 || item.x === 60 || item.x === 61 || item.x === 62 || item.x === 63 || item.x === 82) && item.z === 3) {
+                        $scope.unitKerjaId = item.x
+                    }
+                })
+
+                $scope.item.dokter = $scope.isSuperuser ? null : { namaLengkap: dataLogin.namaLengkap, id: dataLogin.id }
                 $scope.getDataVisite();
                 $scope.getDataDokter();
             }
 
             $scope.init();
+
+            $scope.verify = function () {
+                $scope.isRouteLoading = true;
+
+                if (!$scope.isKsm) {
+                    toastr.warning("Tidak memiliki akses", "Peringatan")
+                    $scope.isRouteLoading = false
+                    return
+                }
+
+                ManageSdmNew.saveData($scope.verifyDataSend, "iki-remunerasi/verifikasi-presensi-dpjp").then(function (e) {
+                    $scope.isRouteLoading = false;
+                }, (error) => {
+                    $scope.isRouteLoading = false;
+                });
+            }
         }
     ]);
 });
