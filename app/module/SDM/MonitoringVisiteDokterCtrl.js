@@ -6,6 +6,7 @@ define(['initialize'], function (initialize) {
             $scope.isRouteLoading = false;
             $scope.item.periode = new Date();
             $scope.isSuperuser = false;
+            $scope.isSpecified = false;
             $scope.isKsm = false;
             $scope.monthly = {
                 start: "year",
@@ -15,6 +16,12 @@ define(['initialize'], function (initialize) {
             const dataLogin = JSON.parse(localStorage.getItem("pegawai"));
 
             $scope.getDataVisite = () => {
+                if ($scope.item.dokter) {
+                    $scope.isSpecified = true
+                } else {
+                    $scope.isSpecified = false
+                }
+
                 $scope.isRouteLoading = true;
                 let periode = dateHelper.toTimeStamp($scope.item.periode);
                 reportService.getListData(`reporting/presensi-visite-dokter?ksmId=${$scope.item.unitKerja ? $scope.item.unitKerja.id : ""}&kkId=${$scope.item.kelompokKerja ? $scope.item.kelompokKerja.id : ""}&drId=${$scope.item.dokter ? $scope.item.dokter.id ? $scope.item.dokter.id : $scope.item.dokter.pegawaiId : ""}&periode=${periode}`).then((res) => {
@@ -61,7 +68,8 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.init = () => {
-                let dataSOTK = JSON.parse(localStorage.getItem('sotk_coor'));
+                // let dataSOTK = JSON.parse(localStorage.getItem('sotk_coor'));
+                let dataSOTK = JSON.parse('[{"x":58,"y":213,"z":5,"k":1}]');
 
                 $scope.optGrid = {
                     toolbar: [
