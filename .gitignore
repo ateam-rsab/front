@@ -3,6 +3,5 @@
 
 /bower_components
 
-/app/javascripts/Setting.js
-
 app/javascripts/Setting_.js
+app/javascripts/Setting.js
