@@ -153,6 +153,12 @@ define(['initialize'], function (initialize) {
                     return
                 }
 
+                if (!$scope.verifyDataSend.logbookId) {
+                    toastr.warning("Penilaian kinerja tidak ditemukan", "Peringatan")
+                    $scope.isRouteLoading = false
+                    return
+                }
+
                 ManageSdmNew.saveData($scope.verifyDataSend, "iki-remunerasi/verifikasi-presensi-dpjp").then(function (e) {
                     $scope.isRouteLoading = false;
                 }, (error) => {
