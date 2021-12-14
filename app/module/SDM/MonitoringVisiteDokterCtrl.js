@@ -68,8 +68,7 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.init = () => {
-                // let dataSOTK = JSON.parse(localStorage.getItem('sotk_coor'));
-                let dataSOTK = JSON.parse('[{"x":58,"y":213,"z":5,"k":1}]');
+                let dataSOTK = JSON.parse(localStorage.getItem('sotk_coor'));
 
                 $scope.optGrid = {
                     toolbar: [
