@@ -6,6 +6,7 @@ define(['initialize'], function (initialize) {
             $scope.isRouteLoading = false;
             $scope.item.periode = new Date();
             $scope.isSuperuser = false;
+            $scope.isKsm = false;
             $scope.monthly = {
                 start: "year",
                 depth: "year",
@@ -120,13 +121,12 @@ define(['initialize'], function (initialize) {
                     return item.x === 51 || (item.x === 48 && item.y === 274) || (item.x === 57 && (dataLogin.id === 1005 || dataLogin.id === 1193 || dataLogin.id === 1201));
                 })
 
-                $scope.isKsm = dataSOTK.reduce((res, item) => {
-                    return (item.x === 58 || item.x === 59 || item.x === 60 || item.x === 61 || item.x === 62 || item.x === 63 || item.x === 82) && item.z === 3;
-                })
-
                 dataSOTK.reduce((res, item) => {
                     if ((item.x === 58 || item.x === 59 || item.x === 60 || item.x === 61 || item.x === 62 || item.x === 63 || item.x === 82) && item.z === 3) {
+                        $scope.isKsm = true
                         $scope.unitKerjaId = item.x
+                    } else {
+                        $scope.isKsm = false
                     }
                 })
 
