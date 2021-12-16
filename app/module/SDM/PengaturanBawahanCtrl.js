@@ -158,8 +158,8 @@ define(['initialize'], function (initialize) {
                             $scope.ListPegawai.push(dataTemp);
                         }
                         if (el.id == $state.params.idPegawai) {
-                            $scope.item.namaAtasan = el.namaLengkap;
-                            $scope.item.nipAtasan = el.nipPns ? el.nipPns : el.nip ? el.nip : el.nikIntern ? el.nikIntern : "";
+                            $scope.namaAtasan = el.namaLengkap;
+                            $scope.nipAtasan = el.nipPns ? el.nipPns : el.nip ? el.nip : el.nikIntern ? el.nikIntern : "";
                         }
                     })
                     $scope.ListJabatan = res[2].data;
@@ -492,12 +492,7 @@ define(['initialize'], function (initialize) {
                 var gridData = $("#grid").data("kendoGrid");
                 gridData.dataSource.filter({});
                 $scope.ListSubUnitKerjaById = {};
-
-                var tempNipAtasan = $scope.item.nipAtasan;
-                var tempNamaAtasan = $scope.item.namaAtasan;
                 $scope.item = {};
-                $scope.item.nipAtasan = tempNipAtasan;
-                $scope.item.namaAtasan = tempNamaAtasan;
             };
         }
     ]);
