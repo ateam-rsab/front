@@ -15,7 +15,9 @@ define(['initialize'], function (initialize) {
 			var dataMenuSiklus = [];
 			var data2 = [];
 			var addDataDetail = [];
-
+			$scope.gridOpt = {
+				toolbar: ["excel"]
+			}
 			loadCombo();
 			loadData();
 
