@@ -122,7 +122,7 @@ define(['initialize'], function (initialize) {
 					dataLogin = e.data.datalogin;
 					KelompokUser = e.data.kelompokuser;
 					$scope.listRuangAPD = e.data.listRuangan
-					ruangaan2 = {id:e.data.listRuangan[0].id,namaruangan:e.data.listRuangan[0].namaruangan}
+					// ruangaan2 = {id:e.data.listRuangan[0].id,namaruangan:e.data.listRuangan[0].namaruangan}
 					$scope.item.ruang2 = ruangaan2
 
 
@@ -131,7 +131,7 @@ define(['initialize'], function (initialize) {
 					}
 					manageTataRekening.saveakomodasitea(objSave).then(function (data) {
 						$q.all([
-							modelItemAkuntansi.getDataTableTransaksi("tatarekening/detail-tagihan/" + $scope.dataParams.noRegistrasi + '?jenisdata=layanan&idruangan=' + $scope.item.ruang2.id)
+							modelItemAkuntansi.getDataTableTransaksi("tatarekening/detail-tagihan/" + $scope.dataParams.noRegistrasi + '?jenisdata=layanan&idruangan=' + ($scope.item.ruang2 ? $scope.item.ruang2.id : ""))
 						])
 							.then(function (data) {
 
@@ -1204,8 +1204,8 @@ define(['initialize'], function (initialize) {
 				$scope.showJenisKlasifikasi = dataDokterSelected.jpp_id === 6;
 				// $scope.model.selectedJenisKlasifikasi = null;
 				$scope.selectedJenisKlasifikasi = {
-					jenisasa:dataDokterSelected.asa,
-					id:dataDokterSelected.asaid
+					jenisasa: dataDokterSelected.asa,
+					id: dataDokterSelected.asaid
 				}
 				if (dataDokterSelected) {
 					// var id = $scope.dataDokterSelected.jpp_id;
@@ -1213,7 +1213,7 @@ define(['initialize'], function (initialize) {
 					//         $scope.dataSource = data.data.pegawai;
 
 					//     });
-				
+
 					modelItemAkuntansi.getDataTableTransaksi("pelayananpetugas/get-pegawai-saeutik?namapegawai=" + dataDokterSelected.namalengkap, true, true, 10)
 						.then(function (data) {
 
@@ -1273,7 +1273,7 @@ define(['initialize'], function (initialize) {
 			}
 			];
 			$scope.simpanDokterPelaksana = function () {
-				if($scope.showJenisKlasifikasi && !$scope.model.selectedJenisKlasifikasi) {
+				if ($scope.showJenisKlasifikasi && !$scope.model.selectedJenisKlasifikasi) {
 					toastr.info("Harap pilih jenis klasifikasi");
 					return;
 				}
