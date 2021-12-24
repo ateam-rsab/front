@@ -153,7 +153,7 @@ define(['initialize'], function (initialize) {
                     return
                 }
 
-                if (!$scope.verifyDataSend.logbookId) {
+                if (!$scope.verifyDataSend.logbookId && !$scope.verifyDataSend.detailId) {
                     toastr.warning("Penilaian kinerja tidak ditemukan", "Peringatan")
                     $scope.isRouteLoading = false
                     return
