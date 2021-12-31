@@ -332,6 +332,11 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.simpanData2 = () => {
+                if (!$scope.nakes.jmlLayanan || $scope.nakes.jmlLayanan === 0) {
+                    toastr.warning("Jumlah layanan belum diisi");
+                    return;
+                }
+
                 let dataSave = {
                     kdProfile: 0,
                     statusEnabled: true,
