@@ -153,7 +153,7 @@ define(['initialize'], function (initialize) {
                 }
 
                 if (!$scope.nakes.jmlLayanan || $scope.nakes.jmlLayanan === 0) {
-                    toastr.warning("Jumlah layanan salah");
+                    toastr.warning("Jumlah layanan belum diisi");
                     return;
                 }
 
