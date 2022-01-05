@@ -22,10 +22,10 @@ define(['initialize'], function (initialize) {
 
             let getListMaster = () => {
                 $q.all([
-                    ManageSdmNew.getListData("service/list-generic/?view=Profesi&select=id,namaProfesi&criteria=statusEnabled&values=true&order=namaProfesi:asc")
-                ]).then(function (res) {
-                    $scope.listProfesi = res[0].data;
-                })
+                    ManageSdmNew.getListData("sdm/get-daftar-profesi?pegawaiId=" + $scope.dataLogin.id).then(function (res) {
+                        $scope.listProfesi = res.data.data;
+                    })
+                ])
             }
 
             getListMaster();
