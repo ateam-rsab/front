@@ -532,7 +532,7 @@ define(['initialize'], function (initialize) {
 					"keterangan": keterangan,//$scope.item.keterangan,
 					"namaexternal": namaexternal,//$scope.item.namaExternal,
 					"reportdisplay": reportdisplay,//$scope.item.reportDisplay,
-					// "objectdetailjenisprodukfk" : $scope.item.jenisProduk.id,
+					"objectjenisprodukfk": $scope.item.jenisProduk.id,
 					"objectdetailjenisprodukfk": objectdetailjenisprodukfk,//$scope.item.detailJenisProduk.id,
 					"objectkategoryprodukfk": objectkategoryprodukfk,//$scope.item.kategoryProduk.id,
 					"objectgenerikfk": objectgenerikfk,//$scope.item.jenisProduk.id,
