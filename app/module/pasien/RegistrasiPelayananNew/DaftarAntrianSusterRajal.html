@@ -85,7 +85,7 @@
         </div>
     </div>
     <div class="grid_12">
-        <div class="grid_3">
+        <div class="grid_3" ng-if="showButton">
             <md-button class="md-raised md-button md-primary smart-button-warn" ng-click="Monitoring()">
                 Monitoring
             </md-button>
@@ -103,7 +103,7 @@
                 <span class="title">Pengkajian Medis</span>
             </c-button> -->
         </div>
-        <div class="grid_3" ng-hide="validasiruangan == 14">
+        <div class="grid_3" ng-if="showButton" ng-hide="validasiruangan == 14">
             <md-button class="md-raised md-button md-primary smart-button-warn" ng-click="UbahDokter()">
                 Pilih Dokter
             </md-button>
@@ -113,7 +113,7 @@
             </c-button> -->
         </div>
 
-        <div class="grid_3">
+        <div class="grid_3" ng-if="showButton">
             <md-button class="md-raised md-button md-primary smart-button-warn" ng-click="Detail()">
                 Rincian
             </md-button>
@@ -122,7 +122,7 @@
                 <span class="title">Rincian</span>
             </c-button> -->
         </div>
-        <div class="grid_3">
+        <div class="grid_3" ng-if="showButton">
             <md-button class="md-raised md-button md-primary smart-button-warn" ng-click="detailPasien()">
                 Detail Pasien
             </md-button>
@@ -132,7 +132,7 @@
                 <span class="title">Detail Pasien</span>
             </c-button> -->
         </div>
-        <div class="grid_2">
+        <div class="grid_2" ng-if="showButton">
             <md-button class="md-raised md-button md-primary smart-button-warn" ng-click="pasienJatuh()">
                 Pasien Jatuh
             </md-button>
@@ -142,7 +142,7 @@
                 <span class="title">Pasien Jatuh</span>
             </c-button> -->
         </div>
-        <div class="grid_2">
+        <div class="grid_2" ng-if="showButton">
             <md-button class="md-raised md-button md-primary smart-button-warn" ng-click="panggil()">
                 Panggil
             </md-button>
@@ -152,7 +152,7 @@
                 <span class="title">Panggil</span>
             </c-button> -->
         </div>
-        <div class="grid_2">
+        <div class="grid_2" ng-if="showButton">
             <md-button class="md-raised md-button md-primary smart-button-warn" ng-click="cetakSEPPasien()">
                 Cetak SEP
             </md-button>
@@ -162,7 +162,7 @@
                 <span class="title">Diagnosa ICD 10</span>
             </c-button>
         </div> -->
-        <div class="grid_3">
+        <div class="grid_3" ng-if="showButton">
             <md-button class="md-raised md-primary" ng-click="konsul()" style="display: flex; justify-content: center;">
                 <span style="margin-right: 10px;">Konsultasi</span>
                 <span class="button-badge">{{lengthKonsul}}</span>

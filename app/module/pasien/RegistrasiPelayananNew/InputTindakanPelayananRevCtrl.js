@@ -604,6 +604,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
           getPegawaiById(id, model, listArray);
         }
       };
+      
       $scope.selectedPegawai = [];
       $scope.init2 = function () {
         var id = $scope.item.jenisPelaksana2.id;

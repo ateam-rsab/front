@@ -11,6 +11,14 @@
                 "link": "#/DaftarRegistrasiPasien"
             },
             {
+                "name": "Daftar Pasien Rawat Jalan",
+                "link": "#/DaftarAntrianSusterRajal"
+            },
+            {
+                "name": "Daftar Pasien Rawat Inap",
+                "link": "#/DaftarAntrianSusterRanap"
+            },
+            {
                 "name": "Daftar Pasien Pulang",
                 "link": "#/Daftar/Antrian/Pulang"
             },
@@ -41,6 +49,23 @@
             {
                 "name": "Ketersediaan Tempat Tidur",
                 "link": "#/KetersediaanTempatTidur"
+            }
+        ]
+    },
+    {
+        "name": "Daftar Pasien",
+        "children": [
+            {
+                "name": "Daftar Pasien Rawat Jalan",
+                "link": "#/DaftarAntrianSusterRajal"
+            },
+            {
+                "name": "Daftar Pasien Rawat Inap",
+                "link": "#/DaftarAntrianSusterRanap"
+            },
+            {
+                "name": "Daftar Perjanjian Pasien",
+                "link": "#/DaftarPasienReservasiOnline"
             }
         ]
     },

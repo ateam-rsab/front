@@ -85,7 +85,7 @@
         </div>
     </div>
     <div class="grid_12">
-        <div class="grid_3">
+        <div class="grid_3" ng-if="showButton">
             <md-button class="md-raised md-button md-primary smart-button-warn"
                 ng-click="Monitoring()">
                 Monitoring
@@ -95,7 +95,7 @@
                 <span class="title">Monitoring</span>
             </c-button> -->
         </div>
-        <div class="grid_3" ng-hide="validasiruangan == 14">
+        <div class="grid_3" ng-hide="validasiruangan == 14" ng-if="showButton">
             <md-button class="md-raised md-button md-primary smart-button-warn"
                 ng-click="UbahDokter()">
                 Pilih Dokter
@@ -116,7 +116,7 @@
             </c-button> -->
         </div>
 
-        <div class="grid_3">
+        <div class="grid_3" ng-if="showButton">
             <md-button class="md-raised md-button md-primary smart-button-warn"
                 ng-click="Detail()">
                 Rincian
@@ -126,7 +126,7 @@
                 <span class="title">Rincian</span>
             </c-button> -->
         </div>
-        <div class="grid_3">
+        <div class="grid_3" ng-if="showButton">
             <md-button class="md-raised md-button md-primary smart-button-warn"
                 ng-click="cetakGelang()">
                 Cetak Gelang
@@ -137,7 +137,7 @@
                 <span class="title">Cetak Gelang</span>
             </c-button> -->
         </div>
-        <div class="grid_2">
+        <div class="grid_2" ng-if="showButton">
             <md-button class="md-raised md-button md-primary smart-button-warn"
                 ng-click="detailPasien()">
                 Detail Pasien
@@ -148,7 +148,7 @@
                 <span class="title">Detail Pasien</span>
             </c-button> -->
         </div>
-        <div class="grid_3">
+        <div class="grid_3" ng-if="showButton">
             <md-button class="md-raised md-button md-primary smart-button-warn"
                 ng-click="pasienPulang()">
                 Pindah atau Pulang
@@ -159,7 +159,7 @@
                 <span class="title">Pindah atau Pulang</span>
             </c-button> -->
         </div>
-        <div class="grid_2">
+        <div class="grid_2" ng-if="showButton">
             <md-button class="md-raised md-button md-primary smart-button-warn"
                 ng-click="pemeriksaanUscom()">
                 USCOM
@@ -169,13 +169,13 @@
                 <span class="title">USCOM</span>
             </c-button> -->
         </div>
-        <div class="grid_2">
+        <div class="grid_2" ng-if="showButton">
             <md-button class="md-raised md-button md-primary smart-button-warn"
                 ng-click="cetakSEPPasien()">
                 Cetak SEP
             </md-button>
         </div>
-        <div class="grid_3">
+        <div class="grid_3" ng-if="showButton">
             <md-button class="md-raised md-button md-primary smart-button-warn"
                 ng-click="skriningGizi()">
                 Skrining Gizi dan Tanda Vital
@@ -186,7 +186,7 @@
                 <span class="title">Skrining Gizi dan Tanda Vital</span>
             </c-button> -->
         </div>
-        <div class="grid_3">
+        <div class="grid_3" ng-if="showButton">
             <md-button class="md-raised md-button md-primary smart-button-warn"
                 ng-click="observasi()">
                 Observasi
@@ -197,7 +197,7 @@
                 <span class="title">Observasi</span>
             </c-button> -->
         </div>
-        <div class="grid_3">
+        <div class="grid_3" ng-if="showButton">
             <md-button class="md-raised md-button md-primary smart-button-warn"
                 ng-click="pasienJatuh()">
                 Pasien Jatuh
@@ -215,7 +215,7 @@
                 <span class="title">Serah Terima Pasien</span>
             </c-button>
         </div> -->
-        <div class="grid_3">
+        <div class="grid_3" ng-if="showButton">
             <md-button class="md-raised md-primary" ng-click="konsul()"
                 style="display: flex; justify-content: center;">
                 <span style="margin-right: 10px;">Konsultasi</span>

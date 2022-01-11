@@ -1,12 +1,14 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('DaftarAntrianSusterRajalCtrl', ['SaveToWindow', '$rootScope', '$scope', 'ModelItem', '$state', 'FindPasien', 'DateHelper', 'socket', 'ManagePasien', '$mdDialog', '$window', 'ManageSarprasPhp', 'CacheHelper', '$q', 'ManagePhp',
-        function (saveToWindow, $rootScope, $scope, ModelItem, $state, findPasien, dateHelper, socket, managePasien, $mdDialog, window, manageSarprasPhp, cacheHelper, $q, ManagePhp) {
+    initialize.controller('DaftarAntrianSusterRajalCtrl', ['SaveToWindow', '$rootScope', '$scope', 'ModelItem', '$state', 'FindPasien', 'DateHelper', 'socket', 'ManagePasien', '$mdDialog', '$window', 'ManageSarprasPhp', 'CacheHelper', '$q', 'ManagePhp', 'LoginHelper',
+        function (saveToWindow, $rootScope, $scope, ModelItem, $state, findPasien, dateHelper, socket, managePasien, $mdDialog, window, manageSarprasPhp, cacheHelper, $q, ManagePhp, LoginHelper) {
             $scope.dataVOloaded = true;
             $scope.edit = {};
             $scope.now = new Date();
             $scope.item = {};
             $scope.dataLogin = JSON.parse(localStorage.getItem('pegawai'));
+            $scope.showButton = LoginHelper.get() === 'suster' || LoginHelper.get() === 'dokter';
+            console.log(LoginHelper.get())
             // $scope.dataPasienSelected = {};
             // $scope.item.periodeAwal = new Date();
             $scope.item.periodeAwal = dateHelper.setJamAwal(new Date());

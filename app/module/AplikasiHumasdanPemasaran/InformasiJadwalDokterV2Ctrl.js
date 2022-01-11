@@ -168,6 +168,7 @@ define(['initialize'], function (initialize) {
             })
 
             $('#calendar').evoCalendar('selectMonth', parseInt(bln));
+            $('#calendar').evoCalendar('selectYear', thn);
           }
         })
 

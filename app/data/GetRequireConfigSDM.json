@@ -93,6 +93,10 @@
       "urlDep": "module/SDM/StatusPermohonanCutiCtrl"
     },
     {
+      "nameDep": "MappingJabatanCtrl",
+      "urlDep": "module/SDM/MappingJabatanCtrl"
+    },
+    {
       "nameDep": "DataPegawaiCtrl",
       "urlDep": "module/SDM/DataPegawaiCtrl"
     },
@@ -875,6 +879,10 @@
     {
       "nameDep": "MasterProfesiTKLCtrl",
       "urlDep": "module/SDM/Remunerasi/MasterProfesiTKLCtrl"
+    },
+    {
+      "nameDep": "MonitoringTargetSkorDokterCtrl",
+      "urlDep": "module/SDM/Remunerasi/MonitoringTargetSkorDokterCtrl"
     },
     {
       "nameDep": "MasterProdukTKLCtrl",

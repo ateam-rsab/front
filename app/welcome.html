@@ -344,6 +344,9 @@
                 <div class="notify" ng-if="showPPDSNotif">
                     <strong>Info </strong> {{pesanPemberitahuan}}
                 </div>
+                <div class="notify">
+                    <strong>Info </strong> <strong>[LIVE] HUT RSAB Harapan Kita ke 42</strong> <a href="http://play.rsabhk.co.id/" target="_blank">Klik disini</a>
+                </div>
                 <div class="notify notify-danger" ng-if="showNotif.messageAbsensi">
                     <strong>Info </strong> {{messageAbsensi}}
                 </div>
@@ -452,6 +455,9 @@
 
                 <div class="list-video">
                     <ul class="list-2">
+                        <li ng-click="changeVideo('https://smart.rsabhk.co.id:2222/vid/ultah-jan-1-9.mp4', ' Pegawai Ulang Tahun 1 s/d 9 Januari 2022')">
+                            Pegawai Ulang Tahun 1 s/d 9 Januari 2022
+                        </li>
                         <li
                             ng-click="changeVideo('https://smart.rsabhk.co.id:2222/vid/zona-integritas.mp4', 'Profil Zona Integritas WBK dan WBBM RSAB Harapan Kita 2021')">
                             Profil Zona Integritas WBK dan WBBM RSAB Harapan Kita 2021
@@ -470,6 +476,9 @@
                         <li ng-click="changeVideo('https://smart.rsabhk.co.id:2222/vid/jaga-jarak.mp4', 'Jaga Jarak')">
                             Jaga Jarak
                         </li>
+                        <li ng-click="changeVideo('http://172.16.201.201:8080/hls/hello.m3u8', 'Jaga Jarak')">
+                            Jaga Jarak 2
+                        </li>
                     </ul>
                 </div>
 
@@ -477,7 +486,12 @@
                     autoplay loop controls>
                     Your browser does not support HTML video.
                 </video>
-
+                <video id="my_video_1" class="video-js vjs-fluid vjs-default-skin" controls preload="auto"
+                data-setup='{}'>
+                  <source src="https://mn-l.mncdn.com/kanal24/smil:kanal24.smil/playlist.m3u8" type="application/x-mpegURL">
+                </video>
+                <!-- <video src="http://172.16.201.201:8080/hls/hello.m3u8" type="application/x-mpegURL" 
+                autoplay loop controls></video> -->
             </md-card-content>
         </md-card>
     </div>
@@ -490,3 +504,7 @@
         </div>
     </div>
 </div>
+
+<link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
+<script src="https://unpkg.com/video.js/dist/video.js"></script>
+<script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>

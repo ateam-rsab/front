@@ -299,6 +299,7 @@ define(['initialize'], function (initialize) {
                     }
 
                 ],
+                resizable: true,
                 pageable: true,
                 scrollable: true,
                 columns: $scope.columnGrid

@@ -53,6 +53,41 @@ define(['initialize'], function (initialize) {
 
             $scope.dataPemberitahuan = [
                 {
+                    path: "data/dokumen/SE-ttg-ketentuan-TUBEL-pembiayaan-BPPSDMK-KEMENKES-RI-tahun-2022.pdf",
+                    fileName: "Surat Edararan tentang ketentuan TUBEL pembiayaan BPPSDMK KEMENKES RI th 2022",
+                    new: true
+                },
+                {
+                    path: "data/dokumen/PEMBERITAHUAN-PENERIMA-PIAGAM-PENGHARGAAN-TAHUN-2021.pdf",
+                    fileName: "PEMBERITAHUAN PENERIMA PIAGAM PENGHARGAAN TAHUN 2021",
+                    new: true
+                },
+                {
+                    path: "data/dokumen/pemberitahuan-SK-KGB-TMT-Januari-2022-an-Aliyah-dkk.pdf",
+                    fileName: "Pemberitahuan SK KGB TMT Januari 2022 a.n. Aliyah dkk ",
+                    new: true
+                },
+               
+                {
+                    path: "data/dokumen/SURAT-PENUNDAAN-PINDAH.pdf",
+                    fileName: "SURAT PENUNDAAN PINDAH"
+                },
+                {
+                    path: "data/dokumen/pemberitahuan-kgb-tmt-1-desember-2021-ade-kurniah-dkk.pdf",
+                    fileName: "PEMBERITAHUAN - KGB TMT 1 Desember 2021 Ade Kurniah dkk"
+                },
+                {
+                    path: "data/dokumen/nodin-informasi-data-kepegawaian.pdf",
+                    fileName: "Nodin Informasi Data Kepegawaian"
+                },
+               
+            ]
+
+            $scope.dataBerkasAdministrasi = [ {
+                    path: "data/dokumen/hasil-seleksi-rekrutmen-internal-jabfung-RSABHarapanKita.pdf",
+                    fileName: "Hasil Seleksi Rekrutmen Internal Jabfung RSAB Harapan Kita"
+                },
+                {
                     path: "data/dokumen/Daftar-Nama-Pegawai-Yang-Dapat-Diusulkan-Kenaikan-Jabfung-Ahli.pdf",
                     fileName: "Daftar Nama Pegawai yang dapat Diusulkan Kenaikan Jabfung Ahli"
                 },
@@ -72,28 +107,32 @@ define(['initialize'], function (initialize) {
                     path: "data/dokumen/PEMBERITAHUAN-SK-KPO-dan-NON-KPO-an.-Suprapto.pdf",
                     fileName: "PEMBERITAHUAN - SK KPO dan NON KPO an. Suprapto"
                 },
-            ]
+                {
+                    path: "data/dokumen/pengumuman-hasil-seleksi-rekrutmen-internal.pdf",
+                    fileName: "Pengumuman Hasil Seleksi Rekrutmen Internal"
+                },
+                {
+                    path: "data/dokumen/rekrutmen-internal-JABFUNG-di-lingkungan-RSABHK-tahun-2021.pdf",
+                    fileName: "Rekrutmen Internal Jabatan Fungsional di Lingkungan RSAB HK tahun 2021",
+                    new: true
+                }, {
+                    path: "data/dokumen/prosedur-pembuatan-kartu-e-id-kepesertaan-bpjs-kesehatan-pegawai.pdf",
+                    fileName: "Prosedur Pembuatan Kartu E-ID Kepesertaan BPJS Kesehatan Pegawai",
+                    new: false
+                }, {
+                    path: "data/dokumen/prosedur-pembuatan-daftar-uang-makan-bagi-pns.pdf",
+                    fileName: "Prosedur Pembuatan Daftar Uang Makan bagi PNS",
+                    new: false
+                }, {
+                    path: "data/dokumen/rekrutmen-internal-JABFUNG-di-lingkungan-RSABHK-tahun-2021.pdf",
+                    fileName: "Rekrutmen Internal Jabatan Fungsional di Lingkungan RSAB HK tahun 2021"
+            }]
+
+
             $scope.lihatDokumen = (url) => {
                 console.log(url)
                 window.open(`${window.location.origin}/data/dokumen/Daftar-Nama-Pegawai-Yang-Dapat-Diusulkan-Kenaikan-Jabfung-Ahli.pdf`, '_blank');
             }
-
-            $scope.dataBerkasAdministrasi = [{
-                path: "data/dokumen/rekrutmen-internal-JABFUNG-di-lingkungan-RSABHK-tahun-2021.pdf",
-                fileName: "Rekrutmen Internal Jabatan Fungsional di Lingkungan RSAB HK tahun 2021",
-                new: true
-            }, {
-                path: "data/dokumen/prosedur-pembuatan-kartu-e-id-kepesertaan-bpjs-kesehatan-pegawai.pdf",
-                fileName: "Prosedur Pembuatan Kartu E-ID Kepesertaan BPJS Kesehatan Pegawai",
-                new: false
-            }, {
-                path: "data/dokumen/prosedur-pembuatan-daftar-uang-makan-bagi-pns.pdf",
-                fileName: "Prosedur Pembuatan Daftar Uang Makan bagi PNS",
-                new: false
-            }, {
-                path: "data/dokumen/rekrutmen-internal-JABFUNG-di-lingkungan-RSABHK-tahun-2021.pdf",
-                fileName: "Rekrutmen Internal Jabatan Fungsional di Lingkungan RSAB HK tahun 2021"
-            }]
 
             $scope.lihatDokumen = (url) => {
 

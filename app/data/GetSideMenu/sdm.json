@@ -3,6 +3,10 @@
         "name": "Master Data SDM",
         "children": [
             {
+                "name": "Mapping Jabatan",
+                "link": "#/MappingJabatan"
+            },
+            {
                 "name": "Master Uraian Tugas Pegawai",
                 "link": "#/MappingUraianTugas"
             },

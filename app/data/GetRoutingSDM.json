@@ -648,6 +648,30 @@
     ]
   },
   {
+    "name": "MappingJabatan",
+    "url": "/MappingJabatan",
+    "templateurl": "module/SDM/MappingJabatan.html",
+    "controller": "MappingJabatanCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "SarprasService",
+        "define": "SarprasService"
+      }
+    ]
+  },
+  {
     "name": "DataFormasiJabatan",
     "url": "/DataFormasiJabatan",
     "templateurl": "module/SDM/DataFormasiJabatan.html",
@@ -4988,6 +5012,34 @@
     "url": "/MasterProfesiTKL",
     "templateurl": "module/SDM/Remunerasi/MasterProfesiTKL.html",
     "controller": "MasterProfesiTKLCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "PhpServices",
+        "define": "PhpServices"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      }
+    ]
+  },
+  {
+    "name": "MonitoringTargetSkorDokter",
+    "url": "/MonitoringTargetSkorDokter",
+    "templateurl": "module/SDM/Remunerasi/MonitoringTargetSkorDokter.html",
+    "controller": "MonitoringTargetSkorDokterCtrl",
     "deps": [
       {
         "module": "Services",

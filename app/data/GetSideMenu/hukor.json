@@ -111,6 +111,19 @@
         ]
     },
     {
+        "name": "Laporan",
+        "children": [
+            {
+                "name":"Laporan Pasien Daftar",
+                "link": "#/LaporanPasienDaftar"
+            },
+            {
+                "name": "Laporan Kunjungan Pasien",
+                "link": "#/LaporanKunjunganPasien"
+            }
+        ]
+    },
+    {
         "name": "Inventori",
         "children": [
             {
@@ -158,6 +171,10 @@
                         "link": "#/DaftarDistribusiBarang"
                     }
                 ]
+            },
+            {
+                "name": "Master Supplier",
+                "link": "#/Rekanan2"
             }
         ]
     },

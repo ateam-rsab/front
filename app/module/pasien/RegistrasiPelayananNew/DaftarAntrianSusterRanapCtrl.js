@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('DaftarAntrianSusterRanapCtrl', ['SaveToWindow', '$rootScope', '$scope', 'ModelItem', '$state', 'FindPasien', 'DateHelper', 'socket', 'ManagePasien', '$mdDialog', '$window', 'CetakHelper', 'ManageSarprasPhp', 'CacheHelper', '$q',
-        function (saveToWindow, $rootScope, $scope, ModelItem, $state, findPasien, DateHelper, socket, managePasien, $mdDialog, window, cetakHelper, manageSarprasPhp, cacheHelper, $q) {
+    initialize.controller('DaftarAntrianSusterRanapCtrl', ['SaveToWindow', '$rootScope', '$scope', 'ModelItem', '$state', 'FindPasien', 'DateHelper', 'socket', 'ManagePasien', '$mdDialog', '$window', 'CetakHelper', 'ManageSarprasPhp', 'CacheHelper', '$q', 'LoginHelper',
+        function (saveToWindow, $rootScope, $scope, ModelItem, $state, findPasien, DateHelper, socket, managePasien, $mdDialog, window, cetakHelper, manageSarprasPhp, cacheHelper, $q, LoginHelper) {
             $scope.dataVOloaded = true;
             $scope.now = new Date();
             $scope.item = {};
@@ -12,6 +12,8 @@ define(['initialize'], function (initialize) {
             $scope.isRouteLoading = false;
             $rootScope.isOpen = true;
             $scope.cboUbahDokter = true;
+            $scope.showButton = LoginHelper.get() === 'suster' || LoginHelper.get() === 'dokter';
+
             // $scope.isRouteLoading = true;
             // $scope.title = "ini page pencarian pasien";
             // $scope.kodeRuangan = $state.params.kodeRuangan;

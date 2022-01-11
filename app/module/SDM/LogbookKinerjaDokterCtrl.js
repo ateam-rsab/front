@@ -4,6 +4,8 @@ define(['initialize'], function (initialize) {
         function ($q, managePegawai, findPegawai, dateHelper, findSdm, modelItem, manageSdm, ManageSdmNew, $state, $rootScope, $scope) {
             $scope.item = {};
             $scope.dataVOloaded = true;
+            let baseUrl = "";
+            // get-logbook-skoring-dokter-jam-kerja
             $scope.isRouteLoading = false;
             $scope.monthly = {
                 start: "year",
@@ -14,6 +16,7 @@ define(['initialize'], function (initialize) {
             // $scope.item.periode = new Date();
 
             $scope.pegawaiLogin = modelItem.getPegawai();
+            console.log($scope.pegawaiLogin)
 
             $scope.columnGrid = [{
                 "field": "namaProduk",
@@ -83,7 +86,29 @@ define(['initialize'], function (initialize) {
             }
 
             let init = () => {
-                ManageSdmNew.getListData(`iki-remunerasi/get-akses-pegawai-verifikasi-logbook-dokter?pegawaiId=` + $scope.pegawaiLogin.id).then(res => {
+                // http://192.168.12.3:8080/jasamedika-sdm/iki-remunerasi/get-logbook-skoring-nakes?bulan=1638291600000&pegawaiId=22349
+                ManageSdmNew.getListData("sdm/get-kelompok-jabatan-logbook-skor?pegawaiId=" + ($scope.item.pegawai ? $scope.item.pegawai : $scope.pegawaiLogin.id)).then((res) => {
+                    // $scope.kelompokUser = res.data.data;
+                    switch (res.data.data) {
+                        case 3:
+                            baseUrl = "get-logbook-skoring-dokter-jam-kerja";
+                            break;
+                        case 4:
+                            baseUrl = "get-logbook-skoring-dokter-jam-kerja"
+                        case 5:
+                            baseUrl = "";
+                            toastr.info("Service blm tersedia");
+                            break;
+                        case 6:
+                            baseUrl = "get-logbook-skoring-nakes";
+                        default:
+                            break;
+                    }
+                })
+                // kelompokUser = "Dokter";
+               
+                // ManageSdmNew.getListData(`iki-remunerasi/get-akses-pegawai-verifikasi-logbook-dokter?pegawaiId=` + $scope.pegawaiLogin.id).then(res => {
+                ManageSdmNew.getListData(`service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled,namaLengkap&values=true,!'-'&order=namaLengkap:asc`).then(res => {
                     $scope.listPegawai = res.data;
                 })
                 getHeaderTable();
@@ -91,8 +116,9 @@ define(['initialize'], function (initialize) {
             init();
 
             $scope.getDataLogbook = () => {
+                // let baseUrl
+                
                 getHeaderTable();
-
                 $scope.isRouteLoading = true;
 
                 if (!$scope.item.periode) {
@@ -108,7 +134,7 @@ define(['initialize'], function (initialize) {
                 }
 
                 let dataTemp = [];
-                ManageSdmNew.getListData(`iki-remunerasi/get-logbook-skoring-dokter-jam-kerja?bulan=${$scope.item.periode ? dateHelper.toTimeStamp($scope.item.periode) : dateHelper.toTimeStamp(new Date())}&pegawaiId=${$scope.item.pegawai.id}`).then(res => {
+                ManageSdmNew.getListData(`iki-remunerasi/${baseUrl}?bulan=${$scope.item.periode ? dateHelper.toTimeStamp($scope.item.periode) : dateHelper.toTimeStamp(new Date())}&pegawaiId=${$scope.item.pegawai.id}`).then(res => {
                     let periode = new Date($scope.item.periode), bln = periode.getMonth(), thn = periode.getFullYear();
                     // console.log(bln, thn)
 
