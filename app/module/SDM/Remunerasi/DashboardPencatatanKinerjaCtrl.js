@@ -22,10 +22,10 @@ define(['initialize'], function (initialize) {
 
             let getListMaster = () => {
                 $q.all([
-                    ManageSdmNew.getListData("service/list-generic/?view=Profesi&select=id,namaProfesi&criteria=statusEnabled&values=true&order=namaProfesi:asc")
-                ]).then(function (res) {
-                    $scope.listProfesi = res[0].data;
-                })
+                    ManageSdmNew.getListData("sdm/get-daftar-profesi?pegawaiId=" + $scope.dataLogin.id).then(function (res) {
+                        $scope.listProfesi = res.data.data;
+                    })
+                ])
             }
 
             getListMaster();
@@ -260,38 +260,24 @@ define(['initialize'], function (initialize) {
                 }
             }
 
-            let autoIndikator = [466, 350, 351, 357, 672, 674]
+            let autoIndikator = [466, 350, 351, 357, 674]
             $scope.showDetail = (data) => {
-                if (!autoIndikator.includes(data.idIndikator)) {
+                if (!autoIndikator.includes(data.idIndikator) && data.idIndikator != 678) {
                     $scope.labelDetail = data.namaIndikator
 
-                    if (data.idIndikator == 673) {
-                        let URL = "iki-remunerasi/get-pelayanan-nakes?bulan=" + dateHelper.toTimeStamp($scope.item.bulan)
-                            + "&pegawaiId=" + data.idPegawai
+                    let URL = "iki-remunerasi/catatan-kegiatan-harian-indikator?pegawaiId=" + data.idPegawai
+                        + "&jabatanId=" + data.idJabatan
+                        + "&bulan=" + dateHelper.toTimeStamp($scope.item.bulan)
+                        + "&indikatorId=" + data.idIndikator
 
-                        ManageSdmNew.getListData(URL).then((res) => {
-                            $scope.dataSource2 = new kendo.data.DataSource({
-                                data: res.data.data,
-                                pageSize: 5
-                            });
+                    ManageSdmNew.getListData(URL).then((res) => {
+                        $scope.dataSource1 = new kendo.data.DataSource({
+                            data: res.data.data,
+                            pageSize: 5
+                        });
 
-                            $scope.popupDetail2.open().center();
-                        })
-                    } else {
-                        let URL = "iki-remunerasi/catatan-kegiatan-harian-indikator?pegawaiId=" + data.idPegawai
-                            + "&jabatanId=" + data.idJabatan
-                            + "&bulan=" + dateHelper.toTimeStamp($scope.item.bulan)
-                            + "&indikatorId=" + data.idIndikator
-
-                        ManageSdmNew.getListData(URL).then((res) => {
-                            $scope.dataSource1 = new kendo.data.DataSource({
-                                data: res.data.data,
-                                pageSize: 5
-                            });
-
-                            $scope.popupDetail1.open().center();
-                        })
-                    }
+                        $scope.popupDetail1.open().center();
+                    })
                 } else {
                     toastr.info("Indikator ini dihitung otomatis", "Informasi")
                 }
@@ -317,7 +303,7 @@ define(['initialize'], function (initialize) {
 
                 $scope.showInputHasil = data.satuanId === 11743 && (data.jenisIndikator === "Kualitas" || data.jenisIndikator === "Perilaku");
                 // console.log($scope.showInputHasil);
-                if (data.idIndikator == 673) {
+                if (data.idIndikator == 678) {
                     $scope.resetForm2()
                     $scope.popupAdd2.open().center();
                 } else {
@@ -346,6 +332,11 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.simpanData2 = () => {
+                if (!$scope.nakes.jmlLayanan || $scope.nakes.jmlLayanan === 0) {
+                    toastr.warning("Jumlah layanan belum diisi");
+                    return;
+                }
+
                 let dataSave = {
                     kdProfile: 0,
                     statusEnabled: true,

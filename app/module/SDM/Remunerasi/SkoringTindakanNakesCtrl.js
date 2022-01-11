@@ -34,13 +34,13 @@ define(['initialize'], function (initialize) {
                 pageable: true,
                 scrollable: true,
                 columns: [{
-                    field: "namaProduk",
-                    title: "<h3>Produk</h3>",
-                    width: 150
-                }, {
                     field: "namaProfesi",
                     title: "<h3>Profesi</h3>",
                     width: 60
+                }, {
+                    field: "namaProduk",
+                    title: "<h3>Produk</h3>",
+                    width: 150
                 }, {
                     field: "skor",
                     title: "<h3>Skor</h3>",

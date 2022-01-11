@@ -608,6 +608,7 @@ define(['initialize'], function (initialize) {
 
                     var d = new Date();
                     var y = d.getFullYear();
+                    $scope.item.tahunCutiN = y
                     $scope.item.tahunCutiN1 = y - 1
                     $scope.item.tahunCutiN2 = y - 2
 

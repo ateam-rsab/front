@@ -116,8 +116,8 @@ define(['initialize'], function (initialize) {
                     $scope.pasien = res.data[0];
                 })
                 $scope.getDataGrid();
-                manageSdmNew.getListData("service/list-generic/?view=Profesi&select=id,namaProfesi&criteria=statusEnabled,jenisProfesi&values=true,(1)&order=namaProfesi:asc").then(res => {
-                    $scope.listProfesi = res.data;
+                manageSdmNew.getListData("sdm/get-daftar-profesi?pegawaiId=" + $scope.nakes.data.id + "&jenisId=1").then(res => {
+                    $scope.listProfesi = res.data.data;
                 })
             }
             $scope.init();
@@ -153,7 +153,7 @@ define(['initialize'], function (initialize) {
                 }
 
                 if (!$scope.nakes.jmlLayanan || $scope.nakes.jmlLayanan === 0) {
-                    toastr.warning("Jumlah layanan salah");
+                    toastr.warning("Jumlah layanan belum diisi");
                     return;
                 }
 

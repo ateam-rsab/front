@@ -169,14 +169,14 @@
 				</div>
 				<div class="grid_12" ng-show="hideJumlahCuti" ng-disabled="disJumlahCuti">
 					<div class="grid_3">
-						<label c-label item="item" style="margin-top: 10px">Jatah Cuti</label>
+						<label c-label item="item" style="margin-top: 10px">Jatah Cuti {{item.tahunCutiN}}</label>
 					</div>
 					<div class="grid_3">
 						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jumlahCuti"
 							disabled="true" />
 					</div>
 					<div class="grid_3">
-						<label c-label item="item" style="margin-top: 10px">Sisa Cuti</label>
+						<label c-label item="item" style="margin-top: 10px">Sisa Cuti {{item.tahunCutiN}}</label>
 					</div>
 					<div class="grid_3">
 						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.sisaCuti"

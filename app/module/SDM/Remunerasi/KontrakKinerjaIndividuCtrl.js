@@ -41,7 +41,8 @@ define(['initialize'], function (initialize) {
                 }, {
                     field: "target",
                     title: "<h3>Target</h3>",
-                    width: 50
+                    width: 50,
+                    attributes: { style: "text-align : right" }
                 }, {
                     field: "satuanIndikator",
                     title: "<h3>Satuan Indikator</h3>",
