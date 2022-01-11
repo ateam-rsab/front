@@ -1,0 +1,49 @@
+<md-toolbar md-scroll-shrink class="shadow">
+    <div class="md-toolbar-tools">Mapping Jabatan</div>
+</md-toolbar>
+
+<div class="grid_12">
+    <kendo-grid id="grid" data-source="dataSourceMapping" options="optGridDataMapping" k-pageable="'true'"
+        k-sortable="'true'" k-resizable="'true'" k-selectable="'row'"></kendo-grid>
+
+</div>
+
+<div kendo-window="dialogMapping" k-title="'VIEW DATA'" k-width="800" k-visible="false" k-on-open="win2visible = true" k-on-close="win2visible = false">
+
+    <div class="panel panel-default container_12">
+
+        <div class="grid_4" ng-show="unitKerjaDisabled">
+            <label>Unit Kerja</label>
+            <input style="width: 100%;" kendo-combo-box k-ng-model="item.unitKerja" k-data-text-field="'name'"
+                k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitKerja"  k-on-change="getJabatan(item.unitKerja.id)" />
+
+        </div>
+
+        <div class="grid_4">
+            <label>Jabatan</label>
+            <input style="width: 100%;" kendo-combo-box k-ng-model="item.jabatan" k-data-text-field="'namaJabatan'"
+                k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJabatan" ng-disabled="jabatanDisabled"/>
+
+        </div>
+
+        <div class="grid_4">
+            <label>Profesi</label>
+            <input style="width: 100%;" kendo-combo-box k-ng-model="item.profesi" k-data-text-field="'namaProfesi'"
+                k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listProfesi" />
+
+        </div>
+
+        <div class="k-edit-buttons k-state-default" style="margin-top:10px">
+            <div class="grid_10"></div>
+            <div class="grid_2" ng-if="!isDetail">
+                <md-button class="md-raised md-primary medium-button" ng-click="saveDataMapping()">
+                    <span style="margin-right: 5px;">Simpan</span>
+                    <i class="fa fa-save"></i>
+                </md-button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="grid_12" style="margin-top:60px">
+    <div ng-include='" ../app/module/Shared/TemplateLoading" '></div>
+</div>
