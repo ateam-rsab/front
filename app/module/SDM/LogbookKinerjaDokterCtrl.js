@@ -87,7 +87,7 @@ define(['initialize'], function (initialize) {
 
             let init = () => {
                 // http://192.168.12.3:8080/jasamedika-sdm/iki-remunerasi/get-logbook-skoring-nakes?bulan=1638291600000&pegawaiId=22349
-                ManageSdmNew.getListData("sdm/get-kelompok-jabatan-logbook-skor?pegawaiId=" + ($scope.item.pegawai ? $scope.item.pegawai : $scope.pegawaiLogin.id)).then((res) => {
+                ManageSdmNew.getListData("sdm/get-kelompok-jabatan-logbook-skor?pegawaiId=" + ($scope.item.pegawai ? $scope.item.pegawai.id : $scope.pegawaiLogin.id)).then((res) => {
                     // $scope.kelompokUser = res.data.data;
                     switch (res.data.data) {
                         case 3:
