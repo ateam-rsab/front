@@ -491,7 +491,6 @@ define(['initialize'], function (initialize) {
                         })
                     }
                 }
-                console.log(data);
 
                 managePhp.postData(data, 'rekam-medis/save-jadwal-operasi/save').then(function (e) {
                     // init();

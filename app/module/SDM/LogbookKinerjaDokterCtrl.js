@@ -5,7 +5,9 @@ define(['initialize'], function (initialize) {
             $scope.item = {};
             $scope.dataVOloaded = true;
             let baseUrl = "";
-            // get-logbook-skoring-dokter-jam-kerja
+            let urlDetail = "";
+            $scope.namaJenisPegawai = "";
+            $scope.isPelayanaPasien = true;
             $scope.isRouteLoading = false;
             $scope.monthly = {
                 start: "year",
@@ -16,7 +18,7 @@ define(['initialize'], function (initialize) {
             // $scope.item.periode = new Date();
 
             $scope.pegawaiLogin = modelItem.getPegawai();
-            console.log($scope.pegawaiLogin)
+            console.log($scope.pegawaiLogin.jenisPegawai.jenispegawai !== "DOKTER")
 
             $scope.columnGrid = [{
                 "field": "namaProduk",
@@ -29,7 +31,8 @@ define(['initialize'], function (initialize) {
             }, {
                 "field": "jenisPetugas",
                 "title": "Jenis Petugas",
-                "width": "20%"
+                "width": "20%",
+                hidden: $scope.pegawaiLogin.jenisPegawai.jenispegawai !== "DOKTER",
             }, {
                 "field": "noRegistrasi",
                 "title": "No. Registrasi",
@@ -49,8 +52,23 @@ define(['initialize'], function (initialize) {
             }, {
                 "field": "kelompokPasien",
                 "title": "Kelompok Pasien",
-                "width": "30%"
+                "width": "30%",
+                hidden: $scope.pegawaiLogin.jenisPegawai.jenispegawai !== "DOKTER",
             }];
+            $scope.columnGridNonPelayanan = [ {
+                    "field": "tglPelayananFormatted",
+                    "title": "Tanggal Pelayanan",
+                    "width": "40%"
+                }, {
+                    "field": "jumlah",
+                    "title": "Jumlah Layanan",
+                    "width": "30%"
+                }, {
+                    "field": "catatan",
+                    "title": "Catatan",
+                    "width": "30%"
+                },
+            ]
 
             let groupJSON = function (xs, key) {
                 return xs.reduce(function (rv, x) {
@@ -85,38 +103,12 @@ define(['initialize'], function (initialize) {
                 }
             }
 
-            let init = () => {
-                // http://192.168.12.3:8080/jasamedika-sdm/iki-remunerasi/get-logbook-skoring-nakes?bulan=1638291600000&pegawaiId=22349
-                ManageSdmNew.getListData("sdm/get-kelompok-jabatan-logbook-skor?pegawaiId=" + ($scope.item.pegawai ? $scope.item.pegawai.id : $scope.pegawaiLogin.id)).then((res) => {
-                    // $scope.kelompokUser = res.data.data;
-                    switch (res.data.data) {
-                        case 3:
-                            baseUrl = "get-logbook-skoring-dokter-jam-kerja";
-                            break;
-                        case 4:
-                            baseUrl = "get-logbook-skoring-dokter-jam-kerja"
-                        case 5:
-                            baseUrl = "";
-                            toastr.info("Service blm tersedia");
-                            break;
-                        case 6:
-                            baseUrl = "get-logbook-skoring-nakes";
-                        default:
-                            break;
-                    }
-                })
-                // kelompokUser = "Dokter";
-               
-                // ManageSdmNew.getListData(`iki-remunerasi/get-akses-pegawai-verifikasi-logbook-dokter?pegawaiId=` + $scope.pegawaiLogin.id).then(res => {
-                ManageSdmNew.getListData(`service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled,namaLengkap&values=true,!'-'&order=namaLengkap:asc`).then(res => {
-                    $scope.listPegawai = res.data;
-                })
-                getHeaderTable();
-            }
-            init();
-
             $scope.getDataLogbook = () => {
-                // let baseUrl
+                if(!baseUrl) {
+                    init();
+                    // $scope.getDataLogbook();
+                    return;
+                }
                 
                 getHeaderTable();
                 $scope.isRouteLoading = true;
@@ -135,6 +127,7 @@ define(['initialize'], function (initialize) {
 
                 let dataTemp = [];
                 ManageSdmNew.getListData(`iki-remunerasi/${baseUrl}?bulan=${$scope.item.periode ? dateHelper.toTimeStamp($scope.item.periode) : dateHelper.toTimeStamp(new Date())}&pegawaiId=${$scope.item.pegawai.id}`).then(res => {
+                    
                     let periode = new Date($scope.item.periode), bln = periode.getMonth(), thn = periode.getFullYear();
                     // console.log(bln, thn)
 
@@ -149,6 +142,7 @@ define(['initialize'], function (initialize) {
                             produkId: res.data.data[i].produkId,
                             skor: res.data.data[i].skor,
                             totalSkor: res.data.data[i].tSkor,
+                            kdProduk: res.data.data[i].kdProduk ? res.data.data[i].kdProduk : 1,
                             jumlah: res.data.data[i].jumlah,
                             // tglPelayanan: res.data.data[i].tglPelayanan,
                             dataDetail: []
@@ -179,7 +173,9 @@ define(['initialize'], function (initialize) {
 
                     // $scope.dataSource = dataTemp;
                     let groupedJSON = groupJSON(dataTemp, 'namaIndikator');
+                    console.log(groupedJSON);
                     let formattedJSON = Object.keys(groupedJSON).map((key) => [(key), groupedJSON[key]]);
+                    console.log(formattedJSON)
                     let dataGet = [];
 
                     for (let i = 0; i < formattedJSON.length; i++) {
@@ -188,17 +184,20 @@ define(['initialize'], function (initialize) {
                             detail: [],
                             subTotalSkor: 0,
                             subJumlah: 0,
-                            subSkor: 0
+                            subSkor: 0,
                         })
 
                         for (let ii = 0; ii < formattedJSON[i][1].length; ii++) {
+                            formattedJSON[i][1][ii].jenisPelayanan = formattedJSON[i][1][ii].kdProduk === 2 ? "Pasien" : "Non Pasien";
                             dataGet[i].detail.push(formattedJSON[i][1][ii]);
                             dataGet[i].subSkor += formattedJSON[i][1][ii].skor;
                             dataGet[i].subJumlah += formattedJSON[i][1][ii].jumlah;
                             dataGet[i].subTotalSkor += formattedJSON[i][1][ii].totalSkor;
+                            // dataGet[i].kdProduk += formattedJSON[i][1][ii].kdProduk;
                         }
                         dataGet[i].subTotalSkor = parseFloat(dataGet[i].subTotalSkor.toFixed(2));
 
+                        
                         $scope.grandJumlah = dataGet[i].subJumlah + $scope.grandJumlah;
                         $scope.grandTotal = dataGet[i].subTotalSkor + $scope.grandTotal;
                     }
@@ -210,6 +209,41 @@ define(['initialize'], function (initialize) {
                     $scope.isRouteLoading = false;
                 });
             }
+
+            let init = () => {
+                ManageSdmNew.getListData("sdm/get-kelompok-jabatan-logbook-skor?pegawaiId=" + ($scope.item.pegawai ? $scope.item.pegawai.id : $scope.pegawaiLogin.id)).then((res) => {
+                    
+                    switch (res.data.data) {
+                        case 3:
+                            baseUrl = "get-logbook-skoring-dokter-jam-kerja";
+                            urlDetail = "get-detail-pasien-dokter-jam-kerja";
+                            $scope.namaJenisPegawai = "Dokter";
+                            break;
+                        case 4:
+                            baseUrl = "get-logbook-skoring-dokter-jam-kerja";
+                            urlDetail = "get-detail-pasien-dokter-jam-kerja";
+                            $scope.namaJenisPegawai = "Dokter";
+                        case 5:
+                            baseUrl = "";
+                            $scope.namaJenisPegawai = "Perawat";
+                            toastr.info("Service blm tersedia");
+                            break;
+                        case 6:
+                            $scope.namaJenisPegawai = "Tenaga Kesehatan Lain";
+                            urlDetail = "get-detail-logbook-skoring-nakes";
+                            baseUrl = "get-logbook-skoring-nakes";
+                        default:
+                            break;
+                    }
+                    if(baseUrl) $scope.getDataLogbook();
+                })
+                
+                ManageSdmNew.getListData(`service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled,namaLengkap&values=true,!'-'&order=namaLengkap:asc`).then(res => {
+                    $scope.listPegawai = res.data;
+                })
+                getHeaderTable();
+            }
+            init();
             // $scope.getDataLogbook();
 
             $scope.exportExcel = () => {
@@ -311,7 +345,9 @@ define(['initialize'], function (initialize) {
                     return;
                 }
 
-                ManageSdmNew.getListData("iki-remunerasi/get-detail-pasien-dokter-jam-kerja?pegawaiId=" + $scope.item.pegawai.id + "&indikatorId=" + detail.indikatorId + "&produkId=" + detail.produkId + "&tglPelayanan=" + data.tglPelayanan + "&jenisPetugasId=" + detail.jenisPetugasId + "&skor=" + detail.skor).then((res) => {
+                $scope.isPelayanaPasien = detail.kdProduk === 1;
+
+                ManageSdmNew.getListData(`iki-remunerasi/${urlDetail}?pegawaiId=${$scope.item.pegawai.id}&indikatorId=${detail.indikatorId}&produkId=${detail.produkId}&tglPelayanan=${data.tglPelayanan}&jenisPetugasId=${detail.jenisPetugasId}&skor=${detail.skor}`).then((res) => {
                     $scope.dataSourceDetailTindakan = new kendo.data.DataSource({
                         data: res.data.data,
                         pageSize: 5

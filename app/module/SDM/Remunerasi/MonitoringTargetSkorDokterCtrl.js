@@ -3,8 +3,14 @@ define(['initialize'], function (initialize) {
     initialize.controller('MonitoringTargetSkorDokterCtrl', ['$q', 'ManagePegawai', 'FindPegawai', 'DateHelper', 'FindSdm', 'ModelItem', 'ManageSdmNew', '$state', '$rootScope', '$scope', '$mdDialog',
         function ($q, managePegawai, findPegawai, dateHelper, findSdm, modelItem, manageSdmNew, $state, $rootScope, $scope, $mdDialog) {
             $scope.item = {};
+            $scope.model = {};
             $scope.isRouteLoading = false;
+            $scope.isUpdate = false;
             $scope.optGrid = {
+                toolbar: [{
+                    name: "create", text: "Input Baru",
+                    template: '<button ng-click="addData()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah</button>'
+                }],
                 filterable: {
                     extra: false,
                     operators: {
@@ -55,6 +61,19 @@ define(['initialize'], function (initialize) {
                 ],
             };
 
+            let init = () => {
+                manageSdmNew.getListData("service/list-generic/?view=UnitKerjaPegawai&select=id,name&criteria=statusEnabled,id&values=true,(58;59;60;61;62;63;82)&order=name:asc").then(res => {
+                    $scope.listUnitKerja = res.data;
+                })
+            }
+            init();
+
+            $scope.getSubUnitKerja = (id) => {
+                manageSdmNew.getListData(`service/list-generic/?view=SubUnitKerjaPegawai&select=id,name&criteria=statusEnabled,unitKerjaId,name&values=true,${id},KK&order=name:asc`).then(res => {
+                    $scope.listSubUnitKerja = res.data;
+                })
+            }
+
             $scope.getData = () => {
                 $scope.isRouteLoading = true;
                 manageSdmNew.getListData(`iki-remunerasi/get-target-skor-kelompok-kerja?tahun=1640768793107`).then((res) => {
@@ -73,16 +92,31 @@ define(['initialize'], function (initialize) {
             function updateSkor(e) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-                $scope.item = dataItem;
-                $scope.popupUpdateSkor.open().center();
+                $scope.isUpdate = true;
+                $scope.model = dataItem;
+                $scope.popup.open().center();
             }
 
             $scope.confirmUpdate = (e) => {
+                if(!$scope.model.noRec && !$scope.model.unitKerja) {
+                    toastr.info("harap pilih Unit Kerja");
+                    return;
+                }
 
-                $scope.popupUpdateSkor.close();
+                if(!$scope.model.noRec && !$scope.model.subUnitKerja) {
+                    toastr.info("harap pilih Sub Unit Kerja");
+                    return;
+                }
+
+                if(!$scope.model.noRec && !$scope.model.tmt) {
+                    toastr.info("Harap pilih TMT");
+                    return;
+                }
+                $scope.popup.close();
+                $scope.isUpdate = true;
                 var confirm = $mdDialog
                     .confirm()
-                    .title("Apakah anda yakin Update data?")
+                    .title(`Apakah anda yakin ${$scope.model.noRec ? 'Update' : 'Tambah'} data`)
                     // .textContent("Anda akan mengubah data " + dataItem. + "")
                     .ariaLabel("Lucky day")
                     .targetEvent(e)
@@ -92,35 +126,47 @@ define(['initialize'], function (initialize) {
                 $mdDialog.show(confirm).then(function () {
                     $scope.isRouteLoading = true;
                     let dataUpdate = {
-                        noRec: $scope.item.noRec,
+                        statusEnabled: true,
                         unitKerjaPegawai: {
-                            id: $scope.item.unitKerjaId
+                            id: $scope.model.noRec ? $scope.model.unitKerjaId : $scope.model.unitKerja.id
                         },
                         subUnitKerjaPegawai: {
-                            id: $scope.item.subunitKerjaId
+                            id: $scope.model.noRec ? $scope.model.subunitKerjaId : $scope.model.subUnitKerja.id
                         },
-                        totalSkorDasar: $scope.item.totalTargetSkor
+                        totalSkorDasar: parseFloat($scope.model.totalTargetSkor),
+                        tmt: dateHelper.toTimeStamp($scope.model.tmt),
                     }
 
-                    manageSdmNew.saveData(dataUpdate, "iki-remunerasi/update-target-skor-dokter").then((res) => {
+                    if($scope.model.noRec) {
+                        dataUpdate.noRec = $scope.model.noRec;
+                    }
+
+                    manageSdmNew.saveData(dataUpdate, "iki-remunerasi/save-target-skor-dokter").then((res) => {
                         $scope.isRouteLoading = false;
                         $scope.getData();
                         reset();
                     });
                 }, () => {
-                    $scope.popupUpdateSkor.open().center();
+                    $scope.popup.open().center();
                 });
             }
 
+            $scope.addData = () => {
+                reset();
+                $scope.isUpdate = false;
+                $scope.popup.open().center();
+            }
+
             $scope.closePopUp = () => {
-                $scope.popupUpdateSkor.close();
+                $scope.popup.close();
             }
 
             let reset = () => {
-                $scope.item.unitKerjaId = null;
-                $scope.item.subunitKerjaId = null;
-                $scope.item.noRec = null;
-                $scope.item.skor = null;
+                $scope.isUpdate = false;
+                $scope.model.unitKerjaId = null;
+                $scope.model.subunitKerjaId = null;
+                $scope.model.noRec = null;
+                $scope.model.totalTargetSkor = null;
             }
         }
     ])

@@ -6,25 +6,37 @@
     <div kendo-grid k-data-source="dataSource" k-selectable="'row'" options="optGrid" k-ng-model="selectedData"></div>
 </div>
 
-<div kendo-window="popupUpdateSkor" k-title="'Update Skor'" k-width="800" k-visible="false"
-    k-on-open="win2visible= true" k-on-close="win2visible= false">
+<div kendo-window="popup" k-title="'Update Skor'" k-width="800" k-visible="false" k-on-open="win2visible= true"
+    k-on-close="win2visible= false">
     <div class="panel panel-default container_12" style="padding: 0px 10px;">
 
         <md-card>
             <md-card-body style="padding: 20px;">
                 <div class="grid_6">
                     <strong style="display: block;padding-bottom: 10px;">Unit Kerja</strong>
-                    <label for="">{{item.unitKerja}}</label>
+                    <label ng-if="isUpdate">{{model.unitKerja}}</label>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="model.unitKerja" k-data-text-field="'name'"
+                        k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" ng-show="!isUpdate"
+                        k-on-change="getSubUnitKerja(model.unitKerja.id)" k-data-source="listUnitKerja" />
                 </div>
 
                 <div class="grid_6">
                     <strong style="display: block;padding-bottom: 10px;">Sub Unit Kerja</strong>
-                    <label for="">{{item.subunitKerja}}</label>
+                    <label ng-if="isUpdate">{{model.subunitKerja}}</label>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="model.subUnitKerja"
+                        k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
+                        ng-show="!isUpdate" k-data-source="listSubUnitKerja" />
                 </div>
                 <hr>
-                <div class="grid_12">
+                <div class="grid_6">
                     <label c-label item="item">Skor</label>
-                    <input c-text-box type="input" class="k-textbox" ng-model="item.totalTargetSkor" />
+                    <input c-text-box type="input" class="k-textbox" ng-model="model.totalTargetSkor" />
+                </div>
+
+                <div class="grid_6">
+                    <label c-label item="item">TMT</label>
+                    <input style="width: 100%" kendo-date-picker k-ng-model="model.tmt" placeholer="Hari-Bln-Thn"
+                        k-format="'dd-MM-yyyy'" />
                 </div>
             </md-card-body>
         </md-card>

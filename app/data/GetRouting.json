@@ -25348,6 +25348,46 @@
     ]
   },
   {
+    "name": "RevPermintaanPerbaikandariRuanganITNew",
+    "url": "/RevPermintaanPerbaikandariRuanganITNew",
+    "templateurl": "module/AplikasiIT/NewRevPermintaanPerbaikandariRuanganIT.html",
+    "controller": "NewRevPermintaanPerbaikandariRuanganITCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SarprasService",
+        "define": "SarprasService"
+      }
+    ]
+  },
+  {
+    "name": "InformasiProsesAktivitasDatabase",
+    "url": "/InformasiProsesAktivitasDatabase",
+    "templateurl": "module/AplikasiIT/InformasiProsesAktivitasDatabase.html",
+    "controller": "InformasiProsesAktivitasDatabaseCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SarprasService",
+        "define": "SarprasService"
+      }
+    ]
+  },
+  {
     "name": "RevPermintaanPerbaikandariRuanganIT",
     "url": "/RevPermintaanPerbaikandariRuanganIT",
     "templateurl": "module/AplikasiIT/RevPermintaanPerbaikandariRuanganIT.html",

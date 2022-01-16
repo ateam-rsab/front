@@ -99,7 +99,7 @@
 </style>
 
 <md-toolbar md-scroll-shrink class="shadow">
-    <div class="md-toolbar-tools">Logbook Kinerja Dokter</div>
+    <div class="md-toolbar-tools">Logbook Kinerja {{namaJenisPegawai}}</div>
 </md-toolbar>
 
 <div class="grid_12">
@@ -124,6 +124,7 @@
     <table class="table-custom">
         <thead>
             <th scope="col" style="min-width: 200px;">Nama Kegiatan</th>
+            <th scope="col" style="min-width: 50px; text-align: center;">Jenis Pelayanan</th>
             <th scope="col" style="min-width: 50px; text-align: center;">Skor</th>
             <th scope="col" style="min-width: 50px; text-align: center;">Jumlah</th>
             <th scope="col" style="min-width: 50px; text-align: center;">Total Skor</th>
@@ -133,7 +134,7 @@
         </thead>
 
         <tbody ng-repeat="ds in dataSource">
-            <tr>
+            <tr ng-if="ds.label !== 'undefined'">
                 <td style="font-weight: bolder; background-color: #3d3d3d; color: white; " colspan="35">
                     {{ds.label}}
                 </td>
@@ -146,6 +147,7 @@
                         {{detailProduk.namaProduk}}
                     </span>
                 </td>
+                <td style="text-align: center;">{{detailProduk.jenisPelayanan}}</td>
                 <td style="text-align: center;">{{detailProduk.skor}}</td>
                 <td style="text-align: center;">{{detailProduk.jumlah}}</td>
                 <td style="text-align: center;">{{detailProduk.totalSkor}}</td>
@@ -170,8 +172,6 @@
                 <td colspan="35" style="text-align: center;">Tidak ada data</td>
             </tr>
         </tbody>
-
-        <!-- <tbody ng-if="dataSource.length !== 0"></tbody> -->
 
         <tfoot>
             <tr>
@@ -198,7 +198,13 @@
 <div kendo-window="popupDetail" k-title="'Detail Data'" k-width="1200" k-visible="false" k-on-open="win2visible= true"
     k-on-close="win2visible= false">
     <div class="panel panel-default container_12" style="padding: 0px 10px;">
-        <md-card>
+        <md-card ng-if="!isPelayanaPasien">
+            <div class="grid_12">
+                <kendo-grid k-data-source="dataSourceDetailTindakan" k-pageable="true" k-columns="columnGridNonPelayanan">
+                </kendo-grid>
+            </div>
+        </md-card>
+        <md-card ng-if="isPelayanaPasien">
             <div class="grid_12">
                 <kendo-grid k-data-source="dataSourceDetailTindakan" k-pageable="true" k-columns="columnGrid">
                 </kendo-grid>

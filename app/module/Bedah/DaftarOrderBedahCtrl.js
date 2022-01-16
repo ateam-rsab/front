@@ -526,8 +526,6 @@ define(['initialize'], function (initialize) {
                     });
                 }
 
-                console.log(dataSave);
-
                 ManageServicePhp.saveDataTransaksi('rekam-medis/save-jadwal-operasi/verifikasi', dataSave).then(e => {
                     init();
                     $scope.closeModalJadwalBedah();
