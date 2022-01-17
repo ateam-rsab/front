@@ -6,6 +6,7 @@ define(['initialize'], function (initialize) {
             $scope.dataVOloaded = true;
             let baseUrl = "";
             let urlDetail = "";
+            let indikatorId = "";
             $scope.namaJenisPegawai = "";
             $scope.isPelayanaPasien = true;
             $scope.isRouteLoading = false;
@@ -55,19 +56,19 @@ define(['initialize'], function (initialize) {
                 "width": "30%",
                 hidden: $scope.pegawaiLogin.jenisPegawai.jenispegawai !== "DOKTER",
             }];
-            $scope.columnGridNonPelayanan = [ {
-                    "field": "tglPelayananFormatted",
-                    "title": "Tanggal Pelayanan",
-                    "width": "40%"
-                }, {
-                    "field": "jumlah",
-                    "title": "Jumlah Layanan",
-                    "width": "30%"
-                }, {
-                    "field": "catatan",
-                    "title": "Catatan",
-                    "width": "30%"
-                },
+            $scope.columnGridNonPelayanan = [{
+                "field": "tglPelayananFormatted",
+                "title": "Tanggal Pelayanan",
+                "width": "40%"
+            }, {
+                "field": "jumlah",
+                "title": "Jumlah Layanan",
+                "width": "30%"
+            }, {
+                "field": "catatan",
+                "title": "Catatan",
+                "width": "30%"
+            },
             ]
 
             let groupJSON = function (xs, key) {
@@ -104,12 +105,12 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.getDataLogbook = () => {
-                if(!baseUrl) {
+                if (!baseUrl) {
                     init();
                     // $scope.getDataLogbook();
                     return;
                 }
-                
+
                 getHeaderTable();
                 $scope.isRouteLoading = true;
 
@@ -127,7 +128,7 @@ define(['initialize'], function (initialize) {
 
                 let dataTemp = [];
                 ManageSdmNew.getListData(`iki-remunerasi/${baseUrl}?bulan=${$scope.item.periode ? dateHelper.toTimeStamp($scope.item.periode) : dateHelper.toTimeStamp(new Date())}&pegawaiId=${$scope.item.pegawai.id}`).then(res => {
-                    
+
                     let periode = new Date($scope.item.periode), bln = periode.getMonth(), thn = periode.getFullYear();
                     // console.log(bln, thn)
 
@@ -188,7 +189,7 @@ define(['initialize'], function (initialize) {
                         })
 
                         for (let ii = 0; ii < formattedJSON[i][1].length; ii++) {
-                            formattedJSON[i][1][ii].jenisPelayanan = formattedJSON[i][1][ii].kdProduk === 2 ? "Pasien" : "Non Pasien";
+                            formattedJSON[i][1][ii].jenisPelayanan = formattedJSON[i][1][ii].kdProduk === 1 ? "Pasien" : "Non Pasien";
                             dataGet[i].detail.push(formattedJSON[i][1][ii]);
                             dataGet[i].subSkor += formattedJSON[i][1][ii].skor;
                             dataGet[i].subJumlah += formattedJSON[i][1][ii].jumlah;
@@ -197,7 +198,7 @@ define(['initialize'], function (initialize) {
                         }
                         dataGet[i].subTotalSkor = parseFloat(dataGet[i].subTotalSkor.toFixed(2));
 
-                        
+
                         $scope.grandJumlah = dataGet[i].subJumlah + $scope.grandJumlah;
                         $scope.grandTotal = dataGet[i].subTotalSkor + $scope.grandTotal;
                     }
@@ -212,34 +213,39 @@ define(['initialize'], function (initialize) {
 
             let init = () => {
                 ManageSdmNew.getListData("sdm/get-kelompok-jabatan-logbook-skor?pegawaiId=" + ($scope.item.pegawai ? $scope.item.pegawai.id : $scope.pegawaiLogin.id)).then((res) => {
-                    
+
                     switch (res.data.data) {
                         case 3:
                             baseUrl = "get-logbook-skoring-dokter-jam-kerja";
                             urlDetail = "get-detail-pasien-dokter-jam-kerja";
                             $scope.namaJenisPegawai = "Dokter";
+                            indikatorId = 466
                             break;
                         case 4:
                             baseUrl = "get-logbook-skoring-dokter-jam-kerja";
                             urlDetail = "get-detail-pasien-dokter-jam-kerja";
                             $scope.namaJenisPegawai = "Dokter";
+                            indikatorId = 466
                         case 5:
                             baseUrl = "";
                             $scope.namaJenisPegawai = "Perawat";
                             toastr.info("Service blm tersedia");
+                            indikatorId = 0 // indikator logbook skor perawat belum tersedia
                             break;
                         case 6:
                             $scope.namaJenisPegawai = "Tenaga Kesehatan Lain";
                             urlDetail = "get-detail-logbook-skoring-nakes";
                             baseUrl = "get-logbook-skoring-nakes";
+                            indikatorId = 678
                         default:
                             break;
                     }
-                    if(baseUrl) $scope.getDataLogbook();
+                    if (baseUrl) $scope.getDataLogbook();
                 })
-                
-                ManageSdmNew.getListData(`service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled,namaLengkap&values=true,!'-'&order=namaLengkap:asc`).then(res => {
-                    $scope.listPegawai = res.data;
+
+                ManageSdmNew.getListData(`iki-remunerasi/get-pegawai-akses-kinerja?pegawaiId=` + $scope.pegawaiLogin.id).then(res => {
+                    // ManageSdmNew.getListData(`service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled,namaLengkap&values=true,!'-'&order=namaLengkap:asc`).then(res => {
+                    $scope.listPegawai = res.data.data;
                 })
                 getHeaderTable();
             }
@@ -359,7 +365,7 @@ define(['initialize'], function (initialize) {
             $scope.Verify = function () {
                 $scope.isRouteLoading = true;
 
-                if (!$scope.item.pegawai.isVerifAkses) {
+                if (!$scope.item.pegawai.isGranted) {
                     toastr.warning("Tidak memiliki akses", "Peringatan")
                     $scope.isRouteLoading = false
                     return
@@ -372,11 +378,11 @@ define(['initialize'], function (initialize) {
                         "id": $scope.item.pegawai.id
                     },
                     "indikatorKinerja": {
-                        "id": 466 //indikator jumlah pelayanan medis di jam kerja
+                        "id": indikatorId
                     }
                 }
 
-                ManageSdmNew.saveData(dataSend, "iki-remunerasi/verifikasi-logbook-dokter").then(function (e) {
+                ManageSdmNew.saveData(dataSend, "iki-remunerasi/verifikasi-logbook-skor").then(function (e) {
                     $scope.isRouteLoading = false;
                 }, (error) => {
                     $scope.isRouteLoading = false;
