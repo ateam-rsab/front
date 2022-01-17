@@ -186,7 +186,7 @@ define(['initialize'], function (initialize) {
 
             $scope.init = () => {
                 $q.all([
-                    ManageSdmNew.getListData("iki-remunerasi/get-akses-pegawai-kontrak-kinerja?pegawaiId=" + dataPegawai.id),
+                    ManageSdmNew.getListData("iki-remunerasi/get-pegawai-akses-kinerja?pegawaiId=" + dataPegawai.id),
                     ManageSdmNew.getListData("service/list-generic/?view=SatuanIndikator&select=id,satuanIndikator&criteria=statusEnabled&values=true&order=id:asc"),
                     ManageSdmNew.getListData("pegawai/get-pegawai-sdm-for-cred")
                 ]).then(function (res) {
@@ -457,7 +457,7 @@ define(['initialize'], function (initialize) {
                 $scope.norecData = dataItem.noRec;
                 $scope.item.statusVerif = dataItem.isStatusVerifikasi;
 
-                if ($scope.item.pegawai.isModifAkses) {
+                if ($scope.item.pegawai.isGranted) {
                     $scope.isVerifGranted = true;
                     if ($scope.item.statusVerif) {
                         $scope.isNotEditable1 = true;
@@ -471,7 +471,7 @@ define(['initialize'], function (initialize) {
                             $scope.isNotEditable2 = false;
                         }
                     }
-                } else if (!$scope.item.pegawai.isModifAkses) {
+                } else if (!$scope.item.pegawai.isGranted) {
                     $scope.isVerifGranted = false;
                     $scope.isNotEditable1 = true;
                     $scope.isNotEditable2 = true;
@@ -499,7 +499,7 @@ define(['initialize'], function (initialize) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
 
-                if (dataItem.isStatusVerifikasi && !$scope.item.pegawai.isModifAkses) {
+                if (dataItem.isStatusVerifikasi && !$scope.item.pegawai.isGranted) {
                     toastr.warning("Data sudah terverifikasi, tidak dapat dihapus!", "Perhatian!");
                     return;
                 } else if (dataItem.isStatusVerifikasi) {
