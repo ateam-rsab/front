@@ -343,7 +343,7 @@ define(['initialize'], function (initialize) {
 
             $scope.init = () => {
                 $q.all([
-                    ManageSdmNew.getListData("iki-remunerasi/get-akses-pegawai-kontrak-kinerja?pegawaiId=" + dataPegawai.id),
+                    ManageSdmNew.getListData("iki-remunerasi/get-pegawai-akses-kinerja?pegawaiId=" + dataPegawai.id),
                     ManageSdmNew.getListData("pegawai/get-pegawai-sdm-for-cred")
                 ]).then(function (res) {
                     $scope.listPegawai = res[0].data.data;
