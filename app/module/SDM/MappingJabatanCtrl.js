@@ -45,8 +45,8 @@ define(['initialize'], function (initialize) {
 
             $scope.getJabatan = (id) => {
                 $scope.jabatanDisabled = !id;
-                ManageSdm.getOrderList(`service/list-generic/?view=Jabatan&select=id,namaJabatan&criteria=statusEnabled,unitKerjaId&values=true,${id}&order=namaJabatan:asc`).then(res => {
-                    $scope.listJabatan = res.data;
+                ManageSdmNew.getListData(`jabatan/get-by-unit-kerja?unitKerjaId=${id}`).then(res => {
+                    $scope.listJabatan = res.data.data;
                 });
             }
 
@@ -65,7 +65,13 @@ define(['initialize'], function (initialize) {
             init();
 
             $scope.tambahMapping = () => {
+                reset()
+
                 $scope.unitKerjaDisabled = true;
+                $scope.item.unitKerja = null
+                $scope.jabatanDisabled = false
+                $scope.listJabatan = []
+                
                 $scope.dialogMapping.open().center();
             }
 
@@ -92,7 +98,7 @@ define(['initialize'], function (initialize) {
                     kdProfile: 0
                 }
 
-                if($scope.idDataMapping) dataSave.id = $scope.idDataMapping;
+                if ($scope.idDataMapping) dataSave.id = $scope.idDataMapping;
                 ManageSdmNew.saveData(dataSave, "sdm/save-map-jabatan-profesi").then(res => {
                     $scope.getDataMapping();
                     reset();
@@ -106,7 +112,7 @@ define(['initialize'], function (initialize) {
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
 
                 var confirm = $mdDialog.confirm()
-                    .title(`Apakah anda yakin akan menghapus Mapping Jabatan ${dataItem.jabatan}`)
+                    .title(`Apakah anda yakin akan menghapus Mapping Jabatan (${dataItem.jabatan})`)
                     .ariaLabel('Lucky day')
                     .targetEvent(e)
                     .ok('Ya')
@@ -131,6 +137,7 @@ define(['initialize'], function (initialize) {
                     namaJabatan: dataItem.jabatan,
                     id: dataItem.jabatanId,
                 }
+                $scope.listJabatan.push($scope.item.jabatan)
 
                 $scope.item.profesi = {
                     namaProfesi: dataItem.profesi,
