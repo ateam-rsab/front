@@ -5,8 +5,8 @@
       "urlDep": "module/RedirectPageCtrl"
     },
     {
-      "nameDep": "RedirectPageCtrl",
-      "urlDep": "app/module/AplikasiIT/InformasiProsesAktivitasDatabaseCtrl"
+      "nameDep": "InformasiProsesAktivitasDatabaseCtrl",
+      "urlDep": "module/AplikasiIT/InformasiProsesAktivitasDatabaseCtrl"
     },
     {
       "nameDep": "BankDarahCetakBarcodeCtrl",

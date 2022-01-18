@@ -3,6 +3,20 @@
 </md-toolbar>
 
 <div class="grid_12">
+    <div class="grid_2">
+        <label><strong>Bulan</strong></label>
+        <input style="width: 100%;" k-options="monthSelectorOptions" k-ng-model="item.tahun" kendo-date-picker
+            placeholer="mm-yyyy" k-format="'yyyy'" />
+    </div>
+    <div class="grid_1">
+        <label>&nbsp;</label>
+        <md-button class="md-raised md-primary medium-button" ng-click="getData()">
+            <span style="margin-right: 5px;">Cari</span>
+            <i class="fa fa-search"></i>
+        </md-button>
+    </div>
+</div>
+<div class="grid_12">
     <div kendo-grid k-data-source="dataSource" k-selectable="'row'" options="optGrid" k-ng-model="selectedData"></div>
 </div>
 

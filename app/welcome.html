@@ -1,4 +1,28 @@
 <style>
+    .container-wrapper {
+        /* display: block;
+        height: 100px;
+        width: 100%;
+        overflow: hidden; */
+        position: relative;
+    }
+
+    .panel {
+        position: relative;
+        margin: 2em auto;
+        width: 70%;
+        max-height: 100px;
+        overflow: hidden;
+        transition: max-height .5s ease;
+    }
+
+    .fade {
+        background: linear-gradient(to bottom, rgba(rgb(100,100,100), 0) 0%, rgba(rgb(100,100,100), 1) 75%);
+        height: 100px;
+        margin-top: -100px;
+        position: relative;
+    }
+
     .badge-2 {
         display: flex;
         align-items: center;
@@ -237,6 +261,26 @@
     .content-widget-verifikasi h1 span {
         font-size: 25px;
     }
+
+    .birthday-section {
+        display: flex;
+        background-color: rgb(236, 236, 236);
+        padding: 10px;
+    }
+
+    .birthday-section img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 20px;
+    }
+
+    .profile-identity {
+        display: flex;
+        flex-direction: column;
+        font-weight: bold;
+        justify-content: space-around;
+    }
 </style>
 
 <div ng-controller="WelcomeCtrl">
@@ -345,7 +389,8 @@
                     <strong>Info </strong> {{pesanPemberitahuan}}
                 </div>
                 <div class="notify">
-                    <strong>Info </strong> <strong>[LIVE] HUT RSAB Harapan Kita ke 42</strong> <a href="http://play.rsabhk.co.id/" target="_blank">Klik disini</a>
+                    <strong>Info </strong> <strong>[LIVE] HUT RSAB Harapan Kita ke 42</strong> <a
+                        href="http://play.rsabhk.co.id/" target="_blank">Klik disini</a>
                 </div>
                 <div class="notify notify-danger" ng-if="showNotif.messageAbsensi">
                     <strong>Info </strong> {{messageAbsensi}}
@@ -359,6 +404,23 @@
                     Instrumen Self Assessment Risiko COVID-19 <strong style="font-size:12px; font-style:italic">(<a
                             href="https://bit.ly/selfassessmentcovid19rsabhk" target="_blank">Klik disini</a>)</strong>
                 </div>
+
+                <div class="container-wrapper">
+                    <div class="panel">
+                        <div class="grid_6" ng-repeat="dataBirthday in listBirthdayData">
+                            <div class="birthday-section">
+                                <img src="{{dataBirthday.imgUrlData}}" alt="photo-profile">
+                                <div class="profile-identity">
+                                    <span class="name">{{dataBirthday.namaLengkap}}</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fade"></div>
+                </div>
+
+
             </div>
 
         </md-card-content>
@@ -455,7 +517,8 @@
 
                 <div class="list-video">
                     <ul class="list-2">
-                        <li ng-click="changeVideo('https://smart.rsabhk.co.id:2222/vid/ultah-jan-1-9.mp4', ' Pegawai Ulang Tahun 1 s/d 9 Januari 2022')">
+                        <li
+                            ng-click="changeVideo('https://smart.rsabhk.co.id:2222/vid/ultah-jan-1-9.mp4', ' Pegawai Ulang Tahun 1 s/d 9 Januari 2022')">
                             Pegawai Ulang Tahun 1 s/d 9 Januari 2022
                         </li>
                         <li
@@ -487,8 +550,9 @@
                     Your browser does not support HTML video.
                 </video>
                 <video id="my_video_1" class="video-js vjs-fluid vjs-default-skin" controls preload="auto"
-                data-setup='{}'>
-                  <source src="https://mn-l.mncdn.com/kanal24/smil:kanal24.smil/playlist.m3u8" type="application/x-mpegURL">
+                    data-setup='{}'>
+                    <source src="https://mn-l.mncdn.com/kanal24/smil:kanal24.smil/playlist.m3u8"
+                        type="application/x-mpegURL">
                 </video>
                 <!-- <video src="http://172.16.201.201:8080/hls/hello.m3u8" type="application/x-mpegURL" 
                 autoplay loop controls></video> -->

@@ -1438,7 +1438,7 @@ define(['initialize'], function (initialize) {
                     counterid: parseInt($scope.counterID)
                 }
 
-                manageLogistikPhp.saveconsisobatbebas(objSave).then(function (e) {
+                manageLogistikPhp.postbridgingconsisd(objSave).then(function (e) {
 
                 })
             }

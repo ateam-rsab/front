@@ -61,6 +61,12 @@ define(['initialize'], function (initialize) {
                 ],
             };
 
+            $scope.item.tahun = new Date();
+            $scope.monthSelectorOptions = {
+                start: "decade",
+                depth: "decade"
+            };
+
             let init = () => {
                 manageSdmNew.getListData("service/list-generic/?view=UnitKerjaPegawai&select=id,name&criteria=statusEnabled,id&values=true,(58;59;60;61;62;63;82)&order=name:asc").then(res => {
                     $scope.listUnitKerja = res.data;
@@ -75,8 +81,9 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.getData = () => {
+                let tahun = dateHelper.toTimeStamp($scope.item.tahun);
                 $scope.isRouteLoading = true;
-                manageSdmNew.getListData(`iki-remunerasi/get-target-skor-kelompok-kerja?tahun=1640768793107`).then((res) => {
+                manageSdmNew.getListData(`iki-remunerasi/get-target-skor-kelompok-kerja?tahun=${tahun}`).then((res) => {
                     for (let i = 0; i < res.data.data.length; i++) {
                         res.data.data[i].no = i + 1;
                     }

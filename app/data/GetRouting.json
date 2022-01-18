@@ -25378,6 +25378,10 @@
         "define": "Service"
       },
       {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
         "module": "LoginServices",
         "define": "LoginService"
       },

@@ -1,0 +1,10 @@
+<md-toolbar md-scroll-shrink class="shadow">
+    <div class="md-toolbar-tools">Informasi Proses Aktivitas Database</div>
+</md-toolbar>
+
+<div class="grid_12">
+    <div id="kGrid" kendo-grid k-data-source="dataSource" k-options="optGrid"
+        k-selectable="'row'" k-sortable="'true'" k-pageable="true" k-ng-model="dataSelected"
+        ng-click="klik(dataSelected)">
+    </div>
+</div>
