@@ -38,7 +38,7 @@ define(['initialize'], function (initialize) {
             }
 
             let getListPegawai = () => {
-                ManageSdmNew.getListData("iki-remunerasi/get-akses-pegawai-kontrak-kinerja?pegawaiId=" + $scope.dataLogin.id).then((res) => {
+                ManageSdmNew.getListData("iki-remunerasi/get-pegawai-akses-kinerja?pegawaiId=" + $scope.dataLogin.id).then((res) => {
                     $scope.showIsSinglePegawai = res.data.data.length === 1;
                     $scope.listPegawaiLength = res.data.data.length;
                     $scope.listPegawai = res.data.data;
