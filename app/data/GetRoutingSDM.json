@@ -648,30 +648,6 @@
     ]
   },
   {
-    "name": "MappingJabatan",
-    "url": "/MappingJabatan",
-    "templateurl": "module/SDM/MappingJabatan.html",
-    "controller": "MappingJabatanCtrl",
-    "deps": [
-      {
-        "module": "Services",
-        "define": "Service"
-      },
-      {
-        "module": "LoginServices",
-        "define": "LoginService"
-      },
-      {
-        "module": "SdmService",
-        "define": "SdmService"
-      },
-      {
-        "module": "SarprasService",
-        "define": "SarprasService"
-      }
-    ]
-  },
-  {
     "name": "DataFormasiJabatan",
     "url": "/DataFormasiJabatan",
     "templateurl": "module/SDM/DataFormasiJabatan.html",
@@ -6496,6 +6472,30 @@
       {
         "module": "SdmService",
         "define": "SdmService"
+      }
+    ]
+  },
+  {
+    "name": "MappingJabatan",
+    "url": "/MappingJabatan",
+    "templateurl": "module/SDM/MappingJabatan.html",
+    "controller": "MappingJabatanCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "SarprasService",
+        "define": "SarprasService"
       }
     ]
   },

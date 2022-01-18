@@ -8,31 +8,29 @@
 
 </div>
 
-<div kendo-window="dialogMapping" k-title="'VIEW DATA'" k-width="800" k-visible="false" k-on-open="win2visible = true" k-on-close="win2visible = false">
-
+<div kendo-window="dialogMapping" k-title="'VIEW DATA'" k-width="800" k-visible="false" k-on-open="win2visible = true"
+    k-on-close="win2visible = false">
     <div class="panel panel-default container_12">
-
         <div class="grid_4" ng-show="unitKerjaDisabled">
             <label>Unit Kerja</label>
             <input style="width: 100%;" kendo-combo-box k-ng-model="item.unitKerja" k-data-text-field="'name'"
-                k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitKerja"  k-on-change="getJabatan(item.unitKerja.id)" />
+                k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitKerja"
+                k-on-change="getJabatan(item.unitKerja.id)" />
 
         </div>
-
         <div class="grid_4">
             <label>Jabatan</label>
             <input style="width: 100%;" kendo-combo-box k-ng-model="item.jabatan" k-data-text-field="'namaJabatan'"
-                k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJabatan" ng-disabled="jabatanDisabled"/>
+                k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJabatan"
+                ng-disabled="jabatanDisabled" />
 
         </div>
-
         <div class="grid_4">
             <label>Profesi</label>
             <input style="width: 100%;" kendo-combo-box k-ng-model="item.profesi" k-data-text-field="'namaProfesi'"
                 k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listProfesi" />
 
         </div>
-
         <div class="k-edit-buttons k-state-default" style="margin-top:10px">
             <div class="grid_10"></div>
             <div class="grid_2" ng-if="!isDetail">

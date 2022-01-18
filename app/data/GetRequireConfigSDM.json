@@ -93,10 +93,6 @@
       "urlDep": "module/SDM/StatusPermohonanCutiCtrl"
     },
     {
-      "nameDep": "MappingJabatanCtrl",
-      "urlDep": "module/SDM/MappingJabatanCtrl"
-    },
-    {
       "nameDep": "DataPegawaiCtrl",
       "urlDep": "module/SDM/DataPegawaiCtrl"
     },
@@ -1211,6 +1207,10 @@
     {
       "nameDep": "MappingHariLiburCtrl",
       "urlDep": "module/SDM/MappingHariLiburCtrl"
+    },
+    {
+      "nameDep": "MappingJabatanCtrl",
+      "urlDep": "module/SDM/MappingJabatanCtrl"
     },
     {
       "nameDep": "FeeForServiceCtrl",
