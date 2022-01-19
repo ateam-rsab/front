@@ -553,6 +553,10 @@
       "urlDep": "module/SDM/MonitoringVisiteDokterCtrl"
     },
     {
+      "nameDep": "MonitoringTargetSkorDokterCtrl",
+      "urlDep": "module/SDM/Remunerasi/MonitoringTargetSkorDokterCtrl"
+    },
+    {
       "nameDep": "MasterUangHarianCtrl",
       "urlDep": "module/SDM/MasterUangHarianCtrl"
     },
@@ -875,10 +879,6 @@
     {
       "nameDep": "MasterProfesiTKLCtrl",
       "urlDep": "module/SDM/Remunerasi/MasterProfesiTKLCtrl"
-    },
-    {
-      "nameDep": "MonitoringTargetSkorDokterCtrl",
-      "urlDep": "module/SDM/Remunerasi/MonitoringTargetSkorDokterCtrl"
     },
     {
       "nameDep": "MasterProdukTKLCtrl",

@@ -8,14 +8,14 @@
         <input style="width: 100%;" k-options="monthSelectorOptions" k-ng-model="item.tahun" kendo-date-picker
             placeholer="mm-yyyy" k-format="'yyyy'" />
     </div>
-    <div class="grid_1">
-        <label>&nbsp;</label>
+    <div class="grid_1" style="margin-top: 1.7em;">
         <md-button class="md-raised md-primary medium-button" ng-click="getData()">
             <span style="margin-right: 5px;">Cari</span>
             <i class="fa fa-search"></i>
         </md-button>
     </div>
 </div>
+
 <div class="grid_12">
     <div kendo-grid k-data-source="dataSource" k-selectable="'row'" options="optGrid" k-ng-model="selectedData"></div>
 </div>
@@ -33,7 +33,6 @@
                         k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" ng-show="!isUpdate"
                         k-on-change="getSubUnitKerja(model.unitKerja.id)" k-data-source="listUnitKerja" />
                 </div>
-
                 <div class="grid_6">
                     <strong style="display: block;padding-bottom: 10px;">Sub Unit Kerja</strong>
                     <label ng-if="isUpdate">{{model.subunitKerja}}</label>
@@ -46,7 +45,6 @@
                     <label c-label item="item">Skor</label>
                     <input c-text-box type="input" class="k-textbox" ng-model="model.totalTargetSkor" />
                 </div>
-
                 <div class="grid_6">
                     <label c-label item="item">TMT</label>
                     <input style="width: 100%" kendo-date-picker k-ng-model="model.tmt" placeholer="Hari-Bln-Thn"
