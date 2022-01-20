@@ -40,6 +40,8 @@ define(['initialize'], function (initialize) {
                         pageSize: 10
                     });
                     $scope.isRouteLoading = false;
+                }, (error) => {
+                    $scope.isRouteLoading = false;
                 })
             }
 
@@ -105,6 +107,8 @@ define(['initialize'], function (initialize) {
                     reset();
                     $scope.dialogMapping.close();
                     $scope.isRouteLoading = false;
+                }, (error) => {
+                    $scope.isRouteLoading = false;
                 })
             }
 
@@ -123,6 +127,8 @@ define(['initialize'], function (initialize) {
                     ManageSdmNew.saveData({}, `sdm/delete-map-jabatan-profesi?id=${dataItem.id}`).then(res => {
                         $scope.isRouteLoading = false;
                         $scope.getDataMapping();
+                    }, (error) => {
+                        $scope.isRouteLoading = false;
                     })
                 }, function () {
 
