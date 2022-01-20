@@ -5,7 +5,6 @@
 <div class="grid_12">
     <kendo-grid id="grid" data-source="dataSourceMapping" options="optGridDataMapping" k-pageable="'true'"
         k-sortable="'true'" k-resizable="'true'" k-selectable="'row'"></kendo-grid>
-
 </div>
 
 <div kendo-window="dialogMapping" k-title="'VIEW DATA'" k-width="800" k-visible="false" k-on-open="win2visible = true"
@@ -41,7 +40,8 @@
             </div>
         </div>
     </div>
-</div>
-<div class="grid_12" style="margin-top:60px">
-    <div ng-include='" ../app/module/Shared/TemplateLoading" '></div>
+
+    <div class="grid_12" style="margin-top:60px">
+        <div ng-include='" ../app/module/Shared/TemplateLoading" '></div>
+    </div>
 </div>
