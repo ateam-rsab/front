@@ -214,7 +214,12 @@ define(['Configuration'], function (config) {
                                     window.messageContainer.error(msgError);
                                 }
                             } else {
-                                msgError = response.statusText;
+                                if (response.data && response.data.messages && response.data.messages.Message) {
+                                    msgError = response.data.messages.Message;
+                                } else {
+                                    msgError = response.statusText;
+                                }
+
                                 window.messageContainer.error(msgError);
                             }
                         }
@@ -465,13 +470,13 @@ define(['Configuration'], function (config) {
                                         if (element === undefined) {
                                             item[key] = null;
                                         } else
-                                        if (element === 0 || element === null)
-                                            item[key] = undefined;
-                                        else
-                                        if (isNaN(Date.parse(element)))
-                                            item[key] = new Date(element)
-                                        else
-                                            item[key] = Date.parse(element);
+                                            if (element === 0 || element === null)
+                                                item[key] = undefined;
+                                            else
+                                                if (isNaN(Date.parse(element)))
+                                                    item[key] = new Date(element)
+                                                else
+                                                    item[key] = Date.parse(element);
 
                                     }
                                 } else {
@@ -737,7 +742,7 @@ define(['Configuration'], function (config) {
                                     return e.messages["Total-Count"];
                                 return undefined;
                             },
-                            totalPages: function (e) {}
+                            totalPages: function (e) { }
                         }
 
                     });
@@ -1347,45 +1352,45 @@ define(['Configuration'], function (config) {
                         }
                     });
                 else
-                if (url === undefined) {
-                    var select = "";
-                    for (var i in fields) {
-                        if (select === "")
-                            select += i;
-                        else
-                            select += "," + i;
-                    }
-                    return new kendo.data.DataSource({
-                        serverFiltering: isServer,
-                        serverPaging: true,
-                        pageSize: 10,
-                        transport: {
-                            read: {
-                                type: 'GET',
-                                url: "Super/ListTable/?view=" + model + "&select=" + select,
-                                dataType: 'json',
-                                beforeSend: function (req) {
+                    if (url === undefined) {
+                        var select = "";
+                        for (var i in fields) {
+                            if (select === "")
+                                select += i;
+                            else
+                                select += "," + i;
+                        }
+                        return new kendo.data.DataSource({
+                            serverFiltering: isServer,
+                            serverPaging: true,
+                            pageSize: 10,
+                            transport: {
+                                read: {
+                                    type: 'GET',
+                                    url: "Super/ListTable/?view=" + model + "&select=" + select,
+                                    dataType: 'json',
+                                    beforeSend: function (req) {
 
-                                }
+                                    }
+                                },
                             },
-                        },
-                        schema: {
-                            model: {
-                                fields: fields
+                            schema: {
+                                model: {
+                                    fields: fields
+                                }
                             }
-                        }
-                    });
+                        });
 
-                } else
-                    return new kendo.data.DataSource({
-                        serverFiltering: isServer,
-                        data: data,
-                        schema: {
-                            model: {
-                                fields: fields
+                    } else
+                        return new kendo.data.DataSource({
+                            serverFiltering: isServer,
+                            data: data,
+                            schema: {
+                                model: {
+                                    fields: fields
+                                }
                             }
-                        }
-                    });
+                        });
             };
         }
     ]);
@@ -1509,7 +1514,7 @@ define(['Configuration'], function (config) {
 //                 }
 //                 deffer.resolve(response);
 //             }, function errorCallback(response) {
-//                 //disini yah pak handlenya 
+//                 //disini yah pak handlenya
 //                  var msgError = "";
 
 //                 if(response.status === 403)
@@ -1523,7 +1528,7 @@ define(['Configuration'], function (config) {
 //                            msgError = response.data.fieldErrors[i].message;
 //                            window.messageContainer.error(msgError);
 //                        }
-//                    } 
+//                    }
 //                    else {
 //                        msgError = response.statusText;
 //                        window.messageContainer.error(msgError);
