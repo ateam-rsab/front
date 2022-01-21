@@ -3,10 +3,6 @@
         "name": "Master Data SDM",
         "children": [
             {
-                "name": "Mapping Jabatan",
-                "link": "#/MappingJabatan"
-            },
-            {
                 "name": "Master Uraian Tugas Pegawai",
                 "link": "#/MappingUraianTugas"
             },
@@ -17,6 +13,10 @@
             {
                 "name": "Master Jabatan",
                 "link": "#/MasterJabatanRev"
+            },
+            {
+                "name": "Mapping Jabatan",
+                "link": "#/MappingJabatan"
             },
             {
                 "name": "Master Unit Kerja",
@@ -373,6 +373,10 @@
             {
                 "name": "Target Pelayanan Jam Kerja",
                 "link": "#/TargetPelayananJamKerja"
+            },
+            {
+                "name": "Monitoring Target Skor Dokter",
+                "link": "#/MonitoringTargetSkorDokter"
             },
             {
                 "name": "Kontrak Kinerja Individu",

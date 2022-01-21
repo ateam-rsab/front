@@ -4,8 +4,8 @@ define(['initialize'], function (initialize) {
         function ($q, cacheHelper, $rootScope, $scope, ModelItem, $state, ManageSdm, ManageSdmNew, DaftarPegawaiService, dataHelper, FindSdm, dateHelper, $timeout, cetakHelper, $mdDialog) {
             $scope.item = {};
             $scope.isRouteLoading = false;
-            // $scope.jabatanDisabled = true;
             $scope.unitKerjaDisabled = false;
+
             $scope.optGridDataMapping = {
                 toolbar: [
                     { text: "add", name: "Add", template: '<button ng-click="tambahMapping()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-plus"></span>Tambah</button>' },
@@ -40,6 +40,8 @@ define(['initialize'], function (initialize) {
                         pageSize: 10
                     });
                     $scope.isRouteLoading = false;
+                }, (error) => {
+                    $scope.isRouteLoading = false;
                 })
             }
 
@@ -62,6 +64,7 @@ define(['initialize'], function (initialize) {
                     $scope.listProfesi = res.data;
                 });
             }
+
             init();
 
             $scope.tambahMapping = () => {
@@ -71,7 +74,7 @@ define(['initialize'], function (initialize) {
                 $scope.item.unitKerja = null
                 $scope.jabatanDisabled = false
                 $scope.listJabatan = []
-                
+
                 $scope.dialogMapping.open().center();
             }
 
@@ -104,6 +107,8 @@ define(['initialize'], function (initialize) {
                     reset();
                     $scope.dialogMapping.close();
                     $scope.isRouteLoading = false;
+                }, (error) => {
+                    $scope.isRouteLoading = false;
                 })
             }
 
@@ -122,6 +127,8 @@ define(['initialize'], function (initialize) {
                     ManageSdmNew.saveData({}, `sdm/delete-map-jabatan-profesi?id=${dataItem.id}`).then(res => {
                         $scope.isRouteLoading = false;
                         $scope.getDataMapping();
+                    }, (error) => {
+                        $scope.isRouteLoading = false;
                     })
                 }, function () {
 

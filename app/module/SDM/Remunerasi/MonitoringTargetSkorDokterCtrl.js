@@ -6,6 +6,7 @@ define(['initialize'], function (initialize) {
             $scope.model = {};
             $scope.isRouteLoading = false;
             $scope.isUpdate = false;
+
             $scope.optGrid = {
                 toolbar: [{
                     name: "create", text: "Input Baru",
@@ -53,7 +54,6 @@ define(['initialize'], function (initialize) {
                         command: [{
                             text: "Update Skor",
                             click: updateSkor,
-                            // imageClass: "k-icon k-i-",
                         }],
                         title: "",
                         width: 70,
@@ -72,6 +72,7 @@ define(['initialize'], function (initialize) {
                     $scope.listUnitKerja = res.data;
                 })
             }
+
             init();
 
             $scope.getSubUnitKerja = (id) => {
@@ -94,6 +95,7 @@ define(['initialize'], function (initialize) {
                     $scope.isRouteLoading = false;
                 });
             }
+
             $scope.getData();
 
             function updateSkor(e) {
@@ -105,22 +107,24 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.confirmUpdate = (e) => {
-                if(!$scope.model.noRec && !$scope.model.unitKerja) {
+                if (!$scope.model.noRec && !$scope.model.unitKerja) {
                     toastr.info("harap pilih Unit Kerja");
                     return;
                 }
 
-                if(!$scope.model.noRec && !$scope.model.subUnitKerja) {
+                if (!$scope.model.noRec && !$scope.model.subUnitKerja) {
                     toastr.info("harap pilih Sub Unit Kerja");
                     return;
                 }
 
-                if(!$scope.model.noRec && !$scope.model.tmt) {
+                if (!$scope.model.noRec && !$scope.model.tmt) {
                     toastr.info("Harap pilih TMT");
                     return;
                 }
+
                 $scope.popup.close();
                 $scope.isUpdate = true;
+
                 var confirm = $mdDialog
                     .confirm()
                     .title(`Apakah anda yakin ${$scope.model.noRec ? 'Update' : 'Tambah'} data`)
@@ -132,6 +136,7 @@ define(['initialize'], function (initialize) {
 
                 $mdDialog.show(confirm).then(function () {
                     $scope.isRouteLoading = true;
+
                     let dataUpdate = {
                         statusEnabled: true,
                         unitKerjaPegawai: {
@@ -144,7 +149,7 @@ define(['initialize'], function (initialize) {
                         tmt: dateHelper.toTimeStamp($scope.model.tmt),
                     }
 
-                    if($scope.model.noRec) {
+                    if ($scope.model.noRec) {
                         dataUpdate.noRec = $scope.model.noRec;
                     }
 
