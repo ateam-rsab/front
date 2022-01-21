@@ -37,13 +37,27 @@
     ._md.md-open-menu-container {
         z-index: 1000;
     }
+
+    .wrapper-image-profile {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .image-profile {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        user-select: none;
+        /* pointer-events: none; */
+        cursor: pointer;
+    }
 </style>
 <div ng-controller="HeaderCtrl">
-    <div class="container" style="padding:0; margin:0;display: flex; justify-content:
-        space-between;">
+    <div class="container" style="padding:0; margin:0;display: flex; justify-content:space-between;">
         <div id="logo-bar">
             <i class="fa fa-bars fa-2x" aria-hidden="true" ng-click="showMenu()"></i>
             <!-- <div class="logo-content"> -->
+                
             <img src="../../../app/images/logo/smart-rsab-logo.png" style="height: 28px; margin:0 10px;cursor: pointer;"
                 alt="logo-smart" ng-click="goToLink('#/home')">
             <!-- <span class="title" style="color: white;margin-left:27px">SMART<span
@@ -70,16 +84,20 @@
             <i class="fa fa-bell" aria-hidden="true" ng-click='open()'></i>
         </span> -->
         <div>
-            <div class="grid_6" style="margin-top: 16px;font-weight: bolder;" ng-click="goToLink('#/ProfilePegawai')">
+            <div class="grid_6" style="font-weight: bolder;display: flex;align-items: center;height: 100%;" ng-click="goToLink('#/ProfilePegawai')">
                 <label class="label-user">Hai, {{pegawai.namaLengkap}}</label>
             </div>
             <div class="grid_6">
                 <md-menu>
-
-                    <md-button style="font-size: 30px;" class="md-fab-mini md-icon-button"
+<!-- <i class="fa fa-user-circle-o"></i> -->
+                    <a class="wrapper-image-profile" ng-mouseenter="$mdMenu.open()">
+                        <i ng-if="!imgProfile" class="fa fa-user-circle-o" style="font-size: 30px;"></i>
+                        <img id="idImageProfile" src="{{imgProfile}}" ng-if="imgProfile"  alt="image-profile" class="image-profile">
+                    </a>
+                    <!-- <md-button style="font-size: 30px;" class="md-fab-mini md-icon-button"
                         ng-mouseenter="$mdMenu.open()" ng-click="$mdMenu.open()">
-                        <i class="fa fa-user-circle-o"></i>
-                    </md-button>
+                        <img src="{{imgProfile}}" alt="image-profile" class="image-profile">
+                    </md-button> -->
                     <md-menu-content width="4" height="10" ng-mouseleave="$mdMenu.close()">
                         <md-menu-item>
                             <md-button ng-click="goToLink('/app/Logout')">

@@ -3,6 +3,13 @@
 </md-toolbar>
 
 <div class="grid_12">
+    <div class="grid_3">
+        <label for="freshRate"><strong>Refresh Rate</strong> / (second)</label>
+        <input c-text-box type="input" style="text-align: right" filter="" class="k-textbox" ng-model="intervalRefresh" />
+    </div>
+</div>
+
+<div class="grid_12">
     <div id="kGrid" kendo-grid k-data-source="dataSource" k-options="optGrid"
         k-selectable="'row'" k-sortable="'true'" k-pageable="true" k-ng-model="dataSelected"
         ng-click="klik(dataSelected)">

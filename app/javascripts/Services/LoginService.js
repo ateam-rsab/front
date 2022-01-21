@@ -4,6 +4,7 @@ define(['Configuration'], function(setting) {
     var baseUrlApiAction = setting.baseApiPostData;
     var baseApiPostData = setting.baseApiPostData;
     var urlDataMaster = setting.urlDataMaster;
+    var baseUrlSDM = setting.baseUrlActionSDM;
     var baseProfileMenu = setting.baseProfileMenu
     services.factory('LoginService', ['$location', '$resource', '$http', 'R',
         function($location, $resource, $http, r) {
@@ -88,6 +89,9 @@ define(['Configuration'], function(setting) {
                     var hasil = $http.post(setting.baseUrlLogout, datauserlogin, headersPost);
 
                     return hasil;
+                },
+                getAvatar: function(id, token) {
+                    return $http.get(`${setting.baseUrlActionSDM}pegawai/get-avatar?pegawaiId=${id}&X-AUTH-TOKEN=${token}`);
                 },
                 getBaseProfileMenu: function() {
                     return baseProfileMenu ;

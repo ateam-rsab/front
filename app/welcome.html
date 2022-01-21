@@ -1,26 +1,30 @@
 <style>
+    .birthday-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
     .container-wrapper {
-        /* display: block;
-        height: 100px;
+        display: block;
+        height: 17vh;
         width: 100%;
-        overflow: hidden; */
-        position: relative;
-    }
-
-    .panel {
-        position: relative;
-        margin: 2em auto;
-        width: 70%;
-        max-height: 100px;
         overflow: hidden;
-        transition: max-height .5s ease;
     }
 
-    .fade {
-        background: linear-gradient(to bottom, rgba(rgb(100,100,100), 0) 0%, rgba(rgb(100,100,100), 1) 75%);
-        height: 100px;
-        margin-top: -100px;
-        position: relative;
+    .button-birthday {
+        font-weight: bolder;
+        font-size: 12px;
+        padding: 15px;
+        cursor: pointer;
+        width: 100%;
+        user-select: none;
+        transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+
+    .button-birthday:hover {
+        background-color: #303030;
+        color: white;
+        border-radius: 5px;
     }
 
     .badge-2 {
@@ -269,6 +273,8 @@
     }
 
     .birthday-section img {
+        pointer-events: none;
+        user-select: none;
         width: 50px;
         height: 50px;
         border-radius: 50%;
@@ -405,8 +411,20 @@
                             href="https://bit.ly/selfassessmentcovid19rsabhk" target="_blank">Klik disini</a>)</strong>
                 </div>
 
-                <div class="container-wrapper">
-                    <div class="panel">
+                <div class="birthday-wrapper" ng-if="listBirthdayData.length !== 0">
+                    <div class="grid_12">
+                        <div class="grid_3">
+                            <a class="button-birthday">Lihat Semua</a>
+                        </div>
+                        <div class="grid_9">
+                            <marquee behavior="scroll" direction="left" scrollamount="10" style="font-weight: bolder;">
+                                Selamat Hari Ulang Tahun kepada Pegawai RSAB yang jatuh pada hari ini ({{dateNow}}). Wish You All The Best ❤
+                            </marquee>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="container-wrapper">
                         <div class="grid_6" ng-repeat="dataBirthday in listBirthdayData">
                             <div class="birthday-section">
                                 <img src="{{dataBirthday.imgUrlData}}" alt="photo-profile">
@@ -416,9 +434,12 @@
 
                             </div>
                         </div>
+
+
                     </div>
-                    <div class="fade"></div>
+                   
                 </div>
+
 
 
             </div>
@@ -546,7 +567,7 @@
                 </div>
 
                 <video name="media" id="video-kampanye" src="https://smart.rsabhk.co.id:2222/vid/zona-integritas.mp4"
-                    autoplay loop controls>
+                     loop controls>
                     Your browser does not support HTML video.
                 </video>
                 <video id="my_video_1" class="video-js vjs-fluid vjs-default-skin" controls preload="auto"

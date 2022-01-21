@@ -38,70 +38,6 @@ require(['LoginService', 'core', "kendo.angular", 'Configuration', 'Helper', 'jQ
                             namaUser: userName,
                             kataSandi: password
                         }).then(function (data) {
-                                // let keyEnc = {
-                                //     'a': "k",
-                                //     'b': "l",
-                                //     'c': "m",
-                                //     'd': "n",
-                                //     'e': "o",
-                                //     'f': "p",
-                                //     'g': "q",
-                                //     'h': "r",
-                                //     'i': "s",
-                                //     'j': "t",
-                                //     'k': "u",
-                                //     'l': "v",
-                                //     'm': "w",
-                                //     'n': "x",
-                                //     'o': "y",
-                                //     'p': "z",
-                                //     'q': "a",
-                                //     'r': "b",
-                                //     's': "c",
-                                //     't': "d",
-                                //     'u': "e",
-                                //     'v': "f",
-                                //     'w': "g",
-                                //     'x': "h",
-                                //     'y': "i",
-                                //     'z': "j",
-                                //     "1": "2",
-                                //     "2": "3",
-                                //     "3": "4",
-                                //     "4": "5",
-                                //     "5": "6",
-                                //     "6": "7",
-                                //     "7": "8",
-                                //     "8": "9",
-                                //     "9": "0",
-                                //     "0": "1",
-                                //     "A": "Q",
-                                //     "B": "W",
-                                //     "C": "E",
-                                //     "D": "R",
-                                //     "E": "T",
-                                //     "F": "Y",
-                                //     "G": "U",
-                                //     "H": "I",
-                                //     "I": "O",
-                                //     "J": "P",
-                                //     "K": "A",
-                                //     "L": "S",
-                                //     "M": "D",
-                                //     "N": "F",
-                                //     "O": "G",
-                                //     "P": "H",
-                                //     "Q": "J",
-                                //     "R": "K",
-                                //     "S": "L",
-                                //     "T": "Z",
-                                //     "U": "X",
-                                //     "V": "C",
-                                //     "W": "V",
-                                //     "X": "B",
-                                //     "Y": "N",
-                                //     "Z": "M",
-                                // };
 
                                 if (data.data.messages.message) {
                                     window.messageContainer.error(data.data.messages.message);
@@ -121,6 +57,12 @@ require(['LoginService', 'core', "kendo.angular", 'Configuration', 'Helper', 'jQ
                                     // endWaktuLogin : new Date(new Date().getTime() + ( 2 * 60 * 1000))
                                     endWaktuLogin: new Date(new Date().getTime() + (1 * 24 * 60 * 60 * 1000))
                                 };
+
+                                loginService.getAvatar(data.data.data.pegawai.id, data.data.messages["X-AUTH-TOKEN"]).then(res => {
+                                    console.log(res.data);
+                                    localStorage.setItem('imgProfile', res.data.data);
+                                    $('#idImageProfile').attr('src', res.data.data);
+                                })
 
                                 window.localStorage.setItem('datauserlogin', JSON.stringify(dataUserLogin));
                                 window.localStorage.setItem('pegawai', JSON.stringify(data.data.data.pegawai));

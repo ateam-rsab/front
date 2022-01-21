@@ -2,6 +2,7 @@ define(['initialize'], function (initialize) {
     initialize.controller('WelcomeCtrl', ['$scope', '$state', 'R', '$rootScope', 'MenuService', 'LoginHelper', '$mdDialog', 'DateHelper', 'ManageSdmNew',
         function ($scope, $state, r, $rootScope, MenuService, LoginHelper, $mdDialog, DateHelper, ManageSdmNew) {
             $scope.showSIPExpired = false;
+            $scope.listBirthdayData = [];
             $scope.messageAbsensi = "Tidak ada";
             let dataLogin = JSON.parse(localStorage.getItem("pegawai"));
 
@@ -10,6 +11,16 @@ define(['initialize'], function (initialize) {
             if (dataLogin.kategoryPegawai && remunId.includes(dataLogin.kategoryPegawai.id)) {
                 $scope.isRemun = true;
             }
+            $scope.dateNow = DateHelper.formatDate(new Date(), "DD MMMM YYYY")
+            $('.button-birthday').on('click', (e) => {
+                // console.log(e)
+                $('.container-wrapper').css('overflow', 'auto');
+            })
+
+            // // /jasamedika-sdm/pegawai/get-avatar?pegawaiId=22349
+            // ManageSdmNew.getListData("pegawai/get-avatar?pegawaiId=" + dataLogin.id).then(res => {
+            //     localStorage.setItem('profile', res.data.data)
+            // })
 
             $scope.showNotif = {
                 changePassword: false,
@@ -23,9 +34,6 @@ define(['initialize'], function (initialize) {
                         res.data.data[i].imgUrlData = res.data.data[i].imgUrlData ? res.data.data[i].imgUrlData : "../app/images/user.png"
                     }
                     $scope.listBirthdayData = res.data.data;
-
-                    $scope.tempIMG = $scope.listBirthdayData[3].imgUrlData;
-                    console.log($scope.listBirthdayData)
                 })
             }
             $scope.getBirthdayData();

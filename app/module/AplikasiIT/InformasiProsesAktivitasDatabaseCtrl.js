@@ -3,11 +3,8 @@ define(['initialize'], function (initialize) {
   initialize.controller('InformasiProsesAktivitasDatabaseCtrl', ['$q', 'DateHelper', 'ManageSdmNew', '$state', '$rootScope', '$scope', '$mdDialog',
     function ($q, dateHelper, manageSdmNew, $state, $rootScope, $scope, $mdDialog) {
       $scope.item = {};
+      $scope.intervalRefresh = 120; // second
       $scope.optGrid = {
-        toolbar: [{
-          name: "create", text: "Input Baru",
-          template: '<button ng-click="addData()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah</button>'
-        }],
         filterable: {
           extra: false,
           operators: {
@@ -78,7 +75,7 @@ define(['initialize'], function (initialize) {
             $scope.isRouteLoading = false;
             init();
           });
-        }, () => {});
+        }, () => { });
       }
 
       function cancel(e) {
@@ -101,10 +98,17 @@ define(['initialize'], function (initialize) {
             $scope.isRouteLoading = false;
             init();
           });
-        }, () => {});
+        }, () => { });
 
       }
-      let init = () => {
+
+      $scope.refresh = () => {
+        setTimeout(() => {
+          $scope.getData();
+        }, $scope.intervalRefresh * 1000)
+      }
+
+      $scope.getData = () => {
         manageSdmNew.getListData('integrasi/pg-stat-activity/in-state-for-minutes').then(res => {
           for (let i = 0; i < res.data.data.length; i++) {
             res.data.data[i].no = i + 1;
@@ -113,7 +117,13 @@ define(['initialize'], function (initialize) {
             data: res.data.data,
             pageSize: 100
           })
+          $scope.refresh();
         })
+      }
+
+      let init = () => {
+        $scope.refresh();
+        $scope.getData(); 
       }
       init();
     }
