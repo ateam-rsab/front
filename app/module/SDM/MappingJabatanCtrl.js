@@ -60,7 +60,7 @@ define(['initialize'], function (initialize) {
                     $scope.listUnitKerja = res.data;
                 });
 
-                ManageSdm.getOrderList("service/list-generic/?view=Profesi&select=id,namaProfesi&criteria=statusEnabled&values=true&order=namaProfesi:asc").then(res => {
+                ManageSdmNew.getListData("service/list-generic/?view=Profesi&select=id,namaProfesi&criteria=statusEnabled&values=true&order=namaProfesi:asc").then(res => {
                     $scope.listProfesi = res.data;
                 });
             }
