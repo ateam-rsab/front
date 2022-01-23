@@ -1,16 +1,10 @@
 <style>
     .container-table {
-        /* position: absolute; */
-        /* top: 50%;
-        left: 50%; */
-        /* transform: translate(-50%, -50%); */
         width: 100%;
         display: flex;
     }
 
     table.table-custom {
-        /* width: 800px; */
-        /* position: unset; */
         display: block;
         border-collapse: collapse;
         max-height: 400px;
@@ -20,7 +14,6 @@
 
     table.table-custom thead,
     table.table-custom tfoot {
-        /* position: sticky; */
         z-index: 1;
         top: 0;
     }
@@ -39,9 +32,7 @@
     table.table-custom th,
     table.table-custom td {
         padding: 15px;
-        /* background-color: rgba(119, 119, 119, 0.637); */
         color: #fff;
-        /* border: 1px solid #ddd; */
     }
 
     table.table-custom td {
@@ -75,7 +66,6 @@
 
     table.table-custom tbody td:hover:before {
         content: "";
-        /* position: absolute; */
         left: 0;
         right: 0;
         top: -9999px;
@@ -94,12 +84,11 @@
         background-color: rgb(204, 204, 204);
         color: rgb(248, 248, 248);
         font-weight: bolder;
-        /* transform: ; */
     }
 </style>
 
 <md-toolbar md-scroll-shrink class="shadow">
-    <div class="md-toolbar-tools">Logbook Kinerja {{namaJenisPegawai}}</div>
+    <div class="md-toolbar-tools">Logbook Skor Kinerja {{namaJenisPegawai}}</div>
 </md-toolbar>
 
 <div class="grid_12">
@@ -124,7 +113,7 @@
     <table class="table-custom">
         <thead>
             <th scope="col" style="min-width: 200px;">Nama Kegiatan</th>
-            <th scope="col" style="min-width: 50px; text-align: center;">Jenis Pelayanan</th>
+            <th ng-show="isNakesLain" scope="col" style="min-width: 50px; text-align: center;">Jenis Pelayanan</th>
             <th scope="col" style="min-width: 50px; text-align: center;">Skor</th>
             <th scope="col" style="min-width: 50px; text-align: center;">Jumlah</th>
             <th scope="col" style="min-width: 50px; text-align: center;">Total Skor</th>
@@ -139,15 +128,13 @@
                     {{ds.label}}
                 </td>
             </tr>
-
             <tr ng-repeat="detailProduk in ds.detail">
-
                 <td>
                     <span style="padding-left:10px">
                         {{detailProduk.namaProduk}}
                     </span>
                 </td>
-                <td style="text-align: center;">{{detailProduk.jenisPelayanan}}</td>
+                <td ng-show="isNakesLain" style="text-align: center;">{{detailProduk.jenisPelayanan}}</td>
                 <td style="text-align: center;">{{detailProduk.skor}}</td>
                 <td style="text-align: center;">{{detailProduk.jumlah}}</td>
                 <td style="text-align: center;">{{detailProduk.totalSkor}}</td>
@@ -159,7 +146,6 @@
                     {{dataTgl.jmlLayanan}}
                 </td>
             </tr>
-
             <tr>
                 <td colspan="2" style="font-style: italic; text-align: right;"><strong>Sub Total</strong></td>
                 <td style="text-align: center;">{{ds.subJumlah}}</td>
@@ -188,7 +174,7 @@
 
 <div class="grid_12">
     <div class="grid_3" style="float: right;">
-        <md-button class="md-raised md-primary" ng-click="Verify()">
+        <md-button class="md-raised md-primary" ng-click="verify()">
             <span style="margin-right: 5px;">Verifikasi</span>
             <i class="fa fa-save"></i>
         </md-button>
@@ -198,27 +184,26 @@
 <div kendo-window="popupDetail" k-title="'Detail Data'" k-width="1200" k-visible="false" k-on-open="win2visible= true"
     k-on-close="win2visible= false">
     <div class="panel panel-default container_12" style="padding: 0px 10px;">
-        <md-card ng-if="!isPelayanaPasien">
+        <md-card ng-if="popUpDetailId==1">
             <div class="grid_12">
-                <kendo-grid k-data-source="dataSourceDetailTindakan" k-pageable="true" k-columns="columnGridNonPelayanan">
-                </kendo-grid>
-            </div>
-        </md-card>
-        <md-card ng-if="isPelayanaPasien">
-            <div class="grid_12">
-                <kendo-grid k-data-source="dataSourceDetailTindakan" k-pageable="true" k-columns="columnGrid">
+                <kendo-grid k-data-source="dataSourceDetailTindakan" k-pageable="true" k-columns="columnGridDokter">
                 </kendo-grid>
             </div>
         </md-card>
 
-        <!-- <div class="k-edit-buttons k-state-default" style="margin-top:10px">
-            <div class="grid_10"></div>
-            <div class="grid_2">
-                <md-button class="md-raised md-warn medium-button" ng-click="closePopUp()">
-                    <span style="margin-right: 5px;">Tutup</span>
-                    <i class="fa fa-close"></i>
-                </md-button>
+        <md-card ng-if="popUpDetailId==2">
+            <div class="grid_12">
+                <kendo-grid k-data-source="dataSourceDetailTindakan" k-pageable="true" k-columns="columnGridNakes">
+                </kendo-grid>
             </div>
-        </div> -->
+        </md-card>
+
+        <md-card ng-if="popUpDetailId==3">
+            <div class="grid_12">
+                <kendo-grid k-data-source="dataSourceDetailTindakan" k-pageable="true"
+                    k-columns="columnGridNakesNonPasien">
+                </kendo-grid>
+            </div>
+        </md-card>
     </div>
 </div>

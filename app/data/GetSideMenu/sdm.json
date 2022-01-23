@@ -391,8 +391,8 @@
                 "link": "#/VerifikasiKehadiran"
             },
             {
-                "name": "Logbook Kinerja Dokter (TRIAL)",
-                "link": "#/LogbookKinerjaDokter"
+                "name": "Logbook Skor Kinerja",
+                "link": "#/LogbookSkorKinerja"
             },
             {
                 "name": "Penilaian Kinerja Individu",

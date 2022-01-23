@@ -276,7 +276,7 @@
         "name": "Surat Perintah Kerja",
         "link": "#/DaftarSPK"
       },
-       {
+      {
         "name": "Daftar Pemesanan Barang",
         "link": "#/DaftarPemesananBarang"
       },
@@ -446,6 +446,10 @@
       {
         "name": "Verifikasi Catatan Kegiatan Harian",
         "link": "#/VerifikasiCatatanKegiatanHarian"
+      },
+      {
+        "name": "Logbook Skor Kinerja",
+        "link": "#/LogbookSkorKinerja"
       },
       {
         "name": "Penilaian Kinerja Individu",

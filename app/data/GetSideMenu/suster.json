@@ -252,8 +252,8 @@
                 "name": "Penilaian Kinerja Individu",
                 "link": "#/PenilaianKinerjaIndividu"
             },   {
-                "name": "Logbook Kinerja",
-                "link": "#/LogbookKinerjaDokter"
+                "name": "Logbook Skor Kinerja",
+                "link": "#/LogbookSkorKinerja"
             }
         ]
     },

@@ -399,8 +399,8 @@
                 "link": "#/VerifikasiUraianTugasPegawaiLogin"
             },
             {
-                "name": "Logbook Kinerja Dokter (TRIAL)",
-                "link": "#/LogbookKinerjaDokter"
+                "name": "Logbook Skor Kinerja",
+                "link": "#/LogbookSkorKinerja"
             },
             {
                 "name": "Pengajuan Pelatihan",
