@@ -278,6 +278,8 @@ define(['initialize'], function (initialize) {
 
                         $scope.popupDetail1.open().center();
                     })
+                } else if (data.idIndikator == 466 || data.idIndikator == 678) {
+                    $state.go('LihatLogbookSkorKinerja', { bulan: dateHelper.toTimeStamp($scope.item.bulan), pegawaiId: $scope.item.pegawai.id });
                 } else {
                     toastr.info("Indikator ini dihitung otomatis", "Informasi")
                 }
