@@ -146,8 +146,9 @@
                     {{dataTgl.jmlLayanan}}
                 </td>
             </tr>
-            <tr>
-                <td colspan="2" style="font-style: italic; text-align: right;"><strong>Sub Total</strong></td>
+            <tr ng-hide="isNakesLain">
+                <td colspan="2" style="font-style: italic; text-align: right;"><strong>Sub
+                        Total</strong></td>
                 <td style="text-align: center;">{{ds.subJumlah}}</td>
                 <td style="text-align: center;">{{ds.subTotalSkor}}</td>
             </tr>
@@ -161,8 +162,10 @@
 
         <tfoot>
             <tr>
-                <td colspan="2" style="font-style: italic; font-weight: bolder; text-align: right;">Grand Total
-                </td>
+                <td ng-show="isNakesLain" colspan="3"
+                    style="font-style: italic; font-weight: bolder; text-align: right;">Grand Total</td>
+                <td ng-hide="isNakesLain" colspan="2"
+                    style="font-style: italic; font-weight: bolder; text-align: right;">Grand Total</td>
                 <td style="text-align: center;">{{grandJumlah}}</td>
                 <td style="text-align: center;">{{grandTotal}}</td>
             </tr>
