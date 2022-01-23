@@ -5164,6 +5164,30 @@
     ]
   },
   {
+    "name": "LihatLogbookSkorKinerja",
+    "url": "/LogbookSkorKinerja/:bulan/:pegawaiId",
+    "templateurl": "module/SDM/LogbookSkorKinerja.html",
+    "controller": "LogbookSkorKinerjaCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      }
+    ]
+  },
+  {
     "name": "Simulasi",
     "url": "/Sdm/Pendapatan",
     "templateurl": "module/SDM/Remunerasi/SimulasiPendapatan.html",
