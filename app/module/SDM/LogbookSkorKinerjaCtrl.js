@@ -120,6 +120,7 @@ define(['initialize'], function (initialize) {
 
             $scope.getDataLogbook = () => {
                 $scope.isRouteLoading = true;
+                $scope.dataSource = [];
 
                 if (!$scope.item.periode) {
                     toastr.info("Harap pilih periode terlebih dahulu");
@@ -152,8 +153,10 @@ define(['initialize'], function (initialize) {
                             $scope.namaJenisPegawai = "Perawat";
                             $scope.isNakesLain = false;
 
-                            toastr.info("Service blm tersedia");
-                            break;
+                            toastr.info("Service belum tersedia");
+
+                            $scope.isRouteLoading = false;
+                            return;
                         case 6:
                             baseUrl = "get-logbook-skoring-nakes";
                             urlDetail = "get-detail-logbook-skoring-nakes";
