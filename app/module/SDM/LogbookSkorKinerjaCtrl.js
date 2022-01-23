@@ -242,34 +242,6 @@ define(['initialize'], function (initialize) {
                 getHeaderTable();
             }
 
-            let init = () => {
-                for (var index = 0; index < sotk.length; index++) {
-                    var item = sotk[index];
-                    if (item.x == 65) {
-                        $scope.listKelompokJabatanId.push(3, 4, 5, 6);
-                    } else if (item.x == 58 || item.x == 59 || item.x == 60 || item.x == 61 || item.x == 62 || item.x == 63 || item.x == 82) {
-                        $scope.listKelompokJabatanId.push(3, 4);
-                    } else if (item.x == 30 || item.x == 31 || item.x == 32 || item.x == 33 || item.x == 71) {
-                        $scope.listKelompokJabatanId.push(5);
-                    } else if (item.x == 35 || item.x == 36 || item.x == 37 || item.x == 38 || item.x == 40 || item.x == 41 || item.x == 46 || item.x == 57 || item.x == 71) {
-                        $scope.listKelompokJabatanId.push(6);
-                    }
-                }
-
-                load();
-
-                ManageSdmNew.getListData(`iki-remunerasi/get-pegawai-akses-kinerja?pegawaiId=` + $scope.pegawaiLogin.id + `&listKelompokJabatanId=` + $scope.listKelompokJabatanId).then(res => {
-                    for (let i = 0; i < res.data.data.length; i++) {
-                        if (res.data.data[i].id == $scope.pegawaiLogin.id) {
-                            $scope.item.pegawai = res.data.data[i];
-                        }
-                    }
-                    $scope.listPegawai = res.data.data;
-                })
-
-                getHeaderTable();
-            }
-
             let load = () => {
                 ManageSdmNew.getListData("sdm/get-kelompok-jabatan-logbook-skor?pegawaiId=" + ($scope.item.pegawai ? $scope.item.pegawai.id : $scope.pegawaiLogin.id)).then((res) => {
                     switch (res.data.data) {
@@ -304,6 +276,44 @@ define(['initialize'], function (initialize) {
                             break;
                     }
                 })
+            }
+
+            let init = () => {
+                for (var index = 0; index < sotk.length; index++) {
+                    var item = sotk[index];
+                    if (item.x == 65) {
+                        $scope.listKelompokJabatanId.push(3, 4, 5, 6);
+                    } else if (item.x == 58 || item.x == 59 || item.x == 60 || item.x == 61 || item.x == 62 || item.x == 63 || item.x == 82) {
+                        $scope.listKelompokJabatanId.push(3, 4);
+                    } else if (item.x == 30 || item.x == 31 || item.x == 32 || item.x == 33 || item.x == 71) {
+                        $scope.listKelompokJabatanId.push(5);
+                    } else if (item.x == 35 || item.x == 36 || item.x == 37 || item.x == 38 || item.x == 40 || item.x == 41 || item.x == 46 || item.x == 57 || item.x == 71) {
+                        $scope.listKelompokJabatanId.push(6);
+                    }
+                }
+
+                load();
+
+                ManageSdmNew.getListData(`iki-remunerasi/get-pegawai-akses-kinerja?pegawaiId=` + $scope.pegawaiLogin.id + `&listKelompokJabatanId=` + $scope.listKelompokJabatanId).then(res => {
+                    for (let i = 0; i < res.data.data.length; i++) {
+                        if (($state.params.pegawaiId
+                            && res.data.data[i].id == $state.params.pegawaiId)
+                            || res.data.data[i].id == $scope.pegawaiLogin.id) {
+                            $scope.item.pegawai = res.data.data[i];
+                        }
+                    }
+                    $scope.listPegawai = res.data.data;
+
+                    if ($state.params.bulan) {
+                        $scope.item.periode = new Date(Number($state.params.bulan));
+                    }
+
+                    if ($scope.item.periode && $scope.item.pegawai) {
+                        $scope.getDataLogbook();
+                    }
+                })
+
+                getHeaderTable();
             }
 
             init();
@@ -405,6 +415,8 @@ define(['initialize'], function (initialize) {
 
                 if (data.jmlLayanan === "") {
                     toastr.info("Tidak ada data");
+
+                    $scope.isRouteLoading = false;
                     return;
                 }
 
