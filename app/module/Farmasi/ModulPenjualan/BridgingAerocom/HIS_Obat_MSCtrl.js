@@ -58,6 +58,7 @@ define(['initialize'], function(initialize) {
             KlikProduk()
         }
         function KlikProduk(){
+            $scope.item.uid = undefined
             $scope.item.barcodeID = '-'
             $scope.item.HObatID = $scope.dataSelectedProduk.id
             $scope.item.namaObat = $scope.dataSelectedProduk.namaproduk
