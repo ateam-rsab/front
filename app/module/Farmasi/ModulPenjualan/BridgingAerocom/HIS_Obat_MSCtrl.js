@@ -66,7 +66,7 @@ define(['initialize'], function(initialize) {
             $scope.item.statusenabled = {id:1,status:'Enabled'};
         }
         $scope.klikGrid = function(dataSelected){
-            $scope.item.uid = $scope.dataSelected.uid
+            $scope.item.uid = $scope.dataSelected.norec
             $scope.item.barcodeID = $scope.dataSelected.barcodeid
             $scope.item.HObatID = $scope.dataSelected.hobatid
             $scope.item.namaObat = $scope.dataSelected.namaproduk
