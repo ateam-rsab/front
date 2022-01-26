@@ -118,6 +118,10 @@ define(['initialize'], function (initialize) {
                 $scope.getDataGrid();
                 manageSdmNew.getListData("sdm/get-daftar-profesi?pegawaiId=" + $scope.nakes.data.id + "&jenisId=1").then(res => {
                     $scope.listProfesi = res.data.data;
+                    if (res.data.data.length == 1) {
+                        $scope.nakes.profesi = res.data.data[0];
+                        $scope.getListProduk(res.data.data[0].id);
+                    }
                 })
             }
             $scope.init();
