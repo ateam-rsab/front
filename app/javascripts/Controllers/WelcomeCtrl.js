@@ -11,10 +11,10 @@ define(['initialize'], function (initialize) {
             if (dataLogin.kategoryPegawai && remunId.includes(dataLogin.kategoryPegawai.id)) {
                 $scope.isRemun = true;
             }
-            $scope.dateNow = DateHelper.formatDate(new Date(), "DD MMMM YYYY")
+            $scope.dateNow = DateHelper.formatDate(new Date(), "DD MMM YYYY")
             $('.button-birthday').on('click', (e) => {
                 // console.log(e)
-                $('.container-wrapper').css('overflow', 'auto');
+                $('.container-wrapper').css('overflow', 'overlay');
             })
 
             // // /jasamedika-sdm/pegawai/get-avatar?pegawaiId=22349
@@ -107,6 +107,10 @@ define(['initialize'], function (initialize) {
             $scope.dataBerkasAdministrasi = [{
                 path: "data/dokumen/hasil-seleksi-rekrutmen-internal-jabfung-RSABHarapanKita.pdf",
                 fileName: "Hasil Seleksi Rekrutmen Internal Jabfung RSAB Harapan Kita"
+            },
+            {
+                path: "data/dokumen/SK-KGB-TMT-Februari-2022-an-Adi-Puspita-dkk.pdf",
+                fileName: "SK KGB TMT Februari 2022 an Adi Puspita dkk"
             },
             {
                 path: "data/dokumen/Daftar-Nama-Pegawai-Yang-Dapat-Diusulkan-Kenaikan-Jabfung-Ahli.pdf",

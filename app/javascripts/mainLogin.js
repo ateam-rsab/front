@@ -59,7 +59,6 @@ require(['LoginService', 'core', "kendo.angular", 'Configuration', 'Helper', 'jQ
                                 };
 
                                 loginService.getAvatar(data.data.data.pegawai.id, data.data.messages["X-AUTH-TOKEN"]).then(res => {
-                                    console.log(res.data);
                                     localStorage.setItem('imgProfile', res.data.data);
                                     $('#idImageProfile').attr('src', res.data.data);
                                 })

@@ -6,7 +6,7 @@ define(['initialize'], function (initialize) {
             $scope.item = {};
             let dataPegawai = JSON.parse(localStorage.getItem('pegawai')),
                 idPegawai = dataPegawai.id;
-
+            $scope.item.imgUrlData = localStorage.getItem('imgProfile');
             ManageSdmNew.getListData("pegawai/get-pegawai-detail-by-customs/" + idPegawai).then(function (res) {
                 $scope.item = res.data.data;
                 $scope.item.tglLahir = $scope.item.tglLahir ? dateHelper.formatDate($scope.item.tglLahir, "DD MMM YYYY") : "-";
