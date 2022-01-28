@@ -111,6 +111,47 @@
         ]
     },
     {
+        "name": "Daftar Pasien",
+        "children": [
+            {
+                "name": "DaftarRegistrasiPasien",
+                "link": "#/DaftarRegistrasiPasien"
+            },
+            {
+                "name": "Rekanan2",
+                "link": "#/Rekanan2"
+            },
+            {
+                "name": "AsuransiBekerjasama",
+                "link": "#/AsuransiBekerjasama"
+            },
+            {
+                "name": "DataPerusahaanBekerjasama",
+                "link": "#/DataPerusahaanBekerjasama"
+            },
+            {
+                "name": "DataAsuransiBekerjasama",
+                "link": "#/DataAsuransiBekerjasama"
+            },
+            {
+                "name": "TarifLayanan",
+                "link": "#/TarifLayanan"
+            },
+            {
+                "name": "KetersediaanTempatTidur",
+                "link": "#/KetersediaanTempatTidur"
+            },
+            {
+                "name": "DaftarPasienRumahSakit",
+                "link": "#/DaftarPasienRumahSakit"
+            },
+            {
+                "name": "DaftarPiutangPasien",
+                "link": "#/DaftarPiutangPasien"
+            }
+        ]
+    },
+    {
         "name": "Laporan",
         "children": [
             {

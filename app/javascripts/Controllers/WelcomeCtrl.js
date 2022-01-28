@@ -109,8 +109,8 @@ define(['initialize'], function (initialize) {
                 fileName: "Hasil Seleksi Rekrutmen Internal Jabfung RSAB Harapan Kita"
             },
             {
-                path: "data/dokumen/SK-KGB-TMT-Februari-2022-an-Adi-Puspita-dkk.pdf",
-                fileName: "SK KGB TMT Februari 2022 an Adi Puspita dkk"
+                path: "data/dokumen/PEMBERITAHUAN-Daftar-Nama-Pegawai-yg-Dapat-Diusulkan-PAK-Dokd.pdf",
+                fileName: "PEMBERITAHUAN - Daftar Nama Pegawai yg Dapat Diusulkan PAK Dokd"
             },
             {
                 path: "data/dokumen/Daftar-Nama-Pegawai-Yang-Dapat-Diusulkan-Kenaikan-Jabfung-Ahli.pdf",

@@ -1,9 +1,3 @@
-<!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-    crossorigin="anonymous" />
-<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-    crossorigin="anonymous"></script> -->
 <style>
     .notify {
         padding: 15px;
@@ -85,6 +79,12 @@
         font-weight: bolder;
     }
 
+    md-checkbox {
+        display: flex;
+    }
+    md-checkbox .md-container {
+        position: inherit;
+    }
     md-card-content.capture {
         display: flex;
         flex-direction: column;
@@ -182,7 +182,7 @@
             </div> -->
 
             <div>
-                <div class="grid_5" style="text-align: center;">
+                <div class="grid_3" style="text-align: center;">
                     <div id="date-part"></div>
                     <div id="time-part"></div>
                     <!-- <input kendo-time-picker ng-model="str" k-ng-model="tanggalPresensi" k-format="'HH:mm'"
@@ -192,19 +192,35 @@
                     <div id="time-part"></div>
                 </div> -->
 
-                <div class="grid_1">
-                    <md-checkbox style="margin-left: 2em; margin-bottom: 2em;" ng-disabled="isNotEditable" name="wfh"
+                <div class="grid_3">
+                    <!-- <md-checkbox ng-model="data.cb1" aria-label="Checkbox 1">
+                        Checkbox 1: {{ data.cb1 }}
+                    </md-checkbox> -->
+                    <md-checkbox ng-disabled="isNotEditable" name="wfh"
                         id="wfh" aria-label="wfh" ng-model="data.isWFH" class="green">
+                        <strong style="margin-top: 22px;">Work From Home</strong>
                     </md-checkbox>
                 </div>
-                <div class="grid_3" style="margin-top: 2.25em; text-align: left;">
+                <!-- <div class="grid_3" style="margin-top: 2.25em; text-align: left;">
                     <strong>Work From Home (WFH)</strong>
-                </div>
+                </div> -->
                 <!-- <div class="grid_4" style="margin-top: 20px; text-align: center;">
                     <input type="checkbox" class="k-checkbox" name="wfh" id="wfh" ng-model="data.isWFH"
                         ng-disabled="isNotEditable">
                     <label c-label item="item" class="k-checkbox-label" for="wfh">Work From Home (WFH)</label>
                 </div> -->
+
+                <div class="grid_3">
+                    <ul class="fieldlist">
+                        <li>
+                            <input type="radio" name="engine" id="engine1" class="k-radio k-radio-md" ng-click="changeSelectedJenisPresensi(1)">
+                            <label class="k-radio-label" for="engine1">Masuk</label>
+                        </li>
+                        <li>
+                            <input type="radio" name="engine" id="engine2" class="k-radio k-radio-md" ng-click="changeSelectedJenisPresensi(0)" >
+                            <label class="k-radio-label" for="engine2">Pulang</label>
+                        </li>
+                </div>
 
                 <div class="grid_2" style="margin-top: 2em; text-align: center;">
                     <md-button class="md-raised md-primary medium-button" ng-click="savePresensi()"

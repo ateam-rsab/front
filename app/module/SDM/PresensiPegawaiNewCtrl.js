@@ -10,11 +10,17 @@ define(['initialize'], function (initialize) {
             $scope.isRouteLoading = false;
             $scope.data.isWFH = false;
             $scope.isDisablePresensi = true;
-            $scope.isNotEditable = false;
+            $scope.isNotEditable = true;
             $scope.dataPegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
             $scope.userLocation = {};
+            $scope.selectedJenisPresensi = null;
 
             $scope.isCameraNotDetected = false;
+
+            $scope.changeSelectedJenisPresensi = (tag) => {
+                $scope.selectedJenisPresensi = tag;
+
+            }
 
             let canvas = document.getElementById('canvas');
             let context = canvas.getContext('2d');
@@ -242,9 +248,13 @@ define(['initialize'], function (initialize) {
 
             $scope.savePresensi = function () {
                 // let ip = getIPAddr();
-
+                if(!$scope.selectedJenisPresensi) {
+                    toastr('Harap pilih Jenis Presensi Masuk/Pulang');
+                    return;
+                }
                 $scope.isRouteLoading = true;
                 let data = {
+                    tag: $scope.selectedJenisPresensi,
                     pegawai: {
                         id: $scope.dataPegawaiLogin.id
                     },
