@@ -12,6 +12,7 @@ define(['initialize'], function (initialize) {
             $scope.endOfDay = new Date(new Date().setHours(23, 59, 59, 999))
 
             $scope.item = {};
+            $scope.nakes = {};
 
             $scope.dataLogin = JSON.parse(localStorage.getItem("pegawai"));
 
@@ -24,6 +25,9 @@ define(['initialize'], function (initialize) {
                 $q.all([
                     ManageSdmNew.getListData("sdm/get-daftar-profesi?pegawaiId=" + $scope.dataLogin.id).then(function (res) {
                         $scope.listProfesi = res.data.data;
+                        if (res.data.data.length == 1) {
+                            $scope.nakes.profesi = res.data.data[0];
+                        }
                     })
                 ])
             }
@@ -307,6 +311,9 @@ define(['initialize'], function (initialize) {
                 // console.log($scope.showInputHasil);
                 if (data.idIndikator == 678) {
                     $scope.resetForm2()
+                    if ($scope.nakes.profesi) {
+                        $scope.getListProduk($scope.nakes.profesi.id)
+                    }
                     $scope.popupAdd2.open().center();
                 } else {
                     $scope.resetForm1()
