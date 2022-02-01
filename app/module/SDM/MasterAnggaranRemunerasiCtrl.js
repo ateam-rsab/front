@@ -10,6 +10,13 @@ define(['initialize'], function (initialize) {
             $scope.item.pirHitungan = 0;
             let dataLogin = JSON.parse(localStorage.getItem("datauserlogin"));
 
+            $scope.formatter = new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+
             $scope.optGridPenempatanEvaluasiJabatan = {
                 filterable: {
                     extra: false,
@@ -119,22 +126,10 @@ define(['initialize'], function (initialize) {
                 ManageSdmNew.getListData("sdm/get-plafon-remunerasi").then(res => {
 
                     for (let i = 0; i < res.data.data.length; i++) {
-                        res.data.data[i].gajiHonorariumFormatted = res.data.data[i].gajiHonorarium.toLocaleString('id-ID', {
-                            style: 'currency',
-                            currency: 'IDR'
-                        });
-                        res.data.data[i].maxInsentifFormatted = res.data.data[i].maxInsentif.toLocaleString('id-ID', {
-                            style: 'currency',
-                            currency: 'IDR'
-                        });
-                        res.data.data[i].maxTotalRemunerasiFormatted = res.data.data[i].maxTotalRemunerasi.toLocaleString('id-ID', {
-                            style: 'currency',
-                            currency: 'IDR'
-                        });
-                        res.data.data[i].minInsentifFormatted = res.data.data[i].minInsentif.toLocaleString('id-ID', {
-                            style: 'currency',
-                            currency: 'IDR'
-                        });
+                        res.data.data[i].gajiHonorariumFormatted = $scope.formatter.format(res.data.data[i].gajiHonorarium);
+                        res.data.data[i].maxInsentifFormatted = $scope.formatter.format(res.data.data[i].maxInsentif);
+                        res.data.data[i].maxTotalRemunerasiFormatted = $scope.formatter.format(res.data.data[i].maxTotalRemunerasi);
+                        res.data.data[i].minInsentifFormatted = $scope.formatter.format(res.data.data[i].minInsentif);
                     }
 
                     $scope.dataPlafon = new kendo.data.DataSource({
@@ -158,15 +153,9 @@ define(['initialize'], function (initialize) {
                         $scope.totalNilaiJabatan += res[0].data.data[i].nilaiJabatan;
                     }
                     if (res[1].data.data && res[1].data.data.anggaranTahun) {
-                        $scope.item.anggaranRemunerasi = res[1].data.data.anggaranTahun
-                        $scope.item.pir = res[1].data.data.anggaranBulan.toLocaleString('id-ID', {
-                            style: 'currency',
-                            currency: 'IDR'
-                        })
-                        $scope.item.pirHitungan = (res[1].data.data.anggaranBulan / res[1].data.data.totNilaiJabatan).toLocaleString('id-ID', {
-                            style: 'currency',
-                            currency: 'IDR'
-                        })
+                        $scope.item.anggaranRemunerasi = $scope.formatter.format(res[1].data.data.anggaranTahun);
+                        $scope.item.pir = $scope.formatter.format(res[1].data.data.anggaranBulan);
+                        $scope.item.pirHitungan = $scope.formatter.format((res[1].data.data.anggaranBulan / res[1].data.data.totNilaiJabatan));
 
                         $scope.isExistedTahunIni = true
                     } else {
@@ -182,19 +171,13 @@ define(['initialize'], function (initialize) {
             $scope.init();
 
             $scope.changeAnggaran = () => {
-                $scope.item.pir = Math.ceil($scope.item.anggaranRemunerasi * 0.85 / 13);
-                $scope.item.pirHitungan = Math.ceil($scope.item.pir / $scope.totalNilaiJabatan);
+                $scope.item.pir = ($scope.item.anggaranRemunerasi * 0.85 / 13).toFixed(2);
+                $scope.item.pirHitungan = ($scope.item.pir / $scope.totalNilaiJabatan).toFixed(2);
                 $scope.item.pirUnformatted = $scope.item.pir;
                 $scope.item.pirHitunganUnformatted = $scope.item.pirHitungan;
 
-                let pirFormatted = $scope.item.pir.toLocaleString('id-ID', {
-                    style: 'currency',
-                    currency: 'IDR'
-                }),
-                    pirHitunganFormatted = $scope.item.pirHitungan.toLocaleString('id-ID', {
-                        style: 'currency',
-                        currency: 'IDR'
-                    });
+                let pirFormatted = $scope.formatter.format($scope.item.pir),
+                    pirHitunganFormatted = $scope.formatter.format($scope.item.pirHitungan);
 
                 $scope.item.pir = pirFormatted;
                 $scope.item.pirHitungan = pirHitunganFormatted;
