@@ -11,7 +11,7 @@ define(['initialize'], function (initialize) {
             if (dataLogin.kategoryPegawai && remunId.includes(dataLogin.kategoryPegawai.id)) {
                 $scope.isRemun = true;
             }
-            $scope.dateNow = DateHelper.formatDate(new Date(), "DD MMM YYYY")
+            $scope.dateNow = DateHelper.getTanggalFormatted(new Date(), "DD MMM YYYY")
             $('.button-birthday').on('click', (e) => {
                 // console.log(e)
                 $('.container-wrapper').css('overflow', 'overlay');
