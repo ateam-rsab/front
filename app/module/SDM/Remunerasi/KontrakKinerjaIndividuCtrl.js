@@ -26,8 +26,6 @@ define(['initialize'], function (initialize) {
                 perilaku: 20
             }
 
-            let now = new Date();
-
             let dataPegawai = JSON.parse(localStorage.getItem('pegawai'));
             let dataLogin = JSON.parse(localStorage.getItem("datauserlogin"));
 
@@ -168,12 +166,13 @@ define(['initialize'], function (initialize) {
 
                         $scope.isRouteLoading = false;
                         $scope.isPopup = false;
+                    }, (error) => {
+                        $scope.isRouteLoading = false;
                     })
             }
 
             $scope.getBobotJenisByJabatan = () => {
                 ManageSdmNew.getListData("iki-remunerasi/get-bobot-jenis-by-jabatan?periode=" + dateHelper.toTimeStamp($scope.item.srcBulan) + "&jabatanId=" + ($scope.item.jabatan ? $scope.item.jabatan.id : "")).then((res) => {
-                    // console.log(res.data.data)
                     if (res.data.data.length != 0) {
                         $scope.nilaiMax = {
                             kuantitas: res.data.data[0],
@@ -340,17 +339,6 @@ define(['initialize'], function (initialize) {
             $scope.simpanData = (method) => {
                 $scope.isRouteLoading = true;
                 $scope.isPopup = true;
-
-                // var tglBatasSimpan = new Date($scope.item.srcBulan);
-                // tglBatasSimpan.setDate(4);
-                // tglBatasSimpan.setHours(23, 59, 59, 999);
-                // if (dateHelper.toTimeStamp(now) > tglBatasSimpan
-                //     && monthDiff(new Date($scope.item.pegawai.tglMasuk), tglBatasSimpan) > 0) {
-                //     toastr.warning("Batas masa simpan kontrak kinerja individu sudah lewat", "Peringatan")
-
-                //     $scope.isRouteLoading = false;
-                //     return
-                // }
 
                 let statusEnabled = method === 'save' || method === 'update';
 
