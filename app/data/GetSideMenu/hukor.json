@@ -118,6 +118,10 @@
                 "link": "#/DaftarRegistrasiPasien"
             },
             {
+                "name": "Laporan Pasien Pulang",
+                "link": "#/LaporanPasienPulang"
+            },
+            {
                 "name": "Rekanan2",
                 "link": "#/Rekanan2"
             },

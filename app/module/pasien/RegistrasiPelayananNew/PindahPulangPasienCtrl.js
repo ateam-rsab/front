@@ -72,6 +72,11 @@ define(['initialize'], function (initialize) {
              * 1. per bulan April 2021 Kelas VIP A dan VIP B tidak dapat dipilih lagi karena sudah gabung menjadi VIP saja
              */
             $scope.pilihRuangan = function (id) {
+                $scope.item.dokter = null;
+                $scope.item.kelas = null;
+                $scope.item.kamar = null;
+                $scope.item.nomorTempatTidur = null;
+                
                 var ruanganId = id;
                 manageServicePhp.getDataTableTransaksi("registrasipasien/get-kelasbyruangan?idRuangan=" + ruanganId)
                     .then(function (dat) {
@@ -88,7 +93,7 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.$watch('item.penyebabKematian', function (e) {
-                if (e === undefined) return;
+                if (e === undefined) return;    
                 if ($scope.item.penyebabKematian.penyebabkematian == "LAINNYA") {
                     $scope.PenyebabKematianManual = true;
                 } else {

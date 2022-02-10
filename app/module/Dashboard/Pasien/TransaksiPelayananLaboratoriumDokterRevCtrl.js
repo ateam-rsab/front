@@ -198,7 +198,7 @@ define(['initialize'], function (initialize) {
                     $scope.item.tglRegistrasi = chacePeriode[6]
                     norec_apd = chacePeriode[7]
                     norec_pd = chacePeriode[8]
-                    $scope.item.idKelas = chacePeriode[9]
+                    $scope.item.idKelas = 6// chacePeriode[9]
                     $scope.item.kelas = chacePeriode[10]
                     $scope.item.idRuangan = chacePeriode[11]
                     $scope.item.namaRuangan = chacePeriode[12]

@@ -74,6 +74,11 @@ define(['initialize'], function (initialize) {
 
             $scope.dataPemberitahuan = [
                 {
+                    path: "data/dokumen/KGB-TMT-Maret-2022-an-Agus-Susilo-dkk.pdf",
+                    fileName: "Surat Edararan tentang ketentuan TUBEL pembiayaan BPPSDMK KEMENKES RI th 2022",
+                    new: true
+                },
+                {
                     path: "data/dokumen/SE-ttg-ketentuan-TUBEL-pembiayaan-BPPSDMK-KEMENKES-RI-tahun-2022.pdf",
                     fileName: "Surat Edararan tentang ketentuan TUBEL pembiayaan BPPSDMK KEMENKES RI th 2022",
                     new: true

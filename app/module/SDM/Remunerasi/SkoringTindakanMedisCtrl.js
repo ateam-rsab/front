@@ -7,7 +7,7 @@ define(['initialize'], function (initialize) {
             $scope.isEdit = false;
             $scope.isVerifStaf = false
             $scope.isDuplicated = false
-
+            $scope.desc = {};
             var userLogin = JSON.parse(localStorage.getItem('datauserlogin'));
             var pegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
 
@@ -31,6 +31,16 @@ define(['initialize'], function (initialize) {
                     name: "Tambah",
                     template: '<button ng-click="tambahData()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-plus"></span>Tambah Data</button>'
                 }],
+                filterable: {
+                    extra: false,
+                    operators: {
+                        string: {
+                            startswith: "Dimulai dengan",
+                            contains: "mengandung kata",
+                            neq: "Tidak mengandung kata"
+                        }
+                    }
+                },
                 pageable: true,
                 scrollable: true,
                 columns: [{
@@ -72,6 +82,39 @@ define(['initialize'], function (initialize) {
                 }],
             };
 
+            $scope.optGridSkoringTindakanNoSkoring = {
+                pageable: true,
+                scrollable: true,
+                filterable: {
+                    extra: false,
+                    operators: {
+                        string: {
+                            startswith: "Dimulai dengan",
+                            contains: "mengandung kata",
+                            neq: "Tidak mengandung kata"
+                        }
+                    }
+                },
+                columns: [{
+                    field: 'Daftar',
+                    title: '<h3 align=center>Daftar Tindakan Belum ada Skor<h3>',
+                    headerAttributes: {
+                        style: 'text-align : center'
+                    },
+                    columns: [
+                        {
+                            field: "id",
+                            title: "<h3>ID</h3>",
+                            width: 50
+                        }, {
+                            field: "namaProduk",
+                            title: "<h3>Nama Produk</h3>",
+                            width: 150
+                        }]}
+                ],
+
+            }
+
             $scope.getAllData = () => {
                 $scope.isRouteLoading = true;
                 var listKK = []
@@ -95,7 +138,30 @@ define(['initialize'], function (initialize) {
                     })
             }
 
+            $scope.getDataTindakanNoSkoring = () => {
+                $scope.isRouteLoading = true;
+                // dataSourceTindakanNoSkoring
+                ManageSdmNew.getListData("iki-remunerasi/get-tindakan-belum-ada-skor").then((res) => {
+                    $scope.dataSourceTindakanNoSkoring = new kendo.data.DataSource({
+                        data: res.data.data,
+                        pageSize: 100
+                    })
+                })
+            }
+
+            $scope.onClickDataTindakanNoSkoring = (data) => {
+                if(!data.id) return;
+                $scope.isRouteLoading = true;
+                ManageSdmNew.getListData("iki-remunerasi/get-deskripsi-tindakan-skor-medis?produkId=" + data.id).then((res) => {
+                    $scope.isRouteLoading = false;
+                    $scope.showDesc = true;
+                    res.data.data.produkId = data.id;
+                    $scope.desc = res.data.data;
+                });
+            }
+
             let init = () => {
+                $scope.getDataTindakanNoSkoring();
                 ManageSdmNew.getListData("iki-remunerasi/get-akses-skoring-tindakan-medis?pegawaiId=" + pegawaiLogin.id).then((res) => {
                     var listUK = ""
                     if (!_.isEmpty(res.data.data)) {
@@ -273,14 +339,14 @@ define(['initialize'], function (initialize) {
 
                     let dataSave = {
                         detailProduk: $scope.item.detailTindakan,
-                        skor: parseFloat($scope.item.skor),
+                        skor: parseFloat($scope.desc.skor ? $scope.desc.skor : $scope.item.skor),
                         statusVerifikasi: $scope.item.statusVerif ? true : false,
                         tanggalMulaiBerlaku: dateHelper.toTimeStamp($scope.item.tglBerlaku),
                         produk: {
-                            id: $scope.item.namaProduk.id
+                            id: $scope.desc.produkId ? $scope.desc.produkId : $scope.item.namaProduk.id
                         },
                         kelompokKerja: {
-                            id: $scope.item.kelompokKerja.id
+                            id: $scope.desc.kelompokKerja.id ?? $scope.item.kelompokKerja.id
                         },
                         kdProfile: 0,
                         statusEnabled: statusEnabled,
@@ -296,6 +362,7 @@ define(['initialize'], function (initialize) {
                         return
                     } else {
                         ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-skoring-tindakan-medis").then(res => {
+                            $scope.desc = null;
                             $scope.getAllData();
                             $scope.closePopUp();
                         })
