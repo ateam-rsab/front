@@ -110,7 +110,8 @@ define(['initialize'], function (initialize) {
                             field: "namaProduk",
                             title: "<h3>Nama Produk</h3>",
                             width: 150
-                        }]}
+                        }]
+                }
                 ],
 
             }
@@ -150,7 +151,7 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.onClickDataTindakanNoSkoring = (data) => {
-                if(!data.id) return;
+                if (!data.id) return;
                 $scope.isRouteLoading = true;
                 ManageSdmNew.getListData("iki-remunerasi/get-deskripsi-tindakan-skor-medis?produkId=" + data.id).then((res) => {
                     $scope.isRouteLoading = false;
@@ -275,7 +276,7 @@ define(['initialize'], function (initialize) {
                     .ok('Ya')
                     .cancel('Tidak');
                 $mdDialog.show(confirm).then(function () {
-                    $scope.saveData('delete');
+                    $scope.saveData('delete', false);
                 }, function () {
                     $scope.reset();
                 });
@@ -324,8 +325,8 @@ define(['initialize'], function (initialize) {
                 $scope.popupTambah.open().center();
             }
 
-            $scope.saveData = (method) => {
-                var listRawRequired = [
+            $scope.saveData = (method, isNotScored) => {
+                var listRawRequired = isNotScored ? [] : [
                     "item.tglBerlaku|ng-model|Tanggal Berlaku",
                     "item.kelompokKerja|ng-model|Kelompok Kerja",
                     "item.skor|ng-model|Skor",
@@ -357,12 +358,17 @@ define(['initialize'], function (initialize) {
                         dataSave.noRec = $scope.norecData;
                     }
 
+                    if (isNotScored) {
+                        dataSave.detailProduk = $scope.desc.produk;
+                    }
+
                     if ($scope.isDuplicated && method != 'delete') {
                         toastr.warning("Data mapping skoring sudah tersedia!")
                         return
                     } else {
                         ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-skoring-tindakan-medis").then(res => {
                             $scope.desc = null;
+                            $scope.showDesc = false;
                             $scope.getAllData();
                             $scope.closePopUp();
                         })
