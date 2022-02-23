@@ -9,7 +9,7 @@
                     <div class="grid_4">
                         <!-- Status keluar -->
                         <label c-label item="item" c-label-text="statusKeluar"></label>
-                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.statusKeluar" k-data-text-field="'statuskeluar'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="listStatusKeluar" k-on-change="loadKelas()" ng-disabled="disabledStatus"/>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.statusKeluar" k-data-text-field="'statuskeluar'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="listStatusKeluar" k-on-change="clearFormKondisiPasien()" ng-disabled="disabledStatus"/>
                     </div>
                     <div class="grid_4" ng-hide="item.statusKeluar.id === 2" >
                         <!-- Kondisi Keluar -->
