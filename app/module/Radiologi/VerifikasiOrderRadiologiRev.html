@@ -307,7 +307,7 @@
                                     <textarea ng-model="layanan.konsultasiAnestesi" maxlength="5000"
                                         style="height:100px"></textarea>
                                     <p class="length-textarea">
-                                        5000/{{layanan.konsultasiAnestesi ? layanan.konsultasiAnestesi.length : 0}}</p>
+                                        {{layanan.konsultasiAnestesi ? layanan.konsultasiAnestesi.length : 0}}/5000</p>
                                 </div>
 
                                 <div class="grid_12">
@@ -322,7 +322,7 @@
                                     <textarea ng-model="layanan.pemeriksaanRadiologi" maxlength="3000"
                                         ng-disabled="isVerif" style="height:100px"></textarea>
                                     <p class="length-textarea">
-                                        3000/{{layanan.pemeriksaanRadiologi ? layanan.pemeriksaanRadiologi.length : 0}}
+                                        {{layanan.pemeriksaanRadiologi ? layanan.pemeriksaanRadiologi.length : 0}}/3000
                                     </p>
                                 </div>
 
@@ -338,7 +338,7 @@
                                     <textarea ng-model="layanan.persiapanRadiologi" maxlength="5000"
                                         ng-disabled="isVerif" style="height:100px"></textarea>
                                     <p class="length-textarea">
-                                        5000/{{layanan.persiapanRadiologi ? layanan.persiapanRadiologi.length : 0}}</p>
+                                        {{layanan.persiapanRadiologi ? layanan.persiapanRadiologi.length : 0}}/5000</p>
                                 </div>
                             </div>
                         </md-card-content>

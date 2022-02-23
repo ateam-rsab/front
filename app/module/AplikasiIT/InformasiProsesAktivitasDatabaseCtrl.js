@@ -27,6 +27,10 @@ define(['initialize'], function (initialize) {
             title: "<h3>PID</h3>",
             width: 60,
           }, {
+            field: "query",
+            title: "<h3>Query</h3>",
+            width: 100,
+          }, {
             field: "state",
             title: "<h3>State</h3>",
             width: 60,
@@ -34,19 +38,15 @@ define(['initialize'], function (initialize) {
             field: "duration",
             title: "<h3>Duration</h3>",
             width: 100,
-          }, {
-            field: "query",
-            title: "<h3>Query</h3>",
-            width: 100,
           },
           {
             command: [{
-              text: "Terminate",
-              click: terminate,
-              // imageClass: "k-icon k-i-",
-            }, {
               text: "Cancel",
               click: cancel,
+              // imageClass: "k-icon k-i-",
+            }, {
+              text: "Terminate",
+              click: terminate,
               // imageClass: "k-icon k-i-",
             }],
             title: "",
@@ -123,7 +123,7 @@ define(['initialize'], function (initialize) {
 
       let init = () => {
         $scope.refresh();
-        $scope.getData(); 
+        $scope.getData();
       }
       init();
     }

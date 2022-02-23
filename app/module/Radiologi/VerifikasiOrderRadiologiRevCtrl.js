@@ -363,6 +363,7 @@ define(['initialize'], function (initialize) {
                     noorder: $scope.dataOrderRadiologi.noorder,
                     norec_so: $scope.dataOrderRadiologi.norec_so,
                     objectkelasfk: $scope.dataOrderRadiologi.objectkelasfk,
+                    kelas_order: $scope.dataOrderRadiologi.kelas_order,
                     norec_pd: $scope.dataOrderRadiologi.norec_pd,
                     objectpegawaiorderfk: $scope.dataOrderRadiologi.dokter,
                     iddokterverif: dataLogin.id,
@@ -375,6 +376,7 @@ define(['initialize'], function (initialize) {
                     bridging: [],
                     noorder: $scope.dataOrderRadiologi.noorder,
                     objectkelasfk: $scope.dataOrderRadiologi.objectkelasfk,
+                    kelas_order: $scope.dataOrderRadiologi.kelas_order,
                     // objectruangantujuanfk: 276,
                     objectpegawaiorderfk: $scope.dataOrderRadiologi.dokter,
                     iddokterverif: dataLogin.id,
@@ -385,6 +387,7 @@ define(['initialize'], function (initialize) {
                     dataSave.details.push({
                         namaproduk: dataSourceGrid[i].namaproduk,
                         objectkelasfk: $scope.dataOrderRadiologi.objectkelasfk,
+                        kelas_order: $scope.dataOrderRadiologi.kelas_order,
                         objectruanganfk: $scope.dataOrderRadiologi.objectruanganfk,
                         jadualTindakan: dataSourceGrid[i].jadualTindakan,
                         produkfk: dataSourceGrid[i].idProduk,

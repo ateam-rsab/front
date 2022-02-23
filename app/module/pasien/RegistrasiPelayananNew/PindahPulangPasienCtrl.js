@@ -88,9 +88,40 @@ define(['initialize'], function (initialize) {
 
                         }
 
+                        $scope.item.dokter = undefined;
+                        $scope.item.kelas = undefined;
                         $scope.listKelas = tempListKelas;
+                        $scope.item.kamar = undefined;
+                        $scope.listKamar = [];
+                        $scope.item.nomorTempatTidur = undefined;
+                        $scope.listNoBed = [];
                     });
             }
+
+            $scope.clearFormKondisiPasien = function () {
+                if ($scope.item.statusKeluar && $scope.item.statusKeluar.id == 1 || $scope.item.statusKeluar.id == 3 || $scope.item.statusKeluar.id == 4) {
+                    // Pulang/Rawat Jalan/Rujuk
+                    $scope.item.kondisiKeluar = undefined;
+                    $scope.item.statusPulang = undefined;
+                    $scope.item.hubunganKeluarga = undefined;
+                } else if ($scope.item.statusKeluar && $scope.item.statusKeluar.id == 2) {
+                    // Pindah
+                    $scope.item.ruangan = undefined;
+                    $scope.item.dokter = undefined;
+                    $scope.item.kelas = undefined;
+                    $scope.listKelas = [];
+                    $scope.item.kamar = undefined;
+                    $scope.listKamar = [];
+                    $scope.item.nomorTempatTidur = undefined;
+                    $scope.listNoBed = [];
+                } else if ($scope.item.statusKeluar && $scope.item.statusKeluar.id == 5) {
+                    // Meninggal
+                    $scope.item.kondisiKeluar = undefined;
+                    $scope.item.statusPulang = undefined;
+                    $scope.item.hubunganKeluarga = undefined;
+                    $scope.item.penyebabKematian = undefined;
+                }
+            };
 
             $scope.$watch('item.penyebabKematian', function (e) {
                 if (e === undefined) return;    
