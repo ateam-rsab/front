@@ -1,16 +1,49 @@
 <style>
+    .navigation-card {
+        display: flex;
+        width: 100%;
+        height: 10vh;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(211, 211, 211);
+    }
+
+    .navigation-card a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: rgb(36, 36, 36);
+        font-weight: bolder;
+        font-size: 1.2em;
+        height: 100%;
+        max-width: 100px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 1s ease;
+    }
+
+    .navigation-card a:hover {
+        color: rgb(36, 36, 36);
+        background: rgb(211, 211, 211);
+    }
+
+    .navigation-card a.active {
+        background-color: #545454;
+        color: white;
+    }
+
     .container-dashboard {
         margin: 10px;
     }
 
     .card-dashboard {
         max-width: 100%;
-        min-height: 40vh;
+        min-height: 70vh;
         /* padding: 10px; */
         background-color: rgb(54, 253, 187);
         border: none;
         border-radius: 4px;
-        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
         transition: 0.3s;
     }
 
@@ -21,35 +54,38 @@
         font-size: 15px;
         letter-spacing: 2px;
         font-weight: 800;
-        box-shadow: 0 2px 8px 0px rgba(0,0,0,0.2);
+        box-shadow: 0 2px 8px 0px rgba(0, 0, 0, 0.2);
     }
 
     .card-dashboard .card-body {
         padding: 10px;
         max-height: 80%;
-        
+
     }
 
     .responsive-table {
-        padding:0;
+        padding: 0;
     }
 
     .responsive-table li {
         border-radius: 3px;
-        padding: 15px 10px;;
+        padding: 15px 10px;
+        ;
         display: flex;
         justify-content: space-between;
         margin-bottom: 10px;
     }
+
     .responsive-table .table-header {
-	    background-color: #2a2d33;
+        background-color: #2a2d33;
         color: #10c4b2;
-	    font-size: 12px;
+        font-size: 12px;
         font-weight: 800;
-	    text-transform: uppercase;
-	    letter-spacing: 0.03em;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
 
     }
+
     .responsive-table .table-row {
         background-color: #ffffff5c;
         box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
@@ -57,25 +93,42 @@
 
     .responsive-table .table-row.active {
         background-color: #fff;
-        box-shadow:0px 8px 11px 0px rgba(0, 0, 0, 0.3)
+        box-shadow: 0px 8px 11px 0px rgba(0, 0, 0, 0.3)
     }
 
     .responsive-table .col-1 {
-	    flex-basis: 20%;
+        flex-basis: 20%;
     }
+
     .responsive-table .col-2 {
-	    flex-basis: 40%;
+        flex-basis: 40%;
     }
+
     .responsive-table .col-3 {
-	    flex-basis: 25%;
+        flex-basis: 25%;
     }
+
     .responsive-table .col-4 {
-	    flex-basis: 25%;
+        flex-basis: 25%;
     }
 </style>
 <div class="container-dashboard">
 
-    <div class="grid_4" ng-repeat="dataRuangan in dataAntrian">
+    <div class="grid_12">
+        <div class="grid_2">
+            <md-button class="md-raised md-primary medium-button"ng-click="changeMode()">
+                <span>Simple Mode</span>
+            </md-button>
+        </div>
+        <div class="grid_2">
+            <md-button class="md-raised md-primary medium-button" ng-click="changeMode()">
+                <span>Slideshow Mode</span>
+            </md-button>
+        </div>
+    </div>
+
+    <!-- ng-repeat="dataRuangan in dataAntrian" -->
+    <div class="grid_6" ng-repeat="dataRuangan in dataAntrian" ng-if="isSimpleMode">
         <div class="card-dashboard">
             <div class="card-header">
                 <span>{{dataRuangan.ruangoperasi}}</span>
@@ -83,174 +136,132 @@
             <div class="card-body">
                 <ul class="responsive-table">
                     <li class="table-header">
-                      <div class="col col-1">Jam</div>
-                      <div class="col col-1">No. CM</div>
-                      <div class="col col-2">Nama Pasien</div>
-                      <div class="col col-2">Nama Dokter</div>
+                        <div class="col col-1">Jam</div>
+                        <div class="col col-1">No. CM</div>
+                        <div class="col col-2">Nama Pasien</div>
+                        <div class="col col-2">Nama Dokter</div>
                     </li>
 
                     <li class="table-row active" ng-repeat="dataPasien in dataRuangan.details">
-                      <div class="col col-1" data-label="Jam">{{dataPasien.jamoperasi}}</div>
-                      <div class="col col-1" data-label="No. CM">{{dataPasien.nocm}}</div>
-                      <div class="col col-2" data-label="Nama Pasien">{{dataPasien.namapasien}}</div>
-                      <div class="col col-2" data-label="Nama Dokter">{{dataPasien.namadokter}}</div>
-                      <div ng-if="dataRuangan.details.length == 0">Tidak ada data</div>
-                    </li>
-                    <!-- <li class="table-row">
-                        <div class="col col-1" data-label="Jam">08.00</div>
-                        <div class="col col-1" data-label="No. CM">081231</div>
-                        <div class="col col-2" data-label="No. Registrasi">1921313</div>
-                        <div class="col col-2" data-label="Nama Pasien">Fulan 4</div>
+                        <div class="col col-1" data-label="Jam">{{dataPasien.jamoperasi}}</div>
+                        <div class="col col-1" data-label="No. CM">{{dataPasien.nocm}}</div>
+                        <div class="col col-2" data-label="Nama Pasien">{{dataPasien.namapasien}}</div>
+                        <div class="col col-2" data-label="Nama Dokter">{{dataPasien.namadokter}}</div>
+                        <div ng-if="dataRuangan.details.length == 0">Tidak ada data</div>
                     </li>
 
-                    <li class="table-row">
-                        <div class="col col-1" data-label="Jam">09.00</div>
-                        <div class="col col-1" data-label="No. CM">081231</div>
-                        <div class="col col-2" data-label="No. Registrasi">1921313</div>
-                        <div class="col col-2" data-label="Nama Pasien">Fulan 5</div>
-                    </li>
-
-                    <li class="table-row active">
-                        <div class="col col-1" data-label="Jam">10.00</div>
-                        <div class="col col-1" data-label="No. CM">081231</div>
-                        <div class="col col-2" data-label="No. Registrasi">1921313</div>
-                        <div class="col col-2" data-label="Nama Pasien">Fulan 7</div>
-                    </li> -->
                 </ul>
             </div>
         </div>
     </div>
+
+    <div class="grid_12" ng-if="!isSimpleMode" >
+        
+        <div ng-repeat="dataRuangan in dataAntrian; track by $index"  id="{{'r' + ($index + 1)}}">
+            <div class="card-dashboard" >
+                <div class="card-header">
+                    <span>{{dataRuangan.ruangoperasi}}</span>
+                </div>
+                <div class="card-body">
+                    <ul class="responsive-table">
+                        <li class="table-header">
+                            <div class="col col-1">Jam</div>
+                            <div class="col col-1">No. CM</div>
+                            <div class="col col-2">Nama Pasien</div>
+                            <div class="col col-2">Nama Dokter</div>
+                        </li>
+    
+                        <li class="table-row active" ng-repeat="dataPasien in dataRuangan.details">
+                            <div class="col col-1" data-label="Jam">{{dataPasien.jamoperasi}}</div>
+                            <div class="col col-1" data-label="No. CM">{{dataPasien.nocm}}</div>
+                            <div class="col col-2" data-label="Nama Pasien">{{dataPasien.namapasien}}</div>
+                            <div class="col col-2" data-label="Nama Dokter">{{dataPasien.namadokter}}</div>
+                            <div ng-if="dataRuangan.details.length == 0">Tidak ada data</div>
+                        </li>
+                        <!-- <li class="table-row">
+                            <div class="col col-1" data-label="Jam">08.00</div>
+                            <div class="col col-1" data-label="No. CM">081231</div>
+                            <div class="col col-2" data-label="No. Registrasi">1921313</div>
+                            <div class="col col-2" data-label="Nama Pasien">Fulan 4</div>
+                        </li>
+    
+                        <li class="table-row">
+                            <div class="col col-1" data-label="Jam">09.00</div>
+                            <div class="col col-1" data-label="No. CM">081231</div>
+                            <div class="col col-2" data-label="No. Registrasi">1921313</div>
+                            <div class="col col-2" data-label="Nama Pasien">Fulan 5</div>
+                        </li>
+    
+                        <li class="table-row active">
+                            <div class="col col-1" data-label="Jam">10.00</div>
+                            <div class="col col-1" data-label="No. CM">081231</div>
+                            <div class="col col-2" data-label="No. Registrasi">1921313</div>
+                            <div class="col col-2" data-label="Nama Pasien">Fulan 7</div>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+      
+
+        <!-- <div class="card-dashboard" style="display: none;" id="r2">
+            <div class="card-header">
+                <span>Ruang Operasi 2</span>
+            </div>
+            <div class="card-body">
+                <ul class="responsive-table">
+                    <li class="table-header">
+                        <div class="col col-1">Jam</div>
+                        <div class="col col-1">No. CM</div>
+                        <div class="col col-2">Nama Pasien</div>
+                        <div class="col col-2">Nama Dokter</div>
+                    </li>
+
+                    <li class="table-row active" ng-repeat="dataPasien in dataRuangan.details">
+                        <div class="col col-1" data-label="Jam">{{dataPasien.jamoperasi}}</div>
+                        <div class="col col-1" data-label="No. CM">{{dataPasien.nocm}}</div>
+                        <div class="col col-2" data-label="Nama Pasien">{{dataPasien.namapasien}}</div>
+                        <div class="col col-2" data-label="Nama Dokter">{{dataPasien.namadokter}}</div>
+                        <div ng-if="dataRuangan.details.length == 0">Tidak ada data</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card-dashboard" style="display: none;" id="r3">
+            <div class="card-header">
+                <span>Ruang Operasi 3</span>
+            </div>
+            <div class="card-body">
+                <ul class="responsive-table">
+                    <li class="table-header">
+                        <div class="col col-1">Jam</div>
+                        <div class="col col-1">No. CM</div>
+                        <div class="col col-2">Nama Pasien</div>
+                        <div class="col col-2">Nama Dokter</div>
+                    </li>
+
+                    <li class="table-row active" ng-repeat="dataPasien in dataRuangan.details">
+                        <div class="col col-1" data-label="Jam">{{dataPasien.jamoperasi}}</div>
+                        <div class="col col-1" data-label="No. CM">{{dataPasien.nocm}}</div>
+                        <div class="col col-2" data-label="Nama Pasien">{{dataPasien.namapasien}}</div>
+                        <div class="col col-2" data-label="Nama Dokter">{{dataPasien.namadokter}}</div>
+                        <div ng-if="dataRuangan.details.length == 0">Tidak ada data</div>
+                    </li>
+                </ul>
+            </div>
+        </div> -->
+
+        <div class="navigation-card">
+            
+            <a ng-repeat="dataRuangan in dataAntrian; track by $index" id="{{'nr' + ($index + 1)}}" ng-click="changePage($index + 1)">{{dataRuangan.ruangoperasi}}</a>
+            <!-- <a id="nr2" ng-click="changePage(2)">Ruang Operasi 2</a>
+            <a id="nr3" ng-click="changePage(3)">Ruang Operasi 3</a> -->
+        </div>
+    </div>
+
+
     <div class="grid_12" style="margin-top:60px">
         <div ng-include='" ../app/module/Shared/TemplateLoading" '></div>
     </div>
-    <!-- <div class="grid_4">
-        <div class="card-dashboard">
-            <div class="card-header">
-                <span>Ruangan 1</span>
-            </div>
-
-            <div class="card-body">
-                <ul class="responsive-table">
-                    <li class="table-header">
-                      <div class="col col-1">Jam</div>
-                      <div class="col col-1">No. CM</div>
-                      <div class="col col-2">No. Registrasi</div>
-                      <div class="col col-2">Nama Pasien</div>
-                    </li>
-                    <li class="table-row">
-                      <div class="col col-1" data-label="Jam">07.00</div>
-                      <div class="col col-1" data-label="No. CM">081231</div>
-                      <div class="col col-2" data-label="No. Registrasi">1921313</div>
-                      <div class="col col-2" data-label="Nama Pasien">John Doe</div>
-                    </li>
-
-                    <li class="table-row">
-                        <div class="col col-1" data-label="Jam">08.00</div>
-                        <div class="col col-1" data-label="No. CM">081231</div>
-                        <div class="col col-2" data-label="No. Registrasi">1921313</div>
-                        <div class="col col-2" data-label="Nama Pasien">Jane Doe</div>
-                    </li>
-
-                    <li class="table-row active">
-                        <div class="col col-1" data-label="Jam">09.00</div>
-                        <div class="col col-1" data-label="No. CM">081231</div>
-                        <div class="col col-2" data-label="No. Registrasi">1921313</div>
-                        <div class="col col-2" data-label="Nama Pasien">Fulan 97</div>
-                    </li>
-
-                    <li class="table-row">
-                        <div class="col col-1" data-label="Jam">10.00</div>
-                        <div class="col col-1" data-label="No. CM">081231</div>
-                        <div class="col col-2" data-label="No. Registrasi">1921313</div>
-                        <div class="col col-2" data-label="Nama Pasien">Fulan 410</div>
-                    </li>
-                  </ul>
-            </div>
-        </div>
-    </div>
-
-    <div class="grid_4">
-        <div class="card-dashboard">
-            <div class="card-header">
-                <span>Ruangan 2</span>
-            </div>
-
-            <div class="card-body">
-                <ul class="responsive-table">
-                    <li class="table-header">
-                      <div class="col col-1">Jam</div>
-                      <div class="col col-1">No. CM</div>
-                      <div class="col col-2">No. Registrasi</div>
-                      <div class="col col-2">Nama Pasien</div>
-                    </li>
-                    <li class="table-row">
-                      <div class="col col-1" data-label="Jam">07.00</div>
-                      <div class="col col-1" data-label="No. CM">081231</div>
-                      <div class="col col-2" data-label="No. Registrasi">1921313</div>
-                      <div class="col col-2" data-label="Nama Pasien">Fulan</div>
-                    </li>
-
-                    <li class="table-row">
-                        <div class="col col-1" data-label="Jam">08.00</div>
-                        <div class="col col-1" data-label="No. CM">081231</div>
-                        <div class="col col-2" data-label="No. Registrasi">1921313</div>
-                        <div class="col col-2" data-label="Nama Pasien">Fulan 2</div>
-                    </li>
-
-                    <li class="table-row active">
-                        <div class="col col-1" data-label="Jam">09.00</div>
-                        <div class="col col-1" data-label="No. CM">081231</div>
-                        <div class="col col-2" data-label="No. Registrasi">1921313</div>
-                        <div class="col col-2" data-label="Nama Pasien">Fulan 9</div>
-                    </li>
-                  </ul>
-            </div>
-        </div>
-    </div>
-
-    <div class="grid_4">
-        <div class="card-dashboard">
-            <div class="card-header">
-                <span>Ruangan 3</span>
-            </div>
-
-            <div class="card-body">
-                <ul class="responsive-table">
-                    <li class="table-header">
-                      <div class="col col-1">Jam</div>
-                      <div class="col col-1">No. CM</div>
-                      <div class="col col-2">No. Registrasi</div>
-                      <div class="col col-2">Nama Pasien</div>
-                    </li>
-                    <li class="table-row">
-                      <div class="col col-1" data-label="Jam">07.00</div>
-                      <div class="col col-1" data-label="No. CM">081231</div>
-                      <div class="col col-2" data-label="No. Registrasi">1921313</div>
-                      <div class="col col-2" data-label="Nama Pasien">Fulan 3</div>
-                    </li>
-
-                    <li class="table-row">
-                        <div class="col col-1" data-label="Jam">08.00</div>
-                        <div class="col col-1" data-label="No. CM">081231</div>
-                        <div class="col col-2" data-label="No. Registrasi">1921313</div>
-                        <div class="col col-2" data-label="Nama Pasien">Fulan 4</div>
-                    </li>
-
-                    <li class="table-row">
-                        <div class="col col-1" data-label="Jam">09.00</div>
-                        <div class="col col-1" data-label="No. CM">081231</div>
-                        <div class="col col-2" data-label="No. Registrasi">1921313</div>
-                        <div class="col col-2" data-label="Nama Pasien">Fulan 5</div>
-                    </li>
-
-                    <li class="table-row active">
-                        <div class="col col-1" data-label="Jam">10.00</div>
-                        <div class="col col-1" data-label="No. CM">081231</div>
-                        <div class="col col-2" data-label="No. Registrasi">1921313</div>
-                        <div class="col col-2" data-label="Nama Pasien">Fulan 7</div>
-                    </li>
-                  </ul>
-            </div>
-        </div>
-    </div> -->
 </div>
