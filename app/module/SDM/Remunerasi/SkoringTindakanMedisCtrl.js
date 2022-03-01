@@ -30,6 +30,10 @@ define(['initialize'], function (initialize) {
                     text: "export",
                     name: "Tambah",
                     template: '<button ng-click="tambahData()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-plus"></span>Tambah Data</button>'
+                }, {
+                    text: "export",
+                    name: "Export Excel",
+                    template: '<button ng-click="exportExcel()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export Excel</button>'
                 }],
                 filterable: {
                     extra: false,
@@ -81,6 +85,69 @@ define(['initialize'], function (initialize) {
                     width: 100
                 }],
             };
+
+            $scope.exportExcel = () => {
+                var tempDataExport = [];
+                var rows = [
+                    {
+                        cells: [
+                            { value: "Kelompok Kerja" },
+                            { value: "Acuan Tindakan Pelayanan" },
+                            { value: "Tindakan Untuk Skoring" },
+                            { value: "Skor" },
+                            { value: "Tanggal Berlaku" },
+                            { value: "Status" }
+                        ]
+                    }
+                ];
+
+                tempDataExport = $scope.dataSourceSkoring;
+                tempDataExport.fetch(function () {
+                    var data = this.data();
+                    console.log(data);
+                    for (var i = 0; i < data.length; i++) {
+                        //push single row for every record
+                        rows.push({
+                            cells: [
+                                { value: data[i].kelompokKerja },
+                                { value: data[i].namaProduk },
+                                { value: data[i].detailProduk },
+                                { value: data[i].skor },
+                                { value: data[i].tglMulaiBerlaku },
+                                { value: data[i].statusVerifikasi }
+                            ]
+                        })
+                    }
+                    var workbook = new kendo.ooxml.Workbook({
+                        sheets: [
+                            {
+                                freezePane: {
+                                    rowSplit: 1
+                                },
+                                columns: [
+                                    // Column settings (width)
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true }
+                                ],
+                                // Title of the sheet
+                                title: "Skoring Tindakan Medis " + pegawaiLogin.nama,
+                                // Rows of the sheet
+                                rows: rows
+                            }
+                        ]
+                    });
+                    //save the file as Excel file with extension xlsx
+                    kendo.saveAs({ dataURI: workbook.toDataURL(), fileName: "skoring-tindakan-medis " + pegawaiLogin.nama +".xlsx" });
+                });
+                
+            }
 
             $scope.optGridSkoringTindakanNoSkoring = {
                 pageable: true,
