@@ -538,7 +538,7 @@ define(['initialize'], function (initialize) {
                 let tempHarga = 0;
                 let tempDiskon = 0;
                 manageServicePhp.getDataTableTransaksi("lab-radiologi/get-order-pelayanan-new?norec_so=" + $scope.dataSelected.norec_so +
-                    "&objectkelasfk=" + $scope.dataSelected.objectkelasfk +
+                    "&objectkelasfk=" + $scope.dataSelected.kelas_order +
                     "&jenisdiskon=" + (($scope.dataSelected.diskonpegawai && $scope.dataSelected.diskonpegawai != 0) ? $scope.dataSelected.diskonpegawai : $scope.item.diskonpegawai), true).then(function (dat) {
 
                         $scope.diskonpegawaiexisting = 0;

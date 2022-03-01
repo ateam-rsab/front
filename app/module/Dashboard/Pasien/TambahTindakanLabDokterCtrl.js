@@ -176,7 +176,7 @@ define(['initialize'], function (initialize) {
             $scope.filterPelayanan("");
 
             $scope.getDataDetail = () => {
-                manageLogistikPhp.getDataTableTransaksi("lab-radiologi/get-order-pelayanan-new?norec_so=" + dataLab.norecSo + "&objectkelasfk=" + dataLab.details[0].objectkelasfk).then(res => {
+                manageLogistikPhp.getDataTableTransaksi("lab-radiologi/get-order-pelayanan-new?norec_so=" + dataLab.norecSo + "&objectkelasfk=" + dataLab.details[0].kelas_order).then(res => {
 
                     for (let i = 0; i < res.data.data.length; i++) {
                         res.data.data[i].no = i + 1;

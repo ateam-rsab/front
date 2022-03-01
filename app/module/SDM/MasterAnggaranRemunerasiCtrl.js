@@ -10,12 +10,14 @@ define(['initialize'], function (initialize) {
             $scope.item.pirHitungan = 0;
             let dataLogin = JSON.parse(localStorage.getItem("datauserlogin"));
 
-            $scope.formatter = new Intl.NumberFormat('id-ID', {
+            var rupiahFormatter = new Intl.NumberFormat('id-ID', {
                 style: 'currency',
                 currency: 'IDR',
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2
             });
+
+            $scope.angkaFormatter = new Intl.NumberFormat('id-ID');
 
             $scope.optGridPenempatanEvaluasiJabatan = {
                 filterable: {
@@ -53,12 +55,15 @@ define(['initialize'], function (initialize) {
                 }, {
                     field: "grade",
                     title: "<h3>Grade</h3>",
-                    width: 70
+                    width: 70,
+                    attributes: { align: "right" }
                 }, {
                     field: "nilaiJabatan",
                     title: "<h3>Nilai Jabatan</h3>",
                     width: 70,
-                    footerTemplate: "Total: <span>{{totalNilaiJabatan}}</span>"
+                    attributes: { align: "right" },
+                    footerTemplate: "Total: <span>{{angkaFormatter.format(totalNilaiJabatan)}}</span>",
+                    footerAttributes: { align: "right" }
                 }]
             };
 
@@ -126,10 +131,10 @@ define(['initialize'], function (initialize) {
                 ManageSdmNew.getListData("sdm/get-plafon-remunerasi").then(res => {
 
                     for (let i = 0; i < res.data.data.length; i++) {
-                        res.data.data[i].gajiHonorariumFormatted = $scope.formatter.format(res.data.data[i].gajiHonorarium);
-                        res.data.data[i].maxInsentifFormatted = $scope.formatter.format(res.data.data[i].maxInsentif);
-                        res.data.data[i].maxTotalRemunerasiFormatted = $scope.formatter.format(res.data.data[i].maxTotalRemunerasi);
-                        res.data.data[i].minInsentifFormatted = $scope.formatter.format(res.data.data[i].minInsentif);
+                        res.data.data[i].gajiHonorariumFormatted = rupiahFormatter.format(res.data.data[i].gajiHonorarium);
+                        res.data.data[i].maxInsentifFormatted = rupiahFormatter.format(res.data.data[i].maxInsentif);
+                        res.data.data[i].maxTotalRemunerasiFormatted = rupiahFormatter.format(res.data.data[i].maxTotalRemunerasi);
+                        res.data.data[i].minInsentifFormatted = rupiahFormatter.format(res.data.data[i].minInsentif);
                     }
 
                     $scope.dataPlafon = new kendo.data.DataSource({
@@ -153,9 +158,9 @@ define(['initialize'], function (initialize) {
                         $scope.totalNilaiJabatan += res[0].data.data[i].nilaiJabatan;
                     }
                     if (res[1].data.data && res[1].data.data.anggaranTahun) {
-                        $scope.item.anggaranRemunerasi = $scope.formatter.format(res[1].data.data.anggaranTahun);
-                        $scope.item.pir = $scope.formatter.format(res[1].data.data.anggaranBulan);
-                        $scope.item.pirHitungan = $scope.formatter.format((res[1].data.data.anggaranBulan / res[1].data.data.totNilaiJabatan));
+                        $scope.item.anggaranRemunerasi = rupiahFormatter.format(res[1].data.data.anggaranTahun);
+                        $scope.item.pir = rupiahFormatter.format(res[1].data.data.anggaranBulan);
+                        $scope.item.pirHitungan = rupiahFormatter.format((res[1].data.data.anggaranBulan / res[1].data.data.totNilaiJabatan));
 
                         $scope.isExistedTahunIni = true
                     } else {
@@ -176,8 +181,8 @@ define(['initialize'], function (initialize) {
                 $scope.item.pirUnformatted = $scope.item.pir;
                 $scope.item.pirHitunganUnformatted = $scope.item.pirHitungan;
 
-                let pirFormatted = $scope.formatter.format($scope.item.pir),
-                    pirHitunganFormatted = $scope.formatter.format($scope.item.pirHitungan);
+                let pirFormatted = rupiahFormatter.format($scope.item.pir),
+                    pirHitunganFormatted = rupiahFormatter.format($scope.item.pirHitungan);
 
                 $scope.item.pir = pirFormatted;
                 $scope.item.pirHitungan = pirHitunganFormatted;

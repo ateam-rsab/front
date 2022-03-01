@@ -330,8 +330,8 @@ define(['initialize'], function (initialize) {
                     "item.tglBerlaku|ng-model|Tanggal Berlaku",
                     "item.kelompokKerja|ng-model|Kelompok Kerja",
                     "item.skor|ng-model|Skor",
-                    "item.detailTindakan|ng-model|Rincian Tindakan",
-                    "item.namaProduk|k-ng-model|Tindakan"
+                    "item.detailTindakan|ng-model|Tindakan Untuk Skoring",
+                    "item.namaProduk|k-ng-model|Acuan Tindakan Pelayanan"
                 ];
 
                 var isValid = modelItem.setValidation($scope, listRawRequired);
