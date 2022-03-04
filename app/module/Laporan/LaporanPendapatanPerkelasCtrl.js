@@ -17,7 +17,7 @@ define(['initialize'], function (initialize) {
                 $scope.isRouteLoading = true;
                 var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm');
                 var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm');
-                
+
 
 
                 // var tempDepartemenId = "";
@@ -87,9 +87,9 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.selectedData = [];
-             $scope.onClick = function(e){
-                var element =$(e.currentTarget);
-                
+            $scope.onClick = function (e) {
+                var element = $(e.currentTarget);
+
                 var checked = element.is(':checked'),
                     row = element.closest('tr'),
                     grid = $("#kGrid").data("kendoGrid"),
@@ -97,7 +97,7 @@ define(['initialize'], function (initialize) {
 
                 // $scope.selectedData[dataItem.noRec] = checked;
                 if (checked) {
-                    var result = $.grep($scope.selectedData, function(e) { 
+                    var result = $.grep($scope.selectedData, function (e) {
                         return e.noregistrasi == dataItem.noregistrasi;
                     });
                     if (result.length == 0) {
@@ -141,8 +141,8 @@ define(['initialize'], function (initialize) {
 
             $scope.columnLaporanPerkelas = [
                 {
-                "template": "<input type='checkbox' class='checkbox' ng-click='onClick($event)' />",
-                "width": 40
+                    "template": "<input type='checkbox' class='checkbox' ng-click='onClick($event)' />",
+                    "width": 40
                 },
                 {
                     "field": "noregistrasi",
@@ -170,7 +170,7 @@ define(['initialize'], function (initialize) {
                     "field": "namakelas",
                     "title": "Kelas",
                     "width": "80px"
-                 
+
                 },
                 {
                     "field": "namaproduk",
@@ -239,7 +239,7 @@ define(['initialize'], function (initialize) {
                     "field": "voltindakan",
                     "title": "Vol",
                     "width": "100px"
-                  
+
                 },
                 {
                     "field": "adm",
@@ -256,6 +256,109 @@ define(['initialize'], function (initialize) {
 
 
             ];
+
+            $scope.optGrid = {
+                toolbar: [
+                    // "excel", 
+                    { text: "export", name: "Export detail", template: '<button ng-click="exportData()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>' }
+                ],
+            }
+
+            $scope.exportData = function () {
+                var tempDataExport = [];
+                var rows = [
+                    {
+                        cells: [
+                            { value: "No. Registrasi" },
+                            { value: "No. RM" },
+                            { value: "Nama Pasien" },
+                            { value: "Ruangan" },
+                            { value: "Kelas" },
+                            { value: "Nama Produk" },
+                            { value: "Diskon" },
+                            { value: "Akomodasi" },
+                            { value: "Vol. Akomodasi" },
+                            { value: "Visit" },
+                            { value: "Vol. Visit" },
+                            { value: "Sewa Alat" },
+                            { value: "Sewa Alat" },
+                            { value: "Vol Sewa Alat" },
+                            { value: "Vol Tindakan" },
+                            { value: "Admin" },
+                            { value: "Total" }
+                        ]
+                    }
+                ];
+
+                tempDataExport = $scope.dataLaporanPerkelas;
+                tempDataExport.fetch(function () {
+                    var data = this.data();
+                    console.log(data);
+                    for (var i = 0; i < data.length; i++) {
+                        //push single row for every record
+                        rows.push({
+                            cells: [
+                                { value: data[i].noregistrasi },
+                                { value: data[i].nocm },
+                                { value: data[i].namapasien },
+                                { value: data[i].namaruangan },
+                                { value: data[i].namakelas },
+                                { value: data[i].namaproduk },
+                                { value: data[i].hargadiscount },
+                                { value: data[i].akomodasi },
+                                { value: data[i].volakomodasi },
+                                { value: data[i].visit },
+                                { value: data[i].volvisit },
+                                { value: data[i].sewaalat },
+                                { value: data[i].volsewaalat },
+                                { value: data[i].konsultasi },
+                                { value: data[i].volkonsultasi },
+                                { value: data[i].tindakan },
+                                { value: data[i].voltindakan },
+                                { value: data[i].adm },
+                                { value: data[i].total },
+                            ]
+                        })
+                    }
+                    var workbook = new kendo.ooxml.Workbook({
+                        sheets: [
+                            {
+                                freezePane: {
+                                    rowSplit: 1
+                                },
+                                columns: [
+                                    // Column settings (width)
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true }
+                                ],
+                                // Title of the sheet
+                                title: "Laporan Pendapatan Rawat Inap",
+                                // Rows of the sheet
+                                rows: rows
+                            }
+                        ]
+                    });
+                    //save the file as Excel file with extension xlsx
+                    kendo.saveAs({ dataURI: workbook.toDataURL(), fileName: "laporan-pendapatan-rawat-inap.xlsx" });
+                });
+
+            }
 
             $scope.Perbaharui = function () {
                 $scope.ClearSearch();
@@ -313,7 +416,7 @@ define(['initialize'], function (initialize) {
 
             ]
 
-            
+
             $scope.date = new Date();
             var tanggals = DateHelper.getDateTimeFormatted3($scope.date);
 
@@ -327,14 +430,14 @@ define(['initialize'], function (initialize) {
             $scope.pegawai = modelItemAkuntansi.getPegawai();
 
             $scope.Cetak = function () {
-                
+
                 var daftarCetak = [];
-                if($scope.selectedData.length > 0){
-                    $scope.selectedData.forEach(function(items){
+                if ($scope.selectedData.length > 0) {
+                    $scope.selectedData.forEach(function (items) {
                         daftarCetak.push(items)
                     })
                     var resultCetak = daftarCetak.map(a => a.noregistrasi).join("|");
-                }else{
+                } else {
                     var resultCetak = "";
                 }
                 $scope.dataLogin = JSON.parse(window.localStorage.getItem('pegawai'));
@@ -362,7 +465,7 @@ define(['initialize'], function (initialize) {
                 if ($scope.item.kelas == undefined)
                     var kelas = "";
                 else
-                   var kelas = $scope.item.kelas.id;
+                    var kelas = $scope.item.kelas.id;
                 // if ($scope.item.namaPegawai == undefined)
                 //     var namaPegawai = "";
                 // else
@@ -379,154 +482,154 @@ define(['initialize'], function (initialize) {
                 client.get('http://127.0.0.1:1237/printvb/laporanPelayanan?cetak-LaporanPendapatan-perkelas=1&tglAwal='
                     + tglawal + '&tglAkhir=' + tglakhir + '&strNoReg=' + resultCetak + '&strIdDepartemen=' + departement
                     + '&strIdRuangan=' + ruangan + '&strIdKelas=' + kelas + '&strIdPegawai=' + $scope.dataLogin.namaLengkap + '&view=' + stt, function (response) {
-                    // do something with response
-                });
+                        // do something with response
+                    });
             };
-            $scope.CetakVolume = function() {
-        // if($scope.item.format == undefined){
-        //  alert('format file harus dipilih terlebih dahulu !!!')
-        // }
-            
-            if($scope.item.tglawal == $scope.tglawal)
-                var tglawal = $scope.item.tglawal;
-            else
-                var tglawal = DateHelper.getDateTimeFormatted2($scope.item.tglawal, "dd-MM-yyyy HH:mm");
-            if($scope.item.tglakhir == $scope.tglakhir)
-                var tglakhir = $scope.item.tglakhir;
-            else
-                var tglakhir = DateHelper.getDateTimeFormatted2($scope.item.tglakhir, "dd-MM-yyyy HH:mm");
+            $scope.CetakVolume = function () {
+                // if($scope.item.format == undefined){
+                //  alert('format file harus dipilih terlebih dahulu !!!')
+                // }
 
-            if($scope.item.departement == undefined)
-                var departement = "";
-            else
-                var departement = $scope.item.departement.id;
-            if ($scope.item.ruangan == undefined)
-                var ruangan = "";
-            else
-                var ruangan = $scope.item.ruangan.id;
+                if ($scope.item.tglawal == $scope.tglawal)
+                    var tglawal = $scope.item.tglawal;
+                else
+                    var tglawal = DateHelper.getDateTimeFormatted2($scope.item.tglawal, "dd-MM-yyyy HH:mm");
+                if ($scope.item.tglakhir == $scope.tglakhir)
+                    var tglakhir = $scope.item.tglakhir;
+                else
+                    var tglakhir = DateHelper.getDateTimeFormatted2($scope.item.tglakhir, "dd-MM-yyyy HH:mm");
+
+                if ($scope.item.departement == undefined)
+                    var departement = "";
+                else
+                    var departement = $scope.item.departement.id;
+                if ($scope.item.ruangan == undefined)
+                    var ruangan = "";
+                else
+                    var ruangan = $scope.item.ruangan.id;
                 var kelompokPasien = "";
-            var stt = 'false'
-            if (confirm('View Laporan Pendapatan Rawat Inap? ')){
-                // Save it!
-                stt='true';
-            }else {
-                // Do nothing!
-                stt='false'
-            }
-            var client = new HttpClient();        
-            client.get('http://127.0.0.1:1237/printvb/laporanPelayanan?cetak-LaporanPendapatanInap=1&tglAwal='+tglawal+'&tglAkhir='+tglakhir
-                +'&strIdDepartemen='+departement+ '&strIdRuangan=' + ruangan + '&strIdKelas=' + kelompokPasien 
-                +'&strIdPegawai='+$scope.pegawai.namaLengkap+'&view='+ stt, function(response) {
-                // do something with response
-            });
-            // if(client.status==0){
-            //     if($scope.item.format == undefined){
-            //         alert('format file harus dipilih terlebih dahulu !!!');
-            //     }else{
-            //         var urlLaporan = ReportPelayanan.open('preporting/lapPelayananPasien?startDate=''+tglawal+'+tglawal+'&tglAkhir='+tglakhir+'&strIdRuangan='+ruangan+'&strIdDepartement='+departement+'&strIdKelompokPasien='+kelompokPasien+'&strIdDokter='+namaPegawai+'&format='+$scope.item.format.format);
-            //         window.open(urlLaporan, '_blank');
-            //     }
-            // }   
-        };
+                var stt = 'false'
+                if (confirm('View Laporan Pendapatan Rawat Inap? ')) {
+                    // Save it!
+                    stt = 'true';
+                } else {
+                    // Do nothing!
+                    stt = 'false'
+                }
+                var client = new HttpClient();
+                client.get('http://127.0.0.1:1237/printvb/laporanPelayanan?cetak-LaporanPendapatanInap=1&tglAwal=' + tglawal + '&tglAkhir=' + tglakhir
+                    + '&strIdDepartemen=' + departement + '&strIdRuangan=' + ruangan + '&strIdKelas=' + kelompokPasien
+                    + '&strIdPegawai=' + $scope.pegawai.namaLengkap + '&view=' + stt, function (response) {
+                        // do something with response
+                    });
+                // if(client.status==0){
+                //     if($scope.item.format == undefined){
+                //         alert('format file harus dipilih terlebih dahulu !!!');
+                //     }else{
+                //         var urlLaporan = ReportPelayanan.open('preporting/lapPelayananPasien?startDate=''+tglawal+'+tglawal+'&tglAkhir='+tglakhir+'&strIdRuangan='+ruangan+'&strIdDepartement='+departement+'&strIdKelompokPasien='+kelompokPasien+'&strIdDokter='+namaPegawai+'&format='+$scope.item.format.format);
+                //         window.open(urlLaporan, '_blank');
+                //     }
+                // }   
+            };
 
-        $scope.CetakRekap = function() {
-        // if($scope.item.format == undefined){
-        //  alert('format file harus dipilih terlebih dahulu !!!')
-        // }
-            
-            if($scope.item.tglawal == $scope.tglawal)
-                var tglawal = $scope.item.tglawal;
-            else
-                var tglawal = DateHelper.getDateTimeFormatted2($scope.item.tglawal, "dd-MM-yyyy HH:mm");
-            if($scope.item.tglakhir == $scope.tglakhir)
-                var tglakhir = $scope.item.tglakhir;
-            else
-                var tglakhir = DateHelper.getDateTimeFormatted2($scope.item.tglakhir, "dd-MM-yyyy HH:mm");
+            $scope.CetakRekap = function () {
+                // if($scope.item.format == undefined){
+                //  alert('format file harus dipilih terlebih dahulu !!!')
+                // }
 
-            if($scope.item.departement == undefined)
-                var departement = "";
-            else
-                var departement = $scope.item.departement.id;
-            if ($scope.item.ruangan == undefined)
-                var ruangan = "";
-            else
-                var ruangan = $scope.item.ruangan.id;
-            if ($scope.item.kelas == undefined)
-                var kelas = "";
-            else
-               var kelas = $scope.item.kelas.id;
-            var stt = 'false'
-            if (confirm('View Laporan Rekap Pendapatan Rawat Inap? ')){
-                // Save it!
-                stt='true';
-            }else {
-                // Do nothing!
-                stt='false'
-            }
-            var client = new HttpClient();        
-            client.get('http://127.0.0.1:1237/printvb/laporanPelayanan?cetak-LaporanRekapPendapataninap=1&tglAwal='+tglawal+'&tglAkhir='+tglakhir
-                +'&strIdDepartemen='+departement+'&strIdRuangan=' + ruangan + '&strIdPegawai='+$scope.pegawai.namaLengkap+'&view='+ stt, function(response) {
-                // do something with response
-            });
-            // if(client.status==0){
-            //     if($scope.item.format == undefined){
-            //         alert('format file harus dipilih terlebih dahulu !!!');
-            //     }else{
-            //         var urlLaporan = ReportPelayanan.open('preporting/lapPelayananPasien?startDate=''+tglawal+'+tglawal+'&tglAkhir='+tglakhir+'&strIdRuangan='+ruangan+'&strIdDepartement='+departement+'&strIdKelompokPasien='+kelompokPasien+'&strIdDokter='+namaPegawai+'&format='+$scope.item.format.format);
-            //         window.open(urlLaporan, '_blank');
-            //     }
-            // }   
-        };
-        $scope.CetakVolumePerKelas = function() {
-        // if($scope.item.format == undefined){
-        //  alert('format file harus dipilih terlebih dahulu !!!')
-        // }
-            
-            if($scope.item.tglawal == $scope.tglawal)
-                var tglawal = $scope.item.tglawal;
-            else
-                var tglawal = DateHelper.getDateTimeFormatted2($scope.item.tglawal, "dd-MM-yyyy HH:mm");
-            if($scope.item.tglakhir == $scope.tglakhir)
-                var tglakhir = $scope.item.tglakhir;
-            else
-                var tglakhir = DateHelper.getDateTimeFormatted2($scope.item.tglakhir, "dd-MM-yyyy HH:mm");
+                if ($scope.item.tglawal == $scope.tglawal)
+                    var tglawal = $scope.item.tglawal;
+                else
+                    var tglawal = DateHelper.getDateTimeFormatted2($scope.item.tglawal, "dd-MM-yyyy HH:mm");
+                if ($scope.item.tglakhir == $scope.tglakhir)
+                    var tglakhir = $scope.item.tglakhir;
+                else
+                    var tglakhir = DateHelper.getDateTimeFormatted2($scope.item.tglakhir, "dd-MM-yyyy HH:mm");
 
-            if($scope.item.departement == undefined)
-                var departement = "";
-            else
-                var departement = $scope.item.departement.id;
-            if ($scope.item.ruangan == undefined)
-                var ruangan = "";
-            else
-                var ruangan = $scope.item.ruangan.id;
+                if ($scope.item.departement == undefined)
+                    var departement = "";
+                else
+                    var departement = $scope.item.departement.id;
+                if ($scope.item.ruangan == undefined)
+                    var ruangan = "";
+                else
+                    var ruangan = $scope.item.ruangan.id;
+                if ($scope.item.kelas == undefined)
+                    var kelas = "";
+                else
+                    var kelas = $scope.item.kelas.id;
+                var stt = 'false'
+                if (confirm('View Laporan Rekap Pendapatan Rawat Inap? ')) {
+                    // Save it!
+                    stt = 'true';
+                } else {
+                    // Do nothing!
+                    stt = 'false'
+                }
+                var client = new HttpClient();
+                client.get('http://127.0.0.1:1237/printvb/laporanPelayanan?cetak-LaporanRekapPendapataninap=1&tglAwal=' + tglawal + '&tglAkhir=' + tglakhir
+                    + '&strIdDepartemen=' + departement + '&strIdRuangan=' + ruangan + '&strIdPegawai=' + $scope.pegawai.namaLengkap + '&view=' + stt, function (response) {
+                        // do something with response
+                    });
+                // if(client.status==0){
+                //     if($scope.item.format == undefined){
+                //         alert('format file harus dipilih terlebih dahulu !!!');
+                //     }else{
+                //         var urlLaporan = ReportPelayanan.open('preporting/lapPelayananPasien?startDate=''+tglawal+'+tglawal+'&tglAkhir='+tglakhir+'&strIdRuangan='+ruangan+'&strIdDepartement='+departement+'&strIdKelompokPasien='+kelompokPasien+'&strIdDokter='+namaPegawai+'&format='+$scope.item.format.format);
+                //         window.open(urlLaporan, '_blank');
+                //     }
+                // }   
+            };
+            $scope.CetakVolumePerKelas = function () {
+                // if($scope.item.format == undefined){
+                //  alert('format file harus dipilih terlebih dahulu !!!')
+                // }
+
+                if ($scope.item.tglawal == $scope.tglawal)
+                    var tglawal = $scope.item.tglawal;
+                else
+                    var tglawal = DateHelper.getDateTimeFormatted2($scope.item.tglawal, "dd-MM-yyyy HH:mm");
+                if ($scope.item.tglakhir == $scope.tglakhir)
+                    var tglakhir = $scope.item.tglakhir;
+                else
+                    var tglakhir = DateHelper.getDateTimeFormatted2($scope.item.tglakhir, "dd-MM-yyyy HH:mm");
+
+                if ($scope.item.departement == undefined)
+                    var departement = "";
+                else
+                    var departement = $scope.item.departement.id;
+                if ($scope.item.ruangan == undefined)
+                    var ruangan = "";
+                else
+                    var ruangan = $scope.item.ruangan.id;
                 var kelompokPasien = "";
-            var kelasfk="";
-            if ($scope.item.kelas != undefined) {
-                kelasfk=$scope.item.kelas.id
-            }
-            var stt = 'false'
-            if (confirm('View Laporan Pendapatan Rawat Inap? ')){
-                // Save it!
-                stt='true';
-            }else {
-                // Do nothing!
-                stt='false'
-            }
-            var client = new HttpClient();        
-            client.get('http://127.0.0.1:1237/printvb/laporanPelayanan?cetak-LaporanPendapatanInapPerKelas=1&tglAwal='+tglawal+'&tglAkhir='+tglakhir
-                +'&strIdDepartemen='+departement+ '&strIdRuangan=' + ruangan + '&idKelompok=' + kelompokPasien + '&kelasfk=' +  kelasfk
-                +'&strIdPegawai='+$scope.pegawai.namaLengkap+'&view='+ stt, function(response) {
-                // do something with response
-            });
-            // if(client.status==0){
-            //     if($scope.item.format == undefined){
-            //         alert('format file harus dipilih terlebih dahulu !!!');
-            //     }else{
-            //         var urlLaporan = ReportPelayanan.open('preporting/lapPelayananPasien?startDate=''+tglawal+'+tglawal+'&tglAkhir='+tglakhir+'&strIdRuangan='+ruangan+'&strIdDepartement='+departement+'&strIdKelompokPasien='+kelompokPasien+'&strIdDokter='+namaPegawai+'&format='+$scope.item.format.format);
-            //         window.open(urlLaporan, '_blank');
-            //     }
-            // }   
-        };
+                var kelasfk = "";
+                if ($scope.item.kelas != undefined) {
+                    kelasfk = $scope.item.kelas.id
+                }
+                var stt = 'false'
+                if (confirm('View Laporan Pendapatan Rawat Inap? ')) {
+                    // Save it!
+                    stt = 'true';
+                } else {
+                    // Do nothing!
+                    stt = 'false'
+                }
+                var client = new HttpClient();
+                client.get('http://127.0.0.1:1237/printvb/laporanPelayanan?cetak-LaporanPendapatanInapPerKelas=1&tglAwal=' + tglawal + '&tglAkhir=' + tglakhir
+                    + '&strIdDepartemen=' + departement + '&strIdRuangan=' + ruangan + '&idKelompok=' + kelompokPasien + '&kelasfk=' + kelasfk
+                    + '&strIdPegawai=' + $scope.pegawai.namaLengkap + '&view=' + stt, function (response) {
+                        // do something with response
+                    });
+                // if(client.status==0){
+                //     if($scope.item.format == undefined){
+                //         alert('format file harus dipilih terlebih dahulu !!!');
+                //     }else{
+                //         var urlLaporan = ReportPelayanan.open('preporting/lapPelayananPasien?startDate=''+tglawal+'+tglawal+'&tglAkhir='+tglakhir+'&strIdRuangan='+ruangan+'&strIdDepartement='+departement+'&strIdKelompokPasien='+kelompokPasien+'&strIdDokter='+namaPegawai+'&format='+$scope.item.format.format);
+                //         window.open(urlLaporan, '_blank');
+                //     }
+                // }   
+            };
 
 
             // $scope.CetakDetail = function () {

@@ -10,6 +10,16 @@ define(['initialize'], function (initialize) {
                 toolbar: [
                     { text: "add", name: "Add", template: '<button ng-click="tambahMapping()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-plus"></span>Tambah</button>' },
                 ],
+                filterable: {
+                    extra: false,
+                    operators: {
+                        string: {
+                            startswith: "Dimulai dengan",
+                            contains: "mengandung kata",
+                            neq: "Tidak mengandung kata"
+                        }
+                    }
+                },
                 pageable: true,
                 scrollable: true,
                 columns: [{
