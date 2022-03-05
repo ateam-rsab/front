@@ -73,34 +73,41 @@ define(['initialize'], function (initialize) {
                 columns: [{
                     field: "grade",
                     title: "<h3>Grade</h3>",
-                    width: 70
+                    width: 70,
+                    attributes: { align: "right" }
                 }, {
                     field: "nilaiTerendah",
                     title: "<h3>Nilai<br/>Terendah</h3>",
-                    width: 50
+                    width: 50,
+                    attributes: { align: "right" }
                 }, {
                     field: "nilaiTertinggi",
                     title: "<h3>Nilai<br/>Tertinggi</h3>",
-                    width: 50
+                    width: 50,
+                    attributes: { align: "right" }
                 }, {
                     field: "gajiHonorariumFormatted",
                     title: "<h3>Gaji Honorarium</h3>",
-                    width: 150
+                    width: 150,
+                    attributes: { align: "right" }
                 }, {
                     title: "<h3>Insentif</h3>",
                     columns: [{
                         field: "minInsentifFormatted",
                         title: "<h3>Min</h3>",
-                        width: 120
+                        width: 120,
+                        attributes: { align: "right" }
                     }, {
                         field: "maxInsentifFormatted",
                         title: "<h3>Max</h3>",
-                        width: 150
+                        width: 150,
+                        attributes: { align: "right" }
                     }]
                 }, {
                     field: "maxTotalRemunerasiFormatted",
                     title: "<h3>Total Remunerasi</h3>",
-                    width: 120
+                    width: 120,
+                    attributes: { align: "right" }
                 }, {
                     command: [{
                         text: "Edit",
