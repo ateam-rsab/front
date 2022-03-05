@@ -266,7 +266,7 @@ define(['initialize'], function (initialize) {
 
             let autoIndikator = [466, 350, 351, 357, 674]
             $scope.showDetail = (data) => {
-                if (!autoIndikator.includes(data.idIndikator) && data.idIndikator != 678) {
+                if (!autoIndikator.includes(data.idIndikator) && data.idIndikator != 678 && data.idIndikator != 712) {
                     $scope.labelDetail = data.namaIndikator
 
                     let URL = "iki-remunerasi/catatan-kegiatan-harian-indikator?pegawaiId=" + data.idPegawai
@@ -282,7 +282,7 @@ define(['initialize'], function (initialize) {
 
                         $scope.popupDetail1.open().center();
                     })
-                } else if (data.idIndikator == 466 || data.idIndikator == 678) {
+                } else if (data.idIndikator == 466 || data.idIndikator == 678 || data.idIndikator == 712) {
                     $state.go('LihatLogbookSkorKinerja', { bulan: dateHelper.toTimeStamp($scope.item.bulan), pegawaiId: $scope.item.pegawai.id });
                 } else {
                     toastr.info("Indikator ini dihitung otomatis", "Informasi")
