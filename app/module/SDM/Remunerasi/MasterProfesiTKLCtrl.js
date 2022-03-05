@@ -25,6 +25,17 @@ define(["initialize"], function (initialize) {
     ) {
       $scope.item = {};
 
+      $scope.listJenisProfesi = [
+        {
+          id: 1,
+          jenisProfesi: "PPA",
+        },
+        {
+          id: 2,
+          jenisProfesi: "Non-PPA",
+        }
+      ]
+
       $scope.optGrid = {
         filterable: {
           extra: false,
@@ -58,6 +69,12 @@ define(["initialize"], function (initialize) {
             title: "<h3>Nama Profesi</h3>",
             width: 100,
             // filterable: true,
+          },
+          {
+            field: "jenisProfesi",
+            title: "<h3>Jenis Profesi</h3>",
+            width: 50,
+            template: "#if(jenisProfesi == 1){#PPA#}else{#Non-PPA#}#",
           },
           {
             command: [
@@ -107,14 +124,16 @@ define(["initialize"], function (initialize) {
       };
 
       $scope.reset = () => {
+        $scope.item.profesiId = undefined;
         $scope.item.namaProfesi = "";
+        $scope.item.jenisProfesi = null;
       };
 
       $scope.closePopUp = () => {
         $scope.reset();
 
         $scope.popup.close();
-    }
+      }
 
       function confirmHapus(e) {
         e.preventDefault();
@@ -123,7 +142,7 @@ define(["initialize"], function (initialize) {
 
         $scope.item.namaProfesi = dataItem.namaProfesi;
         $scope.item.profesiId = dataItem.id;
-      
+
         var confirm = $mdDialog
           .confirm()
           .title("Apakah anda yakin menghapus data?")
@@ -144,12 +163,17 @@ define(["initialize"], function (initialize) {
 
         $scope.item.namaProfesi = dataItem.namaProfesi;
         $scope.item.profesiId = dataItem.id;
+        $scope.item.jenisProfesi = {
+          id: dataItem.jenisProfesi,
+          jenisProfesi: dataItem.jenisProfesi == 1 ? "PPA" : "Non-PPA"
+        };
         $scope.popup.open().center();
       }
 
       $scope.saveData = (statusEnabled) => {
         let dataSave = {
           namaProfesi: $scope.item.namaProfesi,
+          jenisProfesi: $scope.item.jenisProfesi.id,
           statusEnabled: statusEnabled,
           kdProfile: 0,
         };
