@@ -49,6 +49,9 @@ define(['initialize'], function (initialize) {
                         field: "totalTargetSkor",
                         title: "<h3>Total Target Skor</h3>",
                         width: 100,
+                        attributes: {
+                            style: "text-align: right;"
+                        }
                     },
                     {
                         command: [{
