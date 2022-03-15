@@ -2,6 +2,7 @@
     md-checkbox.md-checked.green .md-icon {
         background-color: #38c4b2;
     }
+
     #gridTindakanNoSkoring {
         height: 100%;
     }
@@ -51,90 +52,85 @@
         </md-button>
     </div>
 </div> -->
+
 <div class="grid_4">
     <div kendo-grid id="gridTindakanNoSkoring" k-data-source="dataSourceTindakanNoSkoring" k-selectable="'row'"
         options="optGridSkoringTindakanNoSkoring" ng-click="onClickDataTindakanNoSkoring(selectedDataTindakanNoSkoring)"
         k-ng-model="selectedDataTindakanNoSkoring"></div>
 </div>
+
 <div class="grid_8">
-
-    <div class="grid_12 borderBox" style="margin-bottom: 20px;" ng-show="showDesc">
-        <div class="grid_2">
-            <label>Produk</label>
-        </div>
-        <div class="grid_10">
-            {{desc.produk ? desc.produk : '-'}}
-        </div>
-
-        <div class="grid_2">
-            <label>Tarif</label>
-        </div>
-        <div class="grid_10">
-            {{desc.tarif ? desc.tarif : '-'}}
-        </div>
-
-        <div class="grid_2">
-            <label>Ruangan Pemeriksaan</label>
-        </div>
-        <div class="grid_10">
-            {{desc.ruanganPemeriksaan ? desc.ruanganPemeriksaan : '-'}}
-        </div>
-
-        <div class="grid_2">
-            <label>Dokter Pemeriksa Terakhir</label>
-        </div>
-        <div class="grid_10">
-            {{desc.dokterPemeriksaTerakhir ? desc.dokterPemeriksaTerakhir : '-'}}
-
-        </div>
+    <div class="grid_12">
+        <div kendo-grid k-data-source="dataSourceSkoring" k-selectable="'row'" options="optGridSkoringTindakan"
+            k-ng-model="selectedData"></div>
     </div>
+</div>
 
-    <div class="grid_12" ng-show="showDesc">
+<div class="grid_12" ng-show="showDesc">
+    <div class="grid_12">
         <div class="grid_3">
             <label><strong>Kelompok Kerja</strong></label>
             <input kendo-combo-box k-filter="'contains'" k-ng-model="desc.kelompokKerja" k-data-text-field="'name'"
-                k-data-value-field="'id'" k-data-source="listKKMedis" />
+                k-data-value-field="'id'" k-data-source="listKKMedis" disabled />
         </div>
-
         <div class="grid_2">
             <label><strong>Skor</strong></label>
-            <input c-text-box type="input" filter="" class="k-textbox" ng-model="desc.skor" />
+            <input c-text-box id="idDescSkor" type="input" filter="" class="k-textbox" ng-model="desc.skor"
+                ng-disabled="isVerifStaf" />
         </div>
-
         <div class="grid_2">
-            <label><strong>TMT</strong></label>
+            <label><strong>Tanggal Berlaku</strong></label>
             <input style="width: 100%;" k-ng-model="desc.tglBerlaku" kendo-date-picker placeholer="dd-mm-yyyy"
-                k-format="'dd-MM-yyyy'" />
+                k-format="'dd-MM-yyyy'" ng-disabled="isVerifStaf" />
         </div>
-
-        <div class="grid_2">
+        <div class="grid_2" style="margin-top: 2em;" ng-hide="isVerifHidden">
             <label>&nbsp;</label>
-            <md-checkbox style="margin-top: 20px;" name="verified" id="verified" aria-label="verified" ng-model="item.isVerified" class="green">
-                <strong style="margin-top: 22px;">Verifikasi</strong>
+            <md-checkbox name="verified" id="verified" aria-label="verified" ng-model="desc.isVerified" class="green">
+                <strong>Verifikasi</strong>
             </md-checkbox>
         </div>
-
+        <div class="grid_2" ng-show="isVerifHidden"></div>
         <div class="grid_2" style="margin-top: 1.6em;">
             <md-button class="md-raised md-primary medium-button" ng-click="saveData('save', true)">
                 <span>Simpan</span>
             </md-button>
         </div>
-
         <div class="grid_1" style="margin-top: 1.6em;">
             <md-button class="md-raised md-danger medium-button" ng-click="showDesc = false">
                 <span>Tutup</span>
             </md-button>
         </div>
     </div>
-    
-    <div class="grid_12">
-        <div kendo-grid k-data-source="dataSourceSkoring" k-selectable="'row'" options="optGridSkoringTindakan"
-            k-ng-model="selectedData"></div>
-    </div>
 
+    <div class="grid_12 borderBox" style="margin-bottom: 20px; margin-left: 0.5em; width: 99%;">
+        <div class="grid_2">
+            <label>Produk</label>
+        </div>
+        <div class="grid_10">
+            {{desc.produk ? desc.produk : '-'}}
+        </div>
+        <div class="grid_2">
+            <label>Tarif</label>
+        </div>
+        <div class="grid_10">
+            {{desc.tarif ? desc.tarif : '-'}}
+        </div>
+        <div class="grid_2">
+            <label>Ruangan Pemeriksaan</label>
+        </div>
+        <div class="grid_10">
+            {{desc.ruanganPemeriksaan ? desc.ruanganPemeriksaan : '-'}}
+        </div>
+        <div class="grid_2">
+            <label>Dokter Pemeriksa Terakhir</label>
+        </div>
+        <div class="grid_10">
+            {{desc.dokterPemeriksaTerakhir ? desc.dokterPemeriksaTerakhir : '-'}}
+        </div>
+    </div>
 </div>
 
-
+<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
 
 <div kendo-window="popupTambah" k-title="'Input Data Mapping Skor Tindakan Medis'" k-width="800" k-visible="false"
     k-on-open="win2visible= true" k-on-close="win2visible= false">
@@ -226,5 +222,6 @@
             </div>
         </div>
     </div>
+
+    <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
 </div>
-<div ng-include='"../app/module/Shared/TemplateLoading"'></div>

@@ -44,7 +44,10 @@ define(['initialize'], function (initialize) {
                 }, {
                     field: "skor",
                     title: "<h3>Skor</h3>",
-                    width: 50
+                    width: 50,
+                    attributes: {
+                        style: "text-align: right"
+                    }
                 }, {
                     field: "tglMulaiBerlaku",
                     title: "<h3>Tanggal Berlaku</h3>",

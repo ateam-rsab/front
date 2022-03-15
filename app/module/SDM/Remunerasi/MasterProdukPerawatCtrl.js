@@ -89,7 +89,7 @@ define(["initialize"], function (initialize) {
           .getListData(
             `iki-remunerasi/get-produk-perawat?namaProduk=${
               $scope.src.namaProduk ? $scope.src.namaProduk : ""
-            }&kdKlasif=${$scope.src.kdKlasif ? $scope.src.kdKlasif.id : ""}`
+            }&kdKlasif=${$scope.src.klasifikasi ? $scope.src.klasifikasi.id : ""}`
           )
           .then((res) => {
             $scope.dataSource = new kendo.data.DataSource({
