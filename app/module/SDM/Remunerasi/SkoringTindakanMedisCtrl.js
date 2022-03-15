@@ -19,9 +19,9 @@ define(['initialize'], function (initialize) {
                 statusVerif: "Terverifikasi"
             }]
 
-            $('#idSkor').on('change, keyup', function () {
+            $('#idSkor,#idDescSkor').on('change, keyup', function () {
                 var currentInput = $(this).val();
-                var fixedInput = currentInput.replace(/[A-Za-z!@#$%^&*()]/g, '');
+                var fixedInput = currentInput.replace(/[^\d.-]/g, '');
                 $(this).val(fixedInput);
             });
 
@@ -100,17 +100,21 @@ define(['initialize'], function (initialize) {
                 },
                 columns: [{
                     field: 'Daftar',
-                    title: '<h3 align=center>Daftar Tindakan Belum ada Skor<h3>',
+                    title: '<h3 align=center>Daftar Tindakan Belum Ada Skor<h3>',
                     headerAttributes: {
                         style: 'text-align : center'
                     },
                     columns: [
                         {
-                            field: "id",
+                            field: "kelompokKerja",
+                            title: "<h3>Kelompok Kerja</h3>",
+                            width: 100
+                        }, {
+                            field: "produkId",
                             title: "<h3>ID</h3>",
                             width: 50
                         }, {
-                            field: "namaProduk",
+                            field: "produk",
                             title: "<h3>Nama Produk</h3>",
                             width: 150
                         }]
@@ -121,15 +125,24 @@ define(['initialize'], function (initialize) {
 
             $scope.getAllData = () => {
                 $scope.isRouteLoading = true;
-                var listKK = []
+                // var listKK = []
 
-                if ($scope.item.srcKelompokKerja) {
-                    listKK.push($scope.item.srcKelompokKerja.id)
-                } else {
-                    listKK = $scope.listKk
-                }
+                // if ($scope.item.srcKelompokKerja) {
+                //     listKK.push($scope.item.srcKelompokKerja.id)
+                // } else {
+                //     listKK = $scope.listKk
+                // }
 
-                ManageSdmNew.getListData("iki-remunerasi/get-all-skoring-tindakan-medis?listKelompokKerjaId=" + listKK
+                ManageSdmNew.getListData("iki-remunerasi/get-tindakan-belum-ada-skor?listKelompokKerjaId=" + $scope.listKk).then((res) => {
+                    $scope.dataSourceTindakanNoSkoring = new kendo.data.DataSource({
+                        data: res.data.data,
+                        pageSize: 100
+                    })
+                }, function (error) {
+                    $scope.isRouteLoading = false;
+                })
+
+                ManageSdmNew.getListData("iki-remunerasi/get-all-skoring-tindakan-medis?listKelompokKerjaId=" + $scope.listKk
                     + "&namaProduk=" + ($scope.item.srcNamaProduk ? $scope.item.srcNamaProduk.namaProduk : "")
                     + "&detailProduk=" + ($scope.item.srcDetailTindakan ? $scope.item.srcDetailTindakan : "")
                     + "&tglMulaiBerlaku=" + ($scope.item.srcTglBerlaku ? dateHelper.toTimeStamp($scope.item.srcTglBerlaku) : "")
@@ -138,34 +151,36 @@ define(['initialize'], function (initialize) {
                             data: res.data.data,
                             pageSize: 20
                         });
+
+                        $scope.isRouteLoading = false;
+                    }, function (error) {
                         $scope.isRouteLoading = false;
                     })
             }
 
-            $scope.getDataTindakanNoSkoring = () => {
+            $scope.onClickDataTindakanNoSkoring = (data) => {
+                if (!data.produkId || !data.kelompokKerjaId) return;
+
                 $scope.isRouteLoading = true;
-                // dataSourceTindakanNoSkoring
-                ManageSdmNew.getListData("iki-remunerasi/get-tindakan-belum-ada-skor").then((res) => {
-                    $scope.dataSourceTindakanNoSkoring = new kendo.data.DataSource({
-                        data: res.data.data,
-                        pageSize: 100
-                    })
+                ManageSdmNew.getListData("iki-remunerasi/get-deskripsi-tindakan-skor-medis?produkId=" + data.produkId + "&kelompokKerjaId=" + data.kelompokKerjaId).then((res) => {
+                    $scope.isRouteLoading = false;
+                    $scope.showDesc = true;
+                    res.data.data.produkId = data.produkId;
+                    $scope.desc = res.data.data;
+                    $scope.desc.kelompokKerja = {
+                        "id": data.kelompokKerjaId,
+                        "name": data.kelompokKerja
+                    }
+                    $scope.desc.namaProduk = data.produk
+                    $scope.desc.isVerified = false
+
+                    $scope.isRouteLoading = false;
+                }, function (error) {
+                    $scope.isRouteLoading = false;
                 })
             }
 
-            $scope.onClickDataTindakanNoSkoring = (data) => {
-                if (!data.id) return;
-                $scope.isRouteLoading = true;
-                ManageSdmNew.getListData("iki-remunerasi/get-deskripsi-tindakan-skor-medis?produkId=" + data.id).then((res) => {
-                    $scope.isRouteLoading = false;
-                    $scope.showDesc = true;
-                    res.data.data.produkId = data.id;
-                    $scope.desc = res.data.data;
-                });
-            }
-
             let init = () => {
-                $scope.getDataTindakanNoSkoring();
                 ManageSdmNew.getListData("iki-remunerasi/get-akses-skoring-tindakan-medis?pegawaiId=" + pegawaiLogin.id).then((res) => {
                     var listUK = ""
                     if (!_.isEmpty(res.data.data)) {
@@ -329,7 +344,10 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.saveData = (method, isNotScored) => {
-                var listRawRequired = isNotScored ? [] : [
+                var listRawRequired = isNotScored ? [
+                    "desc.skor|ng-model|Skor",
+                    "desc.tglBerlaku|ng-model|Tanggal Berlaku"
+                ] : [
                     "item.tglBerlaku|ng-model|Tanggal Berlaku",
                     "item.kelompokKerja|ng-model|Kelompok Kerja",
                     "item.skor|ng-model|Skor",
@@ -337,20 +355,21 @@ define(['initialize'], function (initialize) {
                     "item.namaProduk|k-ng-model|Acuan Tindakan Pelayanan"
                 ];
 
+                $scope.isRouteLoading = true;
                 var isValid = modelItem.setValidation($scope, listRawRequired);
                 if (isValid.status) {
                     let statusEnabled = method === 'save' || method === 'update';
 
                     let dataSave = {
-                        detailProduk: $scope.item.detailTindakan,
-                        skor: parseFloat($scope.desc.skor ? $scope.desc.skor : $scope.item.skor),
-                        statusVerifikasi: $scope.item.statusVerif ? true : false,
-                        tanggalMulaiBerlaku: dateHelper.toTimeStamp($scope.item.tglBerlaku),
+                        detailProduk: isNotScored ? $scope.desc.namaProduk : $scope.item.detailTindakan,
+                        skor: parseFloat(isNotScored ? $scope.desc.skor : $scope.item.skor),
+                        statusVerifikasi: isNotScored ? $scope.desc.isVerified : $scope.item.statusVerif ? true : false,
+                        tanggalMulaiBerlaku: dateHelper.toTimeStamp(isNotScored ? $scope.desc.tglBerlaku : $scope.item.tglBerlaku),
                         produk: {
-                            id: $scope.desc.produkId ? $scope.desc.produkId : $scope.item.namaProduk.id
+                            id: isNotScored ? $scope.desc.produkId : $scope.item.namaProduk.id
                         },
                         kelompokKerja: {
-                            id: $scope.desc.kelompokKerja.id ?? $scope.item.kelompokKerja.id
+                            id: isNotScored ? $scope.desc.kelompokKerja.id : $scope.item.kelompokKerja.id
                         },
                         kdProfile: 0,
                         statusEnabled: statusEnabled,
@@ -361,12 +380,15 @@ define(['initialize'], function (initialize) {
                         dataSave.noRec = $scope.norecData;
                     }
 
-                    if (isNotScored) {
-                        dataSave.detailProduk = $scope.desc.produk;
-                    }
+                    if (isNotScored && !$scope.isTambahGranted) {
+                        toastr.warning("Tidak memiliki akses menambah data!")
 
-                    if ($scope.isDuplicated && method != 'delete') {
+                        $scope.isRouteLoading = false;
+                        return
+                    } else if ($scope.isDuplicated && method != 'delete') {
                         toastr.warning("Data mapping skoring sudah tersedia!")
+
+                        $scope.isRouteLoading = false;
                         return
                     } else {
                         ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-skoring-tindakan-medis").then(res => {
@@ -374,6 +396,10 @@ define(['initialize'], function (initialize) {
                             $scope.showDesc = false;
                             $scope.getAllData();
                             $scope.closePopUp();
+
+                            $scope.isRouteLoading = false;
+                        }, function (error) {
+                            $scope.isRouteLoading = false;
                         })
                     }
                 } else {
