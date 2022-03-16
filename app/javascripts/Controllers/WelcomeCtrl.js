@@ -79,6 +79,17 @@ define(['initialize'], function (initialize) {
                     new: true
                 },
                 {
+                    path: "PEMBERITAHUAN-KGB-Non-PNS-2022-an.-Karwito-dkk.pdf",
+                    fileName: "PEMBERITAHUAN - KGB Non PNS 2022 an. Karwito dkk",
+                    new: true
+                },
+                {
+                    path: "PEMBERITAHUAN-KGB-TMT-April-2022-an.-Budi-Bahtiar-dkk.pdf",
+                    fileName: "PEMBERITAHUAN - KGB TMT April 2022 an. Budi Bahtiar dkk",
+                    new: true
+                },
+                // 
+                {
                     path: "data/dokumen/SE-ttg-ketentuan-TUBEL-pembiayaan-BPPSDMK-KEMENKES-RI-tahun-2022.pdf",
                     fileName: "Surat Edararan tentang ketentuan TUBEL pembiayaan BPPSDMK KEMENKES RI th 2022",
                     new: true

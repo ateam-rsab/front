@@ -44,6 +44,11 @@ define(["initialize"], function (initialize) {
             name: "Tambah",
             template:
               '<button ng-click="showPopupAdd()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-plus"></span>Tambah Data</button>',
+          },  {
+            text: "export",
+            name: "Tambah",
+            template:
+              '<button ng-click="exportExcel()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>',
           },
         ],
         pageable: true,
@@ -82,6 +87,58 @@ define(["initialize"], function (initialize) {
           },
         ],
       };
+
+      $scope.exportExcel = () => {
+        var tempDataExport = [];
+        var rows = [
+            {
+                cells: [
+                    { value: "Nama Produk" },
+                    { value: "Kode Produk" },
+                    { value: "Profesi Pelaksana" }
+                ]
+            }
+        ];
+
+        tempDataExport = $scope.dataSource;
+        tempDataExport.fetch(function () {
+            var data = this.data();
+            console.log(data);
+            for (var i = 0; i < data.length; i++) {
+                //push single row for every record
+                rows.push({
+                    cells: [
+                        { value: data[i].namaProduk },
+                        { value: data[i].kodeProduk },
+                        { value: data[i].namaProfesi }
+                    ]
+                })
+            }
+            var workbook = new kendo.ooxml.Workbook({
+                sheets: [
+                    {
+                        freezePane: {
+                            rowSplit: 1
+                        },
+                        columns: [
+                            // Column settings (width)
+                            { autoWidth: true },
+                            { autoWidth: true },
+                            { autoWidth: true },
+                            { autoWidth: true }
+                        ],
+                        // Title of the sheet
+                        title: "Master Produk TKL",
+                        // Rows of the sheet
+                        rows: rows
+                    }
+                ]
+            });
+            //save the file as Excel file with extension xlsx
+            kendo.saveAs({ dataURI: workbook.toDataURL(), fileName: "data-master-produk-TKL.xlsx" });
+        });
+        
+      }
 
       $scope.getData = () => {
         $scope.isRouteLoading = true;

@@ -6524,6 +6524,30 @@
     ]
   },
   {
+    "name": "MappingProdukToKelompokKerja",
+    "url": "/MappingProdukToKelompokKerja",
+    "templateurl": "module/SDM/MappingProdukToKelompokKerja.html",
+    "controller": "MappingProdukToKelompokKerjaCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "SarprasService",
+        "define": "SarprasService"
+      }
+    ]
+  },
+  {
     "name": "FeeForService",
     "url": "/FeeForService",
     "templateurl": "module/SDM/FeeForService.html",

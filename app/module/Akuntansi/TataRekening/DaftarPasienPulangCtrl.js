@@ -10,7 +10,7 @@ define(["initialize"], function (initialize) {
     "$scope",
     "ModelItemAkuntansi",
     "ManageTataRekening",
-    "DataHelper",
+    "DateHelper",
     "ManageSdm",
     function (
       cacheHelper,
@@ -22,7 +22,7 @@ define(["initialize"], function (initialize) {
       $scope,
       modelItemAkuntansi,
       manageTataRekening,
-      DataHelper,
+      dateHelper,
       manageSdm
     ) {
       $scope.dataVOloaded = true;
@@ -43,6 +43,93 @@ define(["initialize"], function (initialize) {
         $scope.showBtnUbahJenis = true;
         $scope.showBtnUnVerifikasi = true;
         $scope.showBtnBatalPulang = true;
+      }
+
+      $scope.optGrid = {
+        toolbar: [
+          // "excel", 
+          { text: "export", name: "Export detail", template: '<button ng-click="exportToExcel()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>' },
+        ],
+      }
+
+      $scope.exportToExcel = function () {
+        let tglAwal = dateHelper.formatDate($scope.item.tanggalRegistrasiAwal, "YYYY-MM-DD HH:mm:ss");
+        let tglAkhir = dateHelper.formatDate($scope.item.tanggalRegistrasiAkhir, "YYYY-MM-DD HH:mm:ss");
+        var rows = [
+            {
+                cells: [
+                    { value: "Tanggal Masuk" },
+                    { value: "No. RM" },
+                    { value: "No. Registrasi" },
+                    { value: "Nama Pasien" },
+                    { value: "Jenis Pasien" },
+                    { value: "Ruangan" },
+                    { value: "Tanggal Pulang" },
+                    { value: "Status" },
+                    { value: "No. SBM" },
+                    { value: "No. Verif" }
+                ]
+            }
+        ];
+
+        const tempDataExport = $scope.dataPasienPulang;
+        tempDataExport.fetch(function () {
+            var data = this.data();
+            console.log(data);
+            for (var i = 0; i < data.length; i++) {
+                //push single row for every record
+                rows.push({
+                    cells: [
+                        { value: data[i].tanggalMasuk },
+                        { value: data[i].noCm },
+                        { value: data[i].noRegistrasi },
+                        { value: data[i].namaPasien },
+                        { value: data[i].jenisAsuransi },
+                        { value: data[i].namaRuangan },
+                        { value: data[i].tanggalPulang },
+                        { value: data[i].status },
+                        { value: data[i].nosbm },
+                        { value: data[i].nostruk }
+                        
+                        // { value: data[i].totalkonfirmasi },
+                        
+                        
+                        // { value: data[i].hargasatuanquo },
+                        // { value: data[i].qtyprodukkonfirmasi },
+                    ]
+                })
+            }
+            var workbook = new kendo.ooxml.Workbook({
+                sheets: [
+                    {
+                        freezePane: {
+                            rowSplit: 1
+                        },
+                        columns: [
+                            // Column settings (width)
+                            { autoWidth: true },
+                            { autoWidth: true },
+                            { autoWidth: true },
+                            { autoWidth: true },
+                            { autoWidth: true },
+                            { autoWidth: true },
+                            { autoWidth: true },
+                            { autoWidth: true },
+                            { autoWidth: true },
+                            { autoWidth: true },
+                            { autoWidth: true }
+                        ],
+                        // Title of the sheet
+                        title: "Daftar Pasien Pulang",
+                        // Rows of the sheet
+                        rows: rows
+                    }
+                ]
+            });
+            //save the file as Excel file with extension xlsx
+            kendo.saveAs({ dataURI: workbook.toDataURL(), fileName: `daftar-pasien-pulang-${tglAwal}-sd-${tglAkhir}.xlsx` });
+        });
+        
       }
 
       LoadCache();
@@ -580,7 +667,7 @@ define(["initialize"], function (initialize) {
             $scope.isRouteLoading = false;
             $scope.dataPasienPulang = new kendo.data.DataSource({
               data: data,
-              pageSize: 10,
+              pageSize: 100,
               total: data.length,
               serverPaging: false,
               schema: {

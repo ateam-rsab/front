@@ -30,6 +30,10 @@ define(['initialize'], function (initialize) {
                     text: "export",
                     name: "Tambah",
                     template: '<button ng-click="tambahData()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-plus"></span>Tambah Data</button>'
+                }, {
+                    text: "export",
+                    name: "Tambah",
+                    template: '<button ng-click="exportToExcel()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
                 }],
                 pageable: true,
                 scrollable: true,
@@ -68,6 +72,62 @@ define(['initialize'], function (initialize) {
                 }],
             };
 
+            $scope.exportToExcel = () => {
+                var tempDataExport = [];
+                var rows = [
+                    {
+                        cells: [
+                            { value: "Profesi" },
+                            { value: "Produk" },
+                            { value: "Skor" },
+                            { value: "Tanggal Berlaku" },
+                            { value: "Status" }
+                        ]
+                    }
+                ];
+
+                tempDataExport = $scope.dataSourceSkoring;
+                tempDataExport.fetch(function () {
+                    var data = this.data();
+                    console.log(data);
+                    for (var i = 0; i < data.length; i++) {
+                        //push single row for every record
+                        rows.push({
+                            cells: [
+                                { value: data[i].namaProfesi },
+                                { value: data[i].namaProduk },
+                                { value: data[i].skor },
+                                { value: data[i].tglMulaiBerlaku },
+                                { value: data[i].statusVerifikasi }
+                            ]
+                        })
+                    }
+                    var workbook = new kendo.ooxml.Workbook({
+                        sheets: [
+                            {
+                                freezePane: {
+                                    rowSplit: 1
+                                },
+                                columns: [
+                                    // Column settings (width)
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true }
+                                ],
+                                // Title of the sheet
+                                title: "Skoring Tindakan Nakes " + pegawaiLogin.nama,
+                                // Rows of the sheet
+                                rows: rows
+                            }
+                        ]
+                    });
+                    //save the file as Excel file with extension xlsx
+                    kendo.saveAs({ dataURI: workbook.toDataURL(), fileName: "skoring-tindakan-nakes " + pegawaiLogin.nama +".xlsx" });
+                });
+                
+            }
             $scope.getAllData = () => {
                 $scope.isRouteLoading = true;
 

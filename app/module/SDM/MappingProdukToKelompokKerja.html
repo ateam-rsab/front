@@ -1,0 +1,40 @@
+<md-toolbar md-scroll-shrink class="shadow">
+    <div class="md-toolbar-tools">Mapping Produk - Kelompok Kerja</div>
+</md-toolbar>
+
+<div class="grid_12">
+    <div class="grid_6">
+        <div class="grid_12 headerBox">
+            <p>Tindakan Medis</p>
+        </div>
+
+        <div class="grid_12">
+            <!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.produk" k-data-text-field="'namaProduk'"
+                k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listOfProduct" /> -->
+            <div kendo-grid kendo-grid options="mainGridOptionSubject" k-data-source="dataSourceTindakanMedis"
+                k-selectable="'row'" k-pageable="'true'" k-sortable="'true'" k-ng-model="dataSelected" ng-click="onClickGrid(dataSelected)">
+            </div>
+        </div>
+    </div>
+
+    <div class="grid_6">
+        <div class="grid_12 headerBox">
+            <p>Kelompok Kerja</p>
+        </div>
+
+        <div class="grid_12">
+            <div id="kGrid" kendo-grid kendo-grid options="mainGridOptions" k-data-source="dataSource"
+                k-selectable="'row'" k-pageable="'true'" k-sortable="'true'">
+            </div>
+        </div>
+
+        <div class="grid_12">
+            <div class="grid_4">
+                <md-button class="md-raised md-primary medium-button" ng-click="mapProductToKelompokKerja()">
+                    <span style="margin-right: 5px;">Simpan</span>
+                    <i class="fa fa-save"></i>
+                </md-button>
+            </div>
+        </div>
+    </div>
+</div>
