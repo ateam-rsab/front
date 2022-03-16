@@ -13,29 +13,31 @@
     <div class="grid_6" style="text-align: right; margin-top: 10px;">
         <label><strong>Anggaran Remunerasi Tahun Ini (P1 + P2 + P3)</strong></label>
     </div>
-    <div class="grid_5">
-        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.anggaranRemunerasi"
-            ng-change="changeAnggaran()" ng-disabled="isExistedTahunIni" />
+    <div class="grid_2">
+        <input c-text-box style="text-align: right;" type="input" filter="" class="k-textbox"
+            ng-model="item.anggaranRemunerasi" ng-change="changeAnggaran()" ng-disabled="isExistedTahunIni" />
     </div>
 
     <div class="grid_6" style="text-align: right; margin-top: 10px;">
         <label><strong>Anggaran Remunerasi per Bulan (P1 + P2)</strong></label>
     </div>
-    <div class="grid_5">
-        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.pir" disabled />
+    <div class="grid_2">
+        <input c-text-box style="text-align: right;" type="input" filter="" class="k-textbox" ng-model="item.pir"
+            disabled />
     </div>
 
     <div class="grid_6" style="text-align: right; margin-top: 10px;">
         <label><strong>Poin Indeks Rupiah (PIR)</strong></label>
     </div>
-    <div class="grid_5">
-        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.pirHitungan" disabled />
+    <div class="grid_2">
+        <input c-text-box style="text-align: right;" type="input" filter="" class="k-textbox"
+            ng-model="item.pirHitungan" disabled />
     </div>
 </div>
 
 <div class="grid_12" ng-hide="isExistedTahunIni">
-    <div class="grid_9"></div>
-    <div class="grid_2" style="text-align: right;">
+    <div class="grid_7"></div>
+    <div class="grid_1" style="text-align: right;">
         <md-button class="md-raised md-primary medium-button" ng-click="simpanAllAnggaran()">
             <span style="margin-right: 5px;">Simpan</span>
             <i class="fa fa-save"></i>

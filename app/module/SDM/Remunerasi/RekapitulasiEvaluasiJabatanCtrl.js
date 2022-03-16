@@ -41,10 +41,16 @@ define(['initialize'], function (initialize) {
                     field: "nilaiJabatan",
                     title: "<h3>Nilai<br>Jabatan</h3>",
                     width: "90px",
+                    attributes: {
+                        style: "text-align: right;"
+                    }
                 }, {
                     field: "grade",
                     title: "<h3>Grade</h3>",
                     width: "80px",
+                    attributes: {
+                        style: "text-align: right;"
+                    }
                 }, {
                     field: "kelompokJabatan",
                     title: "<h3>Kelompok Jabatan</h3>",

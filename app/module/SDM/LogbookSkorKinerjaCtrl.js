@@ -146,17 +146,13 @@ define(['initialize'], function (initialize) {
                             $scope.isNakesLain = false;
                             break;
                         case 5:
-                            baseUrl = "";
-                            urlDetail = "";
+                            baseUrl = "get-logbook-skoring-perawat";
+                            urlDetail = "get-detail-logbook-skoring-perawat";
 
-                            indikatorId = 0;
+                            indikatorId = 712;
                             $scope.namaJenisPegawai = "Perawat";
                             $scope.isNakesLain = false;
-
-                            toastr.info("Service belum tersedia");
-
-                            $scope.isRouteLoading = false;
-                            return;
+                            break;
                         case 6:
                             baseUrl = "get-logbook-skoring-nakes";
                             urlDetail = "get-detail-logbook-skoring-nakes";
@@ -258,14 +254,12 @@ define(['initialize'], function (initialize) {
                             $scope.isNakesLain = false;
                             break;
                         case 5:
-                            baseUrl = "";
-                            urlDetail = "";
+                            baseUrl = "get-logbook-skoring-perawat";
+                            urlDetail = "get-detail-logbook-skoring-perawat";
 
-                            indikatorId = 0;
+                            indikatorId = 712;
                             $scope.namaJenisPegawai = "Perawat";
                             $scope.isNakesLain = false;
-
-                            toastr.info("Service blm tersedia");
                             break;
                         case 6:
                             baseUrl = "get-logbook-skoring-nakes";
@@ -429,6 +423,8 @@ define(['initialize'], function (initialize) {
                     $scope.popUpDetailId = 3;
                 } else if ($scope.item.pegawai.jenisPegawaiId == 1) {
                     $scope.popUpDetailId = 1;
+                } else {
+                    $scope.popUpDetailId = 4;
                 }
 
                 ManageSdmNew.getListData(`iki-remunerasi/${urlDetail}?pegawaiId=${$scope.item.pegawai.id}&indikatorId=${detail.indikatorId}&produkId=${detail.produkId}&tglPelayanan=${data.tglPelayanan}&jenisPetugasId=${detail.jenisPetugasId}&skor=${detail.skor}`).then((res) => {

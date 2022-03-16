@@ -140,8 +140,9 @@ define(["initialize"], function (initialize) {
         //  http://192.168.12.3:8080/jasamedika-sdm/iki-remunerasi/get-produk-perawat?namaProduk=&kdKlasif=
         manageSdmNew
           .getListData(
-            `iki-remunerasi/get-produk-perawat?namaProduk=${$scope.src.namaProduk ? $scope.src.namaProduk : ""
-            }&kdKlasif=${$scope.src.kdKlasif ? $scope.src.kdKlasif.id : ""}`
+            `iki-remunerasi/get-produk-perawat?namaProduk=${
+              $scope.src.namaProduk ? $scope.src.namaProduk : ""
+            }&kdKlasif=${$scope.src.klasifikasi ? $scope.src.klasifikasi.id : ""}`
           )
           .then((res) => {
             $scope.dataSource = new kendo.data.DataSource({

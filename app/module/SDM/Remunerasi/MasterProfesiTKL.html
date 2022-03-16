@@ -12,8 +12,15 @@
 
         <md-card>
             <div class="grid_12">
-                <label c-label item="item">Nama Produk</label>
-                <input c-text-box type="input" class="k-textbox" ng-model="item.namaProfesi" />
+                <div class="grid_9">
+                    <label c-label item="item">Nama Profesi</label>
+                    <input c-text-box type="input" class="k-textbox" ng-model="item.namaProfesi" />
+                </div>
+                <div class="grid_3">
+                    <label c-label item="item">Jenis Profesi</label>
+                    <input kendo-combo-box k-filter="'contains'" k-ng-model="item.jenisProfesi"
+                        k-data-text-field="'jenisProfesi'" k-data-value-field="'id'" k-data-source="listJenisProfesi" />
+                </div>
             </div>
         </md-card>
 

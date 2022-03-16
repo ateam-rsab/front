@@ -50,7 +50,10 @@ define(['initialize'], function (initialize) {
                 columns: [{
                     field: "bulanBerlakuFormatted",
                     title: "<h3>Bulan Berlaku</h3>",
-                    width: 70
+                    width: 70,
+                    attributes: {
+                        align: "center"
+                    }
                 }, {
                     field: "jenisIndikator",
                     title: "<h3>Jenis Indikator</h3>",
@@ -62,7 +65,10 @@ define(['initialize'], function (initialize) {
                 }, {
                     field: "persentase",
                     title: "<h3>Persentase<br>(%)</h3>",
-                    width: 50
+                    width: 50,
+                    attributes: {
+                        align: "center"
+                    }
                 }, {
                     field: "status",
                     title: "<h3>Status</h3>",

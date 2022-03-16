@@ -137,6 +137,11 @@ define(['initialize'], function (initialize) {
                 $scope.tanggalPresensi = new Date();
                 getDataHistory();
                 ManageSdmNew.getListData('sdm/get-jadwal-pegawai?idPegawai=' + $scope.dataPegawaiLogin.id).then((res) => {
+                    if (res.data.data && res.data.data.idFinger == null) {
+                        toastr.warning("ID Finger Belum Tersedia. Silakan hubungi Bagian SDM");
+                    }
+
+                    $scope.idFinger = res.data.data.idFinger;
                     $scope.data = res.data.data;
                     checkEditableWFH()
                 });
@@ -248,7 +253,7 @@ define(['initialize'], function (initialize) {
 
             $scope.savePresensi = function () {
                 // let ip = getIPAddr();
-                if(!$scope.selectedJenisPresensi) {
+                if (!$scope.selectedJenisPresensi) {
                     toastr('Harap pilih Jenis Presensi Masuk/Pulang');
                     return;
                 }
@@ -269,6 +274,12 @@ define(['initialize'], function (initialize) {
                 ManageSdmNew.saveData(data, 'sdm/save-presensi-pegawai/').then((res) => {
                     getDataHistory();
                     assignToNotEditable()
+                }, (error) => {
+                    if ($scope.idFinger == null) {
+                        toastr.warning("ID Finger Belum Tersedia. Silakan hubungi Bagian SDM");
+                    }
+
+                    $scope.isRouteLoading = false;
                 })
             }
 
