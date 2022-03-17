@@ -32,7 +32,7 @@ define(['initialize'], function (initialize) {
 
             $('#idSkor').on('change, keyup', function () {
                 var currentInput = $(this).val();
-                var fixedInput = currentInput.replace(/[A-Za-z!@#$%^&*()]/g, '');
+                var fixedInput = currentInput.replace(/[^\d.-]/g, '');
                 $(this).val(fixedInput);
             });
 
