@@ -13,6 +13,8 @@ define(['initialize'], function (initialize) {
             $scope.isRouteLoading = false;
             $scope.pegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
 
+            // toastr.info("Sedang dilakukan update data master 10 faktor penimbang, mohon coba lagi nanti", "Informasi");
+
             modelItem.getDataDummyGeneric('Ruangan').then(function (e) {
                 $scope.ruangans = _.sortBy(e, function (i) {
                     return i.namaRuangan;
@@ -60,10 +62,11 @@ define(['initialize'], function (initialize) {
                 if (newVal && newVal !== oldVal) {
                     $scope.item.faktor9 = null
                     modelItem.getDataDummyGeneric('FaktorEvaluasi').then(function (e) {
-                        $scope.listFaktor9 = []
                         var arr = _.groupBy(e, "faktor");
+                        $scope.listFaktor9 = []
                         for (let i = 0; i < _.sortBy(arr["Faktor 9"], "profile").length; i++) {
-                            if (newVal.profile.split("(")[0] == _.sortBy(arr["Faktor 9"], "profile")[i].profile.split("(")[0]) {
+                            if (newVal.profile.split("(")[0] == _.sortBy(arr["Faktor 9"], "profile")[i].profile.split("(")[0]
+                                && _.sortBy(arr["Faktor 9"], "profile")[i].statusEnabled) {
                                 $scope.listFaktor9.push(_.sortBy(arr["Faktor 9"], "profile")[i])
                             }
                         }
@@ -76,13 +79,25 @@ define(['initialize'], function (initialize) {
                 $scope.map = e;
                 modelItem.getDataDummyGeneric('FaktorEvaluasi').then(function (e) {
                     var arr = _.groupBy(e, "faktor");
-                    $scope.listFaktor1 = _.sortBy(arr["Faktor 1"], "profile");
+                    $scope.listFaktor1 = []
+                    for (let i = 0; i < _.sortBy(arr["Faktor 1"], "profile").length; i++) {
+                        if (_.sortBy(arr["Faktor 1"], "profile")[i].statusEnabled) {
+                            $scope.listFaktor1.push(_.sortBy(arr["Faktor 1"], "profile")[i])
+                        }
+                    }
+                    // $scope.listFaktor1 = _.sortBy(arr["Faktor 1"], "profile");
                     $scope.listFaktor2 = _.sortBy(arr["Faktor 2"], "profile");
                     $scope.listFaktor3 = _.sortBy(arr["Faktor 3"], "profile");
                     $scope.listFaktor4 = _.sortBy(arr["Faktor 4"], "profile");
                     $scope.listFaktor5 = _.sortBy(arr["Faktor 5"], "profile");
                     $scope.listFaktor7 = _.sortBy(arr["Faktor 7"], "profile");
-                    $scope.listFaktor8 = _.sortBy(arr["Faktor 8"], "profile");
+                    $scope.listFaktor8 = []
+                    for (let i = 0; i < _.sortBy(arr["Faktor 8"], "profile").length; i++) {
+                        if (_.sortBy(arr["Faktor 8"], "profile")[i].statusEnabled) {
+                            $scope.listFaktor8.push(_.sortBy(arr["Faktor 8"], "profile")[i])
+                        }
+                    }
+                    // $scope.listFaktor8 = _.sortBy(arr["Faktor 8"], "profile");
                     // $scope.listFaktor9 = _.sortBy(arr["Faktor 9"], "profile");
                     $scope.listFaktor10 = _.sortBy(arr["Faktor 10"], "profile");
                     var temp = [];
@@ -96,42 +111,62 @@ define(['initialize'], function (initialize) {
                     $scope.listFaktorA = _.filter($scope.listFaktor['Faktor 6'], function (e) {
                         return e.profile.indexOf('A') >= 0;
                     })
+                    $scope.listFaktorA = _.sortBy($scope.listFaktorA, 'profile');
+
                     $scope.listFaktorB = _.filter($scope.listFaktor['Faktor 6'], function (e) {
                         return e.profile.indexOf('B') >= 0;
                     })
+                    $scope.listFaktorB = _.sortBy($scope.listFaktorB, 'profile');
+
                     $scope.listFaktorC = _.filter($scope.listFaktor['Faktor 6'], function (e) {
                         return e.profile.indexOf('C') >= 0;
                     })
+                    $scope.listFaktorC = _.sortBy($scope.listFaktorC, 'profile');
+
                     $scope.listFaktorD = _.filter($scope.listFaktor['Faktor 6'], function (e) {
                         return e.profile.indexOf('D') >= 0;
                     })
+                    $scope.listFaktorD = _.sortBy($scope.listFaktorD, 'profile');
+
                     $scope.listFaktorE = _.filter($scope.listFaktor['Faktor 6'], function (e) {
                         return e.profile.indexOf('E') >= 0;
                     })
+                    $scope.listFaktorE = _.sortBy($scope.listFaktorE, 'profile');
+
                     $scope.listFaktorF = _.filter($scope.listFaktor['Faktor 6'], function (e) {
                         return e.profile.indexOf('F') >= 0;
                     })
+                    $scope.listFaktorF = _.sortBy($scope.listFaktorF, 'profile');
+
                     $scope.listFaktorG = _.filter($scope.listFaktor['Faktor 6'], function (e) {
                         return e.profile.indexOf('G') >= 0;
                     })
+                    $scope.listFaktorG = _.sortBy($scope.listFaktorG, 'profile');
+
                     $scope.listFaktorH = _.filter($scope.listFaktor['Faktor 6'], function (e) {
                         return e.profile.indexOf('H') >= 0;
                     })
+                    $scope.listFaktorH = _.sortBy($scope.listFaktorH, 'profile');
+
                     $scope.listFaktorI = _.filter($scope.listFaktor['Faktor 6'], function (e) {
                         return e.profile.indexOf('I') >= 0;
                     })
+                    $scope.listFaktorI = _.sortBy($scope.listFaktorI, 'profile');
+
                     $scope.listFaktorJ = _.filter($scope.listFaktor['Faktor 6'], function (e) {
                         return e.profile.indexOf('J') >= 0;
                     })
+                    $scope.listFaktorJ = _.sortBy($scope.listFaktorJ, 'profile');
+
                     $scope.listFaktorK = _.filter($scope.listFaktor['Faktor 6'], function (e) {
                         return e.profile.indexOf('K') >= 0;
                     })
+                    $scope.listFaktorK = _.sortBy($scope.listFaktorK, 'profile');
+
                     $scope.listFaktorL = _.filter($scope.listFaktor['Faktor 6'], function (e) {
                         return e.profile.indexOf('L') >= 0;
                     })
-
-                    $scope.listFaktorD = _.sortBy($scope.listFaktorD, 'profile');
-                    $scope.listFaktorJ = _.sortBy($scope.listFaktorJ, 'profile');
+                    $scope.listFaktorL = _.sortBy($scope.listFaktorL, 'profile');
                 })
             });
 
@@ -258,6 +293,9 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.Save = function () {
+                // toastr.info("Sedang dilakukan update data master 10 faktor penimbang, mohon coba lagi nanti", "Informasi");
+                // return;
+
                 $scope.isRouteLoading = true;
                 if (!totalNilai) {
                     $scope.Hitung();
