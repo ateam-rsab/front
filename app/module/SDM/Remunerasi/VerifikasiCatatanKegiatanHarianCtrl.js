@@ -63,7 +63,7 @@ define(['initialize'], function (initialize) {
                     dataBound: function (e) {
                         $('td').each(function () {
                             if ($(this).text() == 'Terverifikasi') { $(this).addClass('verified') };
-                            if ($(this).text() == 'Belum Terverifikasi') { $(this).addClass('unverified') };
+                            if ($(this).text() == 'Belum Verifikasi') { $(this).addClass('unverified') };
                         })
                     },
                 }
@@ -107,7 +107,7 @@ define(['initialize'], function (initialize) {
                     dataBound: function (e) {
                         $('td').each(function () {
                             if ($(this).text() == 'Terverifikasi') { $(this).addClass('verified') };
-                            if ($(this).text() == 'Belum Terverifikasi') { $(this).addClass('unverified') };
+                            if ($(this).text() == 'Belum Verifikasi') { $(this).addClass('unverified') };
                         })
                     },
                 }

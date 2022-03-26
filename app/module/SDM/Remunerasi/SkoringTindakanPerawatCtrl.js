@@ -24,7 +24,7 @@ define(['initialize'], function (initialize) {
 
             $scope.listStatusVerif = [{
                 id: 0,
-                statusVerif: "Belum Terverifikasi"
+                statusVerif: "Belum Verifikasi"
             }, {
                 id: 1,
                 statusVerif: "Terverifikasi"
