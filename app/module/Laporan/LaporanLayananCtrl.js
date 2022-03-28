@@ -62,8 +62,8 @@ define(['initialize'], function(initialize) {
         }
         $scope.LoadData=function(){
         
-        var tglSekarang = new moment($scope.item.tglawal).format('YYYY-MM-DD 00:00')
-        var tglAkhir = new moment($scope.item.tglakhir).format('YYYY-MM-DD 23:59');
+        var tglSekarang = new moment($scope.item.tglawal).format('YYYY-MM-DD hh:mm')
+        var tglAkhir = new moment($scope.item.tglakhir).format('YYYY-MM-DD hh:mm');
         var dept = "";
          if($scope.item.departement != undefined)
             dept = $scope.item.departement.id

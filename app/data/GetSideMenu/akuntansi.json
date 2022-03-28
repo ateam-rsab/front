@@ -193,6 +193,10 @@
         ]
       },
       {
+        "name":"Pemakaian Stok Ruangan",
+        "link": "#/PemakaianStokRuangan"
+      },
+      {
         "name": "Daftar Transfer Barang",
         "children": [
           {
