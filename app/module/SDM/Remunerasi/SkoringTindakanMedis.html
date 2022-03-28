@@ -116,16 +116,16 @@
             {{desc.tarif ? desc.tarif : '-'}}
         </div>
         <div class="grid_2">
-            <label>Ruangan Pemeriksaan</label>
-        </div>
-        <div class="grid_10">
-            {{desc.ruanganPemeriksaan ? desc.ruanganPemeriksaan : '-'}}
-        </div>
-        <div class="grid_2">
             <label>Dokter Pemeriksa Terakhir</label>
         </div>
         <div class="grid_10">
             {{desc.dokterPemeriksaTerakhir ? desc.dokterPemeriksaTerakhir : '-'}}
+        </div>
+        <div class="grid_2">
+            <label>Ruangan Pemeriksaan</label>
+        </div>
+        <div class="grid_10">
+            {{desc.ruanganPemeriksaan ? desc.ruanganPemeriksaan : '-'}}
         </div>
     </div>
 </div>
@@ -181,13 +181,13 @@
                         <label><strong>Unit Kerja</strong></label>
                         <input kendo-combo-box k-filter="'contains'" k-ng-model="item.unitKerja"
                             k-data-text-field="'name'" k-data-value-field="'id'" k-data-source="listUnitKerjKSM"
-                            k-on-change="getDataKelompokKerja(item.unitKerja.id)" ng-disabled="isVerifStaf" />
+                            k-on-change="getDataKelompokKerja(item.unitKerja.id)" ng-disabled="isEdit" />
                     </div>
                     <div class="grid_6">
                         <label><strong>Kelompok Kerja</strong></label>
                         <input kendo-combo-box k-filter="'contains'" k-ng-model="item.kelompokKerja"
                             k-data-text-field="'name'" k-data-value-field="'id'" k-data-source="listKelompokKerja"
-                            ng-disabled="isVerifStaf" />
+                            ng-disabled="isEdit" />
                     </div>
                 </div>
                 <div class="grid_12">

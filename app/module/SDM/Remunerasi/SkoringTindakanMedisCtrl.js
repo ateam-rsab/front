@@ -13,7 +13,7 @@ define(['initialize'], function (initialize) {
 
             $scope.listStatusVerif = [{
                 id: 0,
-                statusVerif: "Belum Terverifikasi"
+                statusVerif: "Belum Verifikasi"
             }, {
                 id: 1,
                 statusVerif: "Terverifikasi"
@@ -68,7 +68,7 @@ define(['initialize'], function (initialize) {
                     }
                 }, {
                     field: "tglMulaiBerlaku",
-                    title: "<h3>Tanggal Berlaku</h3>",
+                    title: "<h3>Tanggal<br/>Berlaku</h3>",
                     width: 80
                 }, {
                     field: "statusVerifikasi",
@@ -85,7 +85,7 @@ define(['initialize'], function (initialize) {
                         imageClass: "k-icon k-i-cancel"
                     }],
                     title: "",
-                    width: 100
+                    width: 150
                 }],
             };
 
@@ -147,9 +147,9 @@ define(['initialize'], function (initialize) {
                         ]
                     });
                     //save the file as Excel file with extension xlsx
-                    kendo.saveAs({ dataURI: workbook.toDataURL(), fileName: "skoring-tindakan-medis " + pegawaiLogin.nama +".xlsx" });
+                    kendo.saveAs({ dataURI: workbook.toDataURL(), fileName: "skoring-tindakan-medis " + pegawaiLogin.nama + ".xlsx" });
                 });
-                
+
             }
 
             $scope.optGridSkoringTindakanNoSkoring = {
@@ -179,7 +179,7 @@ define(['initialize'], function (initialize) {
                         }, {
                             field: "produkId",
                             title: "<h3>ID</h3>",
-                            width: 50
+                            width: 75
                         }, {
                             field: "produk",
                             title: "<h3>Nama Produk</h3>",

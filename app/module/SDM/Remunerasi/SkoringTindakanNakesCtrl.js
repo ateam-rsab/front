@@ -13,7 +13,7 @@ define(['initialize'], function (initialize) {
 
             $scope.listStatusVerif = [{
                 id: 0,
-                statusVerif: "Belum Terverifikasi"
+                statusVerif: "Belum Verifikasi"
             }, {
                 id: 1,
                 statusVerif: "Terverifikasi"
@@ -21,7 +21,7 @@ define(['initialize'], function (initialize) {
 
             $('#idSkor').on('change, keyup', function () {
                 var currentInput = $(this).val();
-                var fixedInput = currentInput.replace(/[A-Za-z!@#$%^&*()]/g, '');
+                var fixedInput = currentInput.replace(/[^\d.-]/g, '');
                 $(this).val(fixedInput);
             });
 
@@ -46,20 +46,24 @@ define(['initialize'], function (initialize) {
                     title: "<h3>Produk</h3>",
                     width: 150
                 }, {
+                    field: "jenisProduk",
+                    title: "<h3>Jenis Produk</h3>",
+                    width: 100
+                }, {
                     field: "skor",
                     title: "<h3>Skor</h3>",
-                    width: 50,
+                    width: 25,
                     attributes: {
                         style: "text-align: right"
                     }
                 }, {
                     field: "tglMulaiBerlaku",
                     title: "<h3>Tanggal Berlaku</h3>",
-                    width: 80
+                    width: 50
                 }, {
                     field: "stVerif",
                     title: "<h3>Status</h3>",
-                    width: 80
+                    width: 50
                 }, {
                     command: [{
                         text: "Edit",

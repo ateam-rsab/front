@@ -4,6 +4,15 @@
     "link": "#/Apotek/Daftar"
   },
   {
+    "name": "Pelayanan Pasien",
+    "children": [
+      {
+        "name": "Daftar Registrasi Pasien",
+        "link": "#/DaftarRegistrasiPasien"
+      }
+    ]
+  },
+  {
     "name": "Modul Penjualan",
     "children": [
       {

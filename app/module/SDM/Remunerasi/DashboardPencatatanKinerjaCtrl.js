@@ -66,7 +66,9 @@ define(['initialize'], function (initialize) {
                         $scope.showIsSinglePegawai = true
                     }
 
-                    $scope.getJabatanPegawai($scope.idPegawaiSingle);
+                    if ($scope.dataLogin.id != 320263) {
+                        $scope.getJabatanPegawai($scope.idPegawaiSingle);
+                    }
                 })
             }
 
@@ -74,6 +76,10 @@ define(['initialize'], function (initialize) {
 
             $scope.getJabatanPegawai = (pegawaiId) => {
                 $scope.showIsSinglePegawai = true
+
+                if (!pegawaiId) {
+                    pegawaiId = $scope.dataLogin.id
+                }
 
                 if ($scope.item.pegawai) {
                     $scope.dataSinglePegawai = $scope.item.pegawai.namaLengkap;
@@ -170,7 +176,7 @@ define(['initialize'], function (initialize) {
             $scope.getDataDashboard = () => {
                 $scope.isRouteLoading = true;
 
-                if ($scope.item.jabatan && !$scope.item.jabatan.isCariAkses) {
+                if ($scope.item.jabatan && !$scope.item.jabatan.isCariAkses && $scope.dataLogin.id != 320263) {
                     toastr.warning("Tidak ada akses untuk menampilkan data", "Peringatan")
                     $scope.isRouteLoading = false;
                     return

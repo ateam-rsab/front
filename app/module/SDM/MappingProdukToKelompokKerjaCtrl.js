@@ -6,7 +6,7 @@ define(['initialize'], function (initialize) {
             const pageSizeGrid = 10;
             $scope.columnGrid = [
                 {
-                    "title": "<input type='checkbox' class='checkbox' ng-click='selectUnselectAllRow()' />",
+                    // "title": "<input type='checkbox' class='checkbox' ng-click='selectUnselectAllRow()' />",
                     template: "# if (statusMapping) { #" +
                         "<input type='checkbox' class='checkbox' ng-click='selectRow(dataItem)' checked />" +
                         "# } else { #" +
@@ -18,10 +18,14 @@ define(['initialize'], function (initialize) {
                     "title": "No",
                     "width": "30px"
                 }, {
+                    "field": "unitKerja",
+                    "title": "Unit Kerja",
+                    "width": "500px"
+                }, {
                     "field": "subunitKerja",
                     "title": "Sub Unit Kerja",
-                    "width": "1000px"
-                },
+                    "width": "500px"
+                }
             ]
 
             $scope.mainGridOptionSubject = {
@@ -48,7 +52,7 @@ define(['initialize'], function (initialize) {
             };
 
             $scope.onClickGrid = (data) => {
-                console.log(data);
+                // console.log(data);
                 $scope.getObjectKelompokKerja(data.id);
             }
 
@@ -68,9 +72,9 @@ define(['initialize'], function (initialize) {
             $scope.getObjectKelompokKerja = (id) => {
                 if (id) {
                     ManageSdmNew.getListData(`iki-remunerasi/get-object-map-produk-kelompok-kerja?produkId=${id}`).then(res => {
-                        console.log(res.data.data);
+                        // console.log(res.data.data);
                         for (let i = 0; i < res.data.data.length; i++) {
-                            if(res.data.data[i].statusMapping) console.log(res.data.data[i]);
+                            // if (res.data.data[i].statusMapping) console.log(res.data.data[i]);
                             // res.data.data[i].statusMapping = false;
                             res.data.data[i].no = i + 1;
                         }
@@ -140,7 +144,7 @@ define(['initialize'], function (initialize) {
             $scope.mapProductToKelompokKerja = () => {
                 let dataSave = [];
                 for (let i = 0; i < $scope.dataSource._data.length; i++) {
-                    if($scope.dataSource._data[i].statusMapping && !$scope.dataSource._data[i].noRec) {
+                    if ($scope.dataSource._data[i].statusMapping && !$scope.dataSource._data[i].noRec) {
                         dataSave.push({
                             noRec: $scope.dataSource._data[i].noRec,
                             kdProfile: 0,
@@ -152,22 +156,22 @@ define(['initialize'], function (initialize) {
                                 id: $scope.dataSelected.id
                             }
                         })
-                    } else if(!$scope.dataSource._data[i].statusMapping && $scope.dataSource._data[i].noRec) {
+                    } else if (!$scope.dataSource._data[i].statusMapping && $scope.dataSource._data[i].noRec) {
                         dataSave.push({
                             noRec: $scope.dataSource._data[i].noRec,
                             kdProfile: 0,
                             statusEnabled: $scope.dataSource._data[i].statusMapping,
                             kelompokKerja: {
-                                id: $scope.dataSource._data[i].id
+                                id: $scope.dataSource._data[i].subunitKerjaId
                             },
                             produk: {
                                 id: $scope.dataSelected.id
                             }
                         })
                     }
-                   
+
                 }
-                console.log(dataSave);
+                // console.log(dataSave);
                 ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-all-map-produk-kelompok-kerja").then(function (res) {
                     init();
                 }, function (error) {

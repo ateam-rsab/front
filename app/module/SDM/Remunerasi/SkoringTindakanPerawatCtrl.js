@@ -24,7 +24,7 @@ define(['initialize'], function (initialize) {
 
             $scope.listStatusVerif = [{
                 id: 0,
-                statusVerif: "Belum Terverifikasi"
+                statusVerif: "Belum Verifikasi"
             }, {
                 id: 1,
                 statusVerif: "Terverifikasi"
@@ -32,7 +32,7 @@ define(['initialize'], function (initialize) {
 
             $('#idSkor').on('change, keyup', function () {
                 var currentInput = $(this).val();
-                var fixedInput = currentInput.replace(/[A-Za-z!@#$%^&*()]/g, '');
+                var fixedInput = currentInput.replace(/[^\d.-]/g, '');
                 $(this).val(fixedInput);
             });
 
