@@ -299,7 +299,7 @@ define(['initialize'], function (initialize) {
             init();
 
             $scope.tambahData = () => {
-                if (!$scope.isTambahGranted) {
+                if (!$scope.isTambahGranted && !pegawaiLogin.id == 320263) {
                     toastr.warning("Tidak memiliki akses menambah data!")
                     return
                 }
@@ -447,7 +447,7 @@ define(['initialize'], function (initialize) {
                         dataSave.noRec = $scope.norecData;
                     }
 
-                    if (isNotScored && !$scope.isTambahGranted) {
+                    if (isNotScored && !$scope.isTambahGranted && !pegawaiLogin.id == 320263) {
                         toastr.warning("Tidak memiliki akses menambah data!")
 
                         $scope.isRouteLoading = false;

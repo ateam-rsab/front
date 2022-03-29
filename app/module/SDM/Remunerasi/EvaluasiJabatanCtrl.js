@@ -303,6 +303,8 @@ define(['initialize'], function (initialize) {
                 }
 
                 if (!validate()) {
+                    $scope.isRouteLoading = false;
+
                     return;
                 }
 
@@ -350,6 +352,8 @@ define(['initialize'], function (initialize) {
                     $scope.detailGrade = "";
                     $scope.item = "";
                     $scope.isRouteLoading = false;
+                }, (error) => {
+                    $scope.isRouteLoading = false;
                 });
             };
 
@@ -371,6 +375,8 @@ define(['initialize'], function (initialize) {
             $scope.Hitung = function () {
                 $scope.isRouteLoading = true;
                 if (!validate()) {
+                    $scope.isRouteLoading = false;
+
                     return;
                 }
 
@@ -428,6 +434,8 @@ define(['initialize'], function (initialize) {
                     $scope.grade = e.data.data.grade ? e.data.data.grade : "-";
                     $scope.detailGrade = e.data.data.detailGrade ? e.data.data.detailGrade : "-";
 
+                    $scope.isRouteLoading = false;
+                }, (error) => {
                     $scope.isRouteLoading = false;
                 });
                 $rootScope.doneLoad = true;
