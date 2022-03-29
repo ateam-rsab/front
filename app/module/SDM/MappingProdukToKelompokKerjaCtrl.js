@@ -130,8 +130,8 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.selectRow = (dataItem) => {
-                var dataSelect = _.find($scope.dataSource._data, function (data) {
-                    return data.id == dataItem.id;
+                var dataSelect = $scope.dataSource._data.find(function (data) {
+                    return data.no == dataItem.no;
                 });
                 dataSelect.statusMapping = !dataSelect.statusMapping;
 

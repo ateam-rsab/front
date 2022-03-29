@@ -36,6 +36,23 @@
         "link": "#/DaftarPenjualanApotekKasir/keluarUmum"
     },
     {
+        "name": "Penerimaan Barang Suplier",
+        "children": [
+          {
+            "name": "Daftar Penerimaan Barang Supplier",
+            "link": "#/DaftarPenerimaanBarangSuplier"
+          },
+          {
+            "name": "Detail Penerimaan Barang Supplier",
+            "link": "#/DaftarPenerimaanBarangSuplierPerUnit"
+          },
+          {
+            "name": "Penerimaan Barang",
+            "link": "#/PenerimaanBarangSuplier"
+          }
+        ]
+      },
+    {
         "name": "Verifikasi Pembayaran",
         "children": [
             {
