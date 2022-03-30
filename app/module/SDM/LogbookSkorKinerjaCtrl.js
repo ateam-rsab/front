@@ -297,6 +297,8 @@ define(['initialize'], function (initialize) {
                             && res.data.data[i].id == $state.params.pegawaiId)
                             || res.data.data[i].id == $scope.pegawaiLogin.id) {
                             $scope.item.pegawai = res.data.data[i];
+
+                            break;
                         }
                     }
                     $scope.listPegawai = res.data.data;
