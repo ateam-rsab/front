@@ -11,6 +11,8 @@ define(['initialize'], function (initialize) {
             var userLogin = JSON.parse(localStorage.getItem('datauserlogin'));
             var pegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
 
+            $scope.angkaFormatter = new Intl.NumberFormat('id-ID');
+
             $scope.listStatusVerif = [{
                 id: 0,
                 statusVerif: "Belum Verifikasi"
@@ -65,7 +67,8 @@ define(['initialize'], function (initialize) {
                     width: 50,
                     attributes: {
                         style: "text-align: right;"
-                    }
+                    },
+                    template: "<span>{{angkaFormatter.format('#= skor #')}}</span>"
                 }, {
                     field: "tglMulaiBerlaku",
                     title: "<h3>Tanggal<br/>Berlaku</h3>",
