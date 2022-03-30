@@ -7,6 +7,8 @@ define(['initialize'], function (initialize) {
             $scope.isRouteLoading = false;
             $scope.isUpdate = false;
 
+            $scope.angkaFormatter = new Intl.NumberFormat('id-ID');
+
             $scope.optGrid = {
                 toolbar: [{
                     name: "create", text: "Input Baru",
@@ -51,7 +53,8 @@ define(['initialize'], function (initialize) {
                         width: 100,
                         attributes: {
                             style: "text-align: right;"
-                        }
+                        },
+                        template: "<span>{{angkaFormatter.format('#= totalTargetSkor #')}}</span>"
                     },
                     {
                         command: [{
