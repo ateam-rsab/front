@@ -9,6 +9,13 @@ define(['initialize'], function (initialize) {
                 depth: "year"
             };
 
+            $scope.rupiahFormatter = new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+
             $scope.optGrid = {
                 toolbar: [{
                     text: "export",
@@ -102,21 +109,23 @@ define(['initialize'], function (initialize) {
                         style: "text-align: center;"
                     }
                 }, {
-                    field: "rpP1",
+                    field: "p1",
                     title: "<h3>P1</h3>",
                     width: 200,
                     attributes: {
                         class: "table-cell",
                         style: "text-align: right;"
-                    }
+                    },
+                    template: "<span>{{rupiahFormatter.format('#= p1 #')}}</span>"
                 }, {
-                    field: "rpP2",
+                    field: "p2",
                     title: "<h3>P2</h3>",
                     width: 200,
                     attributes: {
                         class: "table-cell",
                         style: "text-align: right;"
-                    }
+                    },
+                    template: "<span>{{rupiahFormatter.format('#= p2 #')}}</span>"
                 },]
             }
 
