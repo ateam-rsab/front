@@ -132,8 +132,6 @@ define(['initialize'], function (initialize) {
                     if ((item.x === 58 || item.x === 59 || item.x === 60 || item.x === 61 || item.x === 62 || item.x === 63 || item.x === 82) && item.z === 3) {
                         $scope.isKsm = true
                         $scope.unitKerjaId = item.x
-                    } else {
-                        $scope.isKsm = false
                     }
                 })
 
