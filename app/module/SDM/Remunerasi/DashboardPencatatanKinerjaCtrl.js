@@ -9,6 +9,8 @@ define(['initialize'], function (initialize) {
             $scope.showIsSinglePegawai = false;
             $scope.showSyaratKetentuan = false;
             $scope.showInputHasil = true;
+
+            $scope.isDisabledButtonSave = false;
             $scope.endOfDay = new Date(new Date().setHours(23, 59, 59, 999))
 
             $scope.item = {};
@@ -328,6 +330,7 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.simpanData1 = () => {
+                $scope.isDisabledButtonSave = true;
                 let dataSave = {
                     namaKegiatan: $scope.item.namaKegiatan ? $scope.item.namaKegiatan : $scope.labelData,
                     capaian: $scope.item.hasilKegiatan,
@@ -369,6 +372,7 @@ define(['initialize'], function (initialize) {
                 ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-pelayanan-nakes").then(res => {
                     $scope.closepopUp2();
                     $scope.getDataDashboard();
+                    $scope.isDisabledButtonSave = false;
                 }, (error) => {
                     if (error.status == 400) {
                         toastr.error("Tanggal kegiatan harus diisi dengan tanggal di bulan berjalan", "Informasi")

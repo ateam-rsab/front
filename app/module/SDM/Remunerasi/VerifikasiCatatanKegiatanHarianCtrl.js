@@ -3,6 +3,7 @@ define(['initialize'], function (initialize) {
     initialize.controller('VerifikasiCatatanKegiatanHarianCtrl', ['$q', 'ManagePegawai', 'FindPegawai', 'DateHelper', 'FindSdm', 'ModelItem', 'ManageSdm', 'ManageSdmNew', '$state', '$rootScope', '$scope', '$mdDialog',
         function ($q, managePegawai, findPegawai, dateHelper, findSdm, modelItem, manageSdm, ManageSdmNew, $state, $rootScope, $scope, $mdDialog) {
             $scope.item = {};
+            let clicked = 1;
             $scope.isRouteLoading = false;
             $scope.monthSelectorOptions = {
                 start: "year",
@@ -192,6 +193,7 @@ define(['initialize'], function (initialize) {
 
             function verifData(e) {
                 e.preventDefault();
+                clicked++;
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
 
                 if (dataItem.isStatusVerifikasi) {
@@ -211,6 +213,7 @@ define(['initialize'], function (initialize) {
                     .ok('Ya')
                     .cancel('Tidak');
                 $mdDialog.show(confirm).then(function () {
+                    console.log(clicked)
                     $scope.simpanVerif(dataItem, "verif");
                 }, function () { });
             }

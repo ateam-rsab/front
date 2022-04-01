@@ -1151,12 +1151,15 @@ define(['initialize'], function (initialize) {
 
                 }
             }
+            
             $scope.cetakGelang = function () {
                 if ($scope.item != undefined) {
-                    var fixUrlLaporan = cetakHelper.open("registrasi-pelayanan/gelangPasien?id=" + $scope.item.pasien.id);
+                    var fixUrlLaporan = "http://192.168.12.4:7777/service-reporting/gelang-pasien/" + $scope.item.noregistrasi;
+                    // var fixUrlLaporan = cetakHelper.open("registrasi-pelayanan/gelangPasien?id=" + $scope.item.nocmfk);
                     window.open(fixUrlLaporan, '', 'width=800,height=600')
                 }
             }
+
             $scope.cetakHelper = function () {
                 if ($scope.item != undefined) {
                     // var fixUrlLaporan = cetakHelper.open("reporting/lapTracer?noRegistrasi=" + $scope.item.pasienDaftar.noRegistrasi);

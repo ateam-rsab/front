@@ -175,6 +175,10 @@
         "name": "Stok Barang",
         "children": [
           {
+            "name": "Daftar Pemakaian Stok Ruangan",
+            "link": "#/DaftarPemakaianStokRuangan"
+          },
+          {
             "name": "Data Stok Ruangan",
             "link": "#/Logistik/StokRuangan"
           },

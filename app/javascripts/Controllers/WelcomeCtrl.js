@@ -74,6 +74,11 @@ define(['initialize'], function (initialize) {
 
             $scope.dataPemberitahuan = [
                 {
+                    path: "data/dokumen/SE-Penatapan-Jam-Kerja-Bulan-Ramadan-1443-H-RSAB-Harapan-Kita.pdf",
+                    fileName: "SE Penatapan Jam Kerja Bulan Ramadan 1443 H RSAB Harapan Kita",
+                    new: true
+                },
+                {
                     path: "data/dokumen/KGB-TMT-Maret-2022-an-Agus-Susilo-dkk.pdf",
                     fileName: "Surat Edararan tentang ketentuan TUBEL pembiayaan BPPSDMK KEMENKES RI th 2022",
                     new: true

@@ -85,7 +85,7 @@
         </div>
     </div>
     <div class="grid_12">
-        <div class="grid_3" ng-if="showButton">
+        <div class="grid_2" ng-if="showButton">
             <md-button class="md-raised md-button md-primary smart-button-warn" ng-click="Monitoring()">
                 Monitoring
             </md-button>
@@ -103,7 +103,7 @@
                 <span class="title">Pengkajian Medis</span>
             </c-button> -->
         </div>
-        <div class="grid_3" ng-if="showButton" ng-hide="validasiruangan == 14">
+        <div class="grid_2" ng-if="showButton" ng-hide="validasiruangan == 14">
             <md-button class="md-raised md-button md-primary smart-button-warn" ng-click="UbahDokter()">
                 Pilih Dokter
             </md-button>
@@ -113,7 +113,7 @@
             </c-button> -->
         </div>
 
-        <div class="grid_3" ng-if="showButton">
+        <div class="grid_2" ng-if="showButton">
             <md-button class="md-raised md-button md-primary smart-button-warn" ng-click="Detail()">
                 Rincian
             </md-button>
@@ -122,6 +122,10 @@
                 <span class="title">Rincian</span>
             </c-button> -->
         </div>
+        <md-button class="md-raised md-button md-primary smart-button-warn"
+            ng-click="cetakGelang()">
+            Cetak Gelang
+        </md-button>
         <div class="grid_3" ng-if="showButton">
             <md-button class="md-raised md-button md-primary smart-button-warn" ng-click="detailPasien()">
                 Detail Pasien
