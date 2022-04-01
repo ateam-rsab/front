@@ -76,7 +76,22 @@ define(['initialize'], function (initialize) {
 
             getListPegawai();
 
+            let resetButtonDetail = () => {
+                $scope.showDetailPerilaku = false;
+                $scope.showDetailKuantitas = false;
+                $scope.showDetailKualitas = false;
+            }
+
+            let resetDashboard = () => {
+                $scope.dataDashboard = null;
+                $scope.dataDetailDashboardKinerja = null;
+
+                resetButtonDetail();
+            }
+
             $scope.getJabatanPegawai = (pegawaiId) => {
+                resetDashboard();
+
                 $scope.showIsSinglePegawai = true
 
                 if (!pegawaiId) {
@@ -422,6 +437,7 @@ define(['initialize'], function (initialize) {
                 if (!newVal) return;
                 if ((newVal && !oldVal) || (newVal && oldVal && newVal.id !== oldVal.id)) {
                     $scope.getDataDashboard();
+                    resetButtonDetail();
                 }
             })
         }
