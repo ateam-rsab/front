@@ -598,6 +598,36 @@ define(['initialize'], function (initialize) {
                         })
                 }
             })
+
+            $scope.$watch('desc.skor', function (e) {
+                if (!e) return;
+                if ($scope.desc.namaProduk && $scope.desc.kelompokKerja && $scope.desc.skor && $scope.desc.tglBerlaku) {
+                    ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=&namaProduk=" + encodeURIComponent($scope.desc.namaProduk).replace(/%20/g, "+")
+                        + "&kelompokKerjaId=" + $scope.desc.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.desc.namaProduk).replace(/%20/g, "+")
+                        + "&skor=" + $scope.desc.skor + "&tglBerlaku=" + dateHelper.toTimeStamp($scope.desc.tglBerlaku)).then(res => {
+                            if (res.data.data.length > 0) {
+                                $scope.isDuplicated = true
+                            } else {
+                                $scope.isDuplicated = false
+                            }
+                        })
+                }
+            })
+
+            $scope.$watch('desc.tglBerlaku', function (e) {
+                if (!e) return;
+                if ($scope.desc.namaProduk && $scope.desc.kelompokKerja && $scope.desc.skor && $scope.desc.tglBerlaku) {
+                    ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=&namaProduk=" + encodeURIComponent($scope.desc.namaProduk).replace(/%20/g, "+")
+                        + "&kelompokKerjaId=" + $scope.desc.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.desc.namaProduk).replace(/%20/g, "+")
+                        + "&skor=" + $scope.desc.skor + "&tglBerlaku=" + dateHelper.toTimeStamp($scope.desc.tglBerlaku)).then(res => {
+                            if (res.data.data.length > 0) {
+                                $scope.isDuplicated = true
+                            } else {
+                                $scope.isDuplicated = false
+                            }
+                        })
+                }
+            })
         }
     ])
 });
