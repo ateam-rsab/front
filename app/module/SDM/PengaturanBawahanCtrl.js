@@ -12,6 +12,7 @@ define(['initialize'], function (initialize) {
             $scope.enableBtnSimpanJabatanInternal = true;
             $scope.item = {};
             $scope.ji = {};
+            $scope.ListUnitKerja = [];
 
             var initPengaturanBawahan = function () {
                 $scope.columnPengaturanBawahan = {
@@ -92,7 +93,6 @@ define(['initialize'], function (initialize) {
 
             $scope.loadDataPengaturanBawahan = function () {
                 $scope.isRouteLoading = true;
-                $scope.ListUnitKerja = []
                 let dataTemp = [];
                 if ($state.params.idPegawai) {
                     ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-bawahan-level-jabatan?idPegawai=" + $state.params.idPegawai).then(function (data) {
@@ -165,8 +165,7 @@ define(['initialize'], function (initialize) {
                     $scope.ListJabatan = res[2].data;
                     $scope.ListJenisJabatan = res[3].data;
 
-
-
+                    $scope.loadDataPengaturanBawahan();
                 });
 
                 $scope.monthSelectorOptions = {
@@ -178,7 +177,6 @@ define(['initialize'], function (initialize) {
             };
 
             $scope.init();
-            $scope.loadDataPengaturanBawahan();
 
             $scope.simpanJabatanInternal = function () {
                 $scope.enableBtnSimpanJabatanInternal = false;
