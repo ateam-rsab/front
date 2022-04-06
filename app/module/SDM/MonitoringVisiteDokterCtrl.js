@@ -8,6 +8,7 @@ define(['initialize'], function (initialize) {
             $scope.isSuperuser = false;
             $scope.isSpecified = false;
             $scope.isKsm = false;
+            $scope.isDirektur = false;
             $scope.monthly = {
                 start: "year",
                 depth: "year",
@@ -45,7 +46,11 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.getDataDokter = () => {
-                if ($scope.isKsm) {
+                if ($scope.isDirektur) {
+                    ManageSdmNew.getListData(`sdm/daftar-dokter?ksmId=&kkId=&drId=`).then((res) => {
+                        $scope.listDokter = res.data;
+                    });
+                } else if ($scope.isKsm) {
                     ManageSdmNew.getListData(`sdm/daftar-dokter?ksmId=${$scope.unitKerjaId ? $scope.unitKerjaId : ""}&kkId=&drId=`).then((res) => {
                         $scope.listDokter = res.data;
                     });
@@ -131,7 +136,11 @@ define(['initialize'], function (initialize) {
                 dataSOTK.reduce((res, item) => {
                     if ((item.x === 58 || item.x === 59 || item.x === 60 || item.x === 61 || item.x === 62 || item.x === 63 || item.x === 82) && item.z === 3) {
                         $scope.isKsm = true
+                        $scope.isDirektur = false
                         $scope.unitKerjaId = item.x
+                    } else if (item.x === 65 && item.z === 2) {
+                        $scope.isKsm = true
+                        $scope.isDirektur = true
                     }
                 })
 
@@ -145,7 +154,7 @@ define(['initialize'], function (initialize) {
             $scope.verify = function () {
                 $scope.isRouteLoading = true;
 
-                if (!$scope.isKsm) {
+                if (!$scope.isKsm || $scope.item.dokter.id === dataLogin.id) {
                     toastr.warning("Tidak memiliki akses", "Peringatan")
                     $scope.isRouteLoading = false
                     return
