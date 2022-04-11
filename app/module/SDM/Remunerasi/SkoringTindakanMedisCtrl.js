@@ -55,12 +55,12 @@ define(['initialize'], function (initialize) {
                     width: 120
                 }, {
                     field: "namaProduk",
-                    title: "<h3>Acuan Tindakan<br/>Pelayanan</h3>",
+                    title: "<h3>Tindakan</h3>",
                     width: 150
-                }, {
-                    field: "detailProduk",
-                    title: "<h3>Tindakan Untuk<br/>Skoring</h3>",
-                    width: 170
+                    // }, {
+                    //     field: "detailProduk",
+                    //     title: "<h3>Tindakan Untuk<br/>Skoring</h3>",
+                    //     width: 170
                 }, {
                     field: "skor",
                     title: "<h3>Skor</h3>",
@@ -98,8 +98,8 @@ define(['initialize'], function (initialize) {
                     {
                         cells: [
                             { value: "Kelompok Kerja" },
-                            { value: "Acuan Tindakan Pelayanan" },
-                            { value: "Tindakan Untuk Skoring" },
+                            { value: "Tindakan" },
+                            // { value: "Tindakan Untuk Skoring" },
                             { value: "Skor" },
                             { value: "Tanggal Berlaku" },
                             { value: "Status" }
@@ -185,7 +185,7 @@ define(['initialize'], function (initialize) {
                             width: 75
                         }, {
                             field: "produk",
-                            title: "<h3>Nama Produk</h3>",
+                            title: "<h3>Tindakan</h3>",
                             width: 150
                         }]
                 }
@@ -354,7 +354,8 @@ define(['initialize'], function (initialize) {
 
                 $scope.item.tglBerlaku = new Date(dataItem.tglMulaiBerlaku);
                 $scope.item.skor = dataItem.skor
-                $scope.item.detailTindakan = dataItem.detailProduk;
+                // $scope.item.detailTindakan = dataItem.detailProduk;
+                $scope.item.detailTindakan = dataItem.namaProduk;
 
                 $scope.item.statusVerif = dataItem.isStatusVerifikasi;
                 var confirm = $mdDialog.confirm()
@@ -406,7 +407,8 @@ define(['initialize'], function (initialize) {
 
                 $scope.item.tglBerlaku = new Date(dataItem.tglMulaiBerlaku);
                 $scope.item.skor = dataItem.skor
-                $scope.item.detailTindakan = dataItem.detailProduk;
+                // $scope.item.detailTindakan = dataItem.detailProduk;
+                $scope.item.detailTindakan = dataItem.namaProduk;
 
                 $scope.item.statusVerif = dataItem.isStatusVerifikasi;
 
@@ -421,8 +423,8 @@ define(['initialize'], function (initialize) {
                     "item.tglBerlaku|ng-model|Tanggal Berlaku",
                     "item.kelompokKerja|ng-model|Kelompok Kerja",
                     "item.skor|ng-model|Skor",
-                    "item.detailTindakan|ng-model|Tindakan Untuk Skoring",
-                    "item.namaProduk|k-ng-model|Acuan Tindakan Pelayanan"
+                    // "item.detailTindakan|ng-model|Tindakan Untuk Skoring",
+                    "item.namaProduk|k-ng-model|Tindakan"
                 ];
 
                 $scope.isRouteLoading = true;
@@ -431,7 +433,8 @@ define(['initialize'], function (initialize) {
                     let statusEnabled = method === 'save' || method === 'update';
 
                     let dataSave = {
-                        detailProduk: isNotScored ? $scope.desc.namaProduk : $scope.item.detailTindakan,
+                        // detailProduk: isNotScored ? $scope.desc.namaProduk : $scope.item.detailTindakan,
+                        detailProduk: isNotScored ? $scope.desc.namaProduk : $scope.item.namaProduk.namaProduk,
                         skor: parseFloat(isNotScored ? $scope.desc.skor : $scope.item.skor),
                         statusVerifikasi: isNotScored ? $scope.desc.isVerified : $scope.item.statusVerif ? true : false,
                         tanggalMulaiBerlaku: dateHelper.toTimeStamp(isNotScored ? $scope.desc.tglBerlaku : $scope.item.tglBerlaku),
@@ -521,10 +524,12 @@ define(['initialize'], function (initialize) {
 
             $scope.$watch('item.namaProduk', function (e) {
                 if (!e) return;
-                if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.detailTindakan && $scope.item.skor && $scope.item.tglBerlaku) {
+                // if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.detailTindakan && $scope.item.skor && $scope.item.tglBerlaku) {
+                if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.skor && $scope.item.tglBerlaku) {
                     ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=" + ($scope.norecData ? $scope.norecData : "")
                         + "&namaProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
-                        + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.detailTindakan).replace(/%20/g, "+")
+                        // + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.detailTindakan).replace(/%20/g, "+")
+                        + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
                         + "&skor=" + $scope.item.skor + "&tglBerlaku=" + $scope.item.tglBerlaku).then(res => {
                             if (res.data.data.length > 0) {
                                 $scope.isDuplicated = true
@@ -537,10 +542,12 @@ define(['initialize'], function (initialize) {
 
             $scope.$watch('item.kelompokKerja', function (e) {
                 if (!e) return;
-                if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.detailTindakan && $scope.item.skor && $scope.item.tglBerlaku) {
+                // if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.detailTindakan && $scope.item.skor && $scope.item.tglBerlaku) {
+                if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.skor && $scope.item.tglBerlaku) {
                     ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=" + ($scope.norecData ? $scope.norecData : "")
                         + "&namaProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
-                        + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.detailTindakan).replace(/%20/g, "+")
+                        // + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.detailTindakan).replace(/%20/g, "+")
+                        + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
                         + "&skor=" + $scope.item.skor + "&tglBerlaku=" + dateHelper.toTimeStamp($scope.item.tglBerlaku)).then(res => {
                             if (res.data.data.length > 0) {
                                 $scope.isDuplicated = true
@@ -553,10 +560,12 @@ define(['initialize'], function (initialize) {
 
             $scope.$watch('item.detailTindakan', function (e) {
                 if (!e) return;
-                if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.detailTindakan && $scope.item.skor && $scope.item.tglBerlaku) {
+                // if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.detailTindakan && $scope.item.skor && $scope.item.tglBerlaku) {
+                if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.skor && $scope.item.tglBerlaku) {
                     ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=" + ($scope.norecData ? $scope.norecData : "")
                         + "&namaProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
-                        + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.detailTindakan).replace(/%20/g, "+")
+                        // + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.detailTindakan).replace(/%20/g, "+")
+                        + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
                         + "&skor=" + $scope.item.skor + "&tglBerlaku=" + dateHelper.toTimeStamp($scope.item.tglBerlaku)).then(res => {
                             if (res.data.data.length > 0) {
                                 $scope.isDuplicated = true
@@ -569,10 +578,12 @@ define(['initialize'], function (initialize) {
 
             $scope.$watch('item.skor', function (e) {
                 if (!e) return;
-                if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.detailTindakan && $scope.item.skor && $scope.item.tglBerlaku) {
+                // if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.detailTindakan && $scope.item.skor && $scope.item.tglBerlaku) {
+                if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.skor && $scope.item.tglBerlaku) {
                     ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=" + ($scope.norecData ? $scope.norecData : "")
                         + "&namaProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
-                        + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.detailTindakan).replace(/%20/g, "+")
+                        // + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.detailTindakan).replace(/%20/g, "+")
+                        + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
                         + "&skor=" + $scope.item.skor + "&tglBerlaku=" + dateHelper.toTimeStamp($scope.item.tglBerlaku)).then(res => {
                             if (res.data.data.length > 0) {
                                 $scope.isDuplicated = true
@@ -585,11 +596,43 @@ define(['initialize'], function (initialize) {
 
             $scope.$watch('item.tglBerlaku', function (e) {
                 if (!e) return;
-                if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.detailTindakan && $scope.item.skor && $scope.item.tglBerlaku) {
+                // if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.detailTindakan && $scope.item.skor && $scope.item.tglBerlaku) {
+                if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.skor && $scope.item.tglBerlaku) {
                     ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=" + ($scope.norecData ? $scope.norecData : "")
                         + "&namaProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
-                        + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.detailTindakan).replace(/%20/g, "+")
+                        // + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.detailTindakan).replace(/%20/g, "+")
+                        + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
                         + "&skor=" + $scope.item.skor + "&tglBerlaku=" + dateHelper.toTimeStamp($scope.item.tglBerlaku)).then(res => {
+                            if (res.data.data.length > 0) {
+                                $scope.isDuplicated = true
+                            } else {
+                                $scope.isDuplicated = false
+                            }
+                        })
+                }
+            })
+
+            $scope.$watch('desc.skor', function (e) {
+                if (!e) return;
+                if ($scope.desc.namaProduk && $scope.desc.kelompokKerja && $scope.desc.skor && $scope.desc.tglBerlaku) {
+                    ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=&namaProduk=" + encodeURIComponent($scope.desc.namaProduk).replace(/%20/g, "+")
+                        + "&kelompokKerjaId=" + $scope.desc.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.desc.namaProduk).replace(/%20/g, "+")
+                        + "&skor=" + $scope.desc.skor + "&tglBerlaku=" + dateHelper.toTimeStamp($scope.desc.tglBerlaku)).then(res => {
+                            if (res.data.data.length > 0) {
+                                $scope.isDuplicated = true
+                            } else {
+                                $scope.isDuplicated = false
+                            }
+                        })
+                }
+            })
+
+            $scope.$watch('desc.tglBerlaku', function (e) {
+                if (!e) return;
+                if ($scope.desc.namaProduk && $scope.desc.kelompokKerja && $scope.desc.skor && $scope.desc.tglBerlaku) {
+                    ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=&namaProduk=" + encodeURIComponent($scope.desc.namaProduk).replace(/%20/g, "+")
+                        + "&kelompokKerjaId=" + $scope.desc.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.desc.namaProduk).replace(/%20/g, "+")
+                        + "&skor=" + $scope.desc.skor + "&tglBerlaku=" + dateHelper.toTimeStamp($scope.desc.tglBerlaku)).then(res => {
                             if (res.data.data.length > 0) {
                                 $scope.isDuplicated = true
                             } else {

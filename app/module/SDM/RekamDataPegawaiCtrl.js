@@ -6,6 +6,8 @@ define(['initialize'], function (initialize) {
             // if (!$scope.dataLogin.ruangan.namaruangan == 'Inst.Teknologi & Informasi') {
             //     $state.go('UnderMaintenance', { namaForm: 'RekamDataPegawai' });
             // }
+            $scope.listIdKedudukan = [3, 4, 5, 6, 24, 25, 26, 28, 29];
+
             $scope.dataSourceJabatanInternal = new kendo.data.DataSource({
                 data: [],
                 pageSize: 5
