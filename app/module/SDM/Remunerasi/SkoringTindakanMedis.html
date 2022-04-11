@@ -152,7 +152,33 @@
                             k-on-change="getProduk(item.ruangan.id)" />
                     </div>
                 </div>
-                <div class="grid_12" style="margin-left: 6px; width: 98.5%;" ng-hide="isEdit">
+                <div class="grid_12" ng-hide="isEdit">
+                    <div class="grid_9">
+                        <label><strong>Tindakan</strong></label>
+                        <input kendo-combo-box k-filter="'contains'" k-ng-model="item.namaProduk"
+                            k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-data-source="listNamaProduk"
+                            ng-disabled="isEdit" />
+                    </div>
+                    <div class="grid_3">
+                        <label><strong>Skor</strong></label>
+                        <input c-text-box id="idSkor" type="input" class="k-textbox" ng-model="item.skor"
+                            ng-disabled="isVerifStaf" />
+                    </div>
+                </div>
+                <div class="grid_12" style="margin-top: 6px;" ng-show="isEdit">
+                    <div class="grid_9">
+                        <label><strong>Tindakan</strong></label>
+                        <input kendo-combo-box k-filter="'contains'" k-ng-model="item.namaProduk"
+                            k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-data-source="listNamaProduk"
+                            ng-disabled="isEdit" />
+                    </div>
+                    <div class="grid_3">
+                        <label><strong>Skor</strong></label>
+                        <input c-text-box id="idSkor" type="input" class="k-textbox" ng-model="item.skor"
+                            ng-disabled="isVerifStaf" />
+                    </div>
+                </div>
+                <!-- <div class="grid_12" style="margin-left: 6px; width: 98.5%;" ng-hide="isEdit">
                     <label><strong>Acuan Tindakan Pelayanan</strong></label>
                     <input kendo-combo-box k-filter="'contains'" k-ng-model="item.namaProduk"
                         k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-data-source="listNamaProduk"
@@ -175,7 +201,7 @@
                         <input c-text-box id="idSkor" type="input" class="k-textbox" ng-model="item.skor"
                             ng-disabled="isVerifStaf" />
                     </div>
-                </div>
+                </div> -->
                 <div class="grid_12">
                     <div class="grid_6">
                         <label><strong>Unit Kerja</strong></label>
