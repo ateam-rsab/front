@@ -386,6 +386,15 @@
     ]
   },
   {
+      "name": "Information",
+      "children": [
+          {
+              "name": "Informasi Tarif Layanan",
+              "link": "#/TarifLayanan"
+          }
+      ]
+  },
+  {
     "name": "Aplikasi Laundry",
     "children": [
       {

@@ -461,16 +461,28 @@ define(['initialize'], function (initialize) {
                         $scope.isRouteLoading = false;
                         return
                     } else {
-                        ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-skoring-tindakan-medis").then(res => {
-                            $scope.desc = null;
-                            $scope.showDesc = false;
-                            $scope.getAllData();
-                            $scope.closePopUp();
 
-                            $scope.isRouteLoading = false;
-                        }, function (error) {
-                            $scope.isRouteLoading = false;
-                        })
+                        var confirm = $mdDialog.confirm()
+                            .title('Apakah anda yakin menyimpan data?')
+                            .ariaLabel('Lucky day')
+                            .targetEvent(e)
+                            .ok('Ya')
+                            .cancel('Tidak');
+                        $mdDialog.show(confirm).then(function () {
+                            ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-skoring-tindakan-medis").then(res => {
+                                $scope.desc = null;
+                                $scope.showDesc = false;
+                                $scope.getAllData();
+                                $scope.closePopUp();
+    
+                                $scope.isRouteLoading = false;
+                            }, function (error) {
+                                $scope.isRouteLoading = false;
+                            })
+                        }, function () {
+                            $scope.reset();
+                        });
+                        
                     }
                 } else {
                     $scope.isRouteLoading = false;

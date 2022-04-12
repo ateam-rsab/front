@@ -150,6 +150,15 @@ define(['initialize'], function (initialize) {
 
                 $scope.optGrid2 = {
                     pageable: true,
+                    filterable: {
+                        extra: false,
+                        operators: {
+                            string: {
+                                // contains: "Mengandung Kata",
+                                startswith: "Starts with"
+                            }
+                        }
+                    },
                     scrollable: true,
                     columns: [{
                         field: "tglPelayananFormatted",

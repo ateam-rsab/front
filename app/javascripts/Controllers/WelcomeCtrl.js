@@ -74,6 +74,11 @@ define(['initialize'], function (initialize) {
 
             $scope.dataPemberitahuan = [
                 {
+                    path: "data/dokumen/RENCANA-USULAN-PENGANGKATAN-JABFUNG-2022.pdf",
+                    fileName: "RENCANA USULAN PENGANGKATAN JABFUNG 2022",
+                    new: true
+                },
+                {
                     path: "data/dokumen/SE-Penatapan-Jam-Kerja-Bulan-Ramadan-1443-H-RSAB-Harapan-Kita.pdf",
                     fileName: "SE Penatapan Jam Kerja Bulan Ramadan 1443 H RSAB Harapan Kita",
                     new: true

@@ -70,6 +70,9 @@ define(['initialize'], function (initialize) {
                 }
 
                 $scope.optGrid2 = {
+                    toolbar: [
+                        { text: "export", name: "Export detail", template: '<button ng-click="exportToExcel()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-print"></span>Export To Excel</button>' }
+                    ],
                     pageable: true,
                     scrollable: true,
                     columns: [{
@@ -119,6 +122,82 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.init();
+
+            $scope.exportToExcel = function () {
+                if(!$scope.dataSource2) {
+                    toastr.info("Tidak ada data untuk di export")
+                    return
+                }
+                var tempDataExport = [];
+                var rows = [
+                    {
+                        cells: [
+                            { value: "Jenis Indikator" },
+                            { value: "Nama Indikator" },
+                            { value: "Indikator" },
+                            { value: "Kegiatan" },
+                            { value: "Hasil" },
+                            { value: "Satuan" },
+                            { value: "Catatan" },
+                            { value: "Tanggal" },
+                            { value: "Status" }
+                        ]
+                    }
+                ];
+
+                tempDataExport = $scope.dataSource2;
+                tempDataExport.fetch(function () {
+                    var data = this.data();
+                    console.log(data);
+                    for (var i = 0; i < data.length; i++) {
+                        //push single row for every record
+                        rows.push({
+                            cells: [
+                                { value: data[i].jenisIndikator },
+                                { value: data[i].namaIndikator },
+                                { value: data[i].namaKegiatan },
+                                { value: data[i].hasil },
+                                { value: data[i].satuanIndikator },
+                                { value: data[i].catatan },
+                                { value: data[i].tglKegiatanFormat },
+                                { value: data[i].statusVerifikasi }
+                            ]
+                        })
+                    }
+                    var workbook = new kendo.ooxml.Workbook({
+                        sheets: [
+                            {
+                                freezePane: {
+                                    rowSplit: 1
+                                },
+                                columns: [
+                                    // Column settings (width)
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true }
+                                ],
+                                // Title of the sheet
+                                title: "Catatan Kegiatan Harian Terverifikasi",
+                                // Rows of the sheet
+                                rows: rows
+                            }
+                        ]
+                    });
+                    //save the file as Excel file with extension xlsx
+                    // item.srcBulan
+                    kendo.saveAs({ dataURI: workbook.toDataURL(), fileName: `catatan-kegiatan-harian-terverifikasi | ${dateHelper.formatDate($scope.item.srcBulan, 'MMMM YYYY')}-${$scope.item.srcPegawai.namaLengkap}-${$scope.item.srcJabatan.namaJabatan}.xlsx` });
+                });
+                
+            }
 
             $scope.getJabatanByIdPegawai = (id) => {
                 ManageSdmNew.getListData("pegawai/jabatan-kontrak-verif-kinerja?pegawaiId=" + id + "&pegawaiLoginId=" + dataPegawai.id).then((res) => {

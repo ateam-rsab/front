@@ -3,7 +3,9 @@ define(['initialize'], function (initialize) {
     initialize.controller('KontrakKinerjaIndividuCtrl', ['$q', 'ManagePegawai', 'FindPegawai', 'DateHelper', 'FindSdm', 'ModelItem', 'ManageSdm', 'ManageSdmNew', '$state', '$rootScope', '$scope', '$mdDialog',
         function ($q, managePegawai, findPegawai, dateHelper, findSdm, modelItem, manageSdm, ManageSdmNew, $state, $rootScope, $scope, $mdDialog) {
             $scope.isRouteLoading = false;
-            $scope.isDuplicated = false
+            $scope.isDuplicated = false;
+            $scope.isDisabledSimpanData = false;
+            $scope.isDisabledSimpanPengajuan = false;
             $scope.isPopup = false
             $scope.item = {};
             $scope.indikator = {};
@@ -240,6 +242,7 @@ define(['initialize'], function (initialize) {
             $scope.simpanPengajuanIndikator = () => {
                 $scope.isRouteLoading = true;
                 $scope.isPopup = true;
+                $scope.isDisabledSimpanPengajuan = true;
 
                 var listRawRequired = [
                     "indikator.bobot|k-ng-model|Bobot",
@@ -300,11 +303,14 @@ define(['initialize'], function (initialize) {
                         ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-pengajuan-kontrak-kinerja").then(res => {
                             $scope.resetDataPengajuan();
                             $scope.closePopUpPengajuan();
+                            $scope.isDisabledSimpanPengajuan = false;
+
                         })
                     }
                 } else {
                     $scope.isRouteLoading = false;
                     $scope.isPopup = true;
+                    $scope.isDisabledSimpanPengajuan = false;
 
                     modelItem.showMessages(isValid.messages);
                 }
@@ -339,6 +345,7 @@ define(['initialize'], function (initialize) {
             $scope.simpanData = (method) => {
                 $scope.isRouteLoading = true;
                 $scope.isPopup = true;
+                $scope.isDisabledSimpanData = true;
 
                 let statusEnabled = method === 'save' || method === 'update';
 
@@ -408,8 +415,10 @@ define(['initialize'], function (initialize) {
 
                     $scope.isRouteLoading = false;
                     $scope.isPopup = true;
+                    $scope.isDisabledSimpanData = false;
                 }, (error) => {
                     $scope.isRouteLoading = false;
+                    $scope.isDisabledSimpanData = false;
                     $scope.isPopup = true;
                 })
             }

@@ -97,7 +97,7 @@
                 </md-button>
             </div>
             <div class="grid_2">
-                <md-button class="md-raised md-primary medium-button" ng-click="simpanData('save')">
+                <md-button class="md-raised md-primary medium-button" ng-click="simpanData('save')" ng-disabled="isDisabledSimpanData">
                     <span style="margin-right: 5px;">Simpan</span>
                     <i class="fa fa-save"></i>
                 </md-button>
@@ -179,7 +179,7 @@
                 </md-button>
             </div>
             <div class="grid_2">
-                <md-button class="md-raised md-primary medium-button" ng-click="simpanPengajuanIndikator()">
+                <md-button class="md-raised md-primary medium-button" ng-click="simpanPengajuanIndikator()" ng-disabled="isDisabledSimpanPengajuan">
                     <span style="margin-right: 5px;">Simpan</span>
                     <i class="fa fa-save"></i>
                 </md-button>
