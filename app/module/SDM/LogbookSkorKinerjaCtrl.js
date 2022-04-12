@@ -162,7 +162,9 @@ define(['initialize'], function (initialize) {
                             $scope.isNakesLain = true;
                             break;
                         default:
-                            break;
+                            toastr.info("Saat ini fitur logbook skor kinerja hanya untuk dokter, perawat, dan penunjang medik");
+                            $scope.isRouteLoading = false;
+                            return;
                     }
 
                     let dataTemp = [];
