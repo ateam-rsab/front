@@ -178,7 +178,7 @@ define(['initialize'], function (initialize) {
                     ManageSdmNew.getListData("sdm/get-riwayat-jabatan?idPegawai=" + $state.params.idPegawai + "&idJenisJabatan=3"),
                     // manageSarprasPhp.getDataTableTransaksi("historypegawai/get-data-riwayat-pendidikan-pgw?id=" + $state.params.idPegawai),
                     ManageSdmNew.getListData("sdm/get-data-riwayat-pendidikan-pgw?id=" + $state.params.idPegawai),
-                    ManageSdm.getOrderList("service/list-generic/?view=Agama&select=id,agama&order=agama:asc", true),
+                    ManageSdm.getOrderList("service/list-generic/?view=Agama&select=id,agama&criteria=statusEnabled&values=true&order=agama:asc", true),
                     ManageSdm.getOrderList("service/list-generic/?view=PosisiLamaran&select=id,name&order=name:asc", true),
                     // ManageSdm.getOrderList("service/list-generic/?view=StatusPerkawinanPegawai&select=id,statusPerkawinan&criteria=statusEnabled&values=true", true),
                     ManageSdm.getOrderList("service/list-generic/?view=StatusPerkawinan&select=id,statusPerkawinan&criteria=statusEnabled&values=true&order=statusPerkawinan:asc", true),
