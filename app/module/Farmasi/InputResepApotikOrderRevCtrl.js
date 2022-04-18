@@ -11,13 +11,13 @@ define(['initialize'], function (initialize) {
             // console.log($scope.showInputDokter)
 
             $scope.listTipeResep = [{
-                    name: "Cito",
-                    id: 1
-                },
-                {
-                    name: "Segera Pulang",
-                    id: 2
-                }
+                name: "Cito",
+                id: 1
+            },
+            {
+                name: "Segera Pulang",
+                id: 2
+            }
             ]
 
             $scope.dataTempObat = []
@@ -32,13 +32,13 @@ define(['initialize'], function (initialize) {
             $scope.tempListResep = [];
             $scope.listResep = [];
             $scope.listQuestion = [{
-                    name: 'Ya',
-                    id: 1
-                },
-                {
-                    name: 'Tidak',
-                    id: 2
-                }
+                name: 'Ya',
+                id: 1
+            },
+            {
+                name: 'Tidak',
+                id: 2
+            }
             ]
 
             $scope.item.tglResep = new Date();
@@ -52,13 +52,13 @@ define(['initialize'], function (initialize) {
             let hrgsdk = 0;
             let diffDays = 1;
             $scope.listOfJenisResep = [{
-                    name: "Racikan",
-                    id: 1
-                },
-                {
-                    name: "Non Racikan",
-                    id: 2
-                }
+                name: "Racikan",
+                id: 1
+            },
+            {
+                name: "Non Racikan",
+                id: 2
+            }
             ]
 
             LoadCacheHelper();
@@ -99,8 +99,8 @@ define(['initialize'], function (initialize) {
                     $scope.item.namaRuangan = chacePeriode[12]
                     manageLogistikPhp.getDataTableTransaksi("tatarekening/get-sudah-verif?noregistrasi=" +
                         $scope.item.noregistrasi, true).then(function (dat) {
-                        $scope.item.statusVerif = dat.data.status;
-                    });
+                            $scope.item.statusVerif = dat.data.status;
+                        });
                     if ($scope.item.namaRuangan.substr($scope.item.namaRuangan.length - 1) == '`') {
                         $scope.showTombol = true;
                     }
@@ -123,11 +123,20 @@ define(['initialize'], function (initialize) {
                 manageLogistikPhp.getDataTableTransaksi("logistik/get-datacombo", true).then(function (dat) {
                     $scope.listOfProduk = dat.data.produk;
                     $scope.listDokter = dat.data.penulisresep;
-                    for (let i = 0; i < dat.data.produk.length; i++) {
-                        $scope.dataTempObat.push(dat.data.produk[i].namaproduk);
-                        listTempObat.push({
-                            name: dat.data.produk[i].namaproduk
-                        });
+                    if ($scope.item.kelompokPasien === "BPJS") {
+                        for (let i = 0; i < dat.data.produkFornas.length; i++) {
+                            $scope.dataTempObat.push(dat.data.produkFornas[i].namaproduk);
+                            listTempObat.push({
+                                name: dat.data.produkFornas[i].namaproduk
+                            });
+                        }
+                    } else {
+                        for (let i = 0; i < dat.data.produk.length; i++) {
+                            $scope.dataTempObat.push(dat.data.produk[i].namaproduk);
+                            listTempObat.push({
+                                name: dat.data.produk[i].namaproduk
+                            });
+                        }
                     }
                     $scope.listOfProdukArray = $scope.dataTempObat;
                     $scope.listOfProdukArrayRacikan = new kendo.data.DataSource({
@@ -176,10 +185,10 @@ define(['initialize'], function (initialize) {
             init();
 
             $scope.getDetailPaketResep = (data) => {
-                if(!data) return;
+                if (!data) return;
                 // http://192.168.12.3:5555/simrs_harkit/service/transaksi/logistik/daftar-resep-paket?idpaket=97
                 manageLogistikPhp.getDataTableTransaksi("logistik/daftar-resep-paket?idpaket=" + data.id).then(res => {
-                    for(let i = 0; i < res.data.length; i++) {
+                    for (let i = 0; i < res.data.length; i++) {
                         res.data[i].checked = true;
                         res.data[i].jmlPaketObat = 0;
                         res.data[i].instruksi = '';
@@ -194,7 +203,7 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.simpanPaket = () => {
-                for(let i = 0; i < $scope.dataListResepByPaket.length; i++) {
+                for (let i = 0; i < $scope.dataListResepByPaket.length; i++) {
                     let resep = {
                         resepKe: $scope.tempListResep.length + 1,
                         jenisKemasan: false,
@@ -212,7 +221,7 @@ define(['initialize'], function (initialize) {
                 }
 
                 console.log($scope.tempListResep);
-                
+
                 $scope.popUpPaket.close();
             }
 
@@ -248,7 +257,7 @@ define(['initialize'], function (initialize) {
                 //     $scope.resep.satuanObat = {};
                 // }
                 $scope.getHargaSatuan(data.id);
-                manageLogistikPhp.getDataTableTransaksi("logistik/get-info-stok?produkfk=" + data.id, true).then(function (e) {})
+                manageLogistikPhp.getDataTableTransaksi("logistik/get-info-stok?produkfk=" + data.id, true).then(function (e) { })
             }
 
             $scope.getSatuanNonRacikan = function (data) {
@@ -263,7 +272,7 @@ define(['initialize'], function (initialize) {
                 // }
                 $scope.getHargaSatuan(data.id);
                 manageLogistikPhp.getDataTableTransaksi("logistik/get-info-stok?produkfk=" + data.id, true)
-                    .then(function (e) {})
+                    .then(function (e) { })
             }
 
             $scope.getRiwayatAlergi = function (id) {
@@ -353,7 +362,7 @@ define(['initialize'], function (initialize) {
                 let getJenisPegawai = $scope.dataLogin.jenisPegawai.jenispegawai ? $scope.dataLogin.jenisPegawai.jenispegawai : $scope.dataLogin.jenisPegawai.jenisPegawai;
 
                 if ($scope.dataLogin.id != 320263) {
-                    if(getJenisPegawai !== "DOKTER") {
+                    if (getJenisPegawai !== "DOKTER") {
                         toastr.info('Anda tidak memiliki akses menambahkan Resep Elektronik');
                         return;
                     }
@@ -452,7 +461,7 @@ define(['initialize'], function (initialize) {
 
             $scope.cetakResep = function () {
                 window.open("http://192.168.12.4:7777/service-reporting/resep-pasien/" + $scope.item.norec_so);
-               
+
             }
 
             // clear out variable
@@ -482,17 +491,17 @@ define(['initialize'], function (initialize) {
             $scope.kirimKeFarmasi = function () {
                 let getJenisPegawai = $scope.dataLogin.jenisPegawai.jenispegawai ? $scope.dataLogin.jenisPegawai.jenispegawai : $scope.dataLogin.jenisPegawai.jenisPegawai;
 
-                if($scope.dataLogin.id === 320263 && !$scope.item.dokter) { 
+                if ($scope.dataLogin.id === 320263 && !$scope.item.dokter) {
                     toastr.info('Harap isi Dokter terlebih dahulu');
                     return;
                 }
-                if($scope.dataLogin.id !== 320263) {
+                if ($scope.dataLogin.id !== 320263) {
                     if (getJenisPegawai !== "DOKTER") {
                         toastr.info('Anda tidak memiliki akses menambahkan Resep Elektronik');
                         return;
                     }
                 }
-                
+
 
                 $scope.isRouteLoading = true;
 
@@ -589,31 +598,31 @@ define(['initialize'], function (initialize) {
                 },
                 pageable: true,
                 columns: [{
-                        field: "tglorder",
-                        title: "<h3>Tanggal</h3>",
-                        width: "100px",
-                    },
-                    {
-                        field: "namalengkap",
-                        title: "<h3>Dokter</h3>",
-                        width: "100px",
-                    },
-                    {
-                        command: [{
-                            text: "Detail",
-                            align: "center",
-                            attributes: {
-                                align: "center"
-                            },
-                            click: showDetail,
-                            imageClass: "k-icon k-i-pencil"
-                        }],
-                        title: "",
-                        width: "10%",
+                    field: "tglorder",
+                    title: "<h3>Tanggal</h3>",
+                    width: "100px",
+                },
+                {
+                    field: "namalengkap",
+                    title: "<h3>Dokter</h3>",
+                    width: "100px",
+                },
+                {
+                    command: [{
+                        text: "Detail",
+                        align: "center",
                         attributes: {
-                            style: "text-align:center;valign=middle"
+                            align: "center"
                         },
-                    }
+                        click: showDetail,
+                        imageClass: "k-icon k-i-pencil"
+                    }],
+                    title: "",
+                    width: "10%",
+                    attributes: {
+                        style: "text-align:center;valign=middle"
+                    },
+                }
                 ],
             };
 

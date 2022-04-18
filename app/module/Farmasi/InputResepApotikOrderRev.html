@@ -71,7 +71,7 @@
                 </div>
                 <div class="grid_2">
                     <!-- <label> -->
-                        <strong>Pilih Paket Resep </strong>
+                    <strong>Pilih Paket Resep </strong>
                     <!-- </label> -->
                     <input kendo-combo-box k-ng-model="resep.paketResep" k-data-text-field="'namapaket'"
                         k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
@@ -79,10 +79,11 @@
                 </div>
                 <div class="grid_3" ng-if="showInputDokter">
                     <!-- <label> -->
-                        <strong>Pilih Dokter </strong>
+                    <strong>Pilih Dokter </strong>
                     <!-- </label> -->
-                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.dokter" k-data-text-field="'namalengkap'" 
-                            k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDokter" ng-disabled="isVerifikasi" />
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.dokter"
+                        k-data-text-field="'namalengkap'" k-data-value-field="'id'" k-filter="'contains'"
+                        k-auto-bind="false" k-data-source="listDokter" ng-disabled="isVerifikasi" />
                 </div>
             </div>
             <div class="grid_12">
@@ -420,9 +421,10 @@
             <md-card-content>
                 <div ng-repeat="data in dataListResepByPaket track by $index">
                     <div class="grid_4" style="margin-top: 10px;">
-                        <md-checkbox style="display: flex;align-items: center;" ng-checked="data.checked" ng-click="updateCheckedData($index)">
-                        {{ data.namaproduk }}
-                    </md-checkbox>
+                        <md-checkbox style="display: flex;align-items: center;" ng-checked="data.checked"
+                            ng-click="updateCheckedData($index)">
+                            {{ data.namaproduk }}
+                        </md-checkbox>
                     </div>
                     <div class="grid_4">
                         <label>Jumlah</label>
@@ -434,7 +436,7 @@
                         <input c-text-box type="input" filter="'number'" class="k-textbox" ng-disabled="!data.checked"
                             ng-model="data.instruksi" />
                     </div>
-                    
+
                 </div>
             </md-card-content>
         </md-card>

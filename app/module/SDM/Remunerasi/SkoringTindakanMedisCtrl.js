@@ -188,9 +188,7 @@ define(['initialize'], function (initialize) {
                             title: "<h3>Tindakan</h3>",
                             width: 150
                         }]
-                }
-                ],
-
+                }]
             }
 
             $scope.getAllData = () => {
