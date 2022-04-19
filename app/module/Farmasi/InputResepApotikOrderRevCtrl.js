@@ -131,9 +131,9 @@ define(['initialize'], function (initialize) {
                     $scope.listDokter = dat.data.penulisresep;
                     if ($scope.item.kelompokPasien === "BPJS") {
                         for (let i = 0; i < dat.data.produkFornas.length; i++) {
-                            $scope.dataTempObat.push(dat.data.produkFornas[i].namaproduk);
+                            $scope.dataTempObat.push(dat.data.produkFornas[i].kandungan);
                             listTempObat.push({
-                                name: dat.data.produkFornas[i].namaproduk
+                                name: dat.data.produkFornas[i].kandungan
                             });
                         }
                     } else {
@@ -151,13 +151,13 @@ define(['initialize'], function (initialize) {
                     $scope.listOfProdukArrayRacikan.read();
                     $("#listObatRacikan").kendoAutoComplete({
                         dataSource: $scope.dataTempObat,
-                        filter: "startswith",
+                        filter: "contains",
                         // placeholder: "Masukkan Nama Obat...",
 
                     });
                     $("#listObatNonRacikan").kendoAutoComplete({
                         dataSource: $scope.dataTempObat,
-                        filter: "startswith",
+                        filter: "contains",
                         // placeholder: "Masukkan Nama Obat..."                        
                     });
                 });
