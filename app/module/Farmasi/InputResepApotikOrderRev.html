@@ -165,7 +165,8 @@
                             <div class="grid_12">
                                 <!-- Nama Obat -->
                                 <div class="grid_5">
-                                    <label>Nama Obat</label>
+                                    <label ng-hide="isbpjs">Nama Obat</label>
+                                    <label ng-show="isbpjs">Nama Obat (Kandungan)</label>
                                     <div style="margin-top: 7px">
                                         <!-- <input id="listObatNonRacikan" ng-model="resep.namaObatNew" style="width: 100%;" /> -->
                                         <input id="listObatNonRacikan" k-filter="contains" ng-model="resep.namaObatNew"
@@ -212,7 +213,8 @@
                                 track by $index">
                                 <!-- Nama Obat -->
                                 <div class="grid_5">
-                                    <label>Nama Obat</label>
+                                    <label ng-hide="isbpjs">Nama Obat</label>
+                                    <label ng-show="isbpjs">Nama Obat (Kandungan)</label>
                                     <div style="margin-top: 7px">
                                         <!-- <input kendo-auto-complete
                                             k-ng-model="resep.namaObatRacikan[$index]"

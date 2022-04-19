@@ -25,6 +25,7 @@ define(['initialize'], function (initialize) {
             $scope.isRouteLoading = false;
             $scope.jumlahObat = 3;
             $scope.isResepEmpty = true;
+            $scope.isbpjs = false;
             $scope.item = {};
             $scope.listHistoryResep = [];
             $scope.resep = {};
@@ -90,6 +91,11 @@ define(['initialize'], function (initialize) {
                     $scope.item.noregistrasi = chacePeriode[3]
                     $scope.item.umur = chacePeriode[4]
                     $scope.item.kelompokPasien = chacePeriode[5]
+                    if (chacePeriode[5] && chacePeriode[5] === "BPJS") {
+                        $scope.isbpjs = true;
+                    } else {
+                        $scope.isbpjs = false;
+                    }
                     $scope.item.tglRegistrasi = chacePeriode[6]
                     norec_apd = chacePeriode[7]
                     norec_pd = chacePeriode[8]
