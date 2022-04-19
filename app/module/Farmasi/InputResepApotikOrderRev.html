@@ -164,7 +164,7 @@
                         <div class="grid_12">
                             <div class="grid_12">
                                 <!-- Nama Obat -->
-                                <div class="grid_5">
+                                <div class="grid_6">
                                     <label ng-hide="isbpjs">Nama Obat</label>
                                     <label ng-show="isbpjs">Nama Obat (Kandungan)</label>
                                     <div style="margin-top: 7px">
@@ -175,12 +175,12 @@
                                     </div>
                                 </div>
                                 <!-- Jumlah Obat -->
-                                <div class="grid_4">
+                                <div class="grid_2">
                                     <label>Jumlah</label>
                                     <input c-text-box type="input" filter="'varchar'" class="k-textbox"
                                         ng-model="resep.jumlahObat" />
                                 </div>
-                                <div class="grid_3">
+                                <div class="grid_4">
                                 </div>
                             </div>
 
@@ -212,7 +212,7 @@
                             <div class="grid_12" ng-repeat="obat in listObat
                                 track by $index">
                                 <!-- Nama Obat -->
-                                <div class="grid_5">
+                                <div class="grid_6">
                                     <label ng-hide="isbpjs">Nama Obat</label>
                                     <label ng-show="isbpjs">Nama Obat (Kandungan)</label>
                                     <div style="margin-top: 7px">
@@ -233,7 +233,7 @@
                                     </div>
                                 </div>
                                 <!-- Jumlah Obat -->
-                                <div class="grid_3">
+                                <div class="grid_2">
                                     <label>Dosis</label>
                                     <input c-text-box type="input" filter="'number'" class="k-textbox"
                                         ng-model="resep.jumlahDosis[$index]" />
