@@ -167,11 +167,17 @@
                                 <div class="grid_6">
                                     <label ng-hide="isbpjs">Nama Obat</label>
                                     <label ng-show="isbpjs">Nama Obat (Kandungan)</label>
-                                    <div style="margin-top: 7px">
+                                    <div style="margin-top: 7px" ng-hide="isbpjs">
                                         <!-- <input id="listObatNonRacikan" ng-model="resep.namaObatNew" style="width: 100%;" /> -->
                                         <input id="listObatNonRacikan" k-filter="contains" ng-model="resep.namaObatNew"
                                             style="width: 100%" />
                                         <!-- <input kendo-auto-complete id="acNamaObatNon" ng-model="resep.namaObatNew" k-data-source="listOfProdukArray" style="width:100%"> -->
+                                    </div>
+                                    <div ng-show="isbpjs">
+                                        <input kendo-combo-box k-ng-model="resep.obatfornas"
+                                            k-data-text-field="'kandungan'" k-data-value-field="'id'"
+                                            k-filter="'contains'" k-auto-bind="false"
+                                            k-data-source="listProdukFornas" />
                                     </div>
                                 </div>
                                 <!-- Jumlah Obat -->
@@ -215,7 +221,7 @@
                                 <div class="grid_6">
                                     <label ng-hide="isbpjs">Nama Obat</label>
                                     <label ng-show="isbpjs">Nama Obat (Kandungan)</label>
-                                    <div style="margin-top: 7px">
+                                    <div style="margin-top: 7px" ng-hide="isbpjs">
                                         <!-- <input kendo-auto-complete
                                             k-ng-model="resep.namaObatRacikan[$index]"
                                             k-data-value-field="'name'"
@@ -230,6 +236,12 @@
                                             k-filter="contains"
                                             ng-model="resep.namaObatRacikan[$index]"
                                             style="width: 100%" /> -->
+                                    </div>
+                                    <div ng-show="isbpjs">
+                                        <input kendo-combo-box k-ng-model="resep.obatfornasracikan[$index]"
+                                            k-data-text-field="'kandungan'" k-data-value-field="'id'"
+                                            k-filter="'contains'" k-auto-bind="false"
+                                            k-data-source="listProdukFornas" />
                                     </div>
                                 </div>
                                 <!-- Jumlah Obat -->
