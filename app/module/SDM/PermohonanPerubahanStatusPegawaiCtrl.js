@@ -327,7 +327,7 @@ define(['initialize'], function (initialize) {
                         "field": "eselonId",
                         "title": "Pelimpahan",
                         // headerTemplate: kendo.template('# if (eselonId>=7) { # <input type="checkbox" id="check-all" /><label for="check-all">Check All</label> # } else { # this will never be displayed # } #'),
-                        "template": "#if(eselonId<=7&&eselonId!=0){# <button ng-click='cetakPelimpahanTugas(dataItem)'  class='k-button k-button-icontext k-grid-Cetak'><span class='k-icon k-i-download'></span>Cetak</button> #} else {#  #}#",
+                        "template": "#if(eselonId<=7&&eselonId!=0&&eselonId){# <button ng-click='cetakPelimpahanTugas(dataItem)'  class='k-button k-button-icontext k-grid-Cetak'><span class='k-icon k-i-download'></span>Cetak</button> #} else {#  #}#",
                         width: 100
                     }
                 ]
