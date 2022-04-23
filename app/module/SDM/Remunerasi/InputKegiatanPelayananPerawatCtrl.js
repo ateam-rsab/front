@@ -131,6 +131,11 @@ define(['initialize'], function (initialize) {
                     return;
                 }
 
+                if (new Date().getFullYear() != $scope.perawat.tglPelayanan.getFullYear() || new Date().getMonth() != $scope.perawat.tglPelayanan.getMonth()) {
+                    toastr.warning("Tanggal pelayanan harus diisi dengan tanggal di bulan berjalan");
+                    return;
+                }
+
                 if (!$scope.perawat.kegiatan) {
                     toastr.warning("Harap pilih Kegiatan");
                     return;
