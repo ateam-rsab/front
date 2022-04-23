@@ -354,6 +354,7 @@ define(['initialize'], function (initialize) {
 
                     $scope.isRouteLoading = false;
                     $scope.isPopup = true;
+                    $scope.isDisabledSimpanData = false;
                     return
                 }
 
@@ -362,6 +363,7 @@ define(['initialize'], function (initialize) {
 
                     $scope.isRouteLoading = false;
                     $scope.isPopup = true;
+                    $scope.isDisabledSimpanData = false;
                     return
                 }
 
@@ -370,6 +372,7 @@ define(['initialize'], function (initialize) {
 
                     $scope.isRouteLoading = false;
                     $scope.isPopup = true;
+                    $scope.isDisabledSimpanData = false;
                     return
                 }
 
@@ -379,6 +382,7 @@ define(['initialize'], function (initialize) {
 
                         $scope.isRouteLoading = false;
                         $scope.isPopup = true;
+                        $scope.isDisabledSimpanData = false;
                         return;
                     }
                 }
