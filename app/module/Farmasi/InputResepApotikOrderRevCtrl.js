@@ -3,15 +3,13 @@ define(['initialize'], function (initialize) {
     initialize.controller('InputResepApotikOrderRevCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper',
         function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper) {
             $scope.dataLogin = JSON.parse(localStorage.getItem('pegawai'));
+            $scope.showInputDokter = $scope.dataLogin.id === 320263
 
-            // $("#idAutoRacikan").data('kendoAutoComplete');
             $("#idAutoRacikan").kendoAutoComplete();
 
             $scope.dataResepDokter = new kendo.data.DataSource({
                 data: []
             });
-
-            $scope.showInputDokter = $scope.dataLogin.id === 320263 //320263;
 
             $scope.listTipeResep = [{
                 name: "Cito",
@@ -21,18 +19,6 @@ define(['initialize'], function (initialize) {
                 id: 2
             }]
 
-            $scope.dataTempObat = []
-            $scope.isHaveRiwayatAlergi = false;
-            $scope.isRouteLoading = false;
-            $scope.jumlahObat = 3;
-            $scope.isResepEmpty = true;
-            $scope.item = {};
-            $scope.listHistoryResep = [];
-            $scope.resep = {};
-            $scope.listObat = [];
-            $scope.tempListResep = [];
-            $scope.listResep = [];
-
             $scope.listQuestion = [{
                 name: 'Ya',
                 id: 1
@@ -40,19 +26,6 @@ define(['initialize'], function (initialize) {
                 name: 'Tidak',
                 id: 2
             }]
-
-            $scope.item.tglResep = new Date();
-
-            let norec_apd = '';
-            let norec_pd = '';
-            let nocm_str = '';
-
-            let dataProdukDetail = [];
-            let noTerima = '';
-            let data2 = [];
-            let hrg1 = 0;
-            let hrgsdk = 0;
-            let diffDays = 1;
 
             $scope.listOfJenisResep = [{
                 name: "Racikan",
@@ -62,10 +35,40 @@ define(['initialize'], function (initialize) {
                 id: 2
             }]
 
+            $scope.isRouteLoading = false;
+            $scope.isPopup = false;
+
+            $scope.jumlahObat = 3;
+            $scope.isHaveRiwayatAlergi = false;
+            $scope.isBpjs = false;
+            $scope.isResepEmpty = true;
+            $scope.resep = {};
+            $scope.listHistoryResep = [];
+            $scope.listObat = [];
+            $scope.listResep = [];
+            $scope.dataTempObat = []
+            $scope.tempListResep = [];
+
+            $scope.item = {};
+            $scope.item.tglResep = new Date();
+
+            let norec_apd = '';
+            let norec_pd = '';
+            let nocm_str = '';
+
+            let noTerima = '';
+            let dataProdukDetail = [];
+            let data2 = [];
+            let hrg1 = 0;
+            let hrgsdk = 0;
+            let diffDays = 1;
+
             LoadCacheHelper();
 
             function LoadCacheHelper() {
                 manageLogistikPhp.getDataTableTransaksi("akutansi/get-tgl-posting", true).then(function (dat) {
+                    $scope.isRouteLoading = true;
+
                     var tgltgltgltgl = dat.data.mindate[0].max
                     var tglkpnaja = dat.data.datedate
                     $scope.minDate = new Date(tgltgltgltgl);
@@ -80,18 +83,22 @@ define(['initialize'], function (initialize) {
                             }
                         }
                     };
+                }, function (err) {
+                    $scope.isRouteLoading = false;
                 });
 
                 var chacePeriode = cacheHelper.get('InputResepApotikOrderRevCtrl');
                 if (chacePeriode != undefined) {
-                    //var arrPeriode = chacePeriode.split(':');
-                    $scope.item.noMr = chacePeriode[0]
                     nocm_str = chacePeriode[0]
+                    $scope.item.noMr = chacePeriode[0]
                     $scope.item.namaPasien = chacePeriode[1]
                     $scope.item.jenisKelamin = chacePeriode[2]
                     $scope.item.noregistrasi = chacePeriode[3]
                     $scope.item.umur = chacePeriode[4]
                     $scope.item.kelompokPasien = chacePeriode[5]
+                    if ($scope.item.kelompokPasien === "BPJS") {
+                        $scope.isBpjs = true;
+                    }
                     $scope.item.tglRegistrasi = chacePeriode[6]
                     norec_apd = chacePeriode[7]
                     norec_pd = chacePeriode[8]
@@ -102,6 +109,8 @@ define(['initialize'], function (initialize) {
                     manageLogistikPhp.getDataTableTransaksi("tatarekening/get-sudah-verif?noregistrasi=" +
                         $scope.item.noregistrasi, true).then(function (dat) {
                             $scope.item.statusVerif = dat.data.status;
+                        }, function (err) {
+                            $scope.isRouteLoading = false;
                         });
                     if ($scope.item.namaRuangan.substr($scope.item.namaRuangan.length - 1) == '`') {
                         $scope.showTombol = true;
@@ -109,22 +118,13 @@ define(['initialize'], function (initialize) {
                 }
             }
 
-            // $("#listObatNonRacikan").kendoAutoComplete({
-            //     dataSource: $scope.dataTempObat,
-            //     filter: "startswith",
-            //     // placeholder: "Masukkan Nama Obat..."                        
-            // });
-
-            // $("#listObatRacikan").kendoAutoComplete({
-            //     dataSource: $scope.dataTempObat,
-            //     filter: "startswith",
-            //     // placeholder: "Masukkan Nama Obat...",
-            // });
-
             var getNamaObat = function () {
+                $scope.isRouteLoading = true;
+
                 let listTempObat = [];
                 manageLogistikPhp.getDataTableTransaksi("logistik/get-datacombo", true).then(function (dat) {
                     $scope.listOfProduk = dat.data.produk;
+                    $scope.listOfProdukFornas = dat.data.produkfornas;
                     for (let i = 0; i < dat.data.produk.length; i++) {
                         $scope.dataTempObat.push(dat.data.produk[i].namaproduk);
                         listTempObat.push({ name: dat.data.produk[i].namaproduk });
@@ -135,33 +135,36 @@ define(['initialize'], function (initialize) {
                         data: listTempObat
                     });
                     $scope.listOfProdukArrayRacikan.read();
+
                     $("#listObatRacikan").kendoAutoComplete({
                         dataSource: $scope.dataTempObat,
-                        filter: "startswith",
-                        // placeholder: "Masukkan Nama Obat...",
+                        filter: "startswith"
 
                     });
                     $("#listObatNonRacikan").kendoAutoComplete({
                         dataSource: $scope.dataTempObat,
-                        filter: "startswith",
-                        // placeholder: "Masukkan Nama Obat..."                        
+                        filter: "startswith"
                     });
+
+                    $scope.isRouteLoading = false;
+                }, function (err) {
+                    $scope.isRouteLoading = false;
                 });
             }
 
             getNamaObat();
 
             var init = function () {
+                $scope.isRouteLoading = true;
+
                 $scope.item.idLogin = JSON.parse(localStorage.getItem('pegawai'));
 
-                $scope.listObat = [
-                    {
-                        key: 1 + $scope.listObat.length,
-                        namaObatRacikan: "",
-                        satuan: "",
-                        jumlah: ""
-                    }
-                ];
+                $scope.listObat = [{
+                    key: 1 + $scope.listObat.length,
+                    namaObatRacikan: "",
+                    satuan: "",
+                    jumlah: ""
+                }];
 
                 if ($scope.tempListResep.length > 0) {
                     $scope.isResepEmpty = false;
@@ -169,15 +172,70 @@ define(['initialize'], function (initialize) {
                     $scope.isResepEmpty = true;
                 }
 
-                // console.log(JSON.stringify($scope.tempListResep))
+                manageLogistikPhp.getDataTableMaster("produk/master-paket?idjenispaket=5").then(res => {
+                    $scope.listPaketResep = res.data
 
-                // $scope.listResep = new kendo.data.DataSource({
-                //     data: $scope.tempListResep,
-                //     pageSize: 5
-                // });
+                    $scope.isRouteLoading = false;
+                }, err => {
+                    $scope.isRouteLoading = false;
+                })
             }
 
             init();
+
+            $scope.getDetailPaketResep = (data) => {
+                if (!data) return;
+
+                $scope.isRouteLoading = true;
+                $scope.isPopup = true;
+                manageLogistikPhp.getDataTableTransaksi("logistik/daftar-resep-paket?idpaket=" + data.id).then(res => {
+                    if (res.data && res.data.length > 0) {
+                        for (let i = 0; i < res.data.length; i++) {
+                            res.data[i].checked = true;
+                            res.data[i].jmlPaketObat = 0;
+                            res.data[i].instruksi = '';
+                        }
+                        $scope.dataListResepByPaket = res.data;
+
+                        $scope.popUpPaket.open().center();
+
+                        $scope.isRouteLoading = false;
+                        $scope.isPopup = false;
+                    } else {
+                        toastr.warning('Daftar obat tidak ditemukan', 'Peringatan')
+
+                        $scope.isRouteLoading = false;
+                        $scope.isPopup = false;
+                    }
+                }, (error) => {
+                    $scope.isRouteLoading = false;
+                    $scope.isPopup = false;
+                })
+            }
+
+            $scope.updateCheckedData = (index) => {
+                $scope.dataListResepByPaket[index].checked = !$scope.dataListResepByPaket[index].checked;
+            }
+
+            $scope.simpanPaket = () => {
+                for (let i = 0; i < $scope.dataListResepByPaket.length; i++) {
+                    let resep = {
+                        resepKe: $scope.tempListResep.length + 1,
+                        jenisKemasan: false,
+                        jumlah: $scope.dataListResepByPaket[i].jmlPaketObat,
+                        namaObat: $scope.dataListResepByPaket[i].namaproduk,
+                        pieces: 0,
+                    }
+                    $scope.tempListResep.push({
+                        keterangan: $scope.dataListResepByPaket[i].instruksi,
+                        resep: [
+                            resep
+                        ]
+                    });
+                }
+
+                $scope.popUpPaket.close();
+            }
 
             // untuk Konversi ke romawi
             function convertToRoman(number) {
@@ -202,30 +260,12 @@ define(['initialize'], function (initialize) {
             $scope.getSatuan = function (data, index) {
                 $scope.listSatuan = data.konversisatuan;
 
-                // if(data.konversisatuan.length > 1) {
-                //     $scope.resep.satuanObat = {
-                //         satuanstandar:data.satuanstandar,
-                //         ssid:data.ssid
-                //     }
-                // } else {
-                //     $scope.resep.satuanObat = {};
-                // }
-
                 $scope.getHargaSatuan(data.id);
                 manageLogistikPhp.getDataTableTransaksi("logistik/get-info-stok?produkfk=" + data.id, true).then(function (e) { })
             }
 
             $scope.getSatuanNonRacikan = function (data) {
                 $scope.listSatuan = data.konversisatuan;
-
-                // if(data.konversisatuan.length > 1) {
-                //     $scope.resep.satuanObat = {
-                //         satuanstandar:data.satuanstandar,
-                //         ssid:data.ssid
-                //     }
-                // } else {
-                //     $scope.resep.satuanObat = {};
-                // }
 
                 $scope.getHargaSatuan(data.id);
                 manageLogistikPhp.getDataTableTransaksi("logistik/get-info-stok?produkfk=" + data.id, true).then(function (e) { })
@@ -241,18 +281,22 @@ define(['initialize'], function (initialize) {
 
             // untuk menambah obat racikan
             $scope.tambahObat = function (index) {
-                let i = index + 1;
                 var data = {
                     key: 1 + $scope.listObat.length,
                     namaObatRacikan: "",
                     satuan: "",
                     jumlah: ""
                 };
+
                 let autoComplete = $("#idAutoRacikan").data('kendoAutoComplete');
 
-                $scope.resep.namaObatRacikan[i] = '-';
-                // console.log($scope.resep.namaObatRacikan[i])
+                let i = index + 1;
+                if (!$scope.isBpjs) {
+                    $scope.resep.namaObatRacikan[i] = '-';
+                }
+
                 autoComplete.refresh();
+
                 $scope.listObat.push(data);
             }
 
@@ -281,7 +325,6 @@ define(['initialize'], function (initialize) {
 
             $scope.getHargaSatuanNew = function (id) {
                 let harga = 0, data;
-
                 manageLogistikPhp.getDataTableTransaksi("logistik/get-produkdetail?produkfk=" + id + "&ruanganfk=94", true).then((res) => {
                     data = res.data.detail;
                     for (let i = 0; i < data.length; i++) {
@@ -311,18 +354,15 @@ define(['initialize'], function (initialize) {
             // simpan ke temporary resep
             $scope.simpan = function (data) {
                 let getJenisPegawai = $scope.dataLogin.jenisPegawai.jenispegawai ? $scope.dataLogin.jenisPegawai.jenispegawai : $scope.dataLogin.jenisPegawai.jenisPegawai;
-
-                if ($scope.dataLogin.id != 320263) {
-                    if (getJenisPegawai !== "DOKTER") {
-                        toastr.info('Anda tidak memiliki akses menambahkan Resep Elektronik');
-                        return;
-                    }
+                if (getJenisPegawai !== "DOKTER" && $scope.dataLogin.id != 320263) {
+                    toastr.info('Anda tidak memiliki akses menambahkan Resep Elektronik', 'Informasi');
+                    return;
                 }
 
                 var keteranganPenggunaan = '', intruksiPenggunaan = '', jumlah = '', isRacikan = false, pcs = 0;
                 if (data === 2) {
                     if ($scope.item.intruksiPenggunaanRacikan == undefined || $scope.item.intruksiPenggunaanRacikan == '') {
-                        toastr.warning('Harap isi Intruksi Pemakaian Obat');
+                        toastr.warning('Harap isi Intruksi Pemakaian Obat', 'Peringatan');
                         return;
                     }
 
@@ -332,7 +372,7 @@ define(['initialize'], function (initialize) {
                     pcs = $scope.resep.pcsObat
                 } else {
                     if ($scope.item.keterangan == undefined || $scope.item.keterangan == '') {
-                        toastr.warning('Harap isi Keterangan');
+                        toastr.warning('Harap isi Keterangan', 'Peringatan');
                         return;
                     }
 
@@ -353,7 +393,7 @@ define(['initialize'], function (initialize) {
                             // nilaiKonversi: $scope.item.nilaiKonversi,
                             // hargaSatuan: $scope.getHargaSatuanNew($scope.resep.namaObat.id),
 
-                            namaObat: $scope.resep.namaObatNew,
+                            namaObat: $scope.isBpjs ? $scope.resep.namaObatNewFornas.namaproduk : $scope.resep.namaObatNew,
                             jumlah: $scope.resep.jumlahObat.toString(),
                             jenisKemasan: isRacikan,
                             resepKe: $scope.tempListResep.length + 1,
@@ -371,7 +411,7 @@ define(['initialize'], function (initialize) {
                             // [1][""0""].name
                             // namaObat: $scope.resep.namaObatRacikan[i][0].name,
 
-                            namaObat: $scope.resep.namaObatRacikan[i],
+                            namaObat: $scope.isBpjs ? $scope.resep.namaObatRacikanFornas[i].namaproduk : $scope.resep.namaObatRacikan[i],
 
                             // nilaiKonversi: $scope.item.nilaiKonversi,
                             // hargaSatuan: $scope.getHargaSatuanNew($scope.resep.namaObat[i].id),
@@ -392,11 +432,6 @@ define(['initialize'], function (initialize) {
                 $scope.tempListResep.push(dataResep);
                 $scope.dataResepDokter.add(dataResep);
 
-                // console.log($scope.dataResepDokter._data)
-                // $scope.resep.namaObatNew = '';
-                // $scope.resep.namaObatRacikan = '';
-                // logistik/simpan-order-pelayananobatfarmasi
-
                 clear();
                 init();
             }
@@ -405,68 +440,95 @@ define(['initialize'], function (initialize) {
                 window.open("http://192.168.12.4:7777/service-reporting/resep-pasien/" + $scope.item.norec_so);
             }
 
+            $scope.reoderResep = function () {
+                if ($scope.isBpjs && !$scope.isvalid) {
+                    toastr.info('Tidak dapat reorder karena order histori dilakukan sebelum implementasi formularium nasional', 'Informasi');
+                    return;
+                }
+
+                clear();
+
+                let data = [];
+                for (let i = 0; i < $scope.dataDetailResep.length; i++) {
+                    let dataTemp = {
+                        keterangan: $scope.dataDetailResep[i].obat[0].keteranganpakai,
+                        intruksi: $scope.dataDetailResep[i].obat[0].keteranganlainnya,
+                        resep: []
+                    };
+                    for (let ii = 0; ii < $scope.dataDetailResep[i].obat.length; ii++) {
+                        dataTemp.resep.push({
+                            namaObat: $scope.dataDetailResep[i].obat[ii].namaobat,
+                            jumlah: $scope.dataDetailResep[i].obat[ii].qtyproduk,
+                            resepKe: $scope.dataDetailResep[i].resep,
+                            pieces: parseInt($scope.dataDetailResep[i].obat[ii].keteranganlainnya),
+                            jenisKemasan: $scope.dataDetailResep[i].obat[ii].length < 2 ? false : true,
+                        });
+                    }
+
+                    data.push(dataTemp);
+                }
+                $scope.tempListResep = data;
+                $scope.isResepEmpty = false;
+                $scope.tabResepElektornik = 0;
+
+                $scope.close();
+            }
+
             // clear out variable
             var clear = function () {
                 let autoComplete = $("#idAutoRacikan").data('kendoAutoComplete');
-
                 autoComplete.refresh();
+
+                $scope.item.intruksiPenggunaan = '';
                 $scope.item.keterangan = '';
-                // $scope.resep.namaObatNew = null;
+                $scope.item.intruksiPenggunaanRacikan = '';
+
                 $scope.resep.namaObatNew = "";
+                $scope.resep.namaObatNewFornas = undefined;
                 $scope.resep.namaObatRacikan = [];
+                $scope.resep.namaObatRacikanFornas = [];
                 $scope.resep.jumlahObat = '';
                 $scope.resep.satuanObat = '';
                 $scope.resep.ketCaraPembuatan = '';
                 $scope.resep.jumlahDosis = '';
                 $scope.resep.pcsObat = '';
                 $scope.resep.kemasan = '';
-                $scope.item.intruksiPenggunaanRacikan = '';
-                $scope.item.intruksiPenggunaan = '';
             }
 
             // method untuk kirim resep ke farmasi
             $scope.kirimKeFarmasi = function () {
-                let getJenisPegawai = $scope.dataLogin.jenisPegawai.jenispegawai ? $scope.dataLogin.jenisPegawai.jenispegawai : $scope.dataLogin.jenisPegawai.jenisPegawai;
-
                 if ($scope.dataLogin.id === 320263 && !$scope.item.dokter) {
-                    toastr.info('Harap isi Dokter terlebih dahulu');
+                    toastr.info('Harap isi Dokter terlebih dahulu', 'Informasi');
                     return;
                 }
 
-                if ($scope.dataLogin.id !== 320263) {
-                    if (getJenisPegawai !== "DOKTER") {
-                        toastr.info('Anda tidak memiliki akses menambahkan Resep Elektronik');
-                        return;
-                    }
+                let getJenisPegawai = $scope.dataLogin.jenisPegawai.jenispegawai ? $scope.dataLogin.jenisPegawai.jenispegawai : $scope.dataLogin.jenisPegawai.jenisPegawai;
+                if (getJenisPegawai !== "DOKTER" && $scope.dataLogin.id !== 320263) {
+                    toastr.info('Anda tidak memiliki akses menambahkan Resep Elektronik', 'Informasi');
+                    return;
                 }
 
-                $scope.isRouteLoading = true;
-
                 if (!$scope.resep.riwayatAlergi) {
-                    toastr.warning('Anda belum mengisi Riwayat Alergi');
-                    $scope.isRouteLoading = false;
+                    toastr.warning('Anda belum mengisi Riwayat Alergi', 'Peringatan')
                     return;
                 }
 
                 if (!$scope.resep.beratBadan) {
-                    toastr.warning('Anda belum mengisi Berat Badan');
-                    $scope.isRouteLoading = false;
+                    toastr.warning('Anda belum mengisi Berat Badan', 'Peringatan');
                     return
                 }
 
                 if (!$scope.item.izinPerubahanObat) {
-                    toastr.warning('Anda belum memilih subtitusi Obat')
+                    toastr.warning('Anda belum memilih subtitusi Obat', 'Peringatan');
+                    return
                 }
 
-                let gridResep = $scope.tempListResep;
-                let dataResep = [];
+                $scope.isRouteLoading = true;
+
                 let dataTemp = [{
                     "strukorder": {
                         "tglresep": moment($scope.item.tglResep).format('YYYY-MM-DD HH:mm:ss'),
                         "penulisresepfk": $scope.showInputDokter ? $scope.item.dokter.id : $scope.item.idLogin.id,
-
-                        // "penulisresepfk": $scope.item.idLogin.id,
-
                         "ruanganfk": $scope.item.idRuangan,
                         "noregistrasifk": norec_apd,
                         "cito": $scope.isCito ? $scope.isCito : false,
@@ -475,32 +537,12 @@ define(['initialize'], function (initialize) {
                         "riwayatalergi": $scope.resep.riwayatAlergiPasien ? $scope.resep.riwayatAlergiPasien : '-',
                         "beratbadan": $scope.resep.beratBadan
                     },
-
-                    // "orderfarmasi": [],
-
                     "resepdokter": []
                 }]
 
+                let gridResep = $scope.tempListResep;
                 for (let i = 0; i < gridResep.length; i++) {
                     for (let ii = 0; ii < gridResep[i].resep.length; ii++) {
-
-                        // let dataTempResep = {
-                        //     "hargasatuan": gridResep[i].resep[ii].hargaSatuan,
-                        //     "nilaikonversi": parseInt(gridResep[i].resep[ii].nilaiKonversi),
-                        //     "jeniskemasanfk": gridResep[i].resep[ii].jenisKemasan ? 1 : 2,
-                        //     "pcs": parseInt(gridResep[i].resep[ii].pieces),
-                        //     "ruanganfk": $scope.item.idRuangan,
-                        //     "produkfk": gridResep[i].resep[ii].namaObat.id,
-                        //     "jumlah": parseInt(gridResep[i].resep[ii].jumlah),
-                        //     "satuanstandarfk": gridResep[i].resep[ii].satuanObat.ssid,
-                        //     "satuanstandar": gridResep[i].resep[ii].satuanObat.satuanStandar,
-                        //     "satuanviewfk": gridResep[i].resep[ii].satuanObat.ssid,
-                        //     "satuanview": gridResep[i].resep[ii].satuanObat.satuanStandar,
-                        //     "keterangan": gridResep[i].keterangan,
-                        //     "rke": gridResep[i].resep[ii].resepKe
-                        // };
-                        // dataTemp[0]['orderfarmasi'].push(dataTempResep);
-
                         dataTemp[0]["resepdokter"].push(
                             {
                                 "rke": gridResep[i].resep[ii].resepKe,
@@ -514,22 +556,19 @@ define(['initialize'], function (initialize) {
                     }
                 }
 
+                let dataResep = [];
                 dataResep.push(dataTemp[0]);
                 manageLogistikPhp.postpost('farmasi/resep-dokter?strukorder=' + norec_apd, dataResep).then(function (res) {
+                    dataResep = [];
                     $scope.tempListResep = [];
                     $scope.resep.beratBadan = '';
-                    dataResep = [];
-                    $scope.isRouteLoading = false;
-                    $scope.isResepEmpty = true;
                     $scope.item.izinPerubahanObat = '';
                     $scope.isCito = '';
                     $scope.isSegeraPulang = '';
-                    if (res.status === 400) {
-                        $scope.isRouteLoading = false;
-                        // console.error('error');
-                    }
+                    $scope.isResepEmpty = true;
+                    $scope.isRouteLoading = false;
                 }, (error) => {
-                    // console.log(error);
+                    $scope.isRouteLoading = false;
                 })
             }
 
@@ -553,13 +592,13 @@ define(['initialize'], function (initialize) {
                     title: "<h3>Dokter</h3>", width: "100px",
                 }, {
                     command: [{
-                        text: "Detail",
+                        text: " Detail",
                         align: "center",
                         attributes: {
                             align: "center"
                         },
                         click: showDetail,
-                        imageClass: "k-icon k-i-pencil"
+                        imageClass: "fa fa-bars"
                     }],
                     title: "",
                     width: "10%",
@@ -572,13 +611,25 @@ define(['initialize'], function (initialize) {
             // method untuk show detail resep history
             function showDetail(e) {
                 e.preventDefault();
+
+                $scope.isRouteLoading = true;
+                $scope.isPopup = true;
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
                 $scope.item.norec_so = dataItem.norec;
+                $scope.tglorder = dataItem.tglorder;
+                $scope.isvalid = dataItem.fornasimplvalidation;
+
                 $scope.popDetailResep.center().open();
+
+                $scope.dataDetailResep = [];
                 manageLogistikPhp.getDataTableTransaksi('rekam-medis/get-resep-dokter-detail?strukorder=' + dataItem.norec).then(res => {
                     $scope.dataDetailResep = res.data.data;
-                    // console.log($scope.dataDetailResep)
-                    let dataTemp = [];
+
+                    $scope.isRouteLoading = false;
+                    $scope.isPopup = false
+                }, (error) => {
+                    $scope.isRouteLoading = false;
+                    $scope.isPopup = false
                 });
             }
 
@@ -589,13 +640,19 @@ define(['initialize'], function (initialize) {
 
             // method untuk mengambil data history resep
             var getHistoryResep = function () {
+                $scope.isRouteLoading = true;
                 $scope.showLoader = true;
                 manageLogistikPhp.getDataTableTransaksi('rekam-medis/get-resep-dokter?nocm=' + nocm_str).then(res => {
                     $scope.listHistoryResep = new kendo.data.DataSource({
                         data: res.data.data,
                         pageSize: 5
                     });
+
                     $scope.showLoader = false;
+                    $scope.isRouteLoading = false;
+                }, (error) => {
+                    $scope.showLoader = false;
+                    $scope.isRouteLoading = false;
                 })
             }
 
