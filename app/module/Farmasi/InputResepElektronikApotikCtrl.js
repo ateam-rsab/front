@@ -41,6 +41,7 @@ define(['initialize'], function (initialize) {
             var isPemakaianObatAlkes = false;
             // $scope.item.tglAwal = $scope.now;
             // $scope.item.tglAkhir = $scope.now;
+            $scope.isBpjs = false;
             LoadCache();
 
             function LoadCache() {
@@ -119,6 +120,11 @@ define(['initialize'], function (initialize) {
                     $scope.item.tglAwal = new Date($scope.now);
                     $scope.item.resep = '-';
                 }
+
+                if ($scope.item.kelompokPasien === "BPJS") {
+                    $scope.isBpjs = true;
+                }
+
                 var cachePemakaianOA = cacheHelper.get('cachePemakaianOA');
                 if (cachePemakaianOA != undefined) {
                     isPemakaianObatAlkes = true
@@ -133,7 +139,11 @@ define(['initialize'], function (initialize) {
                     $scope.listPenulisResep = dat.data.penulisresep;
                     $scope.listRuangan = dat.data.ruangan;
                     $scope.listJenisKemasan = dat.data.jeniskemasan;
-                    $scope.listProduk = dat.data.produk;
+                    if ($scope.isBpjs) {
+                        $scope.listProduk = dat.data.produkfornas;
+                    } else {
+                        $scope.listProduk = dat.data.produk;
+                    }
                     $scope.listAsalProduk = dat.data.asalproduk;
                     $scope.listRoute = dat.data.route;
                     $scope.listAturanPakai = dat.data.signa;
@@ -340,61 +350,61 @@ define(['initialize'], function (initialize) {
                 $scope.columnResepDokter = {
                     pageable: true,
                     columns: [{
-                            field: "resep",
-                            title: "<h3>r/Ke</h3>",
-                            width: "3%",
-                            attributes: {
-                                style: "text-align:center;valign=middle"
-                            },
+                        field: "resep",
+                        title: "<h3>r/Ke</h3>",
+                        width: "3%",
+                        attributes: {
+                            style: "text-align:center;valign=middle"
                         },
-                        {
-                            field: "isRacikan",
-                            title: "<h3>Jenis</h3>",
-                            width: "50px",
-                            template: "#if(isRacikan) { # #: 'Racikan' # #} else { #Non Racikan# } #",
-                            attributes: {
-                                style: "text-align:center;valign=middle"
-                            }
-                        },
-                        {
-
-                            field: "keteranganpakai",
-                            title: "<h3>Keterangan Pakai</h3>",
-                            width: "100px",
-                            attributes: {
-                                style: "text-align:center;valign=middle"
-                            },
-                        },
-                        {
-
-                            field: "keteranganlainnya",
-                            title: "<h3>Instruksi</h3>",
-                            width: "100px",
-                            attributes: {
-                                style: "text-align:center;valign=middle"
-                            },
-                        },
-                        {
-
-                            field: "status",
-                            title: "<h3>Status</h3>",
-                            width: "100px",
-                            template: '#= status #',
-                            attributes: {
-                                style: "text-align:center;valign=middle"
-                            },
-                        },
-                        {
-                            command: [{
-                                text: "Detail",
-                                click: showDetail
-                            }],
-                            title: "&nbsp;",
-                            width: "3%",
-                            attributes: {
-                                style: "text-align:center;valign=middle"
-                            },
+                    },
+                    {
+                        field: "isRacikan",
+                        title: "<h3>Jenis</h3>",
+                        width: "50px",
+                        template: "#if(isRacikan) { # #: 'Racikan' # #} else { #Non Racikan# } #",
+                        attributes: {
+                            style: "text-align:center;valign=middle"
                         }
+                    },
+                    {
+
+                        field: "keteranganpakai",
+                        title: "<h3>Keterangan Pakai</h3>",
+                        width: "100px",
+                        attributes: {
+                            style: "text-align:center;valign=middle"
+                        },
+                    },
+                    {
+
+                        field: "keteranganlainnya",
+                        title: "<h3>Instruksi</h3>",
+                        width: "100px",
+                        attributes: {
+                            style: "text-align:center;valign=middle"
+                        },
+                    },
+                    {
+
+                        field: "status",
+                        title: "<h3>Status</h3>",
+                        width: "100px",
+                        template: '#= status #',
+                        attributes: {
+                            style: "text-align:center;valign=middle"
+                        },
+                    },
+                    {
+                        command: [{
+                            text: "Detail",
+                            click: showDetail
+                        }],
+                        title: "&nbsp;",
+                        width: "3%",
+                        attributes: {
+                            style: "text-align:center;valign=middle"
+                        },
+                    }
                     ]
                 }
 
@@ -466,21 +476,21 @@ define(['initialize'], function (initialize) {
             $scope.columnObatRacikan = {
                 pageable: true,
                 columns: [{
-                        field: "namaObat",
-                        title: "Nama Obat",
-                        width: "90%",
-                        // attributes: {
-                        //     style: "text-align:center;valign=middle"
-                        // },
+                    field: "namaObat",
+                    title: "Nama Obat",
+                    width: "90%",
+                    // attributes: {
+                    //     style: "text-align:center;valign=middle"
+                    // },
+                },
+                {
+                    field: "jumlah",
+                    title: "Dosis",
+                    width: "10%",
+                    attributes: {
+                        style: "text-align:center;valign=middle"
                     },
-                    {
-                        field: "jumlah",
-                        title: "Dosis",
-                        width: "10%",
-                        attributes: {
-                            style: "text-align:center;valign=middle"
-                        },
-                    },
+                },
 
                 ]
             }
@@ -548,33 +558,33 @@ define(['initialize'], function (initialize) {
                 manageLogistikPhp.getDataTableTransaksi("logistik/get-produkdetail?" +
                     "produkfk=" + $scope.item.produk.id +
                     "&ruanganfk=" + $scope.item.ruangan.id, true).then(function (dat) {
-                    dataProdukDetail = dat.data.detail;
-                    $scope.item.stok = dat.data.jmlstok / $scope.item.nilaiKonversi
-                    $scope.consis = dat.data.consis;
+                        dataProdukDetail = dat.data.detail;
+                        $scope.item.stok = dat.data.jmlstok / $scope.item.nilaiKonversi
+                        $scope.consis = dat.data.consis;
 
-                    //parseFloat($scope.dataSelected.jumlah) / parseFloat($scope.dataSelected.nilaikonversi)
-                    $scope.item.hargaSatuan = 0
-                    $scope.item.hargadiskon = 0
-                    $scope.item.hargaNetto = 0
-                    $scope.item.total = 0
-                    // $scope.item.jumlahxmakan =1
-                    if ($scope.dataSelected != undefined) {
-                        $scope.item.jumlah = $scope.dataSelected.jumlah
-                        $scope.item.dosis = $scope.dataSelected.dosis
-                        $scope.item.jumlahxmakan = parseFloat($scope.dataSelected.jumlah) / parseFloat($scope.item.dosis)
-                        $scope.item.nilaiKonversi = $scope.dataSelected.nilaikonversi
-                        $scope.item.satuan = {
-                            ssid: $scope.dataSelected.satuanviewfk,
-                            satuanstandar: $scope.dataSelected.satuanview
+                        //parseFloat($scope.dataSelected.jumlah) / parseFloat($scope.dataSelected.nilaikonversi)
+                        $scope.item.hargaSatuan = 0
+                        $scope.item.hargadiskon = 0
+                        $scope.item.hargaNetto = 0
+                        $scope.item.total = 0
+                        // $scope.item.jumlahxmakan =1
+                        if ($scope.dataSelected != undefined) {
+                            $scope.item.jumlah = $scope.dataSelected.jumlah
+                            $scope.item.dosis = $scope.dataSelected.dosis
+                            $scope.item.jumlahxmakan = parseFloat($scope.dataSelected.jumlah) / parseFloat($scope.item.dosis)
+                            $scope.item.nilaiKonversi = $scope.dataSelected.nilaikonversi
+                            $scope.item.satuan = {
+                                ssid: $scope.dataSelected.satuanviewfk,
+                                satuanstandar: $scope.dataSelected.satuanview
+                            }
+                            $scope.item.hargaSatuan = $scope.dataSelected.hargasatuan
+                            $scope.item.hargadiskon = $scope.dataSelected.hargadiscount
+                            $scope.item.hargaNetto = $scope.dataSelected.harganetto
+                            $scope.item.total = $scope.dataSelected.total
                         }
-                        $scope.item.hargaSatuan = $scope.dataSelected.hargasatuan
-                        $scope.item.hargadiskon = $scope.dataSelected.hargadiscount
-                        $scope.item.hargaNetto = $scope.dataSelected.harganetto
-                        $scope.item.total = $scope.dataSelected.total
-                    }
 
 
-                });
+                    });
 
             }
             $scope.getNilaiKonversi = function () {
@@ -1150,80 +1160,80 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.columnGrid = [{
-                    "field": "no",
-                    "title": "No",
-                    "width": "30px",
-                },
-                {
-                    "field": "rke",
-                    "title": "R/ke",
-                    "width": "40px",
-                },
-                {
-                    "field": "jeniskemasan",
-                    "title": "Kemasan",
-                    "width": "70px",
-                },
-                {
-                    "field": "asalproduk",
-                    "title": "Asal Produk",
-                    "width": "100px",
-                },
-                {
-                    "field": "jmldosis",
-                    "title": "Jml/Dosis",
-                    "width": "60px",
-                },
-                {
-                    "field": "namaproduk",
-                    "title": "Deskripsi",
-                    "width": "200px",
-                },
-                {
-                    "field": "satuanstandar",
-                    "title": "Satuan",
-                    "width": "80px",
-                },
-                {
-                    "field": "jumlah",
-                    "title": "Qty Obat",
-                    "width": "70px",
-                },
-                {
-                    "field": "hargasatuan",
-                    "title": "Harga Satuan",
-                    "width": "100px",
-                    "template": "<span class='style-right'>{{formatRupiah('#: hargasatuan #', '')}}</span>"
-                },
-                {
-                    "field": "hargadiscount",
-                    "title": "Harga Discount",
-                    "width": "100px",
-                    "template": "<span class='style-right'>{{formatRupiah('#: hargadiscount #', '')}}</span>"
-                },
-                {
-                    "field": "total",
-                    "title": "Total",
-                    "width": "100px",
-                    "template": "<span class='style-right'>{{formatRupiah('#: total #', '')}}</span>"
-                },
-                {
-                    command: [{
-                        text: "Hapus",
-                        width: "40px",
-                        align: "center",
-                        attributes: {
-                            align: "center"
-                        },
-                        click: hapusObat,
-                        imageClass: "k-i-arrow-60-right"
-                    }],
-                    title: "",
-                    width: "5%",
+                "field": "no",
+                "title": "No",
+                "width": "30px",
+            },
+            {
+                "field": "rke",
+                "title": "R/ke",
+                "width": "40px",
+            },
+            {
+                "field": "jeniskemasan",
+                "title": "Kemasan",
+                "width": "70px",
+            },
+            {
+                "field": "asalproduk",
+                "title": "Asal Produk",
+                "width": "100px",
+            },
+            {
+                "field": "jmldosis",
+                "title": "Jml/Dosis",
+                "width": "60px",
+            },
+            {
+                "field": "namaproduk",
+                "title": "Deskripsi",
+                "width": "200px",
+            },
+            {
+                "field": "satuanstandar",
+                "title": "Satuan",
+                "width": "80px",
+            },
+            {
+                "field": "jumlah",
+                "title": "Qty Obat",
+                "width": "70px",
+            },
+            {
+                "field": "hargasatuan",
+                "title": "Harga Satuan",
+                "width": "100px",
+                "template": "<span class='style-right'>{{formatRupiah('#: hargasatuan #', '')}}</span>"
+            },
+            {
+                "field": "hargadiscount",
+                "title": "Harga Discount",
+                "width": "100px",
+                "template": "<span class='style-right'>{{formatRupiah('#: hargadiscount #', '')}}</span>"
+            },
+            {
+                "field": "total",
+                "title": "Total",
+                "width": "100px",
+                "template": "<span class='style-right'>{{formatRupiah('#: total #', '')}}</span>"
+            },
+            {
+                command: [{
+                    text: "Hapus",
+                    width: "40px",
+                    align: "center",
                     attributes: {
-                        style: "text-align:center;valign=middle"
+                        align: "center"
                     },
-                }
+                    click: hapusObat,
+                    imageClass: "k-i-arrow-60-right"
+                }],
+                title: "",
+                width: "5%",
+                attributes: {
+                    style: "text-align:center;valign=middle"
+                },
+            }
             ];
 
             $scope.formatRupiah = function (value, currency) {
@@ -1267,11 +1277,11 @@ define(['initialize'], function (initialize) {
                 }
                 manageLogistikPhp.getDataTableTransaksi("tatarekening/get-sudah-verif?noregistrasi=" +
                     $scope.item.noRegistrasi, true).then(function (dat) {
-                    if (dat.data.status == true) {
-                        alert('Sudah verifikasi Tatarekening Tidak Bisa hapus Obat!')
-                        return;
-                    }
-                });
+                        if (dat.data.status == true) {
+                            alert('Sudah verifikasi Tatarekening Tidak Bisa hapus Obat!')
+                            return;
+                        }
+                    });
                 if ($scope.item.penulisResep == undefined) {
                     // alert("Pilih Penulis Resep terlebih dahulu!!");
                     toastr.warning('Pilih Penulis Resep terlebih dahulu!!');
@@ -1410,27 +1420,27 @@ define(['initialize'], function (initialize) {
 
             $scope.prompBridgingConsisD = () => {
                 $scope.counterID = 0;
-        
+
                 var confirm = $mdDialog
-                  .prompt()
-                  .title("Isi Nomor Counter?")
-                  // .textContent('Bowser is a common name.')
-                  .placeholder("Nomor")
-                  .initialValue("0")
-                  .ok("Ya");
+                    .prompt()
+                    .title("Isi Nomor Counter?")
+                    // .textContent('Bowser is a common name.')
+                    .placeholder("Nomor")
+                    .initialValue("0")
+                    .ok("Ya");
                 // .cancel('I\'m a cat person');
-        
+
                 $mdDialog.show(confirm).then(
-                  function (result) {
-                    $scope.counterID = result;
-                    $scope.BridgingConsisD();
-                  },
-                  function () { }
+                    function (result) {
+                        $scope.counterID = result;
+                        $scope.BridgingConsisD();
+                    },
+                    function () { }
                 );
-              };
+            };
 
             $scope.BridgingConsisD = function () {
-                if(!$scope.counterID) {
+                if (!$scope.counterID) {
                     $scope.prompBridgingConsisD();
                     return;
                 }
@@ -1554,20 +1564,20 @@ define(['initialize'], function (initialize) {
             // }
 
             $scope.columnGridStok = [{
-                    "field": "no",
-                    "title": "No",
-                    "width": "20px",
-                },
-                {
-                    "field": "namaruangan",
-                    "title": "Ruangan",
-                    "width": "100px",
-                },
-                {
-                    "field": "qtyproduk",
-                    "title": "Stok",
-                    "width": "50px",
-                }
+                "field": "no",
+                "title": "No",
+                "width": "20px",
+            },
+            {
+                "field": "namaruangan",
+                "title": "Ruangan",
+                "width": "100px",
+            },
+            {
+                "field": "qtyproduk",
+                "title": "Stok",
+                "width": "50px",
+            }
 
             ];
 
