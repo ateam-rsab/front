@@ -296,7 +296,7 @@ define(['initialize'], function (initialize) {
                 }
             }
 
-            let autoIndikator = [466, 350, 351, 357, 674]
+            let autoIndikator = [466, 350, 351, 357, 674, 712]
             $scope.showDetail = (data) => {
                 if (!autoIndikator.includes(data.idIndikator) && data.idIndikator != 678 && data.idIndikator != 712) {
                     $scope.labelDetail = data.namaIndikator
