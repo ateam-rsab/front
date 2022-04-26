@@ -182,6 +182,10 @@ define(['initialize'], function (initialize) {
                 manageSdmNew.saveData(dataSave, "iki-remunerasi/save-pelayanan-pasien-nakes").then(res => {
                     $scope.reset();
                     $scope.getDataGrid();
+                }, (error) => {
+                    if (error.status == 400) {
+                        toastr.error("Tanggal kegiatan harus diisi dengan tanggal di bulan berjalan", "Informasi")
+                    }
                 })
             }
         }
