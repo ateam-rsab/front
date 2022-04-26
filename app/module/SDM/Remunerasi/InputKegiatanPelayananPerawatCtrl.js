@@ -131,11 +131,6 @@ define(['initialize'], function (initialize) {
                     return;
                 }
 
-                if (new Date().getFullYear() != $scope.perawat.tglPelayanan.getFullYear() || new Date().getMonth() != $scope.perawat.tglPelayanan.getMonth()) {
-                    toastr.warning("Tanggal pelayanan harus diisi dengan tanggal di bulan berjalan");
-                    return;
-                }
-
                 if (!$scope.perawat.kegiatan) {
                     toastr.warning("Harap pilih Kegiatan");
                     return;
@@ -167,6 +162,10 @@ define(['initialize'], function (initialize) {
                 manageSdmNew.saveData(dataSave, "iki-remunerasi/save-pelayanan-pasien-perawat").then(res => {
                     $scope.reset();
                     $scope.getDataGrid();
+                }, (error) => {
+                    if (error.status == 400) {
+                        toastr.error("Tanggal kegiatan harus diisi dengan tanggal di bulan berjalan", "Informasi")
+                    }
                 })
             }
         }
