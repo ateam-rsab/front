@@ -355,6 +355,7 @@ define(['initialize'], function (initialize) {
 
             $scope.simpanData1 = () => {
                 $scope.isDisabledButtonSave = true;
+
                 let dataSave = {
                     namaKegiatan: $scope.item.namaKegiatan ? $scope.item.namaKegiatan : $scope.labelData,
                     capaian: $scope.item.hasilKegiatan,
@@ -368,12 +369,19 @@ define(['initialize'], function (initialize) {
                 }
 
                 ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-working-record").then(res => {
+                    $scope.isDisabledButtonSave = false;
+                    $scope.closepopUp1();
+                    $scope.getDataDashboard();
+                }, err => {
+                    $scope.isDisabledButtonSave = false;
                     $scope.closepopUp1();
                     $scope.getDataDashboard();
                 })
             }
 
             $scope.simpanData2 = () => {
+                $scope.isDisabledButtonSave = true;
+
                 if (!$scope.nakes.jmlLayanan || $scope.nakes.jmlLayanan === 0) {
                     toastr.warning("Jumlah layanan belum diisi");
                     return;
@@ -394,10 +402,11 @@ define(['initialize'], function (initialize) {
                 }
 
                 ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-pelayanan-nakes").then(res => {
+                    $scope.isDisabledButtonSave = false;
                     $scope.closepopUp2();
                     $scope.getDataDashboard();
-                    $scope.isDisabledButtonSave = false;
                 }, (error) => {
+                    $scope.isDisabledButtonSave = false;
                     if (error.status == 400) {
                         toastr.error("Tanggal kegiatan harus diisi dengan tanggal di bulan berjalan", "Informasi")
                     }
