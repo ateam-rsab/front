@@ -70,6 +70,8 @@ define(['initialize'], function (initialize) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
 
+                $scope.isRouteLoading = true;
+
                 var confirm = $mdDialog.confirm()
                     .title('Apakah anda yakin menghapus data?')
                     .textContent('Anda akan menghapus data secara permanen!')
@@ -81,6 +83,11 @@ define(['initialize'], function (initialize) {
                     manageSdmNew.saveData({}, `/iki-remunerasi/delete-pelayanan-pasien-perawat?noRec=${dataItem.noRec}`).then(res => {
                         $scope.reset();
                         $scope.getDataGrid();
+                        toastr.info("Silakan informasikan kepada atasan langsung untuk melakukan verifikasi ulang Logbook Skor Kinerja", "Informasi")
+
+                        $scope.isRouteLoading = false;
+                    }, (error) => {
+                        $scope.isRouteLoading = false;
                     });
                 });
             }
