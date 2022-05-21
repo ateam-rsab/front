@@ -284,10 +284,12 @@ define(['initialize'], function (initialize) {
                         $scope.listKelompokJabatanId.push(3, 4, 5, 6);
                     } else if (item.x == 58 || item.x == 59 || item.x == 60 || item.x == 61 || item.x == 62 || item.x == 63 || item.x == 82) {
                         $scope.listKelompokJabatanId.push(3, 4);
-                    } else if (item.x == 30 || item.x == 31 || item.x == 32 || item.x == 33 || item.x == 71) {
+                    } else if (item.x == 30 || item.x == 31 || item.x == 32 || item.x == 33) {
                         $scope.listKelompokJabatanId.push(5);
-                    } else if (item.x == 35 || item.x == 36 || item.x == 37 || item.x == 38 || item.x == 40 || item.x == 41 || item.x == 46 || item.x == 57 || item.x == 71) {
+                    } else if (item.x == 35 || item.x == 36 || item.x == 37 || item.x == 38 || item.x == 40 || item.x == 41 || item.x == 46 || item.x == 57) {
                         $scope.listKelompokJabatanId.push(6);
+                    } else if (item.x == 71) {
+                        $scope.listKelompokJabatanId.push(5, 6);
                     }
                 }
 

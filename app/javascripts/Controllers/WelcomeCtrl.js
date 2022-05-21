@@ -30,7 +30,7 @@ define(['initialize'], function (initialize) {
 
             $scope.getBirthdayData = () => {
                 ManageSdmNew.getListData('pegawai/get-birthday').then(res => {
-                    for(let i = 0; i < res.data.data.length; i++) {
+                    for (let i = 0; i < res.data.data.length; i++) {
                         res.data.data[i].imgUrlData = res.data.data[i].imgUrlData ? res.data.data[i].imgUrlData : "../app/images/user.png"
                     }
                     $scope.listBirthdayData = res.data.data;
@@ -73,6 +73,31 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.dataPemberitahuan = [
+                {
+                    path: "data/dokumen/Formulir-Permohonan-Surat-Keterangan.pdf",
+                    fileName: "Formulir Permohonan Surat Keterangan / Perincian Penghasilan",
+                    new: true
+                },
+                {
+                    path: "data/dokumen/PEMBERITAHUAN-DAFTAR-NAMA-PEGAWAI-YANG-DAPAT-DIUSULKAN-KP-FUNGSIONAL-AHLI-UTAMA.pdf",
+                    fileName: "PEMBERITAHUAN DAFTAR NAMA PEGAWAI YANG DAPAT DIUSULKAN KP FUNGSIONAL AHLI UTAMA",
+                    new: true
+                },
+                {
+                    path: "data/dokumen/PEMBERITAHUAN-KP-FUNGSIONAL-OKTOBER-2022.pdf",
+                    fileName: "PEMBERITAHUAN DAFTAR NAMA PEGAWAI YANG DAPAT DIUSULKAN KP FUNGSIONAL OKTOBER 2022",
+                    new: true
+                },
+                {
+                    path: "data/dokumen/PEMBERITAHUAN-DAFTAR-NAMA-PEGAWAI-YANG-DAPAT-DIUSULKAN-KP-OTOMATIS-OKTOBER-2022.pdf",
+                    fileName: "PEMBERITAHUAN DAFTAR NAMA PEGAWAI YANG DAPAT DIUSULKAN KP OTOMATIS OKTOBER 2022",
+                    new: true
+                },
+                {
+                    path: "data/dokumen/PEMBERITAHUAN-KGB-JUNI-2022-MUHAMMAD-SUPRI-SETIYADI-DKK.pdf",
+                    fileName: "PEMBERITAHUAN KGB JUNI 2022 MUHAMMAD SUPRI SETIYADI DKK",
+                    new: true
+                },
                 {
                     path: "data/dokumen/RENCANA-USULAN-PENGANGKATAN-JABFUNG-2022.pdf",
                     fileName: "RENCANA USULAN PENGANGKATAN JABFUNG 2022",
@@ -130,54 +155,55 @@ define(['initialize'], function (initialize) {
 
             ]
 
-            $scope.dataBerkasAdministrasi = [{
-                path: "data/dokumen/hasil-seleksi-rekrutmen-internal-jabfung-RSABHarapanKita.pdf",
-                fileName: "Hasil Seleksi Rekrutmen Internal Jabfung RSAB Harapan Kita"
-            },
-            {
-                path: "data/dokumen/PEMBERITAHUAN-Daftar-Nama-Pegawai-yg-Dapat-Diusulkan-PAK-Dokd.pdf",
-                fileName: "PEMBERITAHUAN - Daftar Nama Pegawai yg Dapat Diusulkan PAK Dokd"
-            },
-            {
-                path: "data/dokumen/Daftar-Nama-Pegawai-Yang-Dapat-Diusulkan-Kenaikan-Jabfung-Ahli.pdf",
-                fileName: "Daftar Nama Pegawai yang dapat Diusulkan Kenaikan Jabfung Ahli"
-            },
-            {
-                path: "data/dokumen/Daftar-Nama-Pegawai-Yang-Dapat-Diusulkan-KPO-April-2022-an.-nur.pdf",
-                fileName: "Daftar Nama Pegawai yang Dapat Diusulkan KPO April 2022 an. nur"
-            },
-            {
-                path: "data/dokumen/PEMBERITAHUAN-Daftar-Nama-Pegawai-yang-Dapat-Diusulkan-KP-Fun.pdf",
-                fileName: "PEMBERITAHUAN - Daftar Nama Pegawai yang Dapat Diusulkan KP Fun"
-            },
-            {
-                path: "data/dokumen/PEMBERITAHUAN-SK-KP-FUNGSIONAL-an.-dr.-Akira-dkk-27-orang.pdf",
-                fileName: "PEMBERITAHUAN - SK KP FUNGSIONAL an. dr. Akira dkk 27 orang"
-            },
-            {
-                path: "data/dokumen/PEMBERITAHUAN-SK-KPO-dan-NON-KPO-an.-Suprapto.pdf",
-                fileName: "PEMBERITAHUAN - SK KPO dan NON KPO an. Suprapto"
-            },
-            {
-                path: "data/dokumen/pengumuman-hasil-seleksi-rekrutmen-internal.pdf",
-                fileName: "Pengumuman Hasil Seleksi Rekrutmen Internal"
-            },
-            {
-                path: "data/dokumen/rekrutmen-internal-JABFUNG-di-lingkungan-RSABHK-tahun-2021.pdf",
-                fileName: "Rekrutmen Internal Jabatan Fungsional di Lingkungan RSAB HK tahun 2021",
-                new: true
-            }, {
-                path: "data/dokumen/prosedur-pembuatan-kartu-e-id-kepesertaan-bpjs-kesehatan-pegawai.pdf",
-                fileName: "Prosedur Pembuatan Kartu E-ID Kepesertaan BPJS Kesehatan Pegawai",
-                new: false
-            }, {
-                path: "data/dokumen/prosedur-pembuatan-daftar-uang-makan-bagi-pns.pdf",
-                fileName: "Prosedur Pembuatan Daftar Uang Makan bagi PNS",
-                new: false
-            }, {
-                path: "data/dokumen/rekrutmen-internal-JABFUNG-di-lingkungan-RSABHK-tahun-2021.pdf",
-                fileName: "Rekrutmen Internal Jabatan Fungsional di Lingkungan RSAB HK tahun 2021"
-            }]
+            $scope.dataBerkasAdministrasi = [
+                {
+                    path: "data/dokumen/hasil-seleksi-rekrutmen-internal-jabfung-RSABHarapanKita.pdf",
+                    fileName: "Hasil Seleksi Rekrutmen Internal Jabfung RSAB Harapan Kita"
+                },
+                {
+                    path: "data/dokumen/PEMBERITAHUAN-Daftar-Nama-Pegawai-yg-Dapat-Diusulkan-PAK-Dokd.pdf",
+                    fileName: "PEMBERITAHUAN - Daftar Nama Pegawai yg Dapat Diusulkan PAK Dokd"
+                },
+                {
+                    path: "data/dokumen/Daftar-Nama-Pegawai-Yang-Dapat-Diusulkan-Kenaikan-Jabfung-Ahli.pdf",
+                    fileName: "Daftar Nama Pegawai yang dapat Diusulkan Kenaikan Jabfung Ahli"
+                },
+                {
+                    path: "data/dokumen/Daftar-Nama-Pegawai-Yang-Dapat-Diusulkan-KPO-April-2022-an.-nur.pdf",
+                    fileName: "Daftar Nama Pegawai yang Dapat Diusulkan KPO April 2022 an. nur"
+                },
+                {
+                    path: "data/dokumen/PEMBERITAHUAN-Daftar-Nama-Pegawai-yang-Dapat-Diusulkan-KP-Fun.pdf",
+                    fileName: "PEMBERITAHUAN - Daftar Nama Pegawai yang Dapat Diusulkan KP Fun"
+                },
+                {
+                    path: "data/dokumen/PEMBERITAHUAN-SK-KP-FUNGSIONAL-an.-dr.-Akira-dkk-27-orang.pdf",
+                    fileName: "PEMBERITAHUAN - SK KP FUNGSIONAL an. dr. Akira dkk 27 orang"
+                },
+                {
+                    path: "data/dokumen/PEMBERITAHUAN-SK-KPO-dan-NON-KPO-an.-Suprapto.pdf",
+                    fileName: "PEMBERITAHUAN - SK KPO dan NON KPO an. Suprapto"
+                },
+                {
+                    path: "data/dokumen/pengumuman-hasil-seleksi-rekrutmen-internal.pdf",
+                    fileName: "Pengumuman Hasil Seleksi Rekrutmen Internal"
+                },
+                {
+                    path: "data/dokumen/rekrutmen-internal-JABFUNG-di-lingkungan-RSABHK-tahun-2021.pdf",
+                    fileName: "Rekrutmen Internal Jabatan Fungsional di Lingkungan RSAB HK tahun 2021",
+                    new: true
+                }, {
+                    path: "data/dokumen/prosedur-pembuatan-kartu-e-id-kepesertaan-bpjs-kesehatan-pegawai.pdf",
+                    fileName: "Prosedur Pembuatan Kartu E-ID Kepesertaan BPJS Kesehatan Pegawai",
+                    new: false
+                }, {
+                    path: "data/dokumen/prosedur-pembuatan-daftar-uang-makan-bagi-pns.pdf",
+                    fileName: "Prosedur Pembuatan Daftar Uang Makan bagi PNS",
+                    new: false
+                }, {
+                    path: "data/dokumen/rekrutmen-internal-JABFUNG-di-lingkungan-RSABHK-tahun-2021.pdf",
+                    fileName: "Rekrutmen Internal Jabatan Fungsional di Lingkungan RSAB HK tahun 2021"
+                }]
 
 
             $scope.lihatDokumen = (url) => {
