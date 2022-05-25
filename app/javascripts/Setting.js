@@ -1,117 +1,49 @@
 define([], function () {
-  "use strict";
-  var baseURLFrontend =
-      window.location.hostname === "192.168.12.3"
-        ? "http://192.168.12.3"
-        : "http://" + window.location.hostname,
-    portFrontend =
-      window.location.hostname === "192.168.12.3" ? "4444" : "4444",
-    baseURLPhp = "http://192.168.12.3",
-    portPhp = "5555",
-    baseURLJava = "http://192.168.12.3",
-    portJava = "8080",
-    baseURLEval = "http://192.168.12.3",
-    portEval = "8080";
+  'use strict';
+  var baseURLFrontend = 'http://172.16.111.102',
+    portFrontend = '4444',
 
-  if (window.location.hostname.indexOf("rsabhk") > -1) {
+    baseURLPhp = 'http://192.168.12.3',
+    portPhp = '5555',
+
+    baseURLWeb = 'http://192.168.12.3',
+    portWeb = '8080',
+
+    baseURLJava = 'http://192.168.12.3',
+    portJava = '8080',
+
+    baseURLEval = 'http://172.16.111.102',
+    portEval = '8080';
+
+  if (window.location.hostname.indexOf('rsabhk') > -1) {
     return {
-      BaseUrl: "http://smart.rsabhk.co.id:2222/app/data/GetRouting",
-      RouteUrl: "http://smart.rsabhk.co.id:2222/app/data/GetRouting",
-      UrlDataConfig: "http://smart.rsabhk.co.id:2222/app/data/GetRequireConfig",
+      BaseUrl: 'http://smart.rsabhk.co.id:2222/app/data/GetRouting',
+      RouteUrl: 'http://smart.rsabhk.co.id:2222/app/data/GetRouting',
+      UrlDataConfig: 'http://smart.rsabhk.co.id:2222/app/data/GetRequireConfig',
       baseUrlSerelize: "http://smart.rsabhk.co.id:2222/app/data/Form/",
 
-      urlSocket: "http://smart.rsabhk.co.id:2222",
+      urlSocket: 'http://smart.rsabhk.co.id:2222',
 
-      urlPrinting: "http://smart.rsabhk.co.id:2222/jasamedika-web/",
-      baseUrlListData: "http://smart.rsabhk.co.id:2222/jasamedika-web/simrs_harkit/service/list-generic/?view=",
+      urlPrinting: 'http://smart.rsabhk.co.id:2222/jasamedika-web/',
+      baseUrlListData: "http://smart.rsabhk.co.id:2222/jasamedika-web/service/list-generic/?view=",
       baseApiUrlData: "http://smart.rsabhk.co.id:2222/jasamedika-web/",
       baseApiPostData: "http://smart.rsabhk.co.id:2222/jasamedika-web/",
       baseUrlData: "http://smart.rsabhk.co.id:2222/app/data/",
       baseUrlAction: "http://smart.rsabhk.co.id:2222/jasamedika-web/",
-      //baseUrlLogin: "http://smart.rsabhk.co.id:2222/jasamedika-web/auth/sign-in",
-      //baseUrlLogout: "http://smart.rsabhk.co.id:2222/jasamedika-web/auth/sign-out",
-      baseUrlLogistik: "https://smart.rsabhk.co.id:2222/logistik-rsabhk-service/",
+      baseUrlLogin: "http://smart.rsabhk.co.id:2222/jasamedika-web/auth/sign-in",
+      baseUrlLogout: "http://smart.rsabhk.co.id:2222/jasamedika-web/auth/sign-out",
       baseBridiging: "http://smart.rsabhk.co.id/Bridging/",
-      urlRoute: "http://smart.rsabhk.co.id:2222/app/data/GetRouting",
+      urlRoute: 'http://smart.rsabhk.co.id:2222/app/data/GetRouting',
 
-      urlRoute_Akuntansi:
-        "http://smart.rsabhk.co.id:2222/app/data/GetRoutingAkuntansi",
-      urlDataGeneric_Akuntansi:
-        "http://smart.rsabhk.co.id/simrs_harkit/service/list-generic?view=",
-      urlDataTableMaster_Akuntansi:
-        "http://smart.rsabhk.co.id/simrs_harkit/service/master/",
-      urlDataTableTransaksi_Akuntansi:
-        "http://smart.rsabhk.co.id/simrs_harkit/service/transaksi/",
-      baseApiPostData_Akuntansi:
-        "http://smart.rsabhk.co.id/simrs_harkit/service/",
+      urlRoute_Akuntansi: 'http://smart.rsabhk.co.id:2222/app/data/GetRoutingAkuntansi',
+      urlDataGeneric_Akuntansi: 'http://smart.rsabhk.co.id/service/list-generic?view=',
+      urlDataTableMaster_Akuntansi: 'http://smart.rsabhk.co.id/service/master/',
+      urlDataTableTransaksi_Akuntansi: 'http://smart.rsabhk.co.id/service/transaksi/',
+      baseApiPostData_Akuntansi: 'http://smart.rsabhk.co.id/service/',
 
-      urlDataMaster:
-        "http://smart.rsabhk.co.id:2222/jasamedika-web/generated_master/",
+      urlDataMaster: 'http://smart.rsabhk.co.id:2222/jasamedika-web/generated_master/'
 
       // rabbitMQHost: 'amqp://rsab:rsab@smart.rsabhk.co.id'
-    };
-  } else if (window.location.hostname == "103.116.203.93") {
-    return {
-      BaseUrl: "https://smart.rsabhk.co.id:2222/app/data/GetRouting",
-      RouteUrl: "https://smart.rsabhk.co.id:2222/app/data/GetRouting",
-      UrlDataConfig:
-        "https://smart.rsabhk.co.id:2222/app/data/GetRequireConfig",
-      baseUrlSerelize: "https://smart.rsabhk.co.id:2222/app/data/Form/",
-
-      // URL BARU
-      /* SDM */
-      baseUrlActionSDM: "https://smart.rsabhk.co.id:2222/jasamedika-sdm/",
-      baseApiPostDataSDM: "https://smart.rsabhk.co.id:2222/jasamedika-sdm/",
-      /* Reporting */
-      urlReporting: "https://smart.rsabhk.co.id:2222/jasamedika-reporting/",
-      /* LAUNDRY */
-      baseApiPostDataLaundry:
-        "https://smart.rsabhk.co.id:2222/jasamedika-laundry/",
-      baseUrlActionLaundry:
-        "https://smart.rsabhk.co.id:2222/jasamedika-laundry/",
-      /* IP3RS */
-      baseUrlActionIPSRS: "https://smart.rsabhk.co.id:2222/jasamedika-ipsrs/",
-      baseApiPostDataIPSRS: "https://smart.rsabhk.co.id:2222/jasamedika-ipsrs/",
-
-      /*K3KL */
-      baseUrlActionK3KL: "https://smart.rsabhk.co.id:2222/jasamedika-k3kl/",
-      baseApiPostDataK3KL: "https://smart.rsabhk.co.id:2222/jasamedika-k3kl/",
-
-      urlSocket: "https://smart.rsabhk.co.id:2222",
-
-      urlPrinting: "https://smart.rsabhk.co.id:2222/jasamedika-web/",
-      baseUrlListData:
-        "https://smart.rsabhk.co.id:2222/jasamedika-web/service/list-generic/?view=",
-      baseApiUrlData: "https://smart.rsabhk.co.id:2222/jasamedika-web/",
-      baseApiPostData: "https://smart.rsabhk.co.id:2222/jasamedika-web/",
-      baseUrlData: "https://smart.rsabhk.co.id:2222/app/data/",
-      baseUrlAction: "https://smart.rsabhk.co.id:2222/jasamedika-web/",
-      baseUrlLogin:
-        "https://smart.rsabhk.co.id:2222/simrs_harkit/service/auth/sign-in",
-      baseUrlLogout:
-        "https://smart.rsabhk.co.id:2222/simrs_harkit/service/auth/sign-out",
-      //baseUrlLogin: "https://smart.rsabhk.co.id:2222/jasamedika-web/auth/sign-in",
-      //baseUrlLogout: "https://smart.rsabhk.co.id:2222/jasamedika-web/auth/sign-out",
-      baseBridiging: "http://smart.rsabhk.co.id/Bridging/",
-      urlRoute: "https://smart.rsabhk.co.id:2222/app/data/GetRouting",
-
-      urlRoute_SDM: "https://smart.rsabhk.co.id:2222/app/data/GetRoutingSDM",
-
-      urlRoute_Akuntansi:
-        "https://smart.rsabhk.co.id:2222/app/data/GetRoutingAkuntansi",
-      urlDataGeneric_Akuntansi:
-        "https://smart.rsabhk.co.id:2222/simrs_harkit/service/list-generic?view=",
-      urlDataTableMaster_Akuntansi:
-        "https://smart.rsabhk.co.id:2222/simrs_harkit/service/master/",
-      urlDataTableTransaksi_Akuntansi:
-        "https://smart.rsabhk.co.id:2222/simrs_harkit/service/transaksi/",
-      baseApiPostData_Akuntansi:
-        "https://smart.rsabhk.co.id:2222/simrs_harkit/service/",
-
-      urlDataMaster:
-        "https://smart.rsabhk.co.id:2222/jasamedika-web/generated_master/",
-
-      rabbitMQHost: "amqp://rsab:rsab@smart.rsabhk.co.id",
     };
   } else {
     return {
@@ -125,27 +57,25 @@ define([], function () {
       baseApiPostData_Akuntansi: `${baseURLPhp}:${portPhp}/simrs_harkit/service/`,
 
       /**Login Java */
-      baseUrlJavaLogin: `${baseURLJava}:${portJava}/jasamedika-web/auth/sign-in`,
-      baseUrlJavaLogout: `${baseURLJava}:${portJava}/jasamedika-web/auth/sign-out`,
+      baseUrlLogin: `${baseURLWeb}:${portWeb}/jasamedika-web/auth/sign-in`,
+      baseUrlLogout: `${baseURLWeb}:${portWeb}/jasamedika-web/auth/sign-out`,
 
-      baseUrlAction: `${baseURLJava}:${portJava}/jasamedika-web/`,
-      baseApiUrlData: `${baseURLJava}:${portJava}/jasamedika-web/`,
-      baseApiPostData: `${baseURLJava}:${portJava}/jasamedika-web/`,
-      urlPrinting: `${baseURLJava}:${portJava}/jasamedika-web/`,
+      baseUrlAction: `${baseURLWeb}:${portWeb}/jasamedika-web/`,
+      baseApiUrlData: `${baseURLWeb}:${portWeb}/jasamedika-web/`,
+      baseApiPostData: `${baseURLWeb}:${portWeb}/jasamedika-web/`,
+      urlPrinting: `${baseURLWeb}:${portWeb}/jasamedika-web/`,
 
-      urlDataMaster: `${baseURLJava}:${portJava}/jasamedika-web/generated_master/`,
+      urlDataMaster: `${baseURLWeb}:${portWeb}/jasamedika-web/generated_master/`,
 
-      baseUrlListData: `${baseURLJava}:${portJava}/jasamedika-web/service/list-generic/?view=`,
-      baseURLBridgingRSOnline:
-        "http://172.16.44.33:7878/service-bridging-integerasi-covid/",
+      baseUrlListData: `${baseURLWeb}:${portWeb}/jasamedika-web/service/list-generic/?view=`,
 
       // URL BARU
       // K3KL
       baseUrlActionK3KL: `${baseURLJava}:${portJava}/jasamedika-k3kl/`,
       baseApiPostDataK3KL: `${baseURLJava}:${portJava}/jasamedika-k3kl/`,
       /* SDM */
-      baseUrlActionSDM: `${baseURLEval}:${portEval}/jasamedika-sdm/`,
-      baseApiPostDataSDM: `${baseURLEval}:${portEval}/jasamedika-sdm/`,
+      baseUrlActionSDM: `${baseURLJava}:${portJava}/jasamedika-sdm/`,
+      baseApiPostDataSDM: `${baseURLJava}:${portJava}/jasamedika-sdm/`,
       /* Reporting */
       urlReporting: `${baseURLJava}:${portJava}/jasamedika-reporting/`,
       /* LAUNDRY */
@@ -170,8 +100,7 @@ define([], function () {
       urlRoute_SDM: `${baseURLFrontend}:${portFrontend}/app/data/GetRoutingSDM`,
       urlRoute_Akuntansi: `${baseURLFrontend}:${portFrontend}/app/data/GetRoutingAkuntansi`,
 
-      UrlDataConfig: `${baseURLFrontend}:${portFrontend}/app/data/GetRequireConfig`,
-      baseUrlExpress: "http://localhost:3000/api/",
+      UrlDataConfig: `${baseURLFrontend}:${portFrontend}/app/data/GetRequireConfig`
     };
   }
 });
