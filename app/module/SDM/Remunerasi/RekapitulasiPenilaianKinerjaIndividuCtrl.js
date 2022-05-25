@@ -200,8 +200,11 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.exportExcel = function () {
-                let periode = dateHelper.toMonth(new Date($scope.item.bulan).getMonth());
+                let unitKerja = $scope.item.unitKerja ? $scope.item.unitKerja.name : undefined;
+                let subunitKerja = $scope.item.subUnitKerja ? $scope.item.subUnitKerja.name : undefined;
+                let bulan = dateHelper.toMonth(new Date($scope.item.bulan).getMonth());
                 let tahun = new Date($scope.item.bulan).getFullYear();
+                let periode = new Date($scope.item.bulan).getFullYear() + '-' + ("0" + (new Date($scope.item.bulan).getMonth() + 1)).slice(-2); 
                 // console.log(periode)
                 let tempDataExport = [];
                 let rows = []
@@ -214,8 +217,8 @@ define(['initialize'], function (initialize) {
                         //push single row for every record
                         rows.push({
                             cells: [
-                                { value: data[i].unitKerja },
-                                { value: data[i].subunitKerja },
+                                // { value: data[i].unitKerja },
+                                // { value: data[i].subunitKerja },
                                 { value: data[i].namaLengkap },
                                 { value: data[i].bobotKuantitas },
                                 { value: data[i].hasilKuantitas },
@@ -233,11 +236,12 @@ define(['initialize'], function (initialize) {
                     var workbook = new kendo.ooxml.Workbook({
                         sheets: [{
                             mergedCells: [
-                                "A1:K1", "L1:M1", "A2:A3", "B2:B3", "C2:C3", "D2:E2", "F2:G2", "H2:I2", "J2:J3", "K2:K3", "L2:L3", "M2:M3"
+                                // "A1:K1", "L1:M1", "A2:A3", "B2:B3", "C2:C3", "D2:E2", "F2:G2", "H2:I2", "J2:J3", "K2:K3", "L2:L3", "M2:M3"
+                                "A1:K1", "A2:K2", "A3:K3", "A4:A5", "B4:C4", "D4:E4", "F4:G4", "H4:H5", "I4:I5", "J4:J5", "K4:K5"
                             ],
                             // Column settings (width)
                             columns: [{
-                                autoWidth: true
+                                width: 400
                             }, {
                                 autoWidth: true
                             }, {
@@ -251,409 +255,425 @@ define(['initialize'], function (initialize) {
                             }, {
                                 autoWidth: true
                             }, {
-                                autoWidth: true
+                                width: 40
                             }, {
-                                autoWidth: true
+                                width: 200
                             }, {
-                                autoWidth: true
+                                width: 130
                             }, {
-                                autoWidth: true
-                            }, {
-                                autoWidth: true
-                            }, {
-                                autoWidth: true
-                            }, {
-                                autoWidth: true
-                            }, {
-                                autoWidth: true
-                            }, {
-                                autoWidth: true
-                            }, {
-                                autoWidth: true
-                            }, {
-                                autoWidth: true
-                            }, {
-                                autoWidth: true
-                            }, {
-                                autoWidth: true
-                            }, {
-                                autoWidth: true
-                            }, {
-                                autoWidth: true
-                            }, {
-                                autoWidth: true
-                            }, {
-                                autoWidth: true
-                            }, {
-                                autoWidth: true
+                                width: 130
+                            // }, {
+                            //     autoWidth: true
+                            // }, {
+                            //     autoWidth: true
+                            // }, {
+                            //     autoWidth: true
+                            // }, {
+                            //     autoWidth: true
+                            // }, {
+                            //     autoWidth: true
+                            // }, {
+                            //     autoWidth: true
+                            // }, {
+                            //     autoWidth: true
+                            // }, {
+                            //     autoWidth: true
+                            // }, {
+                            //     autoWidth: true
+                            // }, {
+                            //     autoWidth: true
+                            // }, {
+                            //     autoWidth: true
+                            // }, {
+                            //     autoWidth: true
+                            // }, {
+                            //     autoWidth: true
+                            // }, {
+                            //     autoWidth: true
                             }],
                             // Title of the sheet
-                            title: "Rekapitulasi Penilaian Kinerja Individu",
+                            // title: "Rekapitulasi Penilaian Kinerja Individu",
                             // Rows of the sheet
                             rows: [{
                                 cells: [{
-                                    value: "Periode " + periode + " " + tahun,
-                                    fontSize: 20,
-                                }, {
-                                    value: `${dateHelper.formatDate(new Date(), "DD-MM-YYYY")}`,
-                                    fontSize: 10,
-                                    textAlign: "center",
-                                    index: 11,
+                                    value: "Periode " + bulan + " " + tahun,
+                                    fontSize: 14,
+                                    textAlign: "left"
                                 }],
                             }, {
                                 cells: [{
-                                    value: "Unit Kerja",
-                                    textAlign: "center",
-                                    verticalAlign: "center",
-                                    background: "#d3e0ea",
-                                    borderRight: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderTop: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderLeft: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderBottom: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    }
-                                }, {
-                                    value: "Sub Unit Kerja",
-                                    textAlign: "center",
-                                    verticalAlign: "center",
-                                    background: "#d3e0ea",
-                                    borderRight: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderTop: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderLeft: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderBottom: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    }
-                                }, {
+                                    value: unitKerja + (subunitKerja ? " (" + subunitKerja + ")" : ""),
+                                    fontSize: 14,
+                                    textAlign: "left"
+                                }],
+                            }, {
+                                cells: [{
+                                    value: `${dateHelper.formatDate(new Date(), "DD-MM-YYYY")}`,
+                                    fontSize: 10,
+                                    textAlign: "right"
+                                    // index: 11,
+                                }],
+                            }, {
+                                cells: [{
+                                //     value: "Unit Kerja",
+                                //     textAlign: "center",
+                                //     verticalAlign: "center",
+                                //     background: "#d3e0ea",
+                                //     borderRight: {
+                                //         color: "#f2f2f2f",
+                                //         size: 1
+                                //     },
+                                //     borderTop: {
+                                //         color: "#f2f2f2f",
+                                //         size: 1
+                                //     },
+                                //     borderLeft: {
+                                //         color: "#f2f2f2f",
+                                //         size: 1
+                                //     },
+                                //     borderBottom: {
+                                //         color: "#f2f2f2f",
+                                //         size: 1
+                                //     }
+                                // }, {
+                                //     value: "Sub Unit Kerja",
+                                //     textAlign: "center",
+                                //     verticalAlign: "center",
+                                //     background: "#d3e0ea",
+                                //     borderRight: {
+                                //         color: "#f2f2f2f",
+                                //         size: 1
+                                //     },
+                                //     borderTop: {
+                                //         color: "#f2f2f2f",
+                                //         size: 1
+                                //     },
+                                //     borderLeft: {
+                                //         color: "#f2f2f2f",
+                                //         size: 1
+                                //     },
+                                //     borderBottom: {
+                                //         color: "#f2f2f2f",
+                                //         size: 1
+                                //     }
+                                // }, {
                                     value: "Nama Pegawai",
                                     textAlign: "center",
-                                    verticalAlign: "center",
-                                    background: "#d3e0ea",
-                                    borderRight: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderTop: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderLeft: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderBottom: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    }
+                                    verticalAlign: "center"
+                                    // background: "#d3e0ea",
+                                    // borderRight: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderTop: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderLeft: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderBottom: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // }
                                 }, {
                                     value: "Kuantitas",
                                     textAlign: "center",
                                     verticalAlign: "center",
-                                    background: "#d3e0ea",
-                                    index: 3,
-                                    borderRight: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderTop: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderLeft: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderBottom: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    }
+                                    index: 1,
+                                    // background: "#d3e0ea",
+                                    // borderRight: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderTop: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderLeft: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderBottom: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // }
                                 }, {
                                     value: "Kualitas",
                                     textAlign: "center",
-                                    index: 5,
                                     verticalAlign: "center",
-                                    background: "#d3e0ea",
-                                    borderRight: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderTop: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderLeft: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderBottom: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    }
+                                    index: 3
+                                    // background: "#d3e0ea",
+                                    // borderRight: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderTop: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderLeft: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderBottom: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // }
                                 }, {
                                     value: "Perilaku",
                                     textAlign: "center",
                                     verticalAlign: "center",
-                                    index: 7,
-                                    background: "#d3e0ea",
-                                    borderRight: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderTop: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderLeft: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderBottom: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    }
+                                    index: 5
+                                    // background: "#d3e0ea",
+                                    // borderRight: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderTop: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderLeft: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderBottom: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // }
                                 }, {
                                     value: "IKI",
                                     textAlign: "center",
-                                    background: "#d3e0ea",
-                                    index: 9,
-                                    borderRight: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderTop: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderLeft: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderBottom: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    }
+                                    verticalAlign: "center",
+                                    index: 7
+                                    // background: "#d3e0ea",
+                                    // borderRight: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderTop: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderLeft: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderBottom: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // }
                                 }, {
                                     value: "Kriteria",
-                                    index: 10,
                                     textAlign: "center",
-                                    background: "#d3e0ea",
-                                    borderRight: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderTop: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderLeft: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderBottom: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    }
+                                    verticalAlign: "center",
+                                    index: 8
+                                    // background: "#d3e0ea",
+                                    // borderRight: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderTop: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderLeft: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderBottom: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // }
                                 }, {
                                     value: "P1",
                                     textAlign: "center",
-                                    background: "#d3e0ea",
-                                    index: 11,
-                                    borderRight: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderTop: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderLeft: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderBottom: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    }
+                                    verticalAlign: "center",
+                                    index: 9
+                                    // background: "#d3e0ea",
+                                    // borderRight: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderTop: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderLeft: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderBottom: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // }
                                 }, {
                                     value: "P2",
                                     textAlign: "center",
-                                    background: "#d3e0ea",
-                                    index: 12,
-                                    borderRight: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderTop: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderLeft: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderBottom: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    }
+                                    verticalAlign: "center",
+                                    index: 10
+                                    // background: "#d3e0ea",
+                                    // borderRight: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderTop: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderLeft: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderBottom: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // }
                                 }]
                             }, {
                                 cells: [{
                                     value: "Bobot (%)",
                                     textAlign: "center",
                                     verticalAlign: "center",
-                                    index: 3,
-                                    background: "#1687a7",
-                                    borderRight: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderTop: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderLeft: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderBottom: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    }
+                                    index: 1
+                                    // background: "#1687a7",
+                                    // borderRight: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderTop: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderLeft: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderBottom: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // }
                                 }, {
                                     value: "Hasil (%)",
                                     textAlign: "center",
                                     verticalAlign: "center",
-                                    index: 4,
-                                    background: "#1687a7",
-                                    borderRight: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderTop: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderLeft: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderBottom: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    }
+                                    index: 2
+                                    // background: "#1687a7",
+                                    // borderRight: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderTop: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderLeft: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderBottom: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // }
                                 }, {
                                     value: "Bobot (%)",
                                     textAlign: "center",
                                     verticalAlign: "center",
-                                    index: 5,
-                                    background: "#1687a7",
-                                    borderRight: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderTop: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderLeft: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderBottom: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    }
+                                    index: 3
+                                    // background: "#1687a7",
+                                    // borderRight: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderTop: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderLeft: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderBottom: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // }
                                 }, {
                                     value: "Hasil (%)",
                                     textAlign: "center",
                                     verticalAlign: "center",
-                                    index: 6,
-                                    background: "#1687a7",
-                                    borderRight: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderTop: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderLeft: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderBottom: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    }
+                                    index: 4
+                                    // background: "#1687a7",
+                                    // borderRight: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderTop: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderLeft: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderBottom: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // }
                                 }, {
                                     value: "Bobot (%)",
                                     textAlign: "center",
                                     verticalAlign: "center",
-                                    index: 7,
-                                    background: "#1687a7",
-                                    borderRight: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderTop: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderLeft: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderBottom: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    }
+                                    index: 5
+                                    // background: "#1687a7",
+                                    // borderRight: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderTop: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderLeft: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderBottom: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // }
                                 }, {
                                     value: "Hasil (%)",
                                     textAlign: "center",
                                     verticalAlign: "center",
-                                    index: 8,
-                                    background: "#1687a7",
-                                    borderRight: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderTop: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderLeft: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    },
-                                    borderBottom: {
-                                        color: "#f2f2f2f",
-                                        size: 1
-                                    }
+                                    index: 6
+                                    // background: "#1687a7",
+                                    // borderRight: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderTop: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderLeft: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // },
+                                    // borderBottom: {
+                                    //     color: "#f2f2f2f",
+                                    //     size: 1
+                                    // }
                                 }]
                             }, ...rows]
                         }]
                     });
                     //save the file as Excel file with extension xlsx
-                    kendo.saveAs({ dataURI: workbook.toDataURL(), fileName: "rekapitulasi-penilaian-kinerja-individu-periode-" + periode + "-" + tahun + "(" + dateHelper.formatDate(new Date(), "DDMMYYYY") + ").xlsx" });
+                    kendo.saveAs({ 
+                        dataURI: workbook.toDataURL(), 
+                        fileName: "Rekap Penilaian Kinerja Individu " + unitKerja + (subunitKerja ? " (" + subunitKerja + ")" : "") + " Periode " + periode + ".xlsx" 
+                    });
                 });
 
             }
