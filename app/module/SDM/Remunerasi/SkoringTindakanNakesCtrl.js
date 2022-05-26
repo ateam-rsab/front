@@ -124,7 +124,7 @@ define(['initialize'], function (initialize) {
                                     { autoWidth: true }
                                 ],
                                 // Title of the sheet
-                                title: "Skoring Tindakan Nakes " + pegawaiLogin.nama,
+                                // title: "Skoring Tindakan Nakes " + pegawaiLogin.nama,
                                 // Rows of the sheet
                                 rows: rows
                             }
