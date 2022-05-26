@@ -308,7 +308,7 @@ define(['initialize'], function (initialize) {
                                 }],
                             }, {
                                 cells: [{
-                                    value: `${dateHelper.formatDate(new Date(), "DD-MM-YYYY")}`,
+                                    value: `${dateHelper.formatDate(new Date(), "DD-MM-YYYY HH:MM:SS")}`,
                                     fontSize: 10,
                                     textAlign: "right"
                                     // index: 11,
