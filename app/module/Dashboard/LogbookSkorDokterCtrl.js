@@ -13,6 +13,8 @@ define(['initialize'], function (initialize) {
             $scope.dataSourceDJK = [];
             $scope.dataSourceLJK = [];
 
+            $scope.periode = undefined;
+
             $scope.isIT = true;
             var userLogin = JSON.parse(localStorage.getItem('datauserlogin'));
             if (userLogin.id === 28253) {
@@ -69,7 +71,7 @@ define(['initialize'], function (initialize) {
 
             let getHeaderTable = () => {
                 $scope.headerTable = [];
-                var dt = new Date();
+                var dt = $scope.periode ? new Date($scope.periode) : new Date();
                 var month = dt.getMonth() + 1;
                 var year = dt.getFullYear();
                 $scope.daysInMonth = new Date(year, month, 0).getDate();
@@ -91,6 +93,7 @@ define(['initialize'], function (initialize) {
             init();
 
             $scope.getDataLogbook = () => {
+                $scope.periode = $scope.item.periode;
                 getHeaderTable();
 
                 $scope.isRouteLoading = true;
