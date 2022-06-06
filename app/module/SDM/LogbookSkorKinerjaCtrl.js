@@ -105,7 +105,7 @@ define(['initialize'], function (initialize) {
 
             let getHeaderTable = () => {
                 $scope.headerTable = [];
-                var dt = new Date();
+                var dt = $scope.periode ? new Date($scope.periode) : new Date();
                 var month = dt.getMonth() + 1;
                 var year = dt.getFullYear();
                 $scope.daysInMonth = new Date(year, month, 0).getDate();
@@ -240,6 +240,7 @@ define(['initialize'], function (initialize) {
                     })
                 })
 
+                $scope.periode = $scope.item.periode;
                 getHeaderTable();
             }
 
@@ -316,6 +317,7 @@ define(['initialize'], function (initialize) {
                     }
                 })
 
+                $scope.periode = $scope.item.periode;
                 getHeaderTable();
             }
 
