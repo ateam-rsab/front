@@ -333,7 +333,9 @@ define(['initialize'], function (initialize) {
 						$scope.item.isPasien = false
 					}
 				}
-				// $scope.loadDataVerif()
+
+				$scope.item.diskonpegawai = 1;
+				$scope.loadDataVerif();
 			};
 		}
 	]);
