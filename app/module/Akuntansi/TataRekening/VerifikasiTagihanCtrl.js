@@ -200,8 +200,8 @@ define(['initialize'], function (initialize) {
 
 						$scope.isRouteLoading = false
 						var confirm = $mdDialog.confirm()
-							.title('Konfirmasi Diskon Karyawan/ Keluarga Inti')
-							.textContent('Diskon karyawan/ keluarga inti sebesar ' + formatRupiah($scope.item.totalKlaim, "Rp"))
+							.title('Konfirmasi Diskon Karyawan')
+							.textContent('Diskon karyawan sebesar ' + formatRupiah($scope.item.totalKlaim, "Rp"))
 							.ariaLabel('Lucky day')
 							.targetEvent(e)
 							.ok('OK')
