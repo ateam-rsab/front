@@ -838,6 +838,9 @@ define(['initialize'], function (initialize) {
                     var checked = ev.target.checked;
                     if (checked) {
                         $scope.isAsPegOrKel = true
+
+                        $scope.item.diskonpegawai = 1
+                        loadDataVerif()
                     } else {
                         if ($scope.diskonpegawaiexisting && $scope.diskonpegawaiexisting != 0) {
                             $scope.isAsPegOrKel = true
@@ -848,8 +851,10 @@ define(['initialize'], function (initialize) {
                             $scope.item.isPenungguPasien = false
                             $scope.item.isPasien = false
                         }
+
+                        $scope.item.diskonpegawai = 0
+                        loadDataVerif()
                     }
-                    loadDataVerif()
                 } else {
                     $scope.isDiskonKaryawanKeluargaInti = false;
                     toastr.warning("Diskon hanya untuk pasien umum/ pribadi")
