@@ -321,9 +321,6 @@ define(['initialize'], function (initialize) {
 				// var inputId = ev.currentTarget.id;
 				if (checked) {
 					$scope.isAsPegOrKel = true
-
-					$scope.item.diskonpegawai = 1;
-					$scope.loadDataVerif();
 				} else {
 					if ($scope.diskonpegawaiexisting && $scope.diskonpegawaiexisting != 0) {
 						$scope.isAsPegOrKel = true
@@ -335,10 +332,8 @@ define(['initialize'], function (initialize) {
 						$scope.item.isPenungguPasien = false
 						$scope.item.isPasien = false
 					}
-
-					$scope.item.diskonpegawai = 0;
-					$scope.loadDataVerif();
 				}
+				$scope.loadDataVerif();
 			};
 		}
 	]);
