@@ -208,7 +208,7 @@ define(['initialize'], function (initialize) {
 							.cancel('Cancel');
 						$mdDialog.show(confirm).then(function () {
 							$scope.isRouteLoading = true
-							manageSdmNew.getListData("pelayanan/klaim-diskon-karyawan?noRegistrasi=" + $scope.item.noRegistrasi
+							manageSdmNew.getListData("pelayanan/klaim-diskon?noRegistrasi=" + $scope.item.noRegistrasi
 								+ "&totalKlaim=" + $scope.item.totalKlaim + "&jenisDiskon=" + $scope.item.diskonpegawai)
 								.then(function (e) {
 									//set nol kembali karena klaim ke diri sendiri bukan ke penjamin/ pihak ketiga
