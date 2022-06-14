@@ -440,7 +440,7 @@ define(["initialize"], function (initialize) {
 
       $scope.unVerifikasi = function () {
         if ($scope.dataPasienSelected.noverif != undefined) {
-          alert("Sudah dalam penagihan piutang, tidak bisa di Unverifikasi!");
+          alert("Sudah dalam penagihan piutang, tidak bisa batal verifikasi!");
           return;
         }
 
@@ -452,7 +452,7 @@ define(["initialize"], function (initialize) {
           return;
         }
 
-        if (confirm("Unverifikasi ? ")) {
+        if (confirm("Batal Verifikasi ? ")) {
           // Save it!
           manageTataRekening
             .saveUnVerifikasiTagihan($scope.dataPasienSelected.noRegistrasi)
