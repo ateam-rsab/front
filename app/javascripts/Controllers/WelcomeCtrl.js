@@ -74,6 +74,11 @@ define(['initialize'], function (initialize) {
 
             $scope.dataPemberitahuan = [
                 {
+                    path: "data/dokumen/Nodin-Bimtek-SKP.pdf",
+                    fileName: "Nota Dinas Bimtek SKP",
+                    new: true
+                },
+                {
                     path: "data/dokumen/Formulir-Permohonan-Surat-Keterangan.pdf",
                     fileName: "Formulir Permohonan Surat Keterangan / Perincian Penghasilan",
                     new: true
