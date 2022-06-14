@@ -141,7 +141,7 @@ define(["initialize"], function (initialize) {
           if (rs.data.data == "SUKSES") {
             toastr.success(rs.data.data);
           } else {
-            toastr.warning(rs.data.data);
+            toastr.warning(rs.data.data, "Peringatan");
           }
         });
       };
@@ -383,7 +383,7 @@ define(["initialize"], function (initialize) {
           $scope.dataPasienSelected.jenisAsuransi === "Umum/Pribadi" &&
           $scope.dataPasienSelected.nosbm
         ) {
-          toastr.info("Tidak bisa Verifikasi Data!");
+          toastr.info("Tidak bisa Verifikasi Data!", "Informasi");
           return;
         }
 
@@ -452,7 +452,7 @@ define(["initialize"], function (initialize) {
           $scope.dataPasienSelected.jenisAsuransi === "Umum/Pribadi" &&
           $scope.dataPasienSelected.nosbm
         ) {
-          toastr.info("Tidak bisa Verifikasi Data!");
+          toastr.info("Tidak bisa Verifikasi Data!", "Informasi");
           return;
         }
 
