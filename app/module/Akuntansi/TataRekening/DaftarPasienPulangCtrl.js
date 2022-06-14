@@ -138,7 +138,11 @@ define(["initialize"], function (initialize) {
       LoadCache();
       $scope.BtalDiskon = function () {
         manageSdmNew.getListData("pelayanan/reset-klaim-diskon?noRegistrasi=" + $scope.dataPasienSelected.noRegistrasi).then(function (rs) {
-          toastr.info(rs.data.data);
+          if (rs.data.data == "SUKSES") {
+            toastr.success(rs.data.data);
+          } else {
+            toastr.warning(rs.data.data);
+          }
         });
       };
 
