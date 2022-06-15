@@ -117,7 +117,7 @@ define(['initialize'], function (initialize) {
                             cells: [
                                 { value: data[i].kelompokKerja },
                                 { value: data[i].namaProduk },
-                                { value: data[i].detailProduk },
+                                // { value: data[i].detailProduk },
                                 { value: data[i].skor },
                                 { value: data[i].tglMulaiBerlaku },
                                 { value: data[i].statusVerifikasi }
@@ -136,14 +136,14 @@ define(['initialize'], function (initialize) {
                                     { autoWidth: true },
                                     { autoWidth: true },
                                     { autoWidth: true },
-                                    { autoWidth: true },
-                                    { autoWidth: true },
-                                    { autoWidth: true },
-                                    { autoWidth: true },
+                                    // { autoWidth: true },
+                                    // { autoWidth: true },
+                                    // { autoWidth: true },
+                                    // { autoWidth: true },
                                     { autoWidth: true }
                                 ],
                                 // Title of the sheet
-                                title: "Skoring Tindakan Medis " + pegawaiLogin.nama,
+                                // title: "Skoring Tindakan Medis " + pegawaiLogin.nama,
                                 // Rows of the sheet
                                 rows: rows
                             }
