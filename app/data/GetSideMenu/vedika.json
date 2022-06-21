@@ -12,6 +12,10 @@
         "link": "#/SkoringTindakanMedis"
     },
     {
+        "name": "Skoring Tindakan Farmakologi",
+        "link": "#/SkoringTindakanFarmakologi"
+    },
+    {
         "name": "Setting",
         "children": [
             {
