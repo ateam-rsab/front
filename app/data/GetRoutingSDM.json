@@ -5012,6 +5012,34 @@
     ]
   },
   {
+    "name": "MasterProdukFarmakologi",
+    "url": "/MasterProdukFarmakologi",
+    "templateurl": "module/SDM/Remunerasi/MasterProdukFarmakologi.html",
+    "controller": "MasterProdukFarmakologiCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "PhpServices",
+        "define": "PhpServices"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      }
+    ]
+  },
+  {
     "name": "MasterProfesiTKL",
     "url": "/MasterProfesiTKL",
     "templateurl": "module/SDM/Remunerasi/MasterProfesiTKL.html",

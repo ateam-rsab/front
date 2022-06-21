@@ -133,6 +133,10 @@
                         "link": "#/MasterProfesiTKL"
                     },
                     {
+                        "name": "Master Produk Farmakologi",
+                        "link": "#/MasterProdukFarmakologi"
+                    },
+                    {
                         "name": "Master Produk Perawat",
                         "link": "#/MasterProdukPerawat"
                     },
