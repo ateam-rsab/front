@@ -885,6 +885,10 @@
       "urlDep": "module/SDM/Remunerasi/MasterProdukTKLCtrl"
     },
     {
+      "nameDep": "MasterProdukFarmakologiCtrl",
+      "urlDep": "module/SDM/Remunerasi/MasterProdukFarmakologiCtrl"
+    },
+    {
       "nameDep": "MasterProdukPerawatCtrl",
       "urlDep": "module/SDM/Remunerasi/MasterProdukPerawatCtrl"
     },
