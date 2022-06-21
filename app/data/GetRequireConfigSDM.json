@@ -837,6 +837,10 @@
       "urlDep": "module/SDM/Remunerasi/SkoringTindakanNakesCtrl"
     },
     {
+      "nameDep": "SkoringTindakanFarmakologiCtrl",
+      "urlDep": "module/SDM/Remunerasi/SkoringTindakanFarmakologiCtrl"
+    },
+    {
       "nameDep": "RiwayatEvaluasiJabatanCtrl",
       "urlDep": "module/SDM/Remunerasi/RiwayatEvaluasiJabatanCtrl"
     },

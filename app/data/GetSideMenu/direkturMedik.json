@@ -395,6 +395,10 @@
                 "link": "#/SkoringTindakanMedis"
             },
             {
+                "name": "Skoring Tindakan Farmakologi",
+                "link": "#/SkoringTindakanFarmakologi"
+            },
+            {
                 "name": "Verifikasi Uraian Tugas Bawahan",
                 "link": "#/VerifikasiUraianTugasPegawaiLogin"
             },
