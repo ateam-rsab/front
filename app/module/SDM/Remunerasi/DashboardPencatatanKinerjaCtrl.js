@@ -15,6 +15,7 @@ define(['initialize'], function (initialize) {
 
             $scope.item = {};
             $scope.nakes = {};
+            $scope.farmakologi = {};
 
             $scope.dataLogin = JSON.parse(localStorage.getItem("pegawai"));
 
@@ -30,6 +31,9 @@ define(['initialize'], function (initialize) {
                         if (res.data.data.length == 1) {
                             $scope.nakes.profesi = res.data.data[0];
                         }
+                    }),
+                    ManageSdmNew.getListData("service/list-generic/?view=ProdukFarmakologi&select=id,namaProduk&criteria=statusEnabled&values=true&order=namaProduk:asc").then(res => {
+                        $scope.listProdukFarmakologi = res.data;
                     })
                 ])
             }
@@ -298,7 +302,7 @@ define(['initialize'], function (initialize) {
 
             let autoIndikator = [466, 350, 351, 357, 674, 712]
             $scope.showDetail = (data) => {
-                if (!autoIndikator.includes(data.idIndikator) && data.idIndikator != 678 && data.idIndikator != 712) {
+                if (!autoIndikator.includes(data.idIndikator) && data.idIndikator != 678 && data.idIndikator != 712 && data.idIndikator != 758) {
                     $scope.labelDetail = data.namaIndikator
 
                     let URL = "iki-remunerasi/catatan-kegiatan-harian-indikator?pegawaiId=" + data.idPegawai
@@ -314,7 +318,7 @@ define(['initialize'], function (initialize) {
 
                         $scope.popupDetail1.open().center();
                     })
-                } else if (data.idIndikator == 466 || data.idIndikator == 678 || data.idIndikator == 712) {
+                } else if (data.idIndikator == 466 || data.idIndikator == 678 || data.idIndikator == 712 || data.idIndikator == 758) {
                     $state.go('LihatLogbookSkorKinerja', { bulan: dateHelper.toTimeStamp($scope.item.bulan), pegawaiId: $scope.item.pegawai.id });
                 } else {
                     toastr.info("Indikator ini dihitung otomatis", "Informasi")
@@ -347,6 +351,10 @@ define(['initialize'], function (initialize) {
                         $scope.getListProduk($scope.nakes.profesi.id)
                     }
                     $scope.popupAdd2.open().center();
+                } else if (data.idIndikator == 758) {
+                    $scope.resetForm3();
+
+                    $scope.popupAdd3.open().center();
                 } else {
                     $scope.resetForm1()
                     $scope.popupAdd1.open().center();
@@ -413,6 +421,40 @@ define(['initialize'], function (initialize) {
                 })
             }
 
+            $scope.simpanData3 = () => {
+                $scope.isDisabledButtonSave = true;
+
+                if (!$scope.farmakologi.jmlLayanan || $scope.farmakologi.jmlLayanan === 0) {
+                    toastr.warning("Jumlah layanan belum diisi");
+                    return;
+                }
+
+                let dataSave = {
+                    kdProfile: 0,
+                    statusEnabled: true,
+                    produk: {
+                        id: $scope.farmakologi.kegiatan.id
+                    },
+                    tglPelayanan: dateHelper.toTimeStamp($scope.farmakologi.tglPelayanan),
+                    jumlah: $scope.farmakologi.jmlLayanan,
+                    pegawai: {
+                        id: $scope.item.pegawai.id
+                    },
+                    catatan: $scope.farmakologi.catatan
+                }
+
+                ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-pelayanan-farmakologi").then(res => {
+                    $scope.isDisabledButtonSave = false;
+                    $scope.closepopUp3();
+                    $scope.getDataDashboard();
+                }, (error) => {
+                    $scope.isDisabledButtonSave = false;
+                    if (error.status == 400) {
+                        toastr.error("Tanggal kegiatan harus diisi dengan tanggal di bulan berjalan", "Informasi")
+                    }
+                })
+            }
+
             $scope.resetForm1 = () => {
                 if ($scope.item) {
                     $scope.item.namaKegiatan = null
@@ -428,6 +470,10 @@ define(['initialize'], function (initialize) {
                 $scope.listProduk = undefined
             }
 
+            $scope.resetForm3 = () => {
+                $scope.farmakologi = undefined
+            }
+
             $scope.closepopUp1 = () => {
                 $scope.resetForm1();
                 $scope.popupAdd1.close();
@@ -436,6 +482,11 @@ define(['initialize'], function (initialize) {
             $scope.closepopUp2 = () => {
                 $scope.resetForm2();
                 $scope.popupAdd2.close();
+            }
+
+            $scope.closepopUp3 = () => {
+                $scope.resetForm3();
+                $scope.popupAdd3.close();
             }
 
             document.querySelector("#hasil").addEventListener("keypress", function (evt) {

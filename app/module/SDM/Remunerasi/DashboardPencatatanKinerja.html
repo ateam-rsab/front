@@ -423,6 +423,64 @@
     </div>
 </div>
 
+<div kendo-window="popupAdd3" k-title="'Tambah Data'" k-width="1200" k-visible="false" k-on-open="win2visible= true"
+    k-on-close="win2visible= false">
+    <div class="panel panel-default container_12" style="padding: 0px 10px;">
+        <md-card>
+            <md-card-body style="padding: 10px;">
+                <h5>{{labelData}}</h5>
+                <div class="grid_12">
+                    <div class="grid_12">
+                        <div class="grid_8">
+                            <label><strong>Kegiatan</strong></label>
+                            <input kendo-combo-box k-filter="'contains'" k-ng-model="farmakologi.kegiatan"
+                                k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-data-source="listProdukFarmakologi" />
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_4">
+                            <label><strong>Tanggal Kegiatan</strong></label>
+                            <input style="width: 100%;" k-ng-model="farmakologi.tglPelayanan" kendo-date-time-picker
+                                placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy HH:mm'" />
+                        </div>
+                        <div class="grid_2">
+                            <label><strong>Jumlah Kegiatan</strong></label>
+                            <input c-text-box type="number" class="k-textbox" ng-model="farmakologi.jmlLayanan" />
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <label><strong>Catatan</strong></label>
+                        <textarea c-text-box ng-model="farmakologi.catatan" rows="20" maxlength="1000"></textarea>
+                        <p class="length-textarea">
+                            {{farmakologi.catatan ? farmakologi.catatan.length : 0}}/1000</p>
+                    </div>
+            </md-card-body>
+        </md-card>
+
+        <div class="k-edit-buttons k-state-default" style="margin-top:10px">
+            <div class="grid_6"></div>
+            <div class="grid_2">
+                <md-button class="md-raised md-warn medium-button" ng-click="closepopUp3()">
+                    <span style="margin-right: 5px;">Batal</span>
+                    <i class="fa fa-close"></i>
+                </md-button>
+            </div>
+            <div class="grid_2">
+                <md-button class="md-raised md-warn medium-button" ng-click="resetForm3()">
+                    <span style="margin-right: 5px;">Reset</span>
+                    <i class="fa fa-refresh"></i>
+                </md-button>
+            </div>
+            <div class="grid_2">
+                <md-button class="md-raised md-primary medium-button" ng-click="simpanData3()" ng-disabled="isDisabledButtonSave">
+                    <span style="margin-right: 5px;">Simpan</span>
+                    <i class="fa fa-save"></i>
+                </md-button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div kendo-window="popupDetail1" k-title="'Detail'" k-width="1200" k-visible="false" k-on-open="win2visible= true"
     k-on-close="win2visible= false">
     <div class="panel panel-default container_12" style="padding: 0px 10px;">
