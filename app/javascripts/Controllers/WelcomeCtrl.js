@@ -74,6 +74,11 @@ define(['initialize'], function (initialize) {
 
             $scope.dataPemberitahuan = [
                 {
+                    path: "data/dokumen/PEMBERITAHUAN-KGB-JULI-2022.pdf",
+                    fileName: "PEMBERITAHUAN KGB JULI 2022",
+                    new: true
+                },
+                {
                     path: "data/dokumen/Nodin-Bimtek-SKP.pdf",
                     fileName: "Nota Dinas Bimtek SKP",
                     new: true
