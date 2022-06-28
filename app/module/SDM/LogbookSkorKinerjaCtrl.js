@@ -134,17 +134,27 @@ define(['initialize'], function (initialize) {
                     return;
                 }
 
-                ManageSdmNew.getListData("sdm/get-kelompok-jabatan-logbook-skor?pegawaiId=" + ($scope.item.pegawai ? $scope.item.pegawai.id : $scope.pegawaiLogin.id)).then((res) => {
-                    switch (res.data.data) {
+                ManageSdmNew.getListData("sdm/get-akses-logbook-skor?pegawaiId=" + ($scope.item.pegawai ? $scope.item.pegawai.id : $scope.pegawaiLogin.id)).then((res) => {
+                    switch (res.data.data.kategori) {
                         case 3:
                         case 4:
-                            baseUrl = "get-logbook-skoring-dokter-jam-kerja";
-                            urlDetail = "get-detail-pasien-dokter-jam-kerja";
-
-                            indikatorId = 466;
-                            $scope.namaJenisPegawai = "Dokter";
-                            $scope.isNakesLain = false;
-                            break;
+                            if (res.data.data.subKategori == 1) {
+                                baseUrl = "get-logbook-skoring-farmakologi";
+                                urlDetail = "get-detail-logbook-skoring-farmakologi";
+    
+                                indikatorId = 758;
+                                $scope.namaJenisPegawai = "Dokter Farmakologi";
+                                $scope.isNakesLain = false;
+                                break;
+                            } else {
+                                baseUrl = "get-logbook-skoring-dokter-jam-kerja";
+                                urlDetail = "get-detail-pasien-dokter-jam-kerja";
+    
+                                indikatorId = 466;
+                                $scope.namaJenisPegawai = "Dokter";
+                                $scope.isNakesLain = false;
+                                break;
+                            }
                         case 5:
                             baseUrl = "get-logbook-skoring-perawat";
                             urlDetail = "get-detail-logbook-skoring-perawat";
@@ -245,17 +255,27 @@ define(['initialize'], function (initialize) {
             }
 
             let load = () => {
-                ManageSdmNew.getListData("sdm/get-kelompok-jabatan-logbook-skor?pegawaiId=" + ($scope.item.pegawai ? $scope.item.pegawai.id : $scope.pegawaiLogin.id)).then((res) => {
-                    switch (res.data.data) {
+                ManageSdmNew.getListData("sdm/get-akses-logbook-skor?pegawaiId=" + ($scope.item.pegawai ? $scope.item.pegawai.id : $scope.pegawaiLogin.id)).then((res) => {
+                    switch (res.data.data.kategori) {
                         case 3:
                         case 4:
-                            baseUrl = "get-logbook-skoring-dokter-jam-kerja";
-                            urlDetail = "get-detail-pasien-dokter-jam-kerja";
-
-                            indikatorId = 466;
-                            $scope.namaJenisPegawai = "Dokter";
-                            $scope.isNakesLain = false;
-                            break;
+                            if (res.data.data.subKategori == 1) {
+                                baseUrl = "get-logbook-skoring-farmakologi";
+                                urlDetail = "get-detail-logbook-skoring-farmakologi";
+    
+                                indikatorId = 758;
+                                $scope.namaJenisPegawai = "Dokter Farmakologi";
+                                $scope.isNakesLain = false;
+                                break;
+                            } else {
+                                baseUrl = "get-logbook-skoring-dokter-jam-kerja";
+                                urlDetail = "get-detail-pasien-dokter-jam-kerja";
+    
+                                indikatorId = 466;
+                                $scope.namaJenisPegawai = "Dokter";
+                                $scope.isNakesLain = false;
+                                break;
+                            }
                         case 5:
                             baseUrl = "get-logbook-skoring-perawat";
                             urlDetail = "get-detail-logbook-skoring-perawat";
