@@ -44,7 +44,7 @@ define(["initialize"], function (initialize) {
             name: "Tambah",
             template:
               '<button ng-click="showPopupAdd()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-plus"></span>Tambah Data</button>',
-          },  {
+          }, {
             text: "export",
             name: "Tambah",
             template:
@@ -91,63 +91,61 @@ define(["initialize"], function (initialize) {
       $scope.exportExcel = () => {
         var tempDataExport = [];
         var rows = [
-            {
-                cells: [
-                    { value: "Nama Produk" },
-                    { value: "Kode Produk" },
-                    { value: "Profesi Pelaksana" }
-                ]
-            }
+          {
+            cells: [
+              { value: "Nama Produk" },
+              { value: "Kode Produk" },
+              { value: "Profesi Pelaksana" }
+            ]
+          }
         ];
 
         tempDataExport = $scope.dataSource;
         tempDataExport.fetch(function () {
-            var data = this.data();
-            console.log(data);
-            for (var i = 0; i < data.length; i++) {
-                //push single row for every record
-                rows.push({
-                    cells: [
-                        { value: data[i].namaProduk },
-                        { value: data[i].kodeProduk },
-                        { value: data[i].namaProfesi }
-                    ]
-                })
-            }
-            var workbook = new kendo.ooxml.Workbook({
-                sheets: [
-                    {
-                        freezePane: {
-                            rowSplit: 1
-                        },
-                        columns: [
-                            // Column settings (width)
-                            { autoWidth: true },
-                            { autoWidth: true },
-                            { autoWidth: true },
-                            { autoWidth: true }
-                        ],
-                        // Title of the sheet
-                        title: "Master Produk TKL",
-                        // Rows of the sheet
-                        rows: rows
-                    }
-                ]
-            });
-            //save the file as Excel file with extension xlsx
-            kendo.saveAs({ dataURI: workbook.toDataURL(), fileName: "data-master-produk-TKL.xlsx" });
+          var data = this.data();
+          console.log(data);
+          for (var i = 0; i < data.length; i++) {
+            //push single row for every record
+            rows.push({
+              cells: [
+                { value: data[i].namaProduk },
+                { value: data[i].kodeProduk },
+                { value: data[i].namaProfesi }
+              ]
+            })
+          }
+          var workbook = new kendo.ooxml.Workbook({
+            sheets: [
+              {
+                freezePane: {
+                  rowSplit: 1
+                },
+                columns: [
+                  // Column settings (width)
+                  { autoWidth: true },
+                  { autoWidth: true },
+                  { autoWidth: true },
+                  { autoWidth: true }
+                ],
+                // Title of the sheet
+                title: "Master Produk TKL",
+                // Rows of the sheet
+                rows: rows
+              }
+            ]
+          });
+          //save the file as Excel file with extension xlsx
+          kendo.saveAs({ dataURI: workbook.toDataURL(), fileName: "data-master-produk-TKL.xlsx" });
         });
-        
+
       }
 
       $scope.getData = () => {
         $scope.isRouteLoading = true;
         manageSdmNew
           .getListData(
-            `iki-remunerasi/get-produk-nakes?namaProduk=${
-              $scope.src.namaProduk ? $scope.src.namaProduk : ""
-            }&kdProduk=${
-              $scope.src.kdProduk ? $scope.src.kdProduk.id : ""
+            `iki-remunerasi/get-produk-nakes?namaProduk=${$scope.src.namaProduk ? $scope.src.namaProduk : ""
+            }&kdProduk=${$scope.src.kdProduk ? $scope.src.kdProduk.id : ""
             }&profesiId=${$scope.src.profesi ? $scope.src.profesi.id : ""}`
           )
           .then((res) => {
@@ -264,28 +262,38 @@ define(["initialize"], function (initialize) {
           });
       };
 
-      $scope.checkDuplicateData = () => {
+      $scope.$watch('item.namaProduk', function (e) {
+        if (!e) return;
         let paramProductId = "";
         if ($scope.item.produkId)
           paramProductId = `&produkId=${$scope.item.produkId}`;
-        manageSdmNew
-          .getListData(
-            `iki-remunerasi/get-duplicate-produk-nakes?namaProduk=${
-              $scope.item.namaProduk ? $scope.item.namaProduk : ""
-            }&profesiId=${
-              $scope.item.profesi ? $scope.item.profesi.id : ""
-            }${paramProductId}`
-          )
-          .then((res) => {
-            if (res.data.data.length > 0) {
-              $scope.isDuplicated = true;
+        manageSdmNew.getListData(`iki-remunerasi/get-duplicate-produk-nakes?namaProduk=${$scope.item.namaProduk ? $scope.item.namaProduk : ""}&profesiId=${$scope.item.profesi ? $scope.item.profesi.id : ""}${paramProductId}`).then((res) => {
+          if (res.data.data.length > 0) {
+            $scope.isDuplicated = true;
 
-              toastr.info("Data sudah ada")
-            } else {
-              $scope.isDuplicated = false;
-            }
-          });
-      };
+            toastr.info("Data sudah ada")
+          } else {
+            $scope.isDuplicated = false;
+          }
+        });
+      });
+
+      $scope.$watch('item.profesi', function (e) {
+        if (!e) return;
+        let paramProductId = "";
+        if ($scope.item.produkId)
+          paramProductId = `&produkId=${$scope.item.produkId}`;
+        manageSdmNew.getListData(`iki-remunerasi/get-duplicate-produk-nakes?namaProduk=${$scope.item.namaProduk ? $scope.item.namaProduk : ""}&profesiId=${$scope.item.profesi ? $scope.item.profesi.id : ""}${paramProductId}`).then((res) => {
+          if (res.data.data.length > 0) {
+            $scope.isDuplicated = true;
+
+            toastr.info("Data sudah ada")
+          } else {
+            $scope.isDuplicated = false;
+          }
+        });
+      });
+
     },
   ]);
 });

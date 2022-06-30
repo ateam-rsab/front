@@ -38,10 +38,6 @@ define(["initialize"], function (initialize) {
           field: "kodeProduk",
           title: "<h3>Kode Produk</h3>",
           width: 50,
-          // }, {
-          //   field: "namaProfesi",
-          //   title: "<h3>Profesi Pelaksana</h3>",
-          //   width: 75,
         }, {
           command: [{
             text: "Hapus",
@@ -63,7 +59,6 @@ define(["initialize"], function (initialize) {
           cells: [
             { value: "Nama Produk" },
             { value: "Kode Produk" }
-            // { value: "Profesi Pelaksana" }
           ]
         }];
 
@@ -76,7 +71,6 @@ define(["initialize"], function (initialize) {
               cells: [
                 { value: data[i].namaProduk },
                 { value: data[i].kodeProduk }
-                // { value: data[i].namaProfesi }
               ]
             })
           }
@@ -91,7 +85,6 @@ define(["initialize"], function (initialize) {
                   { autoWidth: true },
                   { autoWidth: true },
                   { autoWidth: true }
-                  // { autoWidth: true }
                 ],
                 // Title of the sheet
                 title: "Master Produk Farmakologi",
@@ -121,9 +114,6 @@ define(["initialize"], function (initialize) {
 
       let init = () => {
         $scope.getData();
-        // manageSdmNew.getListData("service/list-generic/?view=Profesi&select=id,namaProfesi&criteria=statusEnabled&values=true&order=namaProfesi:asc").then((res) => {
-        //   $scope.listProfesi = res.data;
-        // });
       };
 
       init();
@@ -136,7 +126,6 @@ define(["initialize"], function (initialize) {
       $scope.reset = () => {
         $scope.item.namaProduk = "";
         $scope.item.kdProduk = null;
-        // $scope.item.profesi = null;
 
         $scope.item.produkId = null;
       };
@@ -158,10 +147,6 @@ define(["initialize"], function (initialize) {
           kodeProduk: dataItem.kodeProduk,
         };
         $scope.item.produkId = dataItem.produkId;
-        // $scope.item.profesi = {
-        //   id: dataItem.profesiId,
-        //   namaProfesi: dataItem.namaProfesi,
-        // };
         var confirm = $mdDialog
           .confirm()
           .title("Apakah anda yakin menghapus data?")
@@ -186,10 +171,6 @@ define(["initialize"], function (initialize) {
           kodeProduk: dataItem.kodeProduk,
         };
         $scope.item.produkId = dataItem.produkId;
-        // $scope.item.profesi = {
-        //   id: dataItem.profesiId,
-        //   namaProfesi: dataItem.namaProfesi,
-        // };
         $scope.popup.open().center();
       }
 
@@ -200,9 +181,6 @@ define(["initialize"], function (initialize) {
         let dataSave = {
           namaProduk: $scope.item.namaProduk,
           kdProduk: $scope.item.kdProduk.id,
-          // profesi: {
-          //   id: $scope.item.profesi.id,
-          // },
           statusEnabled: statusEnabled,
           kdProfile: 0,
         };
@@ -218,12 +196,13 @@ define(["initialize"], function (initialize) {
         });
       };
 
-      $scope.checkDuplicateData = () => {
+      $scope.$watch('item.namaProduk', function (e) {
+        if (!e) return;
         let paramProductId = "";
         if ($scope.item.produkId)
           paramProductId = `&produkId=${$scope.item.produkId}`;
         manageSdmNew.getListData(
-          `iki-remunerasi/get-duplicate-produk-farmakologi?namaProduk=${$scope.item.namaProduk ? $scope.item.namaProduk : ""}${paramProductId}`
+          `iki-remunerasi/get-duplicate-produk-farmakolgi?namaProduk=${$scope.item.namaProduk ? $scope.item.namaProduk : ""}${paramProductId}`
         ).then((res) => {
           if (res.data.data.length > 0) {
             $scope.isDuplicated = true;
@@ -233,7 +212,7 @@ define(["initialize"], function (initialize) {
             $scope.isDuplicated = false;
           }
         });
-      };
+      });
     },
   ]);
 });
