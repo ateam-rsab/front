@@ -74,6 +74,31 @@ define(['initialize'], function (initialize) {
 
             $scope.dataPemberitahuan = [
                 {
+                    path: "data/dokumen/Formulir-Permohonan-Surat-Keterangan.pdf",
+                    fileName: "Formulir Permohonan Surat Keterangan / Perincian Penghasilan",
+                    new: true
+                },
+                {
+                    path: "data/dokumen/SE-Tata-Cara-Usul-Pencantuman-Gelar-Akademik-Bagi-PNS.pdf",
+                    fileName: "SE Tata Cara Usul Pencantuman Gelar Akademik Bagi PNS",
+                    new: true
+                },
+                {
+                    path: "data/dokumen/PEMBERITAHUAN-USUL-PAK-KEMENTERIAN-KESEHATAN.pdf",
+                    fileName: "PEMBERITAHUAN USUL PAK KEMENTERIAN KESEHATAN",
+                    new: true
+                },
+                {
+                    path: "data/dokumen/PEMBERITAHUAN-SK-KP-FUNGSIONAL-APRIL-2022.pdf",
+                    fileName: "PEMBERITAHUAN SK KP FUNGSIONAL APRIL 2022",
+                    new: true
+                },
+                {
+                    path: "data/dokumen/PEMBERITAHUAN-SK-KPO-APRIL-2022.pdf",
+                    fileName: "PEMBERITAHUAN SK KPO APRIL 2022",
+                    new: true
+                },
+                {
                     path: "data/dokumen/PEMBERITAHUAN-KGB-JULI-2022.pdf",
                     fileName: "PEMBERITAHUAN KGB JULI 2022",
                     new: true
@@ -81,11 +106,6 @@ define(['initialize'], function (initialize) {
                 {
                     path: "data/dokumen/Nodin-Bimtek-SKP.pdf",
                     fileName: "Nota Dinas Bimtek SKP",
-                    new: true
-                },
-                {
-                    path: "data/dokumen/Formulir-Permohonan-Surat-Keterangan.pdf",
-                    fileName: "Formulir Permohonan Surat Keterangan / Perincian Penghasilan",
                     new: true
                 },
                 {
@@ -133,7 +153,6 @@ define(['initialize'], function (initialize) {
                     fileName: "PEMBERITAHUAN - KGB TMT April 2022 an. Budi Bahtiar dkk",
                     new: true
                 },
-                // 
                 {
                     path: "data/dokumen/SE-ttg-ketentuan-TUBEL-pembiayaan-BPPSDMK-KEMENKES-RI-tahun-2022.pdf",
                     fileName: "Surat Edararan tentang ketentuan TUBEL pembiayaan BPPSDMK KEMENKES RI th 2022",
