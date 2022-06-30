@@ -288,6 +288,11 @@ define(['initialize'], function (initialize) {
                 if (isValid.status) {
                     let statusEnabled = method === 'save' || method === 'update';
 
+                    if ($scope.item.statusVerif) {
+                        toastr.warning("Mapping skor sudah terverifikasi", "Peringatan");
+                        return
+                    }
+
                     let dataSave = {
                         skor: parseFloat($scope.item.skor),
                         statusVerifikasi: $scope.item.statusVerif ? true : false,
