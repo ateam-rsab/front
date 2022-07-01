@@ -54,7 +54,7 @@
           </div>
            <div class="grid_4"> 
                <label><b>Tgl Lahir</b></label>
-               <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tglLahir" placeholder="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+               <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tglLahir" placeholder="yyyy-mm-dd" k-format="'yyyy-MM-dd'" />
           </div>
            <div class="grid_4"> 
               <label><b>Kebangsaan</b></label>
@@ -103,7 +103,7 @@
         </div>
         <div class="grid_2" style="margin-top:5px">
             <label c-label real>Tanggal Lahir</label>
-            <input style="width: 100%" kendo-date-picker placeholer="dd-mm-yyyy" k-ng-model="popUp.tglLahir" k-format="'dd-MM-yyyy'" ng-keypress="($event.which == 13)? SearchEnter():popUp.tglLahir" />
+            <input style="width: 100%" kendo-date-picker placeholer="yyyy-mm-dd" k-ng-model="popUp.tglLahir" k-format="'yyyy-MM-dd'" ng-keypress="($event.which == 13)? SearchEnter():popUp.tglLahir" />
         </div>
 
         <div class="grid_2" style="margin-top:5px">
