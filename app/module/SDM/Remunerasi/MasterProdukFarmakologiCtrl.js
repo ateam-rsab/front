@@ -109,6 +109,8 @@ define(["initialize"], function (initialize) {
             pageSize: 20,
           });
           $scope.isRouteLoading = false;
+        }, function (error) {
+          $scope.isRouteLoading = false;
         });
       };
 
