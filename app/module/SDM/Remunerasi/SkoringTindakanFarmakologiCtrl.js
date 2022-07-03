@@ -140,11 +140,15 @@ define(['initialize'], function (initialize) {
                         pageSize: 20
                     });
                     $scope.isRouteLoading = false;
+                }, function (error) {
+                    $scope.isRouteLoading = false;
                 })
 
                 ManageSdmNew.getListData("service/list-generic/?view=ProdukFarmakologi&"
                     + "select=id,namaProduk&criteria=statusEnabled&values=true&order=namaProduk:asc").then(res => {
                         $scope.listNamaProduk = res.data;
+                        $scope.isRouteLoading = false;
+                    }, function (error) {
                         $scope.isRouteLoading = false;
                     })
             }
