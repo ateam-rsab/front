@@ -3,6 +3,7 @@ define(['initialize'], function (initialize) {
     initialize.controller('VerifikasiCatatanKegiatanHarianCtrl', ['$q', 'ManagePegawai', 'FindPegawai', 'DateHelper', 'FindSdm', 'ModelItem', 'ManageSdm', 'ManageSdmNew', '$state', '$rootScope', '$scope', '$mdDialog',
         function ($q, managePegawai, findPegawai, dateHelper, findSdm, modelItem, manageSdm, ManageSdmNew, $state, $rootScope, $scope, $mdDialog) {
             $scope.item = {};
+            $scope.item.showJabatanHistori = false;
             let clicked = 1;
             $scope.isRouteLoading = false;
             $scope.monthSelectorOptions = {
@@ -124,7 +125,7 @@ define(['initialize'], function (initialize) {
             $scope.init();
 
             $scope.exportToExcel = function () {
-                if(!$scope.dataSource2) {
+                if (!$scope.dataSource2) {
                     toastr.info("Tidak ada data untuk di export")
                     return
                 }
@@ -196,7 +197,6 @@ define(['initialize'], function (initialize) {
                     // item.srcBulan
                     kendo.saveAs({ dataURI: workbook.toDataURL(), fileName: `catatan-kegiatan-harian-terverifikasi | ${dateHelper.formatDate($scope.item.srcBulan, 'MMMM YYYY')}-${$scope.item.srcPegawai.namaLengkap}-${$scope.item.srcJabatan.namaJabatan}.xlsx` });
                 });
-                
             }
 
             $scope.getJabatanByIdPegawai = (id) => {
@@ -322,6 +322,36 @@ define(['initialize'], function (initialize) {
 
                 $scope.item.srcJabatan = null
             })
+
+            $scope.updateListJabatan = (id) => {
+                if ((!$scope.item || !$scope.item.srcBulan) && $scope.item.showJabatanHistori) {
+                    $scope.item.showJabatanHistori = false;
+
+                    toastr.warning("Harap pilih Bulan terlebih dahulu", "Peringatan");
+                    return;
+                }
+
+                if (!id && $scope.item.showJabatanHistori) {
+                    $scope.item.showJabatanHistori = false;
+
+                    toastr.warning("Harap pilih Pegawai terlebih dahulu", "Peringatan");
+                    return;
+                }
+
+                if ($scope.item.showJabatanHistori) {
+                    $scope.item.srcJabatan = undefined;
+                    $scope.listJabatan = [];
+                    ManageSdmNew.getListData("pegawai/jabatan-logbook-kinerja?pegawaiId=" + id + "&bulan=" + ($scope.item.srcBulan ? dateHelper.toTimeStamp($scope.item.srcBulan) : '')).then((res) => {
+                        $scope.listJabatan = res.data.data;
+                    });
+                } else {
+                    $scope.item.srcJabatan = undefined;
+                    $scope.listJabatan = [];
+                    ManageSdmNew.getListData("pegawai/jabatan-kontrak-verif-kinerja?pegawaiId=" + id + "&pegawaiLoginId=" + dataPegawai.id).then((res) => {
+                        $scope.listJabatan = res.data.data;
+                    });
+                }
+            }
         }
     ])
 });
