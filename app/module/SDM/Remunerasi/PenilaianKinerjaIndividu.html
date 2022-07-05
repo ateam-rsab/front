@@ -1,3 +1,13 @@
+<style>
+    md-checkbox.md-checked.green .md-icon {
+        background-color: #38c4b2;
+    }
+
+    md-checkbox {
+        display: flex;
+    }
+</style>
+
 <md-toolbar md-scroll-shrink class="shadow">
     <div class="md-toolbar-tools">Penilaian Kinerja Individu</div>
 </md-toolbar>
@@ -13,6 +23,11 @@
         <input kendo-combo-box k-filter="'contains'" k-ng-model="item.pegawai" k-data-text-field="'namaLengkap'"
             k-data-value-field="'id'" k-data-source="listPegawai"
             k-on-change="getJabatanByIdPegawai(item.pegawai.id)" />
+    </div>
+    <div class="grid_1" style="margin-top: 1.6em;">
+        <md-checkbox class="green" ng-model="item.showJabatanHistori" ng-change="updateListJabatan(item.pegawai.id)">
+            <strong>Munculkan Jabatan Lama</strong>
+        </md-checkbox>
     </div>
     <div class="grid_3">
         <label><strong>Jabatan</strong></label>

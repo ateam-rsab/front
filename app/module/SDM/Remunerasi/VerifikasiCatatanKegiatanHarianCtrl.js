@@ -317,10 +317,17 @@ define(['initialize'], function (initialize) {
                 }, function () { });
             }
 
+            $scope.$watch('item.srcBulan', function (e) {
+                if (!e) return;
+
+                $scope.updateListJabatan($scope.item.srcPegawai ? $scope.item.srcPegawai.id : undefined);
+            })
+
             $scope.$watch('item.srcPegawai', function (e) {
                 if (!e) return;
 
-                $scope.item.srcJabatan = null
+                $scope.item.srcJabatan = null;
+                $scope.updateListJabatan($scope.item.srcPegawai ? $scope.item.srcPegawai.id : undefined);
             })
 
             $scope.updateListJabatan = (id) => {
