@@ -568,11 +568,48 @@ define(['initialize'], function (initialize) {
                 $scope.item.indikatorKerja = null;
             }
 
+            $scope.$watch('item.srcBulan', function (e) {
+                if (!e) return;
+
+                $scope.updateListJabatan($scope.item.pegawai ? $scope.item.pegawai.id : undefined);
+            })
+
             $scope.$watch('item.pegawai', function (e) {
                 if (!e) return;
 
-                $scope.item.jabatan = null
+                $scope.item.jabatan = null;
+                $scope.updateListJabatan($scope.item.pegawai ? $scope.item.pegawai.id : undefined);
             })
+
+            $scope.updateListJabatan = (id) => {
+                if ((!$scope.item || !$scope.item.srcBulan) && $scope.item.showJabatanHistori) {
+                    $scope.item.showJabatanHistori = false;
+
+                    toastr.warning("Harap pilih Bulan terlebih dahulu", "Peringatan");
+                    return;
+                }
+
+                if (!id && $scope.item.showJabatanHistori) {
+                    $scope.item.showJabatanHistori = false;
+
+                    toastr.warning("Harap pilih Pegawai terlebih dahulu", "Peringatan");
+                    return;
+                }
+
+                if ($scope.item.showJabatanHistori) {
+                    $scope.item.srcJabatan = undefined;
+                    $scope.listJabatan = [];
+                    ManageSdmNew.getListData("pegawai/jabatan-logbook-kinerja?pegawaiId=" + id + "&bulan=" + ($scope.item.srcBulan ? dateHelper.toTimeStamp($scope.item.srcBulan) : '')).then((res) => {
+                        $scope.listJabatan = res.data.data;
+                    });
+                } else {
+                    $scope.item.srcJabatan = undefined;
+                    $scope.listJabatan = [];
+                    ManageSdmNew.getListData("pegawai/jabatan-kontrak-verif-kinerja?pegawaiId=" + id + "&pegawaiLoginId=" + dataPegawai.id).then((res) => {
+                        $scope.listJabatan = res.data.data;
+                    });
+                }
+            }
 
             $scope.$watch('indikator.namaIndikator', function (e) {
                 if (!e) return;
