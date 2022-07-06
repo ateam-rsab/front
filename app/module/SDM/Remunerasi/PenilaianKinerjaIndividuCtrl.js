@@ -400,13 +400,13 @@ define(['initialize'], function (initialize) {
                 }
 
                 if ($scope.item.showJabatanHistori) {
-                    $scope.item.srcJabatan = undefined;
+                    $scope.item.jabatan = undefined;
                     $scope.listJabatan = [];
                     ManageSdmNew.getListData("pegawai/jabatan-logbook-kinerja?pegawaiId=" + id + "&bulan=" + ($scope.item.srcBulan ? dateHelper.toTimeStamp($scope.item.srcBulan) : '')).then((res) => {
                         $scope.listJabatan = res.data.data;
                     });
                 } else {
-                    $scope.item.srcJabatan = undefined;
+                    $scope.item.jabatan = undefined;
                     $scope.listJabatan = [];
                     ManageSdmNew.getListData("pegawai/jabatan-kontrak-verif-kinerja?pegawaiId=" + id + "&pegawaiLoginId=" + dataPegawai.id).then((res) => {
                         $scope.listJabatan = res.data.data;
