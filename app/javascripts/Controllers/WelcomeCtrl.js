@@ -2,31 +2,28 @@ define(['initialize'], function (initialize) {
     initialize.controller('WelcomeCtrl', ['$scope', '$state', 'R', '$rootScope', 'MenuService', 'LoginHelper', '$mdDialog', 'DateHelper', 'ManageSdmNew',
         function ($scope, $state, r, $rootScope, MenuService, LoginHelper, $mdDialog, DateHelper, ManageSdmNew) {
             $scope.showSIPExpired = false;
-            $scope.listBirthdayData = [];
             $scope.messageAbsensi = "Tidak ada";
             let dataLogin = JSON.parse(localStorage.getItem("pegawai"));
-
+            $scope.listBirthdayData = [];
             let remunId = [1, 10, 14]
             $scope.isRemun = false;
             if (dataLogin.kategoryPegawai && remunId.includes(dataLogin.kategoryPegawai.id)) {
                 $scope.isRemun = true;
             }
             $scope.dateNow = DateHelper.getTanggalFormatted(new Date(), "DD MMM YYYY")
-            $('.button-birthday').on('click', (e) => {
-                // console.log(e)
-                $('.container-wrapper').css('overflow', 'overlay');
-            })
-
-            // // /jasamedika-sdm/pegawai/get-avatar?pegawaiId=22349
-            // ManageSdmNew.getListData("pegawai/get-avatar?pegawaiId=" + dataLogin.id).then(res => {
-            //     localStorage.setItem('profile', res.data.data)
-            // })
-
             $scope.showNotif = {
                 changePassword: false,
                 formISARC: true,
                 messageAbsensi: false
             };
+
+            $scope.widgetKinerja = () => {
+                let dateNow = DateHelper.toTimeStamp(new Date());
+
+                ManageSdmNew.getListData(`iki-remunerasi/widget-dashboard-kinerja?pegawaiId=${dataLogin.id}&bulan=${dateNow}`).then((res) => {
+                    $scope.dataDashboardKinerja = res.data.data.data;
+                });
+            }
 
             $scope.getBirthdayData = () => {
                 ManageSdmNew.getListData('pegawai/get-birthday').then(res => {
@@ -37,14 +34,6 @@ define(['initialize'], function (initialize) {
                 })
             }
             $scope.getBirthdayData();
-
-            $scope.widgetKinerja = () => {
-                let dateNow = DateHelper.toTimeStamp(new Date());
-
-                ManageSdmNew.getListData(`iki-remunerasi/widget-dashboard-kinerja?pegawaiId=${dataLogin.id}&bulan=${dateNow}`).then((res) => {
-                    $scope.dataDashboardKinerja = res.data.data.data;
-                });
-            }
 
             $scope.widgetWorkingRecord = () => {
                 let dateNow = DateHelper.toTimeStamp(new Date());
@@ -64,191 +53,164 @@ define(['initialize'], function (initialize) {
 
             $scope.OnInit = () => {
                 $scope.videoPlayed = {
-                    title: 'Profil Zona Integritas WBK dan WBBM RSAB Harapan Kita 2021',
-                    src: 'https://smart.rsabhk.co.id:2222/vid/zona-integritas.mp4'
+                    title: 'Pegawai Ulang Tahun 1 s/d 9 Januari 2022',
+                    src: 'https://smart.rsabhk.co.id:2222/vid/ultah-jan-1-9.mp4'
                 }
 
                 $scope.widgetKinerja()
                 $scope.widgetWorkingRecord()
             }
 
-            $scope.dataPemberitahuan = [
-                {
-                    path: "data/dokumen/Formulir-Permohonan-Surat-Keterangan.pdf",
-                    fileName: "Formulir Permohonan Surat Keterangan / Perincian Penghasilan",
-                    new: true
-                },
-                {
-                    path: "data/dokumen/SE-Kewajiban-Mentaati-Ketentuan-Jam-Kerja-Bagi-Seluruh-Pegawai .pdf",
-                    fileName: "SE Kewajiban Mentaati Ketentuan Jam Kerja Bagi Seluruh Pegawai ",
-                    new: true
-                },
-                {
-                    path: "data/dokumen/PEMBERITAHUAN-KGB-AGUSTUS-2022.pdf",
-                    fileName: "PEMBERITAHUAN KGB AGUSTUS 2022",
-                    new: true
-                },
-                {
-                    path: "data/dokumen/SE-Tata-Cara-Usul-Pencantuman-Gelar-Akademik-Bagi-PNS.pdf",
-                    fileName: "SE Tata Cara Usul Pencantuman Gelar Akademik Bagi PNS",
-                    new: true
-                },
-                {
-                    path: "data/dokumen/PEMBERITAHUAN-USUL-PAK-KEMENTERIAN-KESEHATAN.pdf",
-                    fileName: "PEMBERITAHUAN USUL PAK KEMENTERIAN KESEHATAN",
-                    new: true
-                },
-                {
-                    path: "data/dokumen/PEMBERITAHUAN-SK-KP-FUNGSIONAL-APRIL-2022.pdf",
-                    fileName: "PEMBERITAHUAN SK KP FUNGSIONAL APRIL 2022",
-                    new: true
-                },
-                {
-                    path: "data/dokumen/PEMBERITAHUAN-SK-KPO-APRIL-2022.pdf",
-                    fileName: "PEMBERITAHUAN SK KPO APRIL 2022",
-                    new: true
-                },
-                {
-                    path: "data/dokumen/PEMBERITAHUAN-KGB-JULI-2022.pdf",
-                    fileName: "PEMBERITAHUAN KGB JULI 2022",
-                    new: true
-                },
-                {
-                    path: "data/dokumen/Nodin-Bimtek-SKP.pdf",
-                    fileName: "Nota Dinas Bimtek SKP",
-                    new: true
-                },
-                {
-                    path: "data/dokumen/PEMBERITAHUAN-DAFTAR-NAMA-PEGAWAI-YANG-DAPAT-DIUSULKAN-KP-FUNGSIONAL-AHLI-UTAMA.pdf",
-                    fileName: "PEMBERITAHUAN DAFTAR NAMA PEGAWAI YANG DAPAT DIUSULKAN KP FUNGSIONAL AHLI UTAMA",
-                    new: true
-                },
-                {
-                    path: "data/dokumen/PEMBERITAHUAN-KP-FUNGSIONAL-OKTOBER-2022.pdf",
-                    fileName: "PEMBERITAHUAN DAFTAR NAMA PEGAWAI YANG DAPAT DIUSULKAN KP FUNGSIONAL OKTOBER 2022",
-                    new: true
-                },
-                {
-                    path: "data/dokumen/PEMBERITAHUAN-DAFTAR-NAMA-PEGAWAI-YANG-DAPAT-DIUSULKAN-KP-OTOMATIS-OKTOBER-2022.pdf",
-                    fileName: "PEMBERITAHUAN DAFTAR NAMA PEGAWAI YANG DAPAT DIUSULKAN KP OTOMATIS OKTOBER 2022",
-                    new: true
-                },
-                {
-                    path: "data/dokumen/PEMBERITAHUAN-KGB-JUNI-2022-MUHAMMAD-SUPRI-SETIYADI-DKK.pdf",
-                    fileName: "PEMBERITAHUAN KGB JUNI 2022 MUHAMMAD SUPRI SETIYADI DKK",
-                    new: true
-                },
-                {
-                    path: "data/dokumen/RENCANA-USULAN-PENGANGKATAN-JABFUNG-2022.pdf",
-                    fileName: "RENCANA USULAN PENGANGKATAN JABFUNG 2022",
-                    new: true
-                },
-                {
-                    path: "data/dokumen/SE-Penatapan-Jam-Kerja-Bulan-Ramadan-1443-H-RSAB-Harapan-Kita.pdf",
-                    fileName: "SE Penatapan Jam Kerja Bulan Ramadan 1443 H RSAB Harapan Kita",
-                    new: true
-                },
-                {
-                    path: "data/dokumen/KGB-TMT-Maret-2022-an-Agus-Susilo-dkk.pdf",
-                    fileName: "Surat Edararan tentang ketentuan TUBEL pembiayaan BPPSDMK KEMENKES RI th 2022",
-                    new: true
-                },
-                {
-                    path: "PEMBERITAHUAN-KGB-Non-PNS-2022-an.-Karwito-dkk.pdf",
-                    fileName: "PEMBERITAHUAN - KGB Non PNS 2022 an. Karwito dkk",
-                    new: true
-                },
-                {
-                    path: "PEMBERITAHUAN-KGB-TMT-April-2022-an.-Budi-Bahtiar-dkk.pdf",
-                    fileName: "PEMBERITAHUAN - KGB TMT April 2022 an. Budi Bahtiar dkk",
-                    new: true
-                },
-                {
-                    path: "data/dokumen/SE-ttg-ketentuan-TUBEL-pembiayaan-BPPSDMK-KEMENKES-RI-tahun-2022.pdf",
-                    fileName: "Surat Edararan tentang ketentuan TUBEL pembiayaan BPPSDMK KEMENKES RI th 2022",
-                    new: true
-                },
-                {
-                    path: "data/dokumen/PEMBERITAHUAN-PENERIMA-PIAGAM-PENGHARGAAN-TAHUN-2021.pdf",
-                    fileName: "PEMBERITAHUAN PENERIMA PIAGAM PENGHARGAAN TAHUN 2021",
-                    new: true
-                },
-                {
-                    path: "data/dokumen/pemberitahuan-SK-KGB-TMT-Januari-2022-an-Aliyah-dkk.pdf",
-                    fileName: "Pemberitahuan SK KGB TMT Januari 2022 a.n. Aliyah dkk ",
-                    new: true
-                },
+            $scope.dataPemberitahuan = [{
+                path: "data/dokumen/Formulir-Permohonan-Surat-Keterangan.pdf",
+                fileName: "Formulir Permohonan Surat Keterangan / Perincian Penghasilan",
+                new: false
+            }, {
+                path: "data/dokumen/SE-Kewajiban-Mentaati-Ketentuan-Jam-Kerja-Bagi-Seluruh-Pegawai .pdf",
+                fileName: "SE Kewajiban Mentaati Ketentuan Jam Kerja Bagi Seluruh Pegawai ",
+                new: true
+            }, {
+                path: "data/dokumen/PEMBERITAHUAN-KGB-AGUSTUS-2022.pdf",
+                fileName: "PEMBERITAHUAN KGB AGUSTUS 2022",
+                new: true
+            }, {
+                path: "data/dokumen/SE-Tata-Cara-Usul-Pencantuman-Gelar-Akademik-Bagi-PNS.pdf",
+                fileName: "SE Tata Cara Usul Pencantuman Gelar Akademik Bagi PNS",
+                new: true
+            }, {
+                path: "data/dokumen/PEMBERITAHUAN-USUL-PAK-KEMENTERIAN-KESEHATAN.pdf",
+                fileName: "PEMBERITAHUAN USUL PAK KEMENTERIAN KESEHATAN",
+                new: true
+            }, {
+                path: "data/dokumen/PEMBERITAHUAN-SK-KP-FUNGSIONAL-APRIL-2022.pdf",
+                fileName: "PEMBERITAHUAN SK KP FUNGSIONAL APRIL 2022",
+                new: true
+            }, {
+                path: "data/dokumen/PEMBERITAHUAN-SK-KPO-APRIL-2022.pdf",
+                fileName: "PEMBERITAHUAN SK KPO APRIL 2022",
+                new: true
+            }, {
+                path: "data/dokumen/PEMBERITAHUAN-KGB-JULI-2022.pdf",
+                fileName: "PEMBERITAHUAN KGB JULI 2022",
+                new: true
+            }, {
+                path: "data/dokumen/PEMBERITAHUAN-DAFTAR-NAMA-PEGAWAI-YANG-DAPAT-DIUSULKAN-KP-FUNGSIONAL-AHLI-UTAMA.pdf",
+                fileName: "PEMBERITAHUAN DAFTAR NAMA PEGAWAI YANG DAPAT DIUSULKAN KP FUNGSIONAL AHLI UTAMA",
+                new: false
+            }, {
+                path: "data/dokumen/PEMBERITAHUAN-KP-FUNGSIONAL-OKTOBER-2022.pdf",
+                fileName: "PEMBERITAHUAN DAFTAR NAMA PEGAWAI YANG DAPAT DIUSULKAN KP FUNGSIONAL OKTOBER 2022",
+                new: false
+            }, {
+                path: "data/dokumen/PEMBERITAHUAN-DAFTAR-NAMA-PEGAWAI-YANG-DAPAT-DIUSULKAN-KP-OTOMATIS-OKTOBER-2022.pdf",
+                fileName: "PEMBERITAHUAN DAFTAR NAMA PEGAWAI YANG DAPAT DIUSULKAN KP OTOMATIS OKTOBER 2022",
+                new: false
+            }, {
+                path: "data/dokumen/PEMBERITAHUAN-KGB-JUNI-2022-MUHAMMAD-SUPRI-SETIYADI-DKK.pdf",
+                fileName: "PEMBERITAHUAN KGB JUNI 2022 MUHAMMAD SUPRI SETIYADI DKK",
+                new: false
+            }]
 
-                {
-                    path: "data/dokumen/SURAT-PENUNDAAN-PINDAH.pdf",
-                    fileName: "SURAT PENUNDAAN PINDAH"
-                },
-                {
-                    path: "data/dokumen/pemberitahuan-kgb-tmt-1-desember-2021-ade-kurniah-dkk.pdf",
-                    fileName: "PEMBERITAHUAN - KGB TMT 1 Desember 2021 Ade Kurniah dkk"
-                },
-                {
-                    path: "data/dokumen/nodin-informasi-data-kepegawaian.pdf",
-                    fileName: "Nodin Informasi Data Kepegawaian"
-                },
-
-            ]
-
-            $scope.dataBerkasAdministrasi = [
-                {
-                    path: "data/dokumen/hasil-seleksi-rekrutmen-internal-jabfung-RSABHarapanKita.pdf",
-                    fileName: "Hasil Seleksi Rekrutmen Internal Jabfung RSAB Harapan Kita"
-                },
-                {
-                    path: "data/dokumen/PEMBERITAHUAN-Daftar-Nama-Pegawai-yg-Dapat-Diusulkan-PAK-Dokd.pdf",
-                    fileName: "PEMBERITAHUAN - Daftar Nama Pegawai yg Dapat Diusulkan PAK Dokd"
-                },
-                {
-                    path: "data/dokumen/Daftar-Nama-Pegawai-Yang-Dapat-Diusulkan-Kenaikan-Jabfung-Ahli.pdf",
-                    fileName: "Daftar Nama Pegawai yang dapat Diusulkan Kenaikan Jabfung Ahli"
-                },
-                {
-                    path: "data/dokumen/Daftar-Nama-Pegawai-Yang-Dapat-Diusulkan-KPO-April-2022-an.-nur.pdf",
-                    fileName: "Daftar Nama Pegawai yang Dapat Diusulkan KPO April 2022 an. nur"
-                },
-                {
-                    path: "data/dokumen/PEMBERITAHUAN-Daftar-Nama-Pegawai-yang-Dapat-Diusulkan-KP-Fun.pdf",
-                    fileName: "PEMBERITAHUAN - Daftar Nama Pegawai yang Dapat Diusulkan KP Fun"
-                },
-                {
-                    path: "data/dokumen/PEMBERITAHUAN-SK-KP-FUNGSIONAL-an.-dr.-Akira-dkk-27-orang.pdf",
-                    fileName: "PEMBERITAHUAN - SK KP FUNGSIONAL an. dr. Akira dkk 27 orang"
-                },
-                {
-                    path: "data/dokumen/PEMBERITAHUAN-SK-KPO-dan-NON-KPO-an.-Suprapto.pdf",
-                    fileName: "PEMBERITAHUAN - SK KPO dan NON KPO an. Suprapto"
-                },
-                {
-                    path: "data/dokumen/pengumuman-hasil-seleksi-rekrutmen-internal.pdf",
-                    fileName: "Pengumuman Hasil Seleksi Rekrutmen Internal"
-                },
-                {
-                    path: "data/dokumen/rekrutmen-internal-JABFUNG-di-lingkungan-RSABHK-tahun-2021.pdf",
-                    fileName: "Rekrutmen Internal Jabatan Fungsional di Lingkungan RSAB HK tahun 2021",
-                    new: true
-                }, {
-                    path: "data/dokumen/prosedur-pembuatan-kartu-e-id-kepesertaan-bpjs-kesehatan-pegawai.pdf",
-                    fileName: "Prosedur Pembuatan Kartu E-ID Kepesertaan BPJS Kesehatan Pegawai",
-                    new: false
-                }, {
-                    path: "data/dokumen/prosedur-pembuatan-daftar-uang-makan-bagi-pns.pdf",
-                    fileName: "Prosedur Pembuatan Daftar Uang Makan bagi PNS",
-                    new: false
-                }, {
-                    path: "data/dokumen/rekrutmen-internal-JABFUNG-di-lingkungan-RSABHK-tahun-2021.pdf",
-                    fileName: "Rekrutmen Internal Jabatan Fungsional di Lingkungan RSAB HK tahun 2021"
-                }]
-
-
-            $scope.lihatDokumen = (url) => {
-                console.log(url)
-                window.open(`${window.location.origin}/data/dokumen/Daftar-Nama-Pegawai-Yang-Dapat-Diusulkan-Kenaikan-Jabfung-Ahli.pdf`, '_blank');
-            }
+            $scope.dataBerkasAdministrasi = [{
+                path: "data/dokumen/Nodin-Bimtek-SKP.pdf",
+                fileName: "Nota Dinas Bimtek SKP",
+                new: true
+            }, {
+                path: "data/dokumen/SE-LARANGAN-BEKERJA-DI-TEMPAT-LAIN.pdf",
+                fileName: "SE LARANGAN BEKERJA DI TEMPAT LAIN",
+                new: false
+            }, {
+                path: "data/dokumen/SE-Libur-Nasional-dan-Cuti-Bersama-Hari-Raya-Idul-Fitri-Tahun-2022.pdf",
+                fileName: "SE Libur Nasional dan Cuti Bersama Hari Raya Idul Fitri Tahun 2022",
+                new: false
+            }, {
+                path: "data/dokumen/SE-Penatapan-Jam-Kerja-Bulan-Ramadan-1443-H-RSAB-Harapan-Kita.pdf",
+                fileName: "SE Penetapan Jam Kerja Bulan Ramadan 1443 H RSAB Harapan Kita",
+                new: false
+            }, {
+                path: "data/dokumen/RENCANA-USULAN-PENGANGKATAN-JABFUNG-2022.pdf",
+                fileName: "RENCANA USULAN PENGANGKATAN JABFUNG 2022",
+                new: false
+            }, {
+                path: "data/dokumen/PEMBERITAHUAN-KGB-Non-PNS-2022-an.-Karwito-dkk.pdf",
+                fileName: "PEMBERITAHUAN - KGB Non PNS 2022 an. Karwito dkk",
+                new: false
+            }, {
+                path: "data/dokumen/PEMBERITAHUAN-KGB-TMT-April-2022-an.-Budi-Bahtiar-dkk.pdf",
+                fileName: "PEMBERITAHUAN - KGB TMT April 2022 an. Budi Bahtiar dkk",
+                new: false
+            }, {
+                path: "data/dokumen/KGB-TMT-Maret-2022-an-Agus-Susilo-dkk.pdf",
+                fileName: "KGB TMT Maret 2022 an. Agus Susilo dkk",
+                new: false
+            }, {
+                path: "data/dokumen/PEMBERITAHUAN-Daftar-Nama-Pegawai-yg-Dapat-Diusulkan-PAK-Dokd.pdf",
+                fileName: "PEMBERITAHUAN - Daftar Nama Pegawai yg Dapat Diusulkan PAK Dokd",
+                new: false
+            }, {
+                path: "data/dokumen/SK-KGB-TMT-Februari-2022-an-Adi-Puspita-dkk.pdf",
+                fileName: "SK KGB TMT Februari 2022 an Adi Puspita dkk",
+                new: false
+            }, {
+                path: "data/dokumen/PEMBERITAHUAN-PENERIMA-PIAGAM-PENGHARGAAN-TAHUN-2021.pdf",
+                fileName: "PEMBERITAHUAN PENERIMA PIAGAM PENGHARGAAN TAHUN 2021",
+                new: false
+            }, {
+                path: "data/dokumen/pemberitahuan-SK-KGB-TMT-Januari-2022-an-Aliyah-dkk.pdf",
+                fileName: "Pemberitahuan SK KGB TMT Januari 2022 a.n. Aliyah dkk ",
+                new: false
+            }, {
+                path: "data/dokumen/SURAT-PENUNDAAN-PINDAH.pdf",
+                fileName: "SURAT PENUNDAAN PINDAH",
+                new: false
+            }, {
+                path: "data/dokumen/nodin-informasi-data-kepegawaian.pdf",
+                fileName: "Nodin Informasi Data Kepegawaian",
+                new: false
+            }, {
+                path: "data/dokumen/SE-ttg-ketentuan-TUBEL-pembiayaan-BPPSDMK-KEMENKES-RI-tahun-2022.pdf",
+                fileName: "Surat Edararan tentang ketentuan TUBEL pembiayaan BPPSDMK KEMENKES RI th 2022",
+                new: true
+            }, {
+                path: "data/dokumen/pemberitahuan-kgb-tmt-1-desember-2021-ade-kurniah-dkk.pdf",
+                fileName: "PEMBERITAHUAN - KGB TMT 1 Desember 2021 Ade Kurniah dkk"
+            }, {
+                path: "data/dokumen/hasil-seleksi-rekrutmen-internal-jabfung-RSABHarapanKita.pdf",
+                fileName: "Hasil Seleksi Rekrutmen Internal Jabfung RSAB Harapan Kita"
+            }, {
+                path: "data/dokumen/Daftar-Nama-Pegawai-Yang-Dapat-Diusulkan-Kenaikan-Jabfung-Ahli.pdf",
+                fileName: "Daftar Nama Pegawai yang dapat Diusulkan Kenaikan Jabfung Ahli"
+            }, {
+                path: "data/dokumen/Daftar-Nama-Pegawai-Yang-Dapat-Diusulkan-KPO-April-2022-an.-nur.pdf",
+                fileName: "Daftar Nama Pegawai yang Dapat Diusulkan KPO April 2022 an. nur"
+            }, {
+                path: "data/dokumen/PEMBERITAHUAN-Daftar-Nama-Pegawai-yang-Dapat-Diusulkan-KP-Fun.pdf",
+                fileName: "PEMBERITAHUAN - Daftar Nama Pegawai yang Dapat Diusulkan KP Fun"
+            }, {
+                path: "data/dokumen/PEMBERITAHUAN-SK-KP-FUNGSIONAL-an.-dr.-Akira-dkk-27-orang.pdf",
+                fileName: "PEMBERITAHUAN - SK KP FUNGSIONAL an. dr. Akira dkk 27 orang"
+            }, {
+                path: "data/dokumen/PEMBERITAHUAN-SK-KPO-dan-NON-KPO-an.-Suprapto.pdf",
+                fileName: "PEMBERITAHUAN - SK KPO dan NON KPO an. Suprapto"
+            }, {
+                path: "data/dokumen/pengumuman-hasil-seleksi-rekrutmen-internal.pdf",
+                fileName: "Pengumuman Hasil Seleksi Rekrutmen Internal"
+            }, {
+                path: "data/dokumen/rekrutmen-internal-JABFUNG-di-lingkungan-RSABHK-tahun-2021.pdf",
+                fileName: "Rekrutmen Internal Jabatan Fungsional di Lingkungan RSAB HK tahun 2021",
+                new: true
+            }, {
+                path: "data/dokumen/prosedur-pembuatan-kartu-e-id-kepesertaan-bpjs-kesehatan-pegawai.pdf",
+                fileName: "Prosedur Pembuatan Kartu E-ID Kepesertaan BPJS Kesehatan Pegawai",
+                new: false
+            }, {
+                path: "data/dokumen/prosedur-pembuatan-daftar-uang-makan-bagi-pns.pdf",
+                fileName: "Prosedur Pembuatan Daftar Uang Makan bagi PNS",
+                new: false
+            }, {
+                path: "data/dokumen/rekrutmen-internal-JABFUNG-di-lingkungan-RSABHK-tahun-2021.pdf",
+                fileName: "Rekrutmen Internal Jabatan Fungsional di Lingkungan RSAB HK tahun 2021"
+            }]
 
             $scope.lihatDokumen = (url) => {
 
@@ -407,3 +369,4 @@ define(['initialize'], function (initialize) {
         }
     ]);
 });
+
