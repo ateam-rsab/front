@@ -79,6 +79,16 @@ define(['initialize'], function (initialize) {
                     new: true
                 },
                 {
+                    path: "data/dokumen/SE-Kewajiban-Mentaati-Ketentuan-Jam-Kerja-Bagi-Seluruh-Pegawai .pdf",
+                    fileName: "SE Kewajiban Mentaati Ketentuan Jam Kerja Bagi Seluruh Pegawai ",
+                    new: true
+                },
+                {
+                    path: "data/dokumen/PEMBERITAHUAN-KGB-AGUSTUS-2022.pdf",
+                    fileName: "PEMBERITAHUAN KGB AGUSTUS 2022",
+                    new: true
+                },
+                {
                     path: "data/dokumen/SE-Tata-Cara-Usul-Pencantuman-Gelar-Akademik-Bagi-PNS.pdf",
                     fileName: "SE Tata Cara Usul Pencantuman Gelar Akademik Bagi PNS",
                     new: true
