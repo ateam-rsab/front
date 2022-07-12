@@ -399,18 +399,20 @@ define(['initialize'], function (initialize) {
                     return;
                 }
 
-                if ($scope.item.showJabatanHistori) {
-                    $scope.item.jabatan = undefined;
-                    $scope.listJabatan = [];
-                    ManageSdmNew.getListData("pegawai/jabatan-logbook-kinerja?pegawaiId=" + id + "&bulan=" + ($scope.item.srcBulan ? dateHelper.toTimeStamp($scope.item.srcBulan) : '')).then((res) => {
-                        $scope.listJabatan = res.data.data;
-                    });
-                } else {
-                    $scope.item.jabatan = undefined;
-                    $scope.listJabatan = [];
-                    ManageSdmNew.getListData("pegawai/jabatan-kontrak-verif-kinerja?pegawaiId=" + id + "&pegawaiLoginId=" + dataPegawai.id).then((res) => {
-                        $scope.listJabatan = res.data.data;
-                    });
+                if (id && $scope.item && $scope.item.srcBulan) {
+                    if ($scope.item.showJabatanHistori) {
+                        $scope.item.jabatan = undefined;
+                        $scope.listJabatan = [];
+                        ManageSdmNew.getListData("pegawai/jabatan-logbook-kinerja?pegawaiId=" + id + "&bulan=" + ($scope.item.srcBulan ? dateHelper.toTimeStamp($scope.item.srcBulan) : '')).then((res) => {
+                            $scope.listJabatan = res.data.data;
+                        });
+                    } else {
+                        $scope.item.jabatan = undefined;
+                        $scope.listJabatan = [];
+                        ManageSdmNew.getListData("pegawai/jabatan-kontrak-verif-kinerja?pegawaiId=" + id + "&pegawaiLoginId=" + dataPegawai.id).then((res) => {
+                            $scope.listJabatan = res.data.data;
+                        });
+                    }
                 }
             }
         }
