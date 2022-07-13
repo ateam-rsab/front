@@ -306,7 +306,8 @@ define(['initialize'], function (initialize) {
                 }, {
                     field: "verifikasi",
                     title: "V",
-                    width: "18px"
+                    width: "18px",
+                    hidden: true
                 }],
                 sortable: {
                     mode: "single",
@@ -626,7 +627,10 @@ define(['initialize'], function (initialize) {
                 $scope.item.isLokasiSesuai = current.isLokasiSesuai
                 $scope.item.isAtributLengkap = current.isAtributLengkap
 
-                if (!$scope.isBebasValidasi) {
+                /*
+                 * considering not to access photo of yourself 
+                 */
+                if ($scope.dataSelected.idPegawai == $scope.dataPegawaiLogin.id) {
                     toastr.warning("Tidak ada akses!");
                     return;
                 }
@@ -648,6 +652,14 @@ define(['initialize'], function (initialize) {
             };
 
             $scope.Save = function () {
+                if ($scope.dataSelected.idPegawai == $scope.dataPegawaiLogin.id) {
+                    toastr.warning("Tidak ada akses!");
+                    return;
+                }
+
+                toastr.info("Fitur belum tersedia", "Informasi");
+                return;
+
                 if (!$scope.dataSelected) {
                     toastr.warning("Silakan pilih pegawai terlebih dahulu", "Peringatan")
                     return
