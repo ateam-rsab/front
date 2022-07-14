@@ -275,6 +275,12 @@ define(['initialize'], function (initialize) {
                     getDataHistory();
                     assignToNotEditable()
                 }, (error) => {
+                    ManageSdmNew.saveData(data, 'sdm/log-presensi-pegawai/').then((rsLog) => {
+                        if (rsLog.data.data == true) {
+                            toastr.success("ATTEMPT TO PUT LOGGING", "SUKSES");
+                        };
+                    })
+
                     if ($scope.idFinger == null) {
                         toastr.warning("ID Finger Belum Tersedia. Silakan hubungi Bagian SDM");
                     }
