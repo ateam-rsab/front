@@ -581,6 +581,18 @@ define(['initialize'], function (initialize) {
                 $scope.updateListJabatan($scope.item.pegawai ? $scope.item.pegawai.id : undefined);
             })
 
+            $scope.$watch('indikator.namaIndikator', function (e) {
+                if (!e) return;
+
+                ManageSdmNew.getListData("iki-remunerasi/get-duplicate-indikator-kinerja?idIndikator=" + ($scope.item.idMasterKinerja ? $scope.item.idMasterKinerja : "") + "&namaIndikator=" + encodeURIComponent($scope.item.namaIndikator).replace(/%20/g, "+")).then(res => {
+                    if (res.data.data.length > 0) {
+                        $scope.isDuplicated = true
+                    } else {
+                        $scope.isDuplicated = false
+                    }
+                })
+            })
+
             $scope.updateListJabatan = (id) => {
                 if ((!$scope.item || !$scope.item.srcBulan) && $scope.item.showJabatanHistori) {
                     $scope.item.showJabatanHistori = false;
@@ -610,18 +622,6 @@ define(['initialize'], function (initialize) {
                     });
                 }
             }
-
-            $scope.$watch('indikator.namaIndikator', function (e) {
-                if (!e) return;
-
-                ManageSdmNew.getListData("iki-remunerasi/get-duplicate-indikator-kinerja?idIndikator=" + ($scope.item.idMasterKinerja ? $scope.item.idMasterKinerja : "") + "&namaIndikator=" + encodeURIComponent($scope.item.namaIndikator).replace(/%20/g, "+")).then(res => {
-                    if (res.data.data.length > 0) {
-                        $scope.isDuplicated = true
-                    } else {
-                        $scope.isDuplicated = false
-                    }
-                })
-            })
 
             function monthDiff(d1, d2) {
                 var months;
