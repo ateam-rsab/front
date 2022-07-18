@@ -306,8 +306,7 @@ define(['initialize'], function (initialize) {
                 }, {
                     field: "verifikasi",
                     title: "V",
-                    width: "18px",
-                    hidden: true
+                    width: "18px"
                 }],
                 sortable: {
                     mode: "single",
