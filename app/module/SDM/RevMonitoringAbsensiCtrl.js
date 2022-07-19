@@ -626,14 +626,6 @@ define(['initialize'], function (initialize) {
                 $scope.item.isLokasiSesuai = current.isLokasiSesuai
                 $scope.item.isAtributLengkap = current.isAtributLengkap
 
-                /*
-                 * considering not to access photo of yourself 
-                 */
-                if ($scope.dataSelected.idPegawai == $scope.dataPegawaiLogin.id) {
-                    toastr.warning("Tidak ada akses!");
-                    return;
-                }
-
                 if (!current) {
                     messageContainer.error("Data Tidak Ditemukan");
                     return;
