@@ -65,6 +65,25 @@
         background-color: #38c4b2;
     }
 
+    md-radio-button.md-default-theme .md-on,
+    md-radio-button .md-on {
+        background-color: #38c4b2;
+    }
+
+    md-radio-button.md-default-theme.md-checked .md-off,
+    md-radio-button.md-checked .md-off {
+        border-color: #38c4b2;
+    }
+
+    /* md-radio-group.md-default-theme .md-checked .md-ink-ripple,
+    md-radio-group .md-checked .md-ink-ripple {
+        color: #38c4b2;
+    } */
+
+    md-radio-button .md-off {
+        transition: border-color .28s ease;
+    }
+
     #wifi-icon {
         color: green;
     }
@@ -85,6 +104,18 @@
 
     md-checkbox .md-container {
         position: inherit;
+    }
+
+    md-radio-button {
+        display: flex;
+    }
+
+    md-radio-button .md-container {
+        position: unset;
+    }
+
+    md-radio-button .md-label {
+        margin-left: 1em;
     }
 
     md-card-content.capture {
@@ -213,7 +244,7 @@
                 </div> -->
 
                 <div class="grid_3">
-                    <ul class="fieldlist">
+                    <!-- <ul class="fieldlist">
                         <li>
                             <input type="radio" name="engine" id="engine1" class="k-radio k-radio-md"
                                 ng-click="changeSelectedJenisPresensi(1)">
@@ -223,10 +254,19 @@
                             <input type="radio" name="engine" id="engine2" class="k-radio k-radio-md"
                                 ng-click="changeSelectedJenisPresensi(0)">
                             <label class="k-radio-label" for="engine2">Pulang</label>
-                        </li>
+                        </li> -->
+
+                    <md-radio-group ng-model="tag" layout="row" layout-sm="row" layout-align="right right" layout-wrap>
+                        <md-radio-button value="1">
+                            <strong>Masuk</strong>
+                        </md-radio-button>
+                        <md-radio-button value="0">
+                            <strong>Pulang</strong>
+                        </md-radio-button>
+                    </md-radio-group>
                 </div>
 
-                <div class="grid_2" style="margin-top: 2em; text-align: center;">
+                <div class="grid_2" style="margin-top: 1.25em; text-align: center;">
                     <md-button class="md-raised md-primary medium-button" ng-click="savePresensi()"
                         ng-disabled="isDisablePresensi">
                         <span style="margin-right: 5px;">Simpan</span>
