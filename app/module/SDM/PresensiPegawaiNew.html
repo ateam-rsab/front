@@ -75,15 +75,6 @@
         border-color: #38c4b2;
     }
 
-    /* md-radio-group.md-default-theme .md-checked .md-ink-ripple,
-    md-radio-group .md-checked .md-ink-ripple {
-        color: #38c4b2;
-    } */
-
-    md-radio-button .md-off {
-        transition: border-color .28s ease;
-    }
-
     #wifi-icon {
         color: green;
     }
@@ -160,11 +151,11 @@
 </md-toolbar>
 
 <div class="notify notify-danger" ng-if="isCameraNotDetected">
-    <strong>Info </strong> Perangkat anda terdeteksi tidak memiliki camera
+    <strong>Perhatian </strong> Perangkat anda terdeteksi tidak memiliki camera
 </div>
 
 <!-- catch gamau kena -->
-<div class="notify notify-warning" ng-if="isGeolocationOff">
+<div class="notify notify-danger" ng-if="isGeolocationOff">
     <strong>Perhatian </strong> Izin belum diberikan untuk menggunakan lokasi Anda. Harap berikan izin untuk bisa
     melanjutkan presensi
 </div>
