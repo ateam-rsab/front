@@ -66,6 +66,14 @@ define(['initialize'], function (initialize) {
                 fileName: "Formulir Permohonan Surat Keterangan / Perincian Penghasilan",
                 new: false
             }, {
+                path: "data/dokumen/Nota-Dinas-Sosialisasi-Pengisian-Target-SKP-2022.pdf",
+                fileName: "Nota Dinas Sosialisasi Pengisian Target SKP 2022",
+                new: true
+            }, {
+                path: "data/dokumen/Formulir-Untuk-Mendapatkan-Pembayaran-Tunjangan-Keluarga-bagi-Pegawai-PNS-(FORM-KP4).pdf",
+                fileName: "Formulir Untuk Mendapatkan Pembayaran Tunjangan Keluarga bagi Pegawai PNS (FORM-KP4)",
+                new: true
+            }, {
                 path: "data/dokumen/SE-Kewajiban-Mentaati-Ketentuan-Jam-Kerja-Bagi-Seluruh-Pegawai .pdf",
                 fileName: "SE Kewajiban Mentaati Ketentuan Jam Kerja Bagi Seluruh Pegawai ",
                 new: true
