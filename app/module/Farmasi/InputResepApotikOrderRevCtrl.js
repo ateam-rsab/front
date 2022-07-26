@@ -5,7 +5,7 @@ define(['initialize'], function (initialize) {
             $scope.dataLogin = JSON.parse(localStorage.getItem('pegawai'));
             $scope.showInputDokter = $scope.dataLogin.id === 320263
 
-            $("#idAutoRacikan").kendoAutoComplete();
+            // $("#idAutoRacikan").kendoAutoComplete();
 
             $scope.dataResepDokter = new kendo.data.DataSource({
                 data: []
@@ -126,7 +126,11 @@ define(['initialize'], function (initialize) {
                     $scope.listOfProduk = dat.data.produk;
                     $scope.listOfProdukFornas = dat.data.produkfornas;
                     for (let i = 0; i < dat.data.produk.length; i++) {
-                        $scope.dataTempObat.push(dat.data.produk[i].namaproduk);
+                        $scope.dataTempObat.push(dat.data.produk[i].namaproduk
+                            + ($scope.isBpjs ? ' ------- ' + dat.data.produk[i].status : '')
+                            + (dat.data.produk[i].jumlah > 0 ? ' ------- TERSEDIA '
+                                + dat.data.produk[i].jumlah + ' '
+                                + dat.data.produk[i].satuanstandar : ' ------- TIDAK TERSEDIA'));
                         listTempObat.push({ name: dat.data.produk[i].namaproduk });
                     }
                     $scope.listDokter = dat.data.penulisresep;
@@ -138,12 +142,12 @@ define(['initialize'], function (initialize) {
 
                     $("#listObatRacikan").kendoAutoComplete({
                         dataSource: $scope.dataTempObat,
-                        filter: "startswith"
+                        filter: "contains"
 
                     });
                     $("#listObatNonRacikan").kendoAutoComplete({
                         dataSource: $scope.dataTempObat,
-                        filter: "startswith"
+                        filter: "contains"
                     });
 
                     $scope.isRouteLoading = false;
@@ -288,14 +292,14 @@ define(['initialize'], function (initialize) {
                     jumlah: ""
                 };
 
-                let autoComplete = $("#idAutoRacikan").data('kendoAutoComplete');
+                // let autoComplete = $("#idAutoRacikan").data('kendoAutoComplete');
 
                 let i = index + 1;
                 if (!$scope.isBpjs) {
                     $scope.resep.namaObatRacikan[i] = '-';
                 }
 
-                autoComplete.refresh();
+                // autoComplete.refresh();
 
                 $scope.listObat.push(data);
             }
@@ -393,7 +397,7 @@ define(['initialize'], function (initialize) {
                             // nilaiKonversi: $scope.item.nilaiKonversi,
                             // hargaSatuan: $scope.getHargaSatuanNew($scope.resep.namaObat.id),
 
-                            namaObat: $scope.isBpjs ? $scope.resep.namaObatNewFornas.namaproduk : $scope.resep.namaObatNew,
+                            namaObat: $scope.resep.namaObatNew.split(" ------- ")[0],
                             jumlah: $scope.resep.jumlahObat.toString(),
                             jenisKemasan: isRacikan,
                             resepKe: $scope.tempListResep.length + 1,
@@ -411,7 +415,7 @@ define(['initialize'], function (initialize) {
                             // [1][""0""].name
                             // namaObat: $scope.resep.namaObatRacikan[i][0].name,
 
-                            namaObat: $scope.isBpjs ? $scope.resep.namaObatRacikanFornas[i].namaproduk : $scope.resep.namaObatRacikan[i],
+                            namaObat: $scope.resep.namaObatRacikan[i].split(" ------- ")[0],
 
                             // nilaiKonversi: $scope.item.nilaiKonversi,
                             // hargaSatuan: $scope.getHargaSatuanNew($scope.resep.namaObat[i].id),
@@ -476,8 +480,8 @@ define(['initialize'], function (initialize) {
 
             // clear out variable
             var clear = function () {
-                let autoComplete = $("#idAutoRacikan").data('kendoAutoComplete');
-                autoComplete.refresh();
+                // let autoComplete = $("#idAutoRacikan").data('kendoAutoComplete');
+                // autoComplete.refresh();
 
                 $scope.item.intruksiPenggunaan = '';
                 $scope.item.keterangan = '';
