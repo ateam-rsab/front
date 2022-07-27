@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('InputResepApotikOrderRevCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper',
-        function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper) {
+    initialize.controller('InputResepApotikOrderRevCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper', '$mdDialog',
+        function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper, $mdDialog) {
             $scope.dataLogin = JSON.parse(localStorage.getItem('pegawai'));
             $scope.showInputDokter = $scope.dataLogin.id === 320263
 
@@ -500,7 +500,7 @@ define(['initialize'], function (initialize) {
             }
 
             // method untuk kirim resep ke farmasi
-            $scope.kirimKeFarmasi = function () {
+            $scope.kirimKeFarmasi = function (e) {
                 if ($scope.dataLogin.id === 320263 && !$scope.item.dokter) {
                     toastr.info('Harap isi Dokter terlebih dahulu', 'Informasi');
                     return;
@@ -562,18 +562,30 @@ define(['initialize'], function (initialize) {
 
                 let dataResep = [];
                 dataResep.push(dataTemp[0]);
-                manageLogistikPhp.postpost('farmasi/resep-dokter?strukorder=' + norec_apd, dataResep).then(function (res) {
-                    dataResep = [];
-                    $scope.tempListResep = [];
-                    $scope.resep.beratBadan = '';
-                    $scope.item.izinPerubahanObat = '';
-                    $scope.isCito = '';
-                    $scope.isSegeraPulang = '';
-                    $scope.isResepEmpty = true;
+
+                var confirm = $mdDialog.confirm()
+                    .title('Kirim order resep ini untuk pasien?')
+                    .ariaLabel('Lucky day')
+                    .targetEvent(e)
+                    .ok('Ya')
+                    .cancel('Tidak');
+                $mdDialog.show(confirm).then(function () {
+                    manageLogistikPhp.postpost('farmasi/resep-dokter?strukorder=' + norec_apd, dataResep).then(function (res) {
+                        dataResep = [];
+                        $scope.tempListResep = [];
+                        $scope.resep.beratBadan = '';
+                        $scope.item.izinPerubahanObat = '';
+                        $scope.isCito = '';
+                        $scope.isSegeraPulang = '';
+                        $scope.isResepEmpty = true;
+                        $scope.isRouteLoading = false;
+                    }, (error) => {
+                        $scope.isRouteLoading = false;
+                    })
+                }, function () { 
                     $scope.isRouteLoading = false;
-                }, (error) => {
-                    $scope.isRouteLoading = false;
-                })
+                });
+                
             }
 
             $scope.columnHistoryResep = {
