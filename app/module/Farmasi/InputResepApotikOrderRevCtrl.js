@@ -527,6 +527,11 @@ define(['initialize'], function (initialize) {
                     return
                 }
 
+                if ($scope.tempListResep.length == 0) {
+                    toastr.warning('Daftar resep masih kosong', 'Peringatan');
+                    return
+                }
+
                 $scope.isRouteLoading = true;
 
                 let dataTemp = [{
@@ -564,10 +569,14 @@ define(['initialize'], function (initialize) {
                 dataResep.push(dataTemp[0]);
 
                 var confirm = $mdDialog.confirm()
-                    .title('Kirim order resep ini untuk pasien?')
+                    .title('Kirim order resep ini untuk pasien ' + $scope.item.namaPasien + '?')
+                    .htmlContent('<ul><li>Periksa kembali daftar resep yang akan dikirim</li>'
+                        + '<li>Periksa kembali stok obat yang tersedia</li>'
+                        + ($scope.isBpjs ? '<li>Periksa kembali kesesuaian obat fornas</li>' : ''
+                            + '</ul>'))
                     .ariaLabel('Lucky day')
                     .targetEvent(e)
-                    .ok('Ya')
+                    .ok('Kirim')
                     .cancel('Tidak');
                 $mdDialog.show(confirm).then(function () {
                     manageLogistikPhp.postpost('farmasi/resep-dokter?strukorder=' + norec_apd, dataResep).then(function (res) {
@@ -582,10 +591,10 @@ define(['initialize'], function (initialize) {
                     }, (error) => {
                         $scope.isRouteLoading = false;
                     })
-                }, function () { 
+                }, function () {
                     $scope.isRouteLoading = false;
                 });
-                
+
             }
 
             $scope.columnHistoryResep = {
