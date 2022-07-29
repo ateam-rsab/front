@@ -352,21 +352,19 @@ define(['initialize'], function (initialize) {
                     columns: [{
                         field: "resep",
                         title: "<h3>r/Ke</h3>",
-                        width: "3%",
+                        width: "10px",
                         attributes: {
                             style: "text-align:center;valign=middle"
                         },
-                    },
-                    {
+                    }, {
                         field: "isRacikan",
                         title: "<h3>Jenis</h3>",
-                        width: "50px",
+                        width: "30px",
                         template: "#if(isRacikan) { # #: 'Racikan' # #} else { #Non Racikan# } #",
                         attributes: {
                             style: "text-align:center;valign=middle"
                         }
-                    },
-                    {
+                    }, {
 
                         field: "keteranganpakai",
                         title: "<h3>Keterangan Pakai</h3>",
@@ -374,8 +372,7 @@ define(['initialize'], function (initialize) {
                         attributes: {
                             style: "text-align:center;valign=middle"
                         },
-                    },
-                    {
+                    }, {
 
                         field: "keteranganlainnya",
                         title: "<h3>Instruksi</h3>",
@@ -383,8 +380,7 @@ define(['initialize'], function (initialize) {
                         attributes: {
                             style: "text-align:center;valign=middle"
                         },
-                    },
-                    {
+                    }, {
 
                         field: "status",
                         title: "<h3>Status</h3>",
@@ -393,21 +389,18 @@ define(['initialize'], function (initialize) {
                         attributes: {
                             style: "text-align:center;valign=middle"
                         },
-                    },
-                    {
+                    }, {
                         command: [{
                             text: "Detail",
                             click: showDetail
                         }],
                         title: "&nbsp;",
-                        width: "3%",
+                        width: "30px",
                         attributes: {
                             style: "text-align:center;valign=middle"
                         },
-                    }
-                    ]
+                    }]
                 }
-
             }
 
             function showDetail(e) {
