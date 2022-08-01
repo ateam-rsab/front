@@ -46,7 +46,8 @@ define(['initialize'], function (initialize) {
             $scope.listHistoryResep = [];
             $scope.listObat = [];
             $scope.listResep = [];
-            $scope.dataTempObat = []
+            $scope.dataTempObat = [];
+            $scope.dataTempAlergi = []
             $scope.tempListResep = [];
 
             $scope.item = {};
@@ -122,7 +123,7 @@ define(['initialize'], function (initialize) {
                 $scope.isRouteLoading = true;
 
                 let listTempObat = [];
-                manageLogistikPhp.getDataTableTransaksi("logistik/get-datacombo", true).then(function (dat) {
+                manageLogistikPhp.getDataTableTransaksi("logistik/get-datacombo?pasien_id=" + $scope.item.noMr, true).then(function (dat) {
                     $scope.listOfProduk = dat.data.produk;
                     $scope.listOfProdukFornas = dat.data.produkfornas;
                     for (let i = 0; i < dat.data.produk.length; i++) {
@@ -133,8 +134,13 @@ define(['initialize'], function (initialize) {
                                 + dat.data.produk[i].satuanstandar : ' ------- TIDAK TERSEDIA'));
                         listTempObat.push({ name: dat.data.produk[i].namaproduk });
                     }
+                    $scope.listRiwayatAlergi = dat.data.alergi;
+                    for (let i = 0; i < dat.data.alergi.length; i++) {
+                        $scope.dataTempAlergi.push(dat.data.alergi[i].alergi);
+                    }
                     $scope.listDokter = dat.data.penulisresep;
                     $scope.listOfProdukArray = $scope.dataTempObat;
+                    $scope.listRiwayatAlergi = $scope.dataTempAlergi;
                     $scope.listOfProdukArrayRacikan = new kendo.data.DataSource({
                         data: listTempObat
                     });
@@ -149,6 +155,11 @@ define(['initialize'], function (initialize) {
                         dataSource: $scope.dataTempObat,
                         filter: "contains"
                     });
+                    $("#listAlergi").kendoAutoComplete({
+                        dataSource: $scope.dataTempAlergi,
+                        filter: "contains"
+                    });
+                    $scope.resep.riwayatAlergiPasien = $scope.dataTempAlergi[0];
 
                     $scope.isRouteLoading = false;
                 }, function (err) {
