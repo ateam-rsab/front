@@ -69,10 +69,13 @@
                     <input kendo-combo-box k-ng-model="resep.riwayatAlergi" k-data-text-field="'name'"
                         k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listQuestion"
                         k-on-change="getRiwayatAlergi(resep.riwayatAlergi.id)" />
+
                 </div>
-                <div class="grid_4" ng-show="isHaveRiwayatAlergi" style="margin-top: 14px">
-                    <input c-text-box type="input" filter="'number'" class="k-textbox"
-                        ng-model="resep.riwayatAlergiPasien" />
+                <div class="grid_4" ng-show="isHaveRiwayatAlergi" style="margin-top: 1.6em">
+                    <!-- <input c-text-box type="input" filter="'number'" class="k-textbox"
+                        ng-model="resep.riwayatAlergiPasien" /> -->
+                    <input id="listAlergi" kendo-auto-complete c-text-box type="input"
+                        k-data-source="listRiwayatAlergi" ng-model="resep.riwayatAlergiPasien" style="width: 100%" />
                 </div>
             </div>
             <div class="grid_12">
