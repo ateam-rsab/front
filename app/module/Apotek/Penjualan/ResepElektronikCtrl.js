@@ -190,6 +190,7 @@ define(['initialize'], function (initialize) {
             init();
 
             $scope.refresh = function () {
+                $scope.patienGrids = [];
                 // debugger;
                 $scope.isRouteLoading = true;
                 var nocm = ''
@@ -278,6 +279,20 @@ define(['initialize'], function (initialize) {
                     $scope.refresh();
                 })
 
+            }
+
+            $scope.batalkanResep = function () {
+                let data = {
+                    norec: $scope.item.norec_so
+                }
+                if ($scope.item.statusorder == 'Blm Verifikasi') {
+                    manageLogistikPhp.postpost('farmasi/batal-resep-dokter', data).then(function (res) {
+                        $scope.refresh();
+                    })
+                } else {
+                    toastr.warning('Tidak bisa dibatalkan');
+                    return;
+                }
             }
 
             $scope.verifikasi = function () {
