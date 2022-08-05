@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('ResepElektronikCtrl', ['ManagePasien', 'socket', '$state', '$timeout', 'FindPasien', '$rootScope', '$scope', 'ModelItem', 'DateHelper', '$document', 'R', 'ManageLogistikPhp', 'CacheHelper', "CetakHelper",
-        function (managePasien, socket, $state, $timeout, findPasien, $rootScope, $scope, ModelItem, DateHelper, $document, r, manageLogistikPhp, cacheHelper, cetakHelper) {
+    initialize.controller('ResepElektronikCtrl', ['ManagePasien', 'socket', '$state', '$timeout', 'FindPasien', '$rootScope', '$scope', 'ModelItem', 'DateHelper', '$document', 'R', 'ManageLogistikPhp', 'CacheHelper', "CetakHelper", "$mdDialog",
+        function (managePasien, socket, $state, $timeout, findPasien, $rootScope, $scope, ModelItem, DateHelper, $document, r, manageLogistikPhp, cacheHelper, cetakHelper, $mdDialog) {
             $scope.title = "Resep elektronik";
             $scope.dataResep = [];
             $scope.dataVOloaded = true;
@@ -281,14 +281,28 @@ define(['initialize'], function (initialize) {
 
             }
 
-            $scope.batalkanResep = function () {
+            $scope.batalkanResep = function (e) {
                 let data = {
                     norec: $scope.item.norec_so
                 }
                 if ($scope.item.statusorder == 'Blm Verifikasi') {
-                    manageLogistikPhp.postpost('farmasi/batal-resep-dokter', data).then(function (res) {
-                        $scope.refresh();
-                    })
+                    var confirm = $mdDialog.confirm()
+                        .title('Batal order resep ini untuk pasien ' + $scope.item.namapasien + '?')
+                        .ariaLabel('Lucky day')
+                        .targetEvent(e)
+                        .ok('Batalkan Resep')
+                        .cancel('Tidak');
+                    $mdDialog.show(confirm).then(function () {
+                        $scope.isRouteLoading = true;
+                        manageLogistikPhp.postpost('farmasi/batal-resep-dokter', data).then(function (res) {
+                            $scope.refresh();
+                            $scope.isRouteLoading = false;
+                        }, (error) => {
+                            $scope.isRouteLoading = false;
+                        })
+                    }, function () {
+                        $scope.isRouteLoading = false;
+                    });
                 } else {
                     toastr.warning('Tidak bisa dibatalkan');
                     return;
