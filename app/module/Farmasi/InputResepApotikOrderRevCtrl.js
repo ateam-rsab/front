@@ -134,6 +134,13 @@ define(['initialize'], function (initialize) {
                                 + dat.data.produk[i].satuanstandar : ' ------- TIDAK TERSEDIA'));
                         listTempObat.push({ name: dat.data.produk[i].namaproduk });
                     }
+                    if (dat.data.alergi.length > 0) {
+                        $scope.isHaveRiwayatAlergi = true;
+                        $scope.resep.riwayatAlergi = {
+                            name: 'Ya',
+                            id: 1
+                        }
+                    }
                     $scope.listRiwayatAlergi = dat.data.alergi;
                     for (let i = 0; i < dat.data.alergi.length; i++) {
                         $scope.dataTempAlergi.push(dat.data.alergi[i].alergi);
