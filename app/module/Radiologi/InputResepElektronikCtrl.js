@@ -90,7 +90,7 @@ define(['initialize'], function (initialize) {
                 $scope.item.tglRegistrasi = dataPasien.tglregistrasi;
                 norec_apd = dataPasien.norec;
                 norec_pd = dataPasien.norec_pd;
-                $scope.item.idKelas = dataPasien.klid  ;
+                $scope.item.idKelas = dataPasien.klid;
                 $scope.item.kelas = dataPasien.namakelas;
                 $scope.item.namaRuangan = dataPasien.namaruangan;
                 // var chacePeriode = cacheHelper.get('InputResepApotikOrderRevCtrl');
@@ -135,28 +135,52 @@ define(['initialize'], function (initialize) {
                 let listTempObat = [];
                 manageLogistikPhp.getDataTableTransaksi("logistik/get-datacombo", true).then(function (dat) {
                     $scope.listOfProduk = dat.data.produk;
+                    $scope.listOfProdukFornas = dat.data.produkfornas;
                     for (let i = 0; i < dat.data.produk.length; i++) {
-                        $scope.dataTempObat.push(dat.data.produk[i].namaproduk);
-                        listTempObat.push({
-                            name: dat.data.produk[i].namaproduk
-                        });
+                        $scope.dataTempObat.push(dat.data.produk[i].namaproduk
+                            + ($scope.isBpjs ? ' ------- ' + dat.data.produk[i].status : '')
+                            + (dat.data.produk[i].jumlah > 0 ? ' ------- TERSEDIA '
+                                + dat.data.produk[i].jumlah + ' '
+                                + dat.data.produk[i].satuanstandar : ' ------- TIDAK TERSEDIA'));
+                        listTempObat.push({ name: dat.data.produk[i].namaproduk });
                     }
+                    if (dat.data.alergi.length > 0) {
+                        $scope.isHaveRiwayatAlergi = true;
+                        $scope.resep.riwayatAlergi = {
+                            name: 'Ya',
+                            id: 1
+                        }
+                    }
+                    $scope.listRiwayatAlergi = dat.data.alergi;
+                    for (let i = 0; i < dat.data.alergi.length; i++) {
+                        $scope.dataTempAlergi.push(dat.data.alergi[i].alergi);
+                    }
+                    $scope.listDokter = dat.data.penulisresep;
                     $scope.listOfProdukArray = $scope.dataTempObat;
+                    $scope.listRiwayatAlergi = $scope.dataTempAlergi;
                     $scope.listOfProdukArrayRacikan = new kendo.data.DataSource({
                         data: listTempObat
                     });
                     $scope.listOfProdukArrayRacikan.read();
+
                     $("#listObatRacikan").kendoAutoComplete({
                         dataSource: $scope.dataTempObat,
-                        filter: "startswith",
-                        // placeholder: "Masukkan Nama Obat...",
+                        filter: "contains"
 
                     });
                     $("#listObatNonRacikan").kendoAutoComplete({
                         dataSource: $scope.dataTempObat,
-                        filter: "startswith",
-                        // placeholder: "Masukkan Nama Obat..."                        
+                        filter: "contains"
                     });
+                    $("#listAlergi").kendoAutoComplete({
+                        dataSource: $scope.dataTempAlergi,
+                        filter: "contains"
+                    });
+                    $scope.resep.riwayatAlergiPasien = $scope.dataTempAlergi[0];
+
+                    $scope.isRouteLoading = false;
+                }, function (err) {
+                    $scope.isRouteLoading = false;
                 });
             }
             getNamaObat();
@@ -172,7 +196,7 @@ define(['initialize'], function (initialize) {
 
                 }];
                 $scope.isResepEmpty = $scope.tempListResep.length == 0;
-              
+
                 // console.log(JSON.stringify($scope.tempListResep))
                 // $scope.listResep = new kendo.data.DataSource({
                 //     data: $scope.tempListResep,
