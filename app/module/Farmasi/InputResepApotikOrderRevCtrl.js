@@ -550,8 +550,6 @@ define(['initialize'], function (initialize) {
                     return
                 }
 
-                $scope.isRouteLoading = true;
-
                 let dataTemp = [{
                     "strukorder": {
                         "tglresep": moment($scope.item.tglResep).format('YYYY-MM-DD HH:mm:ss'),
@@ -597,6 +595,7 @@ define(['initialize'], function (initialize) {
                     .ok('Kirim')
                     .cancel('Tidak');
                 $mdDialog.show(confirm).then(function () {
+                    $scope.isRouteLoading = true;
                     manageLogistikPhp.postpost('farmasi/resep-dokter?strukorder=' + norec_apd, dataResep).then(function (res) {
                         dataResep = [];
                         $scope.tempListResep = [];
