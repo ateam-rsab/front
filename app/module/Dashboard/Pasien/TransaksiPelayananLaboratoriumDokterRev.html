@@ -141,24 +141,19 @@
                             <p>Daftar Order Penunjang Laboratorium</p>
                         </div>
                         <div class="grid_12">
-
-                            <div class="grid_4" >
+                            <div class="grid_4" style="margin-top:5px">
                                 <div class="grid_12" style="margin-left:10px">
                                     <label c-label c-label-text="tanggal"></label>
                                 </div>
                                 <div class="grid_12">
                                     <div class="grid_6 padDatePicker">
-                                        <input style="width: 100%"
-                                            k-ng-model="item.periodeAwal"
-                                            kendo-datetimepicker k-max="now"
-                                            placeholer="yyyy-MM-dd HH:mm"
-                                            k-format="'yyyy-MM-dd HH:mm'"
+                                        <input style="width: 100%" k-ng-model="item.periodeAwal" kendo-datetimepicker
+                                            k-max="now" placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'"
                                             parsedate="yyyy-MM-dd HH:mm" />
                                     </div>
                                     <div class="grid_6 padDatePicker">
-                                        <input style="width: 100%"
-                                            k-ng-model="item.periodeAkhir"
-                                            kendo-datetimepicker placeholer="yyyy-MM-dd
+                                        <input style="width: 100%" k-ng-model="item.periodeAkhir" kendo-datetimepicker
+                                            placeholer="yyyy-MM-dd
                                             HH:mm" k-format="'yyyy-MM-dd HH:mm'" />
                                     </div>
                                 </div>
@@ -172,17 +167,17 @@
                                     k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
                                     k-data-source="listDokter" />
                             </div>
-                            <div class="grid_1" style="margin-top:23px">
-                                <md-button class="md-raised md-primary medium-button"
-                                    ng-click="cariRiwayat()">
+
+                            <div class="grid_1" style="margin-top:28px">
+                                <md-button class="md-raised md-primary medium-button" ng-click="cariRiwayat()">
                                     <span style="margin-right: 5px;">Cari</span>
                                     <i class="fa fa-search"></i>
                                 </md-button>
                             </div>
                             <div class="grid_12">
-                                <div id="kGrid" kendo-grid k-data-source="dataGridRiwayat" options="optGridRiwayat" k-selectable="'row'"
-                                    k-columns="columnGridRiwayat" k-pageable="'true'" k-sortable="'true'"
-                                    k-ng-model="dataSelectedRiwayat">
+                                <div id="kGrid" kendo-grid k-data-source="dataGridRiwayat" options="optGridRiwayat"
+                                    k-selectable="'row'" k-columns="columnGridRiwayat" k-pageable="'true'"
+                                    k-sortable="'true'" k-ng-model="dataSelectedRiwayat">
                                     <div k-detail-template>
                                         <kendo-tabstrip>
                                             <div>
@@ -243,8 +238,9 @@
     k-on-open="win2visible = true">
     <div class="panel panel-default container_12" style="padding: 0px 10px;">
 
-        <div id="filterHeader" class="filters">
-            <a class="button-filtering" ng-repeat="data in listFilters track by $index" ng-class="{'filtering-actived': data.actived}" ng-click="filterPelayanan(data, $index)">{{data.val}}</a>
+        <div class="filters">
+            <a ng-repeat="data in listFilters track by $index" ng-class="{'filtering-actived': data.actived}"
+                ng-click="filterPelayanan(data, $index)">{{data.val}}</a>
 
             <md-button class="md-raised md-primary medium-button" ng-click="filterPelayanan('')">
                 Reset
@@ -282,7 +278,7 @@
             </div>
 
             <div class="grid_4" ng-repeat="data in listLayanan track by $index" ng-if="!isLoading">
-                <md-card style="height: 150px;">
+                <md-card style="height: 200px;">
                     <!-- <md-card-title>
                         <md-checkbox style="display: flex;align-items: center;" ng-checked="data.checked"
                             ng-click="updateSelectedData(data, $index)">
@@ -301,8 +297,8 @@
                             Pemeriksaan Luar
                         </label>
 
-                        <!-- <label>Jumlah Layanan</label> -->
-                        <!-- <input type="number" min="1" class="k-textbox" ng-disabled="!data.checked"
+                        <!-- <label>Jumlah Layanan</label>
+                        <input type="number" min="1" class="k-textbox" ng-disabled="!data.checked"
                             ng-model="data.jmlLayanan"> -->
 
                         <label>Catatan</label>
@@ -339,7 +335,7 @@
             <!-- </div> -->
         </div>
     </div>
-    <div class="grid_12" style="z-index: 9999;">
-        <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+    <div class="grid_12" style="margin-top:60px">
+        <div ng-include='" ../app/module/Shared/TemplateLoading" '></div>
     </div>
 </div>

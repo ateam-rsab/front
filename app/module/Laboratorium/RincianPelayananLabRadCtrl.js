@@ -5,7 +5,7 @@ define(['initialize'], function (initialize) {
             $scope.item = {};
             // $scope.dataVOloaded = true;
             $scope.now = new Date();
-            $scope.isRouteLoading = false;
+            $scope.isLoading = false;
             var norec_apd = ''
             var norec_pd = ''
             var norec_so = ''
@@ -25,8 +25,6 @@ define(['initialize'], function (initialize) {
                     $scope.item.jenisKelamin = chacePeriode[2]
                     $scope.item.noregistrasi = chacePeriode[3]
                     $scope.item.kelompokPasien = chacePeriode[13]
-                    $scope.item.noSbm = chacePeriode[16]
-                    $scope.item.nostruk = chacePeriode[17]
                     $scope.item.umur = chacePeriode[4]
                     $scope.listKelas = ([{ id: chacePeriode[5], namakelas: chacePeriode[6] }])
                     $scope.item.kelas = { id: chacePeriode[5], namakelas: chacePeriode[6] }
@@ -37,9 +35,10 @@ define(['initialize'], function (initialize) {
                     namaRuanganFk = chacePeriode[10]
                     norec_pd = chacePeriode[11]
                     norec_so = chacePeriode[12]
-                    manageServicePhp.getDataTableTransaksi("tatarekening/get-sudah-verif?noregistrasi=" + $scope.item.noregistrasi, true).then(function (dat) {
-                        $scope.item.statusVerif = dat.data.status
-                    });
+                    manageServicePhp.getDataTableTransaksi("tatarekening/get-sudah-verif?noregistrasi=" +
+                        $scope.item.noregistrasi, true).then(function (dat) {
+                            $scope.item.statusVerif = dat.data.status
+                        });
 
 
                     if (norec_apd == null) {
@@ -73,19 +72,27 @@ define(['initialize'], function (initialize) {
                                 15: chacePeriode[15]
                             }
                             cacheHelper.set('RincianPelayananLabRadCtrl', arrStr);
-                            init();
+
                         })
                     }
+
+
                     $scope.item.ruanganAsal = namaRuangan;
 
+                    manageServicePhp.getDataTableTransaksi("tatarekening/get-sudah-verif?noregistrasi=" +
+                        $scope.item.noregistrasi, true).then(function (dat) {
+                            $scope.item.statusVerif = dat.data.status
+                        });
 
-                    // init();
+                    init()
+
+                } else {
 
                 }
 
             }
             function init() {
-                $scope.isRouteLoading = true;
+                $scope.isLoading = true;
 
                 manageLogistikPhp.getDataTableTransaksi("lab-radiologi/get-data-combo?objectkelasfk=" + $scope.item.kelas.id, true).then(function (dat) {
                     $scope.listRuanganTujuan = dat.data.ruangantujuan;
@@ -94,50 +101,52 @@ define(['initialize'], function (initialize) {
                 })
                 if (norec_apd != null) {
 
-                    manageLogistikPhp.getDataTableTransaksi("lab-radiologi/get-rincian-pelayanan?nocm=" + $scope.item.noMr, true).then(function (dat) {
-                        for (var i = 0; i < dat.data.data.length; i++) {
-                            dat.data.data[i].no = i + 1
-                            dat.data.data[i].statCheckbox = false;
-                            if (dat.data.data[i].statusbridging == "Sudah Dikirim") {
-                                dat.data.data[i].statusbridging = "✔";
-                                // ✅
-                                // ✔
-                            } else {
-                                dat.data.data[i].statusbridging = "✘";
-                                // ✘
-                                // ❎
+                    manageLogistikPhp.getDataTableTransaksi("lab-radiologi/get-rincian-pelayanan?noregistrasifk=" + norec_apd
+                        , true).then(function (dat) {
+                            for (var i = 0; i < dat.data.data.length; i++) {
+                                dat.data.data[i].no = i + 1
+                                dat.data.data[i].statCheckbox = false;
+                                if (dat.data.data[i].statusbridging == "Sudah Dikirim") {
+                                    dat.data.data[i].statusbridging = "✔";
+                                    // ✅
+                                    // ✔
+                                } else {
+                                    dat.data.data[i].statusbridging = "✘";
+                                    // ✘
+                                    // ❎
+                                }
+
+                            }
+                            if (dat.data.data.length > 0) {
+                                if (dat.data.data[0].objectdepartemenfk == 3)
+                                    $scope.disableRad = true
+                                if (dat.data.data[0].objectdepartemenfk == 27)
+                                    $scope.disableLab = true
+                            }
+                            $scope.isLoading = false;
+
+                            $scope.dataGrid = {
+                                data: dat.data.data,
+                                _data: dat.data.data,
+                                // pageSize: 10,
+                                selectable: true,
+                                refresh: true,
+                                total: dat.data.data.length,
+                                serverPaging: false,
+                                aggregate: [
+                                    { field: 'total', aggregate: 'sum' },
+                                ]
+
+                            };
+
+                            if (dat.data.data[0].objectdepartemenfk == 27) {
+                                $scope.showRadiologi = true;
                             }
 
-                        }
-                        if (dat.data.data.length > 0) {
-                            if (dat.data.data[0].objectdepartemenfk == 3)
-                                $scope.disableRad = true
-                            if (dat.data.data[0].objectdepartemenfk == 27)
-                                $scope.disableLab = true
-                        }
-                        $scope.isRouteLoading = false;
-
-                        $scope.dataGrid = {
-                            data: dat.data.data,
-                            _data: dat.data.data,
-                            // pageSize: 10,
-                            selectable: true,
-                            refresh: true,
-                            total: dat.data.data.length,
-                            serverPaging: false,
-                            aggregate: [
-                                { field: 'total', aggregate: 'sum' },
-                            ]
-
-                        };
-
-                        if (dat.data.data[0].objectdepartemenfk == 27) {
-                            $scope.showRadiologi = true;
-                        }
-
-                    });
-                } else {
-                    $scope.isRouteLoading = false;
+                        });
+                }
+                else {
+                    $scope.isLoading = false;
                 }
 
 
@@ -166,12 +175,7 @@ define(['initialize'], function (initialize) {
                     },
                     {
                         "field": "tglpelayanan",
-                        "title": "Tanggal<br> Pelayanan",
-                        "width": "90px",
-                    },
-                    {
-                        "field": "jadualPelayanan",
-                        "title": "Jadwal<br> Pelayanan",
+                        "title": "Tgl Pelayanan",
                         "width": "90px",
                     },
                     {
@@ -358,7 +362,8 @@ define(['initialize'], function (initialize) {
                 }
             }
             $scope.InputTindakan = function () {
-                if ($scope.item.kelompokPasien !== "Umum/Pribadi" && !$scope.item.noSbm && !$scope.item.nostruk && $scope.item.statusVerif) {
+
+                if ($scope.item.statusVerif == true) {
                     window.messageContainer.error("Pelayanan yang sudah di Verif tidak bisa di ubah!");
                     return;
                 }
@@ -542,8 +547,8 @@ define(['initialize'], function (initialize) {
 
             }
             $scope.simpanDokter = function (dokter) {
-                if (!dokter) {
-                    toastr.error('Pilih dokter dulu');
+                if (dokter == undefined) {
+                    toastr.error('Pilih dokter dulu')
                     return
                 }
                 for (var i = 0; i < $scope.dataGrid._data.length; i++) {

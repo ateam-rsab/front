@@ -9062,6 +9062,34 @@
     ]
   },
   {
+    "name": "DaftarWaktuTungguLab",
+    "url": "/DaftarWaktuTungguLab",
+    "templateurl": "module/Laboratorium/DaftarWaktuTungguLab.html",
+    "controller": "DaftarWaktuTungguLabCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
+      },
+      {
+        "module": "PasienService",
+        "define": "PasienService"
+      },
+      {
+        "module": "PhpServices",
+        "define": "PhpServices"
+      }
+    ]
+  },
+  {
     "name": "DaftarPasienPenunjang",
     "url": "/DaftarPasienPenunjang",
     "templateurl": "module/Laboratorium/DaftarPasienPenunjang.html",

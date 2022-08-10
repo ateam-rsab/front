@@ -25,6 +25,10 @@
         "link": "#/DaftarKehadiranPasienLab"
     },
     {
+        "name": "Daftar Waktu Tunggu",
+        "link": "#/DaftarWaktuTungguLab"
+    },
+    {
         "name": "Daftar Pasien Penunjang",
         "link": "#/DaftarPasienPenunjang"
     },
