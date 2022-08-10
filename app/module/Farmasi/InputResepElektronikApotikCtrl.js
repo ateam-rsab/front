@@ -68,7 +68,8 @@ define(['initialize'], function (initialize) {
                     $scope.item.namaPasien = cacheResepElektronik.namaPasien;
                     $scope.item.jenisKelamin = cacheResepElektronik.jenisKelamin;
                     $scope.item.noRegistrasi = cacheResepElektronik.noRegistrasi;
-
+                    $scope.item.cito = cacheResepElektronik.cito ? 'Ya' : 'Tidak';
+                    $scope.item.dipulangkan = cacheResepElektronik.dipulangkan ? 'Ya' : 'Tidak';
                     $scope.item.umur = cacheResepElektronik.umur;
 
                     // $scope.listKelas = ([{ id: cacheResepElektronik., namakelas: cacheResepElektronik[6] }])

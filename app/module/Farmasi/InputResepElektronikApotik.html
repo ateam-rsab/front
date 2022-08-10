@@ -218,7 +218,7 @@
                 </div>
             </div>
         </div> -->
-        <div class="grid_3 borderBox" style="height:170px;margin-top: 5px">
+        <div class="grid_4 borderBox" style="height:170px;margin-top: 5px">
             <div class="grid_12 headerBox">
                 <p>Data Resep</p>
             </div>
@@ -265,7 +265,7 @@
                 </div>
             </div>
         </div>
-        <div class="grid_7 borderBox" style="height:170px;margin-top: 5px">
+        <div class="grid_8 borderBox" style="height:170px;margin-top: 5px">
 
             <div class="grid_12 headerBox">
                 <p>Data Pasien</p>
@@ -314,13 +314,12 @@
             </div>
             <div class="grid_3">
                 <div class="grid_12">
-                    <label c-label item="item">Berat Badan</label>
+                    <label c-label item="item">Jenis Penjamin</label>
                 </div>
 
-                <div class="grid_12" style="display: flex;">
-                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.beratBadan"
-                        ng-disabled="true" />
-                    <label c-label item="item">Kg</label>
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="" class="k-textbox"
+                        ng-model="item.jenisPenjamin" ng-disabled="true" />
                 </div>
             </div>
 
@@ -366,7 +365,7 @@
                 </div>
             </div>
         </div>
-        <div class="grid_2 borderBox" style="height:170px;margin-top: 5px">
+        <!-- <div class="grid_2 borderBox" style="height:170px;margin-top: 5px">
             <div class="grid_12 headerBox">
                 <p>Pengkajian</p>
             </div>
@@ -392,7 +391,7 @@
                         ng-disabled="true" />
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div class="grid_12">
             <md-card>
@@ -724,10 +723,12 @@
 
                     </div>
                 </div>
-                <div class="grid_3"></div>
-                <div class="grid_6">
-                    <div class="grid_2">
-                        <md-button class="md-raised md-primary" ng-click="cetakLabelResep()">Cetak Label Resep</md-button>
+                <div class="grid_2"></div>
+                <div class="grid_7">
+                    <div class="grid_2" style="margin-top: 22px">
+                        <md-button class="md-raised md-primary medium-button" ng-click="cetakLabelResep()">
+                            <span>Cetak Label Resep</span>
+                        </md-button>
                     </div>
                     <div class="grid_2" style="margin-top: 22px">
                         <!-- <button class="c-button" ng-click="kembali()">Kembali</button> -->
@@ -779,6 +780,44 @@
 <div kendo-window="popupInputObat" k-title="'Verifikasi Obat'" k-visible="false" k-on-open="win2visible= true"
     k-width="1300" k-on-close="win2visible= false">
     <div class="panel panel-default container_12" style="padding: 0px 10px;" ng-show="!showLoader">
+        <div class="grid_12">
+            <md-card>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Pengkajian</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <div class="grid_12" style="margin-bottom: 10px">
+                        <div class="grid_4">
+                            <label c-label item="item">
+                                <strong>Riwayat Alergi: </strong>{{item.AlergiYa}}
+                            </label>
+                        </div>
+                        <div class="grid_2">
+                            <label c-label item="item">
+                                <strong>Berat badan: </strong>{{item.beratBadan}} kg
+                            </label>
+                        </div>
+                        <div class="grid_2">
+                            <label c-label item="item">
+                                <strong>Substitusi obat: </strong>{{item.subtitusiObat}}
+                            </label>
+                        </div>
+                        <div class="grid_2">
+                            <label c-label item="item">
+                                <strong>Status cito: </strong>{{item.cito}}
+                            </label>
+                        </div>
+                        <div class="grid_2">
+                            <label c-label item="item">
+                                <strong>Status pulang: </strong>{{item.dipulangkan}}
+                            </label>
+                        </div>
+                    </div>
+                </md-card-content>
+            </md-card>
+        </div>
         <div class="grid_6">
             <!-- <div class="grid_12" ng-show="!racikan">
                 <md-card>
