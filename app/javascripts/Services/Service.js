@@ -375,9 +375,7 @@ define(['Configuration'], function (config) {
                 toTimestampFromDate: function (date) {
                     date = date.split('-');
                     var returnDate = date[1] + '/' + date[0] + '/' + date[2];
-                    // var dateFormated = Math.round(new Date(date).getTime()/1000)
-                    // console.log(dateFormated)
-                    return new Date(returnDate).getTime()/1000;
+                    return new Date(returnDate).getTime();
                 },
                 DescDay: function (date, flag) {
                     var day = date.getDay() - 1;

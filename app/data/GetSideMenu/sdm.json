@@ -379,10 +379,6 @@
                 "link": "#/PengaturanBobotJenisIndikator"
             },
             {
-                "name": "Target Pelayanan Jam Kerja",
-                "link": "#/TargetPelayananJamKerja"
-            },
-            {
                 "name": "Monitoring Target Skor Dokter",
                 "link": "#/MonitoringTargetSkorDokter"
             },
