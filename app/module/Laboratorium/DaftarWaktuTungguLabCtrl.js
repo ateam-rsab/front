@@ -35,6 +35,10 @@ define(['initialize'], function (initialize) {
                     "title": "No. Registrasi",
                     "width": 100,
                 }, {
+                    "field": "tglregistrasi",
+                    "title": "Tanggal Registrasi",
+                    "width": 100,
+                }, {
                     "field": "noorder",
                     "title": "No. Order",
                     "width": 100,
