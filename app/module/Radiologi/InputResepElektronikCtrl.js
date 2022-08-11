@@ -268,6 +268,10 @@ define(['initialize'], function (initialize) {
                 }
             }
 
+            $scope.autocompleteOptions = {
+                filter: "contains"
+            }
+
             // untuk menambah obat racikan
             $scope.tambahObat = function (index) {
 
