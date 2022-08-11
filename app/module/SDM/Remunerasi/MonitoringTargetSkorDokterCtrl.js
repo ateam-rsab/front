@@ -69,8 +69,8 @@ define(['initialize'], function (initialize) {
 
             $scope.item.tahun = new Date();
             $scope.monthSelectorOptions = {
-                start: "decade",
-                depth: "decade"
+                start: "year",
+                depth: "year"
             };
 
             let init = () => {
@@ -152,7 +152,7 @@ define(['initialize'], function (initialize) {
                             id: $scope.model.noRec ? $scope.model.subunitKerjaId : $scope.model.subUnitKerja.id
                         },
                         totalSkorDasar: parseFloat($scope.model.totalTargetSkor),
-                        tmt: dateHelper.toTimeStamp($scope.model.tmt),
+                        tmt: dateHelper.toTimestampFromDate($scope.model.tmtFormatted)
                     }
 
                     if ($scope.model.noRec) {
@@ -185,6 +185,7 @@ define(['initialize'], function (initialize) {
                 $scope.model.subunitKerjaId = null;
                 $scope.model.noRec = null;
                 $scope.model.totalTargetSkor = null;
+                $scope.model.tmtFormatted = null;
             }
         }
     ])
