@@ -119,13 +119,13 @@ define([], function () {
   } else {
     return {
       /**Login PHP */
-      baseUrlLogin: `${baseURLPhp}:${portPhp}/simrs_harkit/service/auth/sign-in`,
-      baseUrlLogout: `${baseURLPhp}:${portPhp}/simrs_harkit/service/auth/sign-out`,
+      baseUrlLogin: `${baseURLPhp}:${portPhp}/dev-simrs/service/auth/sign-in`,
+      baseUrlLogout: `${baseURLPhp}:${portPhp}/dev-simrs/service/auth/sign-out`,
 
-      urlDataGeneric_Akuntansi: `${baseURLPhp}:${portPhp}/simrs_harkit/service/list-generic?view=`,
-      urlDataTableMaster_Akuntansi: `${baseURLPhp}:${portPhp}/simrs_harkit/service/master/`,
-      urlDataTableTransaksi_Akuntansi: `${baseURLPhp}:${portPhp}/simrs_harkit/service/transaksi/`,
-      baseApiPostData_Akuntansi: `${baseURLPhp}:${portPhp}/simrs_harkit/service/`,
+      urlDataGeneric_Akuntansi: `${baseURLPhp}:${portPhp}/dev-simrs/service/list-generic?view=`,
+      urlDataTableMaster_Akuntansi: `${baseURLPhp}:${portPhp}/dev-simrs/service/master/`,
+      urlDataTableTransaksi_Akuntansi: `${baseURLPhp}:${portPhp}/dev-simrs/service/transaksi/`,
+      baseApiPostData_Akuntansi: `${baseURLPhp}:${portPhp}/dev-simrs/service/`,
 
       /**Login Java */
       baseUrlJavaLogin: `${baseURLJava}:${portJava}/jasamedika-web/auth/sign-in`,
