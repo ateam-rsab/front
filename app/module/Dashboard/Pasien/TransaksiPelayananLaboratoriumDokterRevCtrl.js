@@ -7,18 +7,16 @@ define(['initialize'], function (initialize) {
             $scope.now = new Date();
             var norec_apd = ''
             var norec_pd = ''
-            var nocm_str = '';
-            $scope.isRouteLoading = true;
-            let tempDataGrid = [];
+            var nocm_str = ''
             $scope.item.qty = 1
             $scope.riwayatForm = false
             $scope.inputOrder = true
             $scope.CmdOrderPelayanan = true;
             $scope.OrderPelayanan = false;
-            $scope.showTombol = false
-            $scope.header.DataNoregis = true
-            $scope.item.periodeAwal = new Date();
-            $scope.item.periodeAkhir = new Date();
+            $scope.showTombol = false;
+            $scope.header.DataNoregis = true;
+            // $scope.item.periodeAwal = new Date();
+            // $scope.item.periodeAkhir = new Date();
             // var pegawaiUser = {}
             $scope.dataLogin = JSON.parse(localStorage.getItem('pegawai'));
             let getJenisPegawai = $scope.dataLogin.jenisPegawai.jenispegawai ? $scope.dataLogin.jenisPegawai.jenispegawai : $scope.dataLogin.jenisPegawai.jenisPegawai;
@@ -177,12 +175,20 @@ define(['initialize'], function (initialize) {
                 actived: false
             }];
 
-
-            // $("#filterHeader a.button-filtering").on('click', () => {
-            //     $("a.button-filtering").removeClass("filtering-actived");
-            //     $(this).addClass("filtering-actived");
-            // })
             LoadCacheHelper();
+
+            $scope.optGridRiwayat = {
+                filterable: {
+                    extra: false,
+                    operators: {
+                        string: {
+                            startswith: "Dimulai dengan",
+                            contains: "mengandung kata",
+                            neq: "Tidak mengandung kata"
+                        }
+                    }
+                }
+            }
 
             function LoadCacheHelper() {
                 var chacePeriode = cacheHelper.get('TransaksiPelayananLaboratoriumDokterRevCtrl');
@@ -198,7 +204,7 @@ define(['initialize'], function (initialize) {
                     $scope.item.tglRegistrasi = chacePeriode[6]
                     norec_apd = chacePeriode[7]
                     norec_pd = chacePeriode[8]
-                    $scope.item.idKelas = 6// chacePeriode[9]
+                    $scope.item.idKelas = chacePeriode[9]
                     $scope.item.kelas = chacePeriode[10]
                     $scope.item.idRuangan = chacePeriode[11]
                     $scope.item.namaRuangan = chacePeriode[12]
@@ -216,6 +222,32 @@ define(['initialize'], function (initialize) {
                 }
                 init()
             }
+
+            $scope.cariRiwayat = () => {
+                $scope.getDataRiwayat();
+            }
+
+            $scope.getDataRiwayat = function () {
+                $scope.isRouteLoading = true;
+                let tanggal = {
+                    awal: $scope.item.periodeAwal ? DateHelper.formatDate($scope.item.periodeAwal, "YYYY-MM-DD HH:mm:ss") : '',
+                    akhir: $scope.item.periodeAkhir ? DateHelper.formatDate($scope.item.periodeAkhir, "YYYY-MM-DD HH:mm:ss") : ''
+                }
+
+                let URL = tanggal.awal && tanggal.akhir ? `laporan/get-order-lab-new?NoCM=${$scope.item.noMr}&tglAwal=${tanggal.awal}&tglAkhir=${tanggal.akhir}` : `laporan/get-order-lab-new?NoCM=${$scope.item.noMr}&iddpjp=${$scope.item.srcDpjp ? $scope.item.srcDpjp.id : ''}`
+                //  manageLogistikPhp.getDataTableTransaksi('laporan/get-order-lab-new?NoCM=' + $scope.item.noMr + "&tglAwal=" + tanggal.awal + "&tglAkhir=" + tanggal.akhir).then(function (e) {
+                manageLogistikPhp.getDataTableTransaksi(URL).then(function (e) {
+                    for (var i = e.data.daftar.length - 1; i >= 0; i--) {
+                        e.data.daftar[i].no = i + 1
+                    }
+                    $scope.dataGridRiwayat = new kendo.data.DataSource({
+                        data: e.data.daftar,
+                        pageSize: 10
+                    });
+                    $scope.isRouteLoading = false;
+                });
+            }
+            $scope.getDataRiwayat();
 
             var data2 = [];
             $scope.PegawaiLogin2 = {};
@@ -270,13 +302,13 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.filterPelayanan = function (data, index) {
+                $scope.isLoading = true;
                 for (let i = 0; i < $scope.listFilters.length; i++) {
                     $scope.listFilters[i].actived = false;
                 }
 
                 if (index) $scope.listFilters[index].actived = true;
 
-                $scope.isLoading = true;
                 manageLogistikPhp.getDataTableTransaksi("pelayanan/get-order-penunjang?departemenfk=3&nocm=" + nocm_str + '&norec_apd=' + norec_apd + "&" + baseURLFiltering + "&filter_huruf=" + (data ? data.val.toLowerCase() : "") + "&filter_contain=" + ($scope.filterContain ? $scope.filterContain : ""), true).then(function (dat) {
                     for (let i in dat.data.produk) {
                         dat.data.produk[i].checked = false;
@@ -325,35 +357,10 @@ define(['initialize'], function (initialize) {
                 "width": 100,
             }]
 
-            $scope.cariRiwayat = () => {
-                $scope.getDataRiwayat();
-            }
-
-            $scope.getDataRiwayat = function () {
-                $scope.isRouteLoading = true;
-                let tanggal = {
-                    awal: DateHelper.formatDate($scope.item.periodeAwal, "YYYY-MM-DD HH:mm:ss"),
-                    akhir: DateHelper.formatDate($scope.item.periodeAkhir, "YYYY-MM-DD HH:mm:ss")
-                }
-
-                manageLogistikPhp.getDataTableTransaksi(`laporan/get-order-lab-new?NoCM=${$scope.item.noMr}&tglAwal=${tanggal.awal}&tglAkhir=${tanggal.akhir}&iddpjp=${$scope.item.srcDpjp ? $scope.item.srcDpjp.id : ''}`).then(function (e) {
-                    
-                    for (var i = e.data.daftar.length - 1; i >= 0; i--) {
-                        e.data.daftar[i].no = i + 1
-                        e.data.daftar[i].dokterFomatted = e.data.daftar[i].dokterdpjp ? e.data.daftar[i].dokterdpjp : e.data.daftar[i].dokter
-                    }
-
-                    $scope.dataGridRiwayat = new kendo.data.DataSource({
-                        data: e.data.daftar,
-                        pageSize: 10
-                    });
-                    $scope.isRouteLoading = false;
-                });
-            }
-            $scope.getDataRiwayat();
-
             function init() {
                 $scope.isDokter = getJenisPegawai === "DOKTER";
+
+                console.log($scope.isDokter);
 
                 manageLogistikPhp.getDataTableTransaksi("rekam-medis/get-combo").then(function (e) {
                     $scope.listDokter = e.data.dokter;
@@ -368,6 +375,7 @@ define(['initialize'], function (initialize) {
                 manageLogistikPhp.getDataTableTransaksi("get-detail-login", true).then(function (dat) {
                     $scope.PegawaiLogin2 = dat.data
                 });
+
             }
 
             $scope.selectedDataProduk = [];
@@ -387,7 +395,7 @@ define(['initialize'], function (initialize) {
             }
 
 
-
+            let tempDataGrid = [];
             $scope.tambahData = () => {
 
                 for (let i in $scope.selectedDataProduk) {
@@ -409,12 +417,38 @@ define(['initialize'], function (initialize) {
                     data: tempDataGrid,
                     pageSize: 20
                 });
-
                 // tempDataGrid = [];
                 $scope.selectedDataProduk = [];
                 $scope.popupAddLayanan.close();
             }
 
+            $rootScope.getRekamMedisCheck = function (bool) {
+                if (bool) {
+                    manageLogistikPhp.getDataTableTransaksi('laporan/get-order-lab-new?NoCM' + $scope.item.noMr).then(function (e) {
+                        //debugger;
+                        for (var i = e.data.daftar.length - 1; i >= 0; i--) {
+                            e.data.daftar[i].no = i + 1
+                        }
+                        $scope.dataGridRiwayat = new kendo.data.DataSource({
+                            data: e.data.daftar,
+                            pageSize: 10
+                        });
+
+
+                    });
+                } else {
+                    manageLogistikPhp.getDataTableTransaksi('laporan/get-order-lab-new?NoCM=' + $scope.item.noMr).then(function (e) {
+                        for (var i = e.data.daftar.length - 1; i >= 0; i--) {
+                            e.data.daftar[i].no = i + 1
+                        }
+                        $scope.dataGridRiwayat = new kendo.data.DataSource({
+                            data: e.data.daftar,
+                            pageSize: 10
+                        });
+
+                    });
+                }
+            }
             $scope.LihatHasil = function (data) {
                 //debugger;
                 if ($scope.dataSelectedRiwayat == undefined) {
@@ -535,37 +569,24 @@ define(['initialize'], function (initialize) {
                 $scope.popupAddLayanan.open().center();
             }
 
-            $scope.optGridRiwayat = {
-                filterable: {
-                    extra: false,
-                    operators: {
-                        string: {
-                            startswith: "Dimulai dengan",
-                            contains: "mengandung kata",
-                            neq: "Tidak mengandung kata"
-                        }
-                    }
-                }
-            }
-
             $scope.columnGridRiwayat = [{
                 "field": "no",
                 "title": "No",
-                "width": "50px",
+                "width": "20px",
             }, {
                 "field": "noregistrasi",
                 "title": "No Registrasi",
                 "width": "70px",
             }, {
                 "field": "tglorder",
-                "title": "Tanggal<br> Order",
+                "title": "Tgl Order",
                 "width": "50px",
             }, {
                 "field": "noorder",
                 "title": "No Order",
                 "width": "60px",
             }, {
-                "field": "dokterFomatted",
+                "field": "dokter",
                 "title": "Dokter",
                 "width": "100px"
             }, {
@@ -578,9 +599,8 @@ define(['initialize'], function (initialize) {
                 "width": "70px",
             }, {
                 "field": "statuspdf",
-                "title": "Status PDF",
-                "width": "70px",
-                
+                "title": "Status File",
+                "width": 100,
             }, {
                 command: [{
                     text: "PDF",
@@ -597,7 +617,8 @@ define(['initialize'], function (initialize) {
             function exportToPdf(e) {
                 e.preventDefault();
                 let dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-                window.open('https://smart.rsabhk.co.id:2222/service-reporting/lap-lab/' + dataItem.noregistrasi);
+                window.open('https://smart.rsabhk.co.id:2222/service-reporting/lap-lab/' + dataItem.noorder);
+                // window.open('http://192.168.12.4:7777/service-reporting/lap-lab/' + dataItem.noorder);
             }
 
             $scope.detailGridOptions = function (dataItem) {
@@ -955,7 +976,6 @@ define(['initialize'], function (initialize) {
                 cacheHelper.set('TransaksiPelayananLaboratoriumDokterRevCtrl', arrStr);
                 $state.go('TransaksiPelayananLaboratoriumDokterRev')
             }
-
             $scope.radiologi = function () {
                 var arrStr = cacheHelper.get('TransaksiPelayananLaboratoriumDokterRevCtrl')
                 cacheHelper.set('TransaksiPelayananRadiologiDokterRevCtrl', arrStr);
@@ -977,7 +997,7 @@ define(['initialize'], function (initialize) {
                     return
                 }
                 if ($scope.dataSelectedRiwayat.statusorder != 'PENDING') {
-                    toastr.error('Tidak bisa dihapus');
+                    toastr.error('Tidak bisa dihapus')
                     return
                 }
                 var data = {

@@ -182,7 +182,7 @@
                                 <div class="grid_9">
                                     <label>Nama Obat</label>
                                     <div style="margin-top: 7px">
-                                        <input id="listObatRacikan" kendo-auto-complete c-text-box type="input"
+                                        <input id="listObatRacikan" kendo-auto-complete c-text-box type="input" k-options="autocompleteOptions"
                                             k-data-source="listOfProdukArray" ng-model="resep.namaObatRacikan[$index]"
                                             style="width: 100%" />
                                     </div>
@@ -223,7 +223,7 @@
                                                 ng-model="resep.ketCaraPembuatan" />
                                         </div>
                                         <div class="grid_3">
-                                            <label>Total Bungkus</label>
+                                            <label>Jumlah</label>
                                             <input c-text-box type="input" filter="'number'" class="k-textbox"
                                                 ng-model="resep.pcsObat" />
                                         </div>

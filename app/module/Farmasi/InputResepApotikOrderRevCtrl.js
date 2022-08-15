@@ -134,6 +134,13 @@ define(['initialize'], function (initialize) {
                                 + dat.data.produk[i].satuanstandar : ' ------- TIDAK TERSEDIA'));
                         listTempObat.push({ name: dat.data.produk[i].namaproduk });
                     }
+                    if (dat.data.alergi.length > 0) {
+                        $scope.isHaveRiwayatAlergi = true;
+                        $scope.resep.riwayatAlergi = {
+                            name: 'Ya',
+                            id: 1
+                        }
+                    }
                     $scope.listRiwayatAlergi = dat.data.alergi;
                     for (let i = 0; i < dat.data.alergi.length; i++) {
                         $scope.dataTempAlergi.push(dat.data.alergi[i].alergi);
@@ -292,6 +299,10 @@ define(['initialize'], function (initialize) {
                 } else {
                     $scope.isHaveRiwayatAlergi = false;
                 }
+            }
+
+            $scope.autocompleteOptions = {
+                filter: "contains"
             }
 
             // untuk menambah obat racikan
@@ -543,8 +554,6 @@ define(['initialize'], function (initialize) {
                     return
                 }
 
-                $scope.isRouteLoading = true;
-
                 let dataTemp = [{
                     "strukorder": {
                         "tglresep": moment($scope.item.tglResep).format('YYYY-MM-DD HH:mm:ss'),
@@ -590,6 +599,7 @@ define(['initialize'], function (initialize) {
                     .ok('Kirim')
                     .cancel('Tidak');
                 $mdDialog.show(confirm).then(function () {
+                    $scope.isRouteLoading = true;
                     manageLogistikPhp.postpost('farmasi/resep-dokter?strukorder=' + norec_apd, dataResep).then(function (res) {
                         dataResep = [];
                         $scope.tempListResep = [];

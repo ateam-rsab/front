@@ -1,0 +1,156 @@
+<style type="text/css">
+    .style-center {
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+    }
+
+    .style-right {
+        display: inline-block;
+        text-align: right;
+        width: 100%;
+    }
+
+    .style-left {
+        display: inline-block;
+        text-align: left;
+        width: 100%;
+    }
+</style>
+
+<!-- <div ng-controller="DaftarPasienApotikCtrl"> -->
+<div ng-show="dataVOloaded">
+    <!-- <c-panel item="item" header="'Daftar Pasien Penunjang'" disabled> -->
+    <div class="grid_12">
+
+        <md-toolbar md-scroll-shrink class="shadow">
+            <div class="md-toolbar-tools">Daftar Pasien Penunjang</div>
+        </md-toolbar>
+
+
+        <div class="grid_12">
+            <div class="grid_2">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Ruangan"></label>
+                </div>
+                <div class="clear"></div>
+
+                <div class="grid_12">
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan"
+                        k-data-text-field="'namaruangan'" k-data-value-field="'id'" k-filter="'contains'"
+                        k-auto-bind="false" k-data-source="listRuangan" />
+                </div>
+            </div>
+            <!-- Ruangan -->
+            <div class="grid_2">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Kelompok Pasien"></label>
+                </div>
+                <div class="clear"></div>
+
+                <div class="grid_12">
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.kelompokPasien"
+                        k-data-text-field="'kelompokpasien'" k-data-value-field="'id'" k-filter="'contains'"
+                        k-auto-bind="false" k-data-source="listKelompokPasien" />
+                </div>
+            </div>
+            <div class="grid_4">
+
+                <div class="grid_4">
+                    <div class="grid_12">
+                        <label c-label item="item">No Registrasi</label>
+                    </div>
+    
+                    <div class="grid_12">
+                        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noReg" />
+                    </div>
+                </div>
+                <div class="grid_4">
+                    <div class="grid_12">
+                        <label c-label item="item">No.MR</label>
+                    </div>
+    
+                    <div class="grid_12">
+                        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noMr" />
+                    </div>
+                </div>
+                <div class="grid_4">
+                    <div class="grid_12">
+                        <label c-label item="item" c-label-text="Nama Pasien"></label>
+                    </div>
+    
+                    <div class="grid_12">
+                        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaPasien" />
+                    </div>
+                </div>
+               
+            </div>
+            <div class="grid_4">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Periode Tanggal Order"></label>
+                </div>
+                <div class="grid_12">
+                    <!-- AwalPeriode -->
+                    <div class="grid_6 padDatePicker">
+                        <input style="width: 100%" k-ng-model="item.tglOrderAwal" kendo-datetimepicker k-max="now"
+                            placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm"
+                            ng-disabled='cekBelumVerifs' />
+                    </div>
+
+                    <!-- AkhirPeriode -->
+                    <div class="grid_6 padDatePicker">
+                        <input style="width: 100%" k-ng-model="item.tglOrderAkhir" kendo-datetimepicker
+                            placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" ng-disabled='cekBelumVerifs' />
+                    </div>
+                  
+                </div>
+
+            </div>
+            <div class="grid_12">
+                <div class="grid_4">
+                    <div class="grid_12">
+                        <label c-label item="item" c-label-text="Periode Tanggal Registrasi"></label>
+                    </div>
+                    <div class="grid_12">
+                        <!-- AwalPeriode -->
+                        <div class="grid_4 padDatePicker">
+                            <input style="width: 100%" k-ng-model="item.tglAwal" kendo-datetimepicker k-max="now"
+                                placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm"
+                                ng-disabled='cekBelumVerifs' />
+                        </div>
+    
+                        <!-- AkhirPeriode -->
+                        <div class="grid_4 padDatePicker">
+                            <input style="width: 100%" k-ng-model="item.tglAkhir" kendo-datetimepicker
+                                placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" ng-disabled='cekBelumVerifs' />
+                        </div>
+                        <div class="grid_2">
+                            <!-- <button class="c-button" ng-click="cariFilter()">Cari</button> -->
+                            <md-button class="md-raised md-primary medium-button" style="width: 100px;" ng-click="cariFilter()">
+                                <span style="margin-right: 5px;">Cari</span>
+                                <i class="fa fa-search"></i>
+                            </md-button>
+    
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+            
+            <div class="grid_12">
+                <div class="borderBox">
+                    <div id="kGrid" kendo-grid k-data-source="dataGrid" k-selectable="'row'" k-columns="columnGrid"
+                        k-pageable="'true'" k-sortable="'true'" k-ng-model="dataSelected">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- NamaKegiatan -->
+        
+        <div class="grid_12" style="margin-top:60px">
+            <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+        </div>
+
+    </div>
+</div>

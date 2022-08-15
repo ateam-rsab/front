@@ -31,14 +31,9 @@
 </style>
 
 <div class="grid_12">
-    <!-- <div class="grid_12 headerBox">
+    <div class="grid_12 headerBox">
         <h1 style="color: white;"><b>Transaksi Pelayanan</b></h1>
-    </div> -->
-
-    <md-toolbar md-scroll-shrink class="shadow">
-        <div class="md-toolbar-tools">Transaksi Pelayanan</div>
-    </md-toolbar>
-
+    </div>
 
     <div class="grid_9 borderBox" style=" height:170px;margin-top: 5px">
 
@@ -166,23 +161,19 @@
         </div>
     </div>
     <div class="grid_12">
-        <div class="grid_12">
+        <div class="grid_12 headerBox">
             <kendo-grid id="kGrids" data-source="dataGrid" options="columnGrid" k-selectable="'row'" k-sortable="'true'"
                 k-resizable="'true'" k-ng-model="dataSelected" ng-click="klikGrid(dataSelected)"></kendo-grid>
         </div>
 
     </div>
 
-    <div class="grid_12" style="margin-top:60px;z-index: 1000;">
-        <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
-    </div>
-
-    <!-- <div class="grid_12 place_button" style="float:left;">
+    <div class="grid_12 place_button" style="float:left;">
         <div class="loading" style="z-index:2; bottom: 30%;" class="animated" ng-show="isLoading">
             <img height="160" src="../app/stylesheets/Flat/loading-image.gif" />
             <br /> <span>Harap Tunggu</span>
         </div>
-    </div> -->
+    </div>
 </div>
 
 <div class="grid_12 " style="float:right;">
@@ -190,64 +181,57 @@
     <div class="grid_2" style="float:right;">
         <div class="grid_12" style="margin-top: 22px">
             <!-- <button class="error c-button" ng-click="back()">Kembali</button> -->
-            <!-- <kendo-button class="c-button error" ng-click="back()"><span class="title">Kembali</span></kendo-button> -->
-            <md-button class="md-raised" ng-click="back()">
-                <span>Kembali</span>
-            </md-button>
+            <kendo-button class="c-button error" ng-click="back()"><span class="title">Kembali</span></kendo-button>
         </div>
     </div>
 
     <div class="grid_2" style="float:right;">
         <div class="grid_12" style="margin-top: 22px">
-            <!-- <kendo-button class="c-button" ng-click="HapusTindakan()"><span class="title">Hapus</span></kendo-button> -->
-            <md-button class="md-raised md-danger" ng-click="HapusTindakan()">
-                <span>Hapus</span>
-            </md-button>
+            <kendo-button class="c-button" ng-click="HapusTindakan()"><span class="title">Hapus</span></kendo-button>
+
+            <!-- <button class="c-button" ng-click="HapusTindakan()">Hapus</button> -->
+        </div>
+    </div>
+    <!--   <div class="grid_2" ng-show='CmdOrderPelayanan' style="float:right;">
+                <div class="grid_12" style="margin-top: 22px">
+                    <button class="c-button" ng-click="cetakBuktiLayanan()">Bukti Layanan</button>
+                </div>
+            </div> -->
+    <div class="grid_2" style="float:right;">
+        <div class="grid_12" style="margin-top: 22px">
+            <kendo-button class="c-button" ng-click="CetakBuktiLayananPerTindakan()"><span class="title">Bukti Layanan
+                </span></kendo-button>
+            <!-- <button class="c-button" ng-click="CetakBuktiLayananPerTindakan()">Bukti Layanan Pertindakan</button> -->
         </div>
     </div>
     <div class="grid_2" style="float:right;">
         <div class="grid_12" style="margin-top: 22px">
-            <!-- <kendo-button class="c-button" ng-click="CetakBuktiLayananPerTindakan()"><span class="title">Bukti Layanan
-                </span></kendo-button> -->
-            <md-button class="md-raised md-primary" ng-click="CetakBuktiLayananPerTindakan()">
-                <span>Bukti Layanan</span>
-            </md-button>
+            <kendo-button class="c-button" ng-click="BridgingZeta()" ng-disabled="disableRad"><span class="title">Kirim
+                    Ke RIS</span></kendo-button>
+            <!-- <button class="c-button" ng-click="BridgingZeta()" ng-disabled="disableRad"> Kirim ke RIS</button> -->
         </div>
     </div>
     <div class="grid_2" style="float:right;">
         <div class="grid_12" style="margin-top: 22px">
-            <!-- <kendo-button class="c-button" ng-click="BridgingZeta()" ng-disabled="disableRad"><span class="title">Kirim
-                    Ke RIS</span></kendo-button> -->
-            <md-button class="md-raised md-primary" ng-click="BridgingZeta()" ng-disabled="disableRad">
-                <span>Kirim Ke RIS</span>
-            </md-button>
+            <!-- <kendo-button class="k-primary c-button" ng-click="simpanAtasan()" ng-show="!isLoading" ng-disabled="!disableLab"><span class="title">Simpan Atasan</span></kendo-button> -->
+
+            <kendo-button class="c-button" ng-click="BridgingSysmex()" ng-disabled="disableLab"><span
+                    class="title">Kirim
+                    Ke LIS</span></kendo-button>
         </div>
     </div>
     <div class="grid_2" style="float:right;">
         <div class="grid_12" style="margin-top: 22px">
-            <!-- <kendo-button class="c-button" ng-click="BridgingSysmex()" ng-disabled="disableLab"><span class="title">Kirim
-                    Ke LIS</span></kendo-button> -->
-            <md-button class="md-raised md-primary" ng-click="BridgingSysmex()" ng-disabled="disableLab">
-                <span>Kirim Ke LIS</span>
-            </md-button>
-        </div>
-    </div>
-    <div class="grid_2" style="float:right;">
-        <div class="grid_12" style="margin-top: 22px">
-            <!-- <kendo-button class="c-button" ng-click="InputTindakan()"><span class="title">Input Tindakan</span></kendo-button> -->
-            <md-button class="md-raised md-primary" ng-click="InputTindakan()">
-                <span>Input Tindakan</span>
-            </md-button>
+            <kendo-button class="c-button" ng-click="InputTindakan()"><span class="title">Input Tindakan</span>
+            </kendo-button>
+            <!-- <button class="c-button" ng-click="InputTindakan()">Input Tindakan</button> -->
         </div>
     </div>
 </div>
 <div class="grid_12 " style="float:left;">
     <div class="grid_2" style="float:left;">
         <div class="grid_12" style="margin-top: 2px">
-            <!-- <kendo-button class="c-button" ng-click="LihatHasil()"><span class="title">Lihat Hasil</span></kendo-button> -->
-            <md-button class="md-raised md-primary" ng-click="LihatHasil()">
-                <span>Lihat Hasil</span>
-            </md-button>
+            <kendo-button class="c-button" ng-click="LihatHasil()"><span class="title">Lihat Hasil</span></kendo-button>
         </div>
     </div>
 </div>
