@@ -4308,8 +4308,8 @@
     ]
   },
   {
-    "name": "MonitoringTargetSkorDokter",
-    "url": "/MonitoringTargetSkorDokter",
+    "name": "PengaturanTargetSkorPerDokterPerBulan",
+    "url": "/PengaturanTargetSkorPerDokterPerBulan",
     "templateurl": "module/SDM/Remunerasi/MonitoringTargetSkorDokter.html",
     "controller": "MonitoringTargetSkorDokterCtrl",
     "deps": [

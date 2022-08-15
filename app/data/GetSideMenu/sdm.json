@@ -379,8 +379,8 @@
                 "link": "#/PengaturanBobotJenisIndikator"
             },
             {
-                "name": "Monitoring Target Skor Dokter",
-                "link": "#/MonitoringTargetSkorDokter"
+                "name": "Pengaturan Target Skor Per Dokter Per Bulan",
+                "link": "#/PengaturanTargetSkorPerDokterPerBulan"
             },
             {
                 "name": "Kontrak Kinerja Individu",
