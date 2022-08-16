@@ -318,11 +318,12 @@
 
 <div ng-controller="WelcomeCtrl">
     <md-card class="card-list-notification">
-        <md-card-header>
+        <!-- <md-card-header>
             <h4>Pemberitahuan</h4>
-        </md-card-header>
+        </md-card-header> -->
         <md-card-content>
             <div class="container-widget grid_6">
+                <h4 style="text-align:left;">Pemberitahuan</h4><br>
                 <div class="notify " ng-if="isShowSIPExpired">
                     <strong>Info </strong> {{messageNotif}}
                 </div>
