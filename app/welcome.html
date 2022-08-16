@@ -6,7 +6,7 @@
     }
     .container-wrapper {
         display: block;
-        height: 17vh;
+        height: vh;
         width: 100%;
         overflow: overlay;
     }
@@ -27,14 +27,23 @@
         border-radius: 5px;
     }
 
+    .scroll-vertical-500 {
+        height: 500px;
+        width: 100%;
+        overflow-y: scroll;
+    }
     .badge-2 {
+        width: 30px;
+		height: 30px;
+        float: right;
         display: flex;
         align-items: center;
         background-color: rgb(255, 50, 50);
         border-radius: 50%;
         color: #fff;
-        padding: 0.5em 0.75em;
+        padding: 0.4em 0.4em 0.4em 0.4em;
         position: relative;
+        font-size: 90%;
     }
 
     .badge-2::before {
@@ -83,12 +92,12 @@
 
     .card-list-dokumen {
         border-top: solid #37d3d7;
-        width: 40%
+        width: 100%
     }
 
     .card-list-video {
         border-top: solid #37d3d7;
-        width: 60%
+        width: 100%
     }
 
     .card-list-video video {
@@ -115,7 +124,7 @@
     }
 
     .list-1 li {
-        display: flex;
+        /* display: flex; */
         margin: 0 5px 15px;
         padding: 10px;
         box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 2px 1px -1px rgba(0, 0, 0, .12)
@@ -150,8 +159,8 @@
         width: 40%;
         max-width: 40%;
         display: flex;
-        flex-direction: column;
-        justify-content: center
+        /* flex-direction: column;
+        justify-content: center */
     }
 
     .doc-action a {
@@ -163,7 +172,7 @@
         font-weight: 700;
         margin: 1.5px auto;
         height: 15px;
-        font-size: 12px;
+        font-size: 80%;
         white-space: nowrap;
     }
 
@@ -192,12 +201,18 @@
         background-color: #ffcf77
     }
 
+    .info-notify{
+        padding: 10px;
+        background-color: #beffff;
+        border-radius: 5px;
+        display: inline-block;
+        margin: 0 1px 3px
+    }
 
     .notify-danger {
         background-color: #ff6f6f;
         color: white;
     }
-
     md-pagination-wrapper.md-center-tabs,
     md-tabs.md-default-theme.md-primary>md-tabs-wrapper,
     md-tabs.md-primary>md-tabs-wrapper {
@@ -308,17 +323,17 @@
         </md-card-header>
         <md-card-content>
             <div class="container-widget grid_6">
-                <div class="notify" ng-if="isShowSIPExpired">
+                <div class="notify " ng-if="isShowSIPExpired">
                     <strong>Info </strong> {{messageNotif}}
                 </div>
                 <div class="notify" ng-if="showPPDSNotif">
                     <strong>Info </strong> {{pesanPemberitahuan}}
                 </div>
-                <div class="notify">
+                <!-- <div class="info-notify">
                     <strong>Info </strong> <strong>[LIVE] HUT RSAB Harapan Kita ke 42</strong> <a
                         href="http://play.rsabhk.co.id/" target="_blank">Klik disini</a>
-                </div>
-                <div class="notify notify-danger" ng-if="showNotif.messageAbsensi">
+                </div> -->
+                <div class="info-notify notify-danger" ng-if="showNotif.messageAbsensi">
                     <strong>Info </strong> {{messageAbsensi}}
                 </div>
                 <div class="notify notify-warn" ng-if="showNotif.changePassword">
@@ -437,7 +452,7 @@
                         <!-- </div> -->
                     </div>
                     <div class="container-wrapper">
-                        <div class="grid_6" ng-repeat="dataBirthday in listBirthdayData">
+                        <div class="grid_4" ng-repeat="dataBirthday in listBirthdayData">
                             <div class="birthday-section">
                                 <img src="{{dataBirthday.imgUrlData}}" alt="photo-profile">
                                 <div class="profile-identity">
@@ -450,9 +465,9 @@
             </div>
             <div class="container-widget grid_6">
                 <h1>Visi & Misi RSAB Harapan Kita</h1>
-                <h2 style="padding:0;">Visi</h2>
+                <h1 style="padding:0;">Visi</h1>
                 <strong layout="row" layout-align="center center">"Terdepan sebagai Pusat Kesehatan ibu dan Anak Nasional"</strong>
-                <h2 style="padding:0;">Misi</h2>
+                <h1 style="padding:0;">Misi</h1>
                 <ul class="list-3">
                     <li ng-repeat="data in visimisi">
                         <div class="doc-description-visimisi">
@@ -461,7 +476,7 @@
                         </div>
                     </li>
                 </ul>
-                <h2 style="padding-top:10px;">Tujuan</h2>
+                <h1 style="padding-top:10px;">Tujuan</h1>
                     <ul class="list-3"><li >
                         <strong style="text-align: justify; text-justify: newspaper">Terwujudnya pelayanan kesehatan Ibu dan Anak yang aman dan berkualitas dengan pelayanan unggulan Birth Defect Integrated Center (BIDIC), Perinatal Terpadu dan Rujukan, dan Teknologi Reproduksi Berbantu melalui kerja sana tim, jejaring dan sistem rujukan serta terselanggaranya pendidikan, pelatihan, dan penelitian yang terintegrasi dengan aktivitas pelayanan.</strong>
                     </li></ul>
@@ -469,140 +484,125 @@
         </md-card-content>
     </md-card>
 
-    <div class="smart-container-home">
-        <md-card class="card-list-dokumen">
-            <md-card-content>
-
-                <div ng-cloak style="height: 100%;">
-                    <md-content>
-                        <md-tabs class="md-primary" md-dynamic-height md-center-tabs>
-                            <md-tab label="Informasi Terkini">
-                                <md-content class="md-padding">
-                                    <ul class="list-1">
-                                        <li ng-repeat="data in dataPemberitahuan">
-                                            <div class="doc-description">
-                                                <strong>{{data.fileName}}</strong>
-                                            </div>
-                                            <div class="doc-action">
-                                                <a href="{{data.path}}" download>Download PDF</a>
-                                                <a ng-click="lihatDokumen(data.path)">Lihat</a>
-                                            </div>
-                                            <div ng-show="data.new" class="badge-2">NEW</div>
-                                        </li>
-
-                                    </ul>
-                                </md-content>
-                            </md-tab>
-
-                            <md-tab label="Info Penting">
-                                <md-content class="md-padding">
-                                    <md-content class="md-padding">
-                                        <ul class="list-1">
-                                            <li ng-repeat="data in dataBerkasAdministrasi">
-                                                <div class="doc-description">
-                                                    <strong>{{data.fileName}}</strong>
-                                                </div>
-                                                <div class="doc-action">
-                                                    <a href="{{data.path}}" download>Download PDF</a>
-                                                </div>
-                                            </li>
-
-                                        </ul>
-                                    </md-content>
-                                </md-content>
-                            </md-tab>
-
-                            <md-tab label="Dokumen Terkait COVID-19">
+    <md-card class="card-list-notification">
+        <md-card-content>
+            <div class="container-widget grid_4">
+                <md-card class="card-list-dokumen">
+                    <md-tabs class="md-primary" md-dynamic-height md-center-tabs>
+                        <md-tab label="Informasi Terkini">
+                            <md-content class="md-padding scroll-vertical-500">
                                 <ul class="list-1">
-                                    <li>
-                                        <div class="doc-description">
-                                            Pedoman Pencegahan Pengendalian
-                                            <strong>CORONA VIRUS DISEASE (COVID-19).</strong>
-                                        </div>
-                                        <div class="doc-action">
-                                            <a href="data/dokumen/pedoman-covid19.pdf" download>Download PDF</a>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="doc-description">
-                                            Standar APD (Alat Pelindung Diri) dalam Lingkungan Kerja RSAB Harapan
-                                            Kita
-                                        </div>
-                                        <div class="doc-action">
-                                            <a href="data/dokumen/suit-level.pdf" download>Download PDF</a>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="doc-description">
-                                            Standar APD (Alat Pelindung Diri) dalam Manajemen Penanganan COVID-19
-                                        </div>
-                                        <div class="doc-action">
-                                            <a href="data/dokumen/Standar_APD_dalam_Manajemen_Penanganan_Covid19.pdf.pdf"
-                                                download>Download PDF</a>
+                                    <li ng-repeat="data in dataPemberitahuan">
+                                        <div layout="row" width="100%">
+                                            <div flex="80">
+                                                <strong>{{data.fileName}}</strong><br>
+                                                <div class="doc-action">
+                                                    <a href="{{data.path}}" download>Download PDF</a>&nbsp;
+                                                    <a ng-click="lihatDokumen(data.path)">Lihat</a>
+                                                </div>
+                                            </div>
+                                            <div flex="20">
+                                                <div ng-show="data.new" class="badge-2">NEW</div>
+                                            </div>
                                         </div>
                                     </li>
                                 </ul>
-                            </md-tab>
-                        </md-tabs>
-                    </md-content>
-                </div>
+                            </md-content>
+                        </md-tab>
 
-            </md-card-content>
-        </md-card>
+                        <md-tab label="Info Penting">
+                            <md-content class="md-padding scroll-vertical-500">
+                                <ul class="list-1">
+                                    <li ng-repeat="data in dataBerkasAdministrasi">
+                                        <div layout="row" width="100%">
+                                            <div flex="70">
+                                                <strong>{{data.fileName}}</strong>
+                                            </div>
+                                            <div flex="30">
+                                                <div class="doc-action">
+                                                    <a href="{{data.path}}" download>Download PDF</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </md-content>
+                        </md-tab>
 
-        <md-card class="card-list-video">
-            <md-card-header>
-                <h4>{{videoPlayed.title}}</h4>
-            </md-card-header>
-            <md-card-content>
+                        <md-tab label="Dokumen Terkait COVID-19">
+                            <md-content class="md-padding scroll-vertical-500">
+                                <ul class="list-1">
+                                    <li ng-repeat="data in dokumenTerkaitCovid">
+                                        <div layout="row" width="100%">
+                                            <div flex="70">
+                                                <strong>{{data.fileName}}</strong>
+                                            </div>
+                                            <div flex="30">
+                                                <div class="doc-action">
+                                                    <a href="{{data.path}}" download>Download PDF</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </md-content>
+                        </md-tab>
+                    </md-tabs>
+                </md-card>
+            </div>
+            <div class="container-widget grid_8">
+                <md-card class="card-list-video">
+                    <md-card-header>
+                        <h4>{{videoPlayed.title}}</h4>
+                    </md-card-header>
+                    <md-card-content>
 
-                <div class="list-video">
-                    <ul class="list-2">
-                        <li
-                            ng-click="changeVideo('https://smart.rsabhk.co.id:2222/vid/ultah-jan-1-9.mp4', ' Pegawai Ulang Tahun 1 s/d 9 Januari 2022')">
-                            Pegawai Ulang Tahun 1 s/d 9 Januari 2022
-                        </li>
-                        <li
-                            ng-click="changeVideo('https://smart.rsabhk.co.id:2222/vid/zona-integritas.mp4', 'Profil Zona Integritas WBK dan WBBM RSAB Harapan Kita 2021')">
-                            Profil Zona Integritas WBK dan WBBM RSAB Harapan Kita 2021
-                        </li>
-                        <li ng-click="changeVideo('https://smart.rsabhk.co.id:2222/vid/senam.mp4', 'Senam Kebugaran')">
-                            Senam
-                        </li>
-                        <li
-                            ng-click="changeVideo('https://smart.rsabhk.co.id:2222/vid/masker.mp4', 'Maskerku Melindungi Kamu, Maskermu Melindungi Aku')">
-                            Maskerku Melindungi Kamu, Maskermu Melindungi Aku
-                        </li>
-                        <li
-                            ng-click="changeVideo('https://smart.rsabhk.co.id:2222/vid/cuci-tangan.mp4', '6 Langkah Cuci Tangan Pakai Sabun (CTPS)')">
-                            6 Langkah Cuci Tangan Pakai Sabun (CTPS)
-                        </li>
-                        <li ng-click="changeVideo('https://smart.rsabhk.co.id:2222/vid/jaga-jarak.mp4', 'Jaga Jarak')">
-                            Jaga Jarak
-                        </li>
-                        <li ng-click="changeVideo('http://172.16.201.201:8080/hls/hello.m3u8', 'Jaga Jarak')">
-                            Jaga Jarak 2
-                        </li>
-                    </ul>
-                </div>
+                        <div class="list-video">
+                            <ul class="list-2">
+                                <li
+                                    ng-click="changeVideo('https://smart.rsabhk.co.id:2222/vid/ultah-jan-1-9.mp4', ' Pegawai Ulang Tahun 1 s/d 9 Januari 2022')">
+                                    Pegawai Ulang Tahun 1 s/d 9 Januari 2022
+                                </li>
+                                <li
+                                    ng-click="changeVideo('https://smart.rsabhk.co.id:2222/vid/zona-integritas.mp4', 'Profil Zona Integritas WBK dan WBBM RSAB Harapan Kita 2021')">
+                                    Profil Zona Integritas WBK dan WBBM RSAB Harapan Kita 2021
+                                </li>
+                                <li ng-click="changeVideo('https://smart.rsabhk.co.id:2222/vid/senam.mp4', 'Senam Kebugaran')">
+                                    Senam
+                                </li>
+                                <li
+                                    ng-click="changeVideo('https://smart.rsabhk.co.id:2222/vid/masker.mp4', 'Maskerku Melindungi Kamu, Maskermu Melindungi Aku')">
+                                    Maskerku Melindungi Kamu, Maskermu Melindungi Aku
+                                </li>
+                                <li
+                                    ng-click="changeVideo('https://smart.rsabhk.co.id:2222/vid/cuci-tangan.mp4', '6 Langkah Cuci Tangan Pakai Sabun (CTPS)')">
+                                    6 Langkah Cuci Tangan Pakai Sabun (CTPS)
+                                </li>
+                                <li ng-click="changeVideo('https://smart.rsabhk.co.id:2222/vid/jaga-jarak.mp4', 'Jaga Jarak')">
+                                    Jaga Jarak
+                                </li>
+                                <li ng-click="changeVideo('http://172.16.201.201:8080/hls/hello.m3u8', 'Jaga Jarak')">
+                                    Jaga Jarak 2
+                                </li>
+                            </ul>
+                        </div>
 
-                <video name="media" id="video-kampanye" src="https://smart.rsabhk.co.id:2222/vid/zona-integritas.mp4"
-                     loop controls>
-                    Your browser does not support HTML video.
-                </video>
-                <video id="my_video_1" class="video-js vjs-fluid vjs-default-skin" controls preload="auto"
-                    data-setup='{}'>
-                    <source src="https://mn-l.mncdn.com/kanal24/smil:kanal24.smil/playlist.m3u8"
-                        type="application/x-mpegURL">
-                </video>
-                <!-- <video src="http://172.16.201.201:8080/hls/hello.m3u8" type="application/x-mpegURL" 
-                autoplay loop controls></video> -->
-            </md-card-content>
-        </md-card>
-    </div>
-
+                        <video name="media" id="video-kampanye" src="https://smart.rsabhk.co.id:2222/vid/zona-integritas.mp4"
+                            loop controls>
+                            Your browser does not support HTML video.
+                        </video>
+                        <video id="my_video_1" class="video-js vjs-fluid vjs-default-skin" controls preload="auto"
+                            data-setup='{}'>
+                            <source src="https://mn-l.mncdn.com/kanal24/smil:kanal24.smil/playlist.m3u8"
+                                type="application/x-mpegURL">
+                        </video>
+                        <!-- <video src="http://172.16.201.201:8080/hls/hello.m3u8" type="application/x-mpegURL" 
+                        autoplay loop controls></video> -->
+                    </md-card-content>
+                </md-card>
+            </div>
+        </md-card-content>
+    </md-card>
     <div kendo-window="popUp" id="winSipStr" k-title="'Pemberitahuan'" k-width="550" k-visible="false"
         k-on-open="win2visible= true" k-on-close="ji.idGridInternalJabatan= null">
         <div class="panel panel-default container_12" style="padding:
