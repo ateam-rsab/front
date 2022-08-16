@@ -147,8 +147,8 @@ define([], function () {
       baseUrlActionK3KL: `${baseURLJava}:${portJava}/jasamedika-k3kl/`,
       baseApiPostDataK3KL: `${baseURLJava}:${portJava}/jasamedika-k3kl/`,
       /* SDM */
-      baseUrlActionSDM: `${baseURLEval}:${portEval}/jasamedika-sdm/`,
-      baseApiPostDataSDM: `${baseURLEval}:${portEval}/jasamedika-sdm/`,
+      baseUrlActionSDM: `${baseURLJava}:${portJava}/jasamedika-sdm/`,
+      baseApiPostDataSDM: `${baseURLJava}:${portJava}/jasamedika-sdm/`,
       /* Reporting */
       urlReporting: `${baseURLJava}:${portJava}/jasamedika-reporting/`,
       /* LAUNDRY */
