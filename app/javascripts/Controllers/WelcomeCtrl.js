@@ -151,7 +151,6 @@ define(['initialize'], function (initialize) {
                 fileName: "PEMBERITAHUAN KGB JUNI 2022 MUHAMMAD SUPRI SETIYADI DKK",
                 new: false
             }]
-
             $scope.dataBerkasAdministrasi = [{
                 path: "data/dokumen/Nodin-Bimtek-SKP.pdf",
                 fileName: "Nota Dinas Bimtek SKP",
@@ -252,7 +251,20 @@ define(['initialize'], function (initialize) {
                 path: "data/dokumen/rekrutmen-internal-JABFUNG-di-lingkungan-RSABHK-tahun-2021.pdf",
                 fileName: "Rekrutmen Internal Jabatan Fungsional di Lingkungan RSAB HK tahun 2021"
             }]
-
+            $scope.dokumenTerkaitCovid=[
+                {
+                    path: "data/dokumen/pedoman-covid19.pdf",
+                    fileName: "Pedoman Pencegahan Pengendalian CORONA VIRUS DISEASE (COVID-19).",
+                },
+                {
+                    path: "data/dokumen/suit-level.pdf",
+                    fileName: "Standar APD (Alat Pelindung Diri) dalam Lingkungan Kerja RSAB Harapan Kita.",
+                },
+                {
+                    path: "data/dokumen/Standar_APD_dalam_Manajemen_Penanganan_Covid19.pdf.pdf",
+                    fileName: "Standar APD (Alat Pelindung Diri) dalam Manajemen Penanganan COVID-19",
+                },
+            ]
             $scope.lihatDokumen = (url) => {
 
                 window.open(`${window.location.origin}/app/${url}`, '_blank');
