@@ -2,6 +2,7 @@ define(['initialize'], function (initialize) {
     initialize.controller('WelcomeCtrl', ['$scope', '$state', 'R', '$rootScope', 'MenuService', 'LoginHelper', '$mdDialog', 'DateHelper', 'ManageSdmNew',
         function ($scope, $state, r, $rootScope, MenuService, LoginHelper, $mdDialog, DateHelper, ManageSdmNew) {
             $scope.showSIPExpired = false;
+            $scope.customFullscreen = false;
             $scope.messageAbsensi = "Tidak ada";
             let dataLogin = JSON.parse(localStorage.getItem("pegawai"));
             $scope.listBirthdayData = [];
@@ -59,8 +60,40 @@ define(['initialize'], function (initialize) {
 
                 $scope.widgetKinerja()
                 $scope.widgetWorkingRecord()
+                // $scope.showVisiMisi();
             }
-
+            $scope.showVisiMisi = function (ev) {
+                $mdDialog.show({
+                  contentElement: '#myDialog',
+                  // Appending dialog to document.body to cover sidenav in docs app
+                  // Modal dialogs should fully cover application to prevent interaction outside of dialog
+                  parent: angular.element(document.body),
+                  targetEvent: ev,
+                  clickOutsideToClose: true
+                });
+              };
+            $scope.visimisi=[
+                {
+                    no:"1",
+                    data:"Menyelenggarakan pelayanan kesehatan ibu dan anak yang nyaman dan berkualitas"
+                },
+                {
+                    no:"2",
+                    data:"Menyelenggarakan pendidikan tenaga kesehatan di bidang kesehatan ibu dan anak"
+                },
+                {
+                    no:"3",
+                    data:"Menyelenggarakan pelatihan dibidang kesehatan ibu dan anak"
+                },
+                {
+                    no:"4",
+                    data:"Menyelenggarakan penelitian di bidang kesehatan ibu dan anak"
+                },
+                {
+                    no:"5",
+                    data:"Menyelenggarakan jejaring dan sistem rujukan di bidang kesehatan ibu dan anak"
+                }
+            ]
             $scope.dataPemberitahuan = [{
                 path: "data/dokumen/Formulir-Permohonan-Surat-Keterangan.pdf",
                 fileName: "Formulir Permohonan Surat Keterangan / Perincian Penghasilan",

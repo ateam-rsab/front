@@ -12,6 +12,10 @@
         "link": "#/DaftarPasienPenunjang"
     },
     {
+        "name": "Daftar Waktu Tunggu",
+        "link": "#/DaftarWaktuTungguRadiologi"
+    },
+    {
         "name": "Daftar Pasien",
         "link": "#/DaftarPasienRadiologi"
     },
