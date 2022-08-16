@@ -525,6 +525,10 @@
         "urlDep": "module/Radiologi/DaftarPasienRadiologiCtrl"
       },
       {
+        "nameDep": "DaftarWaktuTungguRadiologiCtrl",
+        "urlDep": "module/Radiologi/DaftarWaktuTungguRadiologiCtrl"
+      },
+      {
         "nameDep": "InputResepElektronikCtrl",
         "urlDep": "module/Radiologi/InputResepElektronikCtrl"
       },
