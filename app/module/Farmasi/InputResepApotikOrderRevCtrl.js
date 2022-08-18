@@ -463,7 +463,7 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.cetakResep = function () {
-                window.open(cetakHelper.openURLReporting("reporting/resep?struk_order_id=" + $scope.item.norec_so), "Resep");
+                window.open(cetakHelper.openURLReporting("reporting/resep?struk_order_id=" + $scope.item.norec_so));
             }
 
             $scope.reoderResep = function () {
