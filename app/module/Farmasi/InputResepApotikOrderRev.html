@@ -74,8 +74,8 @@
                 <div class="grid_4" ng-show="isHaveRiwayatAlergi" style="margin-top: 1.6em">
                     <!-- <input c-text-box type="input" filter="'number'" class="k-textbox"
                         ng-model="resep.riwayatAlergiPasien" /> -->
-                    <input id="listAlergi" kendo-auto-complete c-text-box type="input"
-                        k-data-source="listRiwayatAlergi" ng-model="resep.riwayatAlergiPasien" style="width: 100%" />
+                    <input id="listAlergi" kendo-auto-complete c-text-box type="input" k-data-source="listRiwayatAlergi"
+                        ng-model="resep.riwayatAlergiPasien" style="width: 100%" />
                 </div>
             </div>
             <div class="grid_12">
@@ -182,9 +182,9 @@
                                 <div class="grid_9">
                                     <label>Nama Obat</label>
                                     <div style="margin-top: 7px">
-                                        <input id="listObatRacikan" kendo-auto-complete c-text-box type="input" k-options="autocompleteOptions"
-                                            k-data-source="listOfProdukArray" ng-model="resep.namaObatRacikan[$index]"
-                                            style="width: 100%" />
+                                        <input id="listObatRacikan" kendo-auto-complete c-text-box type="input"
+                                            k-options="autocompleteOptions" k-data-source="listOfProdukArray"
+                                            ng-model="resep.namaObatRacikan[$index]" style="width: 100%" />
                                     </div>
                                 </div>
                                 <!-- Jumlah Obat -->
@@ -323,25 +323,27 @@
         <md-progress-circular md-diameter="50"></md-progress-circular>
     </div>
     <div class="panel panel-default container_12" style="padding: 0px 10px;" ng-show="!showLoader">
-        <md-card ng-repeat="detailResep in dataDetailResep">
-            <md-card-content>
-                <h2 style="text-align: left;
-                    font-size:25px;margin-top:0;margin-bottom: 0;color:black">R/</h2>
-                <div class="list-obat" ng-repeat="obat in detailResep.obat">
-                    <div style="text-align: left" class="grid_4">{{obat.namaobat}}</div>
-                    <div class="grid_4" style="text-align:center">{{obat.qtyproduk}}</div>
-                    <div class="grid_4">{{obat.satuanview}}</div>
-                </div>
-            </md-card-content>
-            <md-card-footer>
-                <div class="grid_6">
-                    {{detailResep.obat[0].keteranganlainnya}}
-                </div>
-                <div class="grid_6">
-                    {{detailResep.obat[0].keteranganpakai}}
-                </div>
-            </md-card-footer>
-        </md-card>
+        <fieldset class="borderBox" style="height: 500px; overflow-y: auto">
+            <md-card ng-repeat="detailResep in dataDetailResep">
+                <md-card-content>
+                    <h2 style="text-align: left;
+                        font-size:25px;margin-top:0;margin-bottom: 0;color:black">R/</h2>
+                    <div class="list-obat" ng-repeat="obat in detailResep.obat">
+                        <div style="text-align: left" class="grid_4">{{obat.namaobat}}</div>
+                        <div class="grid_4" style="text-align:center">{{obat.qtyproduk}}</div>
+                        <div class="grid_4">{{obat.satuanview}}</div>
+                    </div>
+                </md-card-content>
+                <md-card-footer>
+                    <div class="grid_6">
+                        {{detailResep.obat[0].keteranganlainnya}}
+                    </div>
+                    <div class="grid_6">
+                        {{detailResep.obat[0].keteranganpakai}}
+                    </div>
+                </md-card-footer>
+            </md-card>
+        </fieldset>
 
         <div class="grid_12">
             <div class="k-edit-buttons k-state-default" style="margin-top:10px">
