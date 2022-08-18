@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('InputResepApotikOrderRevCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper', '$mdDialog',
-        function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper, $mdDialog) {
+    initialize.controller('InputResepApotikOrderRevCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper', '$mdDialog', 'CetakHelper',
+        function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper, $mdDialog, cetakHelper) {
             $scope.dataLogin = JSON.parse(localStorage.getItem('pegawai'));
             $scope.showInputDokter = $scope.dataLogin.id === 320263
 
@@ -463,7 +463,7 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.cetakResep = function () {
-                window.open("http://192.168.12.4:7777/service-reporting/resep-pasien/" + $scope.item.norec_so);
+                window.open(cetakHelper.openURLReporting("reporting/resep?struk_order_id=" + $scope.item.norec_so), "Resep");
             }
 
             $scope.reoderResep = function () {

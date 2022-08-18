@@ -488,7 +488,7 @@ define(['initialize'], function (initialize) {
 
             $scope.printCopyResep = function () {
                 console.log($scope.item);
-                window.open("https://192.168.12.4:7777/service-reporting/resep-pasien/" + $scope.item.norec_so);
+                window.open(cetakHelper.openURLReporting("reporting/resep?struk_order_id=" + $scope.item.norec_so));
             }
         }
     ]);

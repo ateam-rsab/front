@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('InputResepElektronikCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper', '$mdDialog',
-        function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper, $mdDialog) {
+    initialize.controller('InputResepElektronikCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper', '$mdDialog', 'CetakHelper',
+        function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper, $mdDialog, cetakHelper) {
             $scope.dataLogin = JSON.parse(localStorage.getItem('pegawai'));
             $scope.dataResepDokter = new kendo.data.DataSource({
                 data: []
@@ -448,10 +448,7 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.cetakResep = function () {
-                window.open("http://192.168.12.4:7777/service-reporting/resep-pasien/" + $scope.item.norec_so);
-                $.get('http://www.geoplugin.net/json.gp', function (data) {
-                    console.log(data)
-                })
+                window.open(cetakHelper.openURLReporting("reporting/resep?struk_order_id=" + $scope.item.norec_so));
             }
 
             // clear out variable
