@@ -109,7 +109,7 @@ define(['initialize'], function (initialize) {
             }, {
                 path: "data/dokumen/SE-Kewajiban-Mentaati-Ketentuan-Jam-Kerja-Bagi-Seluruh-Pegawai .pdf",
                 fileName: "SE Kewajiban Mentaati Ketentuan Jam Kerja Bagi Seluruh Pegawai ",
-                new: true
+                new: false
             }, {
                 path: "data/dokumen/PEMBERITAHUAN-KGB-AGUSTUS-2022.pdf",
                 fileName: "PEMBERITAHUAN KGB AGUSTUS 2022",
@@ -117,7 +117,7 @@ define(['initialize'], function (initialize) {
             }, {
                 path: "data/dokumen/SE-Tata-Cara-Usul-Pencantuman-Gelar-Akademik-Bagi-PNS.pdf",
                 fileName: "SE Tata Cara Usul Pencantuman Gelar Akademik Bagi PNS",
-                new: true
+                new: false
             }, {
                 path: "data/dokumen/PEMBERITAHUAN-USUL-PAK-KEMENTERIAN-KESEHATAN.pdf",
                 fileName: "PEMBERITAHUAN USUL PAK KEMENTERIAN KESEHATAN",
