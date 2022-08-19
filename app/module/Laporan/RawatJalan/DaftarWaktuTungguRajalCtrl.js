@@ -13,18 +13,18 @@ define(['initialize'], function (initialize) {
                     fileName:"Daftar Waktu Tunggu"+moment($scope.now).format( 'DD/MMM/YYYY'),
                     allPages: true,
                 },
-                // filterable: {
-                //     extra: false,
-                //     operators: {
-                //         string: {
-                //             contains: "Contains",
-                //             startswith: "Starts with"
-                //         }
-                //     }
-                // },
+                filterable: {
+                    extra: false,
+                    operators: {
+                        string: {
+                            contains: "Contains",
+                            startswith: "Starts with"
+                        }
+                    }
+                },
                 selectable: 'row',
-                editable: false,
-                pageable: true,
+                // editable: false,
+                // pageable: false,
                 columns: [{
                     "field": "nocm",
                     "title": "No. Rekam Medis",
@@ -54,7 +54,7 @@ define(['initialize'], function (initialize) {
                     "width": "200",
                 },
                 {
-                    "field": "tgldipanggildokter",
+                    "field": "tglpanggil",
                     "title": "Tanggal Panggil",
                     "width": "200",
                 },
@@ -65,6 +65,9 @@ define(['initialize'], function (initialize) {
                 }]
             };
 
+            $scope.formatTanggal=(tanggal)=>{
+                return moment(tanggal).format('DD-MMM-YYYY HH:mm');
+            }
             $scope.getServiceTable = () => {
                 $scope.isRouteLoading = true;
                 $scope.dataSourceWaktuTunggu=[];
@@ -73,7 +76,7 @@ define(['initialize'], function (initialize) {
                 manageLogistikPhp.getDataTableTransaksi("laporan/get-laporan-waktu-tunggu-rawat-jalan?tglAwal=" + tglAwal + "&tglAkhir=" + tglAkhir, true).then(function (res) {
                     $scope.ratarata = res.data.rata_waktu_tunggu;
                     for (var i = 0; i < res.data.data.length; i++) {
-                        let tanggalPanggil='';
+                        let tanggalPanggil="";
                         if(res.data.data[i].tgldipanggildokter!=null){
                             tanggalPanggil=res.data.data[i].tgldipanggildokter;
                         }else if(res.data.data[i].tgldipanggilsuster!=null){
@@ -81,15 +84,12 @@ define(['initialize'], function (initialize) {
                         }else{
                             tanggalPanggil="-";
                         }
-                        res.data.data[i].tgldipanggildokter=tanggalPanggil;
+                        res.data.data[i].tglpanggil=tanggalPanggil;
                     }
                     $scope.dataSourceWaktuTunggu = new kendo.data.DataSource({
-                        //data: ModelItem.beforePost(e.data.data, true),
-                        data: ModelItem.beforePost(res.data.data, true),
+                        data: res.data.data,
                         pageSize: 100,
-                        // group: $scope.group
                     });
-
                     $scope.isRouteLoading = false;
                 })
             }
