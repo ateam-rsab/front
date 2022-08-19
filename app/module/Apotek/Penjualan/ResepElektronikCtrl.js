@@ -255,7 +255,8 @@ define(['initialize'], function (initialize) {
                     if ($scope.item.kelompokpasien === "BPJS") {
                         $state.go('ProduksiElektronik', { norec_so: $scope.item.norec_so });
                     } else {
-                        toastr.info('Pasien Belum Bayar');
+                        $state.go('ProduksiElektronik', { norec_so: $scope.item.norec_so });
+                        // toastr.info('Pasien Belum Bayar');
                     }
 
                 } else if ($scope.item.statusorder == 'Selesai') {
