@@ -1,0 +1,121 @@
+<style type="text/css">
+    h4 {
+        font-size: 16px;
+        font-weight: bold;
+        color: #363737;
+        border: solid 1px #363737;
+        background: #ffffff;
+        padding: 15px;
+        margin: 0;
+        text-align: center;
+        line-height: 23px;
+
+    }
+</style>
+<md-toolbar md-scroll-shrink class="shadow">
+    <div class="md-toolbar-tools">Daftar Waktu Tunggu</div>
+</md-toolbar>
+
+<div class="grid_12">
+    <div class="grid_2">
+        <label c-label item="item">Tanggal Awal</label>
+        <input style="width: 100%;" k-ng-model="item.tglAwal" kendo-date-time-picker placeholer="dd-mm-yyyy"
+            k-format="'dd-MM-yyyy HH:mm'" />
+    </div>
+    <div class="grid_2">
+        <label c-label item="item">Tanggal Akhir</label>
+        <input style="width: 100%;" k-ng-model="item.tglAkhir" kendo-date-time-picker placeholer="dd-mm-yyyy"
+            k-format="'dd-MM-yyyy HH:mm'" />
+    </div>
+
+    <div class="grid_1" style="margin-top: 20px;">
+        <md-button class="md-raised md-primary medium-button" ng-click="getServiceTable()">
+            <span style="margin-right: 5px;">Cari</span>
+            <i class="fa fa-search"></i>
+        </md-button>
+    </div>
+</div>
+
+<div class="grid_12">
+    <div id="kGrid" kendo-grid k-data-source="dataSourceKehadiranPasien" k-selectable="'row'"
+        k-options="optGridWaktuTunggu" k-pageable="'true'" k-sortable="'true'" k-ng-model="selectedData">
+    </div>
+</div>
+<div class="grid_12">
+    <div class="grid_2">
+        <!-- <div class="grid_12">
+            <label c-label item="item">No Order</label>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_12">
+            <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noOrder" />
+        </div> -->
+    </div>
+    <div class="grid_2">
+        <!-- <div class="grid_12">
+            <label c-label item="item"> No Registrasi</label>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_12">
+            <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noRegistrasi" />
+        </div> -->
+    </div>
+    <div class="grid_5">
+        <!-- <div class="grid_12">
+            <label c-label item="item"> No Registrasi</label>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_12">
+            <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noRegistrasi" />
+        </div> -->
+    </div>
+    <div class="grid_3">
+        <div class="grid_12">
+            <h4>Rata-rata waktu tunggu:<span> {{ratarata}}</span></h4>
+            <!-- <label c-label item="item-bold" c-label-text="Rata-rata waktu tunggu"></label> -->
+        </div>
+
+        <!-- <div class="grid_12">
+            <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jmlRows" />
+        </div> -->
+    </div>
+</div>
+
+<div kendo-window="popUpVerif" k-title="'Data yang akan dikirim ke LIS'" k-visible="false" k-width="1000"
+    k-on-open="win2visible = true">
+    <!-- <fieldset> -->
+    <!-- <legend>Verifikasi</legend> -->
+    <div class="panel panel-default container_12">
+
+        <div class="grid_12">
+            <div id="kGrid" kendo-grid k-data-source="dataSourceDetailLIS" k-selectable="'row'" k-options="optDetailLIS"
+                k-pageable="'true'" k-sortable="'true'">
+            </div>
+        </div>
+
+        <div class="grid_12">
+            <div class="grid_8"></div>
+            <div class="grid_2">
+                <md-button class="md-raised md-danger medium-button" ng-click="popUpVerif.close()">
+                    <span>Tutup</span>
+
+                </md-button>
+            </div>
+            <div class="grid_2">
+                <md-button class="md-raised md-primary medium-button" ng-click="kirimKeLis()">
+                    <span style="margin-right: 5px;">Kirim Ke LIS</span>
+                    <i class="fa fa-send-o"></i>
+                </md-button>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <!-- </fieldset> -->
+</div>
+
+<div class="grid_12" style="margin-top:60px">
+    <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+</div>

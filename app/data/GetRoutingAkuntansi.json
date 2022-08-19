@@ -2408,6 +2408,34 @@
     ]
   },
   {
+    "name": "DaftarWaktuTunggu",
+    "url": "/DaftarWaktuTunggu",
+    "templateurl": "module/Laporan/RawatJalan/DaftarWaktuTungguRajal.html",
+    "controller": "DaftarWaktuTungguRajalCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
+      },
+      {
+        "module": "PasienService",
+        "define": "PasienService"
+      },
+      {
+        "module": "PhpServices",
+        "define": "PhpServices"
+      }
+    ]
+  },
+  {
     "name": "LaporanPasienDaftar",
     "url": "/LaporanPasienDaftar",
     "templateurl": "module/Laporan/LaporanPasienDaftar.html",

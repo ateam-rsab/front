@@ -1,6 +1,10 @@
   {
     "path": [
       {
+        "nameDep": "DaftarWaktuTungguRajalCtrl",
+        "urlDep": "module/Laporan/RawatJalan/DaftarWaktuTungguRajalCtrl"
+      },
+      {
         "nameDep": "MultiSelectCtrl",
         "urlDep": "module/KendoUiSample/MultiSelectCtrl"
       },
