@@ -69,10 +69,6 @@ define(['initialize'], function (initialize) {
                     //     width: 70
                     // }
                 ],
-
-                toolbar: [
-                    { text: "export", name: "Export detail", template: '<button ng-click="exportToExcel()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-print"></span>Export To Excel</button>' }
-                ],
                 pageable: {
                     messages: {
                         display: "Menampilkan {0} - {1} data dari {2} data"
@@ -82,6 +78,59 @@ define(['initialize'], function (initialize) {
                     buttonCount: 5
                 },
             }
+
+            $scope.optGridWaktuTunggu = {
+                toolbar:["excel"],
+                excel: {
+                    fileName:"Daftar Waktu Tunggu Radiologi"+moment($scope.now).format( 'DD/MMM/YYYY'),
+                    allPages: true,
+                },
+                filterable: {
+                    extra: false,
+                    operators: {
+                        string: {
+                            contains: "Contains",
+                            startswith: "Starts with"
+                        }
+                    }
+                },
+                selectable: 'row',
+                // pageable: true,
+                // editable: true,  
+                columns: [{
+                    "field": "nocm",
+                    "title": "No. Rekam Medis",
+                    "width": "100",
+                }, {
+                    "field": "noregistrasi",
+                    "title": "No. Registrasi",
+                    "width": "100",
+                }, {
+                    "field": "tglregistrasi",
+                    "title": "Tanggal Registrasi",
+                    "width": "100",
+                }, {
+                    "field": "noorder",
+                    "title": "No. Order",
+                    "width": "100",
+                }, {
+                    "field": "namapasien",
+                    "title": "Nama Pasien",
+                    "width": "200",
+                }, {
+                    "field": "tglpelayanan",
+                    "title": "Tanggal Pelayanan",
+                    "width": "100",
+                }, {
+                    "field": "tglSelesai",
+                    "title": "Tanggal Selesai",
+                    "width": "100",
+                }, {
+                    "field": "selisihWaktu",
+                    "title": "Waktu Tunggu",
+                    "width": "100",
+                }]
+            };
 
             $scope.getDataKehadiran = () => {
                 $scope.isRouteLoading = true;
