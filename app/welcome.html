@@ -29,7 +29,7 @@
 
     .scroll-vertical-500 {
         height: 500px;
-        width: 100%;
+        /* width: 100%; */
         overflow-y: scroll;
     }
     .badge-2 {
@@ -100,14 +100,19 @@
         width: 100%
     }
 
-    .card-list-video video {
+    /* .card-list-video video {
         width: 70%;
         box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 2px 1px -1px rgba(0, 0, 0, .12)
-    }
+    } */
 
     .list-video {
         width: 30%;
         margin: 5px
+    }
+
+    .play-video{
+        width: 70%;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 2px 1px -1px rgba(0, 0, 0, .12)
     }
 
     .card-list-video md-card-content {
@@ -126,10 +131,9 @@
     .list-1 li {
         /* display: flex; */
         margin: 0 5px 15px;
-        padding: 10px;
+        padding: 15px;
         box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 2px 1px -1px rgba(0, 0, 0, .12)
     }
-
     .list-2 li {
         padding: 10px;
         border-bottom: solid #2b2b2b thin;
@@ -548,14 +552,14 @@
                                 <ul class="list-1">
                                     <li ng-repeat="data in dataPemberitahuan">
                                         <div layout="row" width="100%">
-                                            <div flex="80">
+                                            <div flex="80" style="padding-right: 10px;">
                                                 <strong>{{data.fileName}}</strong><br>
                                                 <div class="doc-action">
                                                     <a href="{{data.path}}" download>Download PDF</a>&nbsp;
                                                     <a ng-click="lihatDokumen(data.path)">Lihat</a>
                                                 </div>
                                             </div>
-                                            <div flex="20">
+                                            <div flex="20" style="padding-right: 15px;">
                                                 <div ng-show="data.new" class="badge-2">NEW</div>
                                             </div>
                                         </div>
@@ -569,7 +573,7 @@
                                 <ul class="list-1">
                                     <li ng-repeat="data in dataBerkasAdministrasi">
                                         <div layout="row" width="100%">
-                                            <div flex="70">
+                                            <div flex="70" style="padding-right: 15px;">
                                                 <strong>{{data.fileName}}</strong>
                                             </div>
                                             <div flex="30">
@@ -588,7 +592,7 @@
                                 <ul class="list-1">
                                     <li ng-repeat="data in dokumenTerkaitCovid">
                                         <div layout="row" width="100%">
-                                            <div flex="70">
+                                            <div flex="70" style="padding-right: 10px;">
                                                 <strong>{{data.fileName}}</strong>
                                             </div>
                                             <div flex="30">
@@ -641,12 +645,12 @@
                             </ul>
                         </div>
 
-                        <video name="media" id="video-kampanye" src="https://smart.rsabhk.co.id:2222/vid/zona-integritas.mp4"
+                        <video class="play-video" name="media" id="video-kampanye" src="https://smart.rsabhk.co.id:2222/vid/zona-integritas.mp4"
                             loop controls>
                             Your browser does not support HTML video.
                         </video>
                         <video id="my_video_1" class="video-js vjs-fluid vjs-default-skin" controls preload="auto"
-                            data-setup='{}'>
+                            data-setup='{}' style="width: auto;">
                             <source src="https://mn-l.mncdn.com/kanal24/smil:kanal24.smil/playlist.m3u8"
                                 type="application/x-mpegURL">
                         </video>
@@ -685,5 +689,5 @@
     </div> -->
 </div>
 <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
-<script src="https://unpkg.com/video.js/dist/video.js"></script>
-<script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>
+<!-- <script src="https://unpkg.com/video.js/dist/video.js"></script> -->
+<!-- <script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script> -->

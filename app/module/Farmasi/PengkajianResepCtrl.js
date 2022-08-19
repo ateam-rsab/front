@@ -1,6 +1,6 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('DaftarWaktuTungguLabCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper', 'DateHelper', 'ManageServicePhp', '$window', '$mdDialog',
+    initialize.controller('PengkajuanResepCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper', 'DateHelper', 'ManageServicePhp', '$window', '$mdDialog',
         function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper, dateHelper, manageServicePhp, $window, $mdDialog) {
             $scope.item = {};
             $scope.jumlahLayanan = 2000;
@@ -69,10 +69,6 @@ define(['initialize'], function (initialize) {
                     //     width: 70
                     // }
                 ],
-
-                // toolbar: [
-                //     { text: "export", name: "Export detail", template: '<button ng-click="exportToExcel()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-print"></span>Export To Excel</button>' }
-                // ],
                 pageable: {
                     messages: {
                         display: "Menampilkan {0} - {1} data dari {2} data"
@@ -86,7 +82,7 @@ define(['initialize'], function (initialize) {
             $scope.optGridWaktuTunggu = {
                 toolbar:["excel"],
                 excel: {
-                    fileName:"Daftar Waktu Tunggu laboratorium"+moment($scope.now).format( 'DD/MMM/YYYY'),
+                    fileName:"Daftar Waktu Tunggu Radiologi"+moment($scope.now).format( 'DD/MMM/YYYY'),
                     allPages: true,
                 },
                 filterable: {
@@ -99,6 +95,8 @@ define(['initialize'], function (initialize) {
                     }
                 },
                 selectable: 'row',
+                // pageable: true,
+                // editable: true,  
                 columns: [{
                     "field": "nocm",
                     "title": "No. Rekam Medis",
@@ -132,7 +130,7 @@ define(['initialize'], function (initialize) {
                     "title": "Waktu Tunggu",
                     "width": "100",
                 }]
-            }
+            };
 
             $scope.getDataKehadiran = () => {
                 $scope.isRouteLoading = true;
@@ -140,7 +138,7 @@ define(['initialize'], function (initialize) {
                 let tglAwal = $scope.item.tglAwal ? dateHelper.formatDate($scope.item.tglAwal, "YYYY-MM-DD HH:mm") : dateHelper.formatDate(new Date(), "YYYY-MM-DD HH:mm"),
                     tglAkhir = $scope.item.tglAkhir ? dateHelper.formatDate($scope.item.tglAkhir, "YYYY-MM-DD HH:mm") : dateHelper.formatDate(new Date(), "YYYY-MM-DD HH:mm");
 
-                manageLogistikPhp.getDataTableTransaksi("lab-radiologi/get-waktu-tunggu-lab?tglAwal=" + tglAwal + "&tglAkhir=" + tglAkhir, true).then(function (res) {
+                manageLogistikPhp.getDataTableTransaksi("lab-radiologi/get-waktu-tunggu-rad?tglAwal=" + tglAwal + "&tglAkhir=" + tglAkhir, true).then(function (res) {
                     $scope.ratarata = res.data.rata_waktu_tunggu;
                     $scope.dataSourceKehadiranPasien = new kendo.data.DataSource({
                         data: res.data.data,
