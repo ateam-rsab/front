@@ -68,6 +68,10 @@
         "name": "Laporan",
         "children": [
             {
+                "name": "Daftar Waktu Tunggu",
+                "link": "#/DaftarWaktuTunggu"
+            },
+            {
                 "name": "Laporan Pasien Daftar",
                 "link": "#/LaporanPasienDaftar"
             },

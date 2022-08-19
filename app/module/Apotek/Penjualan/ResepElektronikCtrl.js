@@ -358,11 +358,9 @@ define(['initialize'], function (initialize) {
                         dokter: $scope.item.namalengkap,
                         ruanganFarmasi: $scope.item.namaruangan
                     }
-                    console.log(arrStr)
-                    console.log(dataResepPasien)
-                    // cacheHelper.set('InputResepApotikCtrl', arrStr);
-                    // cacheHelper.set('CacheDataResepElektronik', dataResepPasien);
-                    // $state.go('InputResepElektronikApotik');
+                    cacheHelper.set('InputResepApotikCtrl', arrStr);
+                    cacheHelper.set('CacheDataResepElektronik', dataResepPasien);
+                    $state.go('InputResepElektronikApotik');
 
                 } else if ($scope.item.statusorder == 'Sedang dalam Proses') {
                     $scope.refresh();
@@ -378,34 +376,34 @@ define(['initialize'], function (initialize) {
                     "width": "30px",
                 },
                 {
-                    field: "rke",
-                    title: "Rke",
-                    width: "50px",
+                    "field": "rke",
+                    "title": "Rke",
+                    "width": "50px",
                 },
                 {
-                    field: "jeniskemasan",
-                    title: "Jenis Kemasan",
-                    width: "100px",
+                    "field": "jeniskemasan",
+                    "title": "Jenis Kemasan",
+                    "width": "100px",
                 },
                 {
-                    field: "namaproduk",
-                    title: "Deskripsi",
-                    width: "200px"
+                    "field": "namaproduk",
+                    "title": "Deskripsi",
+                    "width": "200px"
                 },
                 {
-                    field: "satuanstandar",
-                    title: "Satuan",
-                    width: "100px"
+                    "field": "satuanstandar",
+                    "title": "Satuan",
+                    "width": "100px"
                 },
                 {
-                    field: "aturanpakai",
-                    title: "Aturan Pakai",
-                    width: "100px"
+                    "field": "aturanpakai",
+                    "title": "Aturan Pakai",
+                    "width": "100px"
                 },
                 {
-                    field: "jumlah",
-                    title: "Qty",
-                    width: "100px"
+                    "field": "jumlah",
+                    "title": "Qty",
+                    "width": "100px"
                 },
                 // {
                 //     "field": "namalengkap",
