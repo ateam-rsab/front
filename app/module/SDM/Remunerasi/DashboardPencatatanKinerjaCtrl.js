@@ -319,7 +319,8 @@ define(['initialize'], function (initialize) {
                         $scope.popupDetail1.open().center();
                     })
                 } else if (data.idIndikator == 466 || data.idIndikator == 678 || data.idIndikator == 712 || data.idIndikator == 758) {
-                    $state.go('LihatLogbookSkorKinerja', { bulan: dateHelper.toTimeStamp($scope.item.bulan), pegawaiId: $scope.item.pegawai.id });
+                    var url = $state.href('LihatLogbookSkorKinerja', { bulan: dateHelper.toTimeStamp($scope.item.bulan), pegawaiId: $scope.item.pegawai.id });
+                    window.open(url, '_blank');
                 } else {
                     toastr.info("Indikator ini dihitung otomatis", "Informasi")
                 }
