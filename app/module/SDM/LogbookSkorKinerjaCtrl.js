@@ -319,11 +319,20 @@ define(['initialize'], function (initialize) {
                 ManageSdmNew.getListData(`iki-remunerasi/get-pegawai-akses-kinerja?pegawaiId=` + $scope.pegawaiLogin.id + `&listKelompokJabatanId=` + $scope.listKelompokJabatanId).then(res => {
                     for (let i = 0; i < res.data.data.length; i++) {
                         if (($state.params.pegawaiId
-                            && res.data.data[i].id == $state.params.pegawaiId)
-                            || res.data.data[i].id == $scope.pegawaiLogin.id) {
+                            && res.data.data[i].id == $state.params.pegawaiId)) {
                             $scope.item.pegawai = res.data.data[i];
 
                             break;
+                        }
+                        
+                    }
+                    if (!$scope.item.pegawai) {
+                        for (let i = 0; i < res.data.data.length; i++) {
+                            if (res.data.data[i].id == $scope.pegawaiLogin.id) {
+                                $scope.item.pegawai = res.data.data[i];
+    
+                                break;
+                            }
                         }
                     }
                     $scope.listPegawai = res.data.data;
