@@ -1,10 +1,14 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('DaftarPasienBedahCtrl', ['$q', '$rootScope', '$scope', 'ManageServicePhp', '$state', 'CacheHelper', 'DateHelper', '$window', 'ModelItemAkuntansi', '$mdDialog',
-        function ($q, $rootScope, $scope, ManageServicePhp, $state, cacheHelper, dateHelper, $window, modelItemAkuntansi, $mdDialog) {
+    initialize.controller('DaftarPasienBedahCtrl', ['$q', '$rootScope', '$scope', 'ManageServicePhp', '$state', 'CacheHelper', 'DateHelper','ManageSdm', '$window', 'ModelItemAkuntansi', '$mdDialog',
+        function ($q, $rootScope, $scope, ManageServicePhp, $state, cacheHelper, dateHelper, ManageSdm,  $window, modelItemAkuntansi, $mdDialog) {
             $scope.item = {};
             $scope.item.tglBedah = new Date();
             $scope.pegawai = JSON.parse(window.localStorage.getItem('pegawai'));
+            $scope.selectedPerawat = [];
+            $scope.selectOptions = {
+                placeholder: "Pilih",
+            };
             $scope.columnGrid = [{
                 "field": "tgloperasi",
                 "title": "<h3>Tanggal<br> Permintaan Bedah</h3>",
@@ -63,6 +67,10 @@ define(['initialize'], function (initialize) {
                 width: 250
             }]
 
+            ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true", true).then(function (data) {
+                $scope.dataMasterPetugas = data;
+            });
+
             $scope.getData = () => {
                 ManageServicePhp.getDataTableTransaksi("rekam-medis/get-monitoring-pasien-bedah?tgloperasi=" + ($scope.item.tglBedah ? dateHelper.formatDate($scope.item.tglBedah, 'YYYY-MM-DD') : ""), true).then(function (data) {
                     for (let i = 0; i < data.data.data.length; i++) {
@@ -81,10 +89,7 @@ define(['initialize'], function (initialize) {
             function detailData(e) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-
-                console.log(dataItem);
                 $scope.isVerif = dataItem.tglverifikasi !== '-' ? true : false;
-
                 $scope.item.namaDokterAnastesi = {
                     id: dataItem.dokteranestesifk,
                     namalengkap: dataItem.namaDokterAnestesi
@@ -109,7 +114,14 @@ define(['initialize'], function (initialize) {
                     namalengkap: dataItem.namaPerawat,
                     id: dataItem.objectperawatfk
                 } : null;
-
+                
+                $scope.selectedPerawat = [];
+                // for(let i = 0; i < $scope.dataMasterPetugas.data.length; i++) {
+                //     $scope.selectedPerawat.push({
+                //         namaLengkap: $scope.dataMasterPetugas.data[i].namaLengkap,
+                //         id: $scope.dataMasterPetugas.data[i].id
+                //     })
+                // }
                 $scope.item.tglVerifikasi = dateHelper.formatDate(new Date(), 'YYYY-MM-DD HH:mm');
                 $scope.item.tglOperasi = dataItem.tgloperasi; // dataItem.tgloperasi === '-' ? dateHelper.formatDate(new Date(), 'YYYY-MM-DD HH:mm'): dateHelper.formatDate(new Date(dataItem.tgloperasi), 'YYYY-MM-DD HH:mm');
                 $scope.item.notelp = dataItem.telp;
@@ -227,6 +239,21 @@ define(['initialize'], function (initialize) {
                 });
 
 
+            }
+            //Button for popup detail
+            $scope.closeModalJadwalBedah = function () {
+                $scope.popupDetail.close();
+            }
+            $scope.verifikasiData=()=>{
+                let dataItem = $scope.item;
+                let namaPerawat=[];
+                if($scope.selectedPerawat) {
+                    for(let i = 0; i < $scope.selectedPerawat.length; i++) {
+                        namaPerawat.push({
+                            id: $scope.selectedPerawat[i].id
+                        });
+                    }
+                }
             }
         }
     ]);

@@ -117,9 +117,10 @@
 
             <div class="grid_3">
                 <label><b>Perawat</b></label>
-                <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaPerawat"
+                <!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaPerawat"
                     k-data-text-field="'namalengkap'" k-data-value-field="'id'" k-filter="'contains'"
-                    k-auto-bind="false" k-data-source="listPegawai" ng-disabled="isVerif" />
+                    k-auto-bind="false" k-data-source="listPegawai" ng-disabled="isVerif" /> -->
+                <select kendo-multi-select k-options="selectOptions" k-filter="'contains'" k-data-source="dataMasterPetugas" ng-disabled="isVerif" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-ng-model="selectedPerawat"></select>
             </div>
 
         </div>

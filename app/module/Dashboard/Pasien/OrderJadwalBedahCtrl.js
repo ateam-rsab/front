@@ -25,6 +25,18 @@ define(['initialize'], function (initialize) {
             $scope.OrderPelayanan = false;
             $scope.showTombol = false;
             $scope.selectedDokter = [];
+            $scope.dataMasterICU = {
+                "data":[
+                    {
+                        "statusIcu":"true",
+                        "namaIcu":"Ya",
+                    },
+                    {
+                        "statusIcu":"false",
+                        "namaIcu":"Tidak",
+                    }
+                ]
+            };
             // set max order date 2 minggu
             $scope.maxOrderDate = new Date(new Date().setDate(new Date().getDate() + 14));
             console.log($scope.maxOrderDate, $scope.now)
@@ -362,12 +374,13 @@ define(['initialize'], function (initialize) {
                 $scope.item.posisiKhusus = "";
                 $scope.item.macamAnastesi = "";
                 $scope.norecJadwalBedah = "";
+                $scope.selectedIcu = "";
             }
 
             function detailJadwalBedah(e) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-                // console.log(dataItem);
+                console.log(dataItem);
                 $scope.selectedDokter = [];
                 $scope.isEdit = true;
                 $scope.item.jenisBedah = "Jenis Operasi Elektif";
@@ -378,13 +391,25 @@ define(['initialize'], function (initialize) {
                     namaLengkap: dataItem.namaDokterTujuan,
                     id: dataItem.doktertujuanfk
                 };
-                // 
+                //
                 for(let i = 0; i < dataItem.asistendokter.length; i++) {
                     $scope.selectedDokter.push({
                         namaLengkap: dataItem.asistendokter[i].namalengkap,
                         id: dataItem.asistendokter[i].objectpegawaifk
-                    })
+                    });
                 }
+                if(dataItem.perlu_icu=="true"){
+                    $scope.selectedIcu={
+                        statusIcu:dataItem.perlu_icu,
+                        namaIcu:"Ya"
+                    }
+                }else if(dataItem.perlu_icu=="false"){
+                    $scope.selectedIcu={
+                        statusIcu:dataItem.perlu_icu,
+                        namaIcu:"Tidak"
+                    }
+                }
+                
                 $scope.norecJadwalBedah = dataItem.norec;
                 $scope.item.diagnosaJadwalBedah = dataItem.diagnosa;
                 $scope.item.tindakanJadwalBedah = dataItem.tindakan;
@@ -400,7 +425,6 @@ define(['initialize'], function (initialize) {
                         data.data.data[i].ruangoperasiFormatted = data.data.data[i].ruangoperasi ? data.data.data[i].ruangoperasi : '-';
                         data.data.data[i].statusBedah = data.data.data[i].iscito ? 'CITO' : "Jenis Operasi Elektif";
                     };
-
                     $scope.dataDaftarJadwalBedah = new kendo.data.DataSource({
                         data: data.data.data,
                         pageSize: 20
@@ -461,9 +485,9 @@ define(['initialize'], function (initialize) {
                     toastr.info("Harap isi Macam Anestesi!");
                     return;
                 }
-
                 $scope.isSaveLoad = true;
                 $scope.isRouteLoading = true;
+                console.log($scope.item.dokterJadwalBedah)
                 let data = {
                     norec: $scope.norecJadwalBedah,
                     pasienfk: $scope.item.noMr,
@@ -481,9 +505,10 @@ define(['initialize'], function (initialize) {
                     macamanestesi: $scope.item.macamAnastesi,
                     lamaoperasi: $scope.item.lamaOperasi,
                     drasisten:[],
-                    telp: $scope.item.notelp
+                    telp: $scope.item.notelp,
+                    perlu_icu:$scope.selectedIcu.statusIcu
                 };
-
+                
                 if($scope.selectedDokter) {
                     for(let i = 0; i < $scope.selectedDokter.length; i++) {
                         data.drasisten.push({
@@ -492,13 +517,14 @@ define(['initialize'], function (initialize) {
                     }
                 }
 
-                managePhp.postData(data, 'rekam-medis/save-jadwal-operasi/save').then(function (e) {
-                    // init();
+                // console.log(data)
+                managePhp.postData(data,'rekam-medis/save-jadwal-operasi/save').then(res=>{
+                    console.log(res)
                     getDataOrderJadwalBedah();
                     clearJadwal();
                     LoadCache();
-                    $scope.isSaveLoad = false;
                     $scope.closeModalJadwalBedah();
+                    $scope.isSaveLoad = false;
                     $scope.isRouteLoading = false;
                 });
             }
@@ -536,6 +562,7 @@ define(['initialize'], function (initialize) {
                 let jam = new Date($scope.item.tglJadwalPembedahan).getHours();
                 $scope.isEdit = false;
                 $scope.isVerif = false;
+                $scope.isSaveLoad = false;
                 $scope.selectedDokter = [];
                 if(jam >= 21) {
                     toastr.warning("Tidak bisa input Order Jadwal Bedah")
