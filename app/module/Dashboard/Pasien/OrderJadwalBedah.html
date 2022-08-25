@@ -99,7 +99,7 @@
 
                     <div class="grid_3">
                         <label><b>No. Telepon</b></label>
-                        <input type="input" placeholder="No. Telepon" class="k-textbox" filter="'numeric'"
+                        <input c-text-box type="input" placeholder="No. Telepon" class="k-textbox" filter="'numeric'"
                             ng-disabled="isVerif" ng-model="item.notelp" />
                     </div>
 
@@ -161,10 +161,27 @@
                     </p>
                 </div>
             </div>
-
             <div class="grid_12">
-                <select kendo-multi-select k-options="selectOptions" k-filter="'contains'" k-data-source="dataMasterPetugas" ng-disabled="isVerif" k-data-text-field="'namaLengkap'"
-                k-data-value-field="'id'" k-ng-model="selectedDokter"></select>
+                <div class="grid_4">
+                    <label>
+                        <strong>
+                            Perlu ICU?
+                        </strong>
+                    </label>
+                    <!-- <input style="width: 100%;" kendo-combo-box k-options="selectOptionICU" k-ng-model="selectedIcu" k-data-text-field="'namaIcu'" k-data-value-field="'status'" k-filter="'contains'"  k-auto-bind="false" k-data-source="dataMasterICU" /> -->
+                    <select style="width: 100%;" k-placeholder="'--Pilih--'" kendo-combo-box k-ng-model="selectedIcu"
+                    k-data-text-field="'namaIcu'" k-data-value-field="'statusIcu'"
+                    k-data-source="dataMasterICU" k-auto-bind="true"></select>
+                </div>
+                <div class="grid_8">
+                    <label>
+                        <strong>
+                            Pilih Asisten Dokter
+                        </strong>
+                    </label>
+                    <select kendo-multi-select k-options="selectOptions" k-filter="'contains'" k-data-source="dataMasterPetugas" ng-disabled="isVerif" k-data-text-field="'namaLengkap'"
+                    k-data-value-field="'id'" k-ng-model="selectedDokter"></select>
+                </div>
             </div>
 
             <div class="k-edit-buttons k-state-default" style="margin-top:10px">

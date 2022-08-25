@@ -52,6 +52,7 @@ define(['initialize'], function (initialize) {
                         if ($(this).text() == 'Blm Verifikasi') { $(this).addClass('blm-verifikasi') };
                         if ($(this).text() == 'Ya') { $(this).addClass('selesai') };
                         if ($(this).text() == 'Tidak') { $(this).addClass('dibatalkan-pasien') };
+                        if ($(this).text() == 'Belum di produksi') { $(this).css({"color":"#DD2C00"}) };
                     })
                 },
                 columns: [
@@ -59,6 +60,7 @@ define(['initialize'], function (initialize) {
                         "field": "noorder",
                         "title": "No Pesanan",
                         "width": "160px",
+                        // "locked": "true",
                         // "filterable": {
                         //     "multi": "true",
                         //     "search": "true"
@@ -67,10 +69,12 @@ define(['initialize'], function (initialize) {
                         "field": "nocm",
                         "title": "No Rekam Medis",
                         "width": "160px",
+                        // "locked": "true",
                     }, {
                         "field": "namapasien",
                         "title": "Nama Pasien",
                         "width": "150px",
+                        // "locked": "true",
                         // "filterable": {
                         //     "multi": "true",
                         //     "search": "true"
