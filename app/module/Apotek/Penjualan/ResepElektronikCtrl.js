@@ -52,7 +52,7 @@ define(['initialize'], function (initialize) {
                         if ($(this).text() == 'Blm Verifikasi') { $(this).addClass('blm-verifikasi') };
                         if ($(this).text() == 'Ya') { $(this).addClass('selesai') };
                         if ($(this).text() == 'Tidak') { $(this).addClass('dibatalkan-pasien') };
-                        if ($(this).text() == 'Belum di produksi') { $(this).css({"color":"#DD2C00"}) };
+                        if ($(this).text() == 'Belum di produksi') { $(this).css({ "color": "#DD2C00" }) };
                     })
                 },
                 columns: [
@@ -212,19 +212,19 @@ define(['initialize'], function (initialize) {
                 var tglAkhir = moment($scope.untilDate).format('YYYY-MM-DD');
                 manageLogistikPhp.getDataTableTransaksi('logistik/get-daftar-order-resep-elektronik?tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + nocm + "&dep_id=" + ($scope.item.namaDept ? $scope.item.namaDept.id : "") + "&kelompok_id=" + ($scope.item.kelompokPasien ? $scope.item.kelompokPasien.id : "")).then(function (res) {
                     // findPasien.findOrderObat($scope.noCm, $scope.ruanganId, $scope.startDate, $scope.untilDate).then(function(e) {
-                        for (var i = 0; i < res.data.data.length; i++) {
-                            res.data.data[i].no = i + 1
-                            var tanggal = $scope.now;
-                            var tanggalLahir = new Date(res.data.data[i].tgllahir);
-                            var umur = DateHelper.CountAge(tanggalLahir, tanggal);
-                            res.data.data[i].umur = umur.year + ' thn ' + umur.month + ' bln ' + umur.day + ' hari'
-                            //itungUsia(dat.data[i].tgllahir)
-                        }
-                        $scope.patienGrids = new kendo.data.DataSource({
-                            //data: ModelItem.beforePost(e.data.data, true),
-                            data: ModelItem.beforePost(res.data.data, true),
-                            // group: $scope.group
-                        });
+                    for (var i = 0; i < res.data.data.length; i++) {
+                        res.data.data[i].no = i + 1
+                        var tanggal = $scope.now;
+                        var tanggalLahir = new Date(res.data.data[i].tgllahir);
+                        var umur = DateHelper.CountAge(tanggalLahir, tanggal);
+                        res.data.data[i].umur = umur.year + ' thn ' + umur.month + ' bln ' + umur.day + ' hari'
+                        //itungUsia(dat.data[i].tgllahir)
+                    }
+                    $scope.patienGrids = new kendo.data.DataSource({
+                        //data: ModelItem.beforePost(e.data.data, true),
+                        data: ModelItem.beforePost(res.data.data, true),
+                        // group: $scope.group
+                    });
                     // });
                     $scope.ratarata = res.data.rata_waktu_tunggu;
                     $scope.isRouteLoading = false;
@@ -293,14 +293,17 @@ define(['initialize'], function (initialize) {
                     norec: $scope.item.norec_so
                 }
                 if ($scope.item.statusorder == 'Blm Verifikasi') {
-                    var confirm = $mdDialog.confirm()
+                    var confirm = $mdDialog.prompt()
                         .title('Batal order resep ini untuk pasien ' + $scope.item.namapasien + '?')
+                        .textContent('Tuliskan alasan pembatalan resep!')
+                        .placeholder('Alasan batal resep')
                         .ariaLabel('Lucky day')
                         .targetEvent(e)
                         .ok('Batalkan Resep')
                         .cancel('Tidak');
-                    $mdDialog.show(confirm).then(function () {
+                    $mdDialog.show(confirm).then(function (alasan) {
                         $scope.isRouteLoading = true;
+                        data.alasanBatal = alasan;
                         manageLogistikPhp.postpost('farmasi/batal-resep-dokter', data).then(function (res) {
                             $scope.refresh();
                             $scope.isRouteLoading = false;
