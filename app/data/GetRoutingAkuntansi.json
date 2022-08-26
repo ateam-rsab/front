@@ -14341,6 +14341,14 @@
       {
         "module": "PhpServices",
         "define": "PhpServices"
+      },
+      {
+        "module": "PhpService",
+        "define": "PhpService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
       }
     ]
   },

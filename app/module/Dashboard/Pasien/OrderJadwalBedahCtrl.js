@@ -527,6 +527,8 @@ define(['initialize'], function (initialize) {
                     $scope.isSaveLoad = false;
                     $scope.isRouteLoading = false;
                 });
+                $scope.isSaveLoad = false;
+                $scope.isRouteLoading = false;
             }
 
             $scope.Batal = function () {
