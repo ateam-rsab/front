@@ -115,6 +115,18 @@
             {
                 "name": "Daftar Hadir DPJP",
                 "link": "#/MonitoringVisiteDokter"
+            },
+            {
+                "name": "Daftar Waktu Tunggu Laboratorium",
+                "link": "#/DaftarWaktuTungguLab"
+            },
+            {
+                "name": "Daftar Waktu Tunggu Radiologi",
+                "link": "#/DaftarWaktuTungguRadiologi"
+            },
+            {
+                "name": "Daftar Waktu Tunggu Rawat Jalan",
+                "link": "#/DaftarWaktuTunggu"
             }
         ]
     },
