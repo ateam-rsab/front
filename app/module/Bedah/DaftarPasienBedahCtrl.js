@@ -1,13 +1,57 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('DaftarPasienBedahCtrl', ['$q', '$rootScope', '$scope', 'ManageServicePhp', '$state', 'CacheHelper', 'DateHelper','ManageSdm', '$window', 'ModelItemAkuntansi', '$mdDialog',
-        function ($q, $rootScope, $scope, ManageServicePhp, $state, cacheHelper, dateHelper, ManageSdm,  $window, modelItemAkuntansi, $mdDialog) {
+    initialize.controller('DaftarPasienBedahCtrl', ['$q', '$rootScope', '$scope', 'ManageServicePhp', '$state', 'CacheHelper', 'DateHelper','ManagePhp', 'ManageSdm', '$window', 'ModelItemAkuntansi', '$mdDialog',
+        function ($q, $rootScope, $scope, ManageServicePhp, $state, cacheHelper, dateHelper, ManagePhp, ManageSdm, $window, modelItemAkuntansi, $mdDialog) {
             $scope.item = {};
             $scope.item.tglBedah = new Date();
             $scope.pegawai = JSON.parse(window.localStorage.getItem('pegawai'));
             $scope.selectedPerawat = [];
+            $scope.isRouteLoading = false;
+            $scope.popupDetail = false;
+            $scope.dataMasterPetugas = null;
             $scope.selectOptions = {
                 placeholder: "Pilih",
+            };
+
+            $scope.dataMasterRuangBedah = {
+                "data":[
+                    {
+                        "id":"1",
+                        "namaBedah":"Ruang Bedah 1",
+                    },
+                    {
+                        "id":"2",
+                        "namaBedah":"Ruang Bedah 2",
+                    },
+                    {
+                        "id":"3",
+                        "namaBedah":"Ruang Bedah 3",
+                    },
+                    {
+                        "id":"4",
+                        "namaBedah":"Ruang Bedah 4",
+                    },
+                    {
+                        "id":"5",
+                        "namaBedah":"Ruang Bedah 5",
+                    },
+                    {
+                        "id":"6",
+                        "namaBedah":"Ruang Bedah 6",
+                    },
+                ]
+            };
+            $scope.dataMasterICU = {
+                "data":[
+                    {
+                        "statusIcu":"true",
+                        "namaIcu":"Ya",
+                    },
+                    {
+                        "statusIcu":"false",
+                        "namaIcu":"Tidak",
+                    }
+                ]
             };
             $scope.columnGrid = [{
                 "field": "tgloperasi",
@@ -65,11 +109,7 @@ define(['initialize'], function (initialize) {
                 }],
                 title: "",
                 width: 250
-            }]
-
-            ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true", true).then(function (data) {
-                $scope.dataMasterPetugas = data;
-            });
+            }];
 
             $scope.getData = () => {
                 ManageServicePhp.getDataTableTransaksi("rekam-medis/get-monitoring-pasien-bedah?tgloperasi=" + ($scope.item.tglBedah ? dateHelper.formatDate($scope.item.tglBedah, 'YYYY-MM-DD') : ""), true).then(function (data) {
@@ -92,36 +132,55 @@ define(['initialize'], function (initialize) {
                 $scope.isVerif = dataItem.tglverifikasi !== '-' ? true : false;
                 $scope.item.namaDokterAnastesi = {
                     id: dataItem.dokteranestesifk,
-                    namalengkap: dataItem.namaDokterAnestesi
+                    namaLengkap: dataItem.namaDokterAnestesi
                 }
 
                 $scope.item.namaDokter = {
-                    namalengkap: dataItem.namaDokter,
-                    id: dataItem.dokterfk
+                    id: dataItem.dokterfk,
+                    namaLengkap: dataItem.namaDokter
                 };
 
+                if(dataItem.ruangoperasi!=null){
+                    let newRuangBedah = $scope.dataMasterRuangBedah.data.filter(e=>e.namaBedah==dataItem.ruangoperasi);
+                    $scope.item.ruangOperasi = {
+                        namaBedah: newRuangBedah[0].namaBedah,
+                        id: newRuangBedah[0].id
+                    };
+                }else{
+                    $scope.item.ruangOperasi = null;
+                }
+                
                 $scope.item.namaDokterTujuan = {
-                    namalengkap: dataItem.namaDokterTujuan,
+                    namaLengkap: dataItem.namaDokterTujuan,
                     id: dataItem.doktertujuanfk
                 };
 
-                $scope.item.ruanganOperasi = {
-                    nama: dataItem.ruangoperasi,
-                    key: dataItem.ruangoperasi
-                };
+                if(dataItem.perawat.length>0){
+                    let newPerawat=[];
+                    dataItem.perawat.forEach(perawat => {
+                        newPerawat.push({id: perawat.objectperawatfk, namaLengkap: perawat.namalengkap});
+                    });
+                    $scope.selectedPerawat = newPerawat; 
+                }else{
+                    $scope.selectedPerawat = [];
+                }
+                        
+                let newPerluIcu='';
+                if(dataItem.perlu_icu=="true"){
+                    newPerluIcu={
+                        statusIcu:dataItem.perlu_icu,
+                        namaIcu:"Ya"
+                    }
+                }else if(dataItem.perlu_icu=="false"){
+                    newPerluIcu={
+                        statusIcu:dataItem.perlu_icu,
+                        namaIcu:"Tidak"
+                    }
+                }else{
+                    newPerluIcu=null;
+                }
 
-                $scope.item.namaPerawat = dataItem.objectperawatfk ? {
-                    namalengkap: dataItem.namaPerawat,
-                    id: dataItem.objectperawatfk
-                } : null;
-                
-                $scope.selectedPerawat = [];
-                // for(let i = 0; i < $scope.dataMasterPetugas.data.length; i++) {
-                //     $scope.selectedPerawat.push({
-                //         namaLengkap: $scope.dataMasterPetugas.data[i].namaLengkap,
-                //         id: $scope.dataMasterPetugas.data[i].id
-                //     })
-                // }
+                // $scope.selectedPerawat = [];
                 $scope.item.tglVerifikasi = dateHelper.formatDate(new Date(), 'YYYY-MM-DD HH:mm');
                 $scope.item.tglOperasi = dataItem.tgloperasi; // dataItem.tgloperasi === '-' ? dateHelper.formatDate(new Date(), 'YYYY-MM-DD HH:mm'): dateHelper.formatDate(new Date(dataItem.tgloperasi), 'YYYY-MM-DD HH:mm');
                 $scope.item.notelp = dataItem.telp;
@@ -131,6 +190,7 @@ define(['initialize'], function (initialize) {
                 $scope.item.noRegistrasi = dataItem.noregistrasi;
                 $scope.item.tglRegistrasi = dataItem.tglregistrasi;
                 $scope.item.nocm = dataItem.nocm;
+                $scope.item.perluIcu = newPerluIcu;
                 $scope.item.namaPasien = dataItem.namapasien;
                 $scope.item.diagnosa = dataItem.diagnosa;
                 $scope.item.tindakan = dataItem.tindakan;
@@ -141,8 +201,10 @@ define(['initialize'], function (initialize) {
 
                 $scope.popupDetail.open().center();
             }
-
-
+            ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true", true).then(function (data) {
+                $scope.dataMasterPetugas = data;
+            });
+            
             function batalJadwalBedah(e) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
@@ -244,16 +306,54 @@ define(['initialize'], function (initialize) {
             $scope.closeModalJadwalBedah = function () {
                 $scope.popupDetail.close();
             }
+            
             $scope.verifikasiData=()=>{
+                if(!$scope.item.ruangOperasi){
+                    toastr.info("Harap pilih ruang bedah!");
+                    return;
+                }
+                if($scope.item.namaDokterAnastesi.id==null){
+                    toastr.info("Harap pilih Dokter Anestesi!");
+                    return;
+                }
+                if($scope.item.perluIcu==null){
+                    toastr.info("Harap pilih perlu ICU?");
+                    return;
+                }
                 let dataItem = $scope.item;
                 let namaPerawat=[];
                 if($scope.selectedPerawat) {
                     for(let i = 0; i < $scope.selectedPerawat.length; i++) {
                         namaPerawat.push({
-                            id: $scope.selectedPerawat[i].id
+                            objectperawatfk: $scope.selectedPerawat[i].id
                         });
                     }
                 }
+                // console.log(dataItem);
+                $scope.isRouteLoading = true;
+                let dataPost = {
+                    "norec": dataItem.norec,
+                    "pegawaiverifikasifk": $scope.pegawai.id,
+                    "tglverifikasi": dataItem.tglVerifikasi,
+                    "tgloperasi": dataItem.tglOperasi,
+                    "ruangoperasi": dataItem.ruangOperasi.namaBedah,
+                    "dokteranestesifk": dataItem.namaDokterAnastesi.id,
+                    "doktertujuanfk": dataItem.namaDokterTujuan.id,
+                    "diagnosa": dataItem.diagnosa,
+                    "tindakan": dataItem.tindakan,
+                    "posisikhusus": dataItem.posisiKhusus,
+                    "macamanestesi": dataItem.macamAnestesi,
+                    "lamaoperasi": dataItem.lamaOperasi,
+                    "perlu_icu": dataItem.perluIcu.statusIcu,
+                    "perawat": namaPerawat
+                };
+                // console.log(dataPost);
+                ManagePhp.postData(dataPost,"rekam-medis/save-jadwal-operasi/verifikasi").then(res=>{
+                    $scope.getData();
+                    // console.log(res)
+                    $scope.isRouteLoading = false;
+                    $scope.popupDetail.close();
+                });
             }
         }
     ]);

@@ -88,43 +88,55 @@
 
         <div class="grid_2">
             <label><b>Ruang Bedah</b></label>
-            <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruanganOperasi" k-data-text-field="'nama'"
-                k-data-value-field="'key'" k-filter="'contains'" k-auto-bind="false" ng-disabled="isVerif"
-                k-data-source="listRuangOperasi" />
+            <input style="width: 100%;" kendo-combo-box k-placeholder="'--Pilih--'" k-ng-model="item.ruangOperasi" k-data-text-field="'namaBedah'"
+                k-data-value-field="'namaBedah'" k-filter="'contains'" k-auto-bind="false" ng-disabled="isVerif"
+                k-data-source="dataMasterRuangBedah" />
         </div>
 
         <div class="grid_12">
             <div class="grid_3">
                 <label><b>Dokter Periksa</b></label>
                 <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaDokter"
-                    k-data-text-field="'namalengkap'" k-data-value-field="'id'" k-filter="'contains'"
-                    k-auto-bind="false" k-data-source="listDokter" disabled />
+                    k-data-text-field="'namaLengkap'" k-data-value-field="'namaLengkap'" k-filter="'contains'"
+                    k-auto-bind="false" class="k-state-disabled"/>
             </div>
 
             <div class="grid_3">
                 <label><b>Dokter Bedah</b></label>
                 <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaDokterTujuan"
-                    k-data-text-field="'namalengkap'" k-data-value-field="'id'" k-filter="'contains'"
-                    k-auto-bind="false" k-data-source="listDokter" ng-disabled="isVerif" />
+                    k-data-text-field="'namaLengkap'" k-data-value-field="'namaLengkap'" k-filter="'contains'"
+                    k-auto-bind="false" class="k-state-disabled" />
             </div>
 
             <div class="grid_3">
                 <label><b>Dokter Anestesi</b></label>
-                <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaDokterAnastesi"
-                    k-data-text-field="'namalengkap'" k-data-value-field="'id'" k-filter="'contains'"
-                    k-auto-bind="false" k-data-source="listDokter" ng-disabled="isVerif" />
+                <input style="width: 100%;" k-placeholder="'--Pilih--'" kendo-combo-box  k-ng-model="item.namaDokterAnastesi"
+                    k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'"
+                    k-auto-bind="false" k-data-source="dataMasterPetugas" ng-disabled="isVerif" />
             </div>
 
-            <div class="grid_3">
+        </div>
+        <div class="grid_12">
+            <div class="grid_8">
                 <label><b>Perawat</b></label>
                 <!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaPerawat"
                     k-data-text-field="'namalengkap'" k-data-value-field="'id'" k-filter="'contains'"
                     k-auto-bind="false" k-data-source="listPegawai" ng-disabled="isVerif" /> -->
                 <select kendo-multi-select k-options="selectOptions" k-filter="'contains'" k-data-source="dataMasterPetugas" ng-disabled="isVerif" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-ng-model="selectedPerawat"></select>
             </div>
-
+            <div class="grid_4">
+                <label>
+                    <strong>
+                        Perlu ICU?
+                    </strong>
+                </label>
+                <!-- <input style="width: 100%;" kendo-combo-box k-options="selectOptionICU" k-ng-model="selectedIcu" k-data-text-field="'namaIcu'" k-data-value-field="'status'" k-filter="'contains'"  k-auto-bind="false" k-data-source="dataMasterICU" /> -->
+                <select style="width: 100%;" k-placeholder="'--Pilih--'" kendo-combo-box k-ng-model="item.perluIcu"
+                k-data-text-field="'namaIcu'" k-data-value-field="'statusIcu'"
+                k-data-source="dataMasterICU" k-auto-bind="true"></select>
+            </div>
         </div>
-
+        
         <div class="grid_12">
             <div class="grid_6">
                 <label>
@@ -193,4 +205,8 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="grid_12" style="margin-top:60px">
+    <div ng-include='" ../app/module/Shared/TemplateLoading" '></div>
 </div>
