@@ -8,6 +8,7 @@ define(['initialize'], function (initialize) {
             $scope.isUpdate = false;
 
             $scope.angkaFormatter = new Intl.NumberFormat('id-ID');
+            $scope.dateHelper = dateHelper;
 
             $scope.optGrid = {
                 toolbar: [{
@@ -44,9 +45,10 @@ define(['initialize'], function (initialize) {
                         title: "<h3>Tanggal Hitung</h3>",
                         width: 100,
                     }, {
-                        field: "tmtFormatted",
+                        field: "tmt",
                         title: "<h3>TMT</h3>",
                         width: 100,
+                        template: "<span>{{dateHelper.toDateFromTimestamp('#= tmt #')}}</span>"
                     }, {
                         field: "totalTargetSkor",
                         title: "<h3>Total Target Skor</h3>",
@@ -152,7 +154,7 @@ define(['initialize'], function (initialize) {
                             id: $scope.model.noRec ? $scope.model.subunitKerjaId : $scope.model.subUnitKerja.id
                         },
                         totalSkorDasar: parseFloat($scope.model.totalTargetSkor),
-                        tmt: dateHelper.toTimestampFromDate($scope.model.tmtFormatted)
+                        tmt: $scope.model.tmt
                     }
 
                     if ($scope.model.noRec) {
@@ -185,7 +187,7 @@ define(['initialize'], function (initialize) {
                 $scope.model.subunitKerjaId = null;
                 $scope.model.noRec = null;
                 $scope.model.totalTargetSkor = null;
-                $scope.model.tmtFormatted = null;
+                $scope.model.tmt = '';
             }
         }
     ])
