@@ -210,6 +210,7 @@ define(['initialize'], function (initialize) {
                 ];
 
                 managePhp.getData("pelayanan/get-order-penunjang?departemenfk=25&nocm=" + nocm_str + '&norec_apd=' + norec_apd, true).then(function (dat) {
+                    console.log(dat.data.ruangantujuan)
                     $scope.item.ruanganAsal = dat.data.data[0].namaruangan;
                     $scope.listRuanganTujuan = dat.data.ruangantujuan;
                     $scope.item.ruangantujuan = {
@@ -380,9 +381,11 @@ define(['initialize'], function (initialize) {
             function detailJadwalBedah(e) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-                console.log(dataItem);
+                // console.log(dataItem);
                 $scope.selectedDokter = [];
-                $scope.isEdit = true;
+                // $scope.isEdit = true;
+                $scope.isUpdate = false;
+                $scope.isSave = true;
                 $scope.item.jenisBedah = "Jenis Operasi Elektif";
                 $scope.isVerif = dataItem.tglverifikasi ? true : false;
                 $scope.item.tglJadwalPembedahan = new Date(dataItem.tgloperasi);
@@ -421,6 +424,7 @@ define(['initialize'], function (initialize) {
 
             function getDataOrderJadwalBedah() {
                 managePhp.getData("rekam-medis/get-jadwal-operasi-dokter?nocm=" + $scope.item.noMr, true).then(function (data) {
+                    console.log(data.data)
                     for (let i = 0; i < data.data.data.length; i++) {
                         data.data.data[i].ruangoperasiFormatted = data.data.data[i].ruangoperasi ? data.data.data[i].ruangoperasi : '-';
                         data.data.data[i].statusBedah = data.data.data[i].iscito ? 'CITO' : "Jenis Operasi Elektif";
@@ -485,6 +489,11 @@ define(['initialize'], function (initialize) {
                     toastr.info("Harap isi Macam Anestesi!");
                     return;
                 }
+
+                if (!$scope.selectedIcu) {
+                    toastr.info("Harap pilih perlu ICU!");
+                    return;
+                }
                 $scope.isSaveLoad = true;
                 $scope.isRouteLoading = true;
                 console.log($scope.item.dokterJadwalBedah)
@@ -495,7 +504,7 @@ define(['initialize'], function (initialize) {
                     doktertujuanfk: $scope.item.dokterJadwalBedah.id,
                     noregistrasifk: norec_apd,
                     ruanganfk: $scope.item.idRuangan,
-                    ruangantujuanfk: 44,
+                    ruangantujuanfk: $scope.item.ruangantujuan.id,
                     iscito: $scope.item.jenisBedah === "CITO" ? true : false,
                     tglinput: DateHelper.formatDate(new Date(), 'YYYY-MM-DD HH:mm'),
                     tgloperasi: DateHelper.formatDate($scope.item.tglJadwalPembedahan, 'YYYY-MM-DD HH:mm'),
@@ -508,7 +517,105 @@ define(['initialize'], function (initialize) {
                     telp: $scope.item.notelp,
                     perlu_icu:$scope.selectedIcu.statusIcu
                 };
+
+                if($scope.selectedDokter) {
+                    for(let i = 0; i < $scope.selectedDokter.length; i++) {
+                        data.drasisten.push({
+                            asistendokterfk: $scope.selectedDokter[i].id
+                        })
+                    }
+                }
+                // console.log(data.drasisten)
+
+                // console.log(data)
+                managePhp.postData(data,'rekam-medis/save-jadwal-operasi/save').then(res=>{
+                    // console.log(res)
+                    getDataOrderJadwalBedah();
+                    clearJadwal();
+                    LoadCache();
+                    $scope.closeModalJadwalBedah();
+                //     $scope.isSaveLoad = false;
+                //     $scope.isRouteLoading = false;
+                });
+                $scope.isSaveLoad = false;
+                $scope.isRouteLoading = false;
+            }
+
+            $scope.updateOrderBedah=()=>{
+                let nocm = $("#idNoCM").val();
+                // console.log($scope.selectedDokter);
+                // return;
+                // console.log(nocm);
+                // bugs, kadang no cm hilang
+                if (!$scope.item.noMr) {
+                    $scope.item.noMr = nocm;
+                    // return;
+                }
+
+                if (!$scope.item.tglJadwalPembedahan) {
+                    toastr.info("Tanggal Bedah belum dipilih!");
+                    return;
+                }
+
+                if (!$scope.item.lamaOperasi) {
+                    toastr.info("Harap isi Lama Operasi!");
+                    return;
+                }
+
+                if (!$scope.item.notelp) {
+                    toastr.info("Harap isi Nomor Telepon!");
+                    return;
+                }
+                if (!$scope.item.dokterJadwalBedah) {
+                    toastr.info("Harap pilih Dokter Bedah!");
+                    return;
+                }
+                if (!$scope.item.diagnosaJadwalBedah) {
+                    toastr.info("Harap isi Diagnosa!");
+                    return;
+                }
+                if (!$scope.item.tindakanJadwalBedah) {
+                    toastr.info("Harap isi Tindakan!");
+                    return;
+                }
+                if (!$scope.item.posisiKhusus) {
+                    toastr.info("Harap isi Posisi Khusus/Peralatan khusus!");
+                    return;
+                }
+
+                if (!$scope.item.macamAnastesi) {
+                    toastr.info("Harap isi Macam Anestesi!");
+                    return;
+                }
                 
+                if (!$scope.selectedIcu) {
+                    toastr.info("Harap pilih perlu ICU!");
+                    return;
+                }
+                $scope.isSaveLoad = true;
+                $scope.isRouteLoading = true;
+                console.log($scope.item.dokterJadwalBedah)
+                let data = {
+                    norec: $scope.norecJadwalBedah,
+                    pasienfk: $scope.item.noMr,
+                    dokterfk: $scope.pegawaiLogin.id,
+                    doktertujuanfk: $scope.item.dokterJadwalBedah.id,
+                    noregistrasifk: norec_apd,
+                    ruanganfk: $scope.item.idRuangan,
+                    ruangantujuanfk: $scope.item.ruangantujuan.id,
+                    iscito: $scope.item.jenisBedah === "CITO" ? true : false,
+                    tglinput: DateHelper.formatDate(new Date(), 'YYYY-MM-DD HH:mm'),
+                    tgloperasi: DateHelper.formatDate($scope.item.tglJadwalPembedahan, 'YYYY-MM-DD HH:mm'),
+                    diagnosa: $scope.item.diagnosaJadwalBedah,
+                    tindakan: $scope.item.tindakanJadwalBedah,
+                    posisikhusus: $scope.item.posisiKhusus,
+                    macamanestesi: $scope.item.macamAnastesi,
+                    lamaoperasi: $scope.item.lamaOperasi,
+                    perlu_icu:$scope.selectedIcu.statusIcu,
+                    drasisten:[],
+                    telp: $scope.item.notelp,
+                };
+
                 if($scope.selectedDokter) {
                     for(let i = 0; i < $scope.selectedDokter.length; i++) {
                         data.drasisten.push({
@@ -518,8 +625,8 @@ define(['initialize'], function (initialize) {
                 }
 
                 // console.log(data)
-                managePhp.postData(data,'rekam-medis/save-jadwal-operasi/save').then(res=>{
-                    console.log(res)
+                managePhp.postData(data,'rekam-medis/save-jadwal-operasi/update-dokter').then(res=>{
+                    // console.log(res)
                     getDataOrderJadwalBedah();
                     clearJadwal();
                     LoadCache();
@@ -527,8 +634,8 @@ define(['initialize'], function (initialize) {
                     $scope.isSaveLoad = false;
                     $scope.isRouteLoading = false;
                 });
-                $scope.isSaveLoad = false;
-                $scope.isRouteLoading = false;
+                // $scope.isSaveLoad = false;
+                // $scope.isRouteLoading = false;
             }
 
             $scope.Batal = function () {
@@ -565,6 +672,8 @@ define(['initialize'], function (initialize) {
                 $scope.isEdit = false;
                 $scope.isVerif = false;
                 $scope.isSaveLoad = false;
+                $scope.isUpdate = true;
+                $scope.isSave = false;
                 $scope.selectedDokter = [];
                 if(jam >= 21) {
                     toastr.warning("Tidak bisa input Order Jadwal Bedah")
