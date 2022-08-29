@@ -1,0 +1,32 @@
+{
+    "data":[
+        {
+            "id":"1",
+            "namaBedah":"Ruang Operasi 1"
+        },
+        {
+            "id":"2",
+            "namaBedah":"Ruang Operasi 2"
+        },
+        {
+            "id":"3",
+            "namaBedah":"Ruang Operasi 3"
+        },
+        {
+            "id":"4",
+            "namaBedah":"Ruang Operasi 4"
+        },
+        {
+            "id":"5",
+            "namaBedah":"Ruang Operasi 5"
+        },
+        {
+            "id":"6",
+            "namaBedah":"Ruang Operasi 6"
+        },
+        {
+            "id":"7",
+            "namaBedah":"Ruang Operasi Pinere"
+        }
+    ]
+}

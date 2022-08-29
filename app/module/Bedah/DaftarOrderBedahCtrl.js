@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('DaftarOrderBedahCtrl', ['$q', '$rootScope', '$scope', 'ManageServicePhp', '$state', 'CacheHelper', 'DateHelper', '$window', 'ModelItemAkuntansi', '$mdDialog',
-        function ($q, $rootScope, $scope, ManageServicePhp, $state, cacheHelper, dateHelper, $window, modelItemAkuntansi, $mdDialog) {
+    initialize.controller('DaftarOrderBedahCtrl', ['$q', '$rootScope', '$scope', 'MenuService', 'ManageServicePhp', '$state', 'CacheHelper', 'DateHelper', '$window', 'ModelItemAkuntansi', '$mdDialog',
+        function ($q, $rootScope, $scope, MenuService, ManageServicePhp, $state, cacheHelper, dateHelper, $window, modelItemAkuntansi, $mdDialog) {
             $scope.item = {};
             $scope.tglBedah = new Date();
             $scope.item.selectedPerawat = [];
@@ -19,28 +19,32 @@ define(['initialize'], function (initialize) {
             $scope.verif = {};
             $scope.verif.tglBedah = new Date();
             $scope.pegawai = JSON.parse(window.localStorage.getItem('pegawai'));
-            $scope.listRuangOperasi = [{
-                key: "Ruang Operasi 1",
-                nama: "Ruang Operasi 1"
-            }, {
-                key: "Ruang Operasi 2",
-                nama: "Ruang Operasi 2"
-            }, {
-                key: "Ruang Operasi 3",
-                nama: "Ruang Operasi 3"
-            }, {
-                key: "Ruang Operasi 4",
-                nama: "Ruang Operasi 4"
-            }, {
-                key: "Ruang Operasi 5",
-                nama: "Ruang Operasi 5"
-            }, {
-                key: "Ruang Operasi 6",
-                nama: "Ruang Operasi 6"
-            }, {
-                key: "Ruang Operasi 7",
-                nama: "Ruang Operasi Pinere"
-            },]
+            MenuService.get("fakerdata/ruangoperasi.json")
+                .then(function(response) {
+                    $scope.listRuangOperasi = response;
+            });
+            // $scope.listRuangOperasi = [{
+            //     key: "Ruang Operasi 1",
+            //     nama: "Ruang Operasi 1"
+            // }, {
+            //     key: "Ruang Operasi 2",
+            //     nama: "Ruang Operasi 2"
+            // }, {
+            //     key: "Ruang Operasi 3",
+            //     nama: "Ruang Operasi 3"
+            // }, {
+            //     key: "Ruang Operasi 4",
+            //     nama: "Ruang Operasi 4"
+            // }, {
+            //     key: "Ruang Operasi 5",noregistrasi
+            //     nama: "Ruang Operasi 5"
+            // }, {
+            //     key: "Ruang Operasi 6",
+            //     nama: "Ruang Operasi 6"
+            // }, {
+            //     key: "Ruang Operasi 7",
+            //     nama: "Ruang Operasi Pinere"
+            // },]
 
             $scope.columnGrid = [{
                 "field": "tgloperasi",
@@ -150,8 +154,8 @@ define(['initialize'], function (initialize) {
                 ManageServicePhp.getDataTableTransaksi("rekam-medis/get-jadwal-operasi-after-verif?tglbedah=" + ($scope.tglBedah ? dateHelper.formatDate($scope.tglBedah, 'YYYY-MM-DD') : "") + "&namaruangan=", true).then(function (data) {
                     $scope.dataValidasiJamDanRuangan = data.data;
                 });
-                ManageServicePhp.getDataTableTransaksi("rekam-medis/get-jadwal-operasi?tglbedah=" + ($scope.tglBedah ? dateHelper.formatDate($scope.tglBedah, 'YYYY-MM-DD') : "") + "&namaruangan=" + ($scope.ruanganOperasi ? $scope.ruanganOperasi.nama : ""), true).then(function (data) {
-                    $scope.isRouteLoading = false;
+                ManageServicePhp.getDataTableTransaksi("rekam-medis/get-jadwal-operasi?tglbedah=" + ($scope.tglBedah ? dateHelper.formatDate($scope.tglBedah, 'YYYY-MM-DD') : "") + "&namaruangan=", true).then(function (data) {
+                    // $scope.isRouteLoading = false;
                     if(!data.data.data) return;
                     for (let i = 0; i < data.data.data.length; i++) {
                         data.data.data[i].tglverifikasi = data.data.data[i].tglverifikasi ? data.data.data[i].tglverifikasi : '-';
@@ -167,8 +171,8 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.getJadwalBedahVerified = () => {
-                ManageServicePhp.getDataTableTransaksi("rekam-medis/get-jadwal-operasi-after-verif?tglbedah=" + ($scope.verif.tglBedah ? dateHelper.formatDate($scope.verif.tglBedah, 'YYYY-MM-DD') : "") + "&namaruangan=" + ($scope.verif.ruanganOperasi ? $scope.verif.ruanganOperasi.nama : ""), true).then(function (data) {
-                    $scope.isRouteLoading = false;
+                $scope.isRouteLoading = true;
+                ManageServicePhp.getDataTableTransaksi("rekam-medis/get-jadwal-operasi-after-verif?tglbedah=" + ($scope.verif.tglBedah ? dateHelper.formatDate($scope.verif.tglBedah, 'YYYY-MM-DD') : "") + "&namaruangan=", true).then(function (data) {
                     if(!data.data.data) return;
                     for (let i = 0; i < data.data.data.length; i++) {
                         data.data.data[i].tglverifikasi = data.data.data[i].tglverifikasi ? data.data.data[i].tglverifikasi : '-';
@@ -431,11 +435,15 @@ define(['initialize'], function (initialize) {
                     id: dataItem.doktertujuanfk
                 };
 
-                $scope.item.ruanganOperasi = {
-                    nama: dataItem.ruangoperasi,
-                    key: dataItem.ruangoperasi
-                };
-
+                $scope.listRuangOperasi.data.forEach(listRuangOperasi => {
+                    if(listRuangOperasi.namaBedah==dataItem.ruangoperasi){
+                        $scope.item.ruanganOperasi = {
+                            namaBedah: dataItem.ruangoperasi,
+                            id: listRuangOperasi.id
+                        };
+                    }
+                });
+                
                 $scope.item.namaPerawat = dataItem.objectperawatfk ? {
                     namalengkap: dataItem.namaPerawat,
                     id: dataItem.objectperawatfk
@@ -473,7 +481,7 @@ define(['initialize'], function (initialize) {
             $scope.verifikasiData = function () {
                 let dataVerified = $scope.dataValidasiJamDanRuangan;
                 let tglTerpilih = dateHelper.formatDate($scope.item.tglVerifikasi, 'YYYY-MM-DD HH:mm:ss');
-                let ruanganTerpilih = $scope.item.ruanganOperasi.nama;
+                let ruanganTerpilih = $scope.item.ruanganOperasi.namaBedah;
                 // if (dataVerified.length === 0) {
                 //     toastr.info("Data tidak ada");
                 //     return;
@@ -508,16 +516,17 @@ define(['initialize'], function (initialize) {
                     pegawaiverifikasifk: $scope.pegawai.id,
                     tglverifikasi: $scope.item.tglVerifikasi ? dateHelper.formatDate($scope.item.tglVerifikasi, 'YYYY-MM-DD HH:mm') : dateHelper.formatDate(new Date(), 'YYYY-MM-DD HH:mm'),
                     tgloperasi: dateHelper.formatDate($scope.item.tglOperasi, 'YYYY-MM-DD HH:mm'),
-                    doktertujuanfk: $scope.item.namaDokterTujuan ? $scope.item.namaDokterTujuan.id : null,
+                    ruangoperasi:ruanganTerpilih,
                     dokteranestesifk: $scope.item.namaDokterAnastesi ? $scope.item.namaDokterAnastesi.id : null,
-                    ruangoperasi: $scope.item.ruanganOperasi.nama,
+                    doktertujuanfk: $scope.item.namaDokterTujuan ? $scope.item.namaDokterTujuan.id : null,
+                    // ruangoperasi: $scope.item.ruanganOperasi.nama,
                     // objectperawatfk: $scope.item.namaPerawat.id,
-                    lamaoperasi: $scope.item.lamaOperasi ? $scope.item.lamaOperasi : 0,
                     diagnosa: $scope.item.diagnosa,
                     tindakan: $scope.item.tindakan,
                     posisikhusus: $scope.item.posisiKhusus,
+                    lamaoperasi: $scope.item.lamaOperasi ? $scope.item.lamaOperasi : 0,
                     macamanestesi: $scope.item.macamAnestesi,
-                    namaVerifikator: $scope.pegawai.id,
+                    // namaVerifikator: $scope.pegawai.id,
                     perawat: []
                 }
                 for (let i = 0; i < $scope.item.selectedPerawat.length; i++) {

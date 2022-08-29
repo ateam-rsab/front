@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('OrderJadwalBedahCtrl', ['$q', '$rootScope', '$scope', '$state', '$timeout', 'DateHelper', 'CacheHelper', 'ManagePhp', 'ManageSdm', "$mdDialog",
-        function ($q, $rootScope, $scope, $state, $timeout, DateHelper, cacheHelper, managePhp, ManageSdm, $mdDialog) {
+    initialize.controller('OrderJadwalBedahCtrl', ['$q', '$rootScope', '$scope', '$state', '$timeout', 'MenuService','DateHelper', 'CacheHelper', 'ManagePhp', 'ManageSdm', "$mdDialog",
+        function ($q, $rootScope, $scope, $state, $timeout, MenuService, DateHelper, cacheHelper, managePhp, ManageSdm, $mdDialog) {
             $scope.item = {};
             $scope.dataVOloaded = true;
             $scope.now = new Date();
@@ -25,18 +25,10 @@ define(['initialize'], function (initialize) {
             $scope.OrderPelayanan = false;
             $scope.showTombol = false;
             $scope.selectedDokter = [];
-            $scope.dataMasterICU = {
-                "data":[
-                    {
-                        "statusIcu":"true",
-                        "namaIcu":"Ya",
-                    },
-                    {
-                        "statusIcu":"false",
-                        "namaIcu":"Tidak",
-                    }
-                ]
-            };
+            MenuService.get("fakerdata/truefalse.json")
+                .then(function(response) {
+                    $scope.dataMasterICU  = response;
+            });
             // set max order date 2 minggu
             $scope.maxOrderDate = new Date(new Date().setDate(new Date().getDate() + 14));
             console.log($scope.maxOrderDate, $scope.now)

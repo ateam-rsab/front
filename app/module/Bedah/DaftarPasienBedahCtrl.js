@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('DaftarPasienBedahCtrl', ['$q', '$rootScope', '$scope', 'ManageServicePhp', '$state', 'CacheHelper', 'DateHelper','ManagePhp', 'ManageSdm', '$window', 'ModelItemAkuntansi', '$mdDialog',
-        function ($q, $rootScope, $scope, ManageServicePhp, $state, cacheHelper, dateHelper, ManagePhp, ManageSdm, $window, modelItemAkuntansi, $mdDialog) {
+    initialize.controller('DaftarPasienBedahCtrl', ['$q', '$rootScope', '$scope', 'MenuService', 'ManageServicePhp', '$state', 'CacheHelper', 'DateHelper','ManagePhp', 'ManageSdm', '$window', 'ModelItemAkuntansi', '$mdDialog',
+        function ($q, $rootScope, $scope, MenuService, ManageServicePhp, $state, cacheHelper, dateHelper, ManagePhp, ManageSdm, $window, modelItemAkuntansi, $mdDialog) {
             $scope.item = {};
             $scope.item.tglBedah = new Date();
             $scope.pegawai = JSON.parse(window.localStorage.getItem('pegawai'));
@@ -13,46 +13,16 @@ define(['initialize'], function (initialize) {
                 placeholder: "Pilih",
             };
 
-            $scope.dataMasterRuangBedah = {
-                "data":[
-                    {
-                        "id":"1",
-                        "namaBedah":"Ruang Bedah 1",
-                    },
-                    {
-                        "id":"2",
-                        "namaBedah":"Ruang Bedah 2",
-                    },
-                    {
-                        "id":"3",
-                        "namaBedah":"Ruang Bedah 3",
-                    },
-                    {
-                        "id":"4",
-                        "namaBedah":"Ruang Bedah 4",
-                    },
-                    {
-                        "id":"5",
-                        "namaBedah":"Ruang Bedah 5",
-                    },
-                    {
-                        "id":"6",
-                        "namaBedah":"Ruang Bedah 6",
-                    },
-                ]
-            };
-            $scope.dataMasterICU = {
-                "data":[
-                    {
-                        "statusIcu":"true",
-                        "namaIcu":"Ya",
-                    },
-                    {
-                        "statusIcu":"false",
-                        "namaIcu":"Tidak",
-                    }
-                ]
-            };
+            MenuService.get("fakerdata/ruangoperasi.json")
+                .then(function(response) {
+                    $scope.dataMasterRuangBedah = response;
+            });
+
+            MenuService.get("fakerdata/truefalse.json")
+                .then(function(response) {
+                    $scope.dataMasterICU  = response;
+            });
+            
             $scope.columnGrid = [{
                 "field": "tgloperasi",
                 "title": "<h3>Tanggal<br> Permintaan Bedah</h3>",

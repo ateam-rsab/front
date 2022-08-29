@@ -1,0 +1,12 @@
+{
+    "data":[
+        {
+            "statusIcu":"true",
+            "namaIcu":"Ya"
+        },
+        {
+            "statusIcu":"false",
+            "namaIcu":"Tidak"
+        }
+    ]
+}
