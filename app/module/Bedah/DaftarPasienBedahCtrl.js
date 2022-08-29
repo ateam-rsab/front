@@ -198,7 +198,13 @@ define(['initialize'], function (initialize) {
                 $scope.item.macamAnestesi = dataItem.macamanestesi;
                 $scope.item.lamaOperasi = dataItem.lamaoperasi;
 
-
+                if($scope.isVerif==true){
+                  $scope.isVerif = true;
+                  $scope.isUpdate = false;
+                }else{
+                    $scope.isVerif = false;
+                    $scope.isUpdate = true;
+                }
                 $scope.popupDetail.open().center();
             }
             ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true", true).then(function (data) {
@@ -347,10 +353,59 @@ define(['initialize'], function (initialize) {
                     "perlu_icu": dataItem.perluIcu.statusIcu,
                     "perawat": namaPerawat
                 };
-                // console.log(dataPost);
+                console.log(dataPost);
                 ManagePhp.postData(dataPost,"rekam-medis/save-jadwal-operasi/verifikasi").then(res=>{
                     $scope.getData();
                     // console.log(res)
+                    $scope.isRouteLoading = false;
+                    $scope.popupDetail.close();
+                });
+            }
+
+            $scope.updateVerifikasi=()=>{
+                if(!$scope.item.ruangOperasi){
+                    toastr.info("Harap pilih ruang bedah!");
+                    return;
+                }
+                if($scope.item.namaDokterAnastesi.id==null){
+                    toastr.info("Harap pilih Dokter Anestesi!");
+                    return;
+                }
+                if($scope.item.perluIcu==null){
+                    toastr.info("Harap pilih perlu ICU?");
+                    return;
+                }
+                let dataItem = $scope.item;
+                let namaPerawat=[];
+                if($scope.selectedPerawat) {
+                    for(let i = 0; i < $scope.selectedPerawat.length; i++) {
+                        namaPerawat.push({
+                            objectperawatfk: $scope.selectedPerawat[i].id
+                        });
+                    }
+                }
+                console.log(dataItem);
+                $scope.isRouteLoading = true;
+                let dataPost = {
+                    "norec": dataItem.norec,
+                    "pegawaiverifikasifk": $scope.pegawai.id,
+                    "tglverifikasi": dataItem.tglVerifikasi,
+                    "tgloperasi": dataItem.tglOperasi,
+                    "ruangoperasi": dataItem.ruangOperasi.namaBedah,
+                    "dokteranestesifk": dataItem.namaDokterAnastesi.id,
+                    "doktertujuanfk": dataItem.namaDokterTujuan.id,
+                    "diagnosa": dataItem.diagnosa,
+                    "tindakan": dataItem.tindakan,
+                    "posisikhusus": dataItem.posisiKhusus,
+                    "macamanestesi": dataItem.macamAnestesi,
+                    "lamaoperasi": dataItem.lamaOperasi,
+                    "perlu_icu": dataItem.perluIcu.statusIcu,
+                    "perawat": namaPerawat
+                };
+                console.log(dataPost);
+                ManagePhp.postData(dataPost,"rekam-medis/save-jadwal-operasi/update-admin").then(res=>{
+                    $scope.getData();
+                //     // console.log(res)
                     $scope.isRouteLoading = false;
                     $scope.popupDetail.close();
                 });

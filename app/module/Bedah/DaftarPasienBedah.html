@@ -65,7 +65,7 @@
 
         <div class="grid_3">
             <label><b>Tanggal Bedah</b></label>
-            <input style="width: 100%" kendo-datetimepicker k-ng-model="item.tglVerifikasi" ng-disabled="isVerif"
+            <input style="width: 100%" kendo-datetimepicker k-ng-model="item.tglVerifikasi"
                 placeholer="Hari-Bln-Thn" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" />
         </div>
 
@@ -78,8 +78,7 @@
         <div class="grid_2">
             <label><b>Lama Bedah</b></label>
             <div style="display: flex;">
-                <input c-text-box type="input" placeholder="Menit" filter="'numeric'" class="k-textbox"
-                    ng-disabled="isVerif" ng-model="item.lamaOperasi" />
+                <input c-text-box type="input" placeholder="Menit" filter="'numeric'" class="k-textbox" ng-model="item.lamaOperasi" />
                 <label style="margin-top:10px">
                     <b>Mnt</b>
                 </label>
@@ -89,7 +88,7 @@
         <div class="grid_2">
             <label><b>Ruang Bedah</b></label>
             <input style="width: 100%;" kendo-combo-box k-placeholder="'--Pilih--'" k-ng-model="item.ruangOperasi" k-data-text-field="'namaBedah'"
-                k-data-value-field="'namaBedah'" k-filter="'contains'" k-auto-bind="false" ng-disabled="isVerif"
+                k-data-value-field="'namaBedah'" k-filter="'contains'" k-auto-bind="false"
                 k-data-source="dataMasterRuangBedah" />
         </div>
 
@@ -112,17 +111,14 @@
                 <label><b>Dokter Anestesi</b></label>
                 <input style="width: 100%;" k-placeholder="'--Pilih--'" kendo-combo-box  k-ng-model="item.namaDokterAnastesi"
                     k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'"
-                    k-auto-bind="false" k-data-source="dataMasterPetugas" ng-disabled="isVerif" />
+                    k-auto-bind="false" k-data-source="dataMasterPetugas" />
             </div>
 
         </div>
         <div class="grid_12">
             <div class="grid_8">
                 <label><b>Perawat</b></label>
-                <!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaPerawat"
-                    k-data-text-field="'namalengkap'" k-data-value-field="'id'" k-filter="'contains'"
-                    k-auto-bind="false" k-data-source="listPegawai" ng-disabled="isVerif" /> -->
-                <select kendo-multi-select k-options="selectOptions" k-filter="'contains'" k-data-source="dataMasterPetugas" ng-disabled="isVerif" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-ng-model="selectedPerawat"></select>
+                <select kendo-multi-select k-options="selectOptions" k-filter="'contains'" k-data-source="dataMasterPetugas" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-ng-model="selectedPerawat"></select>
             </div>
             <div class="grid_4">
                 <label>
@@ -197,9 +193,15 @@
                     <i class="fa fa-close"></i>
                 </md-button>
             </div>
-            <div class="grid_2">
-                <md-button class="md-raised md-primary medium-button" ng-disabled="isVerif" ng-click="verifikasiData()">
+            <div class="grid_2" ng-hide="isVerif">
+                <md-button class="md-raised md-primary medium-button" ng-click="verifikasiData()">
                     <span style="margin-right: 5px;">Verifikasi</span>
+                    <i class="fa fa-check"></i>
+                </md-button>
+            </div>
+            <div class="grid_2" ng-hide="isUpdate">
+                <md-button class="md-raised md-primary medium-button" ng-click="updateVerifikasi()">
+                    <span style="margin-right: 5px;">Update</span>
                     <i class="fa fa-check"></i>
                 </md-button>
             </div>

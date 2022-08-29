@@ -192,11 +192,18 @@
                         <i class="fa fa-close"></i>
                     </md-button>
                 </div>
-                <div class="grid_2">
-                    <md-button class="md-raised md-primary medium-button" ng-hide="isDetail" ng-disabled="isSaveLoad"
+                <div class="grid_2" ng-hide="isSave">
+                    <md-button class="md-raised md-primary medium-button" 
                         ng-click="saveOrderBedah()">
-                        <span style="margin-right: 5px;">{{isEdit ? 'Edit':'Simpan'}}</span>
-                        <i class="fa fa-save"></i>
+                        <span style="margin-right: 5px;">Simpan</span>
+                        <i class="fa fa-check"></i>
+                    </md-button>
+                </div>
+                <div class="grid_2" ng-hide="isUpdate">
+                    <md-button class="md-raised md-primary medium-button" 
+                        ng-click="updateOrderBedah()">
+                        <span style="margin-right: 5px;">Update</span>
+                        <i class="fa fa-check"></i>
                     </md-button>
                 </div>
             </div>
