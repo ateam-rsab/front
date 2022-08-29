@@ -17,10 +17,10 @@
                 k-format="'dd-MM-yyyy'" />
         </div>
 
-        <div class="grid_2">
+        <div class="grid_2" ng-hide="true">
             <label><b>Ruang Bedah</b></label>
-            <input style="width: 100%;" kendo-combo-box k-ng-model="ruanganOperasi" k-data-text-field="'nama'"
-                k-data-value-field="'key'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangOperasi" />
+            <input style="width: 100%;" kendo-combo-box k-ng-model="ruanganOperasi" k-data-text-field="'namaBedah'"
+                k-data-value-field="'namaBedah'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangOperasi" />
         </div>
 
         <div class="grid_1" style="margin-top:22px">
@@ -45,10 +45,10 @@
                 k-format="'dd-MM-yyyy'" />
         </div>
 
-        <div class="grid_2">
+        <div class="grid_2" ng-hide="true">
             <label><b>Ruang Bedah</b></label>
-            <input style="width: 100%;" kendo-combo-box k-ng-model="verif.ruanganOperasi" k-data-text-field="'nama'"
-                k-data-value-field="'key'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangOperasi" />
+            <input style="width: 100%;" kendo-combo-box k-ng-model="verif.ruanganOperasi" k-data-text-field="'namaBedah'"
+                k-data-value-field="'namaBedah'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangOperasi" />
         </div>
 
         <div class="grid_1" style="margin-top:22px">
@@ -107,8 +107,8 @@
 
             <div class="grid_2">
                 <label><b>Ruang Bedah</b></label>
-                <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruanganOperasi" k-data-text-field="'nama'"
-                    k-data-value-field="'key'" k-filter="'contains'" k-auto-bind="false" ng-disabled="isVerif"
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruanganOperasi" k-data-text-field="'namaBedah'"
+                    k-data-value-field="'namaBedah'" k-filter="'contains'" k-auto-bind="false" ng-disabled="isVerif"
                     k-data-source="listRuangOperasi" />
             </div>
 
@@ -208,8 +208,8 @@
                         <i class="fa fa-close"></i>
                     </md-button>
                 </div>
-                <div class="grid_2">
-                    <md-button class="md-raised md-primary medium-button" ng-disabled="isVerif"
+                <div class="grid_2" ng-hide="isVerif">
+                    <md-button class="md-raised md-primary medium-button"
                         ng-click="verifikasiData()">
                         <span style="margin-right: 5px;">Verifikasi</span>
                         <i class="fa fa-check"></i>
