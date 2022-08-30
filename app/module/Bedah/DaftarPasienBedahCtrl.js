@@ -5,6 +5,8 @@ define(['initialize'], function (initialize) {
             $scope.item = {};
             $scope.item.tglBedah = new Date();
             $scope.pegawai = JSON.parse(window.localStorage.getItem('pegawai'));
+            $scope.now = new Date(new Date().setDate(new Date().getDate() + 1));
+            $scope.maxOrderDate = new Date(new Date().setDate(new Date().getDate() + 14));
             $scope.selectedPerawat = [];
             $scope.isRouteLoading = false;
             $scope.popupDetail = false;
@@ -99,7 +101,21 @@ define(['initialize'], function (initialize) {
             function detailData(e) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-                $scope.isVerif = dataItem.tglverifikasi !== '-' ? true : false;
+                console.log(dataItem)
+                if(dataItem.status=="SELESAI"||dataItem.status=="MASUK ANTRIAN"||dataItem.status=="BATAL"){
+                    $scope.isVerif = true;
+                }else{
+                    $scope.isVerif = false;
+                }
+
+                if($scope.isVerif==true){
+                    $scope.isVerif = true;
+                    $scope.isUpdate = false;
+                  }else{
+                      $scope.isVerif = false;
+                      $scope.isUpdate = true;
+                  }
+
                 $scope.item.namaDokterAnastesi = {
                     id: dataItem.dokteranestesifk,
                     namaLengkap: dataItem.namaDokterAnestesi
@@ -151,7 +167,7 @@ define(['initialize'], function (initialize) {
                 }
 
                 // $scope.selectedPerawat = [];
-                $scope.item.tglVerifikasi = dateHelper.formatDate(new Date(), 'YYYY-MM-DD HH:mm');
+                if(dataItem.tglVerifikasi!=""){$scope.now=dataItem.tglverifikasi;$scope.item.tglVerifikasi=dataItem.tglVerifikasi;console.log(dataItem.tglVerifikasi)}else{$scope.item.tglVerifikasi = dateHelper.formatDate(new Date(), 'YYYY-MM-DD HH:mm');}
                 $scope.item.tglOperasi = dataItem.tgloperasi; // dataItem.tgloperasi === '-' ? dateHelper.formatDate(new Date(), 'YYYY-MM-DD HH:mm'): dateHelper.formatDate(new Date(dataItem.tgloperasi), 'YYYY-MM-DD HH:mm');
                 $scope.item.notelp = dataItem.telp;
                 $scope.item.norec = dataItem.norec;
@@ -168,13 +184,6 @@ define(['initialize'], function (initialize) {
                 $scope.item.macamAnestesi = dataItem.macamanestesi;
                 $scope.item.lamaOperasi = dataItem.lamaoperasi;
 
-                if($scope.isVerif==true){
-                  $scope.isVerif = true;
-                  $scope.isUpdate = false;
-                }else{
-                    $scope.isVerif = false;
-                    $scope.isUpdate = true;
-                }
                 $scope.popupDetail.open().center();
             }
             ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true", true).then(function (data) {

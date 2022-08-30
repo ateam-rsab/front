@@ -45,7 +45,7 @@
                 k-format="'dd-MM-yyyy'" />
         </div>
 
-        <div class="grid_2" ng-hide="true">
+        <div class="grid_2">
             <label><b>Ruang Bedah</b></label>
             <input style="width: 100%;" kendo-combo-box k-ng-model="verif.ruanganOperasi" k-data-text-field="'namaBedah'"
                 k-data-value-field="'namaBedah'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangOperasi" />
@@ -84,8 +84,10 @@
 
             <div class="grid_3">
                 <label><b>Tanggal Bedah</b></label>
-                <input style="width: 100%" kendo-datetimepicker k-ng-model="item.tglVerifikasi" ng-disabled="isVerif"
-                    placeholer="Hari-Bln-Thn" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" />
+                <input style="width: 100%" kendo-datetimepicker k-ng-model="item.tglVerifikasi2"
+                    placeholer="Hari-Bln-Thn"  k-min="now2" k-max="maxOrderDate" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" ng-hide="isDate" />
+                <input style="width: 100%" kendo-datetimepicker k-ng-model="item.tglVerifikasi1"
+                    placeholer="Hari-Bln-Thn"  k-min="now1" k-max="maxOrderDate" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" ng-hide="isNewDate"/>
             </div>
 
             <div class="grid_2">
@@ -105,10 +107,10 @@
                 </div>
             </div>
 
-            <div class="grid_2">
+            <div class="grid_3">
                 <label><b>Ruang Bedah</b></label>
                 <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruanganOperasi" k-data-text-field="'namaBedah'"
-                    k-data-value-field="'namaBedah'" k-filter="'contains'" k-auto-bind="false" ng-disabled="isVerif"
+                    k-data-value-field="'namaBedah'" k-filter="'contains'" k-auto-bind="false"
                     k-data-source="listRuangOperasi" />
             </div>
 
@@ -124,28 +126,36 @@
                     <label><b>Dokter Bedah</b></label>
                     <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaDokterTujuan"
                         k-data-text-field="'namalengkap'" k-data-value-field="'id'" k-filter="'contains'"
-                        k-auto-bind="false" k-data-source="listDokter" ng-disabled="isVerif" />
+                        k-auto-bind="false" k-data-source="listDokter" />
                 </div>
 
                 <div class="grid_4">
                     <label><b>Dokter Anestesi</b></label>
                     <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaDokterAnastesi"
                         k-data-text-field="'namalengkap'" k-data-value-field="'id'" k-filter="'contains'"
-                        k-auto-bind="false" k-data-source="listDokter" ng-disabled="isVerif" />
+                        k-auto-bind="false" k-data-source="listDokter" />
                 </div>
 
-                <div class="grid_12" ng-if="!isVerif">
+                <div class="grid_8">
                     <label><b>Perawat</b></label>
                     <select kendo-multi-select k-options="selectOptionsPerawat" k-filter="'contains'"
-                        k-data-source="listPegawai" ng-disabled="isVerif" k-data-text-field="'namalengkap'"
-                        k-data-value-field="'id'" k-ng-model="item.selectedPerawat"></select>
-                   
+                        k-data-source="listPegawai" k-data-text-field="'namalengkap'"
+                        k-data-value-field="'id'" k-ng-model="selectedPerawat"></select>
+
+                        <!-- <select kendo-multi-select k-options="selectOptions" k-filter="'contains'" k-data-source="dataMasterPetugas" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-ng-model="selectedPerawat"></select> -->
                 </div>
-                <div class="grid_12" ng-if="isVerif">
+                <div class="grid_4">
+                    <label><strong>Perlu ICU?</strong></label>
+                    <!-- <input style="width: 100%;" kendo-combo-box k-options="selectOptionICU" k-ng-model="selectedIcu" k-data-text-field="'namaIcu'" k-data-value-field="'status'" k-filter="'contains'"  k-auto-bind="false" k-data-source="dataMasterICU" /> -->
+                    <select style="width: 100%;" k-placeholder="'--Pilih--'" kendo-combo-box k-ng-model="item.perluIcu"
+                    k-data-text-field="'namaIcu'" k-data-value-field="'statusIcu'"
+                    k-data-source="dataMasterICU" k-auto-bind="true"></select>
+                </div>
+                <!-- <div class="grid_12" ng-if="isVerif">
                     <select kendo-multi-select k-options="selectOptions" k-filter="'contains'"
                         k-data-source="listPegawai" ng-disabled="isVerif" k-data-text-field="'namalengkap'"
                         k-data-value-field="'id'" k-ng-model="item.selectedAsistenDokter"></select>
-                </div>
+                </div> -->
             </div>
 
             <div class="grid_12">
@@ -212,6 +222,12 @@
                     <md-button class="md-raised md-primary medium-button"
                         ng-click="verifikasiData()">
                         <span style="margin-right: 5px;">Verifikasi</span>
+                        <i class="fa fa-check"></i>
+                    </md-button>
+                </div>
+                <div class="grid_2" ng-hide="isUpdate">
+                    <md-button class="md-raised md-primary medium-button" ng-click="updateVerifikasi()">
+                        <span style="margin-right: 5px;">Update</span>
                         <i class="fa fa-check"></i>
                     </md-button>
                 </div>
