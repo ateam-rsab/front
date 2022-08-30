@@ -15,6 +15,10 @@
                 "link": "#/DaftarAntrianSusterRanap"
             },
             {
+                "name": "Daftar Pasien Bedah perlu ICU",
+                "link": "#/DaftarPasienPerluIcu"
+            },
+            {
                 "name": "Daftar Pasien Bedah",
                 "link": "#/DaftarAntrianDokterBedah"
             },

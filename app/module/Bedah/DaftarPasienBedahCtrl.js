@@ -5,7 +5,7 @@ define(['initialize'], function (initialize) {
             $scope.item = {};
             $scope.item.tglBedah = new Date();
             $scope.pegawai = JSON.parse(window.localStorage.getItem('pegawai'));
-            $scope.now = new Date(new Date().setDate(new Date().getDate() + 1));
+            // $scope.now = new Date(new Date().setDate(new Date().getDate() + 1));
             $scope.maxOrderDate = new Date(new Date().setDate(new Date().getDate() + 14));
             $scope.selectedPerawat = [];
             $scope.isRouteLoading = false;
@@ -102,20 +102,19 @@ define(['initialize'], function (initialize) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
                 console.log(dataItem)
-                if(dataItem.status=="SELESAI"||dataItem.status=="MASUK ANTRIAN"||dataItem.status=="BATAL"){
-                    $scope.isVerif = true;
-                }else{
+                if(dataItem.status=="BELUM DIVERIFIKASI"){
                     $scope.isVerif = false;
-                }
-
-                if($scope.isVerif==true){
-                    $scope.isVerif = true;
+                    $scope.isFalse = true;
+                    $scope.isUpdate = true;
+                }else if(dataItem.status=="DI VERIFIKASI"){
+                    $scope.isVerif = false;
+                    $scope.isAdd = true;
                     $scope.isUpdate = false;
-                  }else{
-                      $scope.isVerif = false;
-                      $scope.isUpdate = true;
-                  }
-
+                }else if(dataItem.status=="SELESAI"||dataItem.status=="MASUK ANTRIAN"||dataItem.status=="BATAL"){
+                    $scope.isVerif = true;
+                    $scope.isAdd = true;
+                    $scope.isUpdate = true;
+                }
                 $scope.item.namaDokterAnastesi = {
                     id: dataItem.dokteranestesifk,
                     namaLengkap: dataItem.namaDokterAnestesi
@@ -167,7 +166,28 @@ define(['initialize'], function (initialize) {
                 }
 
                 // $scope.selectedPerawat = [];
-                if(dataItem.tglVerifikasi!=""){$scope.now=dataItem.tglverifikasi;$scope.item.tglVerifikasi=dataItem.tglVerifikasi;console.log(dataItem.tglVerifikasi)}else{$scope.item.tglVerifikasi = dateHelper.formatDate(new Date(), 'YYYY-MM-DD HH:mm');}
+                if(dataItem.tglVerifikasi!=="-"){
+                    if(dataItem.status=="BELUM DIVERIFIKASI"){
+                        $scope.isDate=false;
+                        $scope.isNewDate=true;
+                        $scope.now = new Date(new Date().setDate(new Date().getDate() + 1));
+                        $scope.item.tglVerifikasi2 = dateHelper.formatDate(new Date(), 'YYYY-MM-DD HH:mm');
+                    }else if(dataItem.status=="DI VERIFIKASI"){
+                        $scope.isDate=false;
+                        $scope.isNewDate=true;
+                        $scope.now = dataItem.tglverifikasi;
+                        $scope.item.tglVerifikasi2 = dateHelper.formatDate(dataItem.tglverifikasi, 'YYYY-MM-DD HH:mm');
+                    }else{
+                        $scope.isDate=true;
+                        $scope.isNewDate=false;
+                        $scope.item.tglVerifikasi1=dataItem.tglverifikasi;
+                    }
+                }else{
+                    $scope.isDate=false;
+                    $scope.isNewDate=true;
+                    $scope.now = new Date(new Date().setDate(new Date().getDate() + 1));
+                    $scope.item.tglVerifikasi2=null;
+                }
                 $scope.item.tglOperasi = dataItem.tgloperasi; // dataItem.tgloperasi === '-' ? dateHelper.formatDate(new Date(), 'YYYY-MM-DD HH:mm'): dateHelper.formatDate(new Date(dataItem.tgloperasi), 'YYYY-MM-DD HH:mm');
                 $scope.item.notelp = dataItem.telp;
                 $scope.item.norec = dataItem.norec;
@@ -319,7 +339,7 @@ define(['initialize'], function (initialize) {
                 let dataPost = {
                     "norec": dataItem.norec,
                     "pegawaiverifikasifk": $scope.pegawai.id,
-                    "tglverifikasi": dataItem.tglVerifikasi,
+                    "tglverifikasi": dataItem.tglVerifikasi2,
                     "tgloperasi": dataItem.tglOperasi,
                     "ruangoperasi": dataItem.ruangOperasi.namaBedah,
                     "dokteranestesifk": dataItem.namaDokterAnastesi.id,
@@ -368,7 +388,7 @@ define(['initialize'], function (initialize) {
                 let dataPost = {
                     "norec": dataItem.norec,
                     "pegawaiverifikasifk": $scope.pegawai.id,
-                    "tglverifikasi": dataItem.tglVerifikasi,
+                    "tglverifikasi": dataItem.tglVerifikasi1,
                     "tgloperasi": dataItem.tglOperasi,
                     "ruangoperasi": dataItem.ruangOperasi.namaBedah,
                     "dokteranestesifk": dataItem.namaDokterAnastesi.id,

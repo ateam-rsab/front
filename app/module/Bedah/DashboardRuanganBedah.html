@@ -113,150 +113,170 @@
     }
 </style>
 <div class="container-dashboard">
-    <div class="grid_2">
-        <md-button class="md-raised md-primary medium-button" ng-click="changeMode()">
-            <span>{{txtButtonMode}}</span>
-        </md-button>
-    </div>
     <div class="grid_12">
-
-        <!-- ng-repeat="dataRuangan in dataAntrian" -->
-        <div class="grid_6" ng-repeat="dataRuangan in dataAntrian" ng-if="isSimpleMode">
-            <div class="card-dashboard">
-                <div class="card-header">
-                    <span>{{dataRuangan.ruangoperasi}}</span>
-                </div>
-                <div class="card-body">
-                    <ul class="responsive-table">
-                        <li class="table-header">
-                            <div class="col col-1">Jam</div>
-                            <div class="col col-1">No. CM</div>
-                            <div class="col col-2">Nama Pasien</div>
-                            <div class="col col-2">Nama Dokter</div>
-                        </li>
-
-                        <li class="table-row active" ng-repeat="dataPasien in dataRuangan.details">
-                            <div class="col col-1" data-label="Jam">{{dataPasien.jamoperasi}}</div>
-                            <div class="col col-1" data-label="No. CM">{{dataPasien.nocm}}</div>
-                            <div class="col col-2" data-label="Nama Pasien">{{dataPasien.namapasien}}</div>
-                            <div class="col col-2" data-label="Nama Dokter">{{dataPasien.namadokter}}</div>
-                            <div ng-if="dataRuangan.details.length == 0">Tidak ada data</div>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
+        <div class="grid_2">
+            <label><b>Tanggal Permintaan Bedah</b></label>
+            <input style="width: 100%" kendo-date-picker k-ng-model="item.tglBedah" placeholer="Hari-Bln-Thn"
+                k-format="'dd-MM-yyyy'" />
         </div>
-
-        <div class="grid_12" ng-if="!isSimpleMode">
-
-            <div ng-repeat="dataRuangan in dataAntrian; track by $index" id="{{'r' + ($index + 1)}}">
-                <div class="card-dashboard">
-                    <div class="card-header">
-                        <span>{{dataRuangan.ruangoperasi}}</span>
-                    </div>
-                    <div class="card-body">
-                        <ul class="responsive-table">
-                            <li class="table-header">
-                                <div class="col col-1">Jam</div>
-                                <div class="col col-1">No. CM</div>
-                                <div class="col col-2">Nama Pasien</div>
-                                <div class="col col-2">Nama Dokter</div>
-                            </li>
-
-                            <li class="table-row active" ng-repeat="dataPasien in dataRuangan.details">
-                                <div class="col col-1" data-label="Jam">{{dataPasien.jamoperasi}}</div>
-                                <div class="col col-1" data-label="No. CM">{{dataPasien.nocm}}</div>
-                                <div class="col col-2" data-label="Nama Pasien">{{dataPasien.namapasien}}</div>
-                                <div class="col col-2" data-label="Nama Dokter">{{dataPasien.namadokter}}</div>
-                                <div ng-if="dataRuangan.details.length == 0">Tidak ada data</div>
-                            </li>
-                            <!-- <li class="table-row">
-                            <div class="col col-1" data-label="Jam">08.00</div>
-                            <div class="col col-1" data-label="No. CM">081231</div>
-                            <div class="col col-2" data-label="No. Registrasi">1921313</div>
-                            <div class="col col-2" data-label="Nama Pasien">Fulan 4</div>
-                        </li>
+        <div class="grid_3">
+            <label><b>Ruang Bedah</b></label>
+            <input style="width: 100%;" kendo-combo-box k-placeholder="'--Pilih--'" k-ng-model="item.ruangOperasi" k-data-text-field="'namaBedah'"
+                k-data-value-field="'namaBedah'" k-filter="'contains'" k-auto-bind="false"
+                k-data-source="dataMasterRuangBedah" ng-disabled="isVerif" />
+        </div>
+        <div class="grid_1" style="margin-top:22px">
+            <md-button class="md-raised md-primary medium-button" ng-click="getData()">
+                <span style="margin-right: 5px;">Cari</span>
+                <i class="fa fa-search"></i>
+            </md-button>
+        </div>
+    </div>
     
-                        <li class="table-row">
-                            <div class="col col-1" data-label="Jam">09.00</div>
-                            <div class="col col-1" data-label="No. CM">081231</div>
-                            <div class="col col-2" data-label="No. Registrasi">1921313</div>
-                            <div class="col col-2" data-label="Nama Pasien">Fulan 5</div>
-                        </li>
-    
-                        <li class="table-row active">
-                            <div class="col col-1" data-label="Jam">10.00</div>
-                            <div class="col col-1" data-label="No. CM">081231</div>
-                            <div class="col col-2" data-label="No. Registrasi">1921313</div>
-                            <div class="col col-2" data-label="Nama Pasien">Fulan 7</div>
-                        </li> -->
-                        </ul>
-                    </div>
-                </div>
-            </div>
+    <div class="grid_12">
+        <kendo-grid data-source="dataSource" options="optGrid" k-selectable="'row'" k-sortable="'true'"
+            k-resizable="'true'">
+        </kendo-grid>
+    </div>
+</div>
 
+<div kendo-window="popupDetail" k-title="'Input Jadwal Bedah'" k-width="1200" k-visible="false"
+    k-on-open="win2visible= true" k-on-close="win2visible= false">
+    <div class="panel panel-default container_12" style="padding: 0px 10px;">
 
-            <!-- <div class="card-dashboard" style="display: none;" id="r2">
-            <div class="card-header">
-                <span>Ruang Operasi 2</span>
-            </div>
-            <div class="card-body">
-                <ul class="responsive-table">
-                    <li class="table-header">
-                        <div class="col col-1">Jam</div>
-                        <div class="col col-1">No. CM</div>
-                        <div class="col col-2">Nama Pasien</div>
-                        <div class="col col-2">Nama Dokter</div>
-                    </li>
+        <div class="grid_2">
+            <label><b>Tanggal Permintaan Bedah</b></label>
+            <input style="width: 100%" kendo-date-time-picker k-ng-model="item.tglOperasi" ng-disabled="'true'" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" />
+        </div>
 
-                    <li class="table-row active" ng-repeat="dataPasien in dataRuangan.details">
-                        <div class="col col-1" data-label="Jam">{{dataPasien.jamoperasi}}</div>
-                        <div class="col col-1" data-label="No. CM">{{dataPasien.nocm}}</div>
-                        <div class="col col-2" data-label="Nama Pasien">{{dataPasien.namapasien}}</div>
-                        <div class="col col-2" data-label="Nama Dokter">{{dataPasien.namadokter}}</div>
-                        <div ng-if="dataRuangan.details.length == 0">Tidak ada data</div>
-                    </li>
-                </ul>
+        <div class="grid_3">
+            <label><b>Tanggal Bedah</b></label>
+            <input style="width: 100%" kendo-date-time-picker k-ng-model="item.tglVerifikasi" ng-disabled="'true'" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" />
+        </div>
+
+        <div class="grid_2">
+            <label><b>No. Telepon</b></label>
+            <input c-text-box type="input" placeholder="No. Telp" filter="'varchar'" class="k-textbox" disabled
+                ng-model="item.notelp" />
+        </div>
+
+        <div class="grid_2">
+            <label><b>Lama Bedah</b></label>
+            <div style="display: flex;">
+                <input c-text-box type="input" placeholder="Menit" filter="'numeric'" class="k-textbox" ng-model="item.lamaOperasi" ng-disabled="'true'"/>
+                <label style="margin-top:10px">
+                    <b>Mnt</b>
+                </label>
             </div>
         </div>
 
-        <div class="card-dashboard" style="display: none;" id="r3">
-            <div class="card-header">
-                <span>Ruang Operasi 3</span>
+        <div class="grid_3">
+            <label><b>Ruang Bedah</b></label>
+            <input style="width: 100%;" kendo-combo-box k-placeholder="'--Pilih--'" k-ng-model="item.ruangOperasi" k-data-text-field="'namaBedah'"
+                k-data-value-field="'namaBedah'" k-filter="'contains'" k-auto-bind="false"
+                k-data-source="dataMasterRuangBedah" ng-disabled="'true'" />
+        </div>
+
+        <div class="grid_12">
+            <div class="grid_3">
+                <label><b>Dokter Periksa</b></label>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaDokter"
+                    k-data-text-field="'namaLengkap'" k-data-value-field="'namaLengkap'" k-filter="'contains'"
+                    k-auto-bind="false" ng-disabled="'true'" />
             </div>
-            <div class="card-body">
-                <ul class="responsive-table">
-                    <li class="table-header">
-                        <div class="col col-1">Jam</div>
-                        <div class="col col-1">No. CM</div>
-                        <div class="col col-2">Nama Pasien</div>
-                        <div class="col col-2">Nama Dokter</div>
-                    </li>
 
-                    <li class="table-row active" ng-repeat="dataPasien in dataRuangan.details">
-                        <div class="col col-1" data-label="Jam">{{dataPasien.jamoperasi}}</div>
-                        <div class="col col-1" data-label="No. CM">{{dataPasien.nocm}}</div>
-                        <div class="col col-2" data-label="Nama Pasien">{{dataPasien.namapasien}}</div>
-                        <div class="col col-2" data-label="Nama Dokter">{{dataPasien.namadokter}}</div>
-                        <div ng-if="dataRuangan.details.length == 0">Tidak ada data</div>
-                    </li>
-                </ul>
+            <div class="grid_3">
+                <label><b>Dokter Bedah</b></label>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaDokterTujuan"
+                    k-data-text-field="'namaLengkap'" k-data-value-field="'namaLengkap'" k-filter="'contains'"
+                    k-auto-bind="false" ng-disabled="'true'" />
             </div>
-        </div> -->
 
-            <div class="navigation-card">
+            <div class="grid_3">
+                <label><b>Dokter Anestesi</b></label>
+                <input style="width: 100%;" k-placeholder="'--Pilih--'" kendo-combo-box  k-ng-model="item.namaDokterAnastesi"
+                    k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'"
+                    k-auto-bind="false" k-data-source="dataMasterPetugas" ng-disabled="'true'" />
+            </div>
 
-                <a ng-repeat="dataRuangan in dataAntrian; track by $index" id="{{'nr' + ($index + 1)}}"
-                    ng-click="changePage($index + 1)">{{dataRuangan.ruangoperasi}}</a>
-                <!-- <a id="nr2" ng-click="changePage(2)">Ruang Operasi 2</a>
-            <a id="nr3" ng-click="changePage(3)">Ruang Operasi 3</a> -->
+        </div>
+        <div class="grid_12">
+            <div class="grid_8">
+                <label><b>Perawat</b></label>
+                <select kendo-multi-select k-filter="'contains'" k-data-source="dataMasterPetugas" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-ng-model="selectedPerawat" ng-disabled="'true'" disabled></select>
+            </div>
+            <div class="grid_4">
+                <label>
+                    <strong>
+                        Perlu ICU?
+                    </strong>
+                </label>
+                <select style="width: 100%;" k-placeholder="'--Pilih--'" kendo-combo-box k-ng-model="item.perluIcu"
+                k-data-text-field="'namaIcu'" k-data-value-field="'statusIcu'"
+                k-data-source="dataMasterICU" k-auto-bind="true" ng-disabled="'true'"></select>
+            </div>
+        </div>
+        
+        <div class="grid_12">
+            <div class="grid_6">
+                <label>
+                    <strong>
+                        Diagnosa
+                    </strong>
+                </label>
+                <textarea ng-model="item.diagnosa" maxlength="500" disabled style="height:100px"></textarea>
+                <p class="length-textarea">
+                    500/{{item.diagnosa ? item.diagnosa.length : 0}}
+                </p>
+            </div>
+
+            <div class="grid_6">
+                <label>
+                    <strong>
+                        Tindakan
+                    </strong>
+                </label>
+                <textarea ng-model="item.tindakan" maxlength="500" disabled style="height:100px"></textarea>
+                <p class="length-textarea">
+                    500/{{item.tindakan ? item.tindakan.length : 0}}
+                </p>
+            </div>
+
+            <div class="grid_6">
+                <label>
+                    <strong>
+                        Posisi Khusus/Peralatan khusus
+                    </strong>
+                </label>
+                <textarea ng-model="item.posisiKhusus" maxlength="500" disabled style="height:100px"></textarea>
+                <p class="length-textarea">
+                    500/{{item.posisiKhusus ? item.posisiKhusus.length : 0}}
+                </p>
+            </div>
+
+            <div class="grid_6">
+                <label>
+                    <strong>
+                        Macam Anastesi
+                    </strong>
+                </label>
+                <textarea ng-model="item.macamAnestesi" maxlength="500" disabled style="height:100px"></textarea>
+                <p class="length-textarea">
+                    500/{{item.macamAnestesi ? item.macamAnestesi.length :
+                    0}}
+                </p>
             </div>
         </div>
 
 
-        <div class="grid_12" style="margin-top:60px">
-            <div ng-include='" ../app/module/Shared/TemplateLoading" '></div>
+        <div class="k-edit-buttons k-state-default" style="margin-top:10px">
+            <div class="grid_10"></div>
+            <div class="grid_2">
+                <md-button class="md-raised md-warn medium-button" ng-click="closeModalJadwalBedah()">
+                    <span style="margin-right: 5px;">Batal</span>
+                    <i class="fa fa-close"></i>
+                </md-button>
+            </div>
         </div>
     </div>
 </div>

@@ -14377,6 +14377,10 @@
       {
         "module": "PhpServices",
         "define": "PhpServices"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
       }
     ]
   },
@@ -14497,6 +14501,42 @@
       {
         "module": "AkuntansiService",
         "define": "AkuntansiService"
+      }
+    ]
+  },
+  {
+    "name": "DaftarPasienPerluIcu",
+    "url": "/DaftarPasienPerluIcu",
+    "controller": "DaftarPasienPerluIcuCtrl",
+    "templateurl": "module/pasien/DaftarPasienPerluIcu/DaftarPasienPerluIcu.html",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "PasienService",
+        "define": "PasienService"
+      },
+      {
+        "module": "PhpService",
+        "define": "PhpService"
+      },
+      {
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
+      },
+      {
+        "module": "PhpServices",
+        "define": "PhpServices"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
       }
     ]
   },
