@@ -112,7 +112,7 @@
         flex-basis: 25%;
     }
 </style>
-<div class="container-dashboard">
+<!-- <div class="container-dashboard">
     <div class="grid_12">
         <div class="grid_2">
             <label><b>Tanggal Permintaan Bedah</b></label>
@@ -278,5 +278,150 @@
                 </md-button>
             </div>
         </div>
+    </div>
+</div> -->
+
+<div class="container-dashboard">
+    <div class="grid_12">
+        <div class="grid_2">
+            <label><b>Ganti Mode Tampilan</b></label>
+            <md-button class="md-raised md-primary medium-button" ng-click="changeMode()">
+                <span>{{txtButtonMode}}</span>
+            </md-button>
+        </div>
+        <div class="grid_2">
+            <label><b>Tanggal Permintaan Bedah</b></label>
+            <input style="width: 100%" kendo-date-picker k-ng-model="item.tglBedah" placeholer="Hari-Bln-Thn"
+                k-format="'dd-MM-yyyy'" />
+        </div>
+        <div class="grid_1" style="margin-top:22px">
+            <md-button class="md-raised md-primary medium-button" ng-click="searchData()">
+                <span style="margin-right: 5px;">Cari</span>
+                <i class="fa fa-search"></i>
+            </md-button>
+        </div>
+    </div>
+    <div class="grid_6" ng-repeat="dataRuangan in dataAntrian" ng-if="isSimpleMode">
+        <div class="card-dashboard">
+            <div class="card-header">
+                <span>{{dataRuangan.ruangoperasi}}</span>
+            </div>
+            <div class="card-body">
+                <ul class="responsive-table">
+                    <li class="table-header">
+                        <div class="col col-1">Jam</div>
+                        <div class="col col-1">No. CM</div>
+                        <div class="col col-2">Nama Pasien</div>
+                        <div class="col col-2">Nama Dokter</div>
+                    </li>
+
+                    <li class="table-row active" ng-repeat="dataPasien in dataRuangan.details">
+                        <div class="col col-1" data-label="Jam">{{dataPasien.jamoperasi}}</div>
+                        <div class="col col-1" data-label="No. CM">{{dataPasien.nocm}}</div>
+                        <div class="col col-2" data-label="Nama Pasien">{{dataPasien.namapasien}}</div>
+                        <div class="col col-2" data-label="Nama Dokter">{{dataPasien.namadokter}}</div>
+                        <div ng-if="dataRuangan.details.length == 0">Tidak ada data</div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="grid_12" ng-if="!isSimpleMode">
+        <div ng-repeat="dataRuangan in dataAntrian; track by $index" id="{{'r' + ($index + 1)}}">
+            <div class="card-dashboard">
+                <div class="card-header">
+                    <span>{{dataRuangan.ruangoperasi}}</span>
+                </div>
+                <div class="card-body">
+                    <ul class="responsive-table">
+                        <li class="table-header">
+                            <div class="col col-1">Jam</div>
+                            <div class="col col-1">No. CM</div>
+                            <div class="col col-2">Nama Pasien</div>
+                            <div class="col col-2">Nama Dokter</div>
+                        </li>
+
+                        <li class="table-row active" ng-repeat="dataPasien in dataRuangan.details">
+                            <div class="col col-1" data-label="Jam">{{dataPasien.jamoperasi}}</div>
+                            <div class="col col-1" data-label="No. CM">{{dataPasien.nocm}}</div>
+                            <div class="col col-2" data-label="Nama Pasien">{{dataPasien.namapasien}}</div>
+                            <div class="col col-2" data-label="Nama Dokter">{{dataPasien.namadokter}}</div>
+                            <div ng-if="dataRuangan.details.length == 0">Tidak ada data</div>
+                        </li>
+                        <!-- <li class="table-row">
+                            <div class="col col-1" data-label="Jam">08.00</div>
+                            <div class="col col-1" data-label="No. CM">081231</div>
+                            <div class="col col-2" data-label="No. Registrasi">1921313</div>
+                            <div class="col col-2" data-label="Nama Pasien">Fulan 4</div>
+                        </li>
+
+                        <li class="table-row">
+                            <div class="col col-1" data-label="Jam">09.00</div>
+                            <div class="col col-1" data-label="No. CM">081231</div>
+                            <div class="col col-2" data-label="No. Registrasi">1921313</div>
+                            <div class="col col-2" data-label="Nama Pasien">Fulan 5</div>
+                        </li>
+
+                        <li class="table-row active">
+                            <div class="col col-1" data-label="Jam">10.00</div>
+                            <div class="col col-1" data-label="No. CM">081231</div>
+                            <div class="col col-2" data-label="No. Registrasi">1921313</div>
+                            <div class="col col-2" data-label="Nama Pasien">Fulan 7</div>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="card-header">
+        <span>Ruang Operasi 2</span>
+    </div>
+    <div class="card-body">
+        <ul class="responsive-table">
+            <li class="table-header">
+                <div class="col col-1">Jam</div>
+                <div class="col col-1">No. CM</div>
+                <div class="col col-2">Nama Pasien</div>
+                <div class="col col-2">Nama Dokter</div>
+            </li>
+
+            <li class="table-row active" ng-repeat="dataPasien in dataRuangan.details">
+                <div class="col col-1" data-label="Jam">{{dataPasien.jamoperasi}}</div>
+                <div class="col col-1" data-label="No. CM">{{dataPasien.nocm}}</div>
+                <div class="col col-2" data-label="Nama Pasien">{{dataPasien.namapasien}}</div>
+                <div class="col col-2" data-label="Nama Dokter">{{dataPasien.namadokter}}</div>
+                <div ng-if="dataRuangan.details.length == 0">Tidak ada data</div>
+            </li>
+        </ul>
+    </div>
+    <div class="card-dashboard" style="display: none;" id="r3">
+        <div class="card-header">
+            <span>Ruang Operasi 3</span>
+        </div>
+    </div>
+    <div class="card-body">
+        <ul class="responsive-table">
+            <li class="table-header">
+                <div class="col col-1">Jam</div>
+                <div class="col col-1">No. CM</div>
+                <div class="col col-2">Nama Pasien</div>
+                <div class="col col-2">Nama Dokter</div>
+            </li>
+
+            <li class="table-row active" ng-repeat="dataPasien in dataRuangan.details">
+                <div class="col col-1" data-label="Jam">{{dataPasien.jamoperasi}}</div>
+                <div class="col col-1" data-label="No. CM">{{dataPasien.nocm}}</div>
+                <div class="col col-2" data-label="Nama Pasien">{{dataPasien.namapasien}}</div>
+                <div class="col col-2" data-label="Nama Dokter">{{dataPasien.namadokter}}</div>
+                <div ng-if="dataRuangan.details.length == 0">Tidak ada data</div>
+            </li>
+        </ul>
+    </div> -->
+    <div class="navigation-card">
+        <a ng-repeat="dataRuangan in dataAntrian; track by $index" id="{{'nr' + ($index + 1)}}" ng-click="changePage($index + 1)">{{dataRuangan.ruangoperasi}}</a>
+    </div>
+    <div class="grid_12" style="margin-top:60px">
+        <div ng-include='" ../app/module/Shared/TemplateLoading" '></div>
     </div>
 </div>
