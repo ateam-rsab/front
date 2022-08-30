@@ -2217,6 +2217,10 @@
         "urlDep": "module/AplikasiIT/DataMaster/HargaNettoProdukByKelasVaksinCtrl"
       },
       {
+        "nameDep": "DaftarPasienPerluIcuCtrl",
+        "urlDep": "module/pasien/DaftarPasienPerluIcu/DaftarPasienPerluIcuCtrl"
+      },
+      {
         "nameDep": "DaftarAntrianDokterBedahCtrl",
         "urlDep": "module/pasien/RegistrasiPelayananNew/DaftarAntrianDokterBedahCtrl"
       },

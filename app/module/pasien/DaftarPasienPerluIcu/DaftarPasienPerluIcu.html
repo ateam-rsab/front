@@ -30,9 +30,9 @@
 </style>
 
 <md-toolbar md-scroll-shrink class="shadow">
-    <div class="md-toolbar-tools">Daftar Pasien Bedah</div>
+    <div class="md-toolbar-tools">Daftar Pasien Perlu ICU</div>
 </md-toolbar>
-<div class="grid_12">
+<!-- <div class="grid_12">
     <div class="grid_2">
         <label><b>Tanggal Permintaan Bedah</b></label>
         <input style="width: 100%" kendo-date-picker k-ng-model="item.tglBedah" placeholer="Hari-Bln-Thn"
@@ -45,7 +45,7 @@
             <i class="fa fa-search"></i>
         </md-button>
     </div>
-</div>
+</div> -->
 
 <div class="grid_12">
     <kendo-grid data-source="dataSource" options="optGrid" k-selectable="'row'" k-sortable="'true'"
@@ -53,20 +53,20 @@
     </kendo-grid>
 </div>
 
-<div kendo-window="popupDetail" k-title="'Input Jadwal Bedah'" k-width="1200" k-visible="false"
+<div kendo-window="popupDetail" k-title="'Detail Pasien Perlu ICU'" k-width="1200" k-visible="false"
     k-on-open="win2visible= true" k-on-close="win2visible= false">
     <div class="panel panel-default container_12" style="padding: 0px 10px;">
 
         <div class="grid_2">
             <label><b>Tanggal Permintaan Bedah</b></label>
             <input style="width: 100%" kendo-date-time-picker k-ng-model="item.tglOperasi" ng-disabled="'true'"
-                placeholer="Hari-Bln-Thn" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" />
+                k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" />
         </div>
 
         <div class="grid_3">
             <label><b>Tanggal Bedah</b></label>
-            <input style="width: 100%" kendo-datetimepicker k-ng-model="item.tglVerifikasi2" placeholer="Hari-Bln-Thn"  k-min="now" k-max="maxOrderDate" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" ng-disabled="isVerif" ng-hide="isDate"/>
-            <input style="width: 100%" kendo-date-time-picker k-ng-model="item.tglVerifikasi1" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" ng-disabled="isVerif" ng-hide="isNewDate"/>
+            <input style="width: 100%" kendo-datetimepicker k-ng-model="item.tglVerifikasi" ng-disabled="'true'"
+                k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm"/>
         </div>
 
         <div class="grid_2">
@@ -78,7 +78,7 @@
         <div class="grid_2">
             <label><b>Lama Bedah</b></label>
             <div style="display: flex;">
-                <input c-text-box type="input" placeholder="Menit" filter="'numeric'" class="k-textbox" ng-model="item.lamaOperasi" ng-disabled="isVerif"/>
+                <input c-text-box type="input" placeholder="Menit" filter="'numeric'" class="k-textbox" ng-model="item.lamaOperasi" disabled/>
                 <label style="margin-top:10px">
                     <b>Mnt</b>
                 </label>
@@ -89,7 +89,7 @@
             <label><b>Ruang Bedah</b></label>
             <input style="width: 100%;" kendo-combo-box k-placeholder="'--Pilih--'" k-ng-model="item.ruangOperasi" k-data-text-field="'namaBedah'"
                 k-data-value-field="'namaBedah'" k-filter="'contains'" k-auto-bind="false"
-                k-data-source="dataMasterRuangBedah" ng-disabled="isVerif" />
+                k-data-source="dataMasterRuangBedah" disabled />
         </div>
 
         <div class="grid_12">
@@ -97,28 +97,28 @@
                 <label><b>Dokter Periksa</b></label>
                 <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaDokter"
                     k-data-text-field="'namaLengkap'" k-data-value-field="'namaLengkap'" k-filter="'contains'"
-                    k-auto-bind="false" ng-disabled="isVerif" />
+                    k-auto-bind="false" disabled />
             </div>
 
             <div class="grid_3">
                 <label><b>Dokter Bedah</b></label>
                 <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaDokterTujuan"
                     k-data-text-field="'namaLengkap'" k-data-value-field="'namaLengkap'" k-filter="'contains'"
-                    k-auto-bind="false" ng-disabled="isVerif" />
+                    k-auto-bind="false" disabled />
             </div>
 
             <div class="grid_3">
                 <label><b>Dokter Anestesi</b></label>
                 <input style="width: 100%;" k-placeholder="'--Pilih--'" kendo-combo-box  k-ng-model="item.namaDokterAnastesi"
                     k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'"
-                    k-auto-bind="false" k-data-source="dataMasterPetugas" ng-disabled="isVerif" />
+                    k-auto-bind="false" k-data-source="dataMasterPetugas" disabled />
             </div>
 
         </div>
         <div class="grid_12">
             <div class="grid_8">
                 <label><b>Perawat</b></label>
-                <select kendo-multi-select k-options="selectOptions" k-filter="'contains'" k-data-source="dataMasterPetugas" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-ng-model="selectedPerawat" ng-disabled="isVerif"></select>
+                <select kendo-multi-select k-options="selectOptions" k-filter="'contains'" k-data-source="dataMasterPetugas" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-ng-model="selectedPerawat" disabled></select>
             </div>
             <div class="grid_4">
                 <label>
@@ -128,7 +128,7 @@
                 </label>
                 <select style="width: 100%;" k-placeholder="'--Pilih--'" kendo-combo-box k-ng-model="item.perluIcu"
                 k-data-text-field="'namaIcu'" k-data-value-field="'statusIcu'"
-                k-data-source="dataMasterICU" k-auto-bind="true" ng-disabled="isVerif"></select>
+                k-data-source="dataMasterICU" k-auto-bind="true" disabled></select>
             </div>
         </div>
         
@@ -185,23 +185,11 @@
 
 
         <div class="k-edit-buttons k-state-default" style="margin-top:10px">
-            <div class="grid_8"></div>
+            <div class="grid_10"></div>
             <div class="grid_2">
                 <md-button class="md-raised md-warn medium-button" ng-click="closeModalJadwalBedah()">
                     <span style="margin-right: 5px;">Batal</span>
                     <i class="fa fa-close"></i>
-                </md-button>
-            </div>
-            <div class="grid_2" ng-hide="isAdd">
-                <md-button class="md-raised md-primary medium-button" ng-click="verifikasiData()">
-                    <span style="margin-right: 5px;">Verifikasi</span>
-                    <i class="fa fa-check"></i>
-                </md-button>
-            </div>
-            <div class="grid_2" ng-hide="isUpdate">
-                <md-button class="md-raised md-primary medium-button" ng-click="updateVerifikasi()">
-                    <span style="margin-right: 5px;">Update</span>
-                    <i class="fa fa-check"></i>
                 </md-button>
             </div>
         </div>

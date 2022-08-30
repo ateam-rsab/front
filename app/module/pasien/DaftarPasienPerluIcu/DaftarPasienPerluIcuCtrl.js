@@ -1,15 +1,19 @@
-define(['initialize'], function (initialize) {
+define(['initialize'], function(initialize) {
     'use strict';
-    initialize.controller('DashboardRuanganBedahCtrl', ['$q', '$rootScope', '$scope', 'MenuService', 'ManageServicePhp', 'ManageSdm', '$state', 'CacheHelper', 'DateHelper', '$window', 'ModelItemAkuntansi',
-        function ($q, $rootScope, $scope, MenuService, ManageServicePhp, ManageSdm, $state, cacheHelper, dateHelper, $window, modelItemAkuntansi) {
+    initialize.controller('DaftarPasienPerluIcuCtrl', ['$q', '$rootScope', '$scope', 'MenuService', 'ManageServicePhp', '$state', 'CacheHelper', 'DateHelper','ManagePhp', 'ManageSdm', '$window', 'ModelItemAkuntansi', '$mdDialog',
+        function ($q, $rootScope, $scope, MenuService, ManageServicePhp, $state, cacheHelper, dateHelper, ManagePhp, ManageSdm, $window, modelItemAkuntansi, $mdDialog) {
             $scope.item = {};
-            $scope.dataAntrian = [];
-            $scope.currentPage = 1;
-            $scope.lengthData = 0;
-            $scope.isSimpleMode = false;
-            let intervalSlide = 1;
-            $scope.txtButtonMode = 'Simple Mode';
-
+            // $scope.item.tglBedah = new Date();
+            $scope.pegawai = JSON.parse(window.localStorage.getItem('pegawai'));
+            // $scope.now = new Date(new Date().setDate(new Date().getDate() + 1));
+            // $scope.maxOrderDate = new Date(new Date().setDate(new Date().getDate() + 14));
+            $scope.selectedPerawat = [];
+            $scope.isRouteLoading = false;
+            $scope.popupDetail = false;
+            $scope.dataMasterPetugas = null;
+            $scope.selectOptions = {
+                placeholder: "Pilih",
+            };
             MenuService.get("fakerdata/ruangoperasi.json")
                 .then(function(response) {
                     $scope.dataMasterRuangBedah = response;
@@ -19,13 +23,15 @@ define(['initialize'], function (initialize) {
                 .then(function(response) {
                     $scope.dataMasterICU  = response;
             });
+
             ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true", true).then(function (data) {
                 $scope.dataMasterPetugas = data;
             });
+
             $scope.columnGrid = [{
                 "field": "tgloperasi",
                 "title": "<h3>Tanggal<br> Permintaan Bedah</h3>",
-                "width": 200
+                "width": 200,
             }, {
                 "field": "tglverifikasi",
                 "title": "<h3>Tanggal<br> Bedah</h3>",
@@ -33,11 +39,19 @@ define(['initialize'], function (initialize) {
             }, {
                 "field": "nocm",
                 "title": "<h3>No.<br> Rekam Medis</h3>",
-                "width": 120
+                "width": 120,
+                "filterable": {
+                    "multi": "true",
+                    "search": "true"
+                }
             }, {
                 "field": "noregistrasi",
                 "title": "<h3>No. Registrasi</h3>",
-                "width": 120
+                "width": 120,
+                "filterable": {
+                    "multi": "true",
+                    "search": "true"
+                }
             }, {
                 "field": "namapasien",
                 "title": "<h3>Nama Pasien</h3>",
@@ -58,7 +72,11 @@ define(['initialize'], function (initialize) {
                 "field": "telp",
                 "title": "<h3>No.Telp</h3>",
                 "width": 150
-            },{
+            }, {
+                "field": "status",
+                "title": "<h3>Status</h3>",
+                "width": 140
+            }, {
                 command: [{
                     text: "Detail",
                     click: detailData,
@@ -67,26 +85,64 @@ define(['initialize'], function (initialize) {
                 title: "",
                 width: 150
             }];
-
             $scope.getData = () => {
-                ManageServicePhp.getDataTableTransaksi("rekam-medis/get-jadwal-operasi-after-verif?tglbedah=" + ($scope.item.tglBedah ? dateHelper.formatDate($scope.item.tglBedah, 'YYYY-MM-DD') : "")+"&namaruangan="+$scope.item.ruangOperasi.namaBedah, true).then(function (data) {
+                ManageServicePhp.getDataTableTransaksi("rekam-medis/get-monitoring-pasien-bedah-perlu-icu", true).then(function (data) {
                     for (let i = 0; i < data.data.data.length; i++) {
                         data.data.data[i].tglverifikasi = data.data.data[i].tglverifikasi ? data.data.data[i].tglverifikasi : '-';
                         data.data.data[i].ruangoperasiFormatted = data.data.data[i].ruangoperasi ? data.data.data[i].ruangoperasi : '-';
                         data.data.data[i].statusBedah = data.data.data[i].iscito ? 'CITO' : "Jenis Operasi Elektif";
                     }
-                    // console.log(data.data.data)
+                    let dataFilter = data.data.data.filter(e=>e.status=="DI VERIFIKASI");
                     $scope.dataSource = new kendo.data.DataSource({
-                        data: data.data.data,
-                        pageSize: 100
+                        data: dataFilter,
+                        pageSize: 100,
                     });
                 });
             }
 
+            let init = () => {
+                $scope.optGrid = {
+                    dataBound: function (e) {
+                        $('td').each(function () {
+                            if ($(this).text() == 'BELUM DIVERIFIKASI') {
+                                $(this).addClass('brown')
+                            };
+                            if ($(this).text() == 'SELESAI') {
+                                $(this).addClass('green')
+                            };
+                            if ($(this).text() == 'BATAL') {
+                                $(this).addClass('red')
+                            };
+                            if ($(this).text() == 'MASUK ANTRIAN') {
+                                $(this).addClass('blue')
+                            };
+                            if ($(this).text() == 'DI VERIFIKASI') {
+                                $(this).addClass('cyan')
+                            };
+
+                        })
+                    },
+                    // toolbar: [{
+                    //     text: "export",
+                    //     name: "Export detail",
+                    //     template: '<button ng-click="exportDetail()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
+                    // }],
+                    // selectable: 'row',
+                    // pageable: false,
+                    scrollable: true,
+                    filterable: true,
+                    // editable: false,
+                    columns: $scope.columnGrid
+                };
+                $scope.getData()
+            }
+
+            init();
             function detailData(e) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
                 console.log(dataItem)
+
                 $scope.item.namaDokterAnastesi = {
                     id: dataItem.dokteranestesifk,
                     namaLengkap: dataItem.namaDokterAnestesi
@@ -136,9 +192,8 @@ define(['initialize'], function (initialize) {
                 }else{
                     newPerluIcu=null;
                 }
-
                 $scope.item.tglOperasi = dataItem.tgloperasi; // dataItem.tgloperasi === '-' ? dateHelper.formatDate(new Date(), 'YYYY-MM-DD HH:mm'): dateHelper.formatDate(new Date(dataItem.tgloperasi), 'YYYY-MM-DD HH:mm');
-                $scope.item.tglVerifikasi=dataItem.tglVerifikasi;
+                $scope.item.tglVerifikasi=dataItem.tglverifikasi;
                 $scope.item.notelp = dataItem.telp;
                 $scope.item.norec = dataItem.norec;
                 $scope.item.namaRuangan = dataItem.namaruangan;
@@ -156,86 +211,9 @@ define(['initialize'], function (initialize) {
 
                 $scope.popupDetail.open().center();
             }
-
             $scope.closeModalJadwalBedah = function () {
                 $scope.popupDetail.close();
             }
-
-            let init = () => {
-                $scope.optGrid = {
-                    // toolbar: [{
-                    //     text: "export",
-                    //     name: "Export detail",
-                    //     template: '<button ng-click="exportDetail()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
-                    // }],
-                    selectable: 'row',
-                    pageable: true,
-                    scrollable: true,
-                    columns: $scope.columnGrid
-                };
-            }
-            init();
-
-            // $scope.init = function () {
-            //     $scope.isRouteLoading = true;
-            //     // simrs_harkit/service/transaksi/rekam-medis/get-dashboard-jadwal-harian?tgloperasi=2020-02-27
-            //     ManageServicePhp.getDataTableTransaksi("rekam-medis/get-dashboard-jadwal-harian?tgloperasi=" + dateHelper.formatDate(new Date(), 'YYYY-MM-DD'), true).then(function (data) {
-            //         $scope.dataAntrian = data.data.daftar;
-            //         // console.log(data.data.daftar);
-            //         $scope.isRouteLoading = false;
-            //         // $scope.bindSlideShow();
-                   
-            //         $scope.lengthData = data.data.daftar.length ;
-                    
-            //         // }
-
-            //         // $scope.sildeShow();
-            //         // $scope.bindSlideShow();
-                    
-                    
-            //     }, () => {}, () => {
-                    
-            //     });
-            // }
-            // $scope.init();
-
-            // $scope.bindSlideShow = () => {
-            //     for (let i = 0; i < $scope.dataAntrian.length; i++) {
-            //         $scope.changePage(i + 1);
-            //     }
-            // }
-            // // $scope.bindSlideShow();
-
-            // $scope.changePage = (page) => {
-            //     // console.log(page)
-            //     if (page === $scope.currentPage) return;
-            //     $(`#nr${page}`).addClass('active');
-            //     $(`#nr${$scope.currentPage}`).removeClass('active');
-            //     $(`#r${page}`).show();
-            //     $(`#r${$scope.currentPage}`).hide();
-
-            //     $scope.currentPage = page
-            // }
-
-            // $scope.sildeShow = () => {
-            //     let temp = 0;
-            //     setInterval(() => {
-            //         temp += 1;
-
-            //         if (temp <= $scope.lengthData) $scope.changePage(temp);
-            //         else temp = 0;
-            //         // $scope.sildeShow();
-            //         // console.log(temp);
-            //     }, intervalSlide * 1000)
-            //     // $scope.changePage()
-            // }
-            
-
-            // $scope.changeMode = () => {
-            //     $scope.isSimpleMode = !$scope.isSimpleMode;
-
-            //     $scope.txtButtonMode = $scope.isSimpleMode ? 'Simple Mode' : 'Slideshow Mode';
-            // }
         }
     ]);
 });
