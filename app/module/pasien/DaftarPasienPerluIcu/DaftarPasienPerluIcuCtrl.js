@@ -92,7 +92,8 @@ define(['initialize'], function(initialize) {
                         data.data.data[i].ruangoperasiFormatted = data.data.data[i].ruangoperasi ? data.data.data[i].ruangoperasi : '-';
                         data.data.data[i].statusBedah = data.data.data[i].iscito ? 'CITO' : "Jenis Operasi Elektif";
                     }
-                    let dataFilter = data.data.data.filter(e=>e.status=="DI VERIFIKASI");
+                    // let dataFilter = data.data.data.filter(e=>e.status=="DI VERIFIKASI");
+                    let dataFilter = data.data.data;
                     $scope.dataSource = new kendo.data.DataSource({
                         data: dataFilter,
                         pageSize: 100,
