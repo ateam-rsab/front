@@ -8,6 +8,7 @@ define(['initialize'], function (initialize) {
             // $scope.now = new Date(new Date().setDate(new Date().getDate() + 1));
             $scope.maxOrderDate = new Date(new Date().setDate(new Date().getDate() + 14));
             $scope.selectedPerawat = [];
+            $scope.selectedAsisten = [];
             $scope.isRouteLoading = false;
             $scope.popupDetail = false;
             $scope.dataMasterPetugas = null;
@@ -24,7 +25,12 @@ define(['initialize'], function (initialize) {
                 .then(function(response) {
                     $scope.dataMasterICU  = response;
             });
-            
+
+            ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true", true).then(function (data) {
+                $scope.dataMasterPetugas = data;
+                // console.log(data)
+            });
+
             $scope.columnGrid = [{
                 "field": "tgloperasi",
                 "title": "<h3>Tanggal<br> Permintaan Bedah</h3>",
@@ -104,7 +110,7 @@ define(['initialize'], function (initialize) {
                 console.log(dataItem)
                 if(dataItem.status=="BELUM DIVERIFIKASI"){
                     $scope.isVerif = false;
-                    $scope.isFalse = true;
+                    $scope.isAdd = false;
                     $scope.isUpdate = true;
                 }else if(dataItem.status=="DI VERIFIKASI"){
                     $scope.isVerif = false;
@@ -140,6 +146,7 @@ define(['initialize'], function (initialize) {
                     id: dataItem.doktertujuanfk
                 };
 
+                //Perawat
                 if(dataItem.perawat.length>0){
                     let newPerawat=[];
                     dataItem.perawat.forEach(perawat => {
@@ -149,7 +156,22 @@ define(['initialize'], function (initialize) {
                 }else{
                     $scope.selectedPerawat = [];
                 }
-                        
+                
+                //Asisten Dokter
+                if(dataItem.asistendokter!=undefined){
+                    if(dataItem.asistendokter.length>0){
+                        let newAsisten=[];
+                        dataItem.asistendokter.forEach(asistendokter => {
+                            newAsisten.push({id: asistendokter.objectpegawaifk, namaLengkap: asistendokter.namalengkap});
+                        });
+                        $scope.selectedAsisten = newAsisten; 
+                    }else{
+                        $scope.selectedAsisten = [];
+                    }
+                }else{
+                    $scope.selectedAsisten = [];
+                }
+
                 let newPerluIcu='';
                 if(dataItem.perlu_icu=="true"){
                     newPerluIcu={
@@ -206,9 +228,6 @@ define(['initialize'], function (initialize) {
 
                 $scope.popupDetail.open().center();
             }
-            ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true", true).then(function (data) {
-                $scope.dataMasterPetugas = data;
-            });
             
             function batalJadwalBedah(e) {
                 e.preventDefault();

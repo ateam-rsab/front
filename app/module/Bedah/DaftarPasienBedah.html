@@ -116,7 +116,13 @@
 
         </div>
         <div class="grid_12">
-            <div class="grid_8">
+            <div class="grid_6">
+                <label><b>Asisten</b></label>
+                <select kendo-multi-select k-filter="'contains'"
+                    k-data-source="dataMasterPetugas" k-data-text-field="'namaLengkap'"
+                    k-data-value-field="'id'" k-ng-model="selectedAsisten" disabled></select>
+            </div>
+            <div class="grid_6">
                 <label><b>Perawat</b></label>
                 <select kendo-multi-select k-options="selectOptions" k-filter="'contains'" k-data-source="dataMasterPetugas" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-ng-model="selectedPerawat" ng-disabled="isVerif"></select>
             </div>
