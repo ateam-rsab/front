@@ -179,7 +179,7 @@ define(['initialize'], function (initialize) {
 
             $scope.getJadwalBedahVerified = () => {
                 $scope.isRouteLoading = true;
-                ManageServicePhp.getDataTableTransaksi("rekam-medis/get-jadwal-operasi-after-verif?tglbedah=" + ($scope.verif.tglBedah ? dateHelper.formatDate($scope.verif.tglBedah, 'YYYY-MM-DD') : "") + "&namaruangan="+$scope.verif.ruanganOperasi.namaBedah, true).then(function (data) {
+                ManageServicePhp.getDataTableTransaksi("rekam-medis/get-jadwal-operasi-after-verif?tglbedah=" + ($scope.verif.tglBedah ? dateHelper.formatDate($scope.verif.tglBedah, 'YYYY-MM-DD') : "") + "&namaruangan="+ ($scope.verif.ruanganOperasi ? $scope.verif.ruanganOperasi.namaBedah : ""), true).then(function (data) {
                     if(!data.data.data) return;
                     for (let i = 0; i < data.data.data.length; i++) {
                         data.data.data[i].tglverifikasi = data.data.data[i].tglverifikasi ? data.data.data[i].tglverifikasi : '-';
