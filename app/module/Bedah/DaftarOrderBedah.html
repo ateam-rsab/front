@@ -136,7 +136,13 @@
                         k-auto-bind="false" k-data-source="listDokter" />
                 </div>
 
-                <div class="grid_8">
+                <div class="grid_6">
+                    <label><b>Asisten</b></label>
+                    <select kendo-multi-select k-filter="'contains'"
+                        k-data-source="listPegawai" k-data-text-field="'namalengkap'"
+                        k-data-value-field="'id'" k-ng-model="selectedAsisten" disabled></select>
+                </div>
+                <div class="grid_6">
                     <label><b>Perawat</b></label>
                     <select kendo-multi-select k-options="selectOptionsPerawat" k-filter="'contains'"
                         k-data-source="listPegawai" k-data-text-field="'namalengkap'"

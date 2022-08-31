@@ -181,7 +181,7 @@ define(['initialize'], function (initialize) {
             const getDataTable=()=>{
                 if(!$scope.item.tglBedah){
                     ManageServicePhp.getDataTableTransaksi("rekam-medis/get-dashboard-jadwal-harian?tgloperasi=" + dateHelper.formatDate(new Date(), 'YYYY-MM-DD'), true).then(function (data) {
-                        console.log(data.data);
+                        // console.log(data.data);
                         $scope.dataAntrian = data.data.daftar;
                         // console.log(data.data.daftar);
                         $scope.isRouteLoading = false;
