@@ -17,13 +17,19 @@ define(['initialize'], function (initialize) {
             $scope.selectOptionsPerawat = {
                 placeholder: "Pilih Perawat",
             };
-
+           
             $scope.verif = {};
             $scope.verif.tglBedah = new Date();
             $scope.pegawai = JSON.parse(window.localStorage.getItem('pegawai'));
             MenuService.get("fakerdata/ruangoperasi.json")
                 .then(function(response) {
-                    $scope.listRuangOperasi = response;
+                    let optionDefault = {
+                        "id":'0',
+                        "namaBedah":"==Ruangan==",
+                    };
+                    response.data.push(optionDefault);
+                    let newResponse = response.data.sort((a,b)=>a.id-b.id);
+                    $scope.listRuangOperasi = newResponse;
             });
 
             MenuService.get("fakerdata/truefalse.json")
@@ -179,19 +185,52 @@ define(['initialize'], function (initialize) {
 
             $scope.getJadwalBedahVerified = () => {
                 $scope.isRouteLoading = true;
-                ManageServicePhp.getDataTableTransaksi("rekam-medis/get-jadwal-operasi-after-verif?tglbedah=" + ($scope.verif.tglBedah ? dateHelper.formatDate($scope.verif.tglBedah, 'YYYY-MM-DD') : "") + "&namaruangan="+ ($scope.verif.ruanganOperasi ? $scope.verif.ruanganOperasi.namaBedah : ""), true).then(function (data) {
-                    if(!data.data.data) return;
-                    for (let i = 0; i < data.data.data.length; i++) {
-                        data.data.data[i].tglverifikasi = data.data.data[i].tglverifikasi ? data.data.data[i].tglverifikasi : '-';
-                        data.data.data[i].ruangoperasiFormatted = data.data.data[i].ruangoperasi ? data.data.data[i].ruangoperasi : '-';
-                        data.data.data[i].statusBedah = data.data.data[i].iscito ? 'CITO' : "Jenis Operasi Elektif";
+                if($scope.verif.ruanganOperasi){
+                    if($scope.verif.ruanganOperasi.namaBedah=="==Ruangan=="){
+                        ManageServicePhp.getDataTableTransaksi("rekam-medis/get-jadwal-operasi-after-verif?tglbedah=" + ($scope.verif.tglBedah ? dateHelper.formatDate($scope.verif.tglBedah, 'YYYY-MM-DD') : "") + "&namaruangan=", true).then(function (data) {
+                            if(!data.data.data) return;
+                            for (let i = 0; i < data.data.data.length; i++) {
+                                data.data.data[i].tglverifikasi = data.data.data[i].tglverifikasi ? data.data.data[i].tglverifikasi : '-';
+                                data.data.data[i].ruangoperasiFormatted = data.data.data[i].ruangoperasi ? data.data.data[i].ruangoperasi : '-';
+                                data.data.data[i].statusBedah = data.data.data[i].iscito ? 'CITO' : "Jenis Operasi Elektif";
+                            }
+                            $scope.dataDaftarJadwalBedahVerified = new kendo.data.DataSource({
+                                data: data.data.data,
+                                pageSize: 20,
+                            });
+                            $scope.isRouteLoading = false;
+                        });
+                    }else{
+                        ManageServicePhp.getDataTableTransaksi("rekam-medis/get-jadwal-operasi-after-verif?tglbedah=" + ($scope.verif.tglBedah ? dateHelper.formatDate($scope.verif.tglBedah, 'YYYY-MM-DD') : "") + "&namaruangan="+ ($scope.verif.ruanganOperasi ? $scope.verif.ruanganOperasi.namaBedah : ""), true).then(function (data) {
+                            if(!data.data.data) return;
+                            for (let i = 0; i < data.data.data.length; i++) {
+                                data.data.data[i].tglverifikasi = data.data.data[i].tglverifikasi ? data.data.data[i].tglverifikasi : '-';
+                                data.data.data[i].ruangoperasiFormatted = data.data.data[i].ruangoperasi ? data.data.data[i].ruangoperasi : '-';
+                                data.data.data[i].statusBedah = data.data.data[i].iscito ? 'CITO' : "Jenis Operasi Elektif";
+                            }
+                            $scope.dataDaftarJadwalBedahVerified = new kendo.data.DataSource({
+                                data: data.data.data,
+                                pageSize: 20,
+                            });
+                            $scope.isRouteLoading = false;
+                        });
                     }
-                    $scope.dataDaftarJadwalBedahVerified = new kendo.data.DataSource({
-                        data: data.data.data,
-                        pageSize: 20,
+                }else{
+                    ManageServicePhp.getDataTableTransaksi("rekam-medis/get-jadwal-operasi-after-verif?tglbedah=" + ($scope.verif.tglBedah ? dateHelper.formatDate($scope.verif.tglBedah, 'YYYY-MM-DD') : "") + "&namaruangan="+ ($scope.verif.ruanganOperasi ? $scope.verif.ruanganOperasi.namaBedah : ""), true).then(function (data) {
+                        if(!data.data.data) return;
+                        for (let i = 0; i < data.data.data.length; i++) {
+                            data.data.data[i].tglverifikasi = data.data.data[i].tglverifikasi ? data.data.data[i].tglverifikasi : '-';
+                            data.data.data[i].ruangoperasiFormatted = data.data.data[i].ruangoperasi ? data.data.data[i].ruangoperasi : '-';
+                            data.data.data[i].statusBedah = data.data.data[i].iscito ? 'CITO' : "Jenis Operasi Elektif";
+                        }
+                        $scope.dataDaftarJadwalBedahVerified = new kendo.data.DataSource({
+                            data: data.data.data,
+                            pageSize: 20,
+                        });
+                        $scope.isRouteLoading = false;
                     });
-                    $scope.isRouteLoading = false;
-                });
+                }
+                
             }
 
             var init = function () {
