@@ -7,7 +7,7 @@ define(['initialize'], function (initialize) {
             $scope.currentPage = 1;
             $scope.lengthData = 0;
             $scope.isSimpleMode = false;
-            let intervalSlide = 1;
+            let intervalSlide = 90;
             $scope.txtButtonMode = 'Simple Mode';
 
             // MenuService.get("fakerdata/ruangoperasi.json")
@@ -200,7 +200,7 @@ define(['initialize'], function (initialize) {
                     });
                 }else{
                     ManageServicePhp.getDataTableTransaksi("rekam-medis/get-dashboard-jadwal-harian?tgloperasi=" + dateHelper.formatDate($scope.item.tglBedah, 'YYYY-MM-DD'), true).then(function (data) {
-                        console.log(data.data);
+                        // console.log(data.data);
                         $scope.dataAntrian = data.data.daftar;
                         // console.log(data.data.daftar);
                         $scope.isRouteLoading = false;
@@ -210,7 +210,7 @@ define(['initialize'], function (initialize) {
                         
                         // }
     
-                        $scope.sildeShow();
+                        // $scope.sildeShow();
                         // $scope.bindSlideShow();
                         
                         
@@ -257,7 +257,7 @@ define(['initialize'], function (initialize) {
                     else temp = 0;
                     // $scope.sildeShow();
                     // console.log(temp);
-                }, intervalSlide * 2000)
+                }, intervalSlide * 1000)
                 // $scope.changePage()
             }
             
