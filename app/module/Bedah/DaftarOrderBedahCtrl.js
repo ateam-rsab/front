@@ -481,7 +481,7 @@ define(['initialize'], function (initialize) {
                     id: dataItem.doktertujuanfk
                 };
 
-                $scope.listRuangOperasi.data.forEach(listRuangOperasi => {
+                $scope.listRuangOperasi.forEach(listRuangOperasi => {
                     if(listRuangOperasi.namaBedah==dataItem.ruangoperasi){
                         $scope.item.ruanganOperasi = {
                             namaBedah: dataItem.ruangoperasi,
