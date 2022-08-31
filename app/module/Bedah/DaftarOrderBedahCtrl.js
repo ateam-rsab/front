@@ -5,6 +5,7 @@ define(['initialize'], function (initialize) {
             $scope.item = {};
             $scope.tglBedah = new Date();
             $scope.selectedPerawat = [];
+            $scope.selectedAsisten = [];
             $scope.isRouteLoading = false;
             $scope.isVerif = false;
             // $scope.now = new Date(new Date().setDate(new Date().getDate() + 1));
@@ -450,11 +451,12 @@ define(['initialize'], function (initialize) {
                     }
                 });
 
+                //Perawat Perawat
                 if(dataItem.perawat!=undefined){
                     if(dataItem.perawat.length>0){
                         let newPerawat=[];
                         dataItem.perawat.forEach(perawat => {
-                            newPerawat.push({id: perawat.objectperawatfk, namaLengkap: perawat.namalengkap});
+                            newPerawat.push({id: perawat.objectperawatfk, namalengkap: perawat.namalengkap});
                         });
                         $scope.selectedPerawat = newPerawat; 
                     }else{
@@ -463,7 +465,21 @@ define(['initialize'], function (initialize) {
                 }else{
                     $scope.selectedPerawat = [];
                 }
-                
+
+                //Asisten Dokter
+                if(dataItem.asistendokter!=undefined){
+                    if(dataItem.asistendokter.length>0){
+                        let newAsisten=[];
+                        dataItem.asistendokter.forEach(asistendokter => {
+                            newAsisten.push({id: asistendokter.objectpegawaifk, namalengkap: asistendokter.namalengkap});
+                        });
+                        $scope.selectedAsisten = newAsisten; 
+                    }else{
+                        $scope.selectedAsisten = [];
+                    }
+                }else{
+                    $scope.selectedAsisten = [];
+                }
                 let newPerluIcu='';
                 if(dataItem.perlu_icu=="true"){
                     newPerluIcu={
@@ -512,12 +528,12 @@ define(['initialize'], function (initialize) {
                 $scope.item.lamaOperasi = dataItem.lamaoperasi;
                 $scope.item.perluIcu = newPerluIcu;
                 // if (dataItem.asistendokter) {
-                    for (let i = 0; i < dataItem.asistendokter.length; i++) {
-                        $scope.item.selectedAsistenDokter.push({
-                            namalengkap: dataItem.asistendokter[i].namalengkap,
-                            id: dataItem.asistendokter[i].objectpegawaifk
-                        })
-                    }
+                    // for (let i = 0; i < dataItem.asistendokter.length; i++) {
+                    //     $scope.item.selectedAsistenDokter.push({
+                    //         namalengkap: dataItem.asistendokter[i].namalengkap,
+                    //         id: dataItem.asistendokter[i].objectpegawaifk
+                    //     })
+                    // }
                 // }
 
 
