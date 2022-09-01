@@ -192,17 +192,20 @@ define(['initialize'], function (initialize) {
                     if(dataItem.status=="BELUM DIVERIFIKASI"){
                         $scope.isDate=false;
                         $scope.isNewDate=true;
-                        $scope.now = new Date(new Date().setDate(new Date().getDate() + 1));
+                        let today = new Date(new Date().setDate(new Date().getDate() + 1));
+                        $scope.now = new Date(today.setHours(0,0,0,0));
                         $scope.item.tglVerifikasi2 = dateHelper.formatDate(new Date(), 'YYYY-MM-DD HH:mm');
                     }else if(dataItem.status=="DI VERIFIKASI"||dataItem.status=="MASUK ANTRIAN"){
                         $scope.isDate=false;
                         $scope.isNewDate=true;
-                        $scope.now = dataItem.tglverifikasi;
+                        let today = new Date(dateHelper.formatDate(dataItem.tglverifikasi, 'YYYY-MM-DD HH:mm'));
+                        $scope.now = new Date(today.setHours(0,0,0,0));
                         $scope.item.tglVerifikasi2 = dateHelper.formatDate(dataItem.tglverifikasi, 'YYYY-MM-DD HH:mm');
                     }else if(dataItem.status=="SELESAI"||dataItem.status=="BATAL"){
                         $scope.isDate=true;
                         $scope.isNewDate=true;
-                        $scope.now = dataItem.tglverifikasi;
+                        let today = new Date(dateHelper.formatDate(dataItem.tglverifikasi, 'YYYY-MM-DD HH:mm'));
+                        $scope.now = new Date(today.setHours(0,0,0,0));
                         $scope.item.tglVerifikasi2 = dateHelper.formatDate(dataItem.tglverifikasi, 'YYYY-MM-DD HH:mm');
                     }else{
                         $scope.isDate=true;

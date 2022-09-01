@@ -4,7 +4,8 @@ define(['initialize'], function (initialize) {
         function ($q, $rootScope, $scope, $state, $timeout, MenuService, DateHelper, cacheHelper, managePhp, ManageSdm, $mdDialog) {
             $scope.item = {};
             $scope.dataVOloaded = true;
-            $scope.now = new Date(new Date().setDate(new Date().getDate() + 1));
+            let today = new Date(new Date().setDate(new Date().getDate() + 1));
+            $scope.now = new Date(today.setHours(0,0,0,0));
             $scope.item.tglPembedahan = new Date();
             $scope.item.tglJadwalPembedahan = new Date();
             $scope.isRouteLoading = false;
@@ -202,7 +203,7 @@ define(['initialize'], function (initialize) {
                 ];
 
                 managePhp.getData("pelayanan/get-order-penunjang?departemenfk=25&nocm=" + nocm_str + '&norec_apd=' + norec_apd, true).then(function (dat) {
-                    console.log(dat.data.ruangantujuan)
+                    // console.log(dat.data.ruangantujuan)
                     $scope.item.ruanganAsal = dat.data.data[0].namaruangan;
                     $scope.listRuanganTujuan = dat.data.ruangantujuan;
                     $scope.item.ruangantujuan = {
@@ -376,10 +377,21 @@ define(['initialize'], function (initialize) {
                 // console.log(dataItem);
                 $scope.selectedDokter = [];
                 // $scope.isEdit = true;
-                $scope.isUpdate = false;
-                $scope.isSave = true;
                 $scope.item.jenisBedah = "Jenis Operasi Elektif";
-                $scope.isVerif = dataItem.tglverifikasi ? true : false;
+                if(dataItem.status=="BELUM DIVERIFIKASI"||dataItem.status=="DI VERIFIKASI"||dataItem.status=="MASUK ANTRIAN"){
+                    $scope.isUpdate = true;
+                    $scope.isSave = false;
+                    $scope.isVerif = false;
+                }else if(dataItem.status=="SELESAI"||dataItem.status=="BATAL"){
+                    $scope.isUpdate = true;
+                    $scope.isSave = true;
+                    $scope.isVerif = true;
+                }else{
+                    $scope.isUpdate = true;
+                    $scope.isSave = true;
+                    $scope.isVerif = true;
+                }
+                // $scope.isVerif = dataItem.tglverifikasi ? true : false;
                 $scope.item.tglJadwalPembedahan = new Date(dataItem.tgloperasi);
                 $scope.item.lamaOperasi = dataItem.lamaoperasi;
                 $scope.item.dokterJadwalBedah = {

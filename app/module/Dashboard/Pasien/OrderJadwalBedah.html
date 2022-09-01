@@ -86,7 +86,7 @@
                 <div class="grid_12">
                     <div class="grid_2">
                         <label><b>Tanggal</b></label>
-                        <input style="width: 100%" kendo-date-time-picker k-ng-model="item.tglJadwalPembedahan" k-min="now" k-max="maxOrderDate"
+                        <input style="width: 100%" kendo-date-time-picker k-ng-model="item.tglJadwalPembedahan" k-min="now" k-max="maxOrderDate" k-interval="15"
                             placeholer="Hari-Bln-Thn" ng-disabled="isVerif" k-format="'dd-MM-yyyy HH:mm'"
                             ng-disabled="isSuster" />
                     </div>
@@ -180,7 +180,7 @@
                     <!-- <input style="width: 100%;" kendo-combo-box k-options="selectOptionICU" k-ng-model="selectedIcu" k-data-text-field="'namaIcu'" k-data-value-field="'status'" k-filter="'contains'"  k-auto-bind="false" k-data-source="dataMasterICU" /> -->
                     <select style="width: 100%;" k-placeholder="'--Pilih--'" kendo-combo-box k-ng-model="selectedIcu"
                     k-data-text-field="'namaIcu'" k-data-value-field="'statusIcu'"
-                    k-data-source="dataMasterICU" k-auto-bind="true"></select>
+                    k-data-source="dataMasterICU" k-auto-bind="true" ng-disabled="isVerif" ></select>
                 </div>
             </div>
 

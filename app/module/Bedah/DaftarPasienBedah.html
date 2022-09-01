@@ -65,7 +65,7 @@
 
         <div class="grid_3">
             <label><b>Tanggal Bedah</b></label>
-            <input style="width: 100%" kendo-datetimepicker k-ng-model="item.tglVerifikasi2" placeholer="Hari-Bln-Thn"  k-min="now" k-max="maxOrderDate" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" ng-disabled="isVerif" ng-hide="isDate"/>
+            <input style="width: 100%" kendo-datetimepicker k-ng-model="item.tglVerifikasi2" placeholer="Hari-Bln-Thn"  k-min="now" k-max="maxOrderDate" k-interval="15" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" ng-disabled="isVerif" ng-hide="isDate"/>
             <input style="width: 100%" kendo-date-time-picker k-ng-model="item.tglVerifikasi1" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" ng-disabled="isVerif" ng-hide="isNewDate"/>
         </div>
 
