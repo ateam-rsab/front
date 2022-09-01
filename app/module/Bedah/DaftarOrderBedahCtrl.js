@@ -469,7 +469,7 @@ define(['initialize'], function (initialize) {
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
                 $scope.item.selectedAsistenDokter = [];
 
-                console.log(dataItem);
+                // console.log(dataItem);
                 $scope.isVerif = dataItem.tglverifikasi !== '-' ? true : false;
 
                 $scope.item.namaDokterAnastesi = {
@@ -547,14 +547,19 @@ define(['initialize'], function (initialize) {
                     $scope.isVerif = false;
                     $scope.isUpdate = true;
                 }
+
                 if(dataItem.tglverifikasi!=="-"){
                     $scope.isDate=true;
                     $scope.isNewDate=false;
-                    $scope.now1 = dateHelper.formatDate(dataItem.tglverifikasi, 'YYYY-MM-DD HH:mm');$scope.item.tglVerifikasi1=dataItem.tglverifikasi;
+                    let today = new Date(dateHelper.formatDate(dataItem.tglverifikasi, 'YYYY-MM-DD HH:mm'));
+                    $scope.now1 = new Date(today.setHours(0,0,0,0));
+                    $scope.item.tglVerifikasi1=dataItem.tglverifikasi;
                 }else{
                     $scope.isDate=false;
                     $scope.isNewDate=true;
-                    $scope.now2 = new Date(new Date().setDate(new Date().getDate() + 1));$scope.item.tglVerifikasi2=null;
+                    let today = new Date(new Date().setDate(new Date().getDate() + 1));
+                    $scope.now2 = new Date(today.setHours(0,0,0,0));
+                    $scope.item.tglVerifikasi2=null;
                 }
                 // $scope.item.tglVerifikasi = dateHelper.formatDate(new Date(), 'YYYY-MM-DD HH:mm');
                 $scope.item.tglOperasi = dataItem.tgloperasi; // dataItem.tgloperasi === '-' ? dateHelper.formatDate(new Date(), 'YYYY-MM-DD HH:mm'): dateHelper.formatDate(new Date(dataItem.tgloperasi), 'YYYY-MM-DD HH:mm');
