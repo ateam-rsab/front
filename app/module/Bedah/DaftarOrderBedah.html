@@ -118,34 +118,34 @@
                 <div class="grid_4">
                     <label><b>Dokter Periksa</b></label>
                     <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaDokter"
-                        k-data-text-field="'namalengkap'" k-data-value-field="'id'" k-filter="'contains'"
-                        k-auto-bind="false" k-data-source="listDokter" disabled />
+                        k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'"
+                        k-auto-bind="false" k-data-source="dataMasterPetugas" disabled />
                 </div>
 
                 <div class="grid_4">
                     <label><b>Dokter Bedah</b></label>
                     <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaDokterTujuan"
-                        k-data-text-field="'namalengkap'" k-data-value-field="'id'" k-filter="'contains'"
-                        k-auto-bind="false" k-data-source="listDokter" />
+                        k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'"
+                        k-auto-bind="false" k-data-source="dataMasterPetugas" />
                 </div>
 
                 <div class="grid_4">
                     <label><b>Dokter Anestesi</b></label>
                     <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaDokterAnastesi"
-                        k-data-text-field="'namalengkap'" k-data-value-field="'id'" k-filter="'contains'"
-                        k-auto-bind="false" k-data-source="listDokter" />
+                        k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'"
+                        k-auto-bind="false" k-data-source="dataMasterPetugas" />
                 </div>
 
                 <div class="grid_6">
                     <label><b>Asisten</b></label>
                     <select kendo-multi-select k-filter="'contains'"
-                        k-data-source="listPegawai" k-data-text-field="'namalengkap'"
+                        k-data-source="dataMasterPetugas" k-data-text-field="'namaLengkap'"
                         k-data-value-field="'id'" k-ng-model="selectedAsisten" disabled></select>
                 </div>
                 <div class="grid_6">
                     <label><b>Perawat</b></label>
                     <select kendo-multi-select k-options="selectOptionsPerawat" k-filter="'contains'"
-                        k-data-source="listPegawai" k-data-text-field="'namalengkap'"
+                        k-data-source="dataMasterPetugas" k-data-text-field="'namaLengkap'"
                         k-data-value-field="'id'" k-ng-model="selectedPerawat"></select>
 
                         <!-- <select kendo-multi-select k-options="selectOptions" k-filter="'contains'" k-data-source="dataMasterPetugas" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-ng-model="selectedPerawat"></select> -->
@@ -159,7 +159,7 @@
                 </div>
                 <!-- <div class="grid_12" ng-if="isVerif">
                     <select kendo-multi-select k-options="selectOptions" k-filter="'contains'"
-                        k-data-source="listPegawai" ng-disabled="isVerif" k-data-text-field="'namalengkap'"
+                        k-data-source="dataMasterPetugas" ng-disabled="isVerif" k-data-text-field="'namalengkap'"
                         k-data-value-field="'id'" k-ng-model="item.selectedAsistenDokter"></select>
                 </div> -->
             </div>

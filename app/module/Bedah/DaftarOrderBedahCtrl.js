@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('DaftarOrderBedahCtrl', ['$q', '$rootScope', '$scope', 'MenuService', 'ManageServicePhp', '$state', 'CacheHelper', 'DateHelper', '$window', 'ModelItemAkuntansi', '$mdDialog',
-        function ($q, $rootScope, $scope, MenuService, ManageServicePhp, $state, cacheHelper, dateHelper, $window, modelItemAkuntansi, $mdDialog) {
+    initialize.controller('DaftarOrderBedahCtrl', ['$q', '$rootScope', '$scope', 'MenuService', 'ManageServicePhp', 'ManageSdm','$state', 'CacheHelper', 'DateHelper', '$window', 'ModelItemAkuntansi', '$mdDialog',
+        function ($q, $rootScope, $scope, MenuService, ManageServicePhp, ManageSdm, $state, cacheHelper, dateHelper, $window, modelItemAkuntansi, $mdDialog) {
             $scope.item = {};
             $scope.tglBedah = new Date();
             $scope.selectedPerawat = [];
@@ -36,6 +36,12 @@ define(['initialize'], function (initialize) {
                 .then(function(response) {
                     $scope.dataMasterICU  = response;
             });
+
+            ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true", true).then(function (data) {
+                $scope.dataMasterPetugas = data;
+                // console.log(data)
+            });
+
             // $scope.listRuangOperasi = [{
             //     key: "Ruang Operasi 1",
             //     nama: "Ruang Operasi 1"
@@ -251,10 +257,10 @@ define(['initialize'], function (initialize) {
                     columns: $scope.columnGrid
                 };
 
-                ManageServicePhp.getDataTableTransaksi("rekam-medis/get-combo").then(function (e) {
-                    $scope.listDokter = e.data.dokter;
-                    $scope.listPegawai = e.data.pegawai;
-                });
+                // ManageServicePhp.getDataTableTransaksi("rekam-medis/get-combo").then(function (e) {
+                //     $scope.listDokter = e.data.dokter;
+                //     $scope.listPegawai = e.data.pegawai;
+                // });
             }
             init();
 
@@ -468,16 +474,16 @@ define(['initialize'], function (initialize) {
 
                 $scope.item.namaDokterAnastesi = {
                     id: dataItem.dokteranestesifk,
-                    namalengkap: dataItem.namaDokterAnestesi
+                    namaLengkap: dataItem.namaDokterAnestesi
                 }
 
                 $scope.item.namaDokter = {
-                    namalengkap: dataItem.namaDokter,
+                    namaLengkap: dataItem.namaDokter,
                     id: dataItem.dokterfk
                 };
 
                 $scope.item.namaDokterTujuan = {
-                    namalengkap: dataItem.namaDokterTujuan,
+                    namaLengkap: dataItem.namaDokterTujuan,
                     id: dataItem.doktertujuanfk
                 };
 

@@ -52,7 +52,7 @@ define(['initialize'], function (initialize) {
                 "title": "<h3>Nama Pasien</h3>",
                 "width": 200
             }, {
-                "field": "namaDokterTujuan",
+                "field": "namaDokter",
                 "title": "<h3>Dokter Order</h3>",
                 "width": 200
             }, {
