@@ -4,7 +4,7 @@ define(['initialize'], function (initialize) {
         function ($q, $rootScope, $scope, $state, $timeout, MenuService, DateHelper, cacheHelper, managePhp, ManageSdm, $mdDialog) {
             $scope.item = {};
             $scope.dataVOloaded = true;
-            $scope.now = new Date();
+            $scope.now = new Date(new Date().setDate(new Date().getDate() + 1));
             $scope.item.tglPembedahan = new Date();
             $scope.item.tglJadwalPembedahan = new Date();
             $scope.isRouteLoading = false;
@@ -416,7 +416,7 @@ define(['initialize'], function (initialize) {
 
             function getDataOrderJadwalBedah() {
                 managePhp.getData("rekam-medis/get-jadwal-operasi-dokter?nocm=" + $scope.item.noMr, true).then(function (data) {
-                    console.log(data.data)
+                    // console.log(data.data)
                     for (let i = 0; i < data.data.data.length; i++) {
                         data.data.data[i].ruangoperasiFormatted = data.data.data[i].ruangoperasi ? data.data.data[i].ruangoperasi : '-';
                         data.data.data[i].statusBedah = data.data.data[i].iscito ? 'CITO' : "Jenis Operasi Elektif";
@@ -666,6 +666,7 @@ define(['initialize'], function (initialize) {
                 $scope.isSaveLoad = false;
                 $scope.isUpdate = true;
                 $scope.isSave = false;
+                $scope.item.notelp = localStorage.getItem("nomorTelpPasien");
                 $scope.selectedDokter = [];
                 if(jam >= 21) {
                     toastr.warning("Tidak bisa input Order Jadwal Bedah")
