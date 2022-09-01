@@ -194,8 +194,13 @@ define(['initialize'], function (initialize) {
                         $scope.isNewDate=true;
                         $scope.now = new Date(new Date().setDate(new Date().getDate() + 1));
                         $scope.item.tglVerifikasi2 = dateHelper.formatDate(new Date(), 'YYYY-MM-DD HH:mm');
-                    }else if(dataItem.status=="DI VERIFIKASI"){
+                    }else if(dataItem.status=="DI VERIFIKASI"||dataItem.status=="MASUK ANTRIAN"){
                         $scope.isDate=false;
+                        $scope.isNewDate=true;
+                        $scope.now = dataItem.tglverifikasi;
+                        $scope.item.tglVerifikasi2 = dateHelper.formatDate(dataItem.tglverifikasi, 'YYYY-MM-DD HH:mm');
+                    }else if(dataItem.status=="SELESAI"||dataItem.status=="BATAL"){
+                        $scope.isDate=true;
                         $scope.isNewDate=true;
                         $scope.now = dataItem.tglverifikasi;
                         $scope.item.tglVerifikasi2 = dateHelper.formatDate(dataItem.tglverifikasi, 'YYYY-MM-DD HH:mm');
