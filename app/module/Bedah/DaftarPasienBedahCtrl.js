@@ -112,11 +112,11 @@ define(['initialize'], function (initialize) {
                     $scope.isVerif = false;
                     $scope.isAdd = false;
                     $scope.isUpdate = true;
-                }else if(dataItem.status=="DI VERIFIKASI"||dataItem.status=="SELESAI"){
+                }else if(dataItem.status=="DI VERIFIKASI"||dataItem.status=="MASUK ANTRIAN"){
                     $scope.isVerif = false;
                     $scope.isAdd = true;
                     $scope.isUpdate = false;
-                }else if(dataItem.status=="MASUK ANTRIAN"||dataItem.status=="BATAL"){
+                }else if(dataItem.status=="SELESAI"||dataItem.status=="BATAL"){
                     $scope.isVerif = true;
                     $scope.isAdd = true;
                     $scope.isUpdate = true;
