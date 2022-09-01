@@ -186,17 +186,11 @@ define(['initialize'], function (initialize) {
                         // console.log(data.data.daftar);
                         $scope.isRouteLoading = false;
                         // $scope.bindSlideShow();
-                       
                         $scope.lengthData = data.data.daftar.length ;
-                        
                         // }
-    
                         $scope.sildeShow();
                         // $scope.bindSlideShow();
-                        
-                        
                     }, () => {}, () => {
-                        
                     });
                 }else{
                     ManageServicePhp.getDataTableTransaksi("rekam-medis/get-dashboard-jadwal-harian?tgloperasi=" + dateHelper.formatDate($scope.item.tglBedah, 'YYYY-MM-DD'), true).then(function (data) {
@@ -205,20 +199,46 @@ define(['initialize'], function (initialize) {
                         // console.log(data.data.daftar);
                         $scope.isRouteLoading = false;
                         // $scope.bindSlideShow();
-                       
                         $scope.lengthData = data.data.daftar.length ;
-                        
                         // }
-    
                         // $scope.sildeShow();
                         $scope.bindSlideShow();
-                        
-                        
                     }, () => {}, () => {
-                        
                     });
                 }
             }
+
+            const getDataTableReload=()=>{
+                if(!$scope.item.tglBedah){
+                    ManageServicePhp.getDataTableTransaksi("rekam-medis/get-dashboard-jadwal-harian?tgloperasi=" + dateHelper.formatDate(new Date(), 'YYYY-MM-DD'), true).then(function (data) {
+                        // console.log(data.data);
+                        $scope.dataAntrian = data.data.daftar;
+                        // console.log(data.data.daftar);
+                        // $scope.isRouteLoading = false;
+                        // $scope.bindSlideShow();
+                        // $scope.lengthData = data.data.daftar.length ;
+                        // }
+                        // $scope.sildeShow();
+                        // $scope.bindSlideShow();
+                    }, () => {}, () => {
+                    });
+                }else{
+                    ManageServicePhp.getDataTableTransaksi("rekam-medis/get-dashboard-jadwal-harian?tgloperasi=" + dateHelper.formatDate($scope.item.tglBedah, 'YYYY-MM-DD'), true).then(function (data) {
+                        // console.log(data.data);
+                        $scope.dataAntrian = data.data.daftar;
+                        // console.log(data.data.daftar);
+                        // $scope.isRouteLoading = false;
+                        // $scope.bindSlideShow();
+                        // $scope.lengthData = data.data.daftar.length ;
+                        // }
+                        // $scope.sildeShow();
+                        // $scope.bindSlideShow();
+                    }, () => {}, () => {
+                    });
+                }
+            }
+
+            
             $scope.searchData=()=>{
                 getDataTable();
                 console.log($scope.item.tglBedah)
@@ -239,7 +259,7 @@ define(['initialize'], function (initialize) {
             $scope.changePage = (page) => {
                 // console.log(page)
                 if (page === $scope.currentPage) return;
-                let newLength = $scope.dataAntrian.length;
+                let newLength = $scope.lengthData;
                 for(let i=0;i<=newLength;i++){
                     if(i!=page){
                         $(`#nr${i}`).removeClass('active');
@@ -256,7 +276,7 @@ define(['initialize'], function (initialize) {
                 let temp = 0;
                 setInterval(() => {
                     temp += 1;
-
+                    if(temp==1){getDataTableReload(); }
                     if (temp <= $scope.lengthData) $scope.changePage(temp);
                     else temp = 0;
                     // $scope.sildeShow();
