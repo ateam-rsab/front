@@ -328,7 +328,7 @@
         </div>
     </div>
     <div class="grid_12" ng-if="!isSimpleMode">
-        <div ng-repeat="dataRuangan in dataAntrian; track by $index" id="{{'r' + ($index + 1)}}">
+        <div ng-repeat="dataRuangan in dataAntrian; track by $index" id="{{'r' + ($index + 1)}}" ng-style="{'display':($index + 1)==1 ? 'block':'none'}">
             <div class="card-dashboard">
                 <div class="card-header">
                     <span>{{dataRuangan.ruangoperasi}}</span>

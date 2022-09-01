@@ -7,7 +7,7 @@ define(['initialize'], function (initialize) {
             $scope.currentPage = 1;
             $scope.lengthData = 0;
             $scope.isSimpleMode = false;
-            let intervalSlide = 90;
+            let intervalSlide = 10;
             $scope.txtButtonMode = 'Simple Mode';
 
             // MenuService.get("fakerdata/ruangoperasi.json")
@@ -211,7 +211,7 @@ define(['initialize'], function (initialize) {
                         // }
     
                         // $scope.sildeShow();
-                        // $scope.bindSlideShow();
+                        $scope.bindSlideShow();
                         
                         
                     }, () => {}, () => {
@@ -231,20 +231,24 @@ define(['initialize'], function (initialize) {
             $scope.init();
 
             $scope.bindSlideShow = () => {
-                for (let i = 0; i < $scope.dataAntrian.length; i++) {
-                    $scope.changePage(i + 1);
-                }
+                // let newLength = $scope.dataAntrian.length-1;
+                $scope.changePage($scope.currentPage);
             }
             // $scope.bindSlideShow();
 
             $scope.changePage = (page) => {
                 // console.log(page)
                 if (page === $scope.currentPage) return;
+                let newLength = $scope.dataAntrian.length;
+                for(let i=0;i<=newLength;i++){
+                    if(i!=page){
+                        $(`#nr${i}`).removeClass('active');
+                        $(`#r${i}`).hide();
+                    }
+                }
                 $(`#nr${page}`).addClass('active');
-                $(`#nr${$scope.currentPage}`).removeClass('active');
                 $(`#r${page}`).show();
-                $(`#r${$scope.currentPage}`).hide();
-
+               
                 $scope.currentPage = page
             }
 
