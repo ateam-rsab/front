@@ -14357,6 +14357,26 @@
     ]
   },
   {
+    "name": "SubRuangan",
+    "url": "/SubRuangan",
+    "templateurl": "module/Master/Ruangan/SubRuangan.html",
+    "controller": "SubRuanganCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SubRuanganService",
+        "define": "SubRuanganService"
+      }
+    ]
+  },
+  {
     "name": "DashboardRuanganBedah",
     "url": "/DashboardRuanganBedah",
     "templateurl": "module/Bedah/DashboardRuanganBedah.html",
