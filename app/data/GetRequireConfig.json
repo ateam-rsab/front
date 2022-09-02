@@ -249,6 +249,10 @@
       "urlDep": "javascripts/Services/Master/RuanganService"
     },
     {
+      "nameDep": "SubRuanganService",
+      "urlDep": "javascripts/Services/Master/SubRuanganService"
+    },
+    {
       "nameDep": "KetersediaanBedCtrl",
       "urlDep": "module/Information/KetersediaanBedCtrl"
     },

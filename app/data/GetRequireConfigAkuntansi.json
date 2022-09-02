@@ -1,6 +1,10 @@
   {
     "path": [
       {
+        "nameDep": "SubRuanganCtrl",
+        "urlDep": "module/Master/Ruangan/SubRuanganCtrl"
+      },
+      {
         "nameDep": "DaftarWaktuTungguRajalCtrl",
         "urlDep": "module/Laporan/RawatJalan/DaftarWaktuTungguRajalCtrl"
       },

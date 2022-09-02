@@ -52,6 +52,10 @@
     "name": "Dashboard Bedah",
     "children": [
       {
+        "name": "Master Data Ruangan Bedah",
+        "link": "#/SubRuangan"
+      },
+      {
         "name": "Daftar Antrian Pasien",
         "link": "#/Bedah/RevDaftar"
       },

@@ -1,0 +1,85 @@
+<style>
+    .green {
+        background-color: rgb(117, 255, 121);
+        font-weight: bolder;
+    }
+
+    .red {
+        background-color: rgb(247, 95, 95);
+        color: white;
+        font-weight: bolder;
+    }
+
+    .blue {
+        background-color: rgb(95, 179, 247);
+        color: white;
+        font-weight: bolder;
+    }
+
+    .brown {
+        background-color: rgb(247, 151, 95);
+        color: white;
+        font-weight: bolder;
+    }
+
+    .cyan {
+        background-color: rgb(95, 247, 234);
+        color: white;
+        font-weight: bolder;
+    }
+</style>
+
+<md-toolbar md-scroll-shrink class="shadow">
+    <div class="md-toolbar-tools">Sub Ruangan</div>
+</md-toolbar>
+
+<div class="grid_12">
+    <kendo-grid data-source="dataSource" options="optGrid" k-selectable="'row'" k-sortable="'true'"
+        k-resizable="'true'">
+    </kendo-grid>
+</div>
+
+<div kendo-window="popupDetail" k-title="'Sub Ruangan'" k-width="800" k-visible="false"
+    k-on-open="win2visible= true" k-on-close="win2visible= false">
+    <div class="panel panel-default container_12" style="padding: 0px 10px;">
+
+        <div class="grid_12">
+            <div class="grid_12">
+                <label><b>Ruangan</b></label>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-source="dataRuangan"
+                    k-data-text-field="'namaRuangan'" k-data-value-field="'namaRuangan'" k-filter="'contains'"
+                    k-auto-bind="false" disabled/>
+            </div>
+            <div class="grid_12">
+                <label><b>Ruang Bedah</b></label>
+                <input c-text-box type="input" filter="'text'" class="k-textbox" ng-model="item.namaBedah"/>
+            </div>
+        </div>
+
+        <div class="k-edit-buttons k-state-default" style="margin-top:10px">
+            <div class="grid_8"></div>
+            <div class="grid_2">
+                <md-button class="md-raised md-warn medium-button" ng-click="closeModal()">
+                    <span style="margin-right: 5px;">Batal</span>
+                    <i class="fa fa-close"></i>
+                </md-button>
+            </div>
+            <div class="grid_2" ng-hide="isAdd">
+                <md-button class="md-raised md-primary medium-button" ng-click="save()">
+                    <span style="margin-right: 5px;">Save</span>
+                    <i class="fa fa-check"></i>
+                </md-button>
+            </div>
+            <div class="grid_2" ng-hide="isUpdate">
+                <md-button class="md-raised md-primary medium-button" ng-click="update()">
+                    <span style="margin-right: 5px;">Update</span>
+                    <i class="fa fa-check"></i>
+                </md-button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="grid_12" style="margin-top:60px">
+    <div ng-include='" ../app/module/Shared/TemplateLoading" '></div>
+</div> -->

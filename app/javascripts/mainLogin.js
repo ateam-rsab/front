@@ -66,6 +66,7 @@ require(['LoginService', 'core', "kendo.angular", 'Configuration', 'Helper', 'jQ
                                 window.localStorage.setItem('datauserlogin', JSON.stringify(dataUserLogin));
                                 window.localStorage.setItem('pegawai', JSON.stringify(data.data.data.pegawai));
                                 window.localStorage.setItem('sotk_coor', JSON.stringify(data.data.data.sotk_coor));
+                                window.localStorage.setItem('mapLoginUserToRuangan',JSON.stringify(data.data.data.mapLoginUserToRuangan));
 
                                 // ${'dataLogin'.replace(/[a-zA-Z0-9]/g, m => keyEnc[m])}
                                 // document.cookie = `dataLogin=${JSON.stringify({namaUser: userName,kataSandi: password}).replace(/[a-zA-Z0-9]/g, m => keyEnc[m])};`;
