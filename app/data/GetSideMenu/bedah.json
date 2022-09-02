@@ -1,5 +1,14 @@
 [
   {
+    "name": "Master",
+    "children": [
+      {
+        "name": "Sub Ruangan Bedah",
+        "link": "#/SubRuangan"
+      }
+    ]
+  },
+  {
     "name": "Dashboard Pasien",
     "children": [
       {
