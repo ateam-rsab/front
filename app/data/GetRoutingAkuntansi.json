@@ -14317,6 +14317,10 @@
       {
         "module": "SdmService",
         "define": "SdmService"
+      },
+      {
+        "module": "SubRuanganService",
+        "define": "SubRuanganService"
       }
     ]
   },
@@ -14353,6 +14357,10 @@
       {
         "module": "SdmService",
         "define": "SdmService"
+      },
+      {
+        "module": "SubRuanganService",
+        "define": "SubRuanganService"
       }
     ]
   },

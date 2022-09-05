@@ -19,8 +19,8 @@
 
         <div class="grid_2" ng-hide="true">
             <label><b>Ruang Bedah</b></label>
-            <input style="width: 100%;" kendo-combo-box k-ng-model="ruanganOperasi" k-data-text-field="'namaBedah'"
-                k-data-value-field="'namaBedah'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangOperasi" />
+            <input style="width: 100%;" kendo-combo-box k-ng-model="ruanganOperasi" k-data-text-field="'subRuangan'"
+                k-data-value-field="'subRuangan'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangOperasi" />
         </div>
 
         <div class="grid_1" style="margin-top:22px">
@@ -47,8 +47,8 @@
 
         <div class="grid_2">
             <label><b>Ruang Bedah</b></label>
-            <input style="width: 100%;" kendo-combo-box k-ng-model="verif.ruanganOperasi" k-data-text-field="'namaBedah'"
-                k-data-value-field="'namaBedah'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangOperasi" />
+            <input style="width: 100%;" kendo-combo-box k-ng-model="verif.ruanganOperasi" k-data-text-field="'subRuangan'"
+                k-data-value-field="'subRuangan'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangOperasi" />
         </div>
 
         <div class="grid_1" style="margin-top:22px">
@@ -85,7 +85,7 @@
             <div class="grid_3">
                 <label><b>Tanggal Bedah</b></label>
                 <input style="width: 100%" kendo-datetimepicker k-ng-model="item.tglVerifikasi2"
-                    placeholer="Hari-Bln-Thn"  k-min="now2" k-max="maxOrderDate" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" ng-hide="isDate" />
+                    placeholer="Hari-Bln-Thn"  k-min="now2" k-max="maxOrderDate" k-interval="15" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" ng-hide="isDate" />
                 <input style="width: 100%" kendo-datetimepicker k-ng-model="item.tglVerifikasi1"
                     placeholer="Hari-Bln-Thn"  k-min="now1" k-max="maxOrderDate" k-interval="15" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" ng-hide="isNewDate"/>
             </div>
@@ -109,8 +109,8 @@
 
             <div class="grid_3">
                 <label><b>Ruang Bedah</b></label>
-                <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruanganOperasi" k-data-text-field="'namaBedah'"
-                    k-data-value-field="'namaBedah'" k-filter="'contains'" k-auto-bind="false"
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruanganOperasi" k-data-text-field="'subRuangan'"
+                    k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
                     k-data-source="listRuangOperasi" />
             </div>
 

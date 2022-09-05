@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('DaftarOrderBedahCtrl', ['$q', '$rootScope', '$scope', 'MenuService', 'ManageServicePhp', 'ManageSdm','$state', 'CacheHelper', 'DateHelper', '$window', 'ModelItemAkuntansi', '$mdDialog',
-        function ($q, $rootScope, $scope, MenuService, ManageServicePhp, ManageSdm, $state, cacheHelper, dateHelper, $window, modelItemAkuntansi, $mdDialog) {
+    initialize.controller('DaftarOrderBedahCtrl', ['$q', '$rootScope', '$scope', 'MenuService', 'ManageServicePhp', 'ManageSdm', 'ManageSubRuangan','$state', 'CacheHelper', 'DateHelper', '$window', 'ModelItemAkuntansi', '$mdDialog',
+        function ($q, $rootScope, $scope, MenuService, ManageServicePhp, ManageSdm, ManageSubRuangan, $state, cacheHelper, dateHelper, $window, modelItemAkuntansi, $mdDialog) {
             $scope.item = {};
             $scope.tglBedah = new Date();
             $scope.selectedPerawat = [];
@@ -21,16 +21,32 @@ define(['initialize'], function (initialize) {
             $scope.verif = {};
             $scope.verif.tglBedah = new Date();
             $scope.pegawai = JSON.parse(window.localStorage.getItem('pegawai'));
-            MenuService.get("fakerdata/ruangoperasi.json")
-                .then(function(response) {
-                    let optionDefault = {
-                        "id":'0',
-                        "namaBedah":"==Ruangan==",
-                    };
-                    response.data.push(optionDefault);
-                    let newResponse = response.data.sort((a,b)=>a.id-b.id);
-                    $scope.listRuangOperasi = newResponse;
+            $scope.mapLoginUserToRuangan = JSON.parse(localStorage.getItem('mapLoginUserToRuangan'));
+            ManageSubRuangan.getDataTableMaster("ruangan/get-data-ruangan-sub?idRuangan="+$scope.mapLoginUserToRuangan[0].id, true).then(function (response) {
+                // console.log(response.data.sub_ruangan)
+                let newRuangan=[],newComboRuangan=[{
+                    "id":'0',
+                    "subRuangan":"==Ruangan==",
+                }];
+                response.data.sub_ruangan.forEach(subRuangan => {
+                    newRuangan.push({id:subRuangan.id,subRuangan:subRuangan.nama_subruangan});
+                    newComboRuangan.push({id:subRuangan.id,subRuangan:subRuangan.nama_subruangan});
+                });
+                // console.log(newRuangan);
+                $scope.listRuangOperasi=newRuangan;
+                $scope.comboSubRuangan=newComboRuangan;
             });
+
+            // MenuService.get("fakerdata/ruangoperasi.json")
+            //     .then(function(response) {
+            //         let optionDefault = {
+            //             "id":'0',
+            //             "subRuangan":"==Ruangan==",
+            //         };
+            //         response.data.push(optionDefault);
+            //         let newResponse = response.data.sort((a,b)=>a.id-b.id);
+            //         $scope.listRuangOperasi = newResponse;
+            // });
 
             MenuService.get("fakerdata/truefalse.json")
                 .then(function(response) {
@@ -192,7 +208,7 @@ define(['initialize'], function (initialize) {
             $scope.getJadwalBedahVerified = () => {
                 $scope.isRouteLoading = true;
                 if($scope.verif.ruanganOperasi){
-                    if($scope.verif.ruanganOperasi.namaBedah=="==Ruangan=="){
+                    if($scope.verif.ruanganOperasi.subRuangan=="==Ruangan=="){
                         ManageServicePhp.getDataTableTransaksi("rekam-medis/get-jadwal-operasi-after-verif?tglbedah=" + ($scope.verif.tglBedah ? dateHelper.formatDate($scope.verif.tglBedah, 'YYYY-MM-DD') : "") + "&namaruangan=", true).then(function (data) {
                             if(!data.data.data) return;
                             for (let i = 0; i < data.data.data.length; i++) {
@@ -207,7 +223,7 @@ define(['initialize'], function (initialize) {
                             $scope.isRouteLoading = false;
                         });
                     }else{
-                        ManageServicePhp.getDataTableTransaksi("rekam-medis/get-jadwal-operasi-after-verif?tglbedah=" + ($scope.verif.tglBedah ? dateHelper.formatDate($scope.verif.tglBedah, 'YYYY-MM-DD') : "") + "&namaruangan="+ ($scope.verif.ruanganOperasi ? $scope.verif.ruanganOperasi.namaBedah : ""), true).then(function (data) {
+                        ManageServicePhp.getDataTableTransaksi("rekam-medis/get-jadwal-operasi-after-verif?tglbedah=" + ($scope.verif.tglBedah ? dateHelper.formatDate($scope.verif.tglBedah, 'YYYY-MM-DD') : "") + "&namaruangan="+ ($scope.verif.ruanganOperasi ? $scope.verif.ruanganOperasi.subRuangan : ""), true).then(function (data) {
                             if(!data.data.data) return;
                             for (let i = 0; i < data.data.data.length; i++) {
                                 data.data.data[i].tglverifikasi = data.data.data[i].tglverifikasi ? data.data.data[i].tglverifikasi : '-';
@@ -222,7 +238,7 @@ define(['initialize'], function (initialize) {
                         });
                     }
                 }else{
-                    ManageServicePhp.getDataTableTransaksi("rekam-medis/get-jadwal-operasi-after-verif?tglbedah=" + ($scope.verif.tglBedah ? dateHelper.formatDate($scope.verif.tglBedah, 'YYYY-MM-DD') : "") + "&namaruangan="+ ($scope.verif.ruanganOperasi ? $scope.verif.ruanganOperasi.namaBedah : ""), true).then(function (data) {
+                    ManageServicePhp.getDataTableTransaksi("rekam-medis/get-jadwal-operasi-after-verif?tglbedah=" + ($scope.verif.tglBedah ? dateHelper.formatDate($scope.verif.tglBedah, 'YYYY-MM-DD') : "") + "&namaruangan="+ ($scope.verif.ruanganOperasi ? $scope.verif.ruanganOperasi.subRuangan : ""), true).then(function (data) {
                         if(!data.data.data) return;
                         for (let i = 0; i < data.data.data.length; i++) {
                             data.data.data[i].tglverifikasi = data.data.data[i].tglverifikasi ? data.data.data[i].tglverifikasi : '-';
@@ -309,7 +325,6 @@ define(['initialize'], function (initialize) {
                 tempDataExport = $scope.dataDaftarJadwalBedah;
                 tempDataExport.fetch(function () {
                     var data = this.data();
-                    console.log(data);
                     for (var i = 0; i < data.length; i++) {
                         //push single row for every record
                         rows.push({
@@ -488,9 +503,9 @@ define(['initialize'], function (initialize) {
                 };
 
                 $scope.listRuangOperasi.forEach(listRuangOperasi => {
-                    if(listRuangOperasi.namaBedah==dataItem.ruangoperasi){
+                    if(listRuangOperasi.subRuangan==dataItem.ruangoperasi){
                         $scope.item.ruanganOperasi = {
-                            namaBedah: dataItem.ruangoperasi,
+                            subRuangan: dataItem.ruangoperasi,
                             id: listRuangOperasi.id
                         };
                     }
@@ -594,7 +609,7 @@ define(['initialize'], function (initialize) {
             $scope.verifikasiData = function () {
                 let dataVerified = $scope.dataValidasiJamDanRuangan;
                 let tglTerpilih = dateHelper.formatDate($scope.item.tglVerifikasi, 'YYYY-MM-DD HH:mm:ss');
-                let ruanganTerpilih = $scope.item.ruanganOperasi.namaBedah;
+                let ruanganTerpilih = $scope.item.ruanganOperasi.subRuangan;
                 // if (dataVerified.length === 0) {
                 //     toastr.info("Data tidak ada");
                 //     return;
@@ -622,18 +637,16 @@ define(['initialize'], function (initialize) {
                     toastr.error('Anda belum memasukan Nama Ruangan Operasi');
                     return;
                 }
-                // console.log($scope.item.tglVerifikasi2)
+                // console.log($scope.item.ruanganOperasi)
                 $scope.isRouteLoading = true;
                 let dataSave = {
                     norec: $scope.item.norec,
                     pegawaiverifikasifk: $scope.pegawai.id,
                     tglverifikasi: $scope.item.tglVerifikasi2 ? dateHelper.formatDate($scope.item.tglVerifikasi2, 'YYYY-MM-DD HH:mm') : dateHelper.formatDate(new Date(), 'YYYY-MM-DD HH:mm'),
                     tgloperasi: dateHelper.formatDate($scope.item.tglOperasi, 'YYYY-MM-DD HH:mm'),
-                    ruangoperasi:ruanganTerpilih,
+                    ruangoperasi:$scope.item.ruanganOperasi.id,
                     dokteranestesifk: $scope.item.namaDokterAnastesi ? $scope.item.namaDokterAnastesi.id : null,
                     doktertujuanfk: $scope.item.namaDokterTujuan ? $scope.item.namaDokterTujuan.id : null,
-                    // ruangoperasi: $scope.item.ruanganOperasi.nama,
-                    // objectperawatfk: $scope.item.namaPerawat.id,
                     diagnosa: $scope.item.diagnosa,
                     tindakan: $scope.item.tindakan,
                     posisikhusus: $scope.item.posisiKhusus,
@@ -685,7 +698,7 @@ define(['initialize'], function (initialize) {
                     "pegawaiverifikasifk": $scope.pegawai.id,
                     "tglverifikasi": $scope.item.tglVerifikasi1 ? dateHelper.formatDate($scope.item.tglVerifikasi1, 'YYYY-MM-DD HH:mm') : dataItem.tglVerifikasi,
                     "tgloperasi": dataItem.tglOperasi,
-                    "ruangoperasi": dataItem.ruanganOperasi.namaBedah,
+                    "ruangoperasi": $scope.ruanganOperasi.id,
                     "dokteranestesifk": dataItem.namaDokterAnastesi.id,
                     "doktertujuanfk": dataItem.namaDokterTujuan.id,
                     "diagnosa": dataItem.diagnosa,
@@ -696,7 +709,6 @@ define(['initialize'], function (initialize) {
                     "perlu_icu": dataItem.perluIcu.statusIcu,
                     "perawat": namaPerawat
                 };
-                // console.log(dataPost);
                 ManageServicePhp.saveDataTransaksi("rekam-medis/save-jadwal-operasi/update-admin",dataPost).then(res=>{
                     $scope.getJadwalBedahVerified();
                     $scope.closeModalJadwalBedah();
