@@ -72,6 +72,10 @@
                 "link": "#/DaftarWaktuTunggu"
             },
             {
+                "name": "Laporan kunjungan Unit",
+                "link": "#/LaporanKunjunganUnit"
+            },
+            {
                 "name": "Laporan Pasien Daftar",
                 "link": "#/LaporanPasienDaftar"
             },

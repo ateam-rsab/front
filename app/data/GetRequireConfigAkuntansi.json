@@ -9,6 +9,10 @@
         "urlDep": "module/Laporan/RawatJalan/DaftarWaktuTungguRajalCtrl"
       },
       {
+        "nameDep": "LaporanKunjunganUnitCtrl",
+        "urlDep": "module/Laporan/LaporanKunjunganUnit/LaporanKunjunganUnitCtrl"
+      },
+      {
         "nameDep": "MultiSelectCtrl",
         "urlDep": "module/KendoUiSample/MultiSelectCtrl"
       },
