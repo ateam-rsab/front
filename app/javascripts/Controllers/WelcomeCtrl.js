@@ -95,6 +95,10 @@ define(['initialize'], function (initialize) {
                 }
             ]
             $scope.dataPemberitahuan = [{
+                path: "data/dokumen/Pemberitahuan-Pendataan-Tenaga-Non-ASN.pdf",
+                fileName: "Pendataan Tenaga Non ASN",
+                new: true
+            },{
                 path: "data/dokumen/Formulir-Permohonan-Surat-Keterangan.pdf",
                 fileName: "Formulir Permohonan Surat Keterangan / Perincian Penghasilan",
                 new: false
