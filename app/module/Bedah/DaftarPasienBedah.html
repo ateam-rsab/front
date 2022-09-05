@@ -65,8 +65,7 @@
 
         <div class="grid_3">
             <label><b>Tanggal Bedah</b></label>
-            <input style="width: 100%" kendo-datetimepicker k-ng-model="item.tglVerifikasi2" placeholer="Hari-Bln-Thn"  k-min="now" k-max="maxOrderDate" k-interval="15" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" ng-disabled="isVerif" ng-hide="isDate"/>
-            <input style="width: 100%" kendo-date-time-picker k-ng-model="item.tglVerifikasi1" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" ng-disabled="isVerif" ng-hide="isNewDate"/>
+            <input style="width: 100%" kendo-datetimepicker k-ng-model="item.tglVerifikasi" placeholer="Hari-Bln-Thn"  k-min="now" k-max="maxOrderDate" k-interval="15" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" ng-disabled="isVerif"/>
         </div>
 
         <div class="grid_2">
@@ -87,8 +86,8 @@
 
         <div class="grid_3">
             <label><b>Ruang Bedah</b></label>
-            <input style="width: 100%;" kendo-combo-box k-placeholder="'--Pilih--'" k-ng-model="item.ruangOperasi" k-data-text-field="'namaBedah'"
-                k-data-value-field="'namaBedah'" k-filter="'contains'" k-auto-bind="false"
+            <input style="width: 100%;" kendo-combo-box k-placeholder="'--Pilih--'" k-ng-model="item.ruangOperasi" k-data-text-field="'subRuangan'"
+                k-data-value-field="'subRuangan'" k-filter="'contains'" k-auto-bind="false"
                 k-data-source="dataMasterRuangBedah" ng-disabled="isVerif" />
         </div>
 
