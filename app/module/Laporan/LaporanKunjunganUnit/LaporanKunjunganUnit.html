@@ -27,6 +27,10 @@
         <input style="width: 100%;" k-ng-model="item.tglAkhir" kendo-date-time-picker placeholer="dd-mm-yyyy"
             k-format="'dd-MM-yyyy HH:mm'" />
     </div>
+    <div class="grid_2">
+        <label c-label item="item">Tanggal Akhir</label>
+        <input style="width: 100%;" style="width: 100%;" kendo-combo-box  k-placeholder="'--Pilih--'" k-ng-model="item.unitKerja" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitKerja" />
+    </div>
 
     <div class="grid_1" style="margin-top: 20px;">
         <md-button class="md-raised md-primary medium-button" ng-click="filterData()">
