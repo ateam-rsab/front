@@ -184,6 +184,10 @@
                 "link": "#/MasterIndikatorKinerja"
             },
             {
+                "name": "Pengaturan Skor Dokter",
+                "link": "#/PengaturanSkorDokter"
+            },
+            {
                 "name": "Skoring Tindakan Medis",
                 "link": "#/SkoringTindakanMedis"
             },

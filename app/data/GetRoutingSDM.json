@@ -4736,6 +4736,30 @@
     ]
   },
   {
+    "name": "PengaturanSkorDokter",
+    "url": "/PengaturanSkorDokter",
+    "templateurl": "module/SDM/Remunerasi/PengaturanSkorDokter.html",
+    "controller": "PengaturanSkorDokterCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      }
+    ]
+  },
+  {
     "name": "SkoringTindakanMedis",
     "url": "/SkoringTindakanMedis",
     "templateurl": "module/SDM/Remunerasi/SkoringTindakanMedis.html",

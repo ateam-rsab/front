@@ -9,7 +9,7 @@
 </style>
 
 <md-toolbar md-scroll-shrink class="shadow">
-    <div class="md-toolbar-tools">Skoring Tindakan Medis</div>
+    <div class="md-toolbar-tools">Pengaturan Skor Dokter</div>
 </md-toolbar>
 
 <!-- <div class="grid_12">
@@ -53,15 +53,17 @@
     </div>
 </div> -->
 
-<!-- <div class="grid_4">
+<div class="grid_4">
     <div kendo-grid id="gridTindakanNoSkoring" k-data-source="dataSourceTindakanNoSkoring" k-selectable="'row'"
         options="optGridSkoringTindakanNoSkoring" ng-click="onClickDataTindakanNoSkoring(selectedDataTindakanNoSkoring)"
         k-ng-model="selectedDataTindakanNoSkoring"></div>
-</div> -->
+</div>
 
-<div class="grid_12">
-    <div kendo-grid k-data-source="dataSourceSkoring" k-selectable="'row'" options="optGridSkoringTindakan"
-        k-ng-model="selectedData"></div>
+<div class="grid_8">
+    <div class="grid_12">
+        <div kendo-grid k-data-source="dataSourceSkoring" k-selectable="'row'" options="optGridSkoringTindakan"
+            k-ng-model="selectedData"></div>
+    </div>
 </div>
 
 <div class="grid_12" ng-show="showDesc">

@@ -67,6 +67,8 @@ define(['initialize'], function (initialize) {
             LoadCacheHelper();
 
             function LoadCacheHelper() {
+                $scope.isRouteLoading = true;
+
                 manageLogistikPhp.getDataTableTransaksi("akutansi/get-tgl-posting", true).then(function (dat) {
                     $scope.isRouteLoading = true;
 
@@ -110,13 +112,17 @@ define(['initialize'], function (initialize) {
                     manageLogistikPhp.getDataTableTransaksi("tatarekening/get-sudah-verif?noregistrasi=" +
                         $scope.item.noregistrasi, true).then(function (dat) {
                             $scope.item.statusVerif = dat.data.status;
+                            $scope.isRouteLoading = false;
                         }, function (err) {
                             $scope.isRouteLoading = false;
                         });
                     if ($scope.item.namaRuangan.substr($scope.item.namaRuangan.length - 1) == '`') {
                         $scope.showTombol = true;
+                        $scope.isRouteLoading = false;
                     }
                 }
+                
+                $scope.isRouteLoading = false;
             }
 
             var getNamaObat = function () {

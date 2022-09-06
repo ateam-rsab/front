@@ -825,6 +825,10 @@
       "urlDep": "module/SDM/Remunerasi/RekapitulasiEvaluasiJabatanCtrl"
     },
     {
+      "nameDep": "PengaturanSkorDokterCtrl",
+      "urlDep": "module/SDM/Remunerasi/PengaturanSkorDokterCtrl"
+    },
+    {
       "nameDep": "SkoringTindakanMedisCtrl",
       "urlDep": "module/SDM/Remunerasi/SkoringTindakanMedisCtrl"
     },

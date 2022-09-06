@@ -1,6 +1,6 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('SkoringTindakanMedisCtrl', ['$q', 'ManagePegawai', 'FindPegawai', 'DateHelper', 'FindSdm', 'ModelItem', 'ManageSdm', 'ManageSdmNew', '$state', '$rootScope', '$scope', '$mdDialog',
+    initialize.controller('PengaturanSkorDokterCtrl', ['$q', 'ManagePegawai', 'FindPegawai', 'DateHelper', 'FindSdm', 'ModelItem', 'ManageSdm', 'ManageSdmNew', '$state', '$rootScope', '$scope', '$mdDialog',
         function ($q, managePegawai, findPegawai, dateHelper, findSdm, modelItem, manageSdm, ManageSdmNew, $state, $rootScope, $scope, $mdDialog) {
             $scope.item = {};
             $scope.isRouteLoading = false;
@@ -61,7 +61,7 @@ define(['initialize'], function (initialize) {
                 }, {
                     field: "namaProduk",
                     title: "<h3>Tindakan</h3>",
-                    width: 250
+                    width: 150
                     // }, {
                     //     field: "detailProduk",
                     //     title: "<h3>Tindakan Untuk<br/>Skoring</h3>",
@@ -93,7 +93,7 @@ define(['initialize'], function (initialize) {
                         imageClass: "k-icon k-i-cancel"
                     }],
                     title: "",
-                    width: 75
+                    width: 150
                 }],
             };
 
