@@ -13,6 +13,9 @@ define(['initialize'], function (initialize) {
                 // console.log(res.data.unit_kerja)
                 $scope.listUnitKerja = res.data.unit_kerja;
             });
+            const agregateTotal=(data)=>{
+                console.log(data)
+            }
             $scope.optGrid = {
                 toolbar:["excel"],
                 excel: {
@@ -52,7 +55,7 @@ define(['initialize'], function (initialize) {
                 },
                 selectable: 'row',
                 columns: [{
-                    "title": "No",
+                    // "title": "No",
                     "template": "<span class='row-number'></span>",
                     "width": "20",
                     "attributes": { "style": "text-align: center" }
@@ -63,32 +66,87 @@ define(['initialize'], function (initialize) {
                     "footerTemplate": "Total :",
                 },{
                     "field": "total",
-                    "title": "Jumlah Kunjungan",
-                    "footerTemplate": "<span class='grandTotal'></span>",
+                    // "format": "{0:n0}",
+                    "title": "Jumlah<br>Kunjungan",
+                    "footerTemplate":"#: data.total ? data.total.sum : 0#",
                     "width": "100",
                     "attributes": { "style": "text-align: right" }
                 },
                 {
                     "field": "lakilaki",
+                    // "format": "{0:n0}",
                     "title": "Laki - Laki",
-                    "footerTemplate": "<span class='grandLakilaki'></span>",
+                    "footerTemplate":"#: data.lakilaki ? data.lakilaki.sum : 0#",
                     "width": "100",
                     "attributes": { "style": "text-align: right" }
                 },
                 {
                     "field": "perempuan",
+                    // "format": "{0:n0}",
                     "title": "Perempuan",
-                    "footerTemplate": "<span class='grandPerempuan'></span>",
+                    "footerTemplate":"#: data.perempuan ? data.perempuan.sum : 0#",
+                    "width": "100",
+                    "attributes": { "style": "text-align: right" }
+                },
+                {
+                    "field": "bpjs",
+                    // "format": "{0:n0}",
+                    "title": "Bpjs",
+                    "footerTemplate":"#: data.bpjs ? data.bpjs.sum : 0#",
+                    "width": "100",
+                    "attributes": { "style": "text-align: right" }
+                },
+                {
+                    "field": "jamkesda",
+                    // "format": "{0:n0}",
+                    "title": "Jamkesda",
+                    "footerTemplate":"#: data.jamkesda ? data.jamkesda.sum : 0#",
                     "width": "100",
                     "attributes": { "style": "text-align: right" }
                 },
                 {
                     "field": "asuransi",
+                    // "format": "{0:n0}",
                     "title": "Asuransi",
-                    "footerTemplate": "<span class='grandAsuransi'></span>",
+                    "footerTemplate":"#: data.asuransi ? data.asuransi.sum : 0#",
+                    "width": "100",
+                    "attributes": { "style": "text-align: right" }
+                },
+                {
+                    "field": "kementriankesehatan",
+                    // "format": "{0:n0}",
+                    "title": "Kementrian<br>Kesehatan",
+                    "footerTemplate":"#: data.kementriankesehatan ? data.kementriankesehatan.sum : 0#",
+                    "width": "100",
+                    "attributes": { "style": "text-align: right" }
+                },
+                {
+                    "field": "perjanjian",
+                    // "format": "{0:n0}",
+                    "title": "Perjanjian",
+                    "footerTemplate":"#: data.perjanjian ? data.perjanjian.sum : 0#",
+                    "width": "100",
+                    "attributes": { "style": "text-align: right" }
+                },
+                {
+                    "field": "perusahaan",
+                    // "format": "{0:n0}",
+                    "title": "Perusahaan",
+                    "footerTemplate":"#: data.perusahaan ? data.perusahaan.sum : 0#",
                     "width": "100",
                     "attributes": { "style": "text-align: right" }
                 }],
+                aggregate: [
+                    { field: "total", aggregate: "sum" },
+                    { field: "lakilaki", aggregate: "sum" },
+                    { field: "perempuan", aggregate: "sum" },
+                    { field: "asuransi", aggregate: "sum" },
+                    { field: "bpjs", aggregate: "sum" },
+                    { field: "jamkesda", aggregate: "sum" },
+                    { field: "kementriankesehatan", aggregate: "sum" },
+                    { field: "perjanjian", aggregate: "sum" },
+                    { field: "perusahaan", aggregate: "sum" },
+                ],
                 dataBound: function () {
                     let rows = this.items();
                     $(rows).each(function () {
@@ -96,23 +154,11 @@ define(['initialize'], function (initialize) {
                         let rowLabel = $(this).find(".row-number");
                         $(rowLabel).html(index);
                     });
-                    let totalsum=0,lakilakisum=0,perempuansum=0,asuransisum=0;
-                    if($scope.newDataSource!=''){
-                        $scope.newDataSource.forEach(element => {
-                            totalsum+=element.total;
-                            if(element.lakilaki!==null){lakilakisum+=element.lakilaki;}
-                            if(element.perempuan!==null){perempuansum+=element.perempuan;}
-                            if(element.asuransi!==null){asuransisum+=element.asuransi;}
-                        });
-                    }
-                    $("#kGrid").find(".grandTotal").html(totalsum);
-                    $("#kGrid").find(".grandLakilaki").html(lakilakisum);
-                    $("#kGrid").find(".grandPerempuan").html(perempuansum);
-                    $("#kGrid").find(".grandAsuransi").html(asuransisum);
                     $(".k-grid-footer").find(".ng-scope").attr({"style": "text-align: right"})
                 }
             };
 
+            
             $scope.formatTanggal=(tanggal)=>{
                 return moment(tanggal).format('DD-MMM-YYYY HH:mm');
             }
@@ -126,25 +172,47 @@ define(['initialize'], function (initialize) {
                 manageLogistikPhp.getDataTableTransaksi("laporan/get-laporan-kunjungan-pasien-by-unit?tglawal="+tglAwal+"&tglakhir="+tglAkhir+"&idunitkerja="+ruangan, true).then(function (res) {
                     let newDataSource=[],newRuangan= res.data.data.filter((arr, index, self) => index === self.findIndex((t) => (t.id == arr.id)));
                     newRuangan.forEach(newRuangan => {
-                        let asuransi=0,lakilaki=0,perempuan=0,total=0,dataFilter = res.data.data.filter(e=>e.id==newRuangan.id);
+                        let asuransi=0,lakilaki=0,perempuan=0,total=0,bpjs=0,jamkesda=0,kementrianKesehatan=0,perjanjian=0,perusahaan=0,dataFilter = res.data.data.filter(e=>e.id==newRuangan.id);
                         dataFilter.forEach(dataFilter=> {
                             total+=dataFilter.jml_kunjungan;
                             if(dataFilter.kelamin_laki!==null){lakilaki+=dataFilter.kelamin_laki;}
                             if(dataFilter.kelamin_perempuan!==null){perempuan+=dataFilter.kelamin_perempuan;}
                             if(dataFilter.asuransi!==null){asuransi+=dataFilter.asuransi;}
+                            if(dataFilter.bpjs!==null){bpjs+=dataFilter.bpjs;}
+                            if(dataFilter.jamkesda!==null){jamkesda+=dataFilter.jamkesda;}
+                            if(dataFilter.kementrianKesehatan!==null){kementrianKesehatan+=dataFilter.kementrian_kesehatan;}
+                            if(dataFilter.perjanjian!==null){perjanjian+=dataFilter.perjanjian;}
+                            if(dataFilter.perusahaan!==null){perusahaan+=dataFilter.perusahaan;}
                         });
                         newDataSource.push({
-                            "tanggalwal": tglAwal,
-                            "tanggaakhir": tglAkhir,
                             "id": newRuangan.id,
                             "namaruangan":newRuangan.namaruangan,
                             "total":total,
                             "lakilaki":lakilaki,
                             "perempuan":perempuan,
-                            "asuransi":asuransi
+                            "asuransi":asuransi,
+                            "bpjs":bpjs,
+                            "jamkesda":jamkesda,
+                            "kementriankesehatan":kementrianKesehatan,
+                            "perjanjian":perjanjian,
+                            "perusahaan":perusahaan,
                         });
                     });
-                    $scope.dataSource = new kendo.data.DataSource({data:newDataSource,pageSize:100});
+                    $scope.dataSource = new kendo.data.DataSource({
+                        data:newDataSource,
+                        pageSize:100,
+                        aggregate: [
+                            { field: "total", aggregate: "sum" },
+                            { field: "lakilaki", aggregate: "sum" },
+                            { field: "perempuan", aggregate: "sum" },
+                            { field: "asuransi", aggregate: "sum" },
+                            { field: "bpjs", aggregate: "sum" },
+                            { field: "jamkesda", aggregate: "sum" },
+                            { field: "kementriankesehatan", aggregate: "sum" },
+                            { field: "perjanjian", aggregate: "sum" },
+                            { field: "perusahaan", aggregate: "sum" },
+                        ],
+                    });
                     $scope.isRouteLoading = false;
                     $scope.newDataSource = newDataSource;
                 })
