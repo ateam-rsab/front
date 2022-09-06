@@ -53,17 +53,15 @@
     </div>
 </div> -->
 
-<div class="grid_4">
+<!-- <div class="grid_4">
     <div kendo-grid id="gridTindakanNoSkoring" k-data-source="dataSourceTindakanNoSkoring" k-selectable="'row'"
         options="optGridSkoringTindakanNoSkoring" ng-click="onClickDataTindakanNoSkoring(selectedDataTindakanNoSkoring)"
         k-ng-model="selectedDataTindakanNoSkoring"></div>
-</div>
+</div> -->
 
-<div class="grid_8">
-    <div class="grid_12">
-        <div kendo-grid k-data-source="dataSourceSkoring" k-selectable="'row'" options="optGridSkoringTindakan"
-            k-ng-model="selectedData"></div>
-    </div>
+<div class="grid_12">
+    <div kendo-grid k-data-source="dataSourceSkoring" k-selectable="'row'" options="optGridSkoringTindakan"
+        k-ng-model="selectedData"></div>
 </div>
 
 <div class="grid_12" ng-show="showDesc">
@@ -80,8 +78,10 @@
         </div>
         <div class="grid_2">
             <label><strong>Tanggal Berlaku</strong></label>
+            <!-- <input style="width: 100%;" k-ng-model="desc.tglBerlaku" kendo-date-picker placeholer="dd-mm-yyyy"
+                k-format="'dd-MM-yyyy'" ng-disabled="isVerifStaf" /> -->
             <input style="width: 100%;" k-ng-model="desc.tglBerlaku" kendo-date-picker placeholer="dd-mm-yyyy"
-                k-format="'dd-MM-yyyy'" ng-disabled="isVerifStaf" />
+                k-format="'dd-MM-yyyy'" ng-disabled="true" />
         </div>
         <div class="grid_2" style="margin-top: 2em;" ng-hide="isVerifHidden">
             <label>&nbsp;</label>
@@ -219,8 +219,10 @@
                 <div class="grid_12">
                     <div class="grid_6">
                         <label><strong>Tanggal Berlaku</strong></label>
+                        <!-- <input style="width: 100%;" k-ng-model="item.tglBerlaku" kendo-date-picker
+                            placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" ng-disabled="isVerifStaf" /> -->
                         <input style="width: 100%;" k-ng-model="item.tglBerlaku" kendo-date-picker
-                            placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" ng-disabled="isVerifStaf" />
+                            placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" ng-disabled="true" />
                     </div>
                     <div class="grid_6" ng-hide="isVerifHidden">
                         <md-checkbox ng-model="item.statusVerif" aria-label="verified" style="margin-top:24px"

@@ -11,6 +11,11 @@ define(['initialize'], function (initialize) {
             var userLogin = JSON.parse(localStorage.getItem('datauserlogin'));
             var pegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
 
+            const tglBerlaku = new Date();
+            tglBerlaku.setFullYear(2020, 0, 1);
+            $scope.item.tglBerlaku = tglBerlaku;
+            $scope.desc.tglBerlaku = tglBerlaku;
+
             $scope.angkaFormatter = new Intl.NumberFormat('id-ID');
 
             $scope.listStatusVerif = [{
@@ -56,7 +61,7 @@ define(['initialize'], function (initialize) {
                 }, {
                     field: "namaProduk",
                     title: "<h3>Tindakan</h3>",
-                    width: 150
+                    width: 250
                     // }, {
                     //     field: "detailProduk",
                     //     title: "<h3>Tindakan Untuk<br/>Skoring</h3>",
@@ -88,7 +93,7 @@ define(['initialize'], function (initialize) {
                         imageClass: "k-icon k-i-cancel"
                     }],
                     title: "",
-                    width: 150
+                    width: 75
                 }],
             };
 
@@ -241,6 +246,8 @@ define(['initialize'], function (initialize) {
                     }
                     $scope.desc.namaProduk = data.produk
                     $scope.desc.isVerified = false
+
+                    $scope.desc.tglBerlaku = tglBerlaku
 
                     $scope.isRouteLoading = false;
                 }, function (error) {
@@ -462,28 +469,16 @@ define(['initialize'], function (initialize) {
                         $scope.isRouteLoading = false;
                         return
                     } else {
+                        ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-skoring-tindakan-medis").then(res => {
+                            $scope.desc = null;
+                            $scope.showDesc = false;
+                            $scope.getAllData();
+                            $scope.closePopUp();
 
-                        var confirm = $mdDialog.confirm()
-                            .title('Apakah anda yakin menyimpan data?')
-                            .ariaLabel('Lucky day')
-                            .targetEvent(e)
-                            .ok('Ya')
-                            .cancel('Tidak');
-                        $mdDialog.show(confirm).then(function () {
-                            ManageSdmNew.saveData(dataSave, "iki-remunerasi/save-skoring-tindakan-medis").then(res => {
-                                $scope.desc = null;
-                                $scope.showDesc = false;
-                                $scope.getAllData();
-                                $scope.closePopUp();
-    
-                                $scope.isRouteLoading = false;
-                            }, function (error) {
-                                $scope.isRouteLoading = false;
-                            })
-                        }, function () {
-                            $scope.reset();
-                        });
-                        
+                            $scope.isRouteLoading = false;
+                        }, function (error) {
+                            $scope.isRouteLoading = false;
+                        })
                     }
                 } else {
                     $scope.isRouteLoading = false;
@@ -525,132 +520,132 @@ define(['initialize'], function (initialize) {
                 $scope.item.unitKerja = null;
                 $scope.item.namaProduk = null;
                 $scope.item.kelompokKerja = null;
-                $scope.item.tglBerlaku = null;
+                $scope.item.tglBerlaku = tglBerlaku;
                 $scope.item.skor = null;
                 $scope.item.detailTindakan = null;
                 $scope.item.statusVerif = null;
                 $scope.norecData = null;
             }
 
-            $scope.$watch('item.namaProduk', function (e) {
-                if (!e) return;
-                // if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.detailTindakan && $scope.item.skor && $scope.item.tglBerlaku) {
-                if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.skor && $scope.item.tglBerlaku) {
-                    ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=" + ($scope.norecData ? $scope.norecData : "")
-                        + "&namaProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
-                        // + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.detailTindakan).replace(/%20/g, "+")
-                        + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
-                        + "&skor=" + $scope.item.skor + "&tglBerlaku=" + $scope.item.tglBerlaku).then(res => {
-                            if (res.data.data.length > 0) {
-                                $scope.isDuplicated = true
-                            } else {
-                                $scope.isDuplicated = false
-                            }
-                        })
-                }
-            })
+            // $scope.$watch('item.namaProduk', function (e) {
+            //     if (!e) return;
+            //     // if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.detailTindakan && $scope.item.skor && $scope.item.tglBerlaku) {
+            //     if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.skor && $scope.item.tglBerlaku) {
+            //         ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=" + ($scope.norecData ? $scope.norecData : "")
+            //             + "&namaProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
+            //             // + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.detailTindakan).replace(/%20/g, "+")
+            //             + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
+            //             + "&skor=" + $scope.item.skor + "&tglBerlaku=" + $scope.item.tglBerlaku).then(res => {
+            //                 if (res.data.data.length > 0) {
+            //                     $scope.isDuplicated = true
+            //                 } else {
+            //                     $scope.isDuplicated = false
+            //                 }
+            //             })
+            //     }
+            // })
 
-            $scope.$watch('item.kelompokKerja', function (e) {
-                if (!e) return;
-                // if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.detailTindakan && $scope.item.skor && $scope.item.tglBerlaku) {
-                if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.skor && $scope.item.tglBerlaku) {
-                    ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=" + ($scope.norecData ? $scope.norecData : "")
-                        + "&namaProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
-                        // + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.detailTindakan).replace(/%20/g, "+")
-                        + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
-                        + "&skor=" + $scope.item.skor + "&tglBerlaku=" + dateHelper.toTimeStamp($scope.item.tglBerlaku)).then(res => {
-                            if (res.data.data.length > 0) {
-                                $scope.isDuplicated = true
-                            } else {
-                                $scope.isDuplicated = false
-                            }
-                        })
-                }
-            })
+            // $scope.$watch('item.kelompokKerja', function (e) {
+            //     if (!e) return;
+            //     // if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.detailTindakan && $scope.item.skor && $scope.item.tglBerlaku) {
+            //     if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.skor && $scope.item.tglBerlaku) {
+            //         ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=" + ($scope.norecData ? $scope.norecData : "")
+            //             + "&namaProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
+            //             // + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.detailTindakan).replace(/%20/g, "+")
+            //             + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
+            //             + "&skor=" + $scope.item.skor + "&tglBerlaku=" + dateHelper.toTimeStamp($scope.item.tglBerlaku)).then(res => {
+            //                 if (res.data.data.length > 0) {
+            //                     $scope.isDuplicated = true
+            //                 } else {
+            //                     $scope.isDuplicated = false
+            //                 }
+            //             })
+            //     }
+            // })
 
-            $scope.$watch('item.detailTindakan', function (e) {
-                if (!e) return;
-                // if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.detailTindakan && $scope.item.skor && $scope.item.tglBerlaku) {
-                if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.skor && $scope.item.tglBerlaku) {
-                    ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=" + ($scope.norecData ? $scope.norecData : "")
-                        + "&namaProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
-                        // + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.detailTindakan).replace(/%20/g, "+")
-                        + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
-                        + "&skor=" + $scope.item.skor + "&tglBerlaku=" + dateHelper.toTimeStamp($scope.item.tglBerlaku)).then(res => {
-                            if (res.data.data.length > 0) {
-                                $scope.isDuplicated = true
-                            } else {
-                                $scope.isDuplicated = false
-                            }
-                        })
-                }
-            })
+            // $scope.$watch('item.detailTindakan', function (e) {
+            //     if (!e) return;
+            //     // if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.detailTindakan && $scope.item.skor && $scope.item.tglBerlaku) {
+            //     if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.skor && $scope.item.tglBerlaku) {
+            //         ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=" + ($scope.norecData ? $scope.norecData : "")
+            //             + "&namaProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
+            //             // + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.detailTindakan).replace(/%20/g, "+")
+            //             + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
+            //             + "&skor=" + $scope.item.skor + "&tglBerlaku=" + dateHelper.toTimeStamp($scope.item.tglBerlaku)).then(res => {
+            //                 if (res.data.data.length > 0) {
+            //                     $scope.isDuplicated = true
+            //                 } else {
+            //                     $scope.isDuplicated = false
+            //                 }
+            //             })
+            //     }
+            // })
 
-            $scope.$watch('item.skor', function (e) {
-                if (!e) return;
-                // if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.detailTindakan && $scope.item.skor && $scope.item.tglBerlaku) {
-                if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.skor && $scope.item.tglBerlaku) {
-                    ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=" + ($scope.norecData ? $scope.norecData : "")
-                        + "&namaProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
-                        // + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.detailTindakan).replace(/%20/g, "+")
-                        + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
-                        + "&skor=" + $scope.item.skor + "&tglBerlaku=" + dateHelper.toTimeStamp($scope.item.tglBerlaku)).then(res => {
-                            if (res.data.data.length > 0) {
-                                $scope.isDuplicated = true
-                            } else {
-                                $scope.isDuplicated = false
-                            }
-                        })
-                }
-            })
+            // $scope.$watch('item.skor', function (e) {
+            //     if (!e) return;
+            //     // if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.detailTindakan && $scope.item.skor && $scope.item.tglBerlaku) {
+            //     if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.skor && $scope.item.tglBerlaku) {
+            //         ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=" + ($scope.norecData ? $scope.norecData : "")
+            //             + "&namaProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
+            //             // + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.detailTindakan).replace(/%20/g, "+")
+            //             + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
+            //             + "&skor=" + $scope.item.skor + "&tglBerlaku=" + dateHelper.toTimeStamp($scope.item.tglBerlaku)).then(res => {
+            //                 if (res.data.data.length > 0) {
+            //                     $scope.isDuplicated = true
+            //                 } else {
+            //                     $scope.isDuplicated = false
+            //                 }
+            //             })
+            //     }
+            // })
 
-            $scope.$watch('item.tglBerlaku', function (e) {
-                if (!e) return;
-                // if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.detailTindakan && $scope.item.skor && $scope.item.tglBerlaku) {
-                if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.skor && $scope.item.tglBerlaku) {
-                    ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=" + ($scope.norecData ? $scope.norecData : "")
-                        + "&namaProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
-                        // + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.detailTindakan).replace(/%20/g, "+")
-                        + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
-                        + "&skor=" + $scope.item.skor + "&tglBerlaku=" + dateHelper.toTimeStamp($scope.item.tglBerlaku)).then(res => {
-                            if (res.data.data.length > 0) {
-                                $scope.isDuplicated = true
-                            } else {
-                                $scope.isDuplicated = false
-                            }
-                        })
-                }
-            })
+            // $scope.$watch('item.tglBerlaku', function (e) {
+            //     if (!e) return;
+            //     // if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.detailTindakan && $scope.item.skor && $scope.item.tglBerlaku) {
+            //     if ($scope.item.namaProduk && $scope.item.kelompokKerja && $scope.item.skor && $scope.item.tglBerlaku) {
+            //         ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=" + ($scope.norecData ? $scope.norecData : "")
+            //             + "&namaProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
+            //             // + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.detailTindakan).replace(/%20/g, "+")
+            //             + "&kelompokKerjaId=" + $scope.item.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.item.namaProduk.namaProduk).replace(/%20/g, "+")
+            //             + "&skor=" + $scope.item.skor + "&tglBerlaku=" + dateHelper.toTimeStamp($scope.item.tglBerlaku)).then(res => {
+            //                 if (res.data.data.length > 0) {
+            //                     $scope.isDuplicated = true
+            //                 } else {
+            //                     $scope.isDuplicated = false
+            //                 }
+            //             })
+            //     }
+            // })
 
-            $scope.$watch('desc.skor', function (e) {
-                if (!e) return;
-                if ($scope.desc.namaProduk && $scope.desc.kelompokKerja && $scope.desc.skor && $scope.desc.tglBerlaku) {
-                    ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=&namaProduk=" + encodeURIComponent($scope.desc.namaProduk).replace(/%20/g, "+")
-                        + "&kelompokKerjaId=" + $scope.desc.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.desc.namaProduk).replace(/%20/g, "+")
-                        + "&skor=" + $scope.desc.skor + "&tglBerlaku=" + dateHelper.toTimeStamp($scope.desc.tglBerlaku)).then(res => {
-                            if (res.data.data.length > 0) {
-                                $scope.isDuplicated = true
-                            } else {
-                                $scope.isDuplicated = false
-                            }
-                        })
-                }
-            })
+            // $scope.$watch('desc.skor', function (e) {
+            //     if (!e) return;
+            //     if ($scope.desc.namaProduk && $scope.desc.kelompokKerja && $scope.desc.skor && $scope.desc.tglBerlaku) {
+            //         ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=&namaProduk=" + encodeURIComponent($scope.desc.namaProduk).replace(/%20/g, "+")
+            //             + "&kelompokKerjaId=" + $scope.desc.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.desc.namaProduk).replace(/%20/g, "+")
+            //             + "&skor=" + $scope.desc.skor + "&tglBerlaku=" + dateHelper.toTimeStamp($scope.desc.tglBerlaku)).then(res => {
+            //                 if (res.data.data.length > 0) {
+            //                     $scope.isDuplicated = true
+            //                 } else {
+            //                     $scope.isDuplicated = false
+            //                 }
+            //             })
+            //     }
+            // })
 
-            $scope.$watch('desc.tglBerlaku', function (e) {
-                if (!e) return;
-                if ($scope.desc.namaProduk && $scope.desc.kelompokKerja && $scope.desc.skor && $scope.desc.tglBerlaku) {
-                    ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=&namaProduk=" + encodeURIComponent($scope.desc.namaProduk).replace(/%20/g, "+")
-                        + "&kelompokKerjaId=" + $scope.desc.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.desc.namaProduk).replace(/%20/g, "+")
-                        + "&skor=" + $scope.desc.skor + "&tglBerlaku=" + dateHelper.toTimeStamp($scope.desc.tglBerlaku)).then(res => {
-                            if (res.data.data.length > 0) {
-                                $scope.isDuplicated = true
-                            } else {
-                                $scope.isDuplicated = false
-                            }
-                        })
-                }
-            })
+            // $scope.$watch('desc.tglBerlaku', function (e) {
+            //     if (!e) return;
+            //     if ($scope.desc.namaProduk && $scope.desc.kelompokKerja && $scope.desc.skor && $scope.desc.tglBerlaku) {
+            //         ManageSdmNew.getListData("iki-remunerasi/get-duplicate-skoring-tindakan-medis?noRec=&namaProduk=" + encodeURIComponent($scope.desc.namaProduk).replace(/%20/g, "+")
+            //             + "&kelompokKerjaId=" + $scope.desc.kelompokKerja.id + "&detailProduk=" + encodeURIComponent($scope.desc.namaProduk).replace(/%20/g, "+")
+            //             + "&skor=" + $scope.desc.skor + "&tglBerlaku=" + dateHelper.toTimeStamp($scope.desc.tglBerlaku)).then(res => {
+            //                 if (res.data.data.length > 0) {
+            //                     $scope.isDuplicated = true
+            //                 } else {
+            //                     $scope.isDuplicated = false
+            //                 }
+            //             })
+            //     }
+            // })
         }
     ])
 });
