@@ -97,42 +97,18 @@ define(['initialize'], function (initialize) {
                     "attributes": { "style": "text-align: right" }
                 },
                 {
-                    "field": "jamkesda",
-                    // "format": "{0:n0}",
-                    "title": "Jamkesda",
-                    "footerTemplate":"#: data.jamkesda ? data.jamkesda.sum : 0#",
-                    "width": "100",
-                    "attributes": { "style": "text-align: right" }
-                },
-                {
                     "field": "asuransi",
                     // "format": "{0:n0}",
-                    "title": "Asuransi",
+                    "title": "Jaminan",
                     "footerTemplate":"#: data.asuransi ? data.asuransi.sum : 0#",
                     "width": "100",
                     "attributes": { "style": "text-align: right" }
                 },
                 {
-                    "field": "kementriankesehatan",
+                    "field": "umum",
                     // "format": "{0:n0}",
-                    "title": "Kementrian<br>Kesehatan",
-                    "footerTemplate":"#: data.kementriankesehatan ? data.kementriankesehatan.sum : 0#",
-                    "width": "100",
-                    "attributes": { "style": "text-align: right" }
-                },
-                {
-                    "field": "perjanjian",
-                    // "format": "{0:n0}",
-                    "title": "Perjanjian",
-                    "footerTemplate":"#: data.perjanjian ? data.perjanjian.sum : 0#",
-                    "width": "100",
-                    "attributes": { "style": "text-align: right" }
-                },
-                {
-                    "field": "perusahaan",
-                    // "format": "{0:n0}",
-                    "title": "Perusahaan",
-                    "footerTemplate":"#: data.perusahaan ? data.perusahaan.sum : 0#",
+                    "title": "Umum Tunai",
+                    "footerTemplate":"#: data.umum ? data.umum.sum : 0#",
                     "width": "100",
                     "attributes": { "style": "text-align: right" }
                 }],
@@ -143,9 +119,6 @@ define(['initialize'], function (initialize) {
                     { field: "asuransi", aggregate: "sum" },
                     { field: "bpjs", aggregate: "sum" },
                     { field: "jamkesda", aggregate: "sum" },
-                    { field: "kementriankesehatan", aggregate: "sum" },
-                    { field: "perjanjian", aggregate: "sum" },
-                    { field: "perusahaan", aggregate: "sum" },
                 ],
                 dataBound: function () {
                     let rows = this.items();
@@ -172,17 +145,18 @@ define(['initialize'], function (initialize) {
                 manageLogistikPhp.getDataTableTransaksi("laporan/get-laporan-kunjungan-pasien-by-unit?tglawal="+tglAwal+"&tglakhir="+tglAkhir+"&idunitkerja="+ruangan, true).then(function (res) {
                     let newDataSource=[],newRuangan= res.data.data.filter((arr, index, self) => index === self.findIndex((t) => (t.id == arr.id)));
                     newRuangan.forEach(newRuangan => {
-                        let asuransi=0,lakilaki=0,perempuan=0,total=0,bpjs=0,jamkesda=0,kementrianKesehatan=0,perjanjian=0,perusahaan=0,dataFilter = res.data.data.filter(e=>e.id==newRuangan.id);
+                        let asuransi=0,lakilaki=0,perempuan=0,total=0,bpjs=0,umum=0,dataFilter = res.data.data.filter(e=>e.id==newRuangan.id);
                         dataFilter.forEach(dataFilter=> {
                             total+=dataFilter.jml_kunjungan;
                             if(dataFilter.kelamin_laki!==null){lakilaki+=dataFilter.kelamin_laki;}
                             if(dataFilter.kelamin_perempuan!==null){perempuan+=dataFilter.kelamin_perempuan;}
-                            if(dataFilter.asuransi!==null){asuransi+=dataFilter.asuransi;}
                             if(dataFilter.bpjs!==null){bpjs+=dataFilter.bpjs;}
-                            if(dataFilter.jamkesda!==null){jamkesda+=dataFilter.jamkesda;}
-                            if(dataFilter.kementrianKesehatan!==null){kementrianKesehatan+=dataFilter.kementrian_kesehatan;}
-                            if(dataFilter.perjanjian!==null){perjanjian+=dataFilter.perjanjian;}
-                            if(dataFilter.perusahaan!==null){perusahaan+=dataFilter.perusahaan;}
+                            if(dataFilter.asuransi!==null){asuransi+=dataFilter.asuransi;}
+                            if(dataFilter.jamkesda!==null){asuransi+=dataFilter.jamkesda;}
+                            if(dataFilter.kementrianKesehatan!==null){asuransi+=dataFilter.kementrian_kesehatan;}
+                            if(dataFilter.perjanjian!==null){asuransi+=dataFilter.perjanjian;}
+                            if(dataFilter.perusahaan!==null){asuransi+=dataFilter.perusahaan;}
+                            if(dataFilter.umum!==null){umum+=dataFilter.umum;}
                         });
                         newDataSource.push({
                             "id": newRuangan.id,
@@ -192,10 +166,7 @@ define(['initialize'], function (initialize) {
                             "perempuan":perempuan,
                             "asuransi":asuransi,
                             "bpjs":bpjs,
-                            "jamkesda":jamkesda,
-                            "kementriankesehatan":kementrianKesehatan,
-                            "perjanjian":perjanjian,
-                            "perusahaan":perusahaan,
+                            "umum":umum
                         });
                     });
                     $scope.dataSource = new kendo.data.DataSource({
@@ -207,10 +178,7 @@ define(['initialize'], function (initialize) {
                             { field: "perempuan", aggregate: "sum" },
                             { field: "asuransi", aggregate: "sum" },
                             { field: "bpjs", aggregate: "sum" },
-                            { field: "jamkesda", aggregate: "sum" },
-                            { field: "kementriankesehatan", aggregate: "sum" },
-                            { field: "perjanjian", aggregate: "sum" },
-                            { field: "perusahaan", aggregate: "sum" },
+                            { field: "umum", aggregate: "sum" },
                         ],
                     });
                     $scope.isRouteLoading = false;
