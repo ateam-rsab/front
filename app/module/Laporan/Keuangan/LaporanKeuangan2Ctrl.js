@@ -231,7 +231,7 @@ define(['initialize'], function (initialize) {
                 return moment(tanggal).format('DD-MMM-YYYY HH:mm');
             }
             $scope.filterData=()=>{
-                // if(!$scope.item.unitKerja){ toastr.info("Harap pilih Unit Kerja!");return;}
+                if(!$scope.item.unitKerja){ toastr.info("Harap pilih Unit Kerja!");return;}
                 $scope.isRouteLoading = true;
                 $scope.dataSource=[];
                 let tglAwal = $scope.item.tglAwal ? dateHelper.formatDate($scope.item.tglAwal, "YYYY-MM-DD HH:mm") : dateHelper.formatDate(new Date(), "YYYY-MM-DD HH:mm"),
