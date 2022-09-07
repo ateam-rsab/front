@@ -1,6 +1,10 @@
 {
   "path": [
     {
+      "nameDep": "LogistikServicePhp",
+      "urlDep": "javascripts/Services/Logistik/LogistikServicePhp"
+    },
+    {
       "nameDep": "DaftarJadwalSeleksiCtrl",
       "urlDep": "module/SDM/DaftarJadwalSeleksiCtrl"
     },
@@ -551,6 +555,10 @@
     {
       "nameDep": "MonitoringVisiteDokterCtrl",
       "urlDep": "module/SDM/MonitoringVisiteDokterCtrl"
+    },
+    {
+      "nameDep": "LaporanKeuangan2Ctrl",
+      "urlDep": "module/Laporan/Keuangan/LaporanKeuangan2Ctrl"
     },
     {
       "nameDep": "MonitoringTargetSkorDokterCtrl",

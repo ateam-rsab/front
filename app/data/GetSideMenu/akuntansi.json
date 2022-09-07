@@ -66,7 +66,12 @@
         {
             "name": "Monitoring Visite Dokter",
             "link": "#/MonitoringVisiteDokter"
-        },  {
+        },
+        {
+            "name": "Keuangan",
+            "link": "#/LaporanKeuangan2"
+        },
+        {
           "name": "Rekap Kunjungan Pasien",
           "link": "#/RekapKunjunganPasienPerHari"
       }

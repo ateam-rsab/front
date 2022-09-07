@@ -13,9 +13,6 @@ define(['initialize'], function (initialize) {
                 // console.log(res.data.unit_kerja)
                 $scope.listUnitKerja = res.data.unit_kerja;
             });
-            const agregateTotal=(data)=>{
-                console.log(data)
-            }
             $scope.optGrid = {
                 toolbar:["excel"],
                 excel: {
@@ -118,7 +115,7 @@ define(['initialize'], function (initialize) {
                     { field: "perempuan", aggregate: "sum" },
                     { field: "asuransi", aggregate: "sum" },
                     { field: "bpjs", aggregate: "sum" },
-                    { field: "jamkesda", aggregate: "sum" },
+                    { field: "umum", aggregate: "sum" },
                 ],
                 dataBound: function () {
                     let rows = this.items();
