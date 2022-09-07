@@ -4308,6 +4308,34 @@
     ]
   },
   {
+    "name": "LaporanKeuangan2",
+    "url": "/LaporanKeuangan2",
+    "templateurl": "module/Laporan/Keuangan/LaporanKeuangan2.html",
+    "controller": "LaporanKeuangan2Ctrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
+      },
+      {
+        "module": "PhpServices",
+        "define": "PhpServices"
+      }
+    ]
+  },
+  {
     "name": "MonitoringTargetSkorDokter",
     "url": "/MonitoringTargetSkorDokter",
     "templateurl": "module/SDM/Remunerasi/MonitoringTargetSkorDokter.html",

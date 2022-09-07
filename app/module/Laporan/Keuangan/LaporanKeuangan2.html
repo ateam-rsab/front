@@ -1,0 +1,51 @@
+<style type="text/css">
+    h4 {
+        font-size: 16px;
+        font-weight: bold;
+        color: #363737;
+        border: solid 1px #363737;
+        background: #ffffff;
+        padding: 15px;
+        margin: 0;
+        text-align: center;
+        line-height: 23px;
+
+    }
+</style>
+<md-toolbar md-scroll-shrink class="shadow">
+    <div class="md-toolbar-tools">Rekap keuangan</div>
+</md-toolbar>
+
+<div class="grid_12">
+    <div class="grid_2">
+        <label c-label item="item">Tanggal Awal</label>
+        <input style="width: 100%;" k-ng-model="item.tglAwal" kendo-date-time-picker placeholer="dd-mm-yyyy"
+            k-format="'dd-MM-yyyy HH:mm'" />
+    </div>
+    <div class="grid_2">
+        <label c-label item="item">Tanggal Akhir</label>
+        <input style="width: 100%;" k-ng-model="item.tglAkhir" kendo-date-time-picker placeholer="dd-mm-yyyy"
+            k-format="'dd-MM-yyyy HH:mm'" />
+    </div>
+    <div class="grid_2">
+        <label c-label item="item">Unit</label>
+        <input style="width: 100%;" style="width: 100%;" kendo-combo-box  k-placeholder="'--Pilih--'" k-ng-model="item.unitKerja" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitKerja" />
+    </div>
+
+    <div class="grid_1" style="margin-top: 20px;">
+        <md-button class="md-raised md-primary medium-button" ng-click="filterData()">
+            <span style="margin-right: 5px;">Cari</span>
+            <i class="fa fa-search"></i>
+        </md-button>
+    </div>
+</div>
+
+<div class="grid_12">
+    <div id="kGrid" kendo-grid k-data-source="dataSource" k-selectable="'row'"
+        k-options="optGrid" k-pageable="'true'" k-sortable="'true'" k-ng-model="selectedData">
+    </div>
+</div>
+
+<div class="grid_12" style="margin-top:60px">
+    <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+</div>
