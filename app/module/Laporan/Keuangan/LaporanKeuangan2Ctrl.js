@@ -66,6 +66,9 @@ define(['initialize'], function (initialize) {
                         "multi": "true",
                         "search": "true"
                     },
+                    "sortable": {
+                        "initialDirection": "Asc"
+                    },
                     "width": "150",
                 },
                 {
