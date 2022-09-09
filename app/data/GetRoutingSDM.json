@@ -2832,10 +2832,38 @@
     ]
   },
   {
-    "name": "LaporanKeuangan2",
-    "url": "/LaporanKeuangan2",
-    "templateurl": "module/Laporan/Keuangan/LaporanKeuangan2.html",
-    "controller": "LaporanKeuangan2Ctrl",
+    "name": "LaporanKeuanganUnit",
+    "url": "/LaporanKeuanganUnit",
+    "templateurl": "module/Laporan/Keuangan/LaporanKeuanganUnit.html",
+    "controller": "LaporanKeuanganUnitCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
+      },
+      {
+        "module": "PhpServices",
+        "define": "PhpServices"
+      }
+    ]
+  },
+  {
+    "name": "LaporanKeuanganRuangan",
+    "url": "/LaporanKeuanganRuangan",
+    "templateurl": "module/Laporan/Keuangan/LaporanKeuanganRuangan.html",
+    "controller": "LaporanKeuanganRuanganCtrl",
     "deps": [
       {
         "module": "Services",

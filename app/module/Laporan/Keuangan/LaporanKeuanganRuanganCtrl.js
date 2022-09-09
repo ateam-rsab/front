@@ -1,6 +1,6 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('LaporanKeuangan2Ctrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper', 'ModelItem','DateHelper', '$window', '$mdDialog',
+    initialize.controller('LaporanKeuanganRuanganCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper', 'ModelItem','DateHelper', '$window', '$mdDialog',
         function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper, ModelItem, dateHelper, $window, $mdDialog) {
             $scope.item = {};
             $scope.jumlahLayanan = 2000;
@@ -9,14 +9,14 @@ define(['initialize'], function (initialize) {
             $scope.isRouteLoading = false;
             $scope.item.tglAwal = dateHelper.setJamAwal(new Date());
             $scope.item.tglAkhir = dateHelper.setJamAkhir(new Date());
-            // manageLogistikPhp.getDataTableMaster("unitkerja/get-combo-unit-kerja", true).then(function (res) {
+            manageLogistikPhp.getDataTableMaster("unitkerja/get-combo-unit-kerja", true).then(function (res) {
                 // console.log(res.data.unit_kerja)
-                // $scope.listUnitKerja = res.data.unit_kerja;
-            // });
+                $scope.listUnitKerja = res.data.unit_kerja;
+            });
             $scope.optGrid = {
                 toolbar:["excel"],
                 excel: {
-                    fileName:"Rekap Pendapatan Unit"+moment($scope.now).format( 'DD/MMM/YYYY'),
+                    fileName:"Rekapitulasi Pendapatan Unit"+moment($scope.now).format( 'DD/MMM/YYYY'),
                     allPages: true,
 
                 },
@@ -51,34 +51,30 @@ define(['initialize'], function (initialize) {
                 },
                 selectable: 'row',
                 scrollable: true,
-                filterable: 'row',
-                columns: [
-                {
+                filterable: true,
+                columns: [{
                     // "title": "No",
                     "template": "<span class='row-number'></span>",
-                    "width": "20",
+                    "width": 40,
+                    "locked": true,
+                    "lockable": false,
                     "attributes": { "style": "text-align: center" }
                 },
                 {
-                    "field": "unit_name",
-                    "title": "Unit",
-                    "filterable": {
-                        "multi": "true",
-                        "search": "true"
-                    },
-                    "sortable": {
-                        "initialDirection": "Asc"
-                    },
-                    "width": "150",
+                    "field": "nama_ruangan",
+                    "title": "Ruangan",
+                    "width": 200,
+                    "locked": true,
+                    "lockable": false,
+                    "filterable": { "multi": true, "search": true}
                 },
                 {
                     "field": "golongan_tindakan",
                     "title": "Golongan",
-                    "filterable": {
-                        "multi": "true",
-                        "search": "true"
-                    },
-                    "width": "150",
+                    "width": 200,
+                    "locked": true,
+                    "lockable": false,
+                    "filterable": { "multi": true, "search": true},
                     "footerTemplate": "Total :",
                 },
                 {
@@ -88,22 +84,22 @@ define(['initialize'], function (initialize) {
                         {
                             "field": "bpjs",
                             "title": "volume",
-                            "format": "{0:n0}",
                             "filterable": false,
+                            "format": "{0:n0}",
+                            "width": 150,
                             "attributes": { "style": "text-align: right" },
                             "footerTemplate":"#: data.bpjs ?  kendo.format('{0:n0}',data.bpjs.sum) : 0#",
                         },
                         {
                             "field": "totalbpjs",
                             "title": "Pendapatan",
-                            "format": "{0:n0}",
                             "filterable": false,
+                            "format": "{0:n0}",
+                            "width": 150,
                             "attributes": { "style": "text-align: right" },
                             "footerTemplate":"#: data.totalbpjs ?  kendo.format('{0:n0}',data.totalbpjs.sum) : 0#",
                         }
                     ],
-                    
-                    "width": "100",
                     "attributes": { "style": "text-align: right" }
                 },
                 {
@@ -113,21 +109,22 @@ define(['initialize'], function (initialize) {
                         {
                             "field": "asuransi",
                             "title": "volume",
-                            "format": "{0:n0}",
                             "filterable": false,
+                            "format": "{0:n0}",
+                            "width": 150,
                             "attributes": { "style": "text-align: right" },
                             "footerTemplate":"#: data.asuransi ?  kendo.format('{0:n0}',data.asuransi.sum) : 0#",
                         },
                         {
                             "field": "totalasuransi",
                             "title": "Pendapatan",
-                            "format": "{0:n0}",
                             "filterable": false,
+                            "format": "{0:n0}",
+                            "width": 150,
                             "attributes": { "style": "text-align: right" },
                             "footerTemplate":"#: data.totalasuransi ?  kendo.format('{0:n0}',data.totalasuransi.sum) : 0#",
                         }
                     ],
-                    "width": "100",
                     "attributes": { "style": "text-align: right" }
                 },
                 {
@@ -138,21 +135,22 @@ define(['initialize'], function (initialize) {
                         {
                             "field": "umum",
                             "title": "volume",
-                            "format": "{0:n0}",
                             "filterable": false,
+                            "format": "{0:n0}",
+                            "width": 150,
                             "attributes": { "style": "text-align: right" },
                             "footerTemplate":"#: data.umum ?  kendo.format('{0:n0}',data.umum.sum) : 0#",
                         },
                         {
                             "field": "totalumum",
                             "title": "Pendapatan",
-                            "format": "{0:n0}",
                             "filterable": false,
+                            "format": "{0:n0}",
+                            "width": 150,
                             "attributes": { "style": "text-align: right" },
                             "footerTemplate":"#: data.totalumum ?  kendo.format('{0:n0}',data.totalumum.sum) : 0#",
                         }
                     ],
-                    "width": "100",
                     "attributes": { "style": "text-align: right" }
                 },
                 {
@@ -163,21 +161,22 @@ define(['initialize'], function (initialize) {
                         {
                             "field": "jamkesda",
                             "title": "volume",
-                            "format": "{0:n0}",
                             "filterable": false,
+                            "format": "{0:n0}",
+                            "width": 150,
                             "attributes": { "style": "text-align: right" },
                             "footerTemplate":"#: data.jamkesda ?  kendo.format('{0:n0}',data.jamkesda.sum) : 0#",
                         },
                         {
                             "field": "totaljamkesda",
                             "title": "Pendapatan",
-                            "format": "{0:n0}",
                             "filterable": false,
+                            "format": "{0:n0}",
+                            "width": 150,
                             "attributes": { "style": "text-align: right" },
                             "footerTemplate":"#: data.totaljamkesda ?  kendo.format('{0:n0}',data.totaljamkesda.sum) : 0#",
                         }
                     ],
-                    "width": "100",
                     "attributes": { "style": "text-align: right" }
                 },
                 {
@@ -188,21 +187,22 @@ define(['initialize'], function (initialize) {
                         {
                             "field": "perjanjian",
                             "title": "volume",
-                            "format": "{0:n0}",
                             "filterable": false,
+                            "format": "{0:n0}",
+                            "width": 150,
                             "attributes": { "style": "text-align: right" },
                             "footerTemplate":"#: data.perjanjian ?  kendo.format('{0:n0}',data.perjanjian.sum) : 0#",
                         },
                         {
                             "field": "totalperjanjian",
                             "title": "Pendapatan",
-                            "format": "{0:n0}",
                             "filterable": false,
+                            "format": "{0:n0}",
+                            "width": 150,
                             "attributes": { "style": "text-align: right" },
                             "footerTemplate":"#: data.totalperjanjian ?  kendo.format('{0:n0}',data.totalperjanjian.sum) : 0#",
                         }
                     ],
-                    "width": "100",
                     "attributes": { "style": "text-align: right" }
                 },
                 {
@@ -213,21 +213,22 @@ define(['initialize'], function (initialize) {
                         {
                             "field": "perusahaan",
                             "title": "volume",
-                            "format": "{0:n0}",
                             "filterable": false,
+                            "format": "{0:n0}",
+                            "width": 150,
                             "attributes": { "style": "text-align: right" },
                             "footerTemplate":"#: data.perusahaan ?  kendo.format('{0:n0}',data.perusahaan.sum) : 0#",
                         },
                         {
                             "field": "totalperusahaan",
                             "title": "Pendapatan",
-                            "format": "{0:n0}",
                             "filterable": false,
+                            "format": "{0:n0}",
+                            "width": 150,
                             "attributes": { "style": "text-align: right" },
                             "footerTemplate":"#: data.totalperusahaan ?  kendo.format('{0:n0}',data.totalperusahaan.sum) : 0#",
                         }
                     ],
-                    "width": "100",
                     "attributes": { "style": "text-align: right" }
                 },
                 {
@@ -238,29 +239,31 @@ define(['initialize'], function (initialize) {
                         {
                             "field": "kementriankesehatan",
                             "title": "volume",
-                            "format": "{0:n0}",
                             "filterable": false,
+                            "format": "{0:n0}",
+                            "width": 150,
                             "attributes": { "style": "text-align: right" },
                             "footerTemplate":"#: data.kementriankesehatan ?  kendo.format('{0:n0}',data.kementriankesehatan.sum) : 0#",
                         },
                         {
                             "field": "totalkementriankesehatan",
                             "title": "Pendapatan",
-                            "format": "{0:n0}",
                             "filterable": false,
+                            "format": "{0:n0}",
+                            "width": 150,
                             "attributes": { "style": "text-align: right" },
                             "footerTemplate":"#: data.totalkementriankesehatan ?  kendo.format('{0:n0}',data.totalkementriankesehatan.sum) : 0#",
                         }
                     ],
-                    "width": "100",
                     "attributes": { "style": "text-align: right" }
                 },
                 {
                     "field": "total",
-                    "format": "{0:n0}",
                     "title": "Total",
+                    "filterable": false,
+                    "format": "{0:n0}",
                     "footerTemplate":"#: data.total ? kendo.format('{0:n0}', data.total.sum) : 0#",
-                    "width": "100",
+                    "width": 150,
                     "attributes": { "style": "text-align: right" }
                 }],
                 dataBound: function () {
@@ -278,75 +281,64 @@ define(['initialize'], function (initialize) {
                 return moment(tanggal).format('DD-MMM-YYYY HH:mm');
             }
             $scope.filterData=()=>{
-                // if(!$scope.item.unitKerja){ toastr.info("Harap pilih Unit Kerja!");return;}
+                if(!$scope.item.unitKerja){ toastr.info("Harap pilih Unit Kerja!");return;}
                 $scope.isRouteLoading = true;
                 $scope.dataSource=[];
                 let tglAwal = $scope.item.tglAwal ? dateHelper.formatDate($scope.item.tglAwal, "YYYY-MM-DD HH:mm") : dateHelper.formatDate(new Date(), "YYYY-MM-DD HH:mm"),
-                    tglAkhir = $scope.item.tglAkhir ? dateHelper.formatDate($scope.item.tglAkhir, "YYYY-MM-DD HH:mm") : dateHelper.formatDate(new Date(), "YYYY-MM-DD HH:mm");
-                    // ruangan = $scope.item.unitKerja ? $scope.item.unitKerja.id : "";
-                manageLogistikPhp.getDataTableTransaksi("laporan/get-laporan-laporan-keuangan-unit?tglawal="+tglAwal+"&tglakhir="+tglAkhir, true).then(function (res) {
-                    // console.log(res.data)
-                    let newDataSource=[],newResponse= res.data.data.filter((arr, index, self) => index === self.findIndex((t) => (t.id_golongan == arr.id_golongan)));
+                    tglAkhir = $scope.item.tglAkhir ? dateHelper.formatDate($scope.item.tglAkhir, "YYYY-MM-DD HH:mm") : dateHelper.formatDate(new Date(), "YYYY-MM-DD HH:mm"),
+                    ruangan = $scope.item.unitKerja ? $scope.item.unitKerja.id : "";
+                manageLogistikPhp.getDataTableTransaksi("laporan/get-laporan-laporan-keuangan-ruangan?tglawal="+tglAwal+"&tglakhir="+tglAkhir+"&idunitkerja="+ruangan, true).then(function (res) {
+                    let newDataSource=[],newResponse= res.data.data.filter((arr, index, self) => index === self.findIndex((t) => (t.idru == arr.idru))),
+                        newGolongan=res.data.data.filter((arr, index, self) => index === self.findIndex((t) => (t.id_golongan == arr.id_golongan)));
                     newResponse.forEach(newResponse => {
-                        let asuransi=0,bpjs=0,umum=0,perusahaan=0,perjanjian=0,kementriankesehatan=0,jamkesda=0,
-                            totalasuransi=0,totalbpjs=0,totalumum=0,totalperusahaan=0,totalperjanjian=0,totalkementriankesehatan=0,totaljamkesda=0,
-                            dataFilter = res.data.data.filter(e=>e.id_golongan==newResponse.id_golongan);
-                        dataFilter.forEach(dataFilter=> {
-                          if(dataFilter.bpjs!==null){bpjs+=parseInt(dataFilter.bpjs);}
-                          if(dataFilter.jamkesda!==null){jamkesda+=parseInt(dataFilter.jamkesda);}
-                          if(dataFilter.asuransi!==null){asuransi+=parseInt(dataFilter.asuransi);}
-                          if(dataFilter.umum!==null){umum+=parseInt(dataFilter.umum);}
-                          if(dataFilter.perusahaan!==null){perusahaan+=parseInt(dataFilter.perusahaan);}
-                          if(dataFilter.perjanjian!==null){perjanjian+=parseInt(dataFilter.perjanjian);}
-                          if(dataFilter.kementrian_kesehatan!==null){kementriankesehatan+=parseInt(dataFilter.kementrian_kesehatan);}
-                          if(dataFilter.total_bpjs!==null){totalbpjs+=parseInt(dataFilter.total_bpjs);}
-                          if(dataFilter.total_jamkesda!==null){totaljamkesda+=parseInt(dataFilter.total_jamkesda);}
-                          if(dataFilter.total_asuransi!==null){totalasuransi+=parseInt(dataFilter.total_asuransi);}
-                          if(dataFilter.total_umum!==null){totalumum+=parseInt(dataFilter.total_umum);}
-                          if(dataFilter.total_perusahaan!==null){totalperusahaan+=parseInt(dataFilter.total_perusahaan);}
-                          if(dataFilter.total_perjanjian!==null){totalperjanjian+=parseInt(dataFilter.total_perjanjian);}
-                          if(dataFilter.total_kementrian_kesehatan!==null){totalkementriankesehatan+=parseInt(dataFilter.total_kementrian_kesehatan);}
-                        });
-
-                        //This is custom
-                        // newDataSource.push({
-                        //     "id_golongan": newResponse.id_golongan,
-                        //     "golongan_tindakan":newResponse.golongan_tindakan,
-                        //     "type":"BPJS",
-                        //     "kunjungan":bpjs,
-                        // });
-                        // newDataSource.push({
-                        //     "id_golongan": newResponse.id_golongan,
-                        //     "golongan_tindakan":newResponse.golongan_tindakan,
-                        //     "type":"JAMKESDA",
-                        //     "kunjungan":jamkesda,
-                        //     "pendapatan":totaljamkesda,
-                        // })
-
-                        let total=totalbpjs+totaljamkesda+totalasuransi+totalumum+totalperusahaan+totalperjanjian+totalkementriankesehatan;
-                        newDataSource.push({
-                            "unit_name": newResponse.unit_name,
-                            "id_unit":  newResponse.id_unit,
-                            "id_golongan": newResponse.id_golongan,
-                            "golongan_tindakan":newResponse.golongan_tindakan,
-                            "bpjs":bpjs,
-                            "totalbpjs":totalbpjs,
-                            "jamkesda":jamkesda,
-                            "totaljamkesda":totaljamkesda,
-                            "asuransi":asuransi,
-                            "totalasuransi":totalasuransi,
-                            "umum":umum,
-                            "totalumum":totalumum,
-                            "perusahaan":perusahaan,
-                            "totalperusahaan":totalperusahaan,
-                            "perjanjian":perjanjian,
-                            "totalperjanjian":totalperjanjian,
-                            "kementriankesehatan":kementriankesehatan,
-                            "totalkementriankesehatan":totalkementriankesehatan,
-                            "total":total
+                        let detailRuangan = res.data.data.filter(e=>e.idru==newResponse.idru);
+                        newGolongan.forEach(newGolongan => {
+                            let detailGolongan=detailRuangan.filter(e=>e.id_golongan==newGolongan.id_golongan);
+                            let asuransi=0,bpjs=0,umum=0,perusahaan=0,perjanjian=0,kementriankesehatan=0,jamkesda=0,
+                                totalasuransi=0,totalbpjs=0,totalumum=0,totalperusahaan=0,totalperjanjian=0,totalkementriankesehatan=0,totaljamkesda=0;
+                            if(detailGolongan.length>0){
+                                detailGolongan.forEach(dataFilter=> {
+                                    if(dataFilter.bpjs!==null){bpjs+=parseInt(dataFilter.bpjs);}
+                                    if(dataFilter.jamkesda!==null){jamkesda+=parseInt(dataFilter.jamkesda);}
+                                    if(dataFilter.asuransi!==null){asuransi+=parseInt(dataFilter.asuransi);}
+                                    if(dataFilter.umum!==null){umum+=parseInt(dataFilter.umum);}
+                                    if(dataFilter.perusahaan!==null){perusahaan+=parseInt(dataFilter.perusahaan);}
+                                    if(dataFilter.perjanjian!==null){perjanjian+=parseInt(dataFilter.perjanjian);}
+                                    if(dataFilter.kementrian_kesehatan!==null){kementriankesehatan+=parseInt(dataFilter.kementrian_kesehatan);}
+                                    if(dataFilter.total_bpjs!==null){totalbpjs+=parseInt(dataFilter.total_bpjs);}
+                                    if(dataFilter.total_jamkesda!==null){totaljamkesda+=parseInt(dataFilter.total_jamkesda);}
+                                    if(dataFilter.total_asuransi!==null){totalasuransi+=parseInt(dataFilter.total_asuransi);}
+                                    if(dataFilter.total_umum!==null){totalumum+=parseInt(dataFilter.total_umum);}
+                                    if(dataFilter.total_perusahaan!==null){totalperusahaan+=parseInt(dataFilter.total_perusahaan);}
+                                    if(dataFilter.total_perjanjian!==null){totalperjanjian+=parseInt(dataFilter.total_perjanjian);}
+                                    if(dataFilter.total_kementrian_kesehatan!==null){totalkementriankesehatan+=parseInt(dataFilter.total_kementrian_kesehatan);}
+                                });
+                                let total=totalbpjs+totaljamkesda+totalasuransi+totalumum+totalperusahaan+totalperjanjian+totalkementriankesehatan;
+                                newDataSource.push({
+                                    "idru": newResponse.idru,
+                                    "nama_ruangan":newResponse.nama_ruangan,
+                                    "id_golongan": newGolongan.id_golongan,
+                                    "golongan_tindakan":newGolongan.golongan_tindakan,
+                                    "bpjs":bpjs,
+                                    "totalbpjs":totalbpjs,
+                                    "jamkesda":jamkesda,
+                                    "totaljamkesda":totaljamkesda,
+                                    "asuransi":asuransi,
+                                    "totalasuransi":totalasuransi,
+                                    "umum":umum,
+                                    "totalumum":totalumum,
+                                    "perusahaan":perusahaan,
+                                    "totalperusahaan":totalperusahaan,
+                                    "perjanjian":perjanjian,
+                                    "totalperjanjian":totalperjanjian,
+                                    "kementriankesehatan":kementriankesehatan,
+                                    "totalkementriankesehatan":totalkementriankesehatan,
+                                    "total":total
+                                });
+                            }
                         });
                     });
-                    console.log(newDataSource)
+                    // console.log(newDataSource)
                     $scope.dataSource = new kendo.data.DataSource({
                         data:newDataSource,
                         pageSize:100,

@@ -557,8 +557,12 @@
       "urlDep": "module/SDM/MonitoringVisiteDokterCtrl"
     },
     {
-      "nameDep": "LaporanKeuangan2Ctrl",
-      "urlDep": "module/Laporan/Keuangan/LaporanKeuangan2Ctrl"
+      "nameDep": "LaporanKeuanganUnitCtrl",
+      "urlDep": "module/Laporan/Keuangan/LaporanKeuanganUnitCtrl"
+    },
+    {
+      "nameDep": "LaporanKeuanganRuanganCtrl",
+      "urlDep": "module/Laporan/Keuangan/LaporanKeuanganRuanganCtrl"
     },
     {
       "nameDep": "MonitoringTargetSkorDokterCtrl",

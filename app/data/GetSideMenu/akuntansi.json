@@ -69,7 +69,11 @@
         },
         {
             "name": "Rekapitulasi Pendapatan Unit",
-            "link": "#/LaporanKeuangan2"
+            "link": "#/LaporanKeuanganUnit"
+        },
+        {
+            "name": "Rekapitulasi Pendapatan Ruangan",
+            "link": "#/LaporanKeuanganRuangan"
         },
         {
           "name": "Rekap Kunjungan Pasien",
