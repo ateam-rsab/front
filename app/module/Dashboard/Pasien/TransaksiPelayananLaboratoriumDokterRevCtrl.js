@@ -228,7 +228,6 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.getDataRiwayat = function () {
-                $scope.isRouteLoading = true;
                 let tanggal = {
                     awal: $scope.item.periodeAwal ? DateHelper.formatDate($scope.item.periodeAwal, "YYYY-MM-DD HH:mm:ss") : '',
                     akhir: $scope.item.periodeAkhir ? DateHelper.formatDate($scope.item.periodeAkhir, "YYYY-MM-DD HH:mm:ss") : ''
@@ -244,7 +243,6 @@ define(['initialize'], function (initialize) {
                         data: e.data.daftar,
                         pageSize: 10
                     });
-                    $scope.isRouteLoading = false;
                 });
             }
             $scope.getDataRiwayat();
