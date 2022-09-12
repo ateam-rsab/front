@@ -2832,6 +2832,62 @@
     ]
   },
   {
+    "name": "LaporanKeuanganUnit",
+    "url": "/LaporanKeuanganUnit",
+    "templateurl": "module/Laporan/Keuangan/LaporanKeuanganUnit.html",
+    "controller": "LaporanKeuanganUnitCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
+      },
+      {
+        "module": "PhpServices",
+        "define": "PhpServices"
+      }
+    ]
+  },
+  {
+    "name": "LaporanKeuanganRuangan",
+    "url": "/LaporanKeuanganRuangan",
+    "templateurl": "module/Laporan/Keuangan/LaporanKeuanganRuangan.html",
+    "controller": "LaporanKeuanganRuanganCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
+      },
+      {
+        "module": "PhpServices",
+        "define": "PhpServices"
+      }
+    ]
+  },
+  {
     "name": "MasterKompetensi",
     "url": "/MasterKompetensi",
     "templateurl": "module/SDM/MasterKompetensi.html",
