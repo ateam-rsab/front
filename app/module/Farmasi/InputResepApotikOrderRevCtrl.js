@@ -67,11 +67,7 @@ define(['initialize'], function (initialize) {
             LoadCacheHelper();
 
             function LoadCacheHelper() {
-                $scope.isRouteLoading = true;
-
                 manageLogistikPhp.getDataTableTransaksi("akutansi/get-tgl-posting", true).then(function (dat) {
-                    $scope.isRouteLoading = true;
-
                     var tgltgltgltgl = dat.data.mindate[0].max
                     var tglkpnaja = dat.data.datedate
                     $scope.minDate = new Date(tgltgltgltgl);
@@ -86,8 +82,6 @@ define(['initialize'], function (initialize) {
                             }
                         }
                     };
-                }, function (err) {
-                    $scope.isRouteLoading = false;
                 });
 
                 var chacePeriode = cacheHelper.get('InputResepApotikOrderRevCtrl');
@@ -113,16 +107,11 @@ define(['initialize'], function (initialize) {
                         $scope.item.noregistrasi, true).then(function (dat) {
                             $scope.item.statusVerif = dat.data.status;
                             $scope.isRouteLoading = false;
-                        }, function (err) {
-                            $scope.isRouteLoading = false;
                         });
                     if ($scope.item.namaRuangan.substr($scope.item.namaRuangan.length - 1) == '`') {
                         $scope.showTombol = true;
-                        $scope.isRouteLoading = false;
                     }
                 }
-                
-                $scope.isRouteLoading = false;
             }
 
             var getNamaObat = function () {
