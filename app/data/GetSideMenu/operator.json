@@ -394,6 +394,10 @@
                 ]
             },
             {
+                "name": "Rekapitulasi Pendapatan Unit",
+                "link": "#/LaporanKeuanganUnit"
+            },
+            {
                 "name": "Monitoring Visite Dokter",
                 "link": "#/MonitoringVisiteDokter"
             }

@@ -43,7 +43,7 @@ define(['initialize'], function (initialize) {
             $scope.columnGrid = [{
                 "field": "tgloperasi",
                 "title": "<h3>Tanggal<br> Permintaan Bedah</h3>",
-                "width": 200
+                "width": 150
             }, {
                 "field": "tglverifikasi",
                 "title": "<h3>Tanggal<br> Bedah</h3>",
@@ -75,27 +75,32 @@ define(['initialize'], function (initialize) {
             }, {
                 "field": "telp",
                 "title": "<h3>No.Telp</h3>",
-                "width": 150
+                "width": 120
             }, {
                 "field": "status",
                 "title": "<h3>Status</h3>",
                 "width": 140
             }, {
-                command: [{
-                    text: "Selesai",
-                    click: selesai,
-                    imageClass: "k-icon k-i-pencil"
-                }, {
-                    text: "Batal",
-                    click: batalJadwalBedah,
-                    imageClass: "k-icon k-i-pencil"
-                }, {
+                command: [
+                {
                     text: "Detail",
                     click: detailData,
                     imageClass: "k-icon k-i-pencil"
-                }],
+                },{
+                    text: "Tindakan",
+                    click: tindakan,
+                    imageClass: "k-icon k-i-rotatecw"
+                },{
+                    text: "Selesai",
+                    click: selesai,
+                    imageClass: "k-icon k-i-check"
+                }, {
+                    text: "Batal",
+                    click: batalJadwalBedah,
+                    imageClass: "k-icon k-i-cancel"
+                },],
                 title: "",
-                width: 250
+                width: 350
             }];
 
             $scope.getData = () => {
@@ -113,6 +118,30 @@ define(['initialize'], function (initialize) {
                 });
             }
 
+            function tindakan(e){
+                e.preventDefault();
+                var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+
+                $scope.isRouteLoading = true;
+                var confirm = $mdDialog.confirm()
+                    .title('Apakah anda yakin akan merubah Status Jadwal Bedah dengan No. Rekam Medis ' + dataItem.nocm + " menjadi Tindakan")
+                    .textContent(`Anda akan merubah status data`)
+                    .ariaLabel('Lucky day')
+                    .targetEvent(e)
+                    .ok('Ya')
+                    .cancel('Tidak');
+                $mdDialog.show(confirm).then(function () {
+                    let dataSave = {
+                        norec: dataItem.norec,
+                    }
+                    ManageServicePhp.saveDataTransaksi('rekam-medis/save-jadwal-operasi/tindakan', dataSave).then(res => {
+                        $scope.getData();
+                        $scope.isRouteLoading = false;
+                    });
+                }, function () {
+
+                });
+            }
             function detailData(e) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
@@ -282,6 +311,9 @@ define(['initialize'], function (initialize) {
                             };
                             if ($(this).text() == 'DI VERIFIKASI') {
                                 $(this).addClass('cyan')
+                            };
+                            if ($(this).text() == 'TINDAKAN') {
+                                $(this).addClass('indigo')
                             };
 
                         })
