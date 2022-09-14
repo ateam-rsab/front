@@ -2888,6 +2888,34 @@
     ]
   },
   {
+    "name": "LaporanRincianKeuanganRuangan",
+    "url": "/LaporanRincianKeuanganRuangan",
+    "templateurl": "module/Laporan/Keuangan/LaporanRincianKeuanganRuangan.html",
+    "controller": "LaporanRincianKeuanganRuanganCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
+      },
+      {
+        "module": "PhpServices",
+        "define": "PhpServices"
+      }
+    ]
+  },
+  {
     "name": "MasterKompetensi",
     "url": "/MasterKompetensi",
     "templateurl": "module/SDM/MasterKompetensi.html",
