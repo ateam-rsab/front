@@ -182,28 +182,32 @@
                     </md-button>
                 </div>
 
-                <hr>
                 <!-- detail kuantitas -->
                 <div class="grid_12" ng-if="showDetailKuantitas">
                     <div class="grid_6" ng-repeat="kuantitas in dataDetailDashboardKinerja.kuantitas.data">
                         <div class="grid_12" style="margin-left: 0.5em;">
-                            <span ng-click="showDetail(kuantitas)"><i class="fa fa-ellipsis-v"></i></span>
                             <span>{{kuantitas.namaIndikator}}</span>
                         </div>
-                        <div class="grid_11">
+                        <div class="grid_9">
                             <progress class="mt-progress-bar blue" max="100"
                                 value="{{kuantitas.persenCapaianDibulatkan}}"
                                 data-label="{{kuantitas.persenCapaianDibulatkan}}%"></progress>
                         </div>
-                        <div class="grid_1" ng-show="isAksesWR1">
-                            <md-button class="md-raised md-primary medium-button" ng-click="addData(kuantitas)">
-                                <i class="fa fa-plus"></i>
-                            </md-button>
+                        <div class="grid_3">
+                            <section layout="row" layout-align="center center">
+                                <md-button class="md-raised md-warn medium-button" ng-click="showDetail(kuantitas)">
+                                    <span style="margin-right: 5px;">Detail</span>
+                                    <i class="fa fa-book"></i>
+                                </md-button>
+                                <md-button class="md-raised md-primary medium-button" ng-click="addData(kuantitas)"  ng-show="isAksesWR1">
+                                    <i class="fa fa-plus"></i>
+                                </md-button>
+                            </section>
                         </div>
                     </div>
                 </div>
             </div>
-
+            <hr>
             <div class="grid_12">
                 <h5 style="color: #7069be;font-weight: bolder;">Kualitas</h5>
                 <div class="grid_11">
