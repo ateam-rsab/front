@@ -565,6 +565,10 @@
       "urlDep": "module/Laporan/Keuangan/LaporanKeuanganRuanganCtrl"
     },
     {
+      "nameDep": "LaporanRincianKeuanganRuanganCtrl",
+      "urlDep": "module/Laporan/Keuangan/LaporanRincianKeuanganRuanganCtrl"
+    },
+    {
       "nameDep": "MonitoringTargetSkorDokterCtrl",
       "urlDep": "module/SDM/Remunerasi/MonitoringTargetSkorDokterCtrl"
     },
