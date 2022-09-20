@@ -22,72 +22,74 @@ define(['initialize'], function (initialize) {
                     text: "Pengaturan Bawahan",
                     template: '<button ng-click="pengaturanBawahan()" class="k-button k-button-icontext"><span class="k-icon k-i-gear"></span>Pengaturan Bawahan</button>'
                 }],
-                pageable: true,
-                // scrollable: true,
+                selectable: 'row',
+				pageable: true,
+				resizable: true,
+				navigatable: true,
                 columns: [{
                     field: "sumberData",
                     title: "<h3 class='small-font'>Sumber Data</h3>",
-                    width: "100px",
+                    width: 100,
                     template: "#if(sumberData != null) { # #= sumberData.sumberData # #} else { #-# } #",
                 }, {
                     field: "jenisJabatan",
                     title: "<h3 class='small-font'>Jenis<br>Jabatan</h3>",
-                    width: "100px",
+                    width: 100,
                     template: "#if(jenisJabatan) { # #= jenisJabatan.jenisJabatan # #} else { #-# } #",
                 }, {
                     field: "jabatan",
                     title: "<h3 class='small-font'>Jabatan</h3>",
-                    width: "110px",
+                    width: 110,
                     template: "#if(jabatan) { # #= jabatan.namaJabatan # #} else { #-# } #",
                 }, {
                     field: "unitKerjaPegawai",
                     title: "<h3 class='small-font'>Unit Kerja</h3>",
-                    width: "110px",
+                    width: 110,
                     template: "#if(unitKerjaPegawai) { # #= unitKerjaPegawai.name # #} else { #-# } #",
                 }, {
                     field: "subUnitKerjaPegawai",
                     title: "<h3 class='small-font'>Sub<br>Unit Kerja</h3>",
-                    width: "110px",
+                    width: 110,
                     template: "#if(subUnitKerjaPegawai) { # #= subUnitKerjaPegawai.name # #} else { #-# } #",
                 }, {
                     field: "atasanLangsung",
                     title: "<h3 class='small-font'>Atasan<br>Langsung</h3>",
-                    width: "110px",
+                    width: 110,
                     template: "#if(!atasanLangsungDireksi) { # #= atasanLangsung.namaLengkap # #} else { # #=atasanLangsungDireksi# # } #"
                 }, {
                     field: "pejabatPenilai",
                     title: "<h3 class='small-font'>Atasan<br>Pejabat Penilai</h3>",
-                    width: "110px",
+                    width: 110,
                     template: "#if(!pejabatPenilaiDireksi) { # #= pejabatPenilai.namaLengkap # #} else { # #=pejabatPenilaiDireksi# # } #"
                 }, {
                     field: "atasanLangsungDireksi",
                     title: "<h3 class='small-font'>Atasan<br>Langsung</h3>",
-                    width: "110px",
+                    width: 110,
                     hidden: true
                 }, {
                     field: "pejabatPenilaiDireksi",
                     title: "<h3 class='small-font'>Pejabat<br>Penilai</h3>",
-                    width: "110px",
+                    width: 110,
                     hidden: true
                 }, {
                     field: "grade",
                     title: "<h3 class='small-font'>Grade</h3>",
-                    width: "70px",
+                    width: 70,
                     template: "#if(grade) { # #= grade # #} else { #-# } #",
                 }, {
                     field: "kelompokJabatan",
                     title: "<h3 class='small-font'>Kelompok Jabatan</h3>",
-                    width: "110px",
+                    width: 110,
                     template: "#if(kelompokJabatan) { # #= kelompokJabatan.detailKelompokJabatan # #} else { #-# } #"
                 }, {
                     field: "nilaiJabatan",
                     title: "<h3 class='small-font'>Nilai Jabatan</h3>",
-                    width: "70px",
+                    width: 70,
                     template: "#if(nilaiJabatan) { # #= nilaiJabatan # #} else { #-# } #",
                 }, {
                     field: "isMonitoring",
                     title: "<h3 class='small-font'>Akses<br/>Monitoring</h3>",
-                    width: "80px",
+                    width: 80,
                     template: "#if(isMonitoring) { #Ya# } else { #Tidak# } #",
                     attributes: {
                         style: "text-align:center;valign=middle"
@@ -95,7 +97,7 @@ define(['initialize'], function (initialize) {
                 }, {
                     field: "isCanCreateJadwal",
                     title: "<h3 class='small-font'>Membuat Jadwal</h3>",
-                    width: "80px",
+                    width: 80,
                     template: "#if(isCanCreateJadwal) { #Ya# } else { #Tidak# } #",
                     attributes: {
                         style: "text-align:center;valign=middle"
@@ -122,11 +124,15 @@ define(['initialize'], function (initialize) {
                         imageClass: "k-icon k-delete"
                     }],
                     title: "",
-                    width: "170px",
+                    width: 170,
                     attributes: {
                         style: "text-align:center;valign=middle"
                     },
                 }],
+                dataBound:function(){
+					$('.k-grid-header-wrap').css({'touch-action': 'auto'})
+					$('.k-selectable').css({'touch-action': 'auto'})
+				}
             };
             $scope.isNewData = !$state.params.idPegawai || $state.params.idPegawai === "" ? true : false
             // console.log("New Data?", $scope.isNewData)
