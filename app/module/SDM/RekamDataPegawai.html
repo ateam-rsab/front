@@ -921,16 +921,30 @@
                     </fieldset>
                 </div>
 
-                <fieldset class="borderBox containerBorderBox">
+                <!-- <fieldset class="borderBox containerBorderBox">
+                    <legend>
+                        <strong>
+                            <span style="font-size: 20px;">Jabatan</span>
+                        </strong>
+                    </legend> -->
+                    <!-- <div id="gridJabatanInternal" kendo-grid options="gridJabatanInternal"
+                        data-source="dataSourceJabatanInternal">
+                    </div> -->
+                <!-- </fieldset> -->
+                <div class="grid_12 borderBox containerBorderBox">
                     <legend>
                         <strong>
                             <span style="font-size: 20px;">Jabatan</span>
                         </strong>
                     </legend>
-                    <div id="gridJabatanInternal" kendo-grid options="gridJabatanInternal"
-                        data-source="dataSourceJabatanInternal">
-                    </div>
-                </fieldset>
+                  
+                    <kendo-grid id="gridJabatanInternal" data-source="dataSourceJabatanInternal"
+                        options="gridJabatanInternal"
+                        k-selectable="'row'"
+                        k-sortable="'true'"
+                        k-resizable="'true'"
+                        ></kendo-grid>
+                </div>
                 <!-- <div class="grid_12 borderBox containerBorderBox" ng-show="isAtasan">
                         <div class="grid_12">
                             <div class="panel-header panel-white"><span class="title" c-translate>Jabatan Internal / Struktural </span></div>
