@@ -672,6 +672,10 @@
                     {
                         "name": "Logbook Kinerja",
                         "link": "#/LogbookKinerja"
+                    },
+                    {
+                        "name": "Logbook Kinerja (Simulasi)",
+                        "link": "#/LogbookKinerjaPoin"
                     }
                 ]
             },
