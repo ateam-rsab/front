@@ -6580,6 +6580,30 @@
     ]
   },
   {
+    "name": "LogbookKinerjaPoin",
+    "url": "/LogbookKinerjaPoin",
+    "templateurl": "module/SDM/LogbookKinerjaPoin.html",
+    "controller": "LogbookKinerjaPoinCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      }
+    ]
+  },
+  {
     "name": "CapaianUraianTugas",
     "url": "/CapaianUraianTugas",
     "templateurl": "module/SDM/CapaianUraianTugas.html",
