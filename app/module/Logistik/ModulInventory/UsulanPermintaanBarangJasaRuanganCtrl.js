@@ -229,6 +229,10 @@ define(['initialize'], function (initialize) {
                         {
                             id: 12,
                             kelompokbarang: 'Tunjangan Lainnya'
+                        },
+                        {
+                            id: 13,
+                            kelompokbarang: 'Jasa'
                         }
                     ]
                     BulanRomawi = $scope.listUnitPengusul[0].bulanromawi

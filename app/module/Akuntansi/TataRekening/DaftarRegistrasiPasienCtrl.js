@@ -86,86 +86,89 @@ define(['initialize'], function (initialize) {
 				},
 				selectable: 'row',
 				pageable: true,
+				resizable: true,
+				navigatable: true,
+				// filterable:'row',
 				columns: [{
 						"field": "tglregistrasi",
 						"title": "Tgl Registrasi",
-						"width": "80px",
+						"width": 80,
 						"template": "<span class='style-left'>{{formatTanggal('#: tglregistrasi #')}}</span>"
 					},
 					{
 						"field": "noregistrasi",
 						"title": "NoReg",
-						"width": "80px"
+						"width": 80
 					},
 					{
 						"field": "nocm",
 						"title": "NoRM",
-						"width": "80px",
+						"width": 80,
 						"template": "<span class='style-center'>#: nocm #</span>"
 					},
 					{
 						"field": "namapasien",
 						"title": "Nama Pasien",
-						"width": "150px",
+						"width": 150,
 						"template": "<span class='style-left'>#: namapasien #</span>"
 					},
 					{
 						"field": "usia",
 						"title": "Usia Pasien",
-						"width": "150px"
+						"width": 150
 					},
 					{
 						"field": "namaruangan",
 						"title": "Nama Ruangan",
-						"width": "150px",
+						"width": 150,
 						"template": "<span class='style-left'>#: namaruangan #</span>"
 					},
 					{
 						"field": "namadokter",
 						"title": "Nama Dokter",
-						"width": "150px",
+						"width": 150,
 						"template": '# if( namadokter==null) {# - # } else {# #= namadokter # #} #'
 					},
 					{
 						"field": "kelompokpasien",
 						"title": "Kelompok Pasien",
-						"width": "100px",
+						"width": 100,
 						"template": "<span class='style-left'>#: kelompokpasien #</span>"
 					},
 					{
 						"field": "tglpulang",
 						"title": "Tgl Pulang",
-						"width": "80px",
+						"width": 80,
 						"template": "<span class='style-left'>{{formatTanggal('#: tglpulang #')}}</span>"
 					},
 					{
 						"field": "statuspasien",
 						"title": "Status",
-						"width": "80px",
+						"width": 80,
 						"template": "<span class='style-center'>#: statuspasien #</span>"
 					},
 					{
 						"field": "nostruk",
 						"title": "NoStrukVerif",
-						"width": "100px",
+						"width": 100,
 						"template": '# if( nostruk==null) {# - # } else {# #= nostruk # #} #'
 					},
 					{
 						"field": "nosbm",
 						"title": "NoSBM",
-						"width": "100px",
+						"width": 100,
 						"template": '# if( nosbm==null) {# - # } else {# #= nosbm # #} #'
 					},
 					{
 						"field": "kasir",
 						"title": "Kasir",
-						"width": "100px",
+						"width": 100,
 						"template": '# if( kasir==null) {# - # } else {# #= kasir # #} #'
 					},
 					{
 						"field": "nosep",
 						"title": "No SEP",
-						"width": "150px",
+						"width": 150,
 						"template": '# if( nosep==null) {# - # } else {# #= nosep # #} #'
 					},
 					{
@@ -174,9 +177,13 @@ define(['initialize'], function (initialize) {
 							click: cetakSEP,
 							imageClass: "k-icon k-i-excel"
 						}],
-						width: "120px",
+						width: 120,
 					}
-				]
+				],
+				dataBound:function(){
+					$('.k-grid-header-wrap').css({'touch-action': 'auto'})
+					$('.k-selectable').css({'touch-action': 'auto'})
+				}
 			};
 
 			function cetakSEP(e) {
@@ -263,7 +270,6 @@ define(['initialize'], function (initialize) {
 					var chacePeriode = tglAwal + "~" + tglAkhir;
 					cacheHelper.set('DaftarRegistrasiPasienCtrl', chacePeriode);
 				});
-
 			};
 			$scope.UbahDokter = function () {
 				$scope.cboDokter = true
