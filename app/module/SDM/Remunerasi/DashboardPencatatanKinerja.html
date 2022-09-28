@@ -233,18 +233,24 @@
                 <div class="grid_12" ng-if="showDetailKualitas">
                     <div class="grid_6" ng-repeat="kualitas in dataDetailDashboardKinerja.kualitas.data">
                         <div class="grid_12" style="margin-left: 0.5em;">
-                            <span ng-click="showDetail(kualitas)"><i class="fa fa-ellipsis-v"></i></span>
+                            <!-- <span ng-click="showDetail(kualitas)"><i class="fa fa-ellipsis-v"></i></span> -->
                             <span>{{kualitas.namaIndikator}}</span>
                         </div>
-                        <div class="grid_11">
+                        <div class="grid_9">
                             <progress class="mt-progress-bar egg-blue" max="100"
                                 value="{{kualitas.persenCapaianDibulatkan}}"
                                 data-label="{{kualitas.persenCapaianDibulatkan}}%"></progress>
                         </div>
-                        <div class="grid_1" ng-show="isAksesWR2">
-                            <md-button class="md-raised md-primary medium-button" ng-click="addData(kualitas)">
-                                <i class="fa fa-plus"></i>
-                            </md-button>
+                        <div class="grid_3">
+                            <section layout="row" layout-align="center center">
+                                <md-button class="md-raised md-warn medium-button" ng-click="showDetail(kualitas)">
+                                    <span style="margin-right: 5px;">Detail</span>
+                                    <i class="fa fa-book"></i>
+                                </md-button>
+                                <md-button class="md-raised md-primary medium-button" ng-click="addData(kualitas)" ng-show="isAksesWR2">
+                                    <i class="fa fa-plus"></i>
+                                </md-button>
+                            </section>
                         </div>
                     </div>
                 </div>
@@ -276,17 +282,23 @@
                 <div class="grid_12" ng-if="showDetailPerilaku">
                     <div class="grid_6" ng-repeat="perilaku in dataDetailDashboardKinerja.perilaku.data">
                         <div class="grid_12" style="margin-left: 0.5em;">
-                            <span ng-click="showDetail(perilaku)"><i class="fa fa-ellipsis-v"></i></span>
+                            <!-- <span ng-click="showDetail(perilaku)"><i class="fa fa-ellipsis-v"></i></span> -->
                             <span>{{perilaku.namaIndikator}}</span>
                         </div>
-                        <div class="grid_11">
+                        <div class="grid_9">
                             <progress class="mt-progress-bar" max="100" value="{{perilaku.persenCapaianDibulatkan}}"
                                 data-label="{{perilaku.persenCapaianDibulatkan}}%"></progress>
                         </div>
-                        <div class="grid_1" ng-show="isAksesWR3">
-                            <md-button class="md-raised md-primary medium-button" ng-click="addData(perilaku)">
-                                <i class="fa fa-plus"></i>
-                            </md-button>
+                        <div class="grid_3">
+                            <section layout="row" layout-align="center center">
+                                <md-button class="md-raised md-warn medium-button" ng-click="showDetail(perilaku)">
+                                    <span style="margin-right: 5px;">Detail</span>
+                                    <i class="fa fa-book"></i>
+                                </md-button>
+                                <md-button class="md-raised md-primary medium-button" ng-click="addData(perilaku)" ng-show="isAksesWR3">
+                                    <i class="fa fa-plus"></i>
+                                </md-button>
+                            </section>
                         </div>
                     </div>
                 </div>

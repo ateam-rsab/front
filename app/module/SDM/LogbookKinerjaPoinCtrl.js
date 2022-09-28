@@ -1,6 +1,6 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('LogbookKinerjaCtrl', ['$q', '$http', '$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm', 'ManageSdmNew', 'DateHelper', 'ReportHelper', 'FindPegawai', 'CetakHelper', 'FindSdm',
+    initialize.controller('LogbookKinerjaPoinCtrl', ['$q', '$http', '$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm', 'ManageSdmNew', 'DateHelper', 'ReportHelper', 'FindPegawai', 'CetakHelper', 'FindSdm',
         function ($q, $http, $rootScope, $scope, ModelItem, $state, ManageSdm, ManageSdmNew, dateHelper, reportHelper, findPegawai, cetakHelper, FindSdm) {
             $scope.item = {};
             $scope.now = new Date();
@@ -26,24 +26,7 @@ define(['initialize'], function (initialize) {
                 }
                 $scope.isRouteLoading = false;
             })
-            $scope.generateGridColumn = function () {
-                let year =new Date().getYear();
-                let month =new Date().getMonth();
-                if($scope.item.periode){year=$scope.item.periode.getYear();month=$scope.item.periode.getMonth();}
-                var dateInMonth = new Date(year, month + 1, 0);
-                var listDay = [];
-                for (var i = 0; i < dateInMonth.getDate(); i++) {
-                    var data = {
-                        field: "[" + (i + 1) + "]",
-                        title: (i + 1).toString(),
-                        width: "50px", attributes: { style: "text-align: right;" },
-                        headerAttributes: { style: "text-align: center;" }
-                    };
-                    listDay.push(data);
-                }
 
-                return listDay;
-            }
             $scope.cari = function () {
                 var listRawRequired = [
                     "item.pegawai|k-ng-model|Nama pegawai",
@@ -53,10 +36,9 @@ define(['initialize'], function (initialize) {
                 if (isValid.status) {
                     $scope.isRouteLoading = true;
                     $q.all([
-                        ManageSdmNew.getListData("sdm/get-all-tindakan-dokter-rescored/" + dateHelper.getFormatMonthPicker($scope.item.periode) + "/" + $scope.item.pegawai.id),
+                        ManageSdmNew.getListData("sdm/get-all-pelayanan-dokter/" + dateHelper.getFormatMonthPicker($scope.item.periode) + "/" + $scope.item.pegawai.id),
                         ManageSdmNew.getListData("sdm/get-rekapitulasi-capaian/" + dateHelper.getFormatMonthPicker($scope.item.periode) + "/" + $scope.item.pegawai.id)
-                    ])
-                    .then(function (res) {
+                    ]).then(function (res) {
                         if (res[0].statResponse) {
                             // define grid logbook kinerja and show data
                             $scope.showGridKinerja = true;
@@ -135,9 +117,9 @@ define(['initialize'], function (initialize) {
                                         style: "text-align: right;"
                                     }
                                 }, {
-                                    field: "hargaKelas1",
+                                    field: "harga",
                                     title: "Tarif (Rp.)",
-                                    template: '# if( hargaKelas1 != null ) {# #= hargaKelas1# #} else {# #= harga# #} #',
+                                    // template: '# if( hargaKelas1 != null ) {# #= hargaKelas1# #} else {# #= harga# #} #',
                                     format: "{0:n0}",
                                     width: 100,
                                     headerAttributes: {
@@ -256,6 +238,7 @@ define(['initialize'], function (initialize) {
                                 }],
                                 dataBound: $scope.onDataBound
                             };
+
                             $scope.dataSource = new kendo.data.DataSource({
                                 data: dataGrid, aggregate: [
                                     { field: "totalKonsul", aggregate: "sum" },
@@ -265,12 +248,8 @@ define(['initialize'], function (initialize) {
                                     { field: "pointQty", aggregate: "sum" },
                                     { field: "kontribusi", aggregate: "sum" }
                                 ]
-                            });
-                            var grid = $("#gridLogKinerja").data("kendoGrid");
-                            if(grid){  
-                                grid.setOptions($scope.mainGridOption);
-                            }
-                            
+                            })
+
                             $scope.isLoading = false;
                             $scope.isRouteLoading = false;
                         }
@@ -339,6 +318,7 @@ define(['initialize'], function (initialize) {
                                 }],
                                 editable: false
                             };
+
                             $scope.gridUraianTugas = new kendo.data.DataSource({
                                 data: res[1].data.data.uraianTugas,
                                 schema: {
@@ -425,7 +405,7 @@ define(['initialize'], function (initialize) {
                 ]
                 var isValid = ModelItem.setValidation($scope, listRawRequired);
                 if (isValid.status) {
-                    var fixUrlLaporan = cetakHelper.openURLReporting("reporting/logbookTindakanDokterDetailPasien?periode=" + dateHelper.getFormatMonthPicker($scope.item.periode)
+                    var fixUrlLaporan = cetakHelper.openURLReporting("reporting/logbookPelayananDokterDetailPasien?periode=" + dateHelper.getFormatMonthPicker($scope.item.periode)
                         + "&idPegawai=" + $scope.item.pegawai.id + "&idJabatan=" + $scope.item.jabatanCetak.id + "&idAtasan=" + $scope.item.atasanCetak.id
                         + "&idJabatanAtasan=" + $scope.item.jabatanAtasanCetak.id + "&ffs=false");
 
@@ -435,6 +415,23 @@ define(['initialize'], function (initialize) {
                 }
             }
 
+            $scope.generateGridColumn = function () {
+                var year = $scope.item.periode.getYear();
+                var month = $scope.item.periode.getMonth();
+                var dateInMonth = new Date(year, month + 1, 0);
+                var listDay = [];
+                for (var i = 0; i < dateInMonth.getDate(); i++) {
+                    var data = {
+                        field: "[" + (i + 1) + "]",
+                        title: (i + 1).toString(),
+                        width: "50px", attributes: { style: "text-align: right;" },
+                        headerAttributes: { style: "text-align: center;" }
+                    };
+                    listDay.push(data);
+                }
+
+                return listDay;
+            }
 
             $scope.onDataBound = function (e) {
                 var grid = $("#gridLogKinerja").data("kendoGrid");
@@ -555,7 +552,7 @@ define(['initialize'], function (initialize) {
                 ];
                 var isValid = ModelItem.setValidation($scope, listRawRequired);
                 if (isValid.status) {
-                    var fixUrlLaporan = cetakHelper.openURLReporting("reporting/lapLogbookKinerjaStaffMedis?idDokter=" + $scope.item.pegawai.id + "&idJabatan=" + $scope.item.jabatanCetak.id
+                    var fixUrlLaporan = cetakHelper.openURLReporting("reporting/lapLogbookPelayananStaffMedis?idDokter=" + $scope.item.pegawai.id + "&idJabatan=" + $scope.item.jabatanCetak.id
                         + "&periode=" + dateHelper.getFormatMonthPicker($scope.item.periode));
 
                     window.open(fixUrlLaporan, '', 'width=800,height=600')

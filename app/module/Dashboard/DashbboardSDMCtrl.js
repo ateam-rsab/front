@@ -721,6 +721,11 @@ define(['initialize'], function (initialize) {
 								{ field: "pointQty", aggregate: "sum" }
 							]
 						});
+
+						var grid = $("#gridOrder").data("kendoGrid");
+                            if(grid){  
+                                grid.setOptions($scope.mainGridOption);
+                            }
 						// if(dataGrid.length > 0){
 						$scope.showCetakLogbook = true;
 						// } else {
@@ -1216,6 +1221,10 @@ define(['initialize'], function (initialize) {
 								// ,{ field: "pointQty", aggregate: "sum" }
 							]
 						});
+						var grid = $("#gridOrderService").data("kendoGrid");
+                            if(grid){  
+                                grid.setOptions($scope.gridFeeService);
+                            }
 						$scope.isRouteLoading = false;
 					}, (error) => {
 						$scope.isRouteLoading = false;
