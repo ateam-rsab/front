@@ -1,4 +1,5 @@
 define(['Configuration'], function(config) {
+     const baseUrlAuthPhp = config.baseUrlAuthPhp;
      var baseUrlAction = config.baseUrlAction;
      var baseUrlApiAction = config.baseApiPostData;
      var baseApiPostData = config.baseApiPostData;
@@ -42,6 +43,11 @@ define(['Configuration'], function(config) {
                 return r.get({
                     url: baseUrlActionSDM + urlGet
                 });
+            },
+            authToken:function(urlPost){
+                return r.post({
+                    url:baseUrlAuthPhp+urlPost
+                }, {})
             }
         }
      }]);

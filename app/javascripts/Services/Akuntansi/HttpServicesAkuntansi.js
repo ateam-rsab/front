@@ -187,7 +187,14 @@
                                  deffer.resolve(data);
                              }
                          }, function errorCallback(response) {
-
+                            if(response.status==401){
+                                if(response.data.code==1){
+                                    window.messageContainer.error("Opss! "+response.data.message);
+                                    setTimeout(() => {
+                                        window.location = "/app/Logout";
+                                    }, 3000);
+                                }
+                            }
                              var data = {
                                  "statResponse": false,
                              }
@@ -231,6 +238,14 @@
                              deffer.resolve(data);
                          }
                      }, function errorCallback(response) {
+                        if(response.status==401){
+                            if(response.data.code==1){
+                                window.messageContainer.error("Opss! "+response.data.message);
+                                setTimeout(() => {
+                                    window.location = "/app/Logout";
+                                }, 3000);
+                            }
+                        }
                          var data = {
                              "statResponse": false,
                          }
@@ -355,6 +370,14 @@
                                  deffer.resolve(data);
                              }
                          }, function errorCallback(response) {
+                            if(response.status==401){
+                                if(response.data.code==1){
+                                    window.messageContainer.error("Opss! "+response.data.message);
+                                    setTimeout(() => {
+                                        window.location = "/app/Logout";
+                                    }, 3000);
+                                }
+                            }
                              var data = {
                                  "statResponse": false,
                              }
@@ -481,6 +504,14 @@
                                  deffer.resolve(data);
                              }
                          }, function errorCallback(response) {
+                            if(response.status==401){
+                                if(response.data.code==1){
+                                    window.messageContainer.error("Opss! "+response.data.message);
+                                    setTimeout(() => {
+                                        window.location = "/app/Logout";
+                                    }, 3000);
+                                }
+                            }
                              var data = {
                                  "statResponse": false,
                              }
@@ -583,6 +614,14 @@
                              deffer.resolve(data);
                          }
                      }, function errorCallback(response) {
+                        if(response.status==401){
+                            if(response.data.code==1){
+                                window.messageContainer.error("Opss! "+response.data.message);
+                                setTimeout(() => {
+                                    window.location = "/app/Logout";
+                                }, 3000);
+                            }
+                        }
                          var data = {
                              "statResponse": false,
                          }
@@ -625,6 +664,14 @@
                              deffer.resolve(data);
                          }
                      }, function errorCallback(response) {
+                        if(response.status==401){
+                            if(response.data.code==1){
+                                window.messageContainer.error("Opss! "+response.data.message);
+                                setTimeout(() => {
+                                    window.location = "/app/Logout";
+                                }, 3000);
+                            }
+                        }
                          var data = {
                              "statResponse": false,
                          }
@@ -753,9 +800,16 @@
                      response.statResponse = true;
                      deffer.resolve(response);
                  }, function errorCallback(response) {
-
-                     response.statResponse = false;
-                     deffer.resolve(response);
+                    if(response.status==401){
+                        if(response.data.code==1){
+                            window.messageContainer.error("Opss! "+response.data.message);
+                            setTimeout(() => {
+                                window.location = "/app/Logout";
+                            }, 3000);
+                        }
+                    }
+                    response.statResponse = false;
+                    deffer.resolve(response);
                  });
                  return deffer.promise;
              },
@@ -794,28 +848,36 @@
                      deffer.resolve(response);
                  }, function errorCallback(response) {
                      //var msgError = response.headers("x-message");
-
-                     if (response.data != null) {
-                         var msgError = response.data.messages;
-
-                         if (msgError != "") {
-                             var p = response.data.errors
-
-                             for (var key in p) {
-                                 if (p.hasOwnProperty(key)) {
-                                     for (var i = 0; i < p[key].length; i++) {
-                                         window.messageContainer.error(key + " : " + p[key][i])
-                                     }
-                                 }
-                             }
-
-                             window.messageContainer.error(msgError);
-                         }
-                     } else {
-                         window.messageContainer.error("Koneksi terputus");
-                     }
-
-                     deffer.reject(response);
+                    if(response.status==401){
+                        if(response.data.code==1){
+                            window.messageContainer.error("Opss! "+response.data.message);
+                            setTimeout(() => {
+                                window.location = "/app/Logout";
+                            }, 3000);
+                        }
+                    }else{
+                        if (response.data != null) {
+                        
+                            var msgError = response.data.messages;
+   
+                            if (msgError != "") {
+                                var p = response.data.errors
+   
+                                for (var key in p) {
+                                    if (p.hasOwnProperty(key)) {
+                                        for (var i = 0; i < p[key].length; i++) {
+                                            window.messageContainer.error(key + " : " + p[key][i])
+                                        }
+                                    }
+                                }
+   
+                                window.messageContainer.error(msgError);
+                            }
+                        } else {
+                            window.messageContainer.error("Koneksi terputus");
+                        }
+                    }
+                    deffer.reject(response);
 
                  });
                  return deffer.promise;
@@ -852,22 +914,30 @@
 
                      deffer.resolve(response);
                  }, function errorCallback(response) {
-                     var msgError = response.data.messages;
+                    if(response.status==401){
+                        if(response.data.code==1){
+                            window.messageContainer.error("Opss! "+response.data.message);
+                            setTimeout(() => {
+                                window.location = "/app/Logout";
+                            }, 3000);
+                        }
+                    }else{
+                        var msgError = response.data.messages;
 
-                     if (msgError != "") {
-                         var p = response.data.errors
+                        if (msgError != "") {
+                            var p = response.data.errors
 
-                         for (var key in p) {
-                             if (p.hasOwnProperty(key)) {
-                                 for (var i = 0; i < p[key].length; i++) {
-                                     window.messageContainer.error(key + " : " + p[key][i])
-                                 }
-                             }
-                         }
+                            for (var key in p) {
+                                if (p.hasOwnProperty(key)) {
+                                    for (var i = 0; i < p[key].length; i++) {
+                                        window.messageContainer.error(key + " : " + p[key][i])
+                                    }
+                                }
+                            }
 
-                         window.messageContainer.error(msgError);
-                     }
-
+                            window.messageContainer.error(msgError);
+                        }
+                    }
                      deffer.reject(response);
                  });
                  return deffer.promise;
@@ -899,20 +969,28 @@
 
                      deffer.resolve(response);
                  }, function errorCallback(response) {
-                     var msgError = response.headers("x-message");
+                    if(response.status==401){
+                        if(response.data.code==1){
+                            window.messageContainer.error("Opss! "+response.data.message);
+                            setTimeout(() => {
+                                window.location = "/app/Logout";
+                            }, 3000);
+                        }
+                    }else{
+                        var msgError = response.headers("x-message");
 
-                     if (msgError != "") {
-                         var p = response.data.errors
-
-                         for (var key in p) {
-                             if (p.hasOwnProperty(key)) {
-                                 for (var i = 0; i < p[key].length; i++) {
-                                     window.messageContainer.error(key + " : " + p[key][i])
-                                 }
-                             }
-                         }
-                     }
-
+                        if (msgError != "") {
+                            var p = response.data.errors
+   
+                            for (var key in p) {
+                                if (p.hasOwnProperty(key)) {
+                                    for (var i = 0; i < p[key].length; i++) {
+                                        window.messageContainer.error(key + " : " + p[key][i])
+                                    }
+                                }
+                            }
+                        }   
+                    }
                      deffer.reject(response);
                  });
                  return deffer.promise;

@@ -199,6 +199,10 @@
             {
                 "name": "Monitoring Visite Dokter",
                 "link": "#/MonitoringVisiteDokter"
+            },
+            {
+                "name": "Rekapitulasi Pendapatan Ruangan",
+                "link": "#/LaporanKeuanganRuangan"
             }
         ]
     },
