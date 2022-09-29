@@ -17,7 +17,11 @@ define(['initialize'], function (initialize) {
                 formISARC: true,
                 messageAbsensi: false
             };
-
+            const authToken=()=>{
+                ManageSdmNew.authToken("cek-token").then(function(res){
+                    console.log(res)
+                });
+            }
             $scope.widgetKinerja = () => {
                 let dateNow = DateHelper.toTimeStamp(new Date());
 
@@ -34,7 +38,7 @@ define(['initialize'], function (initialize) {
                     $scope.listBirthdayData = res.data.data;
                 })
             }
-            $scope.getBirthdayData();
+           
 
             $scope.widgetWorkingRecord = () => {
                 let dateNow = DateHelper.toTimeStamp(new Date());
@@ -53,6 +57,8 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.OnInit = () => {
+                authToken();
+                $scope.getBirthdayData();
                 $scope.videoPlayed = {
                     title: 'Pegawai Ulang Tahun 1 s/d 9 Januari 2022',
                     src: 'https://smart.rsabhk.co.id:2222/vid/ultah-jan-1-9.mp4'

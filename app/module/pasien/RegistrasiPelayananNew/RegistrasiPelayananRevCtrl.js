@@ -217,7 +217,6 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                     manageServicePhp.getDataTableTransaksi("registrasipasien/get-data-combo", true)
                         .then(function (dat) {
                             $scope.listRuangan = dat.data.ruanganranap;
-
                         })
                 } else if (data === false || data === undefined) {
                     manageServicePhp.getDataTableTransaksi("registrasipasien/get-data-combo", true)
@@ -264,12 +263,11 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                 }
             }
             $scope.$watch('item.kelas', function (e) {
-                if (e === undefined) return;
-                var kelasId = "idKelas=" + $scope.item.kelas.id;
-                var ruanganId = "&idRuangan=" + $scope.item.ruangan.id;
-                manageServicePhp.getDataTableTransaksi("registrasipasien/get-kamarbyruangankelas?" + kelasId + ruanganId)
+                if(e != undefined){
+                    var kelasId = "idKelas=" + $scope.item.kelas.id;
+                    var ruanganId = "&idRuangan=" + $scope.item.ruangan.id;
+                    manageServicePhp.getDataTableTransaksi("registrasipasien/get-kamarbyruangankelas?" + kelasId + ruanganId)
                     .then(function (b) {
-
                         if ($scope.model.rawatGabung) {
                             $scope.listKamar = b.data.kamar;
                         } else {
@@ -278,11 +276,12 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                             })
                         }
                     });
+                }
             });
             $scope.$watch('item.kamar', function (e) {
-                if (e === undefined) return;
-                var kamarId = $scope.item.kamar.id;
-                manageServicePhp.getDataTableTransaksi("registrasipasien/get-nobedbykamar?idKamar=" + kamarId)
+                if (e != undefined){
+                    var kamarId = $scope.item.kamar.id;
+                    manageServicePhp.getDataTableTransaksi("registrasipasien/get-nobedbykamar?idKamar=" + kamarId)
                     .then(function (a) {
                         if ($scope.model.rawatGabung) {
                             $scope.listNoBed = a.data.bed;
@@ -292,15 +291,15 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                             })
                         }
                     })
+                }
             });
 
             $scope.$watch('item.kelas', function (e) {
-                if (e === undefined) return;
-                var kelasId = "idKelas=" + $scope.item.kelas.id;
-                var ruanganId = "&idRuangan=" + $scope.item.ruangan.id;
-                manageServicePhp.getDataTableTransaksi("registrasipasien/get-kamarbyruangankelas?" + kelasId + ruanganId)
+                if (e != undefined){
+                    var kelasId = "idKelas=" + $scope.item.kelas.id;
+                    var ruanganId = "&idRuangan=" + $scope.item.ruangan.id;
+                    manageServicePhp.getDataTableTransaksi("registrasipasien/get-kamarbyruangankelas?" + kelasId + ruanganId)
                     .then(function (a) {
-
                         if ($scope.model.rawatGabung) {
                             $scope.listKamar = a.data.kamar;
                         } else {
@@ -309,6 +308,8 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                             })
                         }
                     });
+                }
+                
             });
 
             $scope.$watch('item.kelompokPasien', function (e) {

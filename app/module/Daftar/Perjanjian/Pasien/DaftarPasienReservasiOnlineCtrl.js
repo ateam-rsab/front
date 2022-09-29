@@ -31,10 +31,12 @@ define(['initialize'], function (initialize) {
 
             $scope.columnResevasi = {
                 toolbar: [{
-                    name: "create",
-                    text: "Lihat",
-                    template: '<button ng-click="lihatJadwalDokter()" class="k-button k-button-icontext k-grid-upload" href="\\#">Lihat Jadwal Dokter</button>'
-                }],
+                        name: "create",
+                        text: "Lihat",
+                        template: '<button ng-click="lihatJadwalDokter()" class="k-button k-button-icontext k-grid-upload" href="\\#">Lihat Jadwal Dokter</button>'
+                    },
+                    { text: "export", name: "Export to Excel", template: '<button ng-click="exportReservasi()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>' }
+                ],
                 filterable: {
                     extra: false,
                     operators: {
@@ -113,6 +115,64 @@ define(['initialize'], function (initialize) {
                 $state.go("InformasiJadwalDokterV2");
             }
 
+            $scope.exportReservasi=()=>{
+                var tempDataExport = [];
+                var rows = [{
+                    cells: [
+                        { value: "Kode Reservasi" },
+                        { value: "No. Rekam Medis" },
+                        { value: "Tanggal Reservasi" },
+                        { value: "Nama Pasien" },
+                        { value: "Ruangan Tujuan" },
+                        { value: "Dokter" },
+                        { value: "Status" },
+                        { value: "Nomor Telepon" },
+
+                    ]
+                }];
+                tempDataExport = $scope.listPasien;
+                for (let i = 0; i < tempDataExport._data.length; i++) {
+                    rows.push({
+                        cells: [
+                            { value: tempDataExport._data[i].noreservasi },
+                            { value: tempDataExport._data[i].nocm },
+                            { value: tempDataExport._data[i].tanggalreservasi },
+                            { value: tempDataExport._data[i].namapasien },
+                            { value: tempDataExport._data[i].namaruangan },
+                            { value: tempDataExport._data[i].dokter },
+                            { value: tempDataExport._data[i].jenis },
+                            { value: tempDataExport._data[i].status },
+                            { value: tempDataExport._data[i].notelepon },
+                        ]
+                    })
+                }
+
+                var workbook = new kendo.ooxml.Workbook({
+                    sheets: [
+                        {
+                            freezePane: { rowSplit: 1 },
+                            columns: [
+                                // Column settings (width)
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                            ],
+                            // Title of the sheet
+                            title: "Daftar Pasien Perjanjian",
+                            // Rows of the sheet
+                            rows: rows
+                        }
+                    ]
+                });
+                //save the file as Excel file with extension xlsx
+                kendo.saveAs({ dataURI: workbook.toDataURL(), fileName: "Daftar Pasien Perjanjian"+moment($scope.now).format( 'DD/MMM/YYYY')+".xlsx" });
+            }
 
             // $scope.Column = [
             //     {

@@ -23,7 +23,13 @@ define(['initialize'], function (initialize) {
             if (listKategoriRemun.includes($scope.dataLogin.kategoryPegawai.id)) {
                 $scope.showSyaratKetentuan = true
             }
-
+            
+            const authToken=()=>{
+                ManageSdmNew.authToken("cek-token").then(function(res){
+                    console.log(res)
+                });
+            }
+           
             let getListMaster = () => {
                 $q.all([
                     ManageSdmNew.getListData("sdm/get-daftar-profesi?pegawaiId=" + $scope.dataLogin.id).then(function (res) {
@@ -122,6 +128,7 @@ define(['initialize'], function (initialize) {
             $scope.getJabatanPegawai($scope.dataLogin.id);
 
             $scope.init = () => {
+                authToken();
                 $scope.optGrid1 = {
                     pageable: true,
                     scrollable: true,
