@@ -52,7 +52,7 @@ define(['Configuration'], function (config) {
                         response.statResponse = true;
                         deffer.resolve(response);
                     }, function errorCallback(response, err, da) {
-                        console.log(response);
+                        // console.log(response);
                         if(response.status==401){
                             if(response.data.code==1){
                                 window.messageContainer.error("Opss! "+response.data.message);

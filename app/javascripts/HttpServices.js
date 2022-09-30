@@ -35,6 +35,14 @@
                      response.statResponse = true;
                      deffer.resolve(response);
                  }, function errorCallback(response, err, da) {
+                    if(response.status==401){
+                        if(response.data.code==1){
+                            window.messageContainer.error("Opss! "+response.data.message);
+                            setTimeout(() => {
+                                window.location = "/app/Logout";
+                            }, 3000);
+                        }
+                    }
                      response.statResponse = false;
                      deffer.reject(response);
                  });
@@ -84,17 +92,25 @@
                      deffer.resolve(response);
                  }, function errorCallback(response) {
                      var msgError = "";
-                     if (response.data.fieldErrors != undefined) {
+                     if(response.status==401){
+                        if(response.data.code==1){
+                            window.messageContainer.error("Opss! "+response.data.message);
+                            setTimeout(() => {
+                                window.location = "/app/Logout";
+                            }, 3000);
+                        }
+                    }else{
+                        if (response.data.fieldErrors != undefined) {
 
-                         for (var i = 0; i < response.data.fieldErrors.length; i++) {
-                             msgError = response.data.fieldErrors[i].message;
-                             window.messageContainer.error(msgError);
-                         }
-                     } else {
-                         msgError = response.statusText;
-                         window.messageContainer.error(msgError);
-                     }
-
+                            for (var i = 0; i < response.data.fieldErrors.length; i++) {
+                                msgError = response.data.fieldErrors[i].message;
+                                window.messageContainer.error(msgError);
+                            }
+                        } else {
+                            msgError = response.statusText;
+                            window.messageContainer.error(msgError);
+                        }
+                    }
                      deffer.reject(response);
                  });
                  return deffer.promise;
