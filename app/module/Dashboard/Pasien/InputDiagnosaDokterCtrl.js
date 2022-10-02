@@ -317,6 +317,10 @@ define(['initialize'], function(initialize, pasienServices) {
                 validasiIcd10();
                 console.log(JSON.stringify($scope.objSave));
                 manageSarprasPhp.postDataDiagnosa($scope.objSave).then(function (e) {
+                    console.log(e)
+                    manageSarprasPhp.postApi("condition?noreg="+$scope.item.noregistrasi+"&kode="+$scope.item.diagnosa.kdDiagnosa+"&display="+$scope.item.diagnosa.namaDiagnosa+"&pasienname="+$scope.item.namaPasien+"&idpasien="+$scope.item.noMr).then(function (res) {
+                        console.log(res)
+                    })
                     delete $scope.item.jenisDiagnosis;
                     delete $scope.item.diagnosa;
                     delete $scope.item.keterangan;

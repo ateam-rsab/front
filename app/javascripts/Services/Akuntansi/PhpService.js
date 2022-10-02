@@ -1,5 +1,9 @@
  define(['Configuration'], function (config) {
-
+  
+    //startAhmad
+    var baseUrlApi = config. baseUrlApi;
+    //endAhmad
+   
    var baseUrlApiAction = config.baseApiPostData_Akuntansi;
    var baseTransaksi = config.urlDataTableTransaksi_Akuntansi;
    var baseMaster = config.urlDataTableMaster_Akuntansi;
@@ -10,6 +14,14 @@
    var akuntansiService = angular.module('PhpService', ['ngResource', 'HttpServicesAkuntansi', 'Services']);
    akuntansiService.service('ManageSarprasPhp', ['R_Akuntansi', function (r) {
      return {
+      
+      //startAhmad
+      postApi:function(urlPost,data){
+        return r.post({
+          url:baseUrlApi+urlPost
+        },data)
+      },
+      //endAhmad
 
        getDataMaster: function (url) {
          return r.get({
