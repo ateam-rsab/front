@@ -553,57 +553,57 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                 }
                 $scope.isSimpan = true;
                 console.log(objSave);
-                // manageServicePhp.saveRegitrasiPasien(objSave).then(function (e) {
-                //     console.log(e)
-                //     $scope.isSimpan = false;
-                //     $scope.resultAPD = e.data.dataAPD;
-                //     responData = e.data;
-                //     $scope.resultPD = e.data.dataPD;
-                //     $scope.model.noRegistrasi = e.data.dataPD.noregistrasi;
-                //     $scope.model.norec_pd = e.data.dataPD.norec;
-                //     manageServicePhp.postApi("encounter-patient?noreg="+e.data.dataPD.noregistrasi+"&idpasien="+$scope.currentNoCm).then(function (res) {
-                //         console.log(res)
-                //     })
-                    // var cachePasienDaftar = $scope.model.norec_pd +
-                    //     "~" + $scope.model.noRegistrasi +
-                    //     "~" + $scope.resultAPD.norec;
-                    // // + "~" + $scope.currentNoCm;
-                    // cacheHelper.set('CacheRegistrasiPasien', cachePasienDaftar);
+                manageServicePhp.saveRegitrasiPasien(objSave).then(function (e) {
+                    console.log(e)
+                    $scope.isSimpan = false;
+                    $scope.resultAPD = e.data.dataAPD;
+                    responData = e.data;
+                    $scope.resultPD = e.data.dataPD;
+                    $scope.model.noRegistrasi = e.data.dataPD.noregistrasi;
+                    $scope.model.norec_pd = e.data.dataPD.norec;
+                    manageServicePhp.postApi("encounter-patient?noreg="+e.data.dataPD.noregistrasi+"&idpasien="+$scope.currentNoCm).then(function (res) {
+                        console.log(res)
+                    })
+                    var cachePasienDaftar = $scope.model.norec_pd +
+                        "~" + $scope.model.noRegistrasi +
+                        "~" + $scope.resultAPD.norec;
+                    // + "~" + $scope.currentNoCm;
+                    cacheHelper.set('CacheRegistrasiPasien', cachePasienDaftar);
 
-                    // if (e.data.status == 201) {
-                    //     if (norecPD != '') {
-                    //         $scope.saveLogging('Edit Registrasi', 'norec Pasien Daftar',
-                    //             norecPD, ruanganLog)
-                    //     } else {
-                    //         //##log Pasien Daftar
-                    //         manageServicePhp.getDataTableTransaksi("logging/save-log-pendaftaran-pasien?norec_pd=" +
-                    //             $scope.model.norec_pd).then(function (x) { })
-                    //         //## end log    
-                    //     }
-                    //     $scope.isNext = false;
-                    //     $scope.isBatal = true;
-                    //     $scope.isReport = true;
-                    //     $scope.isReportPendaftaran = true;
-                    //     if ($scope.model.rawatInap == true) {
-                    //         $scope.isReportRawatInap = true;
-                    //     }
-                    //     $scope.isInputAsuransi = true;
-                    //     $scope.isAsuransi = true;
-                    //     $scope.model.generateNoSEP = false;
-                    //     if ($scope.item.kelompokPasien.kelompokpasien != 'Umum/Pribadi') {
-                    //         if (norecPD == '') {
-                    //             $scope.inputPemakaianAsuransi();
-                    //         }
-                    //     }
+                    if (e.data.status == 201) {
+                        if (norecPD != '') {
+                            $scope.saveLogging('Edit Registrasi', 'norec Pasien Daftar',
+                                norecPD, ruanganLog)
+                        } else {
+                            //##log Pasien Daftar
+                            manageServicePhp.getDataTableTransaksi("logging/save-log-pendaftaran-pasien?norec_pd=" +
+                                $scope.model.norec_pd).then(function (x) { })
+                            //## end log    
+                        }
+                        $scope.isNext = false;
+                        $scope.isBatal = true;
+                        $scope.isReport = true;
+                        $scope.isReportPendaftaran = true;
+                        if ($scope.model.rawatInap == true) {
+                            $scope.isReportRawatInap = true;
+                        }
+                        $scope.isInputAsuransi = true;
+                        $scope.isAsuransi = true;
+                        $scope.model.generateNoSEP = false;
+                        if ($scope.item.kelompokPasien.kelompokpasien != 'Umum/Pribadi') {
+                            if (norecPD == '') {
+                                $scope.inputPemakaianAsuransi();
+                            }
+                        }
 
-                    // }
-                //     $scope.isRouteLoading = false;
-                // }, function (error) {
-                //     // throw error;
-                //     $scope.isSimpan = false;
-                //     $scope.isBatal = false;
-                //     $scope.isRouteLoading = false;
-                // })
+                    }
+                    $scope.isRouteLoading = false;
+                }, function (error) {
+                    // throw error;
+                    $scope.isSimpan = false;
+                    $scope.isBatal = false;
+                    $scope.isRouteLoading = false;
+                })
             }
             // end Save Function
             $scope.updateNoreg = function () {
