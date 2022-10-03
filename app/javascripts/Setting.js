@@ -10,6 +10,11 @@ define([], function () {
     portEval = "8080";
   if (window.location.hostname.indexOf('rsabhk') > -1) {
     return {
+      //For Auth Token
+      //startAhmad
+      baseUrlAuthPhp : `https://smart.rsabhk.co.id:2222/dev-simrs/service/auth/`,
+      baseUrlApi : `https://smart.rsabhk.co.id:2222/api/`,
+      //endAhmad
       BaseUrl: 'https://smart.rsabhk.co.id:2222/app/data/GetRouting',
       RouteUrl: 'https://smart.rsabhk.co.id:2222/app/data/GetRouting',
       UrlDataConfig: 'https://smart.rsabhk.co.id:2222/app/data/GetRequireConfig',
@@ -63,6 +68,11 @@ define([], function () {
     };
   } else if (window.location.hostname === '103.116.203.93') {
     return {
+      //For Auth Token
+      //startAhmad
+      baseUrlAuthPhp : `https://103.116.203.93:2222/dev-simrs/service/auth/`,
+      baseUrlApi : `https://103.116.203.93:2222/api/`,
+      //endAhmad
       BaseUrl: 'https://103.116.203.93:2222/app/data/GetRouting',
       RouteUrl: 'https://103.116.203.93:2222/app/data/GetRouting',
       UrlDataConfig: 'https://103.116.203.93:2222/app/data/GetRequireConfig',
@@ -121,6 +131,10 @@ define([], function () {
       /**Login PHP */
       baseUrlLogin: `${baseURLPhp}:${portPhp}/dev-simrs/service/auth/sign-in`,
       baseUrlLogout: `${baseURLPhp}:${portPhp}/dev-simrs/service/auth/sign-out`,
+      //startAhmad
+      baseUrlAuthPhp : `${baseURLPhp}:${portPhp}/dev-simrs/service/auth/`,
+      baseUrlApi : `http://172.16.44.33:8900/api/`,
+      //endAhmad
 
       urlDataGeneric_Akuntansi: `${baseURLPhp}:${portPhp}/dev-simrs/service/list-generic?view=`,
       urlDataTableMaster_Akuntansi: `${baseURLPhp}:${portPhp}/dev-simrs/service/master/`,

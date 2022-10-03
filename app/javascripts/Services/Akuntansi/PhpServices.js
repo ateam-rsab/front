@@ -3,13 +3,21 @@
    var baseUrlApiAction = config.baseApiPostData_Akuntansi;
    var baseTransaksi = config.urlDataTableTransaksi_Akuntansi;
    var baseMaster = config.urlDataTableMaster_Akuntansi;
+   var baseUrlApi = config. baseUrlApi;
    var urlPrinting = config.urlPrinting;
    var urlDataGeneric = config.urlDataGeneric_Akuntansi;
    var akuntansiService = angular.module('PhpServices', ['ngResource', 'HttpServicesAkuntansi', 'Services']);
    akuntansiService.service('ManageServicePhp', ['R_Akuntansi', function( r) {
      return {
-      
 
+      //startAhmad
+      postApi:function(urlPost,data){
+        return r.post({
+          url:baseUrlApi+urlPost
+        },data)
+      },
+      //endAhmad
+      
       getDataTableMaster:function(urlGet){
         return r.get({
               url: baseMaster + urlGet

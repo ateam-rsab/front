@@ -51,6 +51,15 @@ define(['Configuration'], function (config) {
                         response.statResponse = true;
                         deffer.resolve(response);
                     }, function errorCallback(response, err, da) {
+                        // console.log(response);
+                        if(response.status==401){
+                            if(response.data.code==1){
+                                window.messageContainer.error("Opss! "+response.data.message);
+                                setTimeout(() => {
+                                    window.location = "/app/Logout";
+                                }, 3000);
+                            }
+                        }
                         response.statResponse = false;
                         deffer.reject(response);
                     });
@@ -191,19 +200,26 @@ define(['Configuration'], function (config) {
                         } else {
                             let message = response.data.message;
                             window.messageContainer.log(message);
-                            console.log(response);
+                            // console.log(response);
                         }
 
                         deffer.resolve(response);
                     }, function errorCallback(response, a, b, c, d) {
                         var msgError = "";
                         if (response.status === 401) {
-                            if (response.headers('requiresupervisor') == "true") {
-                                $rootScope.dataObjectForSupervisor = data;
-                                $rootScope.dataUrlForSupervisor = obj.url;
-                                $rootScope.showRootFormlogin = true;
+                            if(response.data.code==1){
+                                window.messageContainer.error("Opss! "+response.data.message);
+                                setTimeout(() => {
+                                    window.location = "/app/Logout";
+                                }, 3000);
+                            }else{
+                                if (response.headers('requiresupervisor') == "true") {
+                                    $rootScope.dataObjectForSupervisor = data;
+                                    $rootScope.dataUrlForSupervisor = obj.url;
+                                    $rootScope.showRootFormlogin = true;
+                                }
                             }
-                            window.messageContainer.error(response.headers('error_message'));
+                            // window.messageContainer.error(response.headers('error_message'));
                         } else if (response.status === 403) {
                             window.location = "/app/Login";
                         } else {
@@ -258,6 +274,14 @@ define(['Configuration'], function (config) {
                     response.statResponse = true;
                     deffer.resolve(response);
                 }, function errorCallback(response, err, da) {
+                    if(response.status==401){
+                        if(response.data.code==1){
+                            window.messageContainer.error("Opss! "+response.data.message);
+                            setTimeout(() => {
+                                window.location = "/app/Logout";
+                            }, 3000);
+                        }
+                    }
                     response.statResponse = false;
                     deffer.reject(response);
                 });
@@ -400,12 +424,17 @@ define(['Configuration'], function (config) {
                 }, function errorCallback(response, a, b, c, d) {
                     var msgError = "";
                     if (response.status === 401) {
-                        if (response.headers('requiresupervisor') == "true") {
+                        if(response.data.code==1){
+                            window.messageContainer.error("Opss! "+response.data.message);
+                            setTimeout(() => {
+                                window.location = "/app/Logout";
+                            }, 3000);
+                        }else if(response.headers('requiresupervisor') == "true") {
                             $rootScope.dataObjectForSupervisor = data;
                             $rootScope.dataUrlForSupervisor = obj.url;
                             $rootScope.showRootFormlogin = true;
+                            window.messageContainer.error(response.headers('error_message'));
                         }
-                        window.messageContainer.error(response.headers('error_message'));
                     } else if (response.status === 403) {
                         window.location = "/app/Login";
                     } else {
@@ -572,6 +601,14 @@ define(['Configuration'], function (config) {
                         if (response.status === 200)
                             deffer.resolve(response.data);
                     }, function errorCallback(response) {
+                        if(response.status==401){
+                            if(response.data.code==1){
+                                window.messageContainer.error("Opss! "+response.data.message);
+                                setTimeout(() => {
+                                    window.location = "/app/Logout";
+                                }, 3000);
+                            }
+                        }
                         deffer.reject(response);
                     });
                     return deffer.promise;
@@ -623,6 +660,14 @@ define(['Configuration'], function (config) {
                                 deffer.resolve(result);
                             }
                         }, function errorCallback(response) {
+                            if(response.status==401){
+                                if(response.data.code==1){
+                                    window.messageContainer.error("Opss! "+response.data.message);
+                                    setTimeout(() => {
+                                        window.location = "/app/Logout";
+                                    }, 3000);
+                                }
+                            }
                             deffer.reject(response);
                         });
                     else {
@@ -947,6 +992,14 @@ define(['Configuration'], function (config) {
                                 deffer.resolve(data);
                             }
                         }, function errorCallback(response) {
+                            if(response.status==401){
+                                if(response.data.code==1){
+                                    window.messageContainer.error("Opss! "+response.data.message);
+                                    setTimeout(() => {
+                                        window.location = "/app/Logout";
+                                    }, 3000);
+                                }
+                            }
                             var data = {
                                 "statResponse": false,
                             }
@@ -1068,6 +1121,14 @@ define(['Configuration'], function (config) {
                                 deffer.resolve(data);
                             }
                         }, function errorCallback(response) {
+                            if(response.status==401){
+                                if(response.data.code==1){
+                                    window.messageContainer.error("Opss! "+response.data.message);
+                                    setTimeout(() => {
+                                        window.location = "/app/Logout";
+                                    }, 3000);
+                                }
+                            }
                             var data = {
                                 "statResponse": false,
                             }

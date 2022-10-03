@@ -23,6 +23,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
             console.log($scope.currentNoCm)
             manageServicePhp.getDataTableTransaksi("registrasipasien/get-pasienbynocm?noCm=" + $scope.currentNoCm)
                 .then(function (e) {
+                    console.log(e.data)
                     $scope.isRouteLoading = false;
                     $scope.item.pasien = e.data.data[0];
                     $scope.item.nocmfk = e.data.data[0].nocmfk;
@@ -217,7 +218,6 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                     manageServicePhp.getDataTableTransaksi("registrasipasien/get-data-combo", true)
                         .then(function (dat) {
                             $scope.listRuangan = dat.data.ruanganranap;
-
                         })
                 } else if (data === false || data === undefined) {
                     manageServicePhp.getDataTableTransaksi("registrasipasien/get-data-combo", true)
@@ -264,12 +264,11 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                 }
             }
             $scope.$watch('item.kelas', function (e) {
-                if (e === undefined) return;
-                var kelasId = "idKelas=" + $scope.item.kelas.id;
-                var ruanganId = "&idRuangan=" + $scope.item.ruangan.id;
-                manageServicePhp.getDataTableTransaksi("registrasipasien/get-kamarbyruangankelas?" + kelasId + ruanganId)
+                if(e != undefined){
+                    var kelasId = "idKelas=" + $scope.item.kelas.id;
+                    var ruanganId = "&idRuangan=" + $scope.item.ruangan.id;
+                    manageServicePhp.getDataTableTransaksi("registrasipasien/get-kamarbyruangankelas?" + kelasId + ruanganId)
                     .then(function (b) {
-
                         if ($scope.model.rawatGabung) {
                             $scope.listKamar = b.data.kamar;
                         } else {
@@ -278,11 +277,12 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                             })
                         }
                     });
+                }
             });
             $scope.$watch('item.kamar', function (e) {
-                if (e === undefined) return;
-                var kamarId = $scope.item.kamar.id;
-                manageServicePhp.getDataTableTransaksi("registrasipasien/get-nobedbykamar?idKamar=" + kamarId)
+                if (e != undefined){
+                    var kamarId = $scope.item.kamar.id;
+                    manageServicePhp.getDataTableTransaksi("registrasipasien/get-nobedbykamar?idKamar=" + kamarId)
                     .then(function (a) {
                         if ($scope.model.rawatGabung) {
                             $scope.listNoBed = a.data.bed;
@@ -292,15 +292,15 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                             })
                         }
                     })
+                }
             });
 
             $scope.$watch('item.kelas', function (e) {
-                if (e === undefined) return;
-                var kelasId = "idKelas=" + $scope.item.kelas.id;
-                var ruanganId = "&idRuangan=" + $scope.item.ruangan.id;
-                manageServicePhp.getDataTableTransaksi("registrasipasien/get-kamarbyruangankelas?" + kelasId + ruanganId)
+                if (e != undefined){
+                    var kelasId = "idKelas=" + $scope.item.kelas.id;
+                    var ruanganId = "&idRuangan=" + $scope.item.ruangan.id;
+                    manageServicePhp.getDataTableTransaksi("registrasipasien/get-kamarbyruangankelas?" + kelasId + ruanganId)
                     .then(function (a) {
-
                         if ($scope.model.rawatGabung) {
                             $scope.listKamar = a.data.kamar;
                         } else {
@@ -309,6 +309,8 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                             })
                         }
                     });
+                }
+                
             });
 
             $scope.$watch('item.kelompokPasien', function (e) {
@@ -380,12 +382,12 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                 if (norecPD == '') {
                     if ($scope.item.kelompokPasien && $scope.item.kelompokPasien.id == 1) {
                         manageServicePhp.getDataTableTransaksi("registrasipasien/cek-pasien-bayar/" +
-                            $scope.noCm).then(function (x) {
-                                if (x.data.status == false && moment(x.data.tglregistrasi).format('YYYY-MM-DD') != moment($scope.now).format('YYYY-MM-DD')) {
+                            $scope.noCm).then(function (res) {
+                                if (res.data.status == false && moment(res.data.tglregistrasi).format('YYYY-MM-DD') != moment($scope.now).format('YYYY-MM-DD')) {
                                     toastr.error('Pasien belum bayar !', 'Warning')
                                     return
                                 } else {
-                                    $scope.lanjutDaftar()
+                                    $scope.lanjutDaftar();
                                 }
                             })
                     } else {
@@ -472,8 +474,11 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                 var noRegistrasi = "";
                 if ($scope.model.noRegistrasi == undefined || $scope.model.noRegistrasi == "") {
                     noRegistrasi = "";
-                } else
+                }else{
                     noRegistrasi = $scope.model.noRegistrasi;
+                    console.log(noRegistrasi)
+                }
+                    
 
 
                 var norec_PasienDaftar = "";
@@ -547,15 +552,18 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                     antrianpasiendiperiksa: antrianpasiendiperiksa
                 }
                 $scope.isSimpan = true;
-
+                console.log(objSave);
                 manageServicePhp.saveRegitrasiPasien(objSave).then(function (e) {
+                    console.log(e)
                     $scope.isSimpan = false;
                     $scope.resultAPD = e.data.dataAPD;
                     responData = e.data;
                     $scope.resultPD = e.data.dataPD;
                     $scope.model.noRegistrasi = e.data.dataPD.noregistrasi;
                     $scope.model.norec_pd = e.data.dataPD.norec;
-
+                    manageServicePhp.postApi("encounter-patient?noreg="+e.data.dataPD.noregistrasi+"&idpasien="+$scope.currentNoCm).then(function (res) {
+                        console.log(res)
+                    })
                     var cachePasienDaftar = $scope.model.norec_pd +
                         "~" + $scope.model.noRegistrasi +
                         "~" + $scope.resultAPD.norec;
