@@ -100,7 +100,13 @@ define(['initialize'], function (initialize) {
                     data:"Menyelenggarakan jejaring dan sistem rujukan di bidang kesehatan ibu dan anak"
                 }
             ]
-            $scope.dataPemberitahuan = [{
+            $scope.dataPemberitahuan = [
+            {
+                path: "data/dokumen/PENGUMUMAN_DATA_TENAGA_NON_ASN_PRAFINALISASI.pdf",
+                fileName: "Data Tenaga Non ASN Prafinlisasi di lingkungkan Kementerian Kesehatan tahun 2022",
+                new: true
+            },
+            {
                 path: "data/dokumen/Pemberitahuan-Pendataan-Tenaga-Non-ASN.pdf",
                 fileName: "Pendataan Tenaga Non ASN",
                 new: true

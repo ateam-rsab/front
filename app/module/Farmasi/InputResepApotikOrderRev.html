@@ -158,7 +158,8 @@
                                 <label style="margin-left:5px">Instruksi
                                     Pemakaian Obat</label>
                                 <textarea class="k-textbox" style="height:100px;width:100%;resize:none;margin-left:
-                                    5px;" ng-model="item.keterangan"></textarea>
+                                    5px;" ng-model="item.keterangan" maxlength="150" ng-trim="false"></textarea>
+                                    <span style="float:right">{{150 - item.keterangan.length}}</span>
                             </div>
                         </div>
                         <div class="grid_3">
@@ -238,7 +239,8 @@
                                     <label style="margin-left:5px">Intruksi
                                         Pemakaian Obat</label>
                                     <textarea class="k-textbox" style="height:83px;width:100%;resize:
-                                        none;margin-left: 5px;" ng-model="item.intruksiPenggunaanRacikan"></textarea>
+                                        none;margin-left: 5px;" ng-model="item.intruksiPenggunaanRacikan"  maxlength="150" ng-trim="false"></textarea>
+                                        <span style="float:right">{{150 - item.intruksiPenggunaanRacikan.length}}</span>
                                 </div>
                             </div>
                         </div>
