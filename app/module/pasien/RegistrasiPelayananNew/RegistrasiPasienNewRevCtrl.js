@@ -333,6 +333,17 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                     return
                 }
 
+                if ($scope.item.noIdentitas == undefined) {
+                    toastr.error('Nik belum di isi', 'Error')
+                    return
+                }else{
+                    let lengthInpt = $scope.item.noIdentitas.length;
+                    if(lengthInpt!=16){
+                        toastr.error('Nik harus 16 digit angka', 'Error')
+                        return
+                    }
+                }
+
                 var postJson = {
                     'isbayi': $scope.isBayi,
                     'idpasien': $scope.idPasien != undefined ? $scope.idPasien : '',
