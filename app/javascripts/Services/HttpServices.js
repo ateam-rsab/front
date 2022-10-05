@@ -48,7 +48,6 @@ define(['Configuration'], function (config) {
                             'X-AUTH-TOKEN': authorization
                         }
                     }).then(function successCallback(response) {
-                        console.log(response)
                         response.statResponse = true;
                         deffer.resolve(response);
                     }, function errorCallback(response, err, da) {
