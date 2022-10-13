@@ -469,8 +469,11 @@ define(['initialize'], function (initialize) {
 				// 23 = Edy
 				// 22 = Irna
 				// 21 = Kris Hartining
+				// 633 = Erry Anggarani Suharra, SE
+				// 2361 = Lili Rahmawati, A.Md, SE
 				// 18984 = Juhrati
-				if (dataUserLogin.id === 23 || dataUserLogin.id === 22 || dataUserLogin.id === 21 || dataUserLogin.id === 18984) {
+				if (dataUserLogin.id === 21 || dataUserLogin.id === 22 || dataUserLogin.id === 23
+					|| dataUserLogin.id === 633 || dataUserLogin.id === 2361 || dataUserLogin.id === 18984) {
 					if ($scope.dataSbnSelected.status != 'Setor') {
 						// var stt = 'true';
 						var isDeposit = '';
@@ -539,7 +542,7 @@ define(['initialize'], function (initialize) {
 						// }
 					} else {
 						alert('Sudah di setor tidak dapat di batalkan!')
-					}					
+					}
 				} else {
 					toastr.warning('Anda tidak memiliki hak akses untuk membatalkan pembayaran')
 					return;
