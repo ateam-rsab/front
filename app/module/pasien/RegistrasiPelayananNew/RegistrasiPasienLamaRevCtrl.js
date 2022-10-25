@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('RegistrasiPasienLamaRevCtrl', ['ManageServicePhp','CacheHelper', '$q', '$rootScope', '$scope', 'ModelItemAkuntansi','ModelItem', 'DateHelper', '$http', '$state', 'ReportPelayanan',
-        function (manageServicePhp, cacheHelper, $q, $rootScope, $scope, modelItemAkuntansi,ModelItem, DateHelper, $http, $state, ReportPelayanan,) {
+    initialize.controller('RegistrasiPasienLamaRevCtrl', ['ManageServicePhp','CacheHelper', '$q', '$rootScope', '$scope', 'ModelItemAkuntansi','ModelItem', 'DateHelper', '$http', '$state', 'ReportPelayanan','$mdDialog',
+        function (manageServicePhp, cacheHelper, $q, $rootScope, $scope, modelItemAkuntansi,ModelItem, DateHelper, $http, $state, ReportPelayanan,$mdDialog) {
             //Inisial Variable 
             $scope.dataVOloaded = true;
             $scope.now = new Date();
@@ -229,13 +229,23 @@ define(['initialize'], function (initialize) {
                     var item={
                         idpasien:$scope.idPasien
                     }
+                    let hapusPasienDialog = $mdDialog.confirm()
+                        .title('Hapus Data!')
+                        .textContent('Apakah anda yakin hapus data pasien?')
+                        .ariaLabel('Alert Dialog 2')
+                        .ok('Ya').cancel('Batal');
 
-                    manageServicePhp.disablePasien(item).then(function(e){
-                        loadData();
-                    })
-                       
+                    $mdDialog.show(hapusPasienDialog).then((e) => {
+                        console.log(e);
+                        manageServicePhp.disablePasien(item).then(function(e){
+                            loadData();
+                        })
+                    }, function (e) {
+                        console.log(e);
+                    });
+                    
                     }else{
-                    messageContainer.error("Pilih data dulu!")     
+                        messageContainer.error("Pilih data dulu!")     
                     }
             }
             

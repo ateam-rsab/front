@@ -428,7 +428,7 @@ define(['initialize'], function (initialize) {
                 }
                 if (loginRadiologi == true) {
                     if ($scope.dataRisOrder != undefined) {
-                        $window.open("http://182.23.26.34:1111/URLCall.do?LID=dok&LPW=dok&LICD=003&PID=" + $scope.dataRisOrder.patient_id
+                        $window.open("http://pacs1.rsabhk.co.id:8080/URLCall.do?LID=dok&LPW=dok&LICD=003&PID=" + $scope.dataRisOrder.patient_id
                             + '&ACN=' + $scope.dataRisOrder.accession_num, "_blank");
                     } else {
                         toastr.info('Hasil Radiologi belum ada')

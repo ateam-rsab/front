@@ -404,6 +404,15 @@
         ]
     },
     {
+        "name":"Master",
+        "children":[
+            {
+                "name": "Rekanan2",
+                "link": "#/Rekanan2"
+            }
+        ]
+    },
+    {
         "name": "Inventori",
         "children": [
             {

@@ -646,7 +646,7 @@ define(['initialize'], function (initialize) {
                         return;
                     }
 
-                    $window.open("http://182.23.26.34:1111/URLCall.do?LID=dok&LPW=dok&LICD=003&PID=" + $scope.item.noMr + '&ACN=' + $scope.dataRisOrder.accession_num, "_blank");
+                    $window.open("http://pacs1.rsabhk.co.id:8080/URLCall.do?LID=dok&LPW=dok&LICD=003&PID=" + $scope.item.noMr + '&ACN=' + $scope.dataRisOrder.accession_num, "_blank");
                 })
 
 
