@@ -3,6 +3,8 @@ define(['initialize'], function (initialize) {
     initialize.controller('LogbookSkorKinerjaCtrl', ['$q', 'ManagePegawai', 'FindPegawai', 'DateHelper', 'FindSdm', 'ModelItem', 'ManageSdm', 'ManageSdmNew', '$state', '$rootScope', '$scope',
         function ($q, managePegawai, findPegawai, dateHelper, findSdm, modelItem, manageSdm, ManageSdmNew, $state, $rootScope, $scope) {
             $scope.item = {};
+            $scope.now = new Date();
+            $scope.isNov2022=true;
             $scope.dataSource = [];
             $scope.listKelompokJabatanId = [];
             $scope.dataVOloaded = true;
@@ -134,6 +136,20 @@ define(['initialize'], function (initialize) {
                     return;
                 }
 
+                if(dateHelper.toTimeStamp($scope.item.periode)=='1669741200000'){
+                    $scope.isDtMain=true;
+                    $scope.isNov2022=false;
+                    $scope.isRouteLoading = false;
+                }else{
+                    $scope.isDtMain=false;
+                    $scope.isNov2022=true;
+                    $scope.afterGetDataLogBook();
+                    $scope.isRouteLoading = false;
+                }
+               
+            }
+
+            $scope.afterGetDataLogBook=()=>{
                 ManageSdmNew.getListData("sdm/get-akses-logbook-skor?pegawaiId=" + ($scope.item.pegawai ? $scope.item.pegawai.id : $scope.pegawaiLogin.id)).then((res) => {
                     switch (res.data.data.kategori) {
                         case 3:
@@ -253,7 +269,6 @@ define(['initialize'], function (initialize) {
                 $scope.periode = $scope.item.periode;
                 getHeaderTable();
             }
-
             let load = () => {
                 ManageSdmNew.getListData("sdm/get-akses-logbook-skor?pegawaiId=" + ($scope.item.pegawai ? $scope.item.pegawai.id : $scope.pegawaiLogin.id)).then((res) => {
                     switch (res.data.data.kategori) {

@@ -67,11 +67,7 @@ define(['initialize'], function (initialize) {
             LoadCacheHelper();
 
             function LoadCacheHelper() {
-                $scope.isRouteLoading = true;
-
                 manageLogistikPhp.getDataTableTransaksi("akutansi/get-tgl-posting", true).then(function (dat) {
-                    $scope.isRouteLoading = true;
-
                     var tgltgltgltgl = dat.data.mindate[0].max
                     var tglkpnaja = dat.data.datedate
                     $scope.minDate = new Date(tgltgltgltgl);
@@ -86,8 +82,6 @@ define(['initialize'], function (initialize) {
                             }
                         }
                     };
-                }, function (err) {
-                    $scope.isRouteLoading = false;
                 });
 
                 var chacePeriode = cacheHelper.get('InputResepApotikOrderRevCtrl');
@@ -113,16 +107,11 @@ define(['initialize'], function (initialize) {
                         $scope.item.noregistrasi, true).then(function (dat) {
                             $scope.item.statusVerif = dat.data.status;
                             $scope.isRouteLoading = false;
-                        }, function (err) {
-                            $scope.isRouteLoading = false;
                         });
                     if ($scope.item.namaRuangan.substr($scope.item.namaRuangan.length - 1) == '`') {
                         $scope.showTombol = true;
-                        $scope.isRouteLoading = false;
                     }
                 }
-                
-                $scope.isRouteLoading = false;
             }
 
             var getNamaObat = function () {
@@ -133,11 +122,15 @@ define(['initialize'], function (initialize) {
                     $scope.listOfProduk = dat.data.produk;
                     $scope.listOfProdukFornas = dat.data.produkfornas;
                     for (let i = 0; i < dat.data.produk.length; i++) {
-                        $scope.dataTempObat.push(dat.data.produk[i].namaproduk
-                            + ($scope.isBpjs ? ' ------- ' + dat.data.produk[i].status : '')
-                            + (dat.data.produk[i].jumlah > 0 ? ' ------- TERSEDIA '
-                                + dat.data.produk[i].jumlah + ' '
-                                + dat.data.produk[i].satuanstandar : ' ------- TIDAK TERSEDIA'));
+                        $scope.dataTempObat.push({
+                            id:dat.data.produk[i].id,
+                            namaObat: dat.data.produk[i].namaproduk + ($scope.isBpjs ? ' ------- ' + dat.data.produk[i].status : '') + (dat.data.produk[i].jumlah > 0 ? ' ------- TERSEDIA ' +dat.data.produk[i].jumlah+ ' ' +dat.data.produk[i].satuanstandar : ' ------- TIDAK TERSEDIA'),
+                        })
+                        // $scope.dataTempObat.push(dat.data.produk[i].id+' ~ '+ dat.data.produk[i].namaproduk
+                        //     + ($scope.isBpjs ? ' ------- ' + dat.data.produk[i].status : '')
+                        //     + (dat.data.produk[i].jumlah > 0 ? ' ------- TERSEDIA '
+                        //         + dat.data.produk[i].jumlah + ' '
+                        //         + dat.data.produk[i].satuanstandar : ' ------- TIDAK TERSEDIA'));
                         listTempObat.push({ name: dat.data.produk[i].namaproduk });
                     }
                     if (dat.data.alergi.length > 0) {
@@ -313,6 +306,7 @@ define(['initialize'], function (initialize) {
 
             // untuk menambah obat racikan
             $scope.tambahObat = function (index) {
+                console.log(index)
                 var data = {
                     key: 1 + $scope.listObat.length,
                     namaObatRacikan: "",
@@ -424,8 +418,8 @@ define(['initialize'], function (initialize) {
                         dataResep.resep.push({
                             // nilaiKonversi: $scope.item.nilaiKonversi,
                             // hargaSatuan: $scope.getHargaSatuanNew($scope.resep.namaObat.id),
-
-                            namaObat: $scope.resep.namaObatNew.split(" ------- ")[0],
+                            id: $scope.resep.namaObatNew.id,
+                            namaObat: $scope.resep.namaObatNew.namaObat.split(" ------- ")[0],
                             jumlah: $scope.resep.jumlahObat.toString(),
                             jenisKemasan: isRacikan,
                             resepKe: $scope.tempListResep.length + 1,
@@ -443,8 +437,9 @@ define(['initialize'], function (initialize) {
                             // [1][""0""].name
                             // namaObat: $scope.resep.namaObatRacikan[i][0].name,
 
-                            namaObat: $scope.resep.namaObatRacikan[i].split(" ------- ")[0],
-
+                            // namaObat: $scope.resep.namaObatRacikan[i].split(" ------- ")[0],
+                            id: $scope.resep.namaObatRacikan[i].id,
+                            namaObat: $scope.resep.namaObatRacikan[i].namaObat.split(" ------- ")[0],
                             // nilaiKonversi: $scope.item.nilaiKonversi,
                             // hargaSatuan: $scope.getHargaSatuanNew($scope.resep.namaObat[i].id),
 
@@ -460,7 +455,7 @@ define(['initialize'], function (initialize) {
                         });
                     }
                 }
-
+                console.log(dataResep)
                 $scope.tempListResep.push(dataResep);
                 $scope.dataResepDokter.add(dataResep);
 
@@ -515,7 +510,7 @@ define(['initialize'], function (initialize) {
                 $scope.item.keterangan = '';
                 $scope.item.intruksiPenggunaanRacikan = '';
 
-                $scope.resep.namaObatNew = "";
+                $scope.resep.namaObatNew = [];
                 $scope.resep.namaObatNewFornas = undefined;
                 $scope.resep.namaObatRacikan = [];
                 $scope.resep.namaObatRacikanFornas = [];

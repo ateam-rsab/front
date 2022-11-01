@@ -110,7 +110,10 @@
 </div>
 
 <div class="container-table">
-    <table class="table-custom">
+    <div ng-hide="isNov2022" style="text-align: center;padding: 1px 0px 1px 0px;">
+        <h2 style="color:#bf1121;font-weight:bold;font-size:50px;padding: 0px;">OOps!<span style='font-size:40px;'>&#128556;</span></h2><p style="font-size: large;">Mohon maaf, Logbook Kinerja Poin Dokter sedang dalam penyesuaian tarif baru.</p>
+    </div>
+    <table class="table-custom" ng-hide="isDtMain">
         <thead>
             <th scope="col" style="min-width: 200px;">Nama Kegiatan</th>
             <th ng-show="isNakesLain" scope="col" style="min-width: 50px; text-align: center;">Jenis Pelayanan</th>
@@ -175,7 +178,7 @@
     <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
 </div>
 
-<div class="grid_12">
+<div class="grid_12" ng-hide="isDtMain">
     <div class="grid_3" style="float: right;">
         <md-button class="md-raised md-primary" ng-click="verify()">
             <span style="margin-right: 5px;">Verifikasi</span>

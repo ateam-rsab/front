@@ -1,8 +1,8 @@
 define(['initialize'], function(initialize) {
     'use strict';
 
-    initialize.controller('TandaVitalRevCtrl', ['$rootScope', '$scope', '$state', 'ManagePhp', 'CacheHelper',
-        function($rootScope, $scope, $state, ManagePhp, cacheHelper) {
+    initialize.controller('TandaVitalRevCtrl', ['$rootScope', '$scope', '$state', 'ManagePhp', 'CacheHelper','ManageSarprasPhp',
+        function($rootScope, $scope, $state, ManagePhp, cacheHelper,manageSarprasPhp) {
 
             $rootScope.showMenu = true;
             $rootScope.showMenuDetail = false;
@@ -95,6 +95,10 @@ define(['initialize'], function(initialize) {
                  $scope.getdataVital()
                   ManagePhp.postLogging('Pengkajian Keperawatan', 'Norec Antrian Pasien Diperiksa',$state.params.noRec, 'Tanda Vital').then(function (res) {
                   })
+
+                  manageSarprasPhp.postApi("Observation",jsonSave).then(function (res) {
+                    console.log(res)
+                })
              });
             };
         }

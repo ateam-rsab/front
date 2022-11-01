@@ -1,20 +1,20 @@
-define(['initialize'], function(initialize) {
+define(['initialize'], function (initialize) {
     'use strict';
     initialize.controller('AsesmenGiziAwalCtrl', ['ManageGizi', '$rootScope', '$scope', 'ModelItem', '$state', 'FindPasienGizi', 'DateHelper', 'FindPasien',
 
-        function(manageGizi, $rootScope, $scope, ModelItem, $state, findPasienGizi, dateHelper, findPasien) {
+        function (manageGizi, $rootScope, $scope, ModelItem, $state, findPasienGizi, dateHelper, findPasien) {
             $rootScope.showMenuPengkajianMedis = false;
 
             //$rootScope.listActive -> data listMenu
             // ModelItem.setActiveMenu($rootScope.listActive, "AsesmenGiziAwal");
 
-            ModelItem.getDataDummyGeneric("RisikoGizi", false).then(function(data) {
-                    $scope.listSkriningGizi = data;
-                })
-                // ModelItem.getDataDummyGeneric("AlergiMakanan", false).then(function(data) {
-                //     $scope.listAlergiMakanan = data;
-                // })
-            ModelItem.getDataDummyGeneric("JenisDiet", false).then(function(data) {
+            ModelItem.getDataDummyGeneric("RisikoGizi", false).then(function (data) {
+                $scope.listSkriningGizi = data;
+            })
+            // ModelItem.getDataDummyGeneric("AlergiMakanan", false).then(function(data) {
+            //     $scope.listAlergiMakanan = data;
+            // })
+            ModelItem.getDataDummyGeneric("JenisDiet", false).then(function (data) {
                 $scope.sourceJenisDiet = data;
             })
 
@@ -40,19 +40,19 @@ define(['initialize'], function(initialize) {
             $scope.jenisMenuDiet = new kendo.data.DataSource({
                 data: []
             });
-            $scope.addJenisDiet = function() {
+            $scope.addJenisDiet = function () {
                 $scope.jenisMenuDiet.add({
                     jenisDiet: $scope.item.jenisDiet,
                     keterangan: $scope.item.keterangan
                 });
             }
             $scope.listTindakLanjut = [];
-            $scope.addTindakLanjutGizi = function(data) {
+            $scope.addTindakLanjutGizi = function (data) {
                 if ($scope.listTindakLanjut.indexOf(data) < 0) {
                     $scope.listTindakLanjut.push(data);
                 }
             }
-            $scope.removeJenisDiet = function() {
+            $scope.removeJenisDiet = function () {
 
                 $scope.jenisMenuDiet.data([]);
             };
@@ -66,17 +66,17 @@ define(['initialize'], function(initialize) {
                 name: "Belum perlu asuhan gizi"
             }]
 
-            findPasien.getAlergiByNoCm($state.params.noCM).then(function(e) {
+            findPasien.getAlergiByNoCm($state.params.noCM).then(function (e) {
                 $scope.listAlergiMakanan = e.data.data.PapAlergi;
             });
-            findPasien.getByNoCM($state.params.noCM).then(function(data) {
+            findPasien.getByNoCM($state.params.noCM).then(function (data) {
                 $scope.pasien = {};
                 $scope.pasien.noRec = $state.params.noRec;
 
             });
-            findPasien.getAsesmentGiziAwal($state.params.noRec).then(function(e) {
+            findPasien.getAsesmentGiziAwal($state.params.noRec).then(function (e) {
                 var data = e.data.data.AsesmenGiziAwal[0];
-                if(data===undefined)return;
+                if (data === undefined) return;
                 $scope.item.noRec = data.noRec;
                 $scope.item.risiko = data.risiko;
                 $scope.listTindakLanjut = [];
@@ -129,7 +129,7 @@ define(['initialize'], function(initialize) {
 
             });
 
-            ModelItem.getDataDummyGeneric("PapSkriningGizi", false).then(function(data) {
+            ModelItem.getDataDummyGeneric("PapSkriningGizi", false).then(function (data) {
                 debugger;
                 $scope.sourceSkriningGizi = data;
                 for (var i = 0; i < $scope.sourceSkriningGizi.length; i++) {
@@ -151,7 +151,7 @@ define(['initialize'], function(initialize) {
                     }
                 }
             })
-            $scope.Save = function() {
+            $scope.Save = function () {
                 $scope.data = {};
 
                 var temp = $state.params.tanggal;
@@ -173,14 +173,14 @@ define(['initialize'], function(initialize) {
                     }
                 }
                 //console.log(JSON.stringify($scope.data));
-                manageGizi.saveAssementAwal(ModelItem.beforePost($scope.data)).then(function() {
+                manageGizi.saveAssementAwal(ModelItem.beforePost($scope.data)).then(function () {
                     debugger
                     $scope.isNext = true;
-                }, function(err) {
+                }, function (err) {
 
                 });
             }
-            $scope.Next = function() {
+            $scope.Next = function () {
                 $rootScope.next();
             }
         }

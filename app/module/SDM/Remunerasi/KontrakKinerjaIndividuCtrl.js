@@ -216,9 +216,11 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.getJabatanByIdPegawai = (pegawaiId) => {
-                ManageSdmNew.getListData("pegawai/jabatan-kontrak-verif-kinerja?pegawaiId=" + pegawaiId + "&pegawaiLoginId=" + dataPegawai.id).then((res) => {
-                    $scope.listJabatan = res.data.data;
-                })
+                if (pegawaiId) {
+                    ManageSdmNew.getListData("pegawai/jabatan-kontrak-verif-kinerja?pegawaiId=" + pegawaiId + "&pegawaiLoginId=" + dataPegawai.id).then((res) => {
+                        $scope.listJabatan = res.data.data;
+                    })
+                }
             }
 
             $scope.tambahData = () => {
@@ -571,14 +573,18 @@ define(['initialize'], function (initialize) {
             $scope.$watch('item.srcBulan', function (e) {
                 if (!e) return;
 
-                $scope.updateListJabatan($scope.item.pegawai ? $scope.item.pegawai.id : undefined);
+                if ($scope.item.pegawai && $scope.item.pegawai.id) {
+                    $scope.updateListJabatan($scope.item.pegawai.id);
+                }
             })
 
             $scope.$watch('item.pegawai', function (e) {
                 if (!e) return;
 
                 $scope.item.jabatan = null;
-                $scope.updateListJabatan($scope.item.pegawai ? $scope.item.pegawai.id : undefined);
+                if ($scope.item.pegawai && $scope.item.pegawai.id) {
+                    $scope.updateListJabatan($scope.item.pegawai.id);
+                }
             })
 
             $scope.$watch('indikator.namaIndikator', function (e) {

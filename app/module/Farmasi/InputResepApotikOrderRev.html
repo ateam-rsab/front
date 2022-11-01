@@ -142,9 +142,14 @@
                                 <div class="grid_11">
                                     <label>Nama Obat</label>
                                     <div style="margin-top: 7px">
-                                        <input id="listObatNonRacikan" kendo-auto-complete c-text-box type="input"
-                                            k-data-source="listOfProdukArray" ng-model="resep.namaObatNew"
-                                            style="width: 100%" />
+                                        <!-- <input id="listObatNonRacikan" kendo-auto-complete c-text-box type="input"
+                                            k-data-source="listOfProdukArray" ng-model="resep.namaObatNew" k-data-text-field="'namaObat'" k-data-value-field="'id'"
+                                            style="width: 100%" /> -->
+                                        <input style="width: 100%;" kendo-combo-box
+                                            k-ng-model="resep.namaObatNew"
+                                            k-data-text-field="'namaObat'"
+                                            k-data-value-field="'id'" k-filter="'contains'"
+                                            k-auto-bind="false" k-data-source="listOfProdukArray" />
                                     </div>
                                 </div>
                                 <!-- Jumlah Obat -->
@@ -182,10 +187,15 @@
                                 <!-- Nama Obat -->
                                 <div class="grid_9">
                                     <label>Nama Obat</label>
-                                    <div style="margin-top: 7px">
-                                        <input id="listObatRacikan" kendo-auto-complete c-text-box type="input"
+                                    <div>
+                                        <!-- <input id="listObatRacikan" kendo-auto-complete c-text-box type="input"
                                             k-options="autocompleteOptions" k-data-source="listOfProdukArray"
-                                            ng-model="resep.namaObatRacikan[$index]" style="width: 100%" />
+                                            ng-model="resep.namaObatRacikan[$index]" style="width: 100%" /> -->
+                                        <input style="width: 100%;" kendo-combo-box
+                                            k-ng-model="resep.namaObatRacikan[$index]"
+                                            k-data-text-field="'namaObat'"
+                                            k-data-value-field="'id'" k-filter="'contains'"
+                                            k-auto-bind="false" k-data-source="listOfProdukArray" />
                                     </div>
                                 </div>
                                 <!-- Jumlah Obat -->

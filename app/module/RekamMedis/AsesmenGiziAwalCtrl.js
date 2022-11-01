@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
 	'use strict';
-	initialize.controller('AsesmenGiziAwalCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', '$state', 'CacheHelper', 'ManagePhp', '$timeout',
-		function ($q, $rootScope, $scope, ModelItem, $state, cacheHelper, ManagePhp, $timeout) {
+	initialize.controller('AsesmenGiziAwalCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', '$state', 'CacheHelper', 'ManagePhp', 'ManageSarprasPhp', '$timeout',
+		function ($q, $rootScope, $scope, ModelItem, $state, cacheHelper, ManagePhp, ManageSarprasPhp, $timeout) {
 			$scope.dataLogin = JSON.parse(localStorage.getItem('pegawai'));
 			$scope.isEdit = false;
 			$scope.txtSimpan = 'Simpan';
@@ -13,13 +13,13 @@ define(['initialize'], function (initialize) {
 			$scope.item = {};
 			// $scope.item.number = ["1", "2", "3", "4", "5"]
 			$scope.listJenisPasien = [{
-					name: 'Anak',
-					id: 1
-				},
-				{
-					name: 'Dewasa',
-					id: 2
-				}
+				name: 'Anak',
+				id: 1
+			},
+			{
+				name: 'Dewasa',
+				id: 2
+			}
 			]
 
 			$scope.isAnak = function () {
@@ -31,78 +31,78 @@ define(['initialize'], function (initialize) {
 			}
 
 			$scope.yesOrNo = [{
-					id: 1,
-					name: 'Ya'
-				},
-				{
-					id: 2,
-					name: 'Tidak'
-				},
+				id: 1,
+				name: 'Ya'
+			},
+			{
+				id: 2,
+				name: 'Tidak'
+			},
 			];
 
 			$scope.listOfAlergiMakanan = [{
-					name: 'Telur',
-					key: 'telur',
-					id: 1,
-				},
-				{
-					name: 'Susu sapi & produk olahannya',
-					key: 'susu',
-					id: 2,
-				},
-				{
-					name: 'Kacang kedelai / Tanah',
-					key: 'kacang',
-					id: 3
-				},
-				{
-					name: 'Gluten / Gandum',
-					key: 'gluten',
-					id: 4
-				},
-				{
-					name: 'Udang',
-					key: 'udang',
-					id: 5
-				},
-				{
-					name: 'Ikan',
-					key: 'ikan',
-					id: 6
-				},
-				{
-					name: 'Hazelnut / Almond',
-					key: 'almond',
-					id: 7
-				},
+				name: 'Telur',
+				key: 'telur',
+				id: 1,
+			},
+			{
+				name: 'Susu sapi & produk olahannya',
+				key: 'susu',
+				id: 2,
+			},
+			{
+				name: 'Kacang kedelai / Tanah',
+				key: 'kacang',
+				id: 3
+			},
+			{
+				name: 'Gluten / Gandum',
+				key: 'gluten',
+				id: 4
+			},
+			{
+				name: 'Udang',
+				key: 'udang',
+				id: 5
+			},
+			{
+				name: 'Ikan',
+				key: 'ikan',
+				id: 6
+			},
+			{
+				name: 'Hazelnut / Almond',
+				key: 'almond',
+				id: 7
+			},
 			]
 
 			$scope.listOfRisikoMalnutrisi = [{
-					id: 122,
-					name: 'Risiko Ringan (Nilai Strong Kids 0)'
-				},
-				{
-					id: 222,
-					name: 'Risiko Sedang (Nilai Strong Kids 1 - 3)'
-				},
-				{
-					id: 322,
-					name: 'Risiko Tinggi (Nilai Strong Kids 4 - 5)'
-				}
+				id: 122,
+				name: 'Risiko Ringan (Nilai Strong Kids 0)'
+			},
+			{
+				id: 222,
+				name: 'Risiko Sedang (Nilai Strong Kids 1 - 3)'
+			},
+			{
+				id: 322,
+				name: 'Risiko Tinggi (Nilai Strong Kids 4 - 5)'
+			}
 			];
 
 			$scope.listOfRisikoMalnutrisiDewasa = [{
-					id: 11,
-					name: 'Risiko Ringan (Nilai MST 0)'
-				},
-				{
-					id: 12,
-					name: 'Risiko Sedang (Nilai MST 1 - 3)'
-				},
-				{
-					id: 13,
-					name: 'Risiko Tinggi (Nilai MST 4 - 5)'
-				}
+				id: 11,
+				name: 'Risiko Ringan (Nilai MST 0)'
+			},
+			{
+				id: 12,
+				name: 'Risiko Sedang (Nilai MST 1 - 3)'
+			},
+			{
+				id: 13,
+				name: 'Risiko Tinggi (Nilai MST 4 - 5)'
+			}
 			];
 
 
@@ -178,43 +178,43 @@ define(['initialize'], function (initialize) {
 					pageable: true,
 					scrollable: true,
 					columns: [{
-							field: "tglinput",
-							title: "<h3>Tanggal/Jam</h3>",
-							width: 100
-						},
-						{
-							field: "namalengkap",
-							title: "<h3>Dokter Penanggung <br>Jawab Pelayanan</h3>",
-							width: 150
-						},
-						{
-							field: "pegawaiasal",
-							title: "<h3>Ahli Gizi</h3>",
-							template: '# if( pegawaiasal==null) {# - # } else {# #= pegawaiasal # #} #',
-							"width": "120px"
-						},
-						{
-							field: "namaruangan",
-							title: "<h3>Ruangan</h3>",
-							width: 120
-						},
-						{
-							field: "noregistrasi",
-							title: "<h3>No Registrasi</h3>",
-							width: 100
-						},
-						{
-							command: [{
-								text: "Detail",
-								click: showDetailAsesmenGizi,
-								imageClass: "k-icon k-i-pencil"
-							}, ],
-							title: "",
-							width: 90,
-							attributes: {
-								style: "text-align:center;valign=middle"
-							}
+						field: "tglinput",
+						title: "<h3>Tanggal/Jam</h3>",
+						width: 100
+					},
+					{
+						field: "namalengkap",
+						title: "<h3>Dokter Penanggung <br>Jawab Pelayanan</h3>",
+						width: 150
+					},
+					{
+						field: "pegawaiasal",
+						title: "<h3>Ahli Gizi</h3>",
+						template: '# if( pegawaiasal==null) {# - # } else {# #= pegawaiasal # #} #',
+						"width": "120px"
+					},
+					{
+						field: "namaruangan",
+						title: "<h3>Ruangan</h3>",
+						width: 120
+					},
+					{
+						field: "noregistrasi",
+						title: "<h3>No Registrasi</h3>",
+						width: 100
+					},
+					{
+						command: [{
+							text: "Detail",
+							click: showDetailAsesmenGizi,
+							imageClass: "k-icon k-i-pencil"
+						},],
+						title: "",
+						width: 90,
+						attributes: {
+							style: "text-align:center;valign=middle"
 						}
+					}
 					]
 				};
 
@@ -232,44 +232,44 @@ define(['initialize'], function (initialize) {
 					pageable: true,
 					scrollable: true,
 					columns: [{
-							field: "tglinput",
-							title: "<h3>Tanggal/Jam</h3>",
-							width: 100
+						field: "tglinput",
+						title: "<h3>Tanggal/Jam</h3>",
+						width: 100
+					},
+					// { field: "namalengkap", title: "<h3>Dokter Penanggung <br>Jawab Pelayanan</h3>", width: 150 },
+					{
+						field: "pegawaiasal",
+						title: "<h3>Ahli Gizi</h3>",
+						width: 100
+					},
+					{
+						field: "namaruangan",
+						title: "<h3>Ruangan</h3>",
+						width: 120
+					},
+					{
+						field: "noregistrasi",
+						title: "<h3>No Registrasi</h3>",
+						width: 100
+					},
+					{
+						command: [{
+							text: "Detail",
+							click: showDetailAsesmenGizi,
+							imageClass: "k-icon k-i-pencil"
 						},
-						// { field: "namalengkap", title: "<h3>Dokter Penanggung <br>Jawab Pelayanan</h3>", width: 150 },
 						{
-							field: "pegawaiasal",
-							title: "<h3>Ahli Gizi</h3>",
-							width: 100
+							text: "Verifikasi Dokter",
+							click: verif,
+							imageClass: "k-icon k-i-pencil"
 						},
-						{
-							field: "namaruangan",
-							title: "<h3>Ruangan</h3>",
-							width: 120
-						},
-						{
-							field: "noregistrasi",
-							title: "<h3>No Registrasi</h3>",
-							width: 100
-						},
-						{
-							command: [{
-									text: "Detail",
-									click: showDetailAsesmenGizi,
-									imageClass: "k-icon k-i-pencil"
-								},
-								{
-									text: "Verifikasi Dokter",
-									click: verif,
-									imageClass: "k-icon k-i-pencil"
-								},
-							],
-							title: "",
-							width: 90,
-							attributes: {
-								style: "text-align:center;valign=middle"
-							}
+						],
+						title: "",
+						width: 90,
+						attributes: {
+							style: "text-align:center;valign=middle"
 						}
+					}
 					]
 				}
 				$scope.getDataAsesmenGizi();
@@ -398,16 +398,20 @@ define(['initialize'], function (initialize) {
 					monitoring: $scope.item.monitoring,
 					monitoring_ket: $scope.item.ketMonitoring,
 					lila: $scope.item.lila,
-					imt:$scope.item.imt,
+					imt: $scope.item.imt,
 					lila_u: $scope.item.lilau,
 					jenis_pasien: $scope.isDewasa ? 'Dewasa' : 'Anak'
 				}
-				
+
 				console.log(dataSave);
 				ManagePhp.postData(dataSave, `rekam-medis/post-asesmen-gizi-awal/save`).then(function (res) {
 					initPage();
 					$scope.showInput = false;
 				});
+
+				ManageSarprasPhp.postApi("Composition", dataSave).then(function (res) {
+					console.log(res)
+				})
 			}
 
 			function showDetailAsesmenGizi(e) {
