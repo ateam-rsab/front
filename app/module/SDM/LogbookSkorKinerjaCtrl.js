@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('LogbookSkorKinerjaCtrl', ['$q', 'ManagePegawai', 'FindPegawai', 'DateHelper', 'FindSdm', 'ModelItem', 'ManageSdm', 'ManageSdmNew', '$state', '$rootScope', '$scope',
-        function ($q, managePegawai, findPegawai, dateHelper, findSdm, modelItem, manageSdm, ManageSdmNew, $state, $rootScope, $scope) {
+    initialize.controller('LogbookSkorKinerjaCtrl', ['$q', 'ManagePegawai', 'FindPegawai', 'DateHelper', 'FindSdm', 'ModelItem', 'ManageSdm', 'ManageSdmNew', '$state', '$rootScope', '$scope', 'DateHelper',
+        function ($q, managePegawai, findPegawai, dateHelper, findSdm, modelItem, manageSdm, ManageSdmNew, $state, $rootScope, $scope, DateHelper) {
             $scope.item = {};
             $scope.now = new Date();
             $scope.isNov2022=true;
@@ -136,7 +136,7 @@ define(['initialize'], function (initialize) {
                     return;
                 }
 
-                if(dateHelper.toTimeStamp($scope.item.periode)=='1669741200000'){
+                if(DateHelper.getFormatMonthPicker($scope.item.periode)=='2022-11'){
                     $scope.isDtMain=true;
                     $scope.isNov2022=false;
                     $scope.isRouteLoading = false;

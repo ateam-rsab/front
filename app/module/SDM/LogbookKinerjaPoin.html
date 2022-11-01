@@ -21,11 +21,11 @@
                         <label c-label c-label-text=""></label>
                         <button class="c-button" ng-click="cari()">Cari</button>
                     </div>
-                    <div class="grid_3" style="margin-top: -10px;">
+                    <div class="grid_3" style="margin-top: -10px;" ng-hide="isDtMain">
                         <label c-label c-label-text=""></label>
                         <button class="c-button" ng-click="openWindowCetak('CetakLogbook')">Cetak</button>
                     </div>
-                    <div class="grid_3" style="margin-top:-10px;">
+                    <div class="grid_3" style="margin-top:-10px;" ng-hide="isDtMain">
                         <label c-label c-label-text=""></label>
                         <button class="c-button" ng-click="openWindowCetak('CetakDetailLogbook')">Cetak Detail</button>
                     </div>
@@ -48,14 +48,17 @@
         <div class="panel-heading-white" ng-show="!isLoading"><span class="title" c-translate>Logbook Kinerja
                 Staff</span></div>
         <div class="panel-body">
+            <div ng-hide="isNov2022" style="text-align: center;padding: 1px 0px 1px 0px;">
+                <h2 style="color:#bf1121;font-weight:bold;font-size:50px;padding: 0px;">OOps!<span style='font-size:40px;'>&#128556;</span></h2><p style="font-size: large;">Mohon maaf, Logbook Point Simulasi sedang dalam penyesuaian tarif baru.</p>
+            </div>
             <div class="clearfix"></div>
-            <div class="grid_12" style="margin: 10px 0 50px;" ng-show="showGridKinerja">
+            <div class="grid_12" style="margin: 10px 0 50px;" ng-show="showGridKinerja" ng-hide="isDtMain">
                 <div kendo-grid id="gridLogKinerja" k-data-source="dataSource" k-options="mainGridOption"></div>
             </div>
         </div>
         <div class="panel-heading-white" ng-show="!isLoading"><span class="title" c-translate>Uraian Tugas</span></div>
         <div class="panel-body">
-            <div class="grid_12" style="margin: 10px 0;" ng-show="showGridUraian">
+            <div class="grid_12" style="margin: 10px 0;" ng-show="showGridUraian" ng-hide="isDtMain">
                 <div kendo-grid id="gridUraianTugas" k-data-source="gridUraianTugas" options="opsiGridUraianTugas">
                 </div>
             </div>

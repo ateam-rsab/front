@@ -1,10 +1,10 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('LogbookSkorDokterCtrl', ['$q', 'DateHelper', 'FindSdm', 'ModelItem', 'ManageSdm', 'ManageSdmNew', '$state', '$rootScope', '$scope',
-        function ($q, dateHelper, findSdm, modelItem, manageSdm, ManageSdmNew, $state, $rootScope, $scope) {
+    initialize.controller('LogbookSkorDokterCtrl', ['$q', 'DateHelper', 'FindSdm', 'ModelItem', 'ManageSdm', 'ManageSdmNew', '$state', '$rootScope', '$scope', 'DateHelper',
+        function ($q, dateHelper, findSdm, modelItem, manageSdm, ManageSdmNew, $state, $rootScope, $scope, DateHelper) {
             $scope.isNov2022 = true;
-            $scope.item = {};
             $scope.now = new Date();
+            $scope.item = {};
             $scope.dataVOloaded = true;
             $scope.isRouteLoading = false;
             $scope.monthly = {
@@ -105,13 +105,12 @@ define(['initialize'], function (initialize) {
                     $scope.isRouteLoading = false;
                     return;
                 }
-
                 if($scope.item.periode){
-                    if(dateHelper.toTimeStamp($scope.item.periode)=='1669741200000'){
+                    if(DateHelper.getFormatMonthPicker($scope.item.periode)=='2022-11'){
                         $scope.isDtMain=true;
 						$scope.isNov2022=false;
                         $scope.isRouteLoading = false;
-                        return;
+                        // return;
                     }else{
                         $scope.isDtMain=false;
 						$scope.isNov2022=true;

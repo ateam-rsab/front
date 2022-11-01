@@ -4,6 +4,7 @@ define(['initialize'], function (initialize) {
         function ($q, $http, $rootScope, $scope, ModelItem, $state, ManageSdm, ManageSdmNew, dateHelper, reportHelper, findPegawai, cetakHelper, FindSdm) {
             $scope.item = {};
             $scope.now = new Date();
+            $scope.isNov2022=true;
             $scope.isLoading = true;
             $scope.isRouteLoading = true;
             $scope.dataVOloaded = true;
@@ -52,6 +53,14 @@ define(['initialize'], function (initialize) {
                 var isValid = ModelItem.setValidation($scope, listRawRequired);
                 if (isValid.status) {
                     $scope.isRouteLoading = true;
+                    if(dateHelper.getFormatMonthPicker($scope.item.periode)=='2022-11'){
+                        $scope.isDtMain=true;
+                        $scope.isNov2022=false;
+                        $scope.isRouteLoading = false;
+                    }else{
+                        $scope.isDtMain=false;
+                        $scope.isNov2022=true;
+                        // $scope.isRouteLoading = false;
                     $q.all([
                         ManageSdmNew.getListData("sdm/get-all-tindakan-dokter-rescored/" + dateHelper.getFormatMonthPicker($scope.item.periode) + "/" + $scope.item.pegawai.id),
                         ManageSdmNew.getListData("sdm/get-rekapitulasi-capaian/" + dateHelper.getFormatMonthPicker($scope.item.periode) + "/" + $scope.item.pegawai.id)
@@ -366,6 +375,7 @@ define(['initialize'], function (initialize) {
                         $scope.isRouteLoading = false;
                         throw (error);
                     });
+                    }
                 } else {
                     ModelItem.showMessages(isValid.messages);
                 }
