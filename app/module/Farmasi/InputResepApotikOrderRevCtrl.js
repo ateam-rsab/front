@@ -456,11 +456,11 @@ define(['initialize'], function (initialize) {
                     }
                 }
                 console.log(dataResep)
-                // $scope.tempListResep.push(dataResep);
-                // $scope.dataResepDokter.add(dataResep);
+                $scope.tempListResep.push(dataResep);
+                $scope.dataResepDokter.add(dataResep);
 
-                // clear();
-                // init();
+                clear();
+                init();
             }
 
             $scope.cetakResep = function () {

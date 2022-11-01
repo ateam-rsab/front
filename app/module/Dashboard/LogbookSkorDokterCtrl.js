@@ -2,7 +2,9 @@ define(['initialize'], function (initialize) {
     'use strict';
     initialize.controller('LogbookSkorDokterCtrl', ['$q', 'DateHelper', 'FindSdm', 'ModelItem', 'ManageSdm', 'ManageSdmNew', '$state', '$rootScope', '$scope',
         function ($q, dateHelper, findSdm, modelItem, manageSdm, ManageSdmNew, $state, $rootScope, $scope) {
+            $scope.isNov2022 = true;
             $scope.item = {};
+            $scope.now = new Date();
             $scope.dataVOloaded = true;
             $scope.isRouteLoading = false;
             $scope.monthly = {
@@ -104,6 +106,28 @@ define(['initialize'], function (initialize) {
                     return;
                 }
 
+                if($scope.item.periode){
+                    if(dateHelper.toTimeStamp($scope.item.periode)=='1669741200000'){
+                        $scope.isDtMain=true;
+						$scope.isNov2022=false;
+                        $scope.isRouteLoading = false;
+                        return;
+                    }else{
+                        $scope.isDtMain=false;
+						$scope.isNov2022=true;
+                        $scope.isRouteLoading = false;
+                        $scope.resultDataLogBook();
+                    }
+                }else{
+                    $scope.isDtMain=false;
+					$scope.isNov2022=true;
+                    $scope.isRouteLoading = false;
+                    $scope.resultDataLogBook();
+                }
+                
+            }
+
+            $scope.resultDataLogBook=()=>{
                 let dataTempDJK = [];
                 ManageSdmNew.getListData(`iki-remunerasi/get-logbook-skoring-dokter-jam-kerja?bulan=${$scope.item.periode ? dateHelper.toTimeStamp($scope.item.periode) : dateHelper.toTimeStamp(new Date())}&pegawaiId=${$scope.item.pegawai.id}`).then(res => {
                     let periode = new Date($scope.item.periode), bln = periode.getMonth(), thn = periode.getFullYear();
