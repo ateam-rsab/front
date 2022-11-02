@@ -10,40 +10,48 @@
 					<div class="grid_12">
 						<label c-label item="item" c-label-text="Produk"></label>
 						<div class="grid_12">
-							<input kendo-combo-box k-ng-model="item.produk"
-								k-data-text-field="'namaproduk'" k-data-value-field="'kdproduk'"
-								k-filter="'contains'" k-auto-bind="false" k-data-source="listProduk" />
+							<input kendo-combo-box k-ng-model="item.produk" k-data-text-field="'namaproduk'"
+								k-data-value-field="'kdproduk'" k-filter="'contains'" k-auto-bind="false"
+								k-data-source="listProduk" />
 						</div>
 					</div>
 				</div>
-				<div class="grid_2">
+				<div class="grid_1">
 					<div class="grid_12">
 						<label c-label item="item" c-label-text="Kelas"></label>
 						<input style="width: 100%;" kendo-combo-box k-ng-model="item.kelas"
-							k-data-text-field="'namakelas'" k-data-value-field="'id'"
-							k-filter="'contains'" k-auto-bind="false" k-data-source="ListKelas" />
+							k-data-text-field="'namakelas'" k-data-value-field="'id'" k-filter="'contains'"
+							k-auto-bind="false" k-data-source="ListKelas" />
 					</div>
 				</div>
 				<div class="grid_3">
 					<div class="grid_12">
 						<label c-label item="item" c-label-text="Nama Ruangan"></label>
 						<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan"
-							k-data-text-field="'namaruangan'" k-data-value-field="'id'"
-							k-filter="'contains'" k-auto-bind="false" k-data-source="ListRuangan" />
+							k-data-text-field="'namaruangan'" k-data-value-field="'id'" k-filter="'contains'"
+							k-auto-bind="false" k-data-source="ListRuangan" />
 					</div>
 				</div>
+				<div class="grid_4"></div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_6"></div>
 				<div class="grid_1" style="margin-top: 22px;">
-					<md-button class="md-raised md-primary medium-button"
-						ng-click="SearchData()">
+					<md-button class="md-raised md-primary medium-button" ng-click="SearchData()">
 						<span style="margin-right: 5px;">Cari</span>
 						<i class="fa fa-search"></i>
 					</md-button>
 					<!-- <button class="c-button" ng-click="SearchData()">Cari</button> -->
 				</div>
 				<div class="grid_2" style="margin-top: 22px;">
-					<md-button class="md-raised md-primary medium-button"
-						ng-click="PrintData()">
+					<md-button class="md-raised md-primary medium-button" ng-click="PrintData()">
 						<span style="margin-right: 5px;">Export Excel</span>
+						<i class="fa fa-file-excel-o"></i>
+					</md-button>
+				</div>
+				<div class="grid_3" style="margin-top: 22px;">
+					<md-button class="md-raised md-primary medium-button" ng-click="PrintDataLama()">
+						<span style="margin-right: 5px;">Export Excel - Tarif Lama</span>
 						<i class="fa fa-file-excel-o"></i>
 					</md-button>
 				</div>
@@ -51,23 +59,14 @@
 			<div class="grid_12" style="margin: 30px 0 30px 0;">
 				<!-- grid table -->
 				<div class="grid_12">
-					<div kendo-grid id="kGrid"
-						k-data-source="sourceTarif"
-						k-groupable="'true'"
-						k-selectable="'row'"
-						class="max-height"
-						k-pageable="'true'"
-						k-columns="columndata"
-						k-sortable="'true'"
-						k-ng-model="dataSelected"
-						ng-click="klik(dataSelected)">
+					<div kendo-grid id="kGrid" k-data-source="sourceTarif" k-groupable="'true'" k-selectable="'row'"
+						class="max-height" k-pageable="'true'" k-columns="columndata" k-sortable="'true'"
+						k-ng-model="dataSelected" ng-click="klik(dataSelected)">
 						<div k-detail-template>
 							<kendo-tabstrip>
 								<div>
-									<div id="kGridDetail" kendo-grid k-options="data2(dataItem)"
-										k-sortable="'true'"
-										k-selectable="'row'"
-										k-ng-model="dataSelected2"
+									<div id="kGridDetail" kendo-grid k-options="data2(dataItem)" k-sortable="'true'"
+										k-selectable="'row'" k-ng-model="dataSelected2"
 										ng-click="klikDetail(dataSelected2)">
 									</div>
 								</div>
