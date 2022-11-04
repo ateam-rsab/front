@@ -590,34 +590,34 @@ define(['initialize'], function (initialize) {
                 let dataResep = [];
                 dataResep.push(dataTemp[0]);
 
-                // var confirm = $mdDialog.confirm()
-                //     .title('Kirim order resep ini untuk pasien ' + $scope.item.namaPasien + '?')
-                //     .htmlContent('<ul><li>Periksa kembali daftar resep yang akan dikirim</li>'
-                //         + '<li>Periksa kembali stok obat yang tersedia</li>'
-                //         + ($scope.isBpjs ? '<li>Periksa kembali kesesuaian obat fornas</li>' : ''
-                //             + '</ul>'))
-                //     .ariaLabel('Lucky day')
-                //     .targetEvent(e)
-                //     .ok('Kirim')
-                //     .cancel('Tidak');
-                // $mdDialog.show(confirm).then(function () {
-                //     $scope.isRouteLoading = true;
-                //     manageLogistikPhp.postpost('farmasi/resep-dokter?strukorder=' + norec_apd, dataResep).then(function (res) {
-                //         dataResep = [];
-                //         $scope.tempListResep = [];
-                //         $scope.resep.beratBadan = '';
-                //         $scope.item.izinPerubahanObat = '';
-                //         $scope.isCito = '';
-                //         $scope.isSegeraPulang = '';
-                //         $scope.isResepEmpty = true;
-                //         $scope.isRouteLoading = false;
-                //     }, (error) => {
-                //         $scope.isRouteLoading = false;
-                //     })
-                // }, function () {
+                var confirm = $mdDialog.confirm()
+                    .title('Kirim order resep ini untuk pasien ' + $scope.item.namaPasien + '?')
+                    .htmlContent('<ul><li>Periksa kembali daftar resep yang akan dikirim</li>'
+                        + '<li>Periksa kembali stok obat yang tersedia</li>'
+                        + ($scope.isBpjs ? '<li>Periksa kembali kesesuaian obat fornas</li>' : ''
+                            + '</ul>'))
+                    .ariaLabel('Lucky day')
+                    .targetEvent(e)
+                    .ok('Kirim')
+                    .cancel('Tidak');
+                $mdDialog.show(confirm).then(function () {
+                    $scope.isRouteLoading = true;
+                    manageLogistikPhp.postpost('farmasi/resep-dokter?strukorder=' + norec_apd, dataResep).then(function (res) {
+                        dataResep = [];
+                        $scope.tempListResep = [];
+                        $scope.resep.beratBadan = '';
+                        $scope.item.izinPerubahanObat = '';
+                        $scope.isCito = '';
+                        $scope.isSegeraPulang = '';
+                        $scope.isResepEmpty = true;
+                        $scope.isRouteLoading = false;
+                    }, (error) => {
+                        $scope.isRouteLoading = false;
+                    })
+                }, function () {
                     console.log(dataResep)
                     $scope.isRouteLoading = false;
-                // });
+                });
 
             }
 
