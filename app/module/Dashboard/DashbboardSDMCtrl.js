@@ -500,6 +500,37 @@ define(['initialize'], function (initialize) {
 				}
 				
 			}
+			$scope.openWindowCetakLks = function (param) {
+				if(!$scope.item.periode){
+					return toastr.warning('Periode belum dipilih', 'Info');
+				}
+
+				if(DateHelper.getFormatMonthPicker($scope.item.periode)=='2022-11'){
+					return toastr.warning('OOps! Periode November 2022 Belum tersedia', 'Info');
+				}else{
+					ManageSdmNew.getListData("pegawai/get-all-jabatan-by-pegawai?idPegawai=" + $scope.item.pegawai.id).then(function (res) {
+						$scope.listJabatanCetak = res.data.data;
+						$scope.item.jabatanCetak = $scope.listJabatanCetak[0];
+					});
+	
+					ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/list-atasan-langsung-pegawai?idPegawai=" + $scope.item.pegawai.id, true).then(function (dat) {
+						$scope.listAtasan = dat.data.data.data;
+						$scope.item.atasanCetak = dat.data.data.data[0];
+	
+						ManageSdmNew.getListData("pegawai/get-all-jabatan-by-pegawai?idPegawai=" + $scope.item.atasanCetak.id).then(function (res) {
+							$scope.listJabatanAtasanCetak = res.data.data;
+							$scope.item.jabatanAtasanCetak = $scope.listJabatanAtasanCetak[0];
+						});
+					});
+	
+					$scope.jenisCetakan = param;
+	
+					var myWindow = $("#winPopUpCetak");
+					myWindow.data("kendoWindow").open();
+					$scope.isShowPopUp = true;
+				}
+				
+			}
 
 			$scope.isShowPopUp = false;
 			$scope.openWindow = function () {

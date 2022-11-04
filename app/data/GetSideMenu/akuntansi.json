@@ -72,20 +72,25 @@
             "link": "#/LaporanKunjunganUnit"
         },
         {
-            "name": "Rekapitulasi Pendapatan Unit",
-            "link": "#/LaporanKeuanganUnit"
-        },
-        {
-            "name": "Rekapitulasi Pendapatan Ruangan",
-            "link": "#/LaporanKeuanganRuangan"
-        },
-        {
-            "name": "Rekapitulasi Rincian Pendapatan Ruangan",
-            "link": "#/LaporanRincianKeuanganRuangan"
-        },
-        {
           "name": "Rekap Kunjungan Pasien",
           "link": "#/RekapKunjunganPasienPerHari"
+      }
+    ]
+  },
+  {
+    "name": "Laporan Pendapatan",
+    "children": [
+      {
+          "name": "Rekapitulasi Pendapatan Unit",
+          "link": "#/LaporanKeuanganUnit"
+      },
+      {
+          "name": "Rekapitulasi Pendapatan Ruangan",
+          "link": "#/LaporanKeuanganRuangan"
+      },
+      {
+          "name": "Rekapitulasi Rincian Pendapatan Ruangan",
+          "link": "#/LaporanRincianKeuanganRuangan"
       }
     ]
   },
