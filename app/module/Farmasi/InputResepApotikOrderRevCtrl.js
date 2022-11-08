@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('InputResepApotikOrderRevCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper', '$mdDialog', 'CetakHelper',
-        function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper, $mdDialog, cetakHelper) {
+    initialize.controller('InputResepApotikOrderRevCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper', '$mdDialog', 'CetakHelper','ManageServicePhp',
+        function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper, $mdDialog, cetakHelper, ManageServicePhp) {
             $scope.dataLogin = JSON.parse(localStorage.getItem('pegawai'));
             $scope.showInputDokter = $scope.dataLogin.id === 320263
 
@@ -603,6 +603,9 @@ define(['initialize'], function (initialize) {
                 $mdDialog.show(confirm).then(function () {
                     $scope.isRouteLoading = true;
                     manageLogistikPhp.postpost('farmasi/resep-dokter?strukorder=' + norec_apd, dataResep).then(function (res) {
+                        ManageServicePhp.postApi('Medication',dataResep).then((resMedication)=>{
+                            console.log(resMedication);
+                        })
                         dataResep = [];
                         $scope.tempListResep = [];
                         $scope.resep.beratBadan = '';

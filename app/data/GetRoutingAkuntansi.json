@@ -7349,6 +7349,10 @@
       },
       {
         "define": "RekamMedisCtrl"
+      },
+      {
+        "module": "PhpServices",
+        "define": "PhpServices"
       }
     ]
   },
@@ -11621,6 +11625,10 @@
       {
         "module": "PhpService",
         "define": "PhpService"
+      },
+      {
+        "module": "PhpServices",
+        "define": "PhpServices"
       }
     ]
   },
