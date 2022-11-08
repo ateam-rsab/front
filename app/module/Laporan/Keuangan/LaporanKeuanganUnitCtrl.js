@@ -4,15 +4,31 @@ define(['initialize'], function (initialize) {
         function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper, ModelItem, dateHelper, $window, $mdDialog) {
             $scope.OnInit=()=>{
                 var datauserlogin = JSON.parse(window.localStorage.getItem('pegawai'));
-                if(datauserlogin['id']=="502"){
-                    toastr.warning('OOps! Anda tidak memiliki akses disini', 'Warning');
-                    setTimeout(() => {
-                        $state.go('home')
-                    }, 3000);
+                var statusCode = ModelItem.getStatusUser();
+                if(statusCode!="akuntansi"){
+                    if(statusCode=="tatarekening"){
+                        if(datauserlogin['id']!="502"){
+                            $scope.isAccessDanied();
+                        }
+                    }else if(statusCode=="dokter"){
+                        $scope.isAccessDanied();
+                    }else if(statusCode=="laboratorium"){
+                        $scope.isAccessDanied();
+                    }else if(statusCode=="logistik"){
+                        $scope.isAccessDanied();
+                    }else if(statusCode=="bedah"){
+                        $scope.isAccessDanied();
+                    }
                 }
             }
-
+            $scope.isAccessDanied=()=>{
+                toastr.warning('OOps! Anda tidak memiliki akses disini', 'Warning');
+                setTimeout(() => {
+                    $state.go('home')
+                }, 2000);
+            }
             $scope.OnInit();
+
             $scope.item = {};
             $scope.jumlahLayanan = 2000;
             $scope.item.unitKerja='';
