@@ -7,17 +7,25 @@ define(['initialize'], function (initialize) {
                 var statusCode = ModelItem.getStatusUser();
                 if(statusCode!="akuntansi"){
                     if(statusCode=="tatarekening"){
-                        if(datauserlogin['id']!="502"){
+                        if(datauserlogin['id']!="502"||datauserlogin['id']!="1104"||datauserlogin['id']!="1013"||datauserlogin['id']!="22914"||datauserlogin['id']!="994"||datauserlogin['id']!="969"){
                             $scope.isAccessDanied();
                         }
                     }else if(statusCode=="dokter"){
-                        $scope.isAccessDanied();
-                    }else if(statusCode=="laboratorium"){
-                        $scope.isAccessDanied();
+                        if(datauserlogin['id']!="950"){
+                            $scope.isAccessDanied();
+                        }
+                    }else if(statusCode=="laborat"){
+                        if(datauserlogin['id']!="1125"){
+                            $scope.isAccessDanied();
+                        }
                     }else if(statusCode=="logistik"){
-                        $scope.isAccessDanied();
+                        if(datauserlogin['id']!="996"){
+                            $scope.isAccessDanied();
+                        }
                     }else if(statusCode=="bedah"){
-                        $scope.isAccessDanied();
+                        if(datauserlogin['id']!="696"){
+                            $scope.isAccessDanied();
+                        }
                     }
                 }
             }
