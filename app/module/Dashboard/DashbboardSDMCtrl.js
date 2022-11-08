@@ -469,11 +469,13 @@ define(['initialize'], function (initialize) {
 			}
 
 			$scope.isShowPopUpCetak = false;
-			$scope.openWindowCetak = function (param) {
+			$scope.openWindowCetakFfs = function (param) {
 				if(!$scope.item.periodeRekaps){
 					return toastr.warning('Periode belum dipilih', 'Info');
 				}
-
+				$scope.cetakFfs(param);
+			}
+			$scope.cetakFfs=(param)=>{
 				if(DateHelper.getFormatMonthPicker($scope.item.periodeRekaps)=='2022-11'){
 					return toastr.warning('OOps! Periode November 2022 Belum tersedia', 'Info');
 				}else{
@@ -500,11 +502,14 @@ define(['initialize'], function (initialize) {
 				}
 				
 			}
+			
 			$scope.openWindowCetakLks = function (param) {
 				if(!$scope.item.periode){
 					return toastr.warning('Periode belum dipilih', 'Info');
 				}
-
+				$scope.cetakLks(param);
+			}
+			$scope.cetakLks=(param)=>{
 				if(DateHelper.getFormatMonthPicker($scope.item.periode)=='2022-11'){
 					return toastr.warning('OOps! Periode November 2022 Belum tersedia', 'Info');
 				}else{
@@ -529,7 +534,6 @@ define(['initialize'], function (initialize) {
 					myWindow.data("kendoWindow").open();
 					$scope.isShowPopUp = true;
 				}
-				
 			}
 
 			$scope.isShowPopUp = false;

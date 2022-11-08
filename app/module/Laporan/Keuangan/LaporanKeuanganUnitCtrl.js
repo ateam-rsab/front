@@ -2,6 +2,17 @@ define(['initialize'], function (initialize) {
     'use strict';
     initialize.controller('LaporanKeuanganUnitCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper', 'ModelItem','DateHelper', '$window', '$mdDialog',
         function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper, ModelItem, dateHelper, $window, $mdDialog) {
+            $scope.OnInit=()=>{
+                var datauserlogin = JSON.parse(window.localStorage.getItem('pegawai'));
+                if(datauserlogin['id']=="502"){
+                    toastr.warning('OOps! Anda tidak memiliki akses disini', 'Warning');
+                    setTimeout(() => {
+                        $state.go('home')
+                    }, 3000);
+                }
+            }
+
+            $scope.OnInit();
             $scope.item = {};
             $scope.jumlahLayanan = 2000;
             $scope.item.unitKerja='';
