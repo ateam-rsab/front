@@ -2192,6 +2192,10 @@
       {
         "module": "LogistikServicePhp",
         "define": "LogistikServicePhp"
+      },
+      {
+        "module": "PhpServices",
+        "define": "PhpServices"
       }
     ]
   },
