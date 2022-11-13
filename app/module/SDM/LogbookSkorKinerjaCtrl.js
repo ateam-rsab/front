@@ -1,7 +1,9 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('LogbookSkorKinerjaCtrl', ['$q', 'ManagePegawai', 'FindPegawai', 'DateHelper', 'FindSdm', 'ModelItem', 'ManageSdm', 'ManageSdmNew', '$state', '$rootScope', '$scope',
-        function ($q, managePegawai, findPegawai, dateHelper, findSdm, modelItem, manageSdm, ManageSdmNew, $state, $rootScope, $scope) {
+    initialize.controller('LogbookSkorKinerjaCtrl', ['$q', 'ManagePegawai', 'FindPegawai', 'DateHelper', 'FindSdm', 'ModelItem', 'ManageSdm', 'ManageSdmNew', '$state', '$rootScope', '$scope', 'DateHelper',
+        function ($q, managePegawai, findPegawai, dateHelper, findSdm, modelItem, manageSdm, ManageSdmNew, $state, $rootScope, $scope, DateHelper) {
+            $scope.now = new Date();
+            $scope.isNov2022 = true;
             $scope.item = {};
             $scope.dataSource = [];
             $scope.listKelompokJabatanId = [];
@@ -134,6 +136,13 @@ define(['initialize'], function (initialize) {
                     return;
                 }
 
+                $scope.isDtMain = false;
+                $scope.isNov2022 = true;
+                $scope.afterGetDataLogBook();
+                $scope.isRouteLoading = false;
+            }
+
+            $scope.afterGetDataLogBook = () => {
                 ManageSdmNew.getListData("sdm/get-akses-logbook-skor?pegawaiId=" + ($scope.item.pegawai ? $scope.item.pegawai.id : $scope.pegawaiLogin.id)).then((res) => {
                     switch (res.data.data.kategori) {
                         case 3:
@@ -141,7 +150,7 @@ define(['initialize'], function (initialize) {
                             if (res.data.data.subKategori == 1) {
                                 baseUrl = "get-logbook-skoring-farmakologi";
                                 urlDetail = "get-detail-logbook-skoring-farmakologi";
-    
+
                                 indikatorId = 758;
                                 $scope.namaJenisPegawai = "Dokter Farmakologi";
                                 $scope.isNakesLain = false;
@@ -149,7 +158,10 @@ define(['initialize'], function (initialize) {
                             } else {
                                 baseUrl = "get-logbook-skoring-dokter-jam-kerja";
                                 urlDetail = "get-detail-pasien-dokter-jam-kerja";
-    
+
+                                $scope.isDtMain = true;
+                                $scope.isNov2022 = false;
+
                                 indikatorId = 466;
                                 $scope.namaJenisPegawai = "Dokter";
                                 $scope.isNakesLain = false;
@@ -253,7 +265,6 @@ define(['initialize'], function (initialize) {
                 $scope.periode = $scope.item.periode;
                 getHeaderTable();
             }
-
             let load = () => {
                 ManageSdmNew.getListData("sdm/get-akses-logbook-skor?pegawaiId=" + ($scope.item.pegawai ? $scope.item.pegawai.id : $scope.pegawaiLogin.id)).then((res) => {
                     switch (res.data.data.kategori) {
@@ -262,7 +273,7 @@ define(['initialize'], function (initialize) {
                             if (res.data.data.subKategori == 1) {
                                 baseUrl = "get-logbook-skoring-farmakologi";
                                 urlDetail = "get-detail-logbook-skoring-farmakologi";
-    
+
                                 indikatorId = 758;
                                 $scope.namaJenisPegawai = "Dokter Farmakologi";
                                 $scope.isNakesLain = false;
@@ -270,7 +281,7 @@ define(['initialize'], function (initialize) {
                             } else {
                                 baseUrl = "get-logbook-skoring-dokter-jam-kerja";
                                 urlDetail = "get-detail-pasien-dokter-jam-kerja";
-    
+
                                 indikatorId = 466;
                                 $scope.namaJenisPegawai = "Dokter";
                                 $scope.isNakesLain = false;
@@ -324,13 +335,13 @@ define(['initialize'], function (initialize) {
 
                             break;
                         }
-                        
+
                     }
                     if (!$scope.item.pegawai) {
                         for (let i = 0; i < res.data.data.length; i++) {
                             if (res.data.data[i].id == $scope.pegawaiLogin.id) {
                                 $scope.item.pegawai = res.data.data[i];
-    
+
                                 break;
                             }
                         }
