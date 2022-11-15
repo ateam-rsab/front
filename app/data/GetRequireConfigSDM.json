@@ -1221,8 +1221,12 @@
       "urlDep": "module/SDM/LogbookKinerjaCtrl"
     },
     {
-      "nameDep": "LogbookKinerjaPoinCtrl",
-      "urlDep": "module/SDM/LogbookKinerjaPoinCtrl"
+      "nameDep": "LogbookKinerjaRCtrl",
+      "urlDep": "module/SDM/LogbookKinerjaRCtrl"
+    },
+    {
+      "nameDep": "LogbookKinerjaECtrl",
+      "urlDep": "module/SDM/LogbookKinerjaECtrl"
     },
     {
       "nameDep": "CapaianUraianTugasCtrl",

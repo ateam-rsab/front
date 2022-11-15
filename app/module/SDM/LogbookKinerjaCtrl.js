@@ -53,7 +53,7 @@ define(['initialize'], function (initialize) {
                 if (isValid.status) {
                     $scope.isRouteLoading = true;
                     $q.all([
-                        ManageSdmNew.getListData("sdm/get-all-tindakan-dokter-rescored/" + dateHelper.getFormatMonthPicker($scope.item.periode) + "/" + $scope.item.pegawai.id),
+                        ManageSdmNew.getListData("sdm/get-all-tindakan-dokter-rescored/" + dateHelper.getFormatMonthPicker($scope.item.periode) + "/" + $scope.item.pegawai.id + "/1"),
                         ManageSdmNew.getListData("sdm/get-rekapitulasi-capaian/" + dateHelper.getFormatMonthPicker($scope.item.periode) + "/" + $scope.item.pegawai.id)
                     ])
                     .then(function (res) {
@@ -556,7 +556,7 @@ define(['initialize'], function (initialize) {
                 var isValid = ModelItem.setValidation($scope, listRawRequired);
                 if (isValid.status) {
                     var fixUrlLaporan = cetakHelper.openURLReporting("reporting/lapLogbookKinerjaStaffMedis?idDokter=" + $scope.item.pegawai.id + "&idJabatan=" + $scope.item.jabatanCetak.id
-                        + "&periode=" + dateHelper.getFormatMonthPicker($scope.item.periode));
+                        + "&periode=" + dateHelper.getFormatMonthPicker($scope.item.periode) + "&idAlternatif=1");
 
                     window.open(fixUrlLaporan, '', 'width=800,height=600')
                 } else {

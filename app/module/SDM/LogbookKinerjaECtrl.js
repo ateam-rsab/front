@@ -1,6 +1,6 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('LogbookKinerjaPoinCtrl', ['$q', '$http', '$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm', 'ManageSdmNew', 'DateHelper', 'ReportHelper', 'FindPegawai', 'CetakHelper', 'FindSdm',
+    initialize.controller('LogbookKinerjaECtrl', ['$q', '$http', '$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm', 'ManageSdmNew', 'DateHelper', 'ReportHelper', 'FindPegawai', 'CetakHelper', 'FindSdm',
         function ($q, $http, $rootScope, $scope, ModelItem, $state, ManageSdm, ManageSdmNew, dateHelper, reportHelper, findPegawai, cetakHelper, FindSdm) {
             $scope.item = {};
             $scope.now = new Date();
@@ -53,7 +53,7 @@ define(['initialize'], function (initialize) {
                 if (isValid.status) {
                     $scope.isRouteLoading = true;
                     $q.all([
-                        ManageSdmNew.getListData("sdm/get-all-tindakan-dokter-rescored/" + dateHelper.getFormatMonthPicker($scope.item.periode) + "/" + $scope.item.pegawai.id),
+                        ManageSdmNew.getListData("sdm/get-all-tindakan-dokter-rescored/" + dateHelper.getFormatMonthPicker($scope.item.periode) + "/" + $scope.item.pegawai.id + "/2"),
                         ManageSdmNew.getListData("sdm/get-rekapitulasi-capaian/" + dateHelper.getFormatMonthPicker($scope.item.periode) + "/" + $scope.item.pegawai.id)
                     ])
                         .then(function (res) {
@@ -125,19 +125,6 @@ define(['initialize'], function (initialize) {
                                     }, {
                                         field: "harga",
                                         title: "Tarif (Rp.)",
-                                        // template: '# if( hargaKelas1 != null ) {# #= hargaKelas1# #} else {# #= harga# #} #',
-                                        format: "{0:n0}",
-                                        width: 100,
-                                        headerAttributes: {
-                                            style: "text-align: center"
-                                        },
-                                        attributes: {
-                                            class: "table-cell",
-                                            style: "text-align: right; font-size: 14px;"
-                                        }
-                                    }, {
-                                        field: "hargaKomponen",
-                                        title: "Komponen<br/>Tarif (Rp.)",
                                         // template: '# if( hargaKelas1 != null ) {# #= hargaKelas1# #} else {# #= harga# #} #',
                                         format: "{0:n0}",
                                         width: 100,
@@ -463,9 +450,9 @@ define(['initialize'], function (initialize) {
                     var row = $(this).closest("tr");
                     var selectedData = grid.dataItem(row);
                     var colIdx = $("td", row).index(this);
-                    if (colIdx >= 6) {
-                        // disable show popup if cell index < 6
-                        var colDateIdx = colIdx - 6;
+                    if (colIdx >= 5) {
+                        // disable show popup if cell index < 5
+                        var colDateIdx = colIdx - 5;
                         var colName = $('#gridLogKinerja tr').eq(1).find('th').eq(colDateIdx).text();
 
                         if (colName.length === 1) {
@@ -569,7 +556,7 @@ define(['initialize'], function (initialize) {
                 var isValid = ModelItem.setValidation($scope, listRawRequired);
                 if (isValid.status) {
                     var fixUrlLaporan = cetakHelper.openURLReporting("reporting/lapLogbookKinerjaStaffMedis?idDokter=" + $scope.item.pegawai.id + "&idJabatan=" + $scope.item.jabatanCetak.id
-                        + "&periode=" + dateHelper.getFormatMonthPicker($scope.item.periode));
+                        + "&periode=" + dateHelper.getFormatMonthPicker($scope.item.periode) + "&idAlternatif=2");
 
                     window.open(fixUrlLaporan, '', 'width=800,height=600')
                 } else {

@@ -1310,7 +1310,7 @@ define(['Configuration'], function(config) {
             },
             getDataLogbookKinerja: function(periode, pegawaiId){
                 return r.get({
-                    url: baseUrlActionSDM + "sdm/get-all-tindakan-dokter-rescored/"+ periode +"/"+ pegawaiId
+                    url: baseUrlActionSDM + "sdm/get-all-tindakan-dokter-rescored/"+ periode +"/"+ pegawaiId +"/1"
                 })
             },
             getDetilLogbookKinerja: function(idProduk, idKelas, idPegawai, tgl, ffs){
