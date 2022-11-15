@@ -117,7 +117,7 @@ define(['initialize'], function(initialize) {
     }
     
     $scope.changeParameterTarif=function(){
-        manageTataRekening.getDataTableTransaksi("aset/get-data-barang?paramtarif="+$scope.item.parameterTarif.id, false).then(function(data) {
+        manageTataRekening.getDataTableTransaksi("aset/get-data-layanan-combo?paramtarif="+$scope.item.parameterTarif.id, false).then(function(data) {
             $scope.listProduk = data.data;
         });
     }
