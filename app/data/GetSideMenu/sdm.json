@@ -672,6 +672,14 @@
                     {
                         "name": "Logbook Kinerja",
                         "link": "#/LogbookKinerja"
+                    },
+                    {
+                        "name": "Logbook Kinerja (R)",
+                        "link": "#/LogbookKinerjaR"
+                    },
+                    {
+                        "name": "Logbook Kinerja (E)",
+                        "link": "#/LogbookKinerjaE"
                     }
                 ]
             },

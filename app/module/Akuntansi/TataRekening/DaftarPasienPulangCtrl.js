@@ -379,11 +379,13 @@ define(["initialize"], function (initialize) {
           return;
         }
 
-        if (
-          $scope.dataPasienSelected.jenisAsuransi === "Umum/Pribadi" &&
-          $scope.dataPasienSelected.nosbm
-        ) {
-          toastr.info("Tidak bisa Verifikasi Data!", "Informasi");
+        if ($scope.dataPasienSelected.jenisAsuransi === "Umum/Pribadi" && $scope.dataPasienSelected.nosbm) {
+          toastr.error("Tidak bisa Verifikasi Data!", "Informasi");
+          return;
+        }
+
+        if ($scope.dataPasienSelected.jenisAsuransi === "Umum/Pribadi" && $scope.dataPasienSelected.status === "Verifikasi" ) {
+          toastr.error("Sudah Verifikasi Data!", "Informasi");
           return;
         }
 

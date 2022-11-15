@@ -553,7 +553,7 @@ define(['initialize'], function (initialize) {
 				if (isValid.status) {
 					$scope.isRouteLoading = true;
 					// FindSdm.getDataLogbookKinerja(DateHelper.getFormatMonthPicker($scope.item.periode), $scope.item.pegawai.id).then(function(dat) {
-					ManageSdmNew.getListData("sdm/get-all-tindakan-dokter-rescored/" + DateHelper.getFormatMonthPicker($scope.item.periode) + "/" + $scope.item.pegawai.id).then(function (dat) {
+					ManageSdmNew.getListData("sdm/get-all-tindakan-dokter-rescored/" + DateHelper.getFormatMonthPicker($scope.item.periode) + "/" + $scope.item.pegawai.id + "/1").then(function (dat) {
 						var dataGrid = [];
 						if (!dat.data.data) {
 							$scope.isRouteLoading = false;
@@ -996,7 +996,7 @@ define(['initialize'], function (initialize) {
 				var isValid = ModelItem.setValidation($scope, listRawRequired);
 
 				if (isValid.status) {
-					var fixUrlLaporan = cetakHelper.openURLReporting("reporting/lapLogbookKinerjaStaffMedis?idDokter=" + $scope.item.pegawai.id + "&idJabatan=" + $scope.item.jabatanCetak.id + "&periode=" + DateHelper.getFormatMonthPicker($scope.item.periode));
+					var fixUrlLaporan = cetakHelper.openURLReporting("reporting/lapLogbookKinerjaStaffMedis?idDokter=" + $scope.item.pegawai.id + "&idJabatan=" + $scope.item.jabatanCetak.id + "&periode=" + DateHelper.getFormatMonthPicker($scope.item.periode) + "&idAlternatif=1");
 					window.open(fixUrlLaporan, '', 'width=800,height=600')
 				} else {
 					ModelItem.showMessages(isValid.messages);
