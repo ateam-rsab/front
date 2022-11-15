@@ -992,9 +992,6 @@ define(['initialize'], function (initialize) {
                     jasa: $scope.item.jumlah === 0 ? 0 : 800
                 }
 
-                ManageServicePhp.postApi('Medication-dispense',obat).then((resMedication)=>{
-                    console.log(resMedication);
-                })
                 subTotal = subTotal + obat.total;
                 $scope.item.totalSubTotal = subTotal.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })
                 Kosongkan();
@@ -1263,6 +1260,9 @@ define(['initialize'], function (initialize) {
                     $scope.isRouteLoading = false;
                     $scope.onSave = true;
                     $scope.prompBridgingConsisD();
+                    ManageServicePhp.postApi('Medication-dispense',objSave).then((resMedication)=>{
+                        console.log(resMedication);
+                    })
                     // var confirmDialog = $mdDialog.confirm()
                     //     .title(`Apakah Obat akan dikeluarkan melalui "ROBOTIK" ?`)
                     //     .ok('Ya')
