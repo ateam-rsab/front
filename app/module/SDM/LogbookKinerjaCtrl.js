@@ -123,6 +123,19 @@ define(['initialize'], function (initialize) {
                                     title: "idProduk",
                                     hidden: true
                                 }, {
+                                    field: "hargaKelas1",
+                                    title: "Tarif (Rp.)",
+                                    template: '# if( isSatuTarif && hargaKelas1 != null ) {# #= hargaKelas1# #} else {# #= harga# #} #',
+                                    format: "{0:n0}",
+                                    width: 100,
+                                    headerAttributes: {
+                                        style: "text-align: center"
+                                    },
+                                    attributes: {
+                                        class: "table-cell",
+                                        style: "text-align: right; font-size: 14px;"
+                                    }
+                                }, {
                                     field: "poin",
                                     title: "Poin",
                                     headerAttributes: {
@@ -133,19 +146,6 @@ define(['initialize'], function (initialize) {
                                     attributes: {
                                         class: "table-cell",
                                         style: "text-align: right;"
-                                    }
-                                }, {
-                                    field: "hargaKelas1",
-                                    title: "Tarif (Rp.)",
-                                    template: '# if( hargaKelas1 != null ) {# #= hargaKelas1# #} else {# #= harga# #} #',
-                                    format: "{0:n0}",
-                                    width: 100,
-                                    headerAttributes: {
-                                        style: "text-align: center"
-                                    },
-                                    attributes: {
-                                        class: "table-cell",
-                                        style: "text-align: right; font-size: 14px;"
                                     }
                                 }, {
                                     field: "Pencapaian",

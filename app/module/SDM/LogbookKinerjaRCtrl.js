@@ -125,7 +125,7 @@ define(['initialize'], function (initialize) {
                                     }, {
                                         field: "harga",
                                         title: "Tarif (Rp.)",
-                                        // template: '# if( hargaKelas1 != null ) {# #= hargaKelas1# #} else {# #= harga# #} #',
+                                        template: '# if( isSatuTarif && hargaKelas1 != null ) {# #= hargaKelas1# #} else {# #= harga# #} #',
                                         format: "{0:n0}",
                                         width: 100,
                                         headerAttributes: {
