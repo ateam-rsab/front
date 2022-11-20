@@ -649,7 +649,7 @@ define(['initialize'], function (initialize) {
 									}
 								},
 								{
-									field: "hargaKelas1", title: "Tarif (Rp.)", "template": '# if( hargaKelas1 != null ) {# #= kendo.toString(hargaKelas1, "n0") # #} else {# #= kendo.toString(harga, "n0") # #} #', format: "{0:n0}", width: 100, headerAttributes: { style: "text-align: center" }, attributes: {
+									field: "harga", title: "Tarif (Rp.)", "template": '# if( isSatuTarif && hargaKelas1 != null ) {# #= kendo.toString(hargaKelas1, "n0") # #} else {# #= kendo.toString(harga, "n0") # #} #', format: "{0:n0}", width: 100, headerAttributes: { style: "text-align: center" }, attributes: {
 										"class": "table-cell", style: "text-align: right;  "//font-size: 14px;"
 									}
 								},

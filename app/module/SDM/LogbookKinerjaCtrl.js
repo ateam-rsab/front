@@ -123,7 +123,7 @@ define(['initialize'], function (initialize) {
                                     title: "idProduk",
                                     hidden: true
                                 }, {
-                                    field: "hargaKelas1",
+                                    field: "harga",
                                     title: "Tarif (Rp.)",
                                     template: '# if( isSatuTarif && hargaKelas1 != null ) {# #= hargaKelas1# #} else {# #= harga# #} #',
                                     format: "{0:n0}",
