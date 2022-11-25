@@ -3,6 +3,12 @@
         <div class="grid_12">
             <div class="grid_9">
                 <div class="grid_2" style="margin-top: 0.5em;">
+                    <label><b>Jenis Formula</b></label>
+                    <input kendo-combo-box k-ng-model="item.formula" k-data-value-field="'id'"
+                        k-data-text-field="'formula'" k-filter="'contains'" k-auto-bind="true"
+                        k-data-source="daftarFormula" style="width:100%" />
+                </div>
+                <div class="grid_2" style="margin-top: 0.5em;">
                     <label><b>Periode</b></label>
                     <input kendo-date-picker k-max="now" k-ng-model="item.periode" style="width: 100%"
                         k-options="yearSelected" />
