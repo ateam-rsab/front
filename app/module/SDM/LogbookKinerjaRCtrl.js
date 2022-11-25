@@ -12,6 +12,13 @@ define(['initialize'], function (initialize) {
                 start: "year",
                 depth: "year"
             };
+            $scope.daftarFormula = [{
+                "id": 1,
+                "formula": "Persen Operator 60%"
+            }, {
+                "id": 3,
+                "formula": "Persen Operator 40%"
+            }];
 
             $q.all([
                 ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true"),
@@ -47,13 +54,14 @@ define(['initialize'], function (initialize) {
             $scope.cari = function () {
                 var listRawRequired = [
                     "item.pegawai|k-ng-model|Nama pegawai",
-                    "item.periode|k-ng-model|Periode"
+                    "item.periode|k-ng-model|Periode",
+                    "item.formula|k-ng-model|Formula"
                 ]
                 var isValid = ModelItem.setValidation($scope, listRawRequired);
                 if (isValid.status) {
                     $scope.isRouteLoading = true;
                     $q.all([
-                        ManageSdmNew.getListData("sdm/get-all-tindakan-dokter-rescored/" + dateHelper.getFormatMonthPicker($scope.item.periode) + "/" + $scope.item.pegawai.id + "/1"),
+                        ManageSdmNew.getListData("sdm/get-all-tindakan-dokter-rescored/" + dateHelper.getFormatMonthPicker($scope.item.periode) + "/" + $scope.item.pegawai.id + "/" + $scope.item.formula.id),
                         ManageSdmNew.getListData("sdm/get-rekapitulasi-capaian/" + dateHelper.getFormatMonthPicker($scope.item.periode) + "/" + $scope.item.pegawai.id)
                     ])
                         .then(function (res) {
@@ -550,13 +558,14 @@ define(['initialize'], function (initialize) {
 
             $scope.cetak = function () {
                 var listRawRequired = [
+                    "item.pegawai|k-ng-model|Pegawai",
                     "item.periode|k-ng-model|Periode",
-                    "item.pegawai|k-ng-model|Pegawai"
+                    "item.formula|k-ng-model|Formula"
                 ];
                 var isValid = ModelItem.setValidation($scope, listRawRequired);
                 if (isValid.status) {
                     var fixUrlLaporan = cetakHelper.openURLReporting("reporting/lapLogbookKinerjaStaffMedis?idDokter=" + $scope.item.pegawai.id + "&idJabatan=" + $scope.item.jabatanCetak.id
-                        + "&periode=" + dateHelper.getFormatMonthPicker($scope.item.periode) + "&idAlternatif=1");
+                        + "&periode=" + dateHelper.getFormatMonthPicker($scope.item.periode) + "&idAlternatif=" + $scope.item.formula.id);
 
                     window.open(fixUrlLaporan, '', 'width=800,height=600')
                 } else {
