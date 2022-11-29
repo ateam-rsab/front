@@ -2,7 +2,11 @@ define(['initialize'], function (initialize, pasienServices) {
     'use strict';
     initialize.controller('InputDiagnosaDokterCtrl', ['$rootScope', 'ManagePasien', '$scope', 'ModelItem', 'ModelItemAkuntansi', '$state', 'FindPasien', 'CacheHelper', 'FindPegawai', 'DateHelper', 'ManageSarprasPhp', 'ManagePhp',
         function ($rootScope, managePasien, $scope, ModelItem, modelItemAkuntansi, $state, findPasien, cacheHelper, findPegawai, dateHelper, manageSarprasPhp, ManagePhp) {
-
+            $scope.onInit=()=>{
+                var datauserlogin = JSON.parse(window.localStorage.getItem('pegawai'));
+                (datauserlogin['id']=="320263") ? $scope.isVedika=true : $scope.isVedika=false;
+            }
+            $scope.onInit();
             $scope.item = {};
             $scope.now = new Date();
             $scope.dataVOloaded = true

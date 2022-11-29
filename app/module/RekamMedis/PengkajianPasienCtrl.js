@@ -2,7 +2,11 @@ define(['initialize'], function (initialize) {
     'use strict';
     initialize.controller('PengkajianPasienCtrl', ['$rootScope', '$scope', '$state', 'DateHelper', 'ManagePhp', 'CacheHelper',
         function ($rootScope, $scope, $state, DateHelper, managePhp, cacheHelper) {
-
+            $scope.onInit=()=>{
+                var datauserlogin = JSON.parse(window.localStorage.getItem('pegawai'));
+                (datauserlogin['id']=="320263") ? $scope.isVedika=true : $scope.isVedika=false;
+            }
+            $scope.onInit();
             $scope.isRouteLoading = false
           
             LoadCache();
@@ -45,52 +49,93 @@ define(['initialize'], function (initialize) {
                 $scope.noRecRiwayatPap = $scope.current.norec;
                 $scope.pasienId = $scope.current.objectpasienfk
             }
-            $scope.mainGridOptions = {
-                filterable: {
-                    extra: false,
-                    operators: {
-                        string: {
-                            startswith: "Dimulai dengan",
-                            contains: "mengandung kata",
-                            neq: "Tidak mengandung kata"
+            if($scope.isVedika){
+                $scope.mainGridOptions = {
+                    filterable: {
+                        extra: false,
+                        operators: {
+                            string: {
+                                startswith: "Dimulai dengan",
+                                contains: "mengandung kata",
+                                neq: "Tidak mengandung kata"
+                            }
                         }
-                    }
-                },
-                pageable: true,
-                columns: [{
-                    "field": "kdpap",
-                    "title": "Kode PAP",
-                    "width": "15%"
-                }, {
-                    "field": "tglinput",
-                    "title": "Tanggal Pengkajian Awal",
-                    "width": "20%",
-                    template: "#= new moment(tglinput).format(\'DD-MM-YYYY HH:mm\') #",
-                }, {
-                    "field": "noregistrasi",
-                    "title": "No Registrasi",
-                    "width": "15%"
-                },
-                {
-                    "field": "namaruangan",
-                    "title": "Ruangan",
-                    "width": "25%"
-                },
-                {
-                    "field": "namalengkap",
-                    "title": "Petugas",
-                    "width": "25%"
-                },
-                {
-                    "command": [{
-                        text: "Hapus",
-                        click: hapusData,
-                        imageClass: "k-icon k-delete"
-                    }],
-                    title: "",
-                    width: "100px",
-                }]
-            };
+                    },
+                    pageable: true,
+                    columns: [{
+                        "field": "kdpap",
+                        "title": "Kode PAP",
+                        "width": "15%"
+                    }, {
+                        "field": "tglinput",
+                        "title": "Tanggal Pengkajian Awal",
+                        "width": "20%",
+                        template: "#= new moment(tglinput).format(\'DD-MM-YYYY HH:mm\') #",
+                    }, {
+                        "field": "noregistrasi",
+                        "title": "No Registrasi",
+                        "width": "15%"
+                    },
+                    {
+                        "field": "namaruangan",
+                        "title": "Ruangan",
+                        "width": "25%"
+                    },
+                    {
+                        "field": "namalengkap",
+                        "title": "Petugas",
+                        "width": "25%"
+                    }]
+                };
+            }else{
+                $scope.mainGridOptions = {
+                    filterable: {
+                        extra: false,
+                        operators: {
+                            string: {
+                                startswith: "Dimulai dengan",
+                                contains: "mengandung kata",
+                                neq: "Tidak mengandung kata"
+                            }
+                        }
+                    },
+                    pageable: true,
+                    columns: [{
+                        "field": "kdpap",
+                        "title": "Kode PAP",
+                        "width": "15%"
+                    }, {
+                        "field": "tglinput",
+                        "title": "Tanggal Pengkajian Awal",
+                        "width": "20%",
+                        template: "#= new moment(tglinput).format(\'DD-MM-YYYY HH:mm\') #",
+                    }, {
+                        "field": "noregistrasi",
+                        "title": "No Registrasi",
+                        "width": "15%"
+                    },
+                    {
+                        "field": "namaruangan",
+                        "title": "Ruangan",
+                        "width": "25%"
+                    },
+                    {
+                        "field": "namalengkap",
+                        "title": "Petugas",
+                        "width": "25%"
+                    },
+                    {
+                        "command": [{
+                            text: "Hapus",
+                            click: hapusData,
+                            imageClass: "k-icon k-delete"
+                        }],
+                        title: "",
+                        width: "100px",
+                    }]
+                };
+            }
+            
             function hapusData(e) {
 				// if (loginITI ==false){
 				// 	toastr.error('Tidak Bisa Menghapus Data','Info')

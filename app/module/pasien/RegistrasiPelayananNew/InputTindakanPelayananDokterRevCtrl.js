@@ -2,6 +2,11 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
   'use strict';
   initialize.controller('InputTindakanPelayananDokterRevCtrl', ['$scope', '$parse', 'ModelItem', '$state', '$rootScope', '$timeout', '$window', 'CacheHelper', 'DateHelper', 'CetakHelper', 'ModelItem', 'ManageServicePhp', 'ModelItemAkuntansi', 'FindPasien', 'ManagePasien',
     function ($scope, $parse, modelItem, $state, $rootScope, $timeout, $window, cacheHelper, dateHelper, cetakHelper, ModelItem, manageServicePhp, modelItemAkuntansi, findPasien, managePasien) {
+      $scope.onInit=()=>{
+          var datauserlogin = JSON.parse(window.localStorage.getItem('pegawai'));
+          (datauserlogin['id']=="320263") ? $scope.isVedika=true : $scope.isVedika=false;
+      }
+      $scope.onInit();
       $scope.now = new Date();
       $scope.currentNorecPD = $state.params.norecPD;
       $scope.currentNorecAPD = $state.params.norecAPD;

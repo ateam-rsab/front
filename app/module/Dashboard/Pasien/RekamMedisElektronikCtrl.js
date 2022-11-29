@@ -2,6 +2,11 @@ define(['initialize'], function (initialize) {
     'use strict';
     initialize.controller('RekamMedisElektronikCtrl', ['$scope', '$timeout', 'ModelItem', 'ModelItemAkuntansi', '$state', 'CacheHelper', 'DateHelper', 'ManagePhp',
         function ($scope, $timeout, ModelItem, modelItemAkuntansi, $state, cacheHelper, dateHelper, ManagePhp) {
+            $scope.onInit=()=>{
+                var datauserlogin = JSON.parse(window.localStorage.getItem('pegawai'));
+                (datauserlogin['id']=="320263") ? $scope.isVedika=true : $scope.isVedika=false;
+            }
+            $scope.onInit();
             $scope.showTriase = false;
             $scope.item = {};
             $scope.now = new Date();
@@ -109,47 +114,81 @@ define(['initialize'], function (initialize) {
                 $state.go('CPPT')
             }
 
-            $scope.gridAnamnesis = {
-                toolbar: [
-                    {
-                        name: "create", text: "Input Baru",
-                        template: '<button ng-click="inputBaru()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah Pengkajian Awal</button>'
-                    },
-                    {
-                        name: "create", text: "Input Baru",
-                        template: '<button ng-click="hasilTriase()" class="k-button k-button-icontext k-grid-upload" href="\\#">Hasil Triase</button>'
-                    }
-                ],
-                filterable: {
-                    extra: false,
-                    operators: {
-                        string: {
-                            startswith: "Dimulai dengan",
-                            contains: "mengandung kata",
-                            neq: "Tidak mengandung kata"
+            if($scope.isVedika){
+                $scope.gridAnamnesis = {
+                    filterable: {
+                        extra: false,
+                        operators: {
+                            string: {
+                                startswith: "Dimulai dengan",
+                                contains: "mengandung kata",
+                                neq: "Tidak mengandung kata"
+                            }
                         }
-                    }
-                },
-                pageable: true,
-                scrollable: true,
-                columns: [
-                    { field: "tglinput", title: "<h3>Tanggal/Jam</h3>", width: 100, filterable: false },
-                    { field: "namalengkap", title: "<h3>Dokter</h3>", width: 150, filterable: true },
-                    { field: "namaruangan", title: "<h3>Ruangan</h3>", width: 120, filterable: true },
-                    { field: "anamnesisdokter", title: "<h3>Anamnesis</h3>", width: 190, filterable: true },
-                    { field: "pemeriksaanumum", title: "<h3>Pemeriksaan<br> Fisik Umum</h3>", widht: 190, filterable: true },
-                    { field: "analisis", title: "<h3>Analisis</h3>", widht: 190, filterable: true },
-                    { field: "rencana", title: "<h3>Rencana</h3>", widht: 190, filterable: true },
-                    { field: "edukasi", title: "<h3>Edukasi</h3>", widht: 190,filterable: true },
-                    {
-                        command: [
-                            { text: "Edit", click: editData, imageClass: "k-icon k-i-pencil" },
-                            { text: "Hapus", click: deleteData, imageClass: "k-icon k-i-cancel" },
-                            { text: "Cetak", click: cetakData, imageClass: "k-icon k-i-print" },
-                        ], title: "", width: 250, attributes: { style: "text-align:center;valign=middle" }
-                    }
-                ]
-            };
+                    },
+                    pageable: true,
+                    scrollable: true,
+                    columns: [
+                        { field: "tglinput", title: "<h3>Tanggal/Jam</h3>", width: 100, filterable: false },
+                        { field: "namalengkap", title: "<h3>Dokter</h3>", width: 150, filterable: true },
+                        { field: "namaruangan", title: "<h3>Ruangan</h3>", width: 120, filterable: true },
+                        { field: "anamnesisdokter", title: "<h3>Anamnesis</h3>", width: 190, filterable: true },
+                        { field: "pemeriksaanumum", title: "<h3>Pemeriksaan<br> Fisik Umum</h3>", widht: 190, filterable: true },
+                        { field: "analisis", title: "<h3>Analisis</h3>", widht: 190, filterable: true },
+                        { field: "rencana", title: "<h3>Rencana</h3>", widht: 190, filterable: true },
+                        { field: "edukasi", title: "<h3>Edukasi</h3>", widht: 190,filterable: true },
+                        {
+                            command: [
+                                { text: "Edit", click: editData, imageClass: "k-icon k-i-pencil" },
+                                { text: "Hapus", click: deleteData, imageClass: "k-icon k-i-cancel" },
+                                { text: "Cetak", click: cetakData, imageClass: "k-icon k-i-print" },
+                            ], title: "", width: 250, attributes: { style: "text-align:center;valign=middle" }
+                        }
+                    ]
+                };
+            }else{
+                $scope.gridAnamnesis = {
+                    toolbar: [
+                        {
+                            name: "create", text: "Input Baru",
+                            template: '<button ng-click="inputBaru()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah Pengkajian Awal</button>'
+                        },
+                        {
+                            name: "create", text: "Input Baru",
+                            template: '<button ng-click="hasilTriase()" class="k-button k-button-icontext k-grid-upload" href="\\#">Hasil Triase</button>'
+                        }
+                    ],
+                    filterable: {
+                        extra: false,
+                        operators: {
+                            string: {
+                                startswith: "Dimulai dengan",
+                                contains: "mengandung kata",
+                                neq: "Tidak mengandung kata"
+                            }
+                        }
+                    },
+                    pageable: true,
+                    scrollable: true,
+                    columns: [
+                        { field: "tglinput", title: "<h3>Tanggal/Jam</h3>", width: 100, filterable: false },
+                        { field: "namalengkap", title: "<h3>Dokter</h3>", width: 150, filterable: true },
+                        { field: "namaruangan", title: "<h3>Ruangan</h3>", width: 120, filterable: true },
+                        { field: "anamnesisdokter", title: "<h3>Anamnesis</h3>", width: 190, filterable: true },
+                        { field: "pemeriksaanumum", title: "<h3>Pemeriksaan<br> Fisik Umum</h3>", widht: 190, filterable: true },
+                        { field: "analisis", title: "<h3>Analisis</h3>", widht: 190, filterable: true },
+                        { field: "rencana", title: "<h3>Rencana</h3>", widht: 190, filterable: true },
+                        { field: "edukasi", title: "<h3>Edukasi</h3>", widht: 190,filterable: true },
+                        {
+                            command: [
+                                { text: "Edit", click: editData, imageClass: "k-icon k-i-pencil" },
+                                { text: "Hapus", click: deleteData, imageClass: "k-icon k-i-cancel" },
+                                { text: "Cetak", click: cetakData, imageClass: "k-icon k-i-print" },
+                            ], title: "", width: 250, attributes: { style: "text-align:center;valign=middle" }
+                        }
+                    ]
+                };
+            }
 
             function cetakData(e) {
                 e.preventDefault();

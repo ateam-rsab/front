@@ -370,6 +370,10 @@ define(['initialize'], function (initialize) {
                                     field: "hasil", aggregate: "sum"
                                 }
                             });
+                            var grid = $("#gridUraianTugas").data("kendoGrid");
+                            if(grid){  
+                                grid.setOptions($scope.opsiGridUraianTugas);
+                            }
                         }
                     }, (error) => {
                         $scope.isRouteLoading = false;
