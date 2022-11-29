@@ -280,6 +280,14 @@ define(['initialize'], function (initialize) {
                     "attributes": { "style": "text-align: right" }
                 },
                 {
+                    "field": "total_volume",
+                    "title": "Total",
+                    "format": "{0:n0}",
+                    "footerTemplate":"#: data.total_volume ? kendo.format('{0:n0}', data.total_volume.sum) : 0#",
+                    "width": 150,
+                    "attributes": { "style": "text-align: right" }
+                },
+                {
                     "field": "total",
                     "format": "{0:n0}",
                     "title": "Total",
@@ -348,6 +356,7 @@ define(['initialize'], function (initialize) {
                         // })
 
                         let total=totalbpjs+totaljamkesda+totalasuransi+totalumum+totalperusahaan+totalperjanjian+totalkementriankesehatan;
+                        let total_volume = bpjs+jamkesda+asuransi+umum+perusahaan+perjanjian+kementriankesehatan;
                         newDataSource.push({
                             "id_golongan": newResponse.id_golongan,
                             "golongan_tindakan":newResponse.golongan_tindakan,
@@ -365,7 +374,8 @@ define(['initialize'], function (initialize) {
                             "totalperjanjian":totalperjanjian,
                             "kementriankesehatan":kementriankesehatan,
                             "totalkementriankesehatan":totalkementriankesehatan,
-                            "total":total
+                            "total":total,
+                            "total_volume":total_volume
                         });
                     });
                     console.log(newDataSource)
@@ -388,6 +398,7 @@ define(['initialize'], function (initialize) {
                             { field: "kementriankesehatan", aggregate: "sum" },
                             { field: "totalkementriankesehatan", aggregate: "sum" },
                             { field: "total", aggregate: "sum" },
+                            { field: "total_volume", aggregate:"sum"}
                         ],
                         // aggregate: [
                         //     { field: "kunjungan", aggregate: "sum" },

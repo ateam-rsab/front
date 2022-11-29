@@ -302,6 +302,15 @@ define(['initialize'], function (initialize) {
                     "attributes": { "style": "text-align: right" }
                 },
                 {
+                    "field": "total_volume",
+                    "title": "Volume Total",
+                    "filterable": false,
+                    "format": "{0:n0}",
+                    "footerTemplate":"#: data.total_volume ? kendo.format('{0:n0}', data.total_volume.sum) : 0#",
+                    "width": 150,
+                    "attributes": { "style": "text-align: right" }
+                },
+                {
                     "field": "total",
                     "title": "Total",
                     "filterable": false,
@@ -341,6 +350,7 @@ define(['initialize'], function (initialize) {
                             let asuransi=0,bpjs=0,umum=0,perusahaan=0,perjanjian=0,kementriankesehatan=0,jamkesda=0,
                                 totalasuransi=0,totalbpjs=0,totalumum=0,totalperusahaan=0,totalperjanjian=0,totalkementriankesehatan=0,totaljamkesda=0;
                             if(detailGolongan.length>0){
+                                console.log(detailGolongan)
                                 detailGolongan.forEach(dataFilter=> {
                                     if(dataFilter.bpjs!==null){bpjs+=parseInt(dataFilter.bpjs);}
                                     if(dataFilter.jamkesda!==null){jamkesda+=parseInt(dataFilter.jamkesda);}
@@ -358,6 +368,7 @@ define(['initialize'], function (initialize) {
                                     if(dataFilter.total_kementrian_kesehatan!==null){totalkementriankesehatan+=parseInt(dataFilter.total_kementrian_kesehatan);}
                                 });
                                 let total=totalbpjs+totaljamkesda+totalasuransi+totalumum+totalperusahaan+totalperjanjian+totalkementriankesehatan;
+                                let total_volume = bpjs+jamkesda+asuransi+umum+perusahaan+perjanjian+kementriankesehatan;
                                 newDataSource.push({
                                     "idru": newResponse.idru,
                                     "nama_ruangan":newResponse.nama_ruangan,
@@ -377,7 +388,8 @@ define(['initialize'], function (initialize) {
                                     "totalperjanjian":totalperjanjian,
                                     "kementriankesehatan":kementriankesehatan,
                                     "totalkementriankesehatan":totalkementriankesehatan,
-                                    "total":total
+                                    "total":total,
+                                    "total_volume":total_volume
                                 });
                             }
                         });
@@ -402,6 +414,7 @@ define(['initialize'], function (initialize) {
                             { field: "kementriankesehatan", aggregate: "sum" },
                             { field: "totalkementriankesehatan", aggregate: "sum" },
                             { field: "total", aggregate: "sum" },
+                            { field: "total_volume", aggregate:"sum"}
                         ],
                         // aggregate: [
                         //     { field: "kunjungan", aggregate: "sum" },
