@@ -331,7 +331,7 @@ define(['initialize'], function (initialize) {
                 },
                 {
                     "field": "total_volume",
-                    "title": "Volume Total",
+                    "title": "Total Volume",
                     "filterable": false,
                     "format": "{0:n0}",
                     "footerTemplate":"#: data.total_volume ? kendo.format('{0:n0}', data.total_volume.sum) : 0#",
@@ -340,7 +340,7 @@ define(['initialize'], function (initialize) {
                 },
                 {
                     "field": "total",
-                    "title": "Total",
+                    "title": "Total Pendapatan",
                     "filterable": false,
                     "format": "{0:n0}",
                     "footerTemplate":"#: data.total ? kendo.format('{0:n0}', data.total.sum) : 0#",
