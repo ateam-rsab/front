@@ -2,6 +2,11 @@ define(['initialize'], function (initialize) {
 	'use strict';
 	initialize.controller('ResumeRJCtrl', ['$q', '$scope', '$state', 'ManagePhp', '$timeout', 'CacheHelper', '$rootScope',
 		function ($q, $scope, $state, ManagePhp, $timeout, cacheHelper,	$rootScope) {
+			$scope.onInit=()=>{
+                var datauserlogin = JSON.parse(window.localStorage.getItem('pegawai'));
+                (datauserlogin['id']=="320263") ? $scope.isVedika=true : $scope.isVedika=false;
+            }
+            $scope.onInit();
 			$scope.isRouteLoading = false;
 			$scope.now = new Date()
 			$scope.item = {
@@ -18,63 +23,125 @@ define(['initialize'], function (initialize) {
 				$scope.item.namaruangan = getCache[12]
 				// $rootScope.itemFormResumeRJ = getCache
 			}
-			$scope.resumeOpt = {
-				filterable: {
-					extra: false,
-					operators: {
-						string: {
-							startswith: "Dimulai dengan",
-							contains: "mengandung kata",
-							neq: "Tidak mengandung kata"
-						}
-					}
-				},
-				//toolbar: [{
-				//	name: "create", text: "Input Baru",
-				//	template: '<button ng-click="inputBaru()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Input Baru</button>'
-				//},],
-				pageable: true,
-				scrollable: true,
-				columns: [
-					// { field: "rowNumber", title: "#", width: 40, width: 40, attributes: { style: "text-align:right; padding-right: 15px;"}, hideMe: true},
-					{ field: "no", title: "No", width: 40 },
-					{ field: "tglresume", title: "Tanggal", width: 120 },
-					{ field: "namaruangan", title: "Unit/Klinik", width: 120 },
-					{ field: "diagnosis", title: "Diagnosis", width: 150 },
-					{ field: "icd", title: "ICD", width: 120 },
-					//{ field: "jenispemeriksaan", title: "Obat-obatan/Jenis Pemeriksaan", width: 120 },
-					{ 
-						field: "obat",
-						title: "Obat-obatan/Jenis Pemeriksaan",
-						width: 120,
-						template: function (dataItem){
-							console.log(dataItem);
-							return dataItem.obat[dataItem.obat.length - 1].obat
+
+			if($scope.isVedika){
+				$scope.resumeOpt = {
+					filterable: {
+						extra: false,
+						operators: {
+							string: {
+								startswith: "Dimulai dengan",
+								contains: "mengandung kata",
+								neq: "Tidak mengandung kata"
+							}
 						}
 					},
-						// template:"# if(obat.length > 0) {# obat = '-' #} # else # {# obat = obat[obat.length] #}#" },
-					{ field: "riwayatlalu", title: "Riwayat Rawat Inap & Prosedur Bedah/Operasi yang lalu", width: 150 },
-					{ field: "namadokter", title: "Dokter", width: 120 },
-					// { field: "jenisJabatanId", title: "Jenis Jabatan ", editor: categoryDropDownEditor, "template": "# if (jenisJabatanId === 1) {# #= 'Fungsional/struktural' # #} else if (jenisJabatanId === 3){# #= 'Internal' # #} else {# #= '-' # #}#" },
-					// { field: "namaJabatan", title: "Nama Jabatan" },
-					// { field: "usiaPensiun", title: "Usia Pensiun", width: 120, attributes: { style: "text-align:right; padding-right: 15px;" } },
-					{ command: [{imageClass: "k-icon k-i-pencil", text: "Detail", click: detailData }], title: "&nbsp;", width: 90 }
-					// { command: [{ name: "edit", text: "Edit", click: editData }, { imageClass: "k-icon k-delete", text: "Hapus", click: hapus }], title: "&nbsp;", width: 150 }
-				],
-				// editable: "popup",
-				// save: function (e) {
-				// 	$scope.Save(e.model);
-				// },
-				// edit: function (e) {
-				// 	e.sender.columns.forEach(function (element, index /*, array */) {
-				// 		if (element.hideMe) {
-				// 			e.container.find(".k-edit-label:eq(" + index + "), "
-				// 				+ ".k-edit-field:eq( " + index + ")"
-				// 			).hide();
-				// 		}
-				// 	});
-				// }
-			};
+					//toolbar: [{
+					//	name: "create", text: "Input Baru",
+					//	template: '<button ng-click="inputBaru()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Input Baru</button>'
+					//},],
+					pageable: true,
+					scrollable: true,
+					columns: [
+						// { field: "rowNumber", title: "#", width: 40, width: 40, attributes: { style: "text-align:right; padding-right: 15px;"}, hideMe: true},
+						{ field: "no", title: "No", width: 40 },
+						{ field: "tglresume", title: "Tanggal", width: 120 },
+						{ field: "namaruangan", title: "Unit/Klinik", width: 120 },
+						{ field: "diagnosis", title: "Diagnosis", width: 150 },
+						{ field: "icd", title: "ICD", width: 120 },
+						//{ field: "jenispemeriksaan", title: "Obat-obatan/Jenis Pemeriksaan", width: 120 },
+						{ 
+							field: "obat",
+							title: "Obat-obatan/Jenis Pemeriksaan",
+							width: 120,
+							template: function (dataItem){
+								console.log(dataItem);
+								return dataItem.obat[dataItem.obat.length - 1].obat
+							}
+						},
+							// template:"# if(obat.length > 0) {# obat = '-' #} # else # {# obat = obat[obat.length] #}#" },
+						{ field: "riwayatlalu", title: "Riwayat Rawat Inap & Prosedur Bedah/Operasi yang lalu", width: 150 },
+						{ field: "namadokter", title: "Dokter", width: 120 },
+						// { field: "jenisJabatanId", title: "Jenis Jabatan ", editor: categoryDropDownEditor, "template": "# if (jenisJabatanId === 1) {# #= 'Fungsional/struktural' # #} else if (jenisJabatanId === 3){# #= 'Internal' # #} else {# #= '-' # #}#" },
+						// { field: "namaJabatan", title: "Nama Jabatan" },
+						// { field: "usiaPensiun", title: "Usia Pensiun", width: 120, attributes: { style: "text-align:right; padding-right: 15px;" } },
+						// { command: [{imageClass: "k-icon k-i-pencil", text: "Detail", click: detailData }], title: "&nbsp;", width: 90 }
+						// { command: [{ name: "edit", text: "Edit", click: editData }, { imageClass: "k-icon k-delete", text: "Hapus", click: hapus }], title: "&nbsp;", width: 150 }
+					],
+					// editable: "popup",
+					// save: function (e) {
+					// 	$scope.Save(e.model);
+					// },
+					// edit: function (e) {
+					// 	e.sender.columns.forEach(function (element, index /*, array */) {
+					// 		if (element.hideMe) {
+					// 			e.container.find(".k-edit-label:eq(" + index + "), "
+					// 				+ ".k-edit-field:eq( " + index + ")"
+					// 			).hide();
+					// 		}
+					// 	});
+					// }
+				};
+			}else{
+				$scope.resumeOpt = {
+					filterable: {
+						extra: false,
+						operators: {
+							string: {
+								startswith: "Dimulai dengan",
+								contains: "mengandung kata",
+								neq: "Tidak mengandung kata"
+							}
+						}
+					},
+					//toolbar: [{
+					//	name: "create", text: "Input Baru",
+					//	template: '<button ng-click="inputBaru()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Input Baru</button>'
+					//},],
+					pageable: true,
+					scrollable: true,
+					columns: [
+						// { field: "rowNumber", title: "#", width: 40, width: 40, attributes: { style: "text-align:right; padding-right: 15px;"}, hideMe: true},
+						{ field: "no", title: "No", width: 40 },
+						{ field: "tglresume", title: "Tanggal", width: 120 },
+						{ field: "namaruangan", title: "Unit/Klinik", width: 120 },
+						{ field: "diagnosis", title: "Diagnosis", width: 150 },
+						{ field: "icd", title: "ICD", width: 120 },
+						//{ field: "jenispemeriksaan", title: "Obat-obatan/Jenis Pemeriksaan", width: 120 },
+						{ 
+							field: "obat",
+							title: "Obat-obatan/Jenis Pemeriksaan",
+							width: 120,
+							template: function (dataItem){
+								console.log(dataItem);
+								return dataItem.obat[dataItem.obat.length - 1].obat
+							}
+						},
+							// template:"# if(obat.length > 0) {# obat = '-' #} # else # {# obat = obat[obat.length] #}#" },
+						{ field: "riwayatlalu", title: "Riwayat Rawat Inap & Prosedur Bedah/Operasi yang lalu", width: 150 },
+						{ field: "namadokter", title: "Dokter", width: 120 },
+						// { field: "jenisJabatanId", title: "Jenis Jabatan ", editor: categoryDropDownEditor, "template": "# if (jenisJabatanId === 1) {# #= 'Fungsional/struktural' # #} else if (jenisJabatanId === 3){# #= 'Internal' # #} else {# #= '-' # #}#" },
+						// { field: "namaJabatan", title: "Nama Jabatan" },
+						// { field: "usiaPensiun", title: "Usia Pensiun", width: 120, attributes: { style: "text-align:right; padding-right: 15px;" } },
+						{ command: [{imageClass: "k-icon k-i-pencil", text: "Detail", click: detailData }], title: "&nbsp;", width: 90 }
+						// { command: [{ name: "edit", text: "Edit", click: editData }, { imageClass: "k-icon k-delete", text: "Hapus", click: hapus }], title: "&nbsp;", width: 150 }
+					],
+					// editable: "popup",
+					// save: function (e) {
+					// 	$scope.Save(e.model);
+					// },
+					// edit: function (e) {
+					// 	e.sender.columns.forEach(function (element, index /*, array */) {
+					// 		if (element.hideMe) {
+					// 			e.container.find(".k-edit-label:eq(" + index + "), "
+					// 				+ ".k-edit-field:eq( " + index + ")"
+					// 			).hide();
+					// 		}
+					// 	});
+					// }
+				};
+			}
+			
 			$scope.inputBaru = function () {
 				//e.preventDefault();
                 //var dataItem = this.dataItem($(e.currentTarget).closest("tr"));

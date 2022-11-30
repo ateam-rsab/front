@@ -2,6 +2,11 @@ define(['initialize'], function (initialize) {
     'use strict';
     initialize.controller('PlanOfCareCtrl', ['$scope', '$timeout', 'ModelItem', 'ModelItemAkuntansi', '$state', 'CacheHelper', 'DateHelper', 'ManagePhp',
         function ($scope, $timeout, ModelItem, modelItemAkuntansi, $state, cacheHelper, dateHelper, ManagePhp) {
+            $scope.onInit=()=>{
+                var datauserlogin = JSON.parse(window.localStorage.getItem('pegawai'));
+                (datauserlogin['id']=="320263") ? $scope.isVedika=true : $scope.isVedika=false;
+            }
+            $scope.onInit();
             $scope.date = new Date();
             $scope.item = {};
             $scope.now = new Date();
@@ -36,42 +41,72 @@ define(['initialize'], function (initialize) {
                 }
             }
 
-            $scope.optPOC = {
-                filterable: {
-                    extra: false,
-                    operators: {
-                        string: {
-                            startswith: "Dimulai dengan",
-                            contains: "mengandung kata",
-                            neq: "Tidak mengandung kata"
+            if($scope.isVedika){
+                $scope.optPOC = {
+                    filterable: {
+                        extra: false,
+                        operators: {
+                            string: {
+                                startswith: "Dimulai dengan",
+                                contains: "mengandung kata",
+                                neq: "Tidak mengandung kata"
+                            }
                         }
-                    }
-                },
-                toolbar: [
-                    {
-                        name: "create", text: "Input Baru",
-                        template: '<button ng-click="inputBaruPOC()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah Plan of Care</button>'
-                    }
-                ],
-                pageable: true,
-                pageSize: 5,
-                scrollable: true,
-                columns: [
-                    {field: "tglinput", title: "Tanggal", width: 120},
-                    {field: "namalengkap", title: "Pegawai",width: 150}, 
-                    {field: "namaruangan", title: "Ruangan", width: 200},
-                    {field: "rencana", title: "Plan Of Care /<br> Rencana Perawatan", width: 200},
-                    {field: "masalah", title: "Masalah",width: 200},
-                    {field: "target",title: "Target <br>Terukur",width: 150},  
-                    {field: "waktu",title: "Dalam <br>Waktu",width: 70},
-                    {field: "tglteratasi",title: "Tanggal <br>Teratasi",width: 100},
-                    {field: "perubahaan",title: "Discharge <br>Planning",width: 150},
-                    {command: [{text: "Edit", click: editData, imageClass: "k-icon k-i-pencil"}, 
-                                {text: "Detail", click: showDetail, imageClass: "k-icon k-i-pencil"},
-                               {text: "Hapus", click: deleteData, imageClass: "k-icon k-i-cancel"}
-                              ], title: "", width: 250}
-                ]
-            };
+                    },
+                    pageable: true,
+                    pageSize: 5,
+                    scrollable: true,
+                    columns: [
+                        {field: "tglinput", title: "Tanggal", width: 120},
+                        {field: "namalengkap", title: "Pegawai",width: 150}, 
+                        {field: "namaruangan", title: "Ruangan", width: 200},
+                        {field: "rencana", title: "Plan Of Care /<br> Rencana Perawatan", width: 200},
+                        {field: "masalah", title: "Masalah",width: 200},
+                        {field: "target",title: "Target <br>Terukur",width: 150},  
+                        {field: "waktu",title: "Dalam <br>Waktu",width: 70},
+                        {field: "tglteratasi",title: "Tanggal <br>Teratasi",width: 100},
+                        {field: "perubahaan",title: "Discharge <br>Planning",width: 150},
+                    ]
+                };
+            }else{
+                $scope.optPOC = {
+                    filterable: {
+                        extra: false,
+                        operators: {
+                            string: {
+                                startswith: "Dimulai dengan",
+                                contains: "mengandung kata",
+                                neq: "Tidak mengandung kata"
+                            }
+                        }
+                    },
+                    toolbar: [
+                        {
+                            name: "create", text: "Input Baru",
+                            template: '<button ng-click="inputBaruPOC()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah Plan of Care</button>'
+                        }
+                    ],
+                    pageable: true,
+                    pageSize: 5,
+                    scrollable: true,
+                    columns: [
+                        {field: "tglinput", title: "Tanggal", width: 120},
+                        {field: "namalengkap", title: "Pegawai",width: 150}, 
+                        {field: "namaruangan", title: "Ruangan", width: 200},
+                        {field: "rencana", title: "Plan Of Care /<br> Rencana Perawatan", width: 200},
+                        {field: "masalah", title: "Masalah",width: 200},
+                        {field: "target",title: "Target <br>Terukur",width: 150},  
+                        {field: "waktu",title: "Dalam <br>Waktu",width: 70},
+                        {field: "tglteratasi",title: "Tanggal <br>Teratasi",width: 100},
+                        {field: "perubahaan",title: "Discharge <br>Planning",width: 150},
+                        {command: [{text: "Edit", click: editData, imageClass: "k-icon k-i-pencil"}, 
+                                    {text: "Detail", click: showDetail, imageClass: "k-icon k-i-pencil"},
+                                   {text: "Hapus", click: deleteData, imageClass: "k-icon k-i-cancel"}
+                                  ], title: "", width: 250}
+                    ]
+                };
+            }
+            
             
             function clear() {
                 delete $scope.item.tglinput;

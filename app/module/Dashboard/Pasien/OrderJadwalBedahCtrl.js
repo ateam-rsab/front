@@ -2,6 +2,11 @@ define(['initialize'], function (initialize) {
     'use strict';
     initialize.controller('OrderJadwalBedahCtrl', ['$q', '$rootScope', '$scope', '$state', '$timeout', 'MenuService','DateHelper', 'CacheHelper', 'ManagePhp', 'ManageSdm', "$mdDialog",
         function ($q, $rootScope, $scope, $state, $timeout, MenuService, DateHelper, cacheHelper, managePhp, ManageSdm, $mdDialog) {
+            $scope.onInit=()=>{
+                var datauserlogin = JSON.parse(window.localStorage.getItem('pegawai'));
+                (datauserlogin['id']=="320263") ? $scope.isVedika=true : $scope.isVedika=false;
+            }
+            $scope.onInit();
             $scope.item = {};
             $scope.dataVOloaded = true;
             let today = new Date(new Date().setDate(new Date().getDate() + 1));
@@ -268,91 +273,170 @@ define(['initialize'], function (initialize) {
 
             init();
 
-            $scope.columnDaftarJadwalBedah = {
-                filterable: {
-					extra: false,
-					operators: {
-						string: {
-							startswith: "Dimulai dengan",
-							contains: "mengandung kata",
-							neq: "Tidak mengandung kata"
-						}
-					}
-				},
-                toolbar: [{
-                        name: "create",
-                        text: "Input Baru",
-                        template: '<button ng-click="inputBaruJadwalBedah()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Buat Baru</button>'
+            if($scope.isVedika){
+                $scope.columnDaftarJadwalBedah = {
+                    filterable: {
+                        extra: false,
+                        operators: {
+                            string: {
+                                startswith: "Dimulai dengan",
+                                contains: "mengandung kata",
+                                neq: "Tidak mengandung kata"
+                            }
+                        }
                     },
-                    {
-                        template: '<button ng-click="gotToDashboard()" class="k-button k-button-icontext k-grid-upload">Dashboard Bedah</button>'
-                    }
-                ],
-                scrollable: true,
-                selectable: 'row',
-                pageable: true,
-                columns: [{
-                        "field": "tgloperasi",
-                        "title": "<h3>Tanggal<br> Permintaan Bedah</h3>",
-                        "width": 200,
-                        "template": "<span class='style-left'>#: tgloperasi ? tgloperasi : '-' #</span>"
+                    scrollable: true,
+                    selectable: 'row',
+                    pageable: true,
+                    columns: [{
+                            "field": "tgloperasi",
+                            "title": "<h3>Tanggal<br> Permintaan Bedah</h3>",
+                            "width": 200,
+                            "template": "<span class='style-left'>#: tgloperasi ? tgloperasi : '-' #</span>"
+                        },
+                        {
+                            "field": "tglverifikasi",
+                            "title": "<h3>Tanggal Bedah</h3>",
+                            "width": 200,
+                            "template": "<span class='style-left'>#: tglverifikasi ? tglverifikasi : '-' #</span>"
+                        },
+                        {
+                            "field": "noregistrasi",
+                            "title": "<h3>No.<br> Registrasi</h3>",
+                            "width": 100
+                        },
+                        {
+                            "field": "namaDokterTujuan",
+                            "title": "<h3>Dokter yang<br> mengerjakan</h3>",
+                            "width": 200
+                        },
+                        {
+                            "field": "namaRuanganTujuan",
+                            "title": "<h3>Ruangan Tujuan</h3>",
+                            "width": 200
+                        },
+                        {
+                            "field": "namaruangan",
+                            "title": "<h3>Nama Ruangan</h3>",
+                            "width": 200
+                            // "template": "<span class='style-left'>#: if(!namaruangan) { namaruangan = '' } #</span>"
+                        },
+                        {
+                            "field": "ruangoperasiFormatted",
+                            "title": "<h3>Nama<br> Ruangan Bedah</h3>",
+                            "width": 200
+                            // "template": "<span class='style-left'>#: if(!namaruangan) { namaruangan = '' } #</span>"
+                        },
+                        {
+                            "field": "telp",
+                            "title": "<h3>No. Telepon</h3>",
+                            "width": 200,
+                            // "template": "<span class='style-left'>#: notelp ? notelp : '-' #</span>"
+                        },
+                        {
+                            "field": "status",
+                            "title": "<h3>Status</h3>",
+                            "width": 200,
+                            // "template": "<span class='style-left'>#: iscito ? 'CITO' : 'Jenis Operasi Elektif' #</span>"
+                        },
+                        {
+                            command: [{
+                                text: "Detail",
+                                click: detailJadwalBedah,
+                                imageClass: "k-icon k-i-pencil"
+                            }, ],
+                            title: "",
+                            width: 100
+                        }
+                    ]
+                };
+            }else{
+                $scope.columnDaftarJadwalBedah = {
+                    filterable: {
+                        extra: false,
+                        operators: {
+                            string: {
+                                startswith: "Dimulai dengan",
+                                contains: "mengandung kata",
+                                neq: "Tidak mengandung kata"
+                            }
+                        }
                     },
-                    {
-                        "field": "tglverifikasi",
-                        "title": "<h3>Tanggal Bedah</h3>",
-                        "width": 200,
-                        "template": "<span class='style-left'>#: tglverifikasi ? tglverifikasi : '-' #</span>"
-                    },
-                    {
-                        "field": "noregistrasi",
-                        "title": "<h3>No.<br> Registrasi</h3>",
-                        "width": 100
-                    },
-                    {
-                        "field": "namaDokterTujuan",
-                        "title": "<h3>Dokter yang<br> mengerjakan</h3>",
-                        "width": 200
-                    },
-                    {
-                        "field": "namaRuanganTujuan",
-                        "title": "<h3>Ruangan Tujuan</h3>",
-                        "width": 200
-                    },
-                    {
-                        "field": "namaruangan",
-                        "title": "<h3>Nama Ruangan</h3>",
-                        "width": 200
-                        // "template": "<span class='style-left'>#: if(!namaruangan) { namaruangan = '' } #</span>"
-                    },
-                    {
-                        "field": "ruangoperasiFormatted",
-                        "title": "<h3>Nama<br> Ruangan Bedah</h3>",
-                        "width": 200
-                        // "template": "<span class='style-left'>#: if(!namaruangan) { namaruangan = '' } #</span>"
-                    },
-                    {
-                        "field": "telp",
-                        "title": "<h3>No. Telepon</h3>",
-                        "width": 200,
-                        // "template": "<span class='style-left'>#: notelp ? notelp : '-' #</span>"
-                    },
-                    {
-                        "field": "status",
-                        "title": "<h3>Status</h3>",
-                        "width": 200,
-                        // "template": "<span class='style-left'>#: iscito ? 'CITO' : 'Jenis Operasi Elektif' #</span>"
-                    },
-                    {
-                        command: [{
-                            text: "Detail",
-                            click: detailJadwalBedah,
-                            imageClass: "k-icon k-i-pencil"
-                        }, ],
-                        title: "",
-                        width: 100
-                    }
-                ]
-            };
+                    toolbar: [{
+                            name: "create",
+                            text: "Input Baru",
+                            template: '<button ng-click="inputBaruJadwalBedah()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Buat Baru</button>'
+                        },
+                        {
+                            template: '<button ng-click="gotToDashboard()" class="k-button k-button-icontext k-grid-upload">Dashboard Bedah</button>'
+                        }
+                    ],
+                    scrollable: true,
+                    selectable: 'row',
+                    pageable: true,
+                    columns: [{
+                            "field": "tgloperasi",
+                            "title": "<h3>Tanggal<br> Permintaan Bedah</h3>",
+                            "width": 200,
+                            "template": "<span class='style-left'>#: tgloperasi ? tgloperasi : '-' #</span>"
+                        },
+                        {
+                            "field": "tglverifikasi",
+                            "title": "<h3>Tanggal Bedah</h3>",
+                            "width": 200,
+                            "template": "<span class='style-left'>#: tglverifikasi ? tglverifikasi : '-' #</span>"
+                        },
+                        {
+                            "field": "noregistrasi",
+                            "title": "<h3>No.<br> Registrasi</h3>",
+                            "width": 100
+                        },
+                        {
+                            "field": "namaDokterTujuan",
+                            "title": "<h3>Dokter yang<br> mengerjakan</h3>",
+                            "width": 200
+                        },
+                        {
+                            "field": "namaRuanganTujuan",
+                            "title": "<h3>Ruangan Tujuan</h3>",
+                            "width": 200
+                        },
+                        {
+                            "field": "namaruangan",
+                            "title": "<h3>Nama Ruangan</h3>",
+                            "width": 200
+                            // "template": "<span class='style-left'>#: if(!namaruangan) { namaruangan = '' } #</span>"
+                        },
+                        {
+                            "field": "ruangoperasiFormatted",
+                            "title": "<h3>Nama<br> Ruangan Bedah</h3>",
+                            "width": 200
+                            // "template": "<span class='style-left'>#: if(!namaruangan) { namaruangan = '' } #</span>"
+                        },
+                        {
+                            "field": "telp",
+                            "title": "<h3>No. Telepon</h3>",
+                            "width": 200,
+                            // "template": "<span class='style-left'>#: notelp ? notelp : '-' #</span>"
+                        },
+                        {
+                            "field": "status",
+                            "title": "<h3>Status</h3>",
+                            "width": 200,
+                            // "template": "<span class='style-left'>#: iscito ? 'CITO' : 'Jenis Operasi Elektif' #</span>"
+                        },
+                        {
+                            command: [{
+                                text: "Detail",
+                                click: detailJadwalBedah,
+                                imageClass: "k-icon k-i-pencil"
+                            }, ],
+                            title: "",
+                            width: 100
+                        }
+                    ]
+                };
+            }
 
             $scope.gotToDashboard = function () {
                 $state.go('DashboardRuanganBedah')
@@ -720,74 +804,132 @@ define(['initialize'], function (initialize) {
 
             });
 
-            $scope.columnDaftar = {
-                filterable: {
-					extra: false,
-					operators: {
-						string: {
-							startswith: "Dimulai dengan",
-							contains: "mengandung kata",
-							neq: "Tidak mengandung kata"
-						}
-					}
-				},
-                toolbar: [{
-                    name: "create",
-                    text: "Input Baru",
-                    template: '<button ng-click="inputBaru()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Buat Baru</button>'
-                }],
-                selectable: 'row',
-                pageable: true,
-                columns: [{
-                        "field": "tglbedah",
-                        "title": "<h3>Tanggal Bedah</h3>",
-                        "width": "80px",
-                        "template": "<span class='style-left'>{{formatTanggal('#: tglbedah #')}}</span>"
-                    },
-                    {
-                        "field": "noemr",
-                        "title": "<h3>No. EMR</h3>",
-                        "width": "80px"
-                    },
-                    {
-                        "field": "noregistrasi",
-                        "title": "<h3>No. Registrasi</h3>",
-                        "width": "150px",
-                        "template": "<span class='style-left'>#: noregistrasi #</span>"
-                    },
-                    {
-                        "field": "namaruangan",
-                        "title": "<h3>Nama Ruangan</h3>",
-                        "width": "150px",
-                        // "template": "<span class='style-left'>#: if(!namaruangan) { namaruangan = '' } #</span>"
-                    },
-                    {
-                        command: [{
-                                text: "Edit",
-                                click: editData,
-                                imageClass: "k-icon k-i-pencil"
-                            },
-                            {
-                                text: "Detail",
-                                click: detailData,
-                                imageClass: "k-icon k-detail"
-                            },
-                            {
-                                text: "Hapus",
-                                click: hapusData,
-                                imageClass: "k-icon k-i-cancel"
-                            },
-                            {
-                                text: "Cetak",
-                                click: cetakBedah,
-                                imageClass: "k-icon k-print"
+            if($scope.isVedika){
+                $scope.columnDaftar = {
+                    filterable: {
+                        extra: false,
+                        operators: {
+                            string: {
+                                startswith: "Dimulai dengan",
+                                contains: "mengandung kata",
+                                neq: "Tidak mengandung kata"
                             }
-                        ],
-                        title: "",
-                        width: 160
-                    }
-                ]
-            };
+                        }
+                    },
+                    selectable: 'row',
+                    pageable: true,
+                    columns: [{
+                            "field": "tglbedah",
+                            "title": "<h3>Tanggal Bedah</h3>",
+                            "width": "80px",
+                            "template": "<span class='style-left'>{{formatTanggal('#: tglbedah #')}}</span>"
+                        },
+                        {
+                            "field": "noemr",
+                            "title": "<h3>No. EMR</h3>",
+                            "width": "80px"
+                        },
+                        {
+                            "field": "noregistrasi",
+                            "title": "<h3>No. Registrasi</h3>",
+                            "width": "150px",
+                            "template": "<span class='style-left'>#: noregistrasi #</span>"
+                        },
+                        {
+                            "field": "namaruangan",
+                            "title": "<h3>Nama Ruangan</h3>",
+                            "width": "150px",
+                            // "template": "<span class='style-left'>#: if(!namaruangan) { namaruangan = '' } #</span>"
+                        },
+                        {
+                            command: [
+                                {
+                                    text: "Detail",
+                                    click: detailData,
+                                    imageClass: "k-icon k-detail"
+                                },
+                                {
+                                    text: "Cetak",
+                                    click: cetakBedah,
+                                    imageClass: "k-icon k-print"
+                                }
+                            ],
+                            title: "",
+                            width: 160
+                        }
+                    ]
+                };
+            }else{
+                $scope.columnDaftar = {
+                    filterable: {
+                        extra: false,
+                        operators: {
+                            string: {
+                                startswith: "Dimulai dengan",
+                                contains: "mengandung kata",
+                                neq: "Tidak mengandung kata"
+                            }
+                        }
+                    },
+                    toolbar: [{
+                        name: "create",
+                        text: "Input Baru",
+                        template: '<button ng-click="inputBaru()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Buat Baru</button>'
+                    }],
+                    selectable: 'row',
+                    pageable: true,
+                    columns: [{
+                            "field": "tglbedah",
+                            "title": "<h3>Tanggal Bedah</h3>",
+                            "width": "80px",
+                            "template": "<span class='style-left'>{{formatTanggal('#: tglbedah #')}}</span>"
+                        },
+                        {
+                            "field": "noemr",
+                            "title": "<h3>No. EMR</h3>",
+                            "width": "80px"
+                        },
+                        {
+                            "field": "noregistrasi",
+                            "title": "<h3>No. Registrasi</h3>",
+                            "width": "150px",
+                            "template": "<span class='style-left'>#: noregistrasi #</span>"
+                        },
+                        {
+                            "field": "namaruangan",
+                            "title": "<h3>Nama Ruangan</h3>",
+                            "width": "150px",
+                            // "template": "<span class='style-left'>#: if(!namaruangan) { namaruangan = '' } #</span>"
+                        },
+                        {
+                            command: [{
+                                    text: "Edit",
+                                    click: editData,
+                                    imageClass: "k-icon k-i-pencil"
+                                },
+                                {
+                                    text: "Detail",
+                                    click: detailData,
+                                    imageClass: "k-icon k-detail"
+                                },
+                                {
+                                    text: "Hapus",
+                                    click: hapusData,
+                                    imageClass: "k-icon k-i-cancel"
+                                },
+                                {
+                                    text: "Cetak",
+                                    click: cetakBedah,
+                                    imageClass: "k-icon k-print"
+                                }
+                            ],
+                            title: "",
+                            width: 160
+                        }
+                    ]
+                };
+            }
+            
 
             function cetakBedah(e) {
                 e.preventDefault();

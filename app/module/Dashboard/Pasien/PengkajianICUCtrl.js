@@ -2,6 +2,11 @@ define(['initialize'], function(initialize) {
     'use strict';
     initialize.controller('PengkajianICUCtrl', ['$q', '$rootScope', '$scope', '$state','CacheHelper','ManagePhp','$parse',
         function($q, $rootScope, $scope,$state,cacheHelper,managePhp,$parse) {
+            $scope.onInit=()=>{
+                var datauserlogin = JSON.parse(window.localStorage.getItem('pegawai'));
+                (datauserlogin['id']=="320263") ? $scope.isVedika=true : $scope.isVedika=false;
+            }
+            $scope.onInit();
             $scope.item = {};
             $scope.isRouteLoading=false;
             $scope.dataVOloaded = true;

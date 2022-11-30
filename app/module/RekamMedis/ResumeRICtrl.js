@@ -2,6 +2,11 @@ define(['initialize'], function (initialize) {
     'use strict';
     initialize.controller('ResumeRICtrl', ['$q', '$scope', '$state', 'ManagePhp', '$timeout', 'CacheHelper', '$rootScope',
         function ($q, $scope, $state, ManagePhp, $timeout, cacheHelper, $rootScope) {
+            $scope.onInit=()=>{
+                var datauserlogin = JSON.parse(window.localStorage.getItem('pegawai'));
+                (datauserlogin['id']=="320263") ? $scope.isVedika=true : $scope.isVedika=false;
+            }
+            $scope.onInit();
             $scope.isRouteLoading = false;
             $scope.now = new Date();
             
@@ -46,37 +51,68 @@ define(['initialize'], function (initialize) {
                 }
             ]
 
-            $scope.resumeOpt = {
-                filterable: {
-					extra: false,
-					operators: {
-						string: {
-							startswith: "Dimulai dengan",
-							contains: "mengandung kata",
-							neq: "Tidak mengandung kata"
-						}
-					}
-				},
-                toolbar: [{
-                    name: "create", text: "Tambah",
-                    template: '<button ng-click="inputBaru()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah</button>'
-                },],
-                selectable: "row",
-                pageable: true,
-                scrollable: true,
-                columns: [
-                    // { field: "rowNumber", title: "#", width: 40, width: 40, attributes: { style: "text-align:right; padding-right: 15px;"}, hideMe: true},
-                    { field: "no", title: "No", width: 40 },
-                    { field: "namaobat", title: "<h3>Nama Obat</h3>", width: 200 },
-                    { field: "jumlah", title: "<h3>Jumlah</h3>", width: 120 },
-                    { field: "dosis", title: "<h3>Dosis</h3>", width: 120 },
-                    { field: "frekuensi", title: "<h3>Frekuensi</h3>", width: 120 },
-                    { field: "carapemberian", title: "<h3>Cara Pemberian</h3>", width: 150 },
-                    { command: [{ imageClass: "k-icon k-delete", text: "Hapus", click: hapusData2 }, { name: "edit", text: "Edit", click: editData2 }], title: "&nbsp;", width: 120 }
-                    // {command: [{name: "destroy", text: "Hapus"},{name: "edit", text: "Edit"}], title: "&nbsp;", width: 120 }
-                ],
-
-            };
+            if($scope.isVedika){
+                $scope.resumeOpt = {
+                    filterable: {
+                        extra: false,
+                        operators: {
+                            string: {
+                                startswith: "Dimulai dengan",
+                                contains: "mengandung kata",
+                                neq: "Tidak mengandung kata"
+                            }
+                        }
+                    },
+                    selectable: "row",
+                    pageable: true,
+                    scrollable: true,
+                    columns: [
+                        // { field: "rowNumber", title: "#", width: 40, width: 40, attributes: { style: "text-align:right; padding-right: 15px;"}, hideMe: true},
+                        { field: "no", title: "No", width: 40 },
+                        { field: "namaobat", title: "<h3>Nama Obat</h3>", width: 200 },
+                        { field: "jumlah", title: "<h3>Jumlah</h3>", width: 120 },
+                        { field: "dosis", title: "<h3>Dosis</h3>", width: 120 },
+                        { field: "frekuensi", title: "<h3>Frekuensi</h3>", width: 120 },
+                        { field: "carapemberian", title: "<h3>Cara Pemberian</h3>", width: 150 },
+                        // { command: [{ imageClass: "k-icon k-delete", text: "Hapus", click: hapusData2 }, { name: "edit", text: "Edit", click: editData2 }], title: "&nbsp;", width: 120 }
+                        // {command: [{name: "destroy", text: "Hapus"},{name: "edit", text: "Edit"}], title: "&nbsp;", width: 120 }
+                    ],
+    
+                };
+            }else{
+                $scope.resumeOpt = {
+                    filterable: {
+                        extra: false,
+                        operators: {
+                            string: {
+                                startswith: "Dimulai dengan",
+                                contains: "mengandung kata",
+                                neq: "Tidak mengandung kata"
+                            }
+                        }
+                    },
+                    toolbar: [{
+                        name: "create", text: "Tambah",
+                        template: '<button ng-click="inputBaru()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah</button>'
+                    },],
+                    selectable: "row",
+                    pageable: true,
+                    scrollable: true,
+                    columns: [
+                        // { field: "rowNumber", title: "#", width: 40, width: 40, attributes: { style: "text-align:right; padding-right: 15px;"}, hideMe: true},
+                        { field: "no", title: "No", width: 40 },
+                        { field: "namaobat", title: "<h3>Nama Obat</h3>", width: 200 },
+                        { field: "jumlah", title: "<h3>Jumlah</h3>", width: 120 },
+                        { field: "dosis", title: "<h3>Dosis</h3>", width: 120 },
+                        { field: "frekuensi", title: "<h3>Frekuensi</h3>", width: 120 },
+                        { field: "carapemberian", title: "<h3>Cara Pemberian</h3>", width: 150 },
+                        { command: [{ imageClass: "k-icon k-delete", text: "Hapus", click: hapusData2 }, { name: "edit", text: "Edit", click: editData2 }], title: "&nbsp;", width: 120 }
+                        // {command: [{name: "destroy", text: "Hapus"},{name: "edit", text: "Edit"}], title: "&nbsp;", width: 120 }
+                    ],
+    
+                };
+            }
+            
             $scope.resumeOptHead = {
                 filterable: {
 					extra: false,

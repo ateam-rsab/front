@@ -2,6 +2,11 @@ define(['initialize'], function (initialize) {
 	'use strict';
 	initialize.controller('AsesmenGiziAwalCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', '$state', 'CacheHelper', 'ManagePhp', 'ManageSarprasPhp', '$timeout',
 		function ($q, $rootScope, $scope, ModelItem, $state, cacheHelper, ManagePhp, ManageSarprasPhp, $timeout) {
+			$scope.onInit=()=>{
+                var datauserlogin = JSON.parse(window.localStorage.getItem('pegawai'));
+                (datauserlogin['id']=="320263") ? $scope.isVedika=true : $scope.isVedika=false;
+            }
+            $scope.onInit();
 			$scope.dataLogin = JSON.parse(localStorage.getItem('pegawai'));
 			$scope.isEdit = false;
 			$scope.txtSimpan = 'Simpan';
@@ -159,119 +164,199 @@ define(['initialize'], function (initialize) {
 				// $('#iptBulan').val(dataUmur[1]);
 				console.log($scope.item.umur);
 				$scope.item.noRegistrasi = $scope.cache[0];
-				$scope.optGridAsesmenGizi = {
-					filterable: {
-						extra: false,
-						operators: {
-							string: {
-								startswith: "Dimulai dengan",
-								contains: "mengandung kata",
-								neq: "Tidak mengandung kata"
+				if($scope.isVedika){
+					$scope.optGridAsesmenGizi = {
+						filterable: {
+							extra: false,
+							operators: {
+								string: {
+									startswith: "Dimulai dengan",
+									contains: "mengandung kata",
+									neq: "Tidak mengandung kata"
+								}
 							}
-						}
-					},
-					toolbar: [{
-						name: "create",
-						text: "Input Baru",
-						template: '<button ng-click="inputBaru()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah</button>'
-					}],
-					pageable: true,
-					scrollable: true,
-					columns: [{
-						field: "tglinput",
-						title: "<h3>Tanggal/Jam</h3>",
-						width: 100
-					},
-					{
-						field: "namalengkap",
-						title: "<h3>Dokter Penanggung <br>Jawab Pelayanan</h3>",
-						width: 150
-					},
-					{
-						field: "pegawaiasal",
-						title: "<h3>Ahli Gizi</h3>",
-						template: '# if( pegawaiasal==null) {# - # } else {# #= pegawaiasal # #} #',
-						"width": "120px"
-					},
-					{
-						field: "namaruangan",
-						title: "<h3>Ruangan</h3>",
-						width: 120
-					},
-					{
-						field: "noregistrasi",
-						title: "<h3>No Registrasi</h3>",
-						width: 100
-					},
-					{
-						command: [{
-							text: "Detail",
-							click: showDetailAsesmenGizi,
-							imageClass: "k-icon k-i-pencil"
-						},],
-						title: "",
-						width: 90,
-						attributes: {
-							style: "text-align:center;valign=middle"
-						}
-					}
-					]
-				};
-
-				$scope.optGridAsesmenGiziNotVerif = {
-					filterable: {
-						extra: false,
-						operators: {
-							string: {
-								startswith: "Dimulai dengan",
-								contains: "mengandung kata",
-								neq: "Tidak mengandung kata"
-							}
-						}
-					},
-					pageable: true,
-					scrollable: true,
-					columns: [{
-						field: "tglinput",
-						title: "<h3>Tanggal/Jam</h3>",
-						width: 100
-					},
-					// { field: "namalengkap", title: "<h3>Dokter Penanggung <br>Jawab Pelayanan</h3>", width: 150 },
-					{
-						field: "pegawaiasal",
-						title: "<h3>Ahli Gizi</h3>",
-						width: 100
-					},
-					{
-						field: "namaruangan",
-						title: "<h3>Ruangan</h3>",
-						width: 120
-					},
-					{
-						field: "noregistrasi",
-						title: "<h3>No Registrasi</h3>",
-						width: 100
-					},
-					{
-						command: [{
-							text: "Detail",
-							click: showDetailAsesmenGizi,
-							imageClass: "k-icon k-i-pencil"
+						},
+						pageable: true,
+						scrollable: true,
+						columns: [{
+							field: "tglinput",
+							title: "<h3>Tanggal/Jam</h3>",
+							width: 100
 						},
 						{
-							text: "Verifikasi Dokter",
-							click: verif,
-							imageClass: "k-icon k-i-pencil"
+							field: "namalengkap",
+							title: "<h3>Dokter Penanggung <br>Jawab Pelayanan</h3>",
+							width: 150
 						},
-						],
-						title: "",
-						width: 90,
-						attributes: {
-							style: "text-align:center;valign=middle"
-						}
+						{
+							field: "pegawaiasal",
+							title: "<h3>Ahli Gizi</h3>",
+							template: '# if( pegawaiasal==null) {# - # } else {# #= pegawaiasal # #} #',
+							"width": "120px"
+						},
+						{
+							field: "namaruangan",
+							title: "<h3>Ruangan</h3>",
+							width: 120
+						},
+						{
+							field: "noregistrasi",
+							title: "<h3>No Registrasi</h3>",
+							width: 100
+						}]
+					};
+					$scope.optGridAsesmenGiziNotVerif = {
+						filterable: {
+							extra: false,
+							operators: {
+								string: {
+									startswith: "Dimulai dengan",
+									contains: "mengandung kata",
+									neq: "Tidak mengandung kata"
+								}
+							}
+						},
+						pageable: true,
+						scrollable: true,
+						columns: [{
+							field: "tglinput",
+							title: "<h3>Tanggal/Jam</h3>",
+							width: 100
+						},
+						// { field: "namalengkap", title: "<h3>Dokter Penanggung <br>Jawab Pelayanan</h3>", width: 150 },
+						{
+							field: "pegawaiasal",
+							title: "<h3>Ahli Gizi</h3>",
+							width: 100
+						},
+						{
+							field: "namaruangan",
+							title: "<h3>Ruangan</h3>",
+							width: 120
+						},
+						{
+							field: "noregistrasi",
+							title: "<h3>No Registrasi</h3>",
+							width: 100
+						}]
 					}
-					]
+				}else{
+					$scope.optGridAsesmenGizi = {
+						filterable: {
+							extra: false,
+							operators: {
+								string: {
+									startswith: "Dimulai dengan",
+									contains: "mengandung kata",
+									neq: "Tidak mengandung kata"
+								}
+							}
+						},
+						toolbar: [{
+							name: "create",
+							text: "Input Baru",
+							template: '<button ng-click="inputBaru()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah</button>'
+						}],
+						pageable: true,
+						scrollable: true,
+						columns: [{
+							field: "tglinput",
+							title: "<h3>Tanggal/Jam</h3>",
+							width: 100
+						},
+						{
+							field: "namalengkap",
+							title: "<h3>Dokter Penanggung <br>Jawab Pelayanan</h3>",
+							width: 150
+						},
+						{
+							field: "pegawaiasal",
+							title: "<h3>Ahli Gizi</h3>",
+							template: '# if( pegawaiasal==null) {# - # } else {# #= pegawaiasal # #} #',
+							"width": "120px"
+						},
+						{
+							field: "namaruangan",
+							title: "<h3>Ruangan</h3>",
+							width: 120
+						},
+						{
+							field: "noregistrasi",
+							title: "<h3>No Registrasi</h3>",
+							width: 100
+						},
+						{
+							command: [{
+								text: "Detail",
+								click: showDetailAsesmenGizi,
+								imageClass: "k-icon k-i-pencil"
+							},],
+							title: "",
+							width: 90,
+							attributes: {
+								style: "text-align:center;valign=middle"
+							}
+						}
+						]
+					};
+					$scope.optGridAsesmenGiziNotVerif = {
+						filterable: {
+							extra: false,
+							operators: {
+								string: {
+									startswith: "Dimulai dengan",
+									contains: "mengandung kata",
+									neq: "Tidak mengandung kata"
+								}
+							}
+						},
+						pageable: true,
+						scrollable: true,
+						columns: [{
+							field: "tglinput",
+							title: "<h3>Tanggal/Jam</h3>",
+							width: 100
+						},
+						// { field: "namalengkap", title: "<h3>Dokter Penanggung <br>Jawab Pelayanan</h3>", width: 150 },
+						{
+							field: "pegawaiasal",
+							title: "<h3>Ahli Gizi</h3>",
+							width: 100
+						},
+						{
+							field: "namaruangan",
+							title: "<h3>Ruangan</h3>",
+							width: 120
+						},
+						{
+							field: "noregistrasi",
+							title: "<h3>No Registrasi</h3>",
+							width: 100
+						},
+						{
+							command: [{
+								text: "Detail",
+								click: showDetailAsesmenGizi,
+								imageClass: "k-icon k-i-pencil"
+							},
+							{
+								text: "Verifikasi Dokter",
+								click: verif,
+								imageClass: "k-icon k-i-pencil"
+							},
+							],
+							title: "",
+							width: 90,
+							attributes: {
+								style: "text-align:center;valign=middle"
+							}
+						}
+						]
+					}
 				}
+				
+
+			
 				$scope.getDataAsesmenGizi();
 			}
 			initPage();
