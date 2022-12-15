@@ -1,26 +1,147 @@
+<style>
+    .container {
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    /* ------------------- */
+    /* PEN STYLES      -- */
+    /* ----------------- */
+
+    /* MAKE IT CUTE ----- */
+    .tabs {
+        position: relative;
+        display: flex;
+        min-height: 300px;
+        border-radius: 8px 8px 0 0;
+        overflow: hidden;
+    }
+
+    .tabby-tab {
+        flex: 1;
+    }
+
+    .tabby-tab label {
+        display: block;
+        box-sizing: border-box;
+        /* tab content must clear this */
+        height: 40px;
+
+        padding: 10px;
+        text-align: center;
+        background: #9768D1;
+        cursor: pointer;
+        transition: background 0.5s ease;
+        color: aliceblue;
+    }
+
+    .tabby-tab label:hover {
+        background: #7B52AB;
+    }
+
+    .tabby-content {
+        position: absolute;
+
+        left: 0;
+        bottom: 0;
+        right: 0;
+        /* clear the tab labels */
+        top: 40px;
+
+        padding: 20px;
+        border-radius: 0 0 8px 8px;
+        background: #e4bdff;
+
+        transition:
+            opacity 0.8s ease,
+            transform 0.8s ease;
+
+        /* show/hide */
+        opacity: 0;
+        transform: scale(0.1);
+        transform-origin: top left;
+
+    }
+
+    .tabby-content img {
+        float: left;
+        margin-right: 20px;
+        border-radius: 8px;
+    }
+
+    /* MAKE IT WORK ----- */
+
+    .tabby-tab [type=radio] {
+        display: none;
+    }
+
+    [type=radio]:checked~label {
+        background: #553285;
+        z-index: 2;
+    }
+
+    [type=radio]:checked~label~.tabby-content {
+        z-index: 1;
+
+        /* show/hide */
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td,    th {
+        border: 1px solid #ffffff;
+        text-align: left;
+        padding: 8px;
+        text-align: center;
+    }
+
+    tr:nth-child(even) {
+        background-color: #ffffff;
+    }
+
+    /* BREAKPOINTS ----- */
+    @media screen and (max-width: 767px) {
+        .tabs {
+            min-height: 400px;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .tabs {
+            min-height: 580px;
+        }
+
+        .tabby-tab label {
+            height: 60px;
+        }
+
+        .tabby-content {
+            top: 60px;
+        }
+
+        .tabby-content img {
+            float: none;
+            margin-right: 0;
+            margin-bottom: 20px;
+        }
+    }
+</style>
 <div class="panel panel-default container_12">
-    <div class="panel-heading">
+    <div class="panel-heading center">
         <label class='title' c-label>Ketersediaan Kamar</label>
     </div>
-    <div class="grid_12 panel panel-default panel-white" >
-        <ul class="list-group" id="card-bed"></ul>
-    </div>
-    <!-- <div class="grid_12">
-        <div class="grid_12" style="margin: 15px 0 30px 0;">
-            <div kendo-grid id="kGrid"
-                k-data-source="sourceBed"
-                k-groupable="'true'"
-                k-selectable="'row'"
-                class="max-height"
-                k-pageable="'true'"
-                k-columns="gridMaster"
-                k-sortable="'true'"
-                ng-click="kl">
+    <div class="grid_12 panel panel-default panel-white" style="overflow:auto">
+        <div class="container">
+            <div class="tabs" id="nav-tab-kelas">
             </div>
         </div>
-    </div> -->
-    <div class="grid_12">
-        <nav class="nav nav-tabs" id="nav-tab-kelas" role="tablist"></nav>
-        <div class="tab-content" id="nav-tabContent"></div>
     </div>
 </div>

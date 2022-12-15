@@ -44,12 +44,8 @@ define(['initialize'], function(initialize) {
                     $scope.item.kelas = $scope.item.bed.filter((arr, index, self) => index === self.findIndex((t) => (t.kodekelas == arr.kodekelas)));
                     return data;
                 })
-                // .then((data)=>{
-                //     loadKelas();
-                //     return data;
-                // })
                 .then((data)=>{
-                    loadInterval();
+                    loadLabel();
                 })
                 .then((data)=>{
                     laodDetail();
@@ -58,9 +54,9 @@ define(['initialize'], function(initialize) {
 
             OnInit();
 
-            // setInterval(() => {
-            //     OnInit();
-            // },1000);
+            setInterval(() => {
+                loadInterval();
+            },30*1000);
 
             const loadKelas=()=>{
                 $scope.sourceBed = new kendo.data.DataSource({
@@ -93,40 +89,87 @@ define(['initialize'], function(initialize) {
                 });
             }
 
-            const loadInterval=()=>{
-                let htmlKelas='',indexNum=1;
+            const loadLabel=()=>{
+                let html='',indexNum=1;
                 $scope.item.kelas.forEach(kelas => {
                     if(indexNum==1){
-                        htmlKelas += '<li class="nav-item"><a class="nav-link active" id="nav-'+indexNum+'-tab" data-toggle="tab" href="#nav-'+indexNum+'" role="tab" aria-controls="nav-'+indexNum+'" aria-selected="true">'+kelas.namakelas+'</a></li>';
+                        html += '<div class="tabby-tab" id="tab-'+indexNum+'-box">'+
+                                '<input type="radio" id="tab-'+indexNum+'" name="tabby-tabs" checked>'+
+                                '<label for="tab-'+indexNum+'">'+kelas.namakelas+'</label>'+
+                                '<div class="tabby-content" id="content-'+indexNum+'">'+
+                                '</div>'+
+                            '</div>';
                     }else{
-                        htmlKelas += '<li class="nav-item"><a class="nav-link" id="nav-'+indexNum+'-tab" data-toggle="tab" href="#nav-'+indexNum+'" role="tab" aria-controls="nav-'+indexNum+'" aria-selected="true">'+kelas.namakelas+'</a></li>';
+                        html += '<div class="tabby-tab" id="tab-'+indexNum+'-box">'+
+                            '<input type="radio" id="tab-'+indexNum+'" name="tabby-tabs">'+
+                            '<label for="tab-'+indexNum+'">'+kelas.namakelas+'</label>'+
+                            '<div class="tabby-content" id="content-'+indexNum+'">'+
+                            '</div>'+
+                        '</div>';
                     }
                     indexNum++;
                 });
-                $('#nav-tab-kelas').html(htmlKelas)
+                $('#nav-tab-kelas').html(html)
             }
 
             const laodDetail=()=>{
-                let htmlDetail='',indexNum=1;
+                let indexNum=1;
                 $scope.item.kelas.forEach(kelas => {
                     let dataFilter = $scope.item.bed.filter(e=>e.kodekelas==kelas.kodekelas);
                     if(indexNum==1){
-                        htmlDetail += '<div role="tabpanel" class="tab-pane fade in active" id="nav-'+indexNum+'" aria-labelledby="nav-'+indexNum+'-tab">';
+                        let html = '<table>';
+                        html += '<tr><th colspan="4"><span style="color:#000000;font-weight: bold;">'+kelas.namakelas+'</span></th></tr><tr><th>Nama Ruang</th><th>Kapasitas</th><th>Ketersediaan</th><th>Terakhir Update</th></tr>';
                         dataFilter.forEach(dataFilter => {
-
+                            html += '<tr>';
+                            html += '<td>'+dataFilter.namaruang+'</td>'
+                            html += '<td>'+dataFilter.kapasitas+'</td>'
+                            html += '<td>'+dataFilter.tersedia+'</td>'
+                            html += '<td>'+dataFilter.lastupdate+'</td>'
+                            html += '</tr>';
                         });
-                        htmlDetail +='</div>';
+                        html += '</table>';
+                        $('#content-'+indexNum).html(html);
                     }else{
-                        htmlDetail += '<div role="tabpanel" class="tab-pane fade" id="nav-'+indexNum+'" aria-labelledby="nav-'+indexNum+'-tab">';
+                        let html = '<table>';
+                        html += '<tr><th colspan="4"><span style="color:#000000;font-weight: bold;">'+kelas.namakelas+'</span></th></tr><tr><th>Nama Ruang</th><th>Kapasitas</th><th>Ketersediaan</th><th>Terakhir Update</th></tr>';
                         dataFilter.forEach(dataFilter => {
-                            
+                            html += '<tr>';
+                            html += '<td>'+dataFilter.namaruang+'</td>'
+                            html += '<td>'+dataFilter.kapasitas+'</td>'
+                            html += '<td>'+dataFilter.tersedia+'</td>'
+                            html += '<td>'+dataFilter.lastupdate+'</td>'
+                            html += '</tr>';
                         });
-                        htmlDetail +='</div>';
+                        html += '</table>';
+                        $('#content-'+indexNum).html(html);
                     }
                     indexNum++;
                 });
-                $("#nav-tabContent").html(htmlDetail);
             }
+
+            const loadInterval=()=>{
+                let lengthkelas=$scope.item.kelas.length,dataChecked='';
+                for(let i=1;i<=lengthkelas;i++){
+                    let activeTab = $('#tab-'+i).is(':checked');
+                    if(activeTab){
+                        dataChecked=i;                       
+                    }
+                }
+
+                if(dataChecked===lengthkelas){
+                    $('#tab-1').prop( "checked", true );
+                    $('#content-1').css({"display":""});
+                    $('#content-'+i).css({"display":"none"});
+                }
+                else{
+                    let iNow = dataChecked+1;
+                    $('#tab-'+iNow).prop( "checked", true );
+                    $('#content-'+iNow).css({"display":""});
+                    $('#content-'+dataChecked).css({"display":"none"});
+                }
+            }
+
+
         }
     ])
 })

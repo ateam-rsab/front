@@ -39,7 +39,7 @@ define(['initialize'], function (initialize) {
                             $scope.isAccessDanied();
                         }
                     }else if(statusCode=="bidangmedik"){
-                        
+                        console.log("ok");
                     }
                 }
             }
