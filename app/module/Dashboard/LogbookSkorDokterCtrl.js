@@ -106,7 +106,7 @@ define(['initialize'], function (initialize) {
                     return;
                 }
                 if($scope.item.periode){
-                    if(DateHelper.getFormatMonthPicker($scope.item.periode)=='2022-11'){
+                    if(DateHelper.getFormatMonthPicker($scope.item.periode)=='2022-11'||DateHelper.getFormatMonthPicker($scope.item.periode)=='2022-12'){
                         $scope.isDtMain=true;
 						$scope.isNov2022=false;
                         $scope.isRouteLoading = false;

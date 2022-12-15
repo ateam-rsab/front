@@ -339,6 +339,13 @@
         font-weight: bold;
         justify-content: space-around;
     }
+
+    .day-timer{
+        /* position: relative;
+        width: 300px; */
+        text-align: center;
+        font-size: 5em;
+    }
 </style>
 
 <div ng-controller="WelcomeCtrl">
@@ -347,7 +354,7 @@
             <h4>Pemberitahuan</h4>
         </md-card-header> -->
         <md-card-content>
-            <div class="container-widget grid_6">
+            <div class="container-widget grid_5">
                 <h4 style="text-align:left;">Pemberitahuan</h4><br>
                 <div class="notify " ng-if="isShowSIPExpired">
                     <strong>Info </strong> {{messageNotif}}
@@ -521,9 +528,20 @@
                     </div>
                 </div>
             </div>
-            <div class="container-widget grid_6">
+            <div class="container-widget grid_3" style="background-color:#ffdb4d ;border-radius:1rem;">
+                <h2 style="color:#000000">Hitung Mundur<br>Akreditasi KARS <strong>2023</strong></h2>
+                <div class="center day-timer"><strong id="day-timer"></strong></div>
+                <h3 class="center" style="color:#000000"><strong>HARI LAGI</strong><br></h3>
+                <div class="center">
+                    <div class="notify notify-warn" style="background-color:#ffffff;" id="timer-hari"></div>
+                    <div class="notify notify-warn" style="background-color:#ffffff;" id="timer-jam"></div>
+                    <div class="notify notify-warn" style="background-color:#ffffff;" id="timer-menit"></div>
+                    <div class="notify notify-warn" style="background-color:#ffffff;" id="timer-detik"></div>
+                </div>
+            </div>
+            <div class="container-widget grid_4">
                 <h4 style="text-align:left;">Visi & Misi RSAB Harapan Kita</h4>
-                <h1 style="padding:0;">Visi</h1>
+                <h3 style="padding:0;">Visi</h1>
                 <strong layout="row" layout-align="center center">"Terdepan sebagai Pusat Kesehatan ibu dan Anak Nasional"</strong>
                 <h1 style="padding:0;">Misi</h1>
                 <ul class="list-3">

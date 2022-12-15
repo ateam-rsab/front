@@ -1,5 +1,21 @@
 [
   {
+    "name": "KamarDashboard",
+    "url": "/KamarDashboard",
+    "templateurl": "module/Dashboard/Kamar/KamarDashboard.html",
+    "controller": "KamarDashboardCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      }
+    ]
+  },
+  {
     "name": "MultiSelect",
     "url": "/MultiSelect",
     "templateurl": "module/KendoUiSample/MultiSelect.html",

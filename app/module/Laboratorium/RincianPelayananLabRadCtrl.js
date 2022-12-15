@@ -99,9 +99,9 @@ define(['initialize'], function (initialize) {
                     $scope.listLayanan = dat.data.produk;
                     $scope.listDokter = dat.data.dokter;
                 })
-                if (norec_apd != null) {
+                if (norec_pd != null) {
 
-                    manageLogistikPhp.getDataTableTransaksi("lab-radiologi/get-rincian-pelayanan?noregistrasifk=" + norec_apd
+                    manageLogistikPhp.getDataTableTransaksi("lab-radiologi/get-rincian-pelayanan?noregistrasifk=" + norec_pd
                         , true).then(function (dat) {
                             for (var i = 0; i < dat.data.data.length; i++) {
                                 dat.data.data[i].no = i + 1

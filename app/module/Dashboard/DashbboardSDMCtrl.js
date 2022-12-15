@@ -597,14 +597,14 @@ define(['initialize'], function (initialize) {
 				]
 				var isValid = ModelItem.setValidation($scope, listRawRequired);
 				if (isValid.status) {
-					if(DateHelper.getFormatMonthPicker($scope.item.periode)=='2022-11'){
-						$scope.isDtMain=true;
-						$scope.isNov2022=false;
-						$scope.isRouteLoading = false;
-					}else{
-						$scope.isDtMain=false;
-						$scope.isNov2022=true;
-						$scope.isRouteLoading = false;
+					// if(DateHelper.getFormatMonthPicker($scope.item.periode)=='2022-11'||DateHelper.getFormatMonthPicker($scope.item.periode)=='2022-12'){
+					// 	$scope.isDtMain=true;
+					// 	$scope.isNov2022=false;
+					// 	$scope.isRouteLoading = false;
+					// }else{
+					// 	$scope.isDtMain=false;
+					// 	$scope.isNov2022=true;
+					// 	$scope.isRouteLoading = false;
 						FindSdm.getDataLogbookKinerja(DateHelper.getFormatMonthPicker($scope.item.periode), $scope.item.pegawai.id).then(function(dat) {
 							ManageSdmNew.getListData("sdm/get-all-tindakan-dokter-rescored/" + DateHelper.getFormatMonthPicker($scope.item.periode) + "/" + $scope.item.pegawai.id).then(function (dat) {
 								var dataGrid = [];
@@ -791,7 +791,7 @@ define(['initialize'], function (initialize) {
 								throw (error);
 							});
 						});
-					}
+					// }
 				} else {
 					ModelItem.showMessages(isValid.messages);
 				}
@@ -1136,17 +1136,17 @@ define(['initialize'], function (initialize) {
 				]
 				var isValid = ModelItem.setValidation($scope, listRawRequired);
 				if (isValid.status) {
-					$scope.isRouteLoading = true;
-					if(DateHelper.getFormatMonthPicker($scope.item.periodeFee)=='2022-11'){
-						$scope.isDtMainffs=true;
-						$scope.isNov2022ffs=false;
-						$scope.isRouteLoading = false;
-					}else{
-						$scope.isDtMainffs=false;
-						$scope.isNov2022ffs=true;
-						$scope.isRouteLoading = false;
+					// $scope.isRouteLoading = true;
+					// if(DateHelper.getFormatMonthPicker($scope.item.periodeFee)=='2022-11'||DateHelper.getFormatMonthPicker($scope.item.periodeFee)=='2022-12'){
+					// 	$scope.isDtMainffs=true;
+					// 	$scope.isNov2022ffs=false;
+					// 	$scope.isRouteLoading = false;
+					// }else{
+					// 	$scope.isDtMainffs=false;
+					// 	$scope.isNov2022ffs=true;
+					// 	$scope.isRouteLoading = false;
 						$scope.sdmGetffs();
-					}
+					// }
 					// FindSdm.getFeeForServiceDokter(DateHelper.getFormatMonthPicker($scope.item.periodeFee), $scope.item.pegawai.id).then(function(dat) {
 					// ManageSdmNew.getListData("sdm/get-all-tindakan-dokter-fee-for-service-rescored/" +DateHelper.getFormatMonthPicker($scope.item.periodeFee)+ "/" +$scope.item.pegawai.id).then(function(dat) {
 					

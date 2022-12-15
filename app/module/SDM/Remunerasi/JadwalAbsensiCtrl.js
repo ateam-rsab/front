@@ -1,11 +1,12 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('JadwalAbsensiCtrl', ['$q', 'ManagePegawai', 'FindPegawai', 'DateHelper', 'FindSdm', 'ModelItem', 'ManageSdm', 'ManageSdmNew', 'CetakHelper', '$state', '$rootScope', '$scope', '$mdDialog', '$timeout', 'ManagePhp',
-        function ($q, managePegawai, findPegawai, dateHelper, findSdm, modelItem, manageSdm, manageSdmNew, cetakHelper, $state, $rootScope, $scope, $mdDialog, $timeout, managePhp) {
+    initialize.controller('JadwalAbsensiCtrl', ['$q', 'ManagePegawai', 'FindPegawai', 'DateHelper', 'FindSdm', 'ModelItem', 'ManageSdm', 'ManageSdmNew', 'CetakHelper', '$state', '$rootScope', '$scope', '$mdDialog', '$timeout',
+        function ($q, managePegawai, findPegawai, dateHelper, findSdm, modelItem, manageSdm, manageSdmNew, cetakHelper, $state, $rootScope, $scope, $mdDialog, $timeout) {
             $scope.isRouteLoading = true;
             $scope.ruanganKerja = [213, 217, 362, 57, 106, 105]; // daftar ruangan dengan otoritas penuh
             $scope.dataShiftPegawai = [] /* temp array data shift pegawai yang akan di simpan ke backend */
             $scope.simpan = true;
+            $scope.listData2='';
 
             if (modelItem.getPegawai().ruangan) {
                 if ($scope.ruanganKerja.includes(modelItem.getPegawai().ruangan.id)) {
@@ -296,6 +297,10 @@ define(['initialize'], function (initialize) {
             // })
 
             $scope.changeShift = function (item, tgl) {
+                let filterDetailbyPegawai = $scope.listData2.filter(e=>e.idPegawai==item.idPegawai);
+                let cekShiftKerja = (item.pegawai.shiftKerja.name=="Non Shift +") ? true : false;
+                let cekLibur = (tgl.day==="Minggu"||tgl.day==="Sabtu") ? true : false;
+
                 if (tgl.kehadiranKerja !== undefined) {
                     window.messageContainer.info('Data kehadiran sudah terisi');
                     return;
@@ -306,26 +311,85 @@ define(['initialize'], function (initialize) {
                 } else {
                     var objValid = $scope.checkUnitKerja();
                 }
-
+                
                 if (objValid.status) {
                     $scope.selectedShift = tgl;
                     $scope.selectedPegawai = item.pegawai;
                     $scope.selectedPegawai.tanggalDinas = dateHelper.getTanggalFormatted(new Date(tgl.tanggal.tanggal));
-                    for (let index = 0; index < item.pegawai.shiftKerja.detail.length; index++) {
-                        if (item.pegawai.shiftKerja.detail[index].jamMasuk == undefined
-                            || item.pegawai.shiftKerja.detail[index].jamMasuk == ""
-                            || item.pegawai.shiftKerja.detail[index].jamMasuk == null) {
-                            item.pegawai.shiftKerja.detail[index].text =
-                                item.pegawai.shiftKerja.detail[index].kodeExternal
-                        } else {
-                            item.pegawai.shiftKerja.detail[index].text =
-                                item.pegawai.shiftKerja.detail[index].kodeExternal + '\t' +
-                                item.pegawai.shiftKerja.detail[index].jamMasuk + '-' +
-                                item.pegawai.shiftKerja.detail[index].jamPulang
+                    let newDetail = [];
+                    if(cekShiftKerja){
+                        console.log(filterDetailbyPegawai[0].pegawai.shiftKerja.detail);
+                        if(cekLibur){
+                            let filterNotMOD = filterDetailbyPegawai[0].pegawai.shiftKerja.detail.filter(e=>e.kodeExternal!=="MOD");
+                            filterNotMOD.forEach(filterNotMOD => {
+                                if (filterNotMOD.jamMasuk == undefined
+                                    || filterNotMOD.jamMasuk == ""
+                                    || filterNotMOD.jamMasuk == null) {
+                                        filterNotMOD.text = filterNotMOD.kodeExternal;
+                                        newDetail.push(filterNotMOD)
+                                } else {
+                                    filterNotMOD.text =
+                                    filterNotMOD.kodeExternal + '\t' +
+                                    filterNotMOD.jamMasuk + '-' +
+                                    filterNotMOD.jamPulang
+                                    newDetail.push(filterNotMOD)
+                                }
+                            });
+                        }else{
+                            let filterNotMOD = filterDetailbyPegawai[0].pegawai.shiftKerja.detail.filter(e=>e.kodeExternal!=="P-MOD"&&e.kodeExternal!=="S-MOD"&&e.kodeExternal!=="M-MOD");
+                            filterNotMOD.forEach(filterNotMOD => {
+                                if (filterNotMOD.jamMasuk == undefined
+                                    || filterNotMOD.jamMasuk == ""
+                                    || filterNotMOD.jamMasuk == null) {
+                                        filterNotMOD.text = filterNotMOD.kodeExternal;
+                                        newDetail.push(filterNotMOD)
+                                } else {
+                                    filterNotMOD.text =
+                                    filterNotMOD.kodeExternal + '\t' +
+                                    filterNotMOD.jamMasuk + '-' +
+                                    filterNotMOD.jamPulang
+                                    newDetail.push(filterNotMOD)
+                                }
+                            });
                         }
+                    }else{
+                        filterDetailbyPegawai.forEach(filterDetailbyPegawai => {
+                            if (filterDetailbyPegawai.jamMasuk == undefined
+                                || filterDetailbyPegawai.jamMasuk == ""
+                                || filterDetailbyPegawai.jamMasuk == null) {
+                                    filterDetailbyPegawai.text = filterDetailbyPegawai.kodeExternal;
+                                    newDetail.push(filterDetailbyPegawai)
+                            } else {
+                                filterDetailbyPegawai.text =
+                                filterDetailbyPegawai.kodeExternal + '\t' +
+                                filterDetailbyPegawai.jamMasuk + '-' +
+                                filterDetailbyPegawai.jamPulang
+                                newDetail.push(filterDetailbyPegawai)
+                            }
+                        });
+                        // for (let index = 0; index < filterDetailbyPegawai[0].pegawai.shiftKerja.detail.length; index++) {
+                        //     if (filterDetailbyPegawai[0].pegawai.shiftKerja.detail[index].jamMasuk == undefined
+                        //         || filterDetailbyPegawai[0].pegawai.shiftKerja.detail[index].jamMasuk == ""
+                        //         || filterDetailbyPegawai[0].pegawai.shiftKerja.detail[index].jamMasuk == null) {
+                        //             filterDetailbyPegawai[0].pegawai.shiftKerja.detail[index].text =
+                        //                 filterDetailbyPegawai[0].pegawai.shiftKerja.detail[index].kodeExternal
+                        //                 newDetail.push(filterDetailbyPegawai[0].pegawai.shiftKerja.detail[index])
+                        //     } else {
+                        //         filterDetailbyPegawai[0].pegawai.shiftKerja.detail[index].text =
+                        //         filterDetailbyPegawai[0].pegawai.shiftKerja.detail[index].kodeExternal + '\t' +
+                        //         filterDetailbyPegawai[0].pegawai.shiftKerja.detail[index].jamMasuk + '-' +
+                        //         filterDetailbyPegawai[0].pegawai.shiftKerja.detail[index].jamPulang
+                        //         newDetail.push(filterDetailbyPegawai[0].pegawai.shiftKerja.detail[index])
+                        //     }
+                        // }
                     }
+                    console.log(newDetail)
+                    $scope.listData.filter((e,index)=>{
+                        if(e.idPegawai==item.idPegawai){
+                            $scope.listData[index].pegawai.shiftKerja.detail = newDetail;
+                        }
+                    })
                     $scope.daftarShiftPegawai = item.pegawai.shiftKerja.detail;
-
                     // $scope.changeShiftModal.center().open();
                     tgl.popupEditor = false;
                     // if (tgl.shiftKerja == undefined)
@@ -439,26 +503,27 @@ define(['initialize'], function (initialize) {
             $scope.Save = function () {
                 $scope.simpan = false;
                 if ($scope.dataShiftPegawai.length > 0) {
-                    $scope.isRouteLoading = true;
+                    // $scope.isRouteLoading = true;
+                    console.log($scope.dataShiftPegawai)
                     // managePegawai.savejadwalPegawai($scope.dataShiftPegawai).then(function(e) {
-                    manageSdmNew.saveData($scope.dataShiftPegawai, "pegawai/save-all-jadwal-pegawai-rev2/").then(function (e) {
-                        // if ($scope.ruangans != undefined) {
-                        //     $scope.refresh();
-                        // }
-                        var msg = e.data.messages;
-                        if (msg['label-success'] === "SUKSES") {
-                            window.messageContainer.log(msg['label-success']);
-                            $scope.dataShiftPegawai = [];
-                            $scope.simpan = true;
-                        }
-                        $scope.isRouteLoading = false;
-                        //  $scope.isNext = true;
-                        $rootScope.doneLoad = true;
-                    }, (err) => {
-                        $scope.isRouteLoading = false;
-                        $scope.simpan = true;
-                        throw err;
-                    });
+                    // manageSdmNew.saveData($scope.dataShiftPegawai, "pegawai/save-all-jadwal-pegawai-rev2/").then(function (e) {
+                    //     // if ($scope.ruangans != undefined) {
+                    //     //     $scope.refresh();
+                    //     // }
+                    //     var msg = e.data.messages;
+                    //     if (msg['label-success'] === "SUKSES") {
+                    //         window.messageContainer.log(msg['label-success']);
+                    //         $scope.dataShiftPegawai = [];
+                    //         $scope.simpan = true;
+                    //     }
+                    //     $scope.isRouteLoading = false;
+                    //     //  $scope.isNext = true;
+                    //     $rootScope.doneLoad = true;
+                    // }, (err) => {
+                    //     $scope.isRouteLoading = false;
+                    //     $scope.simpan = true;
+                    //     throw err;
+                    // });
                 } else {
                     messageContainer.error('Tidak ada perubahan jadwal dinas pegawai!');
                     $scope.simpan = true;
@@ -501,13 +566,12 @@ define(['initialize'], function (initialize) {
                     // findPegawai.getjadwalPegawai($scope.item.subUnitKerja.id, $scope.item.selectedTahun.id, $scope.item.selectedBulan.id + 1).then(function(e) {
                     var bulan = $scope.item.selectedBulan.id + 1;
                     manageSdmNew.getListData("pegawai/get-pegawai-by-ruangan-rev2/" + $scope.item.subUnitKerja.id + "/" + $scope.item.selectedTahun.id + "/" + bulan).then(function (e) {
+                        $scope.listData2 = e.data.data.data;
                         var arr = [];
                         $rootScope.doneLoad = true;
                         $scope.dataFound = true;
                         var listIdNonShift = [1, 2];
-
                         for (var i = 0; i < e.data.data.data.length; i++) {
-
                             var element = e.data.data.data[i];
                             element.listDay = [];
                             for (var j = 0; j < $scope.listDay.length; j++) {

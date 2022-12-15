@@ -1,6 +1,10 @@
   {
     "path": [
       {
+        "nameDep": "KamarDashboardCtrl",
+        "urlDep": "module/Dashboard/Kamar/KamarDashboardCtrl"
+      },
+      {
         "nameDep": "SubRuanganCtrl",
         "urlDep": "module/Master/Ruangan/SubRuanganCtrl"
       },

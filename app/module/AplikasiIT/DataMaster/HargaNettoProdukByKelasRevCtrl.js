@@ -62,6 +62,10 @@ define(['initialize'], function (initialize) {
 				editable: "popup",
 				selectable: "row",
 				scrollable: false,
+				toolbar: ["excel"],
+				excel: {
+					allPages: true
+				},
 				columns: [
 					{
 						"field": "no",

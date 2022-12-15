@@ -185,7 +185,7 @@
                             <div class="grid_12" ng-repeat="obat in listObat
                                 track by $index">
                                 <!-- Nama Obat -->
-                                <div class="grid_9">
+                                <div class="grid_8">
                                     <label>Nama Obat</label>
                                     <div>
                                         <!-- <input id="listObatRacikan" kendo-auto-complete c-text-box type="input"
@@ -201,8 +201,15 @@
                                 <!-- Jumlah Obat -->
                                 <div class="grid_1">
                                     <label>Dosis</label>
-                                    <input c-text-box type="input" filter="'number'" class="k-textbox"
+                                    <input c-text-box type="number" filter="'number'" class="k-textbox"
                                         ng-model="resep.jumlahDosis[$index]" />
+                                </div>
+                                <div class="grid_1">
+                                    <label>Satuan</label>
+                                    <input kendo-combo-box k-ng-model="resep.satuanDosis[$index]" k-data-text-field="'name'"
+                                    k-data-value-field="'name'" k-filter="'contains'" k-auto-bind="false" k-data-source="listSatuanDosis"/>
+                                    <!-- <input c-text-box type="input" filter="'number'" class="k-textbox"
+                                        ng-model="resep.satuanDosis[$index]" /> -->
                                 </div>
                                 <!-- Button tambah obat -->
                                 <div class="grid_2" style="margin-top:1.25em" ng-show="findLastIndex($index)">

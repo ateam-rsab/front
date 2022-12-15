@@ -30,6 +30,18 @@ define(['initialize'], function (initialize) {
             }, {
                 name: 'Tidak',
                 id: 2
+            }];
+
+            $scope.listSatuanDosis = [{
+                name: 'mg',
+                id: 1
+            }, {
+                name: 'g',
+                id: 2
+            },
+            {
+                name: 'ug',
+                id: 2
             }]
 
             $scope.listOfJenisResep = [{
@@ -337,6 +349,7 @@ define(['initialize'], function (initialize) {
                 } else {
                     $scope.resep.namaObatRacikan[index] = '';
                     $scope.resep.jumlahDosis = ''
+                    // $scope.resep.satuanDosis = ''
                 }
             }
 
@@ -448,7 +461,7 @@ define(['initialize'], function (initialize) {
                             // nilaiKonversi: $scope.item.nilaiKonversi,
                             // hargaSatuan: $scope.getHargaSatuanNew($scope.resep.namaObat[i].id),
 
-                            jumlah: $scope.resep.jumlahDosis[i].toString(),
+                            jumlah: $scope.resep.jumlahDosis[i].toString()+' '+$scope.resep.satuanDosis[i].name,
                             resepKe: $scope.tempListResep.length + 1,
                             pieces: pcs,
                             jenisKemasan: isRacikan,
@@ -523,6 +536,7 @@ define(['initialize'], function (initialize) {
                 $scope.resep.satuanObat = '';
                 $scope.resep.ketCaraPembuatan = '';
                 $scope.resep.jumlahDosis = '';
+                $scope.resep.satuanDosis = '';
                 $scope.resep.pcsObat = '';
                 $scope.resep.kemasan = '';
             }
