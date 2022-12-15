@@ -797,16 +797,13 @@ define(['initialize'], function (initialize) {
             $scope.Simpan = function () {
 
                 ManageServicePhp.postApi('Service-request',null).then((ressatusehatLaboratorium)=>{
-                    console.log(ressatusehatLaboratorium);
-                })
-                ManageServicePhp.postApi('Specimen',null).then((ressatusehatLaboratorium)=>{
-                    console.log(ressatusehatLaboratorium);
-                })
-                ManageServicePhp.postApi('Observation',null).then((ressatusehatLaboratorium)=>{
-                    console.log(ressatusehatLaboratorium);
-                })
-                ManageServicePhp.postApi('DiagnosticReport',null).then((ressatusehatLaboratorium)=>{
-                    console.log(ressatusehatLaboratorium);
+                    ManageServicePhp.postApi('Specimen',null).then((ressatusehatLaboratorium)=>{
+                        ManageServicePhp.postApi('Observation',null).then((ressatusehatLaboratorium)=>{
+                            ManageServicePhp.postApi('DiagnosticReport',null).then((ressatusehatLaboratorium)=>{
+                                console.log(ressatusehatLaboratorium);
+                            })
+                        })
+                    })
                 })
                 
                 if (!$scope.item.klinis) {
