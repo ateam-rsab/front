@@ -35,6 +35,8 @@ define(['initialize'], function (initialize) {
                         if(datauserlogin['id']!="696"){
                             $scope.isAccessDanied();
                         }
+                    }else if(statusCode=="bidangmedik"){
+                        
                     }
                 }
             }
