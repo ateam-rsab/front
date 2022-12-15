@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('TransaksiPelayananLaboratoriumDokterRevCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper', 'FindProduk', 'DateHelper',
-        function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper, FindProduk, DateHelper) {
+    initialize.controller('TransaksiPelayananLaboratoriumDokterRevCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper', 'FindProduk', 'DateHelper','ManageServicePhp',
+        function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper, FindProduk, DateHelper,ManageServicePhp) {
             $scope.item = {};
             $scope.dataVOloaded = true;
             $scope.now = new Date();
