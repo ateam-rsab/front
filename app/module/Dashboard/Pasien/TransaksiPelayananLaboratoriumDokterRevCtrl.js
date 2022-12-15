@@ -827,7 +827,20 @@ define(['initialize'], function (initialize) {
                 manageLogistikPhp.saveData("transaksi/lab-radiologi/save-order-layanan-new", objSave).then(function (e) {
                     init();
                     $scope.BatalOrder();
-                    manageLogistikPhp.postLogging('Order Laboratorium', 'Norec strukorder_t', e.data.strukorder.norec, 'Menu Dokter').then(function (res) { })
+                    manageLogistikPhp.postLogging('Order Laboratorium', 'Norec strukorder_t', e.data.strukorder.norec, 'Menu Dokter').then(function (res) {
+                        ManageServicePhp.postApi('Service-request',null).then((ressatusehatLaboratorium)=>{
+                            console.log(ressatusehatLaboratorium);
+                        })
+                        ManageServicePhp.postApi('Specimen',null).then((ressatusehatLaboratorium)=>{
+                            console.log(ressatusehatLaboratorium);
+                        })
+                        ManageServicePhp.postApi('Observation',null).then((ressatusehatLaboratorium)=>{
+                            console.log(ressatusehatLaboratorium);
+                        })
+                        ManageServicePhp.postApi('DiagnosticReport',null).then((ressatusehatLaboratorium)=>{
+                            console.log(ressatusehatLaboratorium);
+                        })
+                    })
                     // $scope.item.resep = e.data.noresep.norec
                     // var stt = 'false'
                     // if (confirm('View resep? ')) {
