@@ -124,6 +124,15 @@
         ]
     },
     {
+        "name": "Laporan",
+        "children": [
+            {
+                "name": "Daftar Hadir DPJP",
+                "link": "#/MonitoringVisiteDokter"
+            }
+        ]
+    },
+    {
         "name": "SDM",
         "children": [
             {
@@ -173,15 +182,6 @@
             {
                 "name": "Verifikasi Uraian Tugas Bawahan",
                 "link": "#/VerifikasiUraianTugasPegawaiLogin"
-            }
-        ]
-    },
-    {
-        "name": "Laporan",
-        "children": [
-            {
-                "name": "Daftar Hadir DPJP",
-                "link": "#/MonitoringVisiteDokter"
             }
         ]
     },

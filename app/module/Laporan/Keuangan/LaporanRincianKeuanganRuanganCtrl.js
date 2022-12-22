@@ -389,20 +389,20 @@ define(['initialize'], function (initialize) {
                                                 let asuransi=0,bpjs=0,umum=0,perusahaan=0,perjanjian=0,kementriankesehatan=0,jamkesda=0,
                                                 totalasuransi=0,totalbpjs=0,totalumum=0,totalperusahaan=0,totalperjanjian=0,totalkementriankesehatan=0,totaljamkesda=0;
                                                 detailProduct.forEach(detailProduct => {
-                                                    if(detailProduct.bpjs!==null){bpjs+=parseInt(detailProduct.bpjs);}
-                                                    if(detailProduct.jamkesda!==null){jamkesda+=parseInt(detailProduct.jamkesda);}
-                                                    if(detailProduct.asuransi!==null){asuransi+=parseInt(detailProduct.asuransi);}
-                                                    if(detailProduct.umum!==null){umum+=parseInt(detailProduct.umum);}
-                                                    if(detailProduct.perusahaan!==null){perusahaan+=parseInt(detailProduct.perusahaan);}
-                                                    if(detailProduct.perjanjian!==null){perjanjian+=parseInt(detailProduct.perjanjian);}
-                                                    if(detailProduct.kementrian_kesehatan!==null){kementriankesehatan+=parseInt(detailProduct.kementrian_kesehatan);}
-                                                    if(detailProduct.total_bpjs!==null){totalbpjs+=parseInt(detailProduct.total_bpjs);}
-                                                    if(detailProduct.total_jamkesda!==null){totaljamkesda+=parseInt(detailProduct.total_jamkesda);}
-                                                    if(detailProduct.total_asuransi!==null){totalasuransi+=parseInt(detailProduct.total_asuransi);}
-                                                    if(detailProduct.total_umum!==null){totalumum+=parseInt(detailProduct.total_umum);}
-                                                    if(detailProduct.total_perusahaan!==null){totalperusahaan+=parseInt(detailProduct.total_perusahaan);}
-                                                    if(detailProduct.total_perjanjian!==null){totalperjanjian+=parseInt(detailProduct.total_perjanjian);}
-                                                    if(detailProduct.total_kementrian_kesehatan!==null){totalkementriankesehatan+=parseInt(detailProduct.total_kementrian_kesehatan);}
+                                                    if(detailProduct.bpjs!==null){bpjs+=parseFloat(detailProduct.bpjs);}
+                                                    if(detailProduct.jamkesda!==null){jamkesda+=parseFloat(detailProduct.jamkesda);}
+                                                    if(detailProduct.asuransi!==null){asuransi+=parseFloat(detailProduct.asuransi);}
+                                                    if(detailProduct.umum!==null){umum+=parseFloat(detailProduct.umum);}
+                                                    if(detailProduct.perusahaan!==null){perusahaan+=parseFloat(detailProduct.perusahaan);}
+                                                    if(detailProduct.perjanjian!==null){perjanjian+=parseFloat(detailProduct.perjanjian);}
+                                                    if(detailProduct.kementrian_kesehatan!==null){kementriankesehatan+=parseFloat(detailProduct.kementrian_kesehatan);}
+                                                    if(detailProduct.total_bpjs!==null){totalbpjs+=parseFloat(detailProduct.total_bpjs);}
+                                                    if(detailProduct.total_jamkesda!==null){totaljamkesda+=parseFloat(detailProduct.total_jamkesda);}
+                                                    if(detailProduct.total_asuransi!==null){totalasuransi+=parseFloat(detailProduct.total_asuransi);}
+                                                    if(detailProduct.total_umum!==null){totalumum+=parseFloat(detailProduct.total_umum);}
+                                                    if(detailProduct.total_perusahaan!==null){totalperusahaan+=parseFloat(detailProduct.total_perusahaan);}
+                                                    if(detailProduct.total_perjanjian!==null){totalperjanjian+=parseFloat(detailProduct.total_perjanjian);}
+                                                    if(detailProduct.total_kementrian_kesehatan!==null){totalkementriankesehatan+=parseFloat(detailProduct.total_kementrian_kesehatan);}
                                                 });
                                                 let total=totalbpjs+totaljamkesda+totalasuransi+totalumum+totalperusahaan+totalperjanjian+totalkementriankesehatan;
                                                 let total_volume = bpjs+jamkesda+asuransi+umum+perusahaan+perjanjian+kementriankesehatan;

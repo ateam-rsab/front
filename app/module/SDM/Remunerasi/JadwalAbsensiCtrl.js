@@ -6,7 +6,6 @@ define(['initialize'], function (initialize) {
             $scope.ruanganKerja = [213, 217, 362, 57, 106, 105]; // daftar ruangan dengan otoritas penuh
             $scope.dataShiftPegawai = [] /* temp array data shift pegawai yang akan di simpan ke backend */
             $scope.simpan = true;
-            $scope.listData2='';
 
             if (modelItem.getPegawai().ruangan) {
                 if ($scope.ruanganKerja.includes(modelItem.getPegawai().ruangan.id)) {
@@ -286,7 +285,7 @@ define(['initialize'], function (initialize) {
             //     var listUKerja = [];
             //     $scope.dSource = data.data.data;
             //     var listSource = $scope.dSource;
-            //     for (var i = listSource.length - 1; i >= 0; i--) {
+            //     for (var i = listSource.length - 1; i >= 0; i--) {$scope.listBackupData
             //         listUKerja[i].name = listSource[i].unitKerjaPegawai.name;
             //         listUKerja[i].id = listSource[i].unitKerjaPegawai.id;
             //         if (!listSource[i].isCanCreateJadwal) {
@@ -297,7 +296,8 @@ define(['initialize'], function (initialize) {
             // })
 
             $scope.changeShift = function (item, tgl) {
-                let filterDetailbyPegawai = $scope.listData2.filter(e=>e.idPegawai==item.idPegawai);
+                let datByStorage = JSON.parse(window.localStorage.getItem("ListDataTemp"));
+                let filterDetailbyPegawai = datByStorage.filter(e=>e.idPegawai==item.idPegawai);
                 let cekShiftKerja = (item.pegawai.shiftKerja.name=="Non Shift +") ? true : false;
                 let cekLibur = (tgl.day==="Minggu"||tgl.day==="Sabtu") ? true : false;
 
@@ -316,9 +316,23 @@ define(['initialize'], function (initialize) {
                     $scope.selectedShift = tgl;
                     $scope.selectedPegawai = item.pegawai;
                     $scope.selectedPegawai.tanggalDinas = dateHelper.getTanggalFormatted(new Date(tgl.tanggal.tanggal));
+                    
+                    for (let index = 0; index < item.pegawai.shiftKerja.detail.length; index++) {
+                        if (item.pegawai.shiftKerja.detail[index].jamMasuk == undefined
+                            || item.pegawai.shiftKerja.detail[index].jamMasuk == ""
+                            || item.pegawai.shiftKerja.detail[index].jamMasuk == null) {
+                            item.pegawai.shiftKerja.detail[index].text =
+                                item.pegawai.shiftKerja.detail[index].kodeExternal
+                        } else {
+                            item.pegawai.shiftKerja.detail[index].text =
+                                item.pegawai.shiftKerja.detail[index].kodeExternal + '\t' +
+                                item.pegawai.shiftKerja.detail[index].jamMasuk + '-' +
+                                item.pegawai.shiftKerja.detail[index].jamPulang
+                        }
+                    }
+
                     let newDetail = [];
                     if(cekShiftKerja){
-                        console.log(filterDetailbyPegawai[0].pegawai.shiftKerja.detail);
                         if(cekLibur){
                             let filterNotMOD = filterDetailbyPegawai[0].pegawai.shiftKerja.detail.filter(e=>e.kodeExternal!=="MOD");
                             filterNotMOD.forEach(filterNotMOD => {
@@ -358,7 +372,7 @@ define(['initialize'], function (initialize) {
                                 || filterDetailbyPegawai.jamMasuk == ""
                                 || filterDetailbyPegawai.jamMasuk == null) {
                                     filterDetailbyPegawai.text = filterDetailbyPegawai.kodeExternal;
-                                    newDetail.push(filterDetailbyPegawai)
+                                newDetail.push(filterDetailbyPegawai)
                             } else {
                                 filterDetailbyPegawai.text =
                                 filterDetailbyPegawai.kodeExternal + '\t' +
@@ -367,28 +381,12 @@ define(['initialize'], function (initialize) {
                                 newDetail.push(filterDetailbyPegawai)
                             }
                         });
-                        // for (let index = 0; index < filterDetailbyPegawai[0].pegawai.shiftKerja.detail.length; index++) {
-                        //     if (filterDetailbyPegawai[0].pegawai.shiftKerja.detail[index].jamMasuk == undefined
-                        //         || filterDetailbyPegawai[0].pegawai.shiftKerja.detail[index].jamMasuk == ""
-                        //         || filterDetailbyPegawai[0].pegawai.shiftKerja.detail[index].jamMasuk == null) {
-                        //             filterDetailbyPegawai[0].pegawai.shiftKerja.detail[index].text =
-                        //                 filterDetailbyPegawai[0].pegawai.shiftKerja.detail[index].kodeExternal
-                        //                 newDetail.push(filterDetailbyPegawai[0].pegawai.shiftKerja.detail[index])
-                        //     } else {
-                        //         filterDetailbyPegawai[0].pegawai.shiftKerja.detail[index].text =
-                        //         filterDetailbyPegawai[0].pegawai.shiftKerja.detail[index].kodeExternal + '\t' +
-                        //         filterDetailbyPegawai[0].pegawai.shiftKerja.detail[index].jamMasuk + '-' +
-                        //         filterDetailbyPegawai[0].pegawai.shiftKerja.detail[index].jamPulang
-                        //         newDetail.push(filterDetailbyPegawai[0].pegawai.shiftKerja.detail[index])
-                        //     }
-                        // }
                     }
-                    console.log(newDetail)
                     $scope.listData.filter((e,index)=>{
                         if(e.idPegawai==item.idPegawai){
                             $scope.listData[index].pegawai.shiftKerja.detail = newDetail;
                         }
-                    })
+                    });
                     $scope.daftarShiftPegawai = item.pegawai.shiftKerja.detail;
                     // $scope.changeShiftModal.center().open();
                     tgl.popupEditor = false;
@@ -411,6 +409,8 @@ define(['initialize'], function (initialize) {
                 // }
             }
             $scope.shiftChanged = function (pegawai, shift) {
+                console.log(shift);
+                console.log($scope.listData)
                 if (shift.shiftKerja.flagKetidakhadiran == true) {
                     toastr.warning('Status ketidakhadiran tidak bisa dipilih', 'Warning')
                     var data = {
@@ -503,27 +503,27 @@ define(['initialize'], function (initialize) {
             $scope.Save = function () {
                 $scope.simpan = false;
                 if ($scope.dataShiftPegawai.length > 0) {
-                    // $scope.isRouteLoading = true;
+                    $scope.isRouteLoading = true;
                     console.log($scope.dataShiftPegawai)
                     // managePegawai.savejadwalPegawai($scope.dataShiftPegawai).then(function(e) {
-                    // manageSdmNew.saveData($scope.dataShiftPegawai, "pegawai/save-all-jadwal-pegawai-rev2/").then(function (e) {
-                    //     // if ($scope.ruangans != undefined) {
-                    //     //     $scope.refresh();
-                    //     // }
-                    //     var msg = e.data.messages;
-                    //     if (msg['label-success'] === "SUKSES") {
-                    //         window.messageContainer.log(msg['label-success']);
-                    //         $scope.dataShiftPegawai = [];
-                    //         $scope.simpan = true;
-                    //     }
-                    //     $scope.isRouteLoading = false;
-                    //     //  $scope.isNext = true;
-                    //     $rootScope.doneLoad = true;
-                    // }, (err) => {
-                    //     $scope.isRouteLoading = false;
-                    //     $scope.simpan = true;
-                    //     throw err;
-                    // });
+                    manageSdmNew.saveData($scope.dataShiftPegawai, "pegawai/save-all-jadwal-pegawai-rev2/").then(function (e) {
+                        // if ($scope.ruangans != undefined) {
+                        //     $scope.refresh();
+                        // }
+                        var msg = e.data.messages;
+                        if (msg['label-success'] === "SUKSES") {
+                            window.messageContainer.log(msg['label-success']);
+                            $scope.dataShiftPegawai = [];
+                            $scope.simpan = true;
+                        }
+                        $scope.isRouteLoading = false;
+                        //  $scope.isNext = true;
+                        $rootScope.doneLoad = true;
+                    }, (err) => {
+                        $scope.isRouteLoading = false;
+                        $scope.simpan = true;
+                        throw err;
+                    });
                 } else {
                     messageContainer.error('Tidak ada perubahan jadwal dinas pegawai!');
                     $scope.simpan = true;
@@ -566,7 +566,6 @@ define(['initialize'], function (initialize) {
                     // findPegawai.getjadwalPegawai($scope.item.subUnitKerja.id, $scope.item.selectedTahun.id, $scope.item.selectedBulan.id + 1).then(function(e) {
                     var bulan = $scope.item.selectedBulan.id + 1;
                     manageSdmNew.getListData("pegawai/get-pegawai-by-ruangan-rev2/" + $scope.item.subUnitKerja.id + "/" + $scope.item.selectedTahun.id + "/" + bulan).then(function (e) {
-                        $scope.listData2 = e.data.data.data;
                         var arr = [];
                         $rootScope.doneLoad = true;
                         $scope.dataFound = true;
@@ -638,6 +637,7 @@ define(['initialize'], function (initialize) {
                         }
                         $scope.isNext = false;
                         $scope.listData = arr;
+                        window.localStorage.setItem('ListDataTemp', JSON.stringify(arr));
                         $scope.setElementCss();
                     }, function (err) {
                         toastr.warning('Something went wrong');
