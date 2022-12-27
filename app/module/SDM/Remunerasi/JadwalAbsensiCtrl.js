@@ -317,24 +317,24 @@ define(['initialize'], function (initialize) {
                     $scope.selectedPegawai = item.pegawai;
                     $scope.selectedPegawai.tanggalDinas = dateHelper.getTanggalFormatted(new Date(tgl.tanggal.tanggal));
                     
-                    for (let index = 0; index < item.pegawai.shiftKerja.detail.length; index++) {
-                        if (item.pegawai.shiftKerja.detail[index].jamMasuk == undefined
-                            || item.pegawai.shiftKerja.detail[index].jamMasuk == ""
-                            || item.pegawai.shiftKerja.detail[index].jamMasuk == null) {
-                            item.pegawai.shiftKerja.detail[index].text =
-                                item.pegawai.shiftKerja.detail[index].kodeExternal
-                        } else {
-                            item.pegawai.shiftKerja.detail[index].text =
-                                item.pegawai.shiftKerja.detail[index].kodeExternal + '\t' +
-                                item.pegawai.shiftKerja.detail[index].jamMasuk + '-' +
-                                item.pegawai.shiftKerja.detail[index].jamPulang
-                        }
-                    }
+                    // for (let index = 0; index < item.pegawai.shiftKerja.detail.length; index++) {
+                    //     if (item.pegawai.shiftKerja.detail[index].jamMasuk == undefined
+                    //         || item.pegawai.shiftKerja.detail[index].jamMasuk == ""
+                    //         || item.pegawai.shiftKerja.detail[index].jamMasuk == null) {
+                    //         item.pegawai.shiftKerja.detail[index].text =
+                    //             item.pegawai.shiftKerja.detail[index].kodeExternal
+                    //     } else {
+                    //         item.pegawai.shiftKerja.detail[index].text =
+                    //             item.pegawai.shiftKerja.detail[index].kodeExternal + '\t' +
+                    //             item.pegawai.shiftKerja.detail[index].jamMasuk + '-' +
+                    //             item.pegawai.shiftKerja.detail[index].jamPulang
+                    //     }
+                    // }
 
                     let newDetail = [];
                     if(cekShiftKerja){
                         if(cekLibur){
-                            let filterNotMOD = filterDetailbyPegawai[0].pegawai.shiftKerja.detail.filter(e=>e.kodeExternal!=="MOD");
+                            let filterNotMOD = filterDetailbyPegawai[0].shiftKerja.detail.filter(e=>e.kodeExternal!=="MOD");
                             filterNotMOD.forEach(filterNotMOD => {
                                 if (filterNotMOD.jamMasuk == undefined
                                     || filterNotMOD.jamMasuk == ""
@@ -350,7 +350,7 @@ define(['initialize'], function (initialize) {
                                 }
                             });
                         }else{
-                            let filterNotMOD = filterDetailbyPegawai[0].pegawai.shiftKerja.detail.filter(e=>e.kodeExternal!=="P-MOD"&&e.kodeExternal!=="S-MOD"&&e.kodeExternal!=="M-MOD");
+                            let filterNotMOD = filterDetailbyPegawai[0].shiftKerja.detail.filter(e=>e.kodeExternal!=="P-MOD"&&e.kodeExternal!=="S-MOD"&&e.kodeExternal!=="M-MOD");
                             filterNotMOD.forEach(filterNotMOD => {
                                 if (filterNotMOD.jamMasuk == undefined
                                     || filterNotMOD.jamMasuk == ""
@@ -367,7 +367,7 @@ define(['initialize'], function (initialize) {
                             });
                         }
                     }else{
-                        filterDetailbyPegawai.forEach(filterDetailbyPegawai => {
+                        filterDetailbyPegawai[0].shiftKerja.forEach(filterDetailbyPegawai => {
                             if (filterDetailbyPegawai.jamMasuk == undefined
                                 || filterDetailbyPegawai.jamMasuk == ""
                                 || filterDetailbyPegawai.jamMasuk == null) {
@@ -637,7 +637,11 @@ define(['initialize'], function (initialize) {
                         }
                         $scope.isNext = false;
                         $scope.listData = arr;
-                        window.localStorage.setItem('ListDataTemp', JSON.stringify(arr));
+                        let newArr = [];
+                        arr.forEach(arr => {
+                            newArr.push({idPegawai:arr.idPegawai,shiftKerja:arr.pegawai.shiftKerja})
+                        });
+                        window.localStorage.setItem('ListDataTemp', JSON.stringify(newArr));
                         $scope.setElementCss();
                     }, function (err) {
                         toastr.warning('Something went wrong');

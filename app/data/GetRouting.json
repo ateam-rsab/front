@@ -1,5 +1,45 @@
 [
   {
+    "name": "WaktuTungguResep",
+    "url": "/WaktuTungguResep",
+    "templateurl": "module/Apotek/Dashboard/WaktuTungguResep.html",
+    "controller": "WaktuTungguResepCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "TataRekeningService",
+        "define": "TataRekeningService"
+      }
+    ]
+  },
+  {
+    "name": "DashboardWaktuTungguResep",
+    "url": "/DashboardWaktuTungguResep",
+    "templateurl": "module/Apotek/Dashboard/DashboardWaktuTungguResep.html",
+    "controller": "DashboardWaktuTungguResepCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "TataRekeningService",
+        "define": "TataRekeningService"
+      }
+    ]
+  },
+  {
     "name": "KirimMenuCtrl",
     "url": "/Gizi/Pasien/Order/:noKirimOrder",
     "templateurl": "module/Gizi/KirimMenu.html",

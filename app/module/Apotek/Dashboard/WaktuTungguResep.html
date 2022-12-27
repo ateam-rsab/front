@@ -1,0 +1,184 @@
+<style type="text/css">
+    h4 {
+        font-size: 16px;
+        font-weight: bold;
+        color: #363737;
+        border: solid 1px #363737;
+        background: #ffffff;
+        padding: 15px;
+        margin: 0;
+        text-align: center;
+        line-height: 23px;
+    }
+
+    .style-center {
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+    }
+
+    .style-right {
+        display: inline-block;
+        text-align: right;
+        width: 100%;
+    }
+
+    .style-left {
+        display: inline-block;
+        text-align: left;
+        width: 100%;
+    }
+</style>
+<md-toolbar md-scroll-shrink class="shadow">
+    <div class="md-toolbar-tools">Waktu Tunggu Resep</div>
+</md-toolbar>
+
+<div class="grid_12">
+    <div class="grid_3">
+        <div class="grid_12">
+            <label c-label item="item" c-label-text="Instalasi"></label>
+        </div>
+        <div class="clear"></div>
+
+        <div class="grid_12">
+            <input style="width: 100%;" kendo-combo-box k-ng-model="item.instalasi" k-data-text-field="'departemen'"
+                k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDepartemen"
+                k-on-change='getIsiComboRuangan()' />
+        </div>
+    </div>
+
+    <div class="grid_3">
+        <div class="grid_12">
+            <label c-label item="item" c-label-text="Ruangan"></label>
+        </div>
+        <div class="clear"></div>
+
+        <div class="grid_12">
+            <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'ruangan'"
+                k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
+        </div>
+    </div>
+    <div class="grid_4">
+        <!-- AwalPeriode -->
+        <div class="grid_6 padDatePicker">
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="Tanggal Awal"></label>
+            </div>
+            <div class="clear"></div>
+            <div class="grid_12">
+                <input style="width: 100%" k-ng-model="item.periodeAwal" kendo-datetimepicker k-max="now"
+                    placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" />
+            </div>
+        </div>
+
+        <!-- AkhirPeriode -->
+        <div class="grid_6 padDatePicker">
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="Tanggal Akhir"></label>
+            </div>
+            <div class="clear"></div>
+            <div class="grid_12">
+                <input style="width: 100%" k-ng-model="item.periodeAkhir" kendo-datetimepicker
+                    placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" />
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="grid_12">
+    <div class="grid_1">
+        <div class="grid_12">
+            <label c-label item="item">No Resep</label>
+        </div>
+        <div class="clear"></div>
+
+        <div class="grid_12">
+            <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noResep" />
+        </div>
+    </div>
+    <div class="grid_1">
+        <div class="grid_12">
+            <label c-label item="item">No Reg</label>
+        </div>
+        <div class="clear"></div>
+
+        <div class="grid_12">
+            <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noReg" />
+        </div>
+    </div>
+    <div class="grid_1">
+        <div class="grid_12">
+            <label c-label item="item">No RM</label>
+        </div>
+        <div class="clear"></div>
+
+        <div class="grid_12">
+            <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noRm" />
+        </div>
+    </div>
+    <!-- Nama -->
+    <div class="grid_2">
+        <div class="grid_12">
+            <label c-label item="item" c-label-text="Nama"></label>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_12">
+            <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nama" />
+        </div>
+    </div>
+    <div class="grid_1">
+        <div class="grid_12">
+            <label>&nbsp;</label>
+        </div>
+        <div class="clear"></div>
+
+        <div class="grid_12" style="margin-top: 6px;">
+            <md-button class="md-raised md-primary medium-button" ng-click="SearchData()">
+                <span style="margin-right: 5px;">Cari</span>
+                <i class="fa fa-search"></i>
+            </md-button>
+        </div>
+    </div>
+</div>
+<div class="grid_12">
+    <div class="headerBox">
+        <p>Daftar Pasien</p>
+    </div>
+    <div class="clear"></div>
+    <div class="grid_12">
+        <kendo-grid id="kGrid" data-source="daftarWaktuTungguResep" options="columnOptions" k-selectable="'row'"
+            k-sortable="'true'" k-resizable="'true'" k-ng-model="dataPasienSelected"
+            ng-click="klikGrid(dataPasienSelected)"></kendo-grid>
+
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="grid_12">
+    <div class="grid_2">
+        <div class="grid_12"></div>
+        <div class="clear"></div>
+        <div class="grid_12">
+            <md-button class="md-raised md-primary medium-button" ng-click="Proses()">
+                <span>Proses</span>
+            </md-button>
+        </div>
+    </div>
+    <div class="grid_2">
+        <div class="grid_12"></div>
+        <div class="clear"></div>
+        <div class="grid_12">
+            <md-button class="md-raised md-primary medium-button" ng-click="Selesai()">
+                <span>Selesai</span>
+            </md-button>
+        </div>
+    </div>
+    <div class="grid_2">
+        <div class="grid_12"></div>
+        <div class="clear"></div>
+        <div class="grid_12">
+            <md-button class="md-raised md-primary medium-button" ng-click="Diserahkan()">
+                <span>Diserahkan</span>
+            </md-button>
+        </div>
+    </div>
+</div>

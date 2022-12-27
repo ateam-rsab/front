@@ -4,6 +4,19 @@
     "link": "#/Apotek/Daftar"
   },
   {
+    "name": "Waktu Tunggu Resep",
+    "children": [
+      {
+        "name": "Dashboard",
+        "link": "#/DashboardWaktuTungguResep"
+      },
+      {
+        "name": "Waktu Tunggu Resep",
+        "link": "#/WaktuTungguResep"
+      }
+    ]
+  },
+  {
     "name": "Pelayanan Pasien",
     "children": [
       {
