@@ -46,7 +46,7 @@
             <div class="grid_10">
                 <div class="grid_2">
                     <label><b>Periode</b></label>
-                    <input kendo-date-picker k-max ="now" k-ng-model="item.periode" style="width: 100%" k-options="yearSelected"/>
+                    <input kendo-date-picker k-max="now" k-ng-model="item.periode" style="width: 100%" k-options="yearSelected"/>
                 </div>
                 <div class="grid_4">
                     <label><b>Pegawai</b></label>
@@ -56,23 +56,23 @@
                     <label c-label c-label-text=""></label>
                     <button class="c-button"  ng-click="cariLogbookKinerja()">Cari</button>
                 </div>
-                <div class="grid_1" style="margin-top:5px">
+                <div class="grid_1" style="margin-top:5px" ng-hide="isDtMain">
                     <label c-label c-label-text=""></label>
                     <!-- <button class="c-button"  ng-click="cetakLogBookKinerja()">Cetak</button> -->
-                    <button class="c-button" ng-click="openWindowCetak('CetakLogbook')">Cetak</button>
+                    <button class="c-button" ng-click="openWindowCetakLks('CetakLogbook')">Cetak</button>
                 </div>
-                <div class="grid_2" style="margin-top:5px">
+                <div class="grid_2" style="margin-top:5px" ng-hide="isDtMain">
                     <label c-label c-label-text=""></label>
                     <!-- <button class="c-button"  ng-click="cetakDaftarLogBookKinerja()">Cetak Daftar</button> -->
-                    <button class="c-button"  ng-click="openWindowCetak('CetakDaftarLogbook')">Cetak Daftar</button>
+                    <button class="c-button"  ng-click="openWindowCetakLks('CetakDaftarLogbook')">Cetak Daftar</button>
                 </div>
-                <div class="grid_2" style="margin-top:5px">
+                <div class="grid_2" style="margin-top:5px" ng-hide="isDtMain">
                     <label c-label c-label-text=""></label>
                     <!-- <button class="c-button"  ng-click="cetakDaftarLogBookKinerjaRekapWithPasien()">Cetak Rekapitulasi Kinerja dan Detail Pasien</button> -->
-                    <button class="c-button"  ng-click="openWindowCetak('CetakDetailLogbook')">Cetak Detail</button>
+                    <button class="c-button"  ng-click="openWindowCetakLks('CetakDetailLogbook')">Cetak Detail</button>
                 </div>
             </div>
-            <div class="grid_2 pull-right" style="text-align:right;font-style:italic;margin-top:4px">
+            <div class="grid_2 pull-right" style="text-align:right;font-style:italic;margin-top:4px" ng-hide="isDtMain">
                 <label c-label>Total Capaian:</label>
                 <input c-text-box type="input" placeholder="0,00" filter="'varchar'" class="k-textbox label-total" ng-model="gridOrder" style="text-align:right" disabled/>
             </div>
@@ -80,14 +80,17 @@
             
             <!-- grid tindakan pegawai -->
             <div class="grid_12" style="margin: 10px 0 50px;">
+                <div ng-hide="isNov2022" style="text-align: center;padding: 1px 0px 1px 0px;"><h2 style="color:#bf1121;font-weight:bold;font-size:50px;padding: 0px;">OOps!<span style='font-size:40px;'>&#128556;</span></h2><p style="font-size: large;">Mohon maaf, Logbook Kinerja Poin Dokter sedang dalam penyesuaian tarif baru.</p></div>
                 <!-- <div kendo-grid id="gridLogKinerja" k-data-source="dataSource" k-options="mainGridOption"></div> -->
-                <div kendo-grid id="gridOrder" k-data-source="dataSource" k-options="mainGridOption"></div>
+                <div ng-hide="isDtMain">
+                    <div kendo-grid id="gridOrder" k-data-source="dataSource" k-options="mainGridOption"></div>
+                </div>
             </div>
         </div>
         <!-- <div class="grid_12">
             <div class="grid_3" style="margin-top:5px">
                 <label c-label c-label-text=""></label>
-                <!-- <button class="c-button"  ng-click="cetakDaftarLogBookKinerjaRekapWithPasien()">Cetak Rekapitulasi Kinerja dan Detail Pasien</button>
+                <button class="c-button"  ng-click="cetakDaftarLogBookKinerjaRekapWithPasien()">Cetak Rekapitulasi Kinerja dan Detail Pasien</button>
                 <button class="c-button"  ng-click="openWindowCetak('CetakDetailLogbook')">Cetak Detail</button>
             </div>  
         </div> -->
@@ -98,7 +101,7 @@
             <div class="grid_10">
                 <div class="grid_2">
                     <label><b>Periode</b></label>
-                    <input kendo-date-picker k-max ="now" k-ng-model="item.periodeFee" style="width: 100%" k-options="yearSelected"/>
+                    <input kendo-date-picker k-max="now" k-ng-model="item.periodeFee" style="width: 100%" k-options="yearSelected"/>
                 </div>
                 <div class="grid_4">
                     <label><b>Pegawai</b></label>
@@ -108,15 +111,15 @@
                     <label c-label c-label-text=""></label>
                     <button class="c-button"  ng-click="getFeeService()">Cari</button>
                 </div>
-                <div class="grid_2" style="margin-top:5px">
+                <div class="grid_2" style="margin-top:5px" ng-hide="isDtMainffs">
                     <label c-label c-label-text=""></label>
                     <!-- <button class="c-button"  ng-click="cetakDaftarLogBookKinerjaFFS()">Cetak Daftar</button> -->
-                    <button class="c-button"  ng-click="openWindowCetak('CetakDaftarFFS')">Cetak Daftar</button>
+                    <button class="c-button"  ng-click="openWindowCetakFfs('CetakDaftarFFS')">Cetak Daftar</button>
                 </div>
-                <div class="grid_2" style="margin-top:5px">
+                <div class="grid_2" style="margin-top:5px" ng-hide="isDtMainffs">
                     <label c-label c-label-text=""></label>
                     <!-- <button class="c-button"  ng-click="cetakDaftarLogBookKinerjaRekapWithPasienFFs()">Cetak Rekapitulasi Kinerja dan Detail Pasien</button> -->
-                    <button class="c-button"  ng-click="openWindowCetak('CetakDetailFFS')">Cetak Laporan</button>
+                    <button class="c-button"  ng-click="openWindowCetakFfs('CetakDetailFFS')">Cetak Laporan</button>
                 </div>
             </div>
             
@@ -128,14 +131,17 @@
             
             <!-- grid tindakan pegawai -->
             <div class="grid_12" style="margin: 10px 0 50px;">
+                <div ng-hide="isNov2022ffs" style="text-align: center;padding: 1px 0px 1px 0px;"><h2 style="color:#bf1121;font-weight:bold;font-size:50px;padding: 0px;">OOps!<span style='font-size:40px;'>&#128556;</span></h2><p style="font-size: large;">Mohon maaf, Fee for Service Poin Dokter sedang dalam penyesuaian tarif baru.</p></div>
                 <!-- <div kendo-grid id="gridLogKinerja" k-data-source="dataSource" k-options="mainGridOption"></div> -->
+                <div ng-hide="isDtMainffs">
                 <div kendo-grid id="gridOrderService" k-data-source="dataSourceFfs" k-options="gridFeeService"></div>
+                </div>
             </div>
 
             <!-- <div class="grid_12">               
                 <div class="grid_3" style="margin-top:5px">
                     <label c-label c-label-text=""></label>
-                    <!-- <button class="c-button"  ng-click="cetakDaftarLogBookKinerjaRekapWithPasienFFs()">Cetak Rekapitulasi Kinerja dan Detail Pasien</button>
+                    <button class="c-button"  ng-click="cetakDaftarLogBookKinerjaRekapWithPasienFFs()">Cetak Rekapitulasi Kinerja dan Detail Pasien</button>
                     <button class="c-button"  ng-click="openWindowCetak('CetakDetailFFS')">Cetak Rekapitulasi Kinerja dan Detail Pasien</button>
                 </div>             
             </div> -->
@@ -148,7 +154,7 @@
                    <div class="panel-heading-white"><span class="title" c-translate>Rekapitulasi Kinerja LogBook dan FFS</span></div>
                 <div class="grid_2">
                     <label><b>Periode</b></label>
-                    <input kendo-date-picker k-max ="now" k-ng-model="item.periodeRekaps" style="width: 100%" k-options="yearSelected"/>
+                    <input kendo-date-picker k-max="now" k-ng-model="item.periodeRekaps" style="width: 100%" k-options="yearSelected"/>
                 </div>    
                 <div class="grid_3" style="margin-top:5px">
                     <label c-label c-label-text=""></label>

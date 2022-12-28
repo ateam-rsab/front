@@ -1,0 +1,47 @@
+<style type="text/css">
+    h4 {
+        font-size: 16px;
+        font-weight: bold;
+        color: #363737;
+        border: solid 1px #363737;
+        background: #ffffff;
+        padding: 15px;
+        margin: 0;
+        text-align: center;
+        line-height: 23px;
+
+    }
+    .style-center{
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+    }
+    .style-right{
+        display: inline-block;
+        text-align: right;
+        width: 100%;
+    }
+    .style-left{
+        display: inline-block;
+        text-align: left;
+        width: 100%;
+    }
+</style>
+<md-toolbar md-scroll-shrink class="shadow">
+    <div class="md-toolbar-tools">Daftar Waktu Tunggu Resep</div>
+</md-toolbar>
+
+<div class="grid_12">
+    <div class="clear"></div>
+    <div class="grid_12">
+        <kendo-grid id="kGrid" data-source="daftarWaktuTungguResep"
+            options="columnOptions"
+            k-selectable="'row'"
+            k-sortable="'true'"
+            k-resizable="'true'"></kendo-grid>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="grid_12" style="margin-top:60px">
+    <div ng-include='" ../app/module/Shared/TemplateLoading" '></div>
+</div>

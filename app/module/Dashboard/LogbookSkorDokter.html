@@ -90,7 +90,7 @@
     <div class="grid_12">
         <div class="grid_2">
             <label><b>Periode</b></label>
-            <input kendo-date-picker k-ng-model="item.periode" style="width: 100%" k-options="monthly" />
+            <input kendo-date-picker  k-max ="now" k-ng-model="item.periode" style="width: 100%" k-options="monthly" />
         </div>
         <div class="grid_4">
             <label><b>Pegawai</b></label>
@@ -111,66 +111,69 @@
     </div>
 
     <div class="panel-body">
-        <div class="container-table">
+        <div ng-hide="isNov2022" style="text-align: center;padding: 1px 0px 1px 0px;">
+            <h2 style="color:#bf1121;font-weight:bold;font-size:50px;padding: 0px;">OOps!<span style='font-size:40px;'>&#128556;</span></h2><p style="font-size: large;">Mohon maaf, Logbook Skor Dokter sedang dalam penyesuaian tarif baru.</p>
+        </div>
+        <div class="container-table" ng-hide="isDtMain">
             <table class="table-custom">
-                <thead>
-                    <th scope="col" style="min-width: 200px;">Nama Kegiatan</th>
-                    <th scope="col" style="min-width: 50px; text-align: center;">Skor</th>
-                    <th scope="col" style="min-width: 50px; text-align: center;">Jumlah</th>
-                    <th scope="col" style="min-width: 50px; text-align: center;">Total Skor</th>
-                    <th scope="col" ng-repeat="head in headerTable" style="min-width: 20px; text-align: center;">
-                        {{head.title}}
-                    </th>
-                </thead>
+                    <thead>
+                        <th scope="col" style="min-width: 200px;">Nama Kegiatan</th>
+                        <th scope="col" style="min-width: 50px; text-align: center;">Skor</th>
+                        <th scope="col" style="min-width: 50px; text-align: center;">Jumlah</th>
+                        <th scope="col" style="min-width: 50px; text-align: center;">Total Skor</th>
+                        <th scope="col" ng-repeat="head in headerTable" style="min-width: 20px; text-align: center;">
+                            {{head.title}}
+                        </th>
+                    </thead>
 
-                <tbody ng-repeat="ds in dataSourceDJK">
-                    <tr>
-                        <td style="font-weight: bolder; background-color: #3d3d3d; color: white; " colspan="35">
-                            {{ds.label}}
-                        </td>
-                    </tr>
+                    <tbody ng-repeat="ds in dataSourceDJK">
+                        <tr>
+                            <td style="font-weight: bolder; background-color: #3d3d3d; color: white; " colspan="35">
+                                {{ds.label}}
+                            </td>
+                        </tr>
 
-                    <tr ng-repeat="detailProduk in ds.detailDJK">
+                        <tr ng-repeat="detailProduk in ds.detailDJK">
 
-                        <td>
-                            <span style="padding-left:10px">
-                                {{detailProduk.namaProduk}}
-                            </span>
-                        </td>
-                        <td style="text-align: center;">{{detailProduk.skor}}</td>
-                        <td style="text-align: center;">{{detailProduk.jumlah}}</td>
-                        <td style="text-align: center;">{{detailProduk.totalSkor}}</td>
-                        <td style="text-align: center;" class="cell-detail"
-                            ng-repeat="dataTgl in detailProduk.dataDetail"
-                            ng-click="detailTindakan(ds, detailProduk, dataTgl, 1)">
-                            <md-tooltip md-direction="top" ng-if="dataTgl.jmlLayanan != '' && dataTgl.jmlLayanan > 0">
-                                Klik untuk lihat detail
-                            </md-tooltip>
-                            {{dataTgl.jmlLayanan}}
-                        </td>
-                    </tr>
+                            <td>
+                                <span style="padding-left:10px">
+                                    {{detailProduk.namaProduk}}
+                                </span>
+                            </td>
+                            <td style="text-align: center;">{{detailProduk.skor}}</td>
+                            <td style="text-align: center;">{{detailProduk.jumlah}}</td>
+                            <td style="text-align: center;">{{detailProduk.totalSkor}}</td>
+                            <td style="text-align: center;" class="cell-detail"
+                                ng-repeat="dataTgl in detailProduk.dataDetail"
+                                ng-click="detailTindakan(ds, detailProduk, dataTgl, 1)">
+                                <md-tooltip md-direction="top" ng-if="dataTgl.jmlLayanan != '' && dataTgl.jmlLayanan > 0">
+                                    Klik untuk lihat detail
+                                </md-tooltip>
+                                {{dataTgl.jmlLayanan}}
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <td colspan="2" style="font-style: italic; text-align: right;"><strong>Sub Total</strong></td>
-                        <td style="text-align: center;">{{ds.subJumlah}}</td>
-                        <td style="text-align: center;">{{ds.subTotalSkor}}</td>
-                    </tr>
-                </tbody>
+                        <tr>
+                            <td colspan="2" style="font-style: italic; text-align: right;"><strong>Sub Total</strong></td>
+                            <td style="text-align: center;">{{ds.subJumlah}}</td>
+                            <td style="text-align: center;">{{ds.subTotalSkor}}</td>
+                        </tr>
+                    </tbody>
 
-                <tbody>
-                    <tr ng-if="dataSourceDJK.length === 0">
-                        <td colspan="35" style="text-align: center;">Tidak ada data</td>
-                    </tr>
-                </tbody>
+                    <tbody>
+                        <tr ng-if="dataSourceDJK.length === 0">
+                            <td colspan="35" style="text-align: center;">Tidak ada data</td>
+                        </tr>
+                    </tbody>
 
-                <tfoot>
-                    <tr>
-                        <td colspan="2" style="font-style: italic; font-weight: bolder; text-align: right;">Grand Total
-                        </td>
-                        <td style="text-align: center;">{{grandJumlahDJK}}</td>
-                        <td style="text-align: center;">{{grandTotalDJK}}</td>
-                    </tr>
-                </tfoot>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2" style="font-style: italic; font-weight: bolder; text-align: right;">Grand Total
+                            </td>
+                            <td style="text-align: center;">{{grandJumlahDJK}}</td>
+                            <td style="text-align: center;">{{grandTotalDJK}}</td>
+                        </tr>
+                    </tfoot>
             </table>
         </div>
     </div>
@@ -180,66 +183,69 @@
     </div>
 
     <div class="panel-body">
-        <div class="container-table">
+        <div ng-hide="isNov2022" style="text-align: center;padding: 1px 0px 1px 0px;">
+            <h2 style="color:#bf1121;font-weight:bold;font-size:50px;padding: 0px;">OOps!<span style='font-size:40px;'>&#128556;</span></h2><p style="font-size: large;">Mohon maaf, Logbook Skor Dokter sedang dalam penyesuaian tarif baru.</p>
+        </div>
+        <div class="container-table" ng-hide="isDtMain">
             <table class="table-custom">
-                <thead>
-                    <th scope="col" style="min-width: 200px;">Nama Kegiatan</th>
-                    <th scope="col" style="min-width: 50px; text-align: center;">Skor</th>
-                    <th scope="col" style="min-width: 50px; text-align: center;">Jumlah</th>
-                    <th scope="col" style="min-width: 50px; text-align: center;">Total Skor</th>
-                    <th scope="col" ng-repeat="head in headerTable" style="min-width: 20px; text-align: center;">
-                        {{head.title}}
-                    </th>
-                </thead>
+                    <thead>
+                        <th scope="col" style="min-width: 200px;">Nama Kegiatan</th>
+                        <th scope="col" style="min-width: 50px; text-align: center;">Skor</th>
+                        <th scope="col" style="min-width: 50px; text-align: center;">Jumlah</th>
+                        <th scope="col" style="min-width: 50px; text-align: center;">Total Skor</th>
+                        <th scope="col" ng-repeat="head in headerTable" style="min-width: 20px; text-align: center;">
+                            {{head.title}}
+                        </th>
+                    </thead>
 
-                <tbody ng-repeat="ds in dataSourceLJK">
-                    <tr>
-                        <td style="font-weight: bolder; background-color: #3d3d3d; color: white; " colspan="35">
-                            {{ds.label}}
-                        </td>
-                    </tr>
+                    <tbody ng-repeat="ds in dataSourceLJK">
+                        <tr>
+                            <td style="font-weight: bolder; background-color: #3d3d3d; color: white; " colspan="35">
+                                {{ds.label}}
+                            </td>
+                        </tr>
 
-                    <tr ng-repeat="detailProduk in ds.detailLJK">
+                        <tr ng-repeat="detailProduk in ds.detailLJK">
 
-                        <td>
-                            <span style="padding-left:10px">
-                                {{detailProduk.namaProduk}}
-                            </span>
-                        </td>
-                        <td style="text-align: center;">{{detailProduk.skor}}</td>
-                        <td style="text-align: center;">{{detailProduk.jumlah}}</td>
-                        <td style="text-align: center;">{{detailProduk.totalSkor}}</td>
-                        <td style="text-align: center;" class="cell-detail"
-                            ng-repeat="dataTgl in detailProduk.dataDetail"
-                            ng-click="detailTindakan(ds, detailProduk, dataTgl, 2)">
-                            <md-tooltip md-direction="top" ng-if="dataTgl.jmlLayanan != '' && dataTgl.jmlLayanan > 0">
-                                Klik untuk lihat detail
-                            </md-tooltip>
-                            {{dataTgl.jmlLayanan}}
-                        </td>
-                    </tr>
+                            <td>
+                                <span style="padding-left:10px">
+                                    {{detailProduk.namaProduk}}
+                                </span>
+                            </td>
+                            <td style="text-align: center;">{{detailProduk.skor}}</td>
+                            <td style="text-align: center;">{{detailProduk.jumlah}}</td>
+                            <td style="text-align: center;">{{detailProduk.totalSkor}}</td>
+                            <td style="text-align: center;" class="cell-detail"
+                                ng-repeat="dataTgl in detailProduk.dataDetail"
+                                ng-click="detailTindakan(ds, detailProduk, dataTgl, 2)">
+                                <md-tooltip md-direction="top" ng-if="dataTgl.jmlLayanan != '' && dataTgl.jmlLayanan > 0">
+                                    Klik untuk lihat detail
+                                </md-tooltip>
+                                {{dataTgl.jmlLayanan}}
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <td colspan="2" style="font-style: italic; text-align: right;"><strong>Sub Total</strong></td>
-                        <td style="text-align: center;">{{ds.subJumlah}}</td>
-                        <td style="text-align: center;">{{ds.subTotalSkor}}</td>
-                    </tr>
-                </tbody>
+                        <tr>
+                            <td colspan="2" style="font-style: italic; text-align: right;"><strong>Sub Total</strong></td>
+                            <td style="text-align: center;">{{ds.subJumlah}}</td>
+                            <td style="text-align: center;">{{ds.subTotalSkor}}</td>
+                        </tr>
+                    </tbody>
 
-                <tbody>
-                    <tr ng-if="dataSourceLJK.length === 0">
-                        <td colspan="35" style="text-align: center;">Tidak ada data</td>
-                    </tr>
-                </tbody>
+                    <tbody>
+                        <tr ng-if="dataSourceLJK.length === 0">
+                            <td colspan="35" style="text-align: center;">Tidak ada data</td>
+                        </tr>
+                    </tbody>
 
-                <tfoot>
-                    <tr>
-                        <td colspan="2" style="font-style: italic; font-weight: bolder; text-align: right;">Grand Total
-                        </td>
-                        <td style="text-align: center;">{{grandJumlahLJK}}</td>
-                        <td style="text-align: center;">{{grandTotalLJK}}</td>
-                    </tr>
-                </tfoot>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2" style="font-style: italic; font-weight: bolder; text-align: right;">Grand Total
+                            </td>
+                            <td style="text-align: center;">{{grandJumlahLJK}}</td>
+                            <td style="text-align: center;">{{grandTotalLJK}}</td>
+                        </tr>
+                    </tfoot>
             </table>
         </div>
     </div>

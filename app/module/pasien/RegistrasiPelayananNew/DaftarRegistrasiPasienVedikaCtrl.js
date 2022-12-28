@@ -415,7 +415,7 @@ define(['initialize'], function (initialize) {
 
                 if ($scope.dataRisOrder != undefined) {
                     // 192.168.12.11:8080
-                    $window.open("http://182.23.26.34:1111/URLCall.do?LID=dok&LPW=dok&LICD=003&PID="
+                    $window.open("http://pacs1.rsabhk.co.id:8080/URLCall.do?LID=dok&LPW=dok&LICD=003&PID="
                         + $scope.popupRad.nocm
                         + '&ACN=' + $scope.dataRisOrder.accession_num, "_blank");
                 } else {

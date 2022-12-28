@@ -2,6 +2,55 @@ define(['initialize'], function (initialize) {
     'use strict';
     initialize.controller('LaporanKeuanganUnitCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper', 'ModelItem','DateHelper', '$window', '$mdDialog',
         function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper, ModelItem, dateHelper, $window, $mdDialog) {
+            $scope.OnInit=()=>{
+                var datauserlogin = JSON.parse(window.localStorage.getItem('pegawai'));
+                var statusCode = ModelItem.getStatusUser();
+                if(statusCode!="akuntansi"){
+                    if(statusCode=="tatarekening"){
+                        // if(datauserlogin['id']!="502"||datauserlogin['id']!="1104"||datauserlogin['id']!="1013"||datauserlogin['id']!="22914"||datauserlogin['id']!="994"||datauserlogin['id']!="969"){
+                        //     $scope.isAccessDanied();
+                        // }
+                        var idUser = [
+                            { "id":"502" },
+                            { "id":"1104" },
+                            { "id":"1013" },
+                            { "id":"22914" },
+                            { "id":"994" },
+                            { "id":"99" },
+                        ];
+                        let cekUser = idUser.filter(e=>e.id==datauserlogin['id']);
+                        if(cekUser.length<1){
+                            $scope.isAccessDanied();
+                        }
+                    }else if(statusCode=="dokter"){
+                        if(datauserlogin['id']!="950"){
+                            $scope.isAccessDanied();
+                        }
+                    }else if(statusCode=="laborat"){
+                        if(datauserlogin['id']!="1125"){
+                            $scope.isAccessDanied();
+                        }
+                    }else if(statusCode=="logistik"){
+                        if(datauserlogin['id']!="996"){
+                            $scope.isAccessDanied();
+                        }
+                    }else if(statusCode=="bedah"){
+                        if(datauserlogin['id']!="696"){
+                            $scope.isAccessDanied();
+                        }
+                    }else if(statusCode=="bidangmedik"){
+                        console.log("ok");
+                    }
+                }
+            }
+            $scope.isAccessDanied=()=>{
+                toastr.warning('OOps! Anda tidak memiliki akses disini', 'Warning');
+                setTimeout(() => {
+                    $state.go('home')
+                }, 2000);
+            }
+            $scope.OnInit();
+
             $scope.item = {};
             $scope.jumlahLayanan = 2000;
             $scope.item.unitKerja='';
@@ -233,6 +282,14 @@ define(['initialize'], function (initialize) {
                     "attributes": { "style": "text-align: right" }
                 },
                 {
+                    "field": "total_volume",
+                    "title": "Total",
+                    "format": "{0:n0}",
+                    "footerTemplate":"#: data.total_volume ? kendo.format('{0:n0}', data.total_volume.sum) : 0#",
+                    "width": 150,
+                    "attributes": { "style": "text-align: right" }
+                },
+                {
                     "field": "total",
                     "format": "{0:n0}",
                     "title": "Total",
@@ -269,20 +326,20 @@ define(['initialize'], function (initialize) {
                             totalasuransi=0,totalbpjs=0,totalumum=0,totalperusahaan=0,totalperjanjian=0,totalkementriankesehatan=0,totaljamkesda=0,
                             dataFilter = res.data.data.filter(e=>e.id_golongan==newResponse.id_golongan);
                         dataFilter.forEach(dataFilter=> {
-                          if(dataFilter.bpjs!==null){bpjs+=parseInt(dataFilter.bpjs);}
-                          if(dataFilter.jamkesda!==null){jamkesda+=parseInt(dataFilter.jamkesda);}
-                          if(dataFilter.asuransi!==null){asuransi+=parseInt(dataFilter.asuransi);}
-                          if(dataFilter.umum!==null){umum+=parseInt(dataFilter.umum);}
-                          if(dataFilter.perusahaan!==null){perusahaan+=parseInt(dataFilter.perusahaan);}
-                          if(dataFilter.perjanjian!==null){perjanjian+=parseInt(dataFilter.perjanjian);}
-                          if(dataFilter.kementrian_kesehatan!==null){kementriankesehatan+=parseInt(dataFilter.kementrian_kesehatan);}
-                          if(dataFilter.total_bpjs!==null){totalbpjs+=parseInt(dataFilter.total_bpjs);}
-                          if(dataFilter.total_jamkesda!==null){totaljamkesda+=parseInt(dataFilter.total_jamkesda);}
-                          if(dataFilter.total_asuransi!==null){totalasuransi+=parseInt(dataFilter.total_asuransi);}
-                          if(dataFilter.total_umum!==null){totalumum+=parseInt(dataFilter.total_umum);}
-                          if(dataFilter.total_perusahaan!==null){totalperusahaan+=parseInt(dataFilter.total_perusahaan);}
-                          if(dataFilter.total_perjanjian!==null){totalperjanjian+=parseInt(dataFilter.total_perjanjian);}
-                          if(dataFilter.total_kementrian_kesehatan!==null){totalkementriankesehatan+=parseInt(dataFilter.total_kementrian_kesehatan);}
+                          if(dataFilter.bpjs!==null){bpjs+=parseFloat(dataFilter.bpjs);}
+                          if(dataFilter.jamkesda!==null){jamkesda+=parseFloat(dataFilter.jamkesda);}
+                          if(dataFilter.asuransi!==null){asuransi+=parseFloat(dataFilter.asuransi);}
+                          if(dataFilter.umum!==null){umum+=parseFloat(dataFilter.umum);}
+                          if(dataFilter.perusahaan!==null){perusahaan+=parseFloat(dataFilter.perusahaan);}
+                          if(dataFilter.perjanjian!==null){perjanjian+=parseFloat(dataFilter.perjanjian);}
+                          if(dataFilter.kementrian_kesehatan!==null){kementriankesehatan+=parseFloat(dataFilter.kementrian_kesehatan);}
+                          if(dataFilter.total_bpjs!==null){totalbpjs+=parseFloat(dataFilter.total_bpjs);}
+                          if(dataFilter.total_jamkesda!==null){totaljamkesda+=parseFloat(dataFilter.total_jamkesda);}
+                          if(dataFilter.total_asuransi!==null){totalasuransi+=parseFloat(dataFilter.total_asuransi);}
+                          if(dataFilter.total_umum!==null){totalumum+=parseFloat(dataFilter.total_umum);}
+                          if(dataFilter.total_perusahaan!==null){totalperusahaan+=parseFloat(dataFilter.total_perusahaan);}
+                          if(dataFilter.total_perjanjian!==null){totalperjanjian+=parseFloat(dataFilter.total_perjanjian);}
+                          if(dataFilter.total_kementrian_kesehatan!==null){totalkementriankesehatan+=parseFloat(dataFilter.total_kementrian_kesehatan);}
                         });
 
                         //This is custom
@@ -300,7 +357,8 @@ define(['initialize'], function (initialize) {
                         //     "pendapatan":totaljamkesda,
                         // })
 
-                        let total=totalbpjs+totaljamkesda+totalasuransi+totalumum+totalperusahaan+totalperjanjian+totalkementriankesehatan;
+                        let total=parseFloat(totalbpjs)+parseFloat(totaljamkesda)+parseFloat(totalasuransi)+parseFloat(totalumum)+parseFloat(totalperusahaan)+parseFloat(totalperjanjian)+parseFloat(totalkementriankesehatan);
+                        let total_volume = bpjs+jamkesda+asuransi+umum+perusahaan+perjanjian+kementriankesehatan;
                         newDataSource.push({
                             "id_golongan": newResponse.id_golongan,
                             "golongan_tindakan":newResponse.golongan_tindakan,
@@ -318,7 +376,8 @@ define(['initialize'], function (initialize) {
                             "totalperjanjian":totalperjanjian,
                             "kementriankesehatan":kementriankesehatan,
                             "totalkementriankesehatan":totalkementriankesehatan,
-                            "total":total
+                            "total":total,
+                            "total_volume":total_volume
                         });
                     });
                     console.log(newDataSource)
@@ -341,6 +400,7 @@ define(['initialize'], function (initialize) {
                             { field: "kementriankesehatan", aggregate: "sum" },
                             { field: "totalkementriankesehatan", aggregate: "sum" },
                             { field: "total", aggregate: "sum" },
+                            { field: "total_volume", aggregate:"sum"}
                         ],
                         // aggregate: [
                         //     { field: "kunjungan", aggregate: "sum" },

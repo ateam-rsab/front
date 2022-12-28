@@ -381,10 +381,10 @@
                     <div class="grid_12" style="margin-top:10px">
                         <div class="grid_8"></div>
                         <div class="grid_2">
-                            <button class="c-button success" ng-click="tambahTindakans()">Tambah Tindakan</button>
+                            <button disabled="isVedika" class="c-button success" ng-click="tambahTindakans()">Tambah Tindakan</button>
                         </div>
                         <div class="grid_2">
-                            <button class="c-button cancel" ng-click="hapusAll()">Hapus Semua</button>
+                            <button disabled="isVedika" class="c-button cancel" ng-click="hapusAll()">Hapus Semua</button>
 
                         </div>
                     </div>
@@ -408,7 +408,7 @@
             </div>
         </div>
 
-        <div ng-include='"../app/module/Shared/TemplateButtonRegistrasiNew " ' style="margin-top:30px"
+        <div hidden="isVedika" ng-include='"../app/module/Shared/TemplateButtonRegistrasiNew " ' style="margin-top:30px"
             ng-hide="hideSimpan"></div>
         <div ng-include=' "../app/module/Shared/TemplateLoading" '></div>
     </div>

@@ -2,6 +2,11 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
   'use strict';
   initialize.controller('InputTindakanPelayananDokterRevCtrl', ['$scope', '$parse', 'ModelItem', '$state', '$rootScope', '$timeout', '$window', 'CacheHelper', 'DateHelper', 'CetakHelper', 'ModelItem', 'ManageServicePhp', 'ModelItemAkuntansi', 'FindPasien', 'ManagePasien',
     function ($scope, $parse, modelItem, $state, $rootScope, $timeout, $window, cacheHelper, dateHelper, cetakHelper, ModelItem, manageServicePhp, modelItemAkuntansi, findPasien, managePasien) {
+      $scope.onInit=()=>{
+          var datauserlogin = JSON.parse(window.localStorage.getItem('pegawai'));
+          (datauserlogin['id']=="320263") ? $scope.isVedika=true : $scope.isVedika=false;
+      }
+      $scope.onInit();
       $scope.now = new Date();
       $scope.currentNorecPD = $state.params.norecPD;
       $scope.currentNorecAPD = $state.params.norecAPD;
@@ -442,92 +447,171 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
 
       }
 
-      $scope.mainGridOptions = {
-        sortable: true,
-        // toolbar: [{
-        //     name: "create",
-        //     text: "Tambah"
-        // }],
-        filterable: {
-          extra: false,
-          operators: {
-            string: {
-              startswith: "Dimulai dengan",
-              contains: "mengandung kata",
-              neq: "Tidak mengandung kata"
-            }
-          }
-        },
-        autoSync: true,
-        change: onChange,
-        batch: true,
-        selectable: 'row',
-        pageable: {
-          refresh: true,
-          pageSizes: true,
-          buttonCount: 5
-        },
-        columns: [
-          {
-            "field": "rowNumber",
-            "title": "<h3 align=center>#</h3>",
-            "width": 20
-          },
-          {
-            "field": "tglPelayanan",
-            "title": "<h3 align=center>Tanggal</h3>",
-            "template": "#= new moment(new Date(tglPelayanan)).format('DD-MM-YYYY') #",
-            "width": "60px"
-          },
-          {
-            "field": "tglPelayanan",
-            "title": "<h3 align=center>Jam</h3>",
-            "template": "#= new moment(new Date(tglPelayanan)).format('HH:mm') #",
-            "width": "40px"
-          },
-          {
-            "field": "produk.namaproduk",
-            "title": "<h3 align=center>Tindakan</h3>",
-            "width": "300px"
-          },
-          {
-            "field": "hargaSatuan",
-            "title": "<h3 align=center>Harga Netto</h3>",
-            "width": "150px",
-            // "template": "#= kendo.toString(hargaSatuan, 'n0')#",
-            "template": "{{formatRupiah('#: hargaSatuan #', 'Rp.')}}",
-            "attributes": { align: "center" }
-          },
-          {
-            "field": "qty",
-            "title": "<h3 align=center>Qty</h3>",
-            "width": "70px",
-            "attributes": { align: "center" }
-          },
-          {
-            "field": "subTotal",
-            "title": "<h3 align=center>SubTotal</h3>",
-            "width": "150px",
-            // "template": "#= kendo.toString(subTotal, 'n0')#",
-            "template": "{{formatRupiah('#: subTotal #', 'Rp.')}}",
-            "attributes": { align: "center" }
-          },
-          // { title: "<h3 align=center>Action<h3>",width : "100px",template : "<button class='btnHapus' ng-click='disableData()'>Disbled</button>"}
-          {
-            command: {
-              text: "Hapus",
-              width: "50px",
-              align: "center",
-              attributes: { align: "center" },
-              click: removeRowTindakan
-            },
-            title: "",
-            width: "80px",
-            // template: "<a class='k-button k-grid-delete'><span class='glyphicon glyphicon-remove'></span></a>"
-          }
-        ],
 
-      };
+      if($scope.isVedika){
+        $scope.mainGridOptions = {
+          sortable: true,
+          // toolbar: [{
+          //     name: "create",
+          //     text: "Tambah"
+          // }],
+          filterable: {
+            extra: false,
+            operators: {
+              string: {
+                startswith: "Dimulai dengan",
+                contains: "mengandung kata",
+                neq: "Tidak mengandung kata"
+              }
+            }
+          },
+          autoSync: true,
+          change: onChange,
+          batch: true,
+          selectable: 'row',
+          pageable: {
+            refresh: true,
+            pageSizes: true,
+            buttonCount: 5
+          },
+          columns: [
+            {
+              "field": "rowNumber",
+              "title": "<h3 align=center>#</h3>",
+              "width": 20
+            },
+            {
+              "field": "tglPelayanan",
+              "title": "<h3 align=center>Tanggal</h3>",
+              "template": "#= new moment(new Date(tglPelayanan)).format('DD-MM-YYYY') #",
+              "width": "60px"
+            },
+            {
+              "field": "tglPelayanan",
+              "title": "<h3 align=center>Jam</h3>",
+              "template": "#= new moment(new Date(tglPelayanan)).format('HH:mm') #",
+              "width": "40px"
+            },
+            {
+              "field": "produk.namaproduk",
+              "title": "<h3 align=center>Tindakan</h3>",
+              "width": "300px"
+            },
+            {
+              "field": "hargaSatuan",
+              "title": "<h3 align=center>Harga Netto</h3>",
+              "width": "150px",
+              // "template": "#= kendo.toString(hargaSatuan, 'n0')#",
+              "template": "{{formatRupiah('#: hargaSatuan #', 'Rp.')}}",
+              "attributes": { align: "center" }
+            },
+            {
+              "field": "qty",
+              "title": "<h3 align=center>Qty</h3>",
+              "width": "70px",
+              "attributes": { align: "center" }
+            },
+            {
+              "field": "subTotal",
+              "title": "<h3 align=center>SubTotal</h3>",
+              "width": "150px",
+              // "template": "#= kendo.toString(subTotal, 'n0')#",
+              "template": "{{formatRupiah('#: subTotal #', 'Rp.')}}",
+              "attributes": { align: "center" }
+            },
+            // { title: "<h3 align=center>Action<h3>",width : "100px",template : "<button class='btnHapus' ng-click='disableData()'>Disbled</button>"}
+          ],
+  
+        };
+      }else{
+        $scope.mainGridOptions = {
+          sortable: true,
+          // toolbar: [{
+          //     name: "create",
+          //     text: "Tambah"
+          // }],
+          filterable: {
+            extra: false,
+            operators: {
+              string: {
+                startswith: "Dimulai dengan",
+                contains: "mengandung kata",
+                neq: "Tidak mengandung kata"
+              }
+            }
+          },
+          autoSync: true,
+          change: onChange,
+          batch: true,
+          selectable: 'row',
+          pageable: {
+            refresh: true,
+            pageSizes: true,
+            buttonCount: 5
+          },
+          columns: [
+            {
+              "field": "rowNumber",
+              "title": "<h3 align=center>#</h3>",
+              "width": 20
+            },
+            {
+              "field": "tglPelayanan",
+              "title": "<h3 align=center>Tanggal</h3>",
+              "template": "#= new moment(new Date(tglPelayanan)).format('DD-MM-YYYY') #",
+              "width": "60px"
+            },
+            {
+              "field": "tglPelayanan",
+              "title": "<h3 align=center>Jam</h3>",
+              "template": "#= new moment(new Date(tglPelayanan)).format('HH:mm') #",
+              "width": "40px"
+            },
+            {
+              "field": "produk.namaproduk",
+              "title": "<h3 align=center>Tindakan</h3>",
+              "width": "300px"
+            },
+            {
+              "field": "hargaSatuan",
+              "title": "<h3 align=center>Harga Netto</h3>",
+              "width": "150px",
+              // "template": "#= kendo.toString(hargaSatuan, 'n0')#",
+              "template": "{{formatRupiah('#: hargaSatuan #', 'Rp.')}}",
+              "attributes": { align: "center" }
+            },
+            {
+              "field": "qty",
+              "title": "<h3 align=center>Qty</h3>",
+              "width": "70px",
+              "attributes": { align: "center" }
+            },
+            {
+              "field": "subTotal",
+              "title": "<h3 align=center>SubTotal</h3>",
+              "width": "150px",
+              // "template": "#= kendo.toString(subTotal, 'n0')#",
+              "template": "{{formatRupiah('#: subTotal #', 'Rp.')}}",
+              "attributes": { align: "center" }
+            },
+            // { title: "<h3 align=center>Action<h3>",width : "100px",template : "<button class='btnHapus' ng-click='disableData()'>Disbled</button>"}
+            {
+              command: {
+                text: "Hapus",
+                width: "50px",
+                align: "center",
+                attributes: { align: "center" },
+                click: removeRowTindakan
+              },
+              title: "",
+              width: "80px",
+              // template: "<a class='k-button k-grid-delete'><span class='glyphicon glyphicon-remove'></span></a>"
+            }
+          ],
+  
+        };
+      }
+     
 
       function removeRowTindakan(e) {
         e.preventDefault();

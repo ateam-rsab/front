@@ -49,11 +49,18 @@
 					k-data-text-field="'namalengkap'" k-data-value-field="'id'"
 					k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai" />
 			</div>
-			<div class="grid_2">
+			<div class="grid_1">
 				<label c-label item="item" c-label-text="Kelas"></label>
 				<input style="width: 100%;" kendo-combo-box k-ng-model="item.kelas"
 					k-data-text-field="'namakelas'" k-data-value-field="'id'"
 					k-filter="'contains'" k-auto-bind="false" k-data-source="listKelas" />
+			</div>
+			<div class="grid_3">
+				<label c-label item="item" c-label-text="Parameter Tarif"></label>
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.parameterTarif"
+					k-data-text-field="'name'" k-data-value-field="'id'"
+					k-filter="'contains'" k-auto-bind="false" k-data-source="listParameterTarif"
+					k-on-change="changeParameterTarif()" />
 			</div>
 			<div class="grid_3">
 				<label c-label item="item" c-label-text="Tindakan"></label>

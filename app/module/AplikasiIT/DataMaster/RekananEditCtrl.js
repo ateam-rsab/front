@@ -14,6 +14,26 @@ define(['initialize'], function (initialize) {
 		     });
 			load()
 
+			$scope.isKonfirmasi = true;
+			$scope.listKonfirmasi= {
+				"data":[
+					{
+						"id":"true",
+						"name":"Terbatas"
+					},
+					{
+						"id":"false",
+						"name":"Tak Terbatas"
+					}
+				]
+			}
+			$scope.cekKonfirmasi=function(){
+				if($scope.item.cekTglAkhir.id=="true"){
+					$scope.isKonfirmasi=false;
+				}else{
+					$scope.isKonfirmasi=true;
+				}
+			}
 			function load() {
 			
 				if ($state.params.idx != "") {
@@ -28,7 +48,8 @@ define(['initialize'], function (initialize) {
 						$scope.item.norec = e.data[0].norec;
 						$scope.item.kdRekanan = e.data[0].kdrekanan;
 						$scope.item.namaRekanan = e.data[0].namarekanan;
-						$scope.item.jenisrekanan = { id: e.data[0].objectjenisrekananfk, jenisrekanan: "" };
+						$scope.item.jenisrekanan = { id: e.data[0].objectjenisrekananfk, jenisrekanan: e.data[0].jenisrekanan
+						};
 						$scope.item.pegawai = { id: e.data[0].objectpegawaifk, pegawai: "" };
 						$scope.item.kdExternal = e.data[0].kodeexternal;
 						$scope.item.namaExternal = e.data[0].namaexternal;
@@ -56,6 +77,15 @@ define(['initialize'], function (initialize) {
 						$scope.item.perjanjianKerjasama = e.data[0].perjanjiankerjasama;
 						$scope.item.idMap = e.data[0].idmap;
 						$scope.item.kelompokPasien = { id: e.data[0].objectkelompokpasienfk, kelompokpasien: "" };
+						$scope.item.tglAwal = e.data[0].tglawal;
+						if(e.data[0].tglakhir=="Tak Terbatas"){
+							$scope.isKonfirmasi = true;
+							$scope.item.cekTglAkhir = {id:"false",name:"Tak Terbatas"}
+						}else{
+							$scope.isKonfirmasi = false;
+							$scope.item.cekTglAkhir = {id:"true",name:"Terbatas"}
+							$scope.item.tglAkhir = e.data[0].tglakhir;
+						}
 
 					})
 				}
@@ -104,6 +134,17 @@ define(['initialize'], function (initialize) {
 					alert("Jenis Rekanan harus di isi!")
 					return
 				}
+				if ($scope.item.tglAwal == undefined) {
+					alert("Tanggal awal harus di isi!")
+					return
+				}
+				let tglAkhir = '';
+				if($scope.item.cekTglAkhir.id=="true"){
+					tglAkhir = moment($scope.item.tglAkhir).format('YYYY-MM-DD HH:mm');
+				}else{
+					tglAkhir = $scope.item.cekTglAkhir.name;
+				}
+
 				var alamatlengkap = "";
 				if ($scope.item.alamatLengkap != undefined) {
 					alamatlengkap = $scope.item.alamatLengkap
@@ -274,8 +315,10 @@ define(['initialize'], function (initialize) {
 					rekananmoupksfk: rekananmoupksfk,
 					perjanjiankerjasama: perjanjianKerjasama,
 					idMap: idmap,
-					objectkelompokpasienfk: kelompokpasienId
-
+					objectkelompokpasienfk: kelompokpasienId,
+					tglawal:moment($scope.item.tglAwal).format('YYYY-MM-DD HH:mm'),
+    				tglakhir:tglAkhir,
+					kdprofile:"0"
 
 
 						// //  kdruangan: $scope.item.kdRuangan,
@@ -316,17 +359,18 @@ define(['initialize'], function (initialize) {
 						rekanan: rekanan
 
 					}
-				// ManageSarprasPhp.postDataRekanan(objSave).then(function (e) {
+				console.log(objSave)
+				ManageSarprasPhp.postDataRekanan(objSave).then(function (e) {
 
-				// 	window.history.back();
-				// })
-				// if ($scope.item.id != undefined) {
-				// 	ManageSarprasPhp.saveDataRekanan(objSave, "rekanan/update-rekanan/" + $scope.item.id).then(function (e) {
-				// 		//  console.log(JSON.stringify(e.data.rekanan));
-				// 		$scope.item = {};
-				// 		$state.go("Rekanan2")
-				// 	});
-				// } else if ($scope.item.id == undefined) {
+					window.history.back();
+				})
+				if ($scope.item.id != undefined) {
+					ManageSarprasPhp.saveDataRekanan(objSave, "rekanan/update-rekanan/" + $scope.item.id).then(function (e) {
+						//  console.log(JSON.stringify(e.data.rekanan));
+						$scope.item = {};
+						$state.go("Rekanan2")
+					});
+				} else if ($scope.item.id == undefined) {
 					ManageSarprasPhp.saveDataRekanan(objSave, "rekanan/save-rekanan2").then(function (e) {
 						//  console.log(JSON.stringify(e.rekanan));
 						$scope.item = {};
@@ -340,7 +384,7 @@ define(['initialize'], function (initialize) {
 							$state.go("Rekanan2");
 						})
 					});
-				// }
+				}
 			}
 			$scope.batal = function () {
 				$scope.showEdit = false;

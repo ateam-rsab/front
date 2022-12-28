@@ -78,7 +78,7 @@ define(['initialize'], function (initialize) {
                 $scope.isRouteLoading = true;
                 var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm');
                 var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm');
-                debugger;
+                // debugger;
 
                 var tempKasirId = "";
                 if ($scope.item.namaKasir != undefined) {
@@ -221,7 +221,8 @@ define(['initialize'], function (initialize) {
                             { value: "Hutang Penjamin" },
                             { value: "Jumlah Bayar" },
                             { value: "Tunai" },
-                            { value: "Card/CC" }
+                            { value: "Card/CC" },
+                            { value: "QRIS" }
                         ]
                     }
                 ];
@@ -243,7 +244,8 @@ define(['initialize'], function (initialize) {
                             { value: tempDataExport._data[i].hutangpenjamin },
                             { value: tempDataExport._data[i].totaldibayar },
                             { value: tempDataExport._data[i].tunai },
-                            { value: tempDataExport._data[i].nontunai }
+                            { value: tempDataExport._data[i].nontunai },
+                            { value: tempDataExport._data[i].qris }
                         ]
                     })
                 }
@@ -254,6 +256,7 @@ define(['initialize'], function (initialize) {
                             freezePane: { rowSplit: 1 },
                             columns: [
                                 // Column settings (width)
+                                { autoWidth: true },
                                 { autoWidth: true },
                                 { autoWidth: true },
                                 { autoWidth: true },
@@ -422,6 +425,12 @@ define(['initialize'], function (initialize) {
                     "title": "Card/CC",
                     "width": "100px",
                     "template": "<span class='style-right'>{{formatRupiah('#: nontunai #','')}}</span>",
+                },
+                {
+                    "field": "qris",
+                    "title": "QRIS",
+                    "width": "100px",
+                    "template": "<span class='style-right'>{{formatRupiah('#: qris #','')}}</span>",
                 }
 
 

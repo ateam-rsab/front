@@ -2,63 +2,110 @@ define(['initialize'], function (initialize) {
     'use strict';
     initialize.controller('PasienPerjanjianCtrl', ['$scope', '$timeout', 'ModelItem', 'ModelItemAkuntansi', '$state', 'CacheHelper', 'DateHelper', 'ManagePhp', '$mdDialog',
         function ($scope, $timeout, ModelItem, modelItemAkuntansi, $state, cacheHelper, dateHelper, ManagePhp, $mdDialog) {
+            $scope.onInit=()=>{
+                var datauserlogin = JSON.parse(window.localStorage.getItem('pegawai'));
+                (datauserlogin['id']=="320263") ? $scope.isVedika=true : $scope.isVedika=false;
+            }
+            $scope.onInit();
             $scope.date = new Date();
             $scope.item = {};
             $scope.now = new Date();
             var norec_apd = '', norec_pd = '';
             init();
             function init() {
-                $scope.gridPerjanjian = {
-                    filterable: {
-                        extra: false,
-                        operators: {
-                            string: {
-                                startswith: "Dimulai dengan",
-                                contains: "mengandung kata",
-                                neq: "Tidak mengandung kata"
+                if($scope.isVedika){
+                    $scope.gridPerjanjian = {
+                        filterable: {
+                            extra: false,
+                            operators: {
+                                string: {
+                                    startswith: "Dimulai dengan",
+                                    contains: "mengandung kata",
+                                    neq: "Tidak mengandung kata"
+                                }
                             }
-                        }
-                    },
-                    toolbar: [{
-                        name: "create", text: "Input Baru",
-                        template: '<button ng-click="inputBaru()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah Pasien Perjanjian</button>'
-                    }, {
-                        name: "create", text: "Lihat",
-                        template: '<button ng-click="lihatJadwalDokter()" class="k-button k-button-icontext k-grid-upload" href="\\#">Lihat Jadwal Dokter</button>'
-                    }],
-                    pageable: true,
-                    columns: [
-                        {
-                            "field": "noperjanjian",
-                            "title": "<h3>No Perjanjian</h3>",
-                            "width": "100px"
                         },
-                        {
-                            "field": "tglperjanjian",
-                            "title": "<h3>Tanggal Perjanjian</h3>",
-                            "width": "100px"
+                        pageable: true,
+                        columns: [
+                            {
+                                "field": "noperjanjian",
+                                "title": "<h3>No Perjanjian</h3>",
+                                "width": "100px"
+                            },
+                            {
+                                "field": "tglperjanjian",
+                                "title": "<h3>Tanggal Perjanjian</h3>",
+                                "width": "100px"
+                            },
+                            {
+                                "field": "namaruangan",
+                                "title": "<h3>Poliklinik</h3>",
+                                "width": "150px"
+                            }, {
+                                "field": "namalengkap",
+                                "title": "<h3>Dokter</h3>",
+                                "width": "150px"
+                            }, {
+                                "field": "keterangan",
+                                "title": "<h3>Keterangan</h3>",
+                                "width": "200px"
+                            }
+                        ]
+                    }
+                }else{
+                    $scope.gridPerjanjian = {
+                        filterable: {
+                            extra: false,
+                            operators: {
+                                string: {
+                                    startswith: "Dimulai dengan",
+                                    contains: "mengandung kata",
+                                    neq: "Tidak mengandung kata"
+                                }
+                            }
                         },
-                        {
-                            "field": "namaruangan",
-                            "title": "<h3>Poliklinik</h3>",
-                            "width": "150px"
+                        toolbar: [{
+                            name: "create", text: "Input Baru",
+                            template: '<button ng-click="inputBaru()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah Pasien Perjanjian</button>'
                         }, {
-                            "field": "namalengkap",
-                            "title": "<h3>Dokter</h3>",
-                            "width": "150px"
-                        }, {
-                            "field": "keterangan",
-                            "title": "<h3>Keterangan</h3>",
-                            "width": "200px"
-                        },
-                        {
-                            command: [
-                                { text: "Edit", click: editData, imageClass: "k-icon k-i-pencil" },
-                                {text: "Hapus", click: hapusPerjanjian, imageClass: "k-icon k-i-cancel"}
-                            ], title: "", width: 120}
-    
-                    ]
+                            name: "create", text: "Lihat",
+                            template: '<button ng-click="lihatJadwalDokter()" class="k-button k-button-icontext k-grid-upload" href="\\#">Lihat Jadwal Dokter</button>'
+                        }],
+                        pageable: true,
+                        columns: [
+                            {
+                                "field": "noperjanjian",
+                                "title": "<h3>No Perjanjian</h3>",
+                                "width": "100px"
+                            },
+                            {
+                                "field": "tglperjanjian",
+                                "title": "<h3>Tanggal Perjanjian</h3>",
+                                "width": "100px"
+                            },
+                            {
+                                "field": "namaruangan",
+                                "title": "<h3>Poliklinik</h3>",
+                                "width": "150px"
+                            }, {
+                                "field": "namalengkap",
+                                "title": "<h3>Dokter</h3>",
+                                "width": "150px"
+                            }, {
+                                "field": "keterangan",
+                                "title": "<h3>Keterangan</h3>",
+                                "width": "200px"
+                            },
+                            {
+                                command: [
+                                    { text: "Edit", click: editData, imageClass: "k-icon k-i-pencil" },
+                                    {text: "Hapus", click: hapusPerjanjian, imageClass: "k-icon k-i-cancel"}
+                                ], title: "", width: 120}
+        
+                        ]
+                    }
                 }
+                
                 if($scope.perjanjian) {
                     $scope.perjanjian.tglPerjanjian = new Date();
                 }

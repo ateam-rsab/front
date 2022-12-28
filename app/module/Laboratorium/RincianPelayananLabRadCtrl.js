@@ -99,9 +99,9 @@ define(['initialize'], function (initialize) {
                     $scope.listLayanan = dat.data.produk;
                     $scope.listDokter = dat.data.dokter;
                 })
-                if (norec_apd != null) {
+                if (norec_pd != null) {
 
-                    manageLogistikPhp.getDataTableTransaksi("lab-radiologi/get-rincian-pelayanan?noregistrasifk=" + norec_apd
+                    manageLogistikPhp.getDataTableTransaksi("lab-radiologi/get-rincian-pelayanan?noregistrasifk=" + norec_pd
                         , true).then(function (dat) {
                             for (var i = 0; i < dat.data.data.length; i++) {
                                 dat.data.data[i].no = i + 1
@@ -680,7 +680,7 @@ define(['initialize'], function (initialize) {
                             $scope.dataRisOrder = e.data.data[0];
 
                             if ($scope.dataRisOrder != undefined) {
-                                $window.open("http://182.23.26.34:1111/URLCall.do?LID=dok&LPW=dok&LICD=003&PID=" + $scope.item.noMr + '&ACN=' + $scope.dataRisOrder.accession_num, "_blank");
+                                $window.open("http://pacs1.rsabhk.co.id:8080/URLCall.do?LID=dok&LPW=dok&LICD=003&PID=" + $scope.item.noMr + '&ACN=' + $scope.dataRisOrder.accession_num, "_blank");
                             } else {
                                 toastr.error('Pilih data dulu')
                             }

@@ -177,6 +177,36 @@
         ]
     },
     {
+        "name": "Data Transaksi",
+        "children": [
+            {
+                "name": "Daftar Registrasi Pasien",
+                "link": "#/DaftarRegistrasiPasien"
+            },
+            {
+                "name": "Daftar Pasien Pulang",
+                "link": "#/DaftarPasienPulang"
+            }
+        ]
+    },
+    {
+        "name": "Laporan Pendapatan",
+        "children": [
+            {
+                "name": "Rekapitulasi Pendapatan Unit",
+                "link": "#/LaporanKeuanganUnit"
+            },
+            {
+                "name": "Rekapitulasi Pendapatan Ruangan",
+                "link": "#/LaporanKeuanganRuangan"
+            },
+            {
+                "name": "Rekapitulasi Rincian Pendapatan Ruangan",
+                "link": "#/LaporanRincianKeuanganRuangan"
+            }
+        ]
+    },
+    {
         "name": "SDM",
         "children": [
             {

@@ -2,6 +2,11 @@ define(['initialize'], function (initialize) {
     'use strict';
     initialize.controller('KonsultasiDokterCtrl', ['$q', '$scope', '$state', 'ManagePhp', '$timeout', 'CacheHelper', '$mdDialog',
         function ($q, $scope, $state, ManagePhp, $timeout, cacheHelper, $mdDialog) {
+            $scope.onInit=()=>{
+                var datauserlogin = JSON.parse(window.localStorage.getItem('pegawai'));
+                (datauserlogin['id']=="320263") ? $scope.isVedika=true : $scope.isVedika=false;
+            }
+            $scope.onInit();
             $scope.isRouteLoading = false;
             $scope.now = new Date()
             $scope.item = {
@@ -24,46 +29,90 @@ define(['initialize'], function (initialize) {
                 $scope.item.ruanganAsal = { id: getCache[11], namaruangan: getCache[12] }
 
             }
-            $scope.resumeOpt = {
-                filterable: {
-					extra: false,
-					operators: {
-						string: {
-							startswith: "Dimulai dengan",
-							contains: "mengandung kata",
-							neq: "Tidak mengandung kata"
-						}
-					}
-				},
-                toolbar: [{
-                    name: "create", text: "Input Baru",
-                    template: '<button ng-click="inputBaru()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah Konsultasi</button>'
-                },],
-                pageable: true,
-                scrollable: true,
-                columns: [
-                    // { field: "rowNumber", title: "#", width: 40, width: 40, attributes: { style: "text-align:right; padding-right: 15px;"}, hideMe: true},
-                    { field: "no", title: "<h3>No</h3>", width: 40 },
-                    { field: "noorder", title: "<h3>No. Konsultasi</h3>", width: 70 },
-                    { field: "noregistrasi", title: "<h3>No. Registrasi</h3>", width: 70 },
-                    { field: "tglorder", title: "<h3>Tanggal</h3>", width: 120 },
-                    { field: "ruanganasal", title: "<h3>Ruangan Asal</h3>", width: 120 },
-                    { field: "ruangantujuan", title: "<h3>Ruangan Tujuan</h3>", width: 150 },
-                    { field: "namalengkap", title: "<h3>Dokter Konsultasi</h3>", width: 120 },
-                    // { field: "keteranganorder", title: "Keterangan", width: 120 },
-                    { command: [
-                        // { imageClass: "k-icon k-delete", text: "Hapus", click: hapus },
-                        { text: "Edit", click: editData },
-                        // { name: "Verifikasi", text: "Hasil Konsul", click: hasilKonsult },
-                        { name: "Detail", text: "Detail", click: showDetail },
-                        { name: "Cetak", text: "Cetak", click: cetakReport },
-                    ], title: "&nbsp;", width: 140, 
-                        attributes: {
-                            style: "text-align:center;valign=middle"
+            if($scope.isVedika){
+                $scope.resumeOpt = {
+                    filterable: {
+                        extra: false,
+                        operators: {
+                            string: {
+                                startswith: "Dimulai dengan",
+                                contains: "mengandung kata",
+                                neq: "Tidak mengandung kata"
+                            }
                         }
-                    }
-                ],
-            };
+                    },
+                    // toolbar: [{
+                    //     name: "create", text: "Input Baru",
+                    //     template: '<button ng-click="inputBaru()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah Konsultasi</button>'
+                    // },],
+                    pageable: true,
+                    scrollable: true,
+                    columns: [
+                        // { field: "rowNumber", title: "#", width: 40, width: 40, attributes: { style: "text-align:right; padding-right: 15px;"}, hideMe: true},
+                        { field: "no", title: "<h3>No</h3>", width: 40 },
+                        { field: "noorder", title: "<h3>No. Konsultasi</h3>", width: 70 },
+                        { field: "noregistrasi", title: "<h3>No. Registrasi</h3>", width: 70 },
+                        { field: "tglorder", title: "<h3>Tanggal</h3>", width: 120 },
+                        { field: "ruanganasal", title: "<h3>Ruangan Asal</h3>", width: 120 },
+                        { field: "ruangantujuan", title: "<h3>Ruangan Tujuan</h3>", width: 150 },
+                        { field: "namalengkap", title: "<h3>Dokter Konsultasi</h3>", width: 120 },
+                        // { field: "keteranganorder", title: "Keterangan", width: 120 },
+                        // { command: [
+                        //     // { imageClass: "k-icon k-delete", text: "Hapus", click: hapus },
+                        //     { text: "Edit", click: editData },
+                        //     // { name: "Verifikasi", text: "Hasil Konsul", click: hasilKonsult },
+                        //     { name: "Detail", text: "Detail", click: showDetail },
+                        //     { name: "Cetak", text: "Cetak", click: cetakReport },
+                        // ], title: "&nbsp;", width: 140, 
+                        //     attributes: {
+                        //         style: "text-align:center;valign=middle"
+                        //     }
+                        // }
+                    ],
+                };
+            }else{
+                $scope.resumeOpt = {
+                    filterable: {
+                        extra: false,
+                        operators: {
+                            string: {
+                                startswith: "Dimulai dengan",
+                                contains: "mengandung kata",
+                                neq: "Tidak mengandung kata"
+                            }
+                        }
+                    },
+                    toolbar: [{
+                        name: "create", text: "Input Baru",
+                        template: '<button ng-click="inputBaru()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah Konsultasi</button>'
+                    },],
+                    pageable: true,
+                    scrollable: true,
+                    columns: [
+                        // { field: "rowNumber", title: "#", width: 40, width: 40, attributes: { style: "text-align:right; padding-right: 15px;"}, hideMe: true},
+                        { field: "no", title: "<h3>No</h3>", width: 40 },
+                        { field: "noorder", title: "<h3>No. Konsultasi</h3>", width: 70 },
+                        { field: "noregistrasi", title: "<h3>No. Registrasi</h3>", width: 70 },
+                        { field: "tglorder", title: "<h3>Tanggal</h3>", width: 120 },
+                        { field: "ruanganasal", title: "<h3>Ruangan Asal</h3>", width: 120 },
+                        { field: "ruangantujuan", title: "<h3>Ruangan Tujuan</h3>", width: 150 },
+                        { field: "namalengkap", title: "<h3>Dokter Konsultasi</h3>", width: 120 },
+                        // { field: "keteranganorder", title: "Keterangan", width: 120 },
+                        { command: [
+                            // { imageClass: "k-icon k-delete", text: "Hapus", click: hapus },
+                            { text: "Edit", click: editData },
+                            // { name: "Verifikasi", text: "Hasil Konsul", click: hasilKonsult },
+                            { name: "Detail", text: "Detail", click: showDetail },
+                            { name: "Cetak", text: "Cetak", click: cetakReport },
+                        ], title: "&nbsp;", width: 140, 
+                            attributes: {
+                                style: "text-align:center;valign=middle"
+                            }
+                        }
+                    ],
+                };
+            }
+           
 
             function cetakReport(e) {
                 e.preventDefault();

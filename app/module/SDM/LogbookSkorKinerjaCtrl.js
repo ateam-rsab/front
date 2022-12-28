@@ -5,6 +5,8 @@ define(['initialize'], function (initialize) {
             $scope.now = new Date();
             $scope.isNov2022 = true;
             $scope.item = {};
+            $scope.now = new Date();
+            $scope.isNov2022=true;
             $scope.dataSource = [];
             $scope.listKelompokJabatanId = [];
             $scope.dataVOloaded = true;

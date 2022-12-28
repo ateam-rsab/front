@@ -1,7 +1,9 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('LogbookSkorDokterCtrl', ['$q', 'DateHelper', 'FindSdm', 'ModelItem', 'ManageSdm', 'ManageSdmNew', '$state', '$rootScope', '$scope',
-        function ($q, dateHelper, findSdm, modelItem, manageSdm, ManageSdmNew, $state, $rootScope, $scope) {
+    initialize.controller('LogbookSkorDokterCtrl', ['$q', 'DateHelper', 'FindSdm', 'ModelItem', 'ManageSdm', 'ManageSdmNew', '$state', '$rootScope', '$scope', 'DateHelper',
+        function ($q, dateHelper, findSdm, modelItem, manageSdm, ManageSdmNew, $state, $rootScope, $scope, DateHelper) {
+            $scope.isNov2022 = true;
+            $scope.now = new Date();
             $scope.item = {};
             $scope.dataVOloaded = true;
             $scope.isRouteLoading = false;
@@ -103,7 +105,28 @@ define(['initialize'], function (initialize) {
                     $scope.isRouteLoading = false;
                     return;
                 }
+                if($scope.item.periode){
+                    if(DateHelper.getFormatMonthPicker($scope.item.periode)=='2022-11'||DateHelper.getFormatMonthPicker($scope.item.periode)=='2022-12'){
+                        $scope.isDtMain=true;
+						$scope.isNov2022=false;
+                        $scope.isRouteLoading = false;
+                        // return;
+                    }else{
+                        $scope.isDtMain=false;
+						$scope.isNov2022=true;
+                        $scope.isRouteLoading = false;
+                        $scope.resultDataLogBook();
+                    }
+                }else{
+                    $scope.isDtMain=false;
+					$scope.isNov2022=true;
+                    $scope.isRouteLoading = false;
+                    $scope.resultDataLogBook();
+                }
+                
+            }
 
+            $scope.resultDataLogBook=()=>{
                 let dataTempDJK = [];
                 ManageSdmNew.getListData(`iki-remunerasi/get-logbook-skoring-dokter-jam-kerja?bulan=${$scope.item.periode ? dateHelper.toTimeStamp($scope.item.periode) : dateHelper.toTimeStamp(new Date())}&pegawaiId=${$scope.item.pegawai.id}`).then(res => {
                     let periode = new Date($scope.item.periode), bln = periode.getMonth(), thn = periode.getFullYear();

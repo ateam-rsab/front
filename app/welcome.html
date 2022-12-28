@@ -339,6 +339,200 @@
         font-weight: bold;
         justify-content: space-around;
     }
+
+    /* Media Query for low resolution Tablets, Ipads */
+    @media (min-width:1920px) and (max-width:2460px){
+    .day-timer-style{
+        position: absolute;
+        top: 43%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        font-size: 7em;
+        color: #000000;
+    }
+    .hari,.jam,.menit,.detik{
+        position: absolute;
+        top:68%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        float: left;
+        font-size: 1.5em;
+    }
+
+    .hari{
+        left:30%;
+    }
+    .jam{
+        left:42%;
+    }
+    .menit{
+        left:55%;
+    }
+    .detik{
+        left:69%;
+    }
+    
+    .akreditasi{
+        position: relative;
+        text-align: center;
+    }
+}
+@media (min-width:1025px) and (max-width:1820px){
+    .day-timer-style{
+        position: absolute;
+        top: 43%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        font-size: 5em;
+        color: #000000;
+    }
+    .hari,.jam,.menit,.detik{
+        position: absolute;
+        top:66%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        font-size: 1em;
+        float: left;
+    }
+
+    .hari{
+        left:26%;
+    }
+    .jam{
+        left:40%;
+    }
+    .menit{
+        left:55%;
+    }
+    .detik{
+        left:70%;
+    }
+    
+    .akreditasi{
+        position: relative;
+        text-align: center;
+    }
+}
+
+/* Media Query for low resolution Tablets, Ipads */
+@media (min-width:768px) and (max-width:1024px){
+    .day-timer-style{
+        position: absolute;
+        top: 43%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        font-size: 4em;
+        color: #000000;
+    }
+    .hari,.jam,.menit,.detik{
+        position: absolute;
+        top:65%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        float: left;
+        font-size: 0.8em;
+    }
+
+    .hari{
+        left:27%;
+    }
+    .jam{
+        left:42%;
+    }
+    .menit{
+        left:57%;
+    }
+    .detik{
+        left:72%;
+    }
+    
+    .akreditasi{
+        position: relative;
+        text-align: center;
+    }
+}
+
+/* Media Query for low resolution Tablets, Ipads */
+@media (min-width:381px) and (max-width:767px){
+    .day-timer-style{
+        position: absolute;
+        top: 42%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        font-size: 4em;
+        color: #000000;
+    }
+    .hari,.jam,.menit,.detik{
+        position: absolute;
+        top:64%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        float: left;
+        font-size: 0.6em;
+    }
+
+    .hari{
+        left:35%;
+    }
+    .jam{
+        left:45%;
+    }
+    .menit{
+        left:55%;
+    }
+    .detik{
+        left:65%;
+    }
+    
+    .akreditasi{
+        position: relative;
+        text-align: center;
+    }
+}
+
+/* Media Query for low resolution Tablets, Ipads */
+@media (max-width:480px){
+    .day-timer-style{
+        position: absolute;
+        top: 44%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        font-size: 4em;
+        color: #000000;
+    }
+    .hari,.jam,.menit,.detik{
+        position: absolute;
+        top:67%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        float: left;
+        font-size: 0.9em;
+    }
+
+    .hari{
+        left:30%;
+    }
+    .jam{
+        left:45%;
+    }
+    .menit{
+        left:60%;
+    }
+    .detik{
+        left:75%;
+    }
+    
+    .akreditasi{
+        position: relative;
+        text-align: center;
+    }
+}
+
 </style>
 
 <div ng-controller="WelcomeCtrl">
@@ -347,7 +541,7 @@
             <h4>Pemberitahuan</h4>
         </md-card-header> -->
         <md-card-content>
-            <div class="container-widget grid_6">
+            <div class="container-widget grid_5">
                 <h4 style="text-align:left;">Pemberitahuan</h4><br>
                 <div class="notify " ng-if="isShowSIPExpired">
                     <strong>Info </strong> {{messageNotif}}
@@ -521,9 +715,19 @@
                     </div>
                 </div>
             </div>
-            <div class="container-widget grid_6">
+            <div class="container-widget grid_3" style="border-radius:1rem;">
+                <div class="akreditasi">
+                    <img class="img-akreditasi" src="data/images/akreditasi.jpg" alt="Snow" style="width:80%;">
+                    <div class="day-timer-style"><strong id="day-timer"></strong></div>
+                        <span class="hari" id="timer-hari"></span><br>
+                        <span class="jam" id="timer-jam"></span><br>
+                        <span class="menit "id="timer-menit"></span><br>
+                        <span class="detik" id="timer-detik"></span>
+                </div>
+            </div>
+            <div class="container-widget grid_4">
                 <h4 style="text-align:left;">Visi & Misi RSAB Harapan Kita</h4>
-                <h1 style="padding:0;">Visi</h1>
+                <h3 style="padding:0;">Visi</h1>
                 <strong layout="row" layout-align="center center">"Terdepan sebagai Pusat Kesehatan ibu dan Anak Nasional"</strong>
                 <h1 style="padding:0;">Misi</h1>
                 <ul class="list-3">
@@ -691,3 +895,4 @@
 <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
 <!-- <script src="https://unpkg.com/video.js/dist/video.js"></script> -->
 <!-- <script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script> -->
+<script src="countdown-akreditasi.js"></script>

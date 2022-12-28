@@ -1,6 +1,14 @@
 {
   "path": [
     {
+      "nameDep": "WaktuTungguResepCtrl",
+      "urlDep": "module/Apotek/Dashboard/WaktuTungguResepCtrl"
+    },
+    {
+      "nameDep": "DashboardWaktuTungguResepCtrl",
+      "urlDep": "module/Apotek/Dashboard/DashboardWaktuTungguResepCtrl"
+    },
+    {
       "nameDep": "RedirectPageCtrl",
       "urlDep": "module/RedirectPageCtrl"
     },

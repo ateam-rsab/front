@@ -2,6 +2,11 @@ define(['initialize'], function (initialize) {
     'use strict';
     initialize.controller('CPPTCtrl', ['$scope', '$timeout', '$state', 'CacheHelper', 'DateHelper', 'ManagePhp', '$mdDialog',
         function ($scope, $timeout, $state, cacheHelper, dateHelper, ManagePhp, $mdDialog) {
+            $scope.onInit=()=>{
+                var datauserlogin = JSON.parse(window.localStorage.getItem('pegawai'));
+                (datauserlogin['id']=="320263") ? $scope.isVedika=true : $scope.isVedika=false;
+            }
+            $scope.onInit();
             $scope.isTbak = false;
             $scope.item = {};
             $scope.now = new Date();
@@ -88,50 +93,78 @@ define(['initialize'], function (initialize) {
             //update by : IK
             //date : 01.05.2019
             $scope.cppt = {}
-            $scope.gridCPPT = {
-                filterable: {
-                    extra: false,
-                    operators: {
-                        string: {
-                            startswith: "Dimulai dengan",
-                            contains: "mengandung kata",
-                            neq: "Tidak mengandung kata"
+            if($scope.isVedika){
+                $scope.gridCPPT = {
+                    filterable: {
+                        extra: false,
+                        operators: {
+                            string: {
+                                startswith: "Dimulai dengan",
+                                contains: "mengandung kata",
+                                neq: "Tidak mengandung kata"
+                            }
                         }
-                    }
-                },
-                toolbar: [{
-                    name: "create", text: "Input Baru",
-                    template: '<button ng-click="inputBaru(1)" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah SOAP</button>'
-                },
-                {
-                    name: "create", text: "Input Baru",
-                    template: '<button ng-click="inputBaru(3)" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah SOAPIE</button>'
-                },
-                {
-                    name: "create", text: "Input Baru",
-                    template: '<button ng-click="inputBaru(2)" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah ADIME</button>'
-                },
-                {
-                    name: "create", text: "Input Baru",
-                    template: '<button ng-click="inputBaru(4)" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah TBAK</button>'
-                }],
-                pageable: true,
-                scrollable: true,
-                columns: [
-                    { field: "tglinput", title: "<h3>Tanggal/Jam</h3>", width: 100 },
-                    { field: "namalengkap", title: "<h3>Dokter</h3>", width: 150 },
-                    { field: "pegawaiasal", title: "<h3>Pegawai</h3>", template: '# if( pegawaiasal==null) {# - # } else {# #= pegawaiasal # #} #', "width": "120px" },
-                    { field: "namaruangan", title: "<h3>Ruangan</h3>", width: 120 },
-                    { field: "noregistrasi", title: "<h3>No Registrasi</h3>", width: 100 },
-                    { field: "flag_", title: "<h3>Keterangan</h3>", template: '# if( flag_==1) {# SOAP # } else if( flag_== 2) {#ADIME#} else if( flag_== 3) {#SOAPIE#} else if(flag_== 4) {#TBAK#} #', "width": "100px" },
+                    },
+                    pageable: true,
+                    scrollable: true,
+                    columns: [
+                        { field: "tglinput", title: "<h3>Tanggal/Jam</h3>", width: 100 },
+                        { field: "namalengkap", title: "<h3>Dokter</h3>", width: 150 },
+                        { field: "pegawaiasal", title: "<h3>Pegawai</h3>", template: '# if( pegawaiasal==null) {# - # } else {# #= pegawaiasal # #} #', "width": "120px" },
+                        { field: "namaruangan", title: "<h3>Ruangan</h3>", width: 120 },
+                        { field: "noregistrasi", title: "<h3>No Registrasi</h3>", width: 100 },
+                        { field: "flag_", title: "<h3>Keterangan</h3>", template: '# if( flag_==1) {# SOAP # } else if( flag_== 2) {#ADIME#} else if( flag_== 3) {#SOAPIE#} else if(flag_== 4) {#TBAK#} #', "width": "100px" },
+                        {
+                            command: [{ text: "Detail", click: showDetail, imageClass: "k-icon k-i-pencil" }], title: "", width: 160
+                        }
+                    ]
+                };
+            }else{
+                $scope.gridCPPT = {
+                    filterable: {
+                        extra: false,
+                        operators: {
+                            string: {
+                                startswith: "Dimulai dengan",
+                                contains: "mengandung kata",
+                                neq: "Tidak mengandung kata"
+                            }
+                        }
+                    },
+                    toolbar: [{
+                        name: "create", text: "Input Baru",
+                        template: '<button ng-click="inputBaru(1)" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah SOAP</button>'
+                    },
                     {
-                        command: [{ text: "Edit", click: editData, imageClass: "k-icon k-i-pencil" },
-                        { text: "Detail", click: showDetail, imageClass: "k-icon k-i-pencil" },
-                        { text: "Hapus", click: deleteData, imageClass: "k-icon k-i-cancel" }
-                        ], title: "", width: 160
-                    }
-                ]
-            };
+                        name: "create", text: "Input Baru",
+                        template: '<button ng-click="inputBaru(3)" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah SOAPIE</button>'
+                    },
+                    {
+                        name: "create", text: "Input Baru",
+                        template: '<button ng-click="inputBaru(2)" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah ADIME</button>'
+                    },
+                    {
+                        name: "create", text: "Input Baru",
+                        template: '<button ng-click="inputBaru(4)" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah TBAK</button>'
+                    }],
+                    pageable: true,
+                    scrollable: true,
+                    columns: [
+                        { field: "tglinput", title: "<h3>Tanggal/Jam</h3>", width: 100 },
+                        { field: "namalengkap", title: "<h3>Dokter</h3>", width: 150 },
+                        { field: "pegawaiasal", title: "<h3>Pegawai</h3>", template: '# if( pegawaiasal==null) {# - # } else {# #= pegawaiasal # #} #', "width": "120px" },
+                        { field: "namaruangan", title: "<h3>Ruangan</h3>", width: 120 },
+                        { field: "noregistrasi", title: "<h3>No Registrasi</h3>", width: 100 },
+                        { field: "flag_", title: "<h3>Keterangan</h3>", template: '# if( flag_==1) {# SOAP # } else if( flag_== 2) {#ADIME#} else if( flag_== 3) {#SOAPIE#} else if(flag_== 4) {#TBAK#} #', "width": "100px" },
+                        {
+                            command: [{ text: "Edit", click: editData, imageClass: "k-icon k-i-pencil" },
+                            { text: "Detail", click: showDetail, imageClass: "k-icon k-i-pencil" },
+                            { text: "Hapus", click: deleteData, imageClass: "k-icon k-i-cancel" }
+                            ], title: "", width: 160
+                        }
+                    ]
+                };
+            }
 
             $scope.inputBaru = function (key) {
                 clear();
@@ -563,36 +596,66 @@ define(['initialize'], function (initialize) {
 
             }
 
-            $scope.gridCPPTnotVerif = {
-                pageable: true,
-                filterable: {
-                    extra: false,
-                    operators: {
-                        string: {
-                            startswith: "Dimulai dengan",
-                            contains: "mengandung kata",
-                            neq: "Tidak mengandung kata"
+            if($scope.isVedika){
+                $scope.gridCPPTnotVerif = {
+                    pageable: true,
+                    filterable: {
+                        extra: false,
+                        operators: {
+                            string: {
+                                startswith: "Dimulai dengan",
+                                contains: "mengandung kata",
+                                neq: "Tidak mengandung kata"
+                            }
                         }
-                    }
-                },
-                columns: [
-                    { field: "tglinput", title: "Tanggal/Jam", width: 100 },
-                    { field: "namalengkap", title: "Pegawai", width: 150 },
-                    { field: "namaruangan", title: "Ruangan", width: 150 },
-                    { field: "noregistrasi", title: "No Registrasi", width: 100 },
-                    { field: "flag_", title: "Keterangan", template: '# if( flag_ == 1) {# SOAP # } else if( flag_ == 2) {#ADIME#} else if( flag_ == 3) {#SOAPIE#} else if( flag_ == 4) {#TBAK#} #', "width": "100px" },
-                    //{field: "pegawaiasalfk", title: "Pegawai", widht:100},
-                    {
-                        command: [
-                            { text: "Edit", click: editDataPerawat, imageClass: "k-icon k-i-pencil" },
-                            { text: "Detail", click: detailRiwayatPerawat, imageClass: "k-icon k-i-pencil" },
-                            { text: "Hapus", click: deleteDataPerawat, imageClass: "k-icon k-i-cancel" },
-                            { text: "Verifikasi Dokter", click: verifikasiData, imageClass: "k-icon k-i-pencil" }
-                        ],
-                        title: "&nbsp", width: 250
-                    }
-                ]
-            };
+                    },
+                    columns: [
+                        { field: "tglinput", title: "Tanggal/Jam", width: 100 },
+                        { field: "namalengkap", title: "Pegawai", width: 150 },
+                        { field: "namaruangan", title: "Ruangan", width: 150 },
+                        { field: "noregistrasi", title: "No Registrasi", width: 100 },
+                        { field: "flag_", title: "Keterangan", template: '# if( flag_ == 1) {# SOAP # } else if( flag_ == 2) {#ADIME#} else if( flag_ == 3) {#SOAPIE#} else if( flag_ == 4) {#TBAK#} #', "width": "100px" },
+                        //{field: "pegawaiasalfk", title: "Pegawai", widht:100},
+                        {
+                            command: [
+                                { text: "Detail", click: detailRiwayatPerawat, imageClass: "k-icon k-i-pencil" }
+                            ],
+                            title: "&nbsp", width: 250
+                        }
+                    ]
+                };
+            }else{
+                $scope.gridCPPTnotVerif = {
+                    pageable: true,
+                    filterable: {
+                        extra: false,
+                        operators: {
+                            string: {
+                                startswith: "Dimulai dengan",
+                                contains: "mengandung kata",
+                                neq: "Tidak mengandung kata"
+                            }
+                        }
+                    },
+                    columns: [
+                        { field: "tglinput", title: "Tanggal/Jam", width: 100 },
+                        { field: "namalengkap", title: "Pegawai", width: 150 },
+                        { field: "namaruangan", title: "Ruangan", width: 150 },
+                        { field: "noregistrasi", title: "No Registrasi", width: 100 },
+                        { field: "flag_", title: "Keterangan", template: '# if( flag_ == 1) {# SOAP # } else if( flag_ == 2) {#ADIME#} else if( flag_ == 3) {#SOAPIE#} else if( flag_ == 4) {#TBAK#} #', "width": "100px" },
+                        //{field: "pegawaiasalfk", title: "Pegawai", widht:100},
+                        {
+                            command: [
+                                { text: "Edit", click: editDataPerawat, imageClass: "k-icon k-i-pencil" },
+                                { text: "Detail", click: detailRiwayatPerawat, imageClass: "k-icon k-i-pencil" },
+                                { text: "Hapus", click: deleteDataPerawat, imageClass: "k-icon k-i-cancel" },
+                                { text: "Verifikasi Dokter", click: verifikasiData, imageClass: "k-icon k-i-pencil" }
+                            ],
+                            title: "&nbsp", width: 250
+                        }
+                    ]
+                };
+            }
             function showDetailss(e) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));

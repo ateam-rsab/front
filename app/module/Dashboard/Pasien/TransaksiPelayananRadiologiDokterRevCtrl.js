@@ -2,6 +2,11 @@ define(['initialize'], function (initialize) {
     'use strict';
     initialize.controller('TransaksiPelayananRadiologiDokterRevCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper', '$window',
         function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper, $window) {
+            $scope.onInit=()=>{
+                var datauserlogin = JSON.parse(window.localStorage.getItem('pegawai'));
+                (datauserlogin['id']=="320263") ? $scope.isVedika=true : $scope.isVedika=false;
+            }
+            $scope.onInit();
             $scope.item = {};
             $scope.showInputPemeriksaanLab = false;
             $scope.dataVOloaded = true;
@@ -646,7 +651,7 @@ define(['initialize'], function (initialize) {
                         return;
                     }
 
-                    $window.open("http://182.23.26.34:1111/URLCall.do?LID=dok&LPW=dok&LICD=003&PID=" + $scope.item.noMr + '&ACN=' + $scope.dataRisOrder.accession_num, "_blank");
+                    $window.open("http://pacs1.rsabhk.co.id:8080/URLCall.do?LID=dok&LPW=dok&LICD=003&PID=" + $scope.item.noMr + '&ACN=' + $scope.dataRisOrder.accession_num, "_blank");
                 })
 
 

@@ -8,6 +8,7 @@ define(['initialize'], function (initialize) {
             $scope.listBirthdayData = [];
             let remunId = [1, 10, 14]
             $scope.isRemun = false;
+
             if (dataLogin.kategoryPegawai && remunId.includes(dataLogin.kategoryPegawai.id)) {
                 $scope.isRemun = true;
             }
@@ -101,73 +102,96 @@ define(['initialize'], function (initialize) {
                 }
             ]
             $scope.dataPemberitahuan = [
-            {
-                path: "data/dokumen/PENGUMUMAN_DATA_TENAGA_NON_ASN_PRAFINALISASI.pdf",
-                fileName: "Data Tenaga Non ASN Prafinlisasi di lingkungkan Kementerian Kesehatan tahun 2022",
-                new: true
-            },
-            {
-                path: "data/dokumen/Pemberitahuan-Pendataan-Tenaga-Non-ASN.pdf",
-                fileName: "Pendataan Tenaga Non ASN",
-                new: true
-            },{
-                path: "data/dokumen/Formulir-Permohonan-Surat-Keterangan.pdf",
-                fileName: "Formulir Permohonan Surat Keterangan / Perincian Penghasilan",
-                new: false
-            }, {
-                path: "data/dokumen/Nota-Dinas-Sosialisasi-Pengisian-Target-SKP-2022.pdf",
-                fileName: "Nota Dinas Sosialisasi Pengisian Target SKP 2022",
-                new: true
-            }, {
-                path: "data/dokumen/Formulir-Untuk-Mendapatkan-Pembayaran-Tunjangan-Keluarga-bagi-Pegawai-PNS-(FORM-KP4).pdf",
-                fileName: "Formulir Untuk Mendapatkan Pembayaran Tunjangan Keluarga bagi Pegawai PNS (FORM-KP4)",
-                new: true
-            }, {
-                path: "data/dokumen/SE-Kewajiban-Mentaati-Ketentuan-Jam-Kerja-Bagi-Seluruh-Pegawai .pdf",
-                fileName: "SE Kewajiban Mentaati Ketentuan Jam Kerja Bagi Seluruh Pegawai ",
-                new: false
-            }, {
-                path: "data/dokumen/PEMBERITAHUAN-KGB-AGUSTUS-2022.pdf",
-                fileName: "PEMBERITAHUAN KGB AGUSTUS 2022",
-                new: true
-            }, {
-                path: "data/dokumen/SE-Tata-Cara-Usul-Pencantuman-Gelar-Akademik-Bagi-PNS.pdf",
-                fileName: "SE Tata Cara Usul Pencantuman Gelar Akademik Bagi PNS",
-                new: false
-            }, {
-                path: "data/dokumen/PEMBERITAHUAN-USUL-PAK-KEMENTERIAN-KESEHATAN.pdf",
-                fileName: "PEMBERITAHUAN USUL PAK KEMENTERIAN KESEHATAN",
-                new: true
-            }, {
-                path: "data/dokumen/PEMBERITAHUAN-SK-KP-FUNGSIONAL-APRIL-2022.pdf",
-                fileName: "PEMBERITAHUAN SK KP FUNGSIONAL APRIL 2022",
-                new: true
-            }, {
-                path: "data/dokumen/PEMBERITAHUAN-SK-KPO-APRIL-2022.pdf",
-                fileName: "PEMBERITAHUAN SK KPO APRIL 2022",
-                new: true
-            }, {
-                path: "data/dokumen/PEMBERITAHUAN-KGB-JULI-2022.pdf",
-                fileName: "PEMBERITAHUAN KGB JULI 2022",
-                new: true
-            }, {
-                path: "data/dokumen/PEMBERITAHUAN-DAFTAR-NAMA-PEGAWAI-YANG-DAPAT-DIUSULKAN-KP-FUNGSIONAL-AHLI-UTAMA.pdf",
-                fileName: "PEMBERITAHUAN DAFTAR NAMA PEGAWAI YANG DAPAT DIUSULKAN KP FUNGSIONAL AHLI UTAMA",
-                new: false
-            }, {
-                path: "data/dokumen/PEMBERITAHUAN-KP-FUNGSIONAL-OKTOBER-2022.pdf",
-                fileName: "PEMBERITAHUAN DAFTAR NAMA PEGAWAI YANG DAPAT DIUSULKAN KP FUNGSIONAL OKTOBER 2022",
-                new: false
-            }, {
-                path: "data/dokumen/PEMBERITAHUAN-DAFTAR-NAMA-PEGAWAI-YANG-DAPAT-DIUSULKAN-KP-OTOMATIS-OKTOBER-2022.pdf",
-                fileName: "PEMBERITAHUAN DAFTAR NAMA PEGAWAI YANG DAPAT DIUSULKAN KP OTOMATIS OKTOBER 2022",
-                new: false
-            }, {
-                path: "data/dokumen/PEMBERITAHUAN-KGB-JUNI-2022-MUHAMMAD-SUPRI-SETIYADI-DKK.pdf",
-                fileName: "PEMBERITAHUAN KGB JUNI 2022 MUHAMMAD SUPRI SETIYADI DKK",
-                new: false
-            }]
-            $scope.dataBerkasAdministrasi = [{
+                {
+                    path: "data/dokumen/Formulir-Permohonan-Surat-Keterangan.pdf",
+                    fileName: "Formulir Permohonan Surat Keterangan / Perincian Penghasilan",
+                    new: false
+                }, 
+                {
+                    path: "data/dokumen/PEMBERITAHUAN_KPO_APRIL_2023.pdf",
+                    fileName: "Daftar Pegawai Yang Dapat Diusulkan Kenaikan Pangkat Otomatis Periode April 2023",
+                    new: true
+                },
+                {
+                    path: "data/dokumen/PEMBERITAHUAN KENAIKAN_JABFUNG_AHLI_UTAMA_APRIL_2023.pdf",
+                    fileName: "Kenaikan Jabatan Fungsional Ahli Utama April 2023",
+                    new: true
+                },
+                {
+                    path: "data/dokumen/PEMBERITAHUAN KP_APRIL_2023.pdf",
+                    fileName: "Daftar Pegawai Yang Dapat Diusulkan Kenaikan Pangkat Fungsional Periode April 2023",
+                    new: true
+                },
+                {
+                    path: "data/dokumen/Sosialisasi_Pembuatan_SKP_2022_menggunakan_aplikasi_e-Kinerja.pdf",
+                    fileName: "Sosialisasi Pembuatan SKP 2022 menggunakan aplikasi e-Kinerja",
+                    new: true
+                },
+                {
+                    path: "data/dokumen/PENGUMUMAN_DATA_TENAGA_NON_ASN_PRAFINALISASI.pdf",
+                    fileName: "Data Tenaga Non ASN Prafinlisasi di lingkungkan Kementerian Kesehatan tahun 2022",
+                    new: false
+                },
+                {
+                    path: "data/dokumen/Pemberitahuan-Pendataan-Tenaga-Non-ASN.pdf",
+                    fileName: "Pendataan Tenaga Non ASN",
+                    new: false
+                },{
+                    path: "data/dokumen/Nota-Dinas-Sosialisasi-Pengisian-Target-SKP-2022.pdf",
+                    fileName: "Nota Dinas Sosialisasi Pengisian Target SKP 2022",
+                    new: false
+                }, {
+                    path: "data/dokumen/Formulir-Untuk-Mendapatkan-Pembayaran-Tunjangan-Keluarga-bagi-Pegawai-PNS-(FORM-KP4).pdf",
+                    fileName: "Formulir Untuk Mendapatkan Pembayaran Tunjangan Keluarga bagi Pegawai PNS (FORM-KP4)",
+                    new: false
+                }, {
+                    path: "data/dokumen/SE-Kewajiban-Mentaati-Ketentuan-Jam-Kerja-Bagi-Seluruh-Pegawai .pdf",
+                    fileName: "SE Kewajiban Mentaati Ketentuan Jam Kerja Bagi Seluruh Pegawai ",
+                    new: false
+                }, {
+                    path: "data/dokumen/PEMBERITAHUAN-KGB-AGUSTUS-2022.pdf",
+                    fileName: "PEMBERITAHUAN KGB AGUSTUS 2022",
+                    new: false
+                }, {
+                    path: "data/dokumen/SE-Tata-Cara-Usul-Pencantuman-Gelar-Akademik-Bagi-PNS.pdf",
+                    fileName: "SE Tata Cara Usul Pencantuman Gelar Akademik Bagi PNS",
+                    new: false
+                }, {
+                    path: "data/dokumen/PEMBERITAHUAN-USUL-PAK-KEMENTERIAN-KESEHATAN.pdf",
+                    fileName: "PEMBERITAHUAN USUL PAK KEMENTERIAN KESEHATAN",
+                    new: false
+                }, {
+                    path: "data/dokumen/PEMBERITAHUAN-SK-KP-FUNGSIONAL-APRIL-2022.pdf",
+                    fileName: "PEMBERITAHUAN SK KP FUNGSIONAL APRIL 2022",
+                    new: false
+                }, {
+                    path: "data/dokumen/PEMBERITAHUAN-SK-KPO-APRIL-2022.pdf",
+                    fileName: "PEMBERITAHUAN SK KPO APRIL 2022",
+                    new: false
+                }, {
+                    path: "data/dokumen/PEMBERITAHUAN-KGB-JULI-2022.pdf",
+                    fileName: "PEMBERITAHUAN KGB JULI 2022",
+                    new: false
+                }, {
+                    path: "data/dokumen/PEMBERITAHUAN-DAFTAR-NAMA-PEGAWAI-YANG-DAPAT-DIUSULKAN-KP-FUNGSIONAL-AHLI-UTAMA.pdf",
+                    fileName: "PEMBERITAHUAN DAFTAR NAMA PEGAWAI YANG DAPAT DIUSULKAN KP FUNGSIONAL AHLI UTAMA",
+                    new: false
+                }, {
+                    path: "data/dokumen/PEMBERITAHUAN-KP-FUNGSIONAL-OKTOBER-2022.pdf",
+                    fileName: "PEMBERITAHUAN DAFTAR NAMA PEGAWAI YANG DAPAT DIUSULKAN KP FUNGSIONAL OKTOBER 2022",
+                    new: false
+                }, {
+                    path: "data/dokumen/PEMBERITAHUAN-DAFTAR-NAMA-PEGAWAI-YANG-DAPAT-DIUSULKAN-KP-OTOMATIS-OKTOBER-2022.pdf",
+                    fileName: "PEMBERITAHUAN DAFTAR NAMA PEGAWAI YANG DAPAT DIUSULKAN KP OTOMATIS OKTOBER 2022",
+                    new: false
+                }, {
+                    path: "data/dokumen/PEMBERITAHUAN-KGB-JUNI-2022-MUHAMMAD-SUPRI-SETIYADI-DKK.pdf",
+                    fileName: "PEMBERITAHUAN KGB JUNI 2022 MUHAMMAD SUPRI SETIYADI DKK",
+                    new: false
+                },
+            ]
+            $scope.dataBerkasAdministrasi = [
+                {
                 path: "data/dokumen/Nodin-Bimtek-SKP.pdf",
                 fileName: "Nota Dinas Bimtek SKP",
                 new: true

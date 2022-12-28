@@ -2,6 +2,11 @@ define(['initialize'], function(initialize) {
     'use strict';
     initialize.controller('OdontoGramDokterCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp','$state','CacheHelper', '$window','$location',
         function($q, $rootScope, $scope,manageLogistikPhp,$state,cacheHelper, $window,$location) {
+            $scope.onInit=()=>{
+                var datauserlogin = JSON.parse(window.localStorage.getItem('pegawai'));
+                (datauserlogin['id']=="320263") ? $scope.isVedika=true : $scope.isVedika=false;
+            }
+            $scope.onInit();
             if( window.location.href != $location.$$absUrl ){
                 window.location.href= $location.$$absUrl
                 window.location.reload()  

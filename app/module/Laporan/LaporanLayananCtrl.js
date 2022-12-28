@@ -36,14 +36,15 @@ define(['initialize'], function(initialize) {
                 if($scope.listKelompokPasien != undefined){
                   $scope.listKelompokPasien.push($scope.nonbpjs)
                 }
+                $scope.listParameterTarif = data.data.ParameterTarif;
                 $scope.listPegawai = data.data.dokter;
                 $scope.listKelas = data.data.kelas;
                 $scope.listPetugasPel= data.data.petugaspe;
             });
 
-            modelItemAkuntansi.getDataDummyPHP("aset/get-data-barang", true, true, 20).then(function(data) {
-                 $scope.listProduk = data;
-            });
+            // modelItemAkuntansi.getDataDummyPHP("aset/get-data-barang", true, true, 20).then(function(data) {
+            //      $scope.listProduk = data;
+            // });
 
         }
         
@@ -115,6 +116,11 @@ define(['initialize'], function(initialize) {
         });
     }
     
+    $scope.changeParameterTarif=function(){
+        manageTataRekening.getDataTableTransaksi("aset/get-data-layanan-combo?paramtarif="+$scope.item.parameterTarif.id, false).then(function(data) {
+            $scope.listProduk = data.data;
+        });
+    }
     $scope.JadwalDokter=function(){ 
         $scope.isRouteLoading = true;
         var tglSekarang = new moment($scope.item.tglawal).format('M')

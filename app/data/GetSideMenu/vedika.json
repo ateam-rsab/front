@@ -6,22 +6,5 @@
     {
         "name": "Rekam Medis",
         "link": "#/DaftarPasienVedika"
-    },
-    {
-        "name": "Skoring Tindakan Medis",
-        "link": "#/SkoringTindakanMedis"
-    },
-    {
-        "name": "Skoring Tindakan Farmakologi",
-        "link": "#/SkoringTindakanFarmakologi"
-    },
-    {
-        "name": "Setting",
-        "children": [
-            {
-                "name": "Ubah Password",
-                "link": "#/UbahPassword"
-            }
-        ]
     }
 ]

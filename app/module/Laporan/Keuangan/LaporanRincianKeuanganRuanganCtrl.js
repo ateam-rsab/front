@@ -2,6 +2,55 @@ define(['initialize'], function (initialize) {
     'use strict';
     initialize.controller('LaporanRincianKeuanganRuanganCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper', 'ModelItem','DateHelper', '$window', '$mdDialog',
         function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper, ModelItem, dateHelper, $window, $mdDialog) {
+            $scope.OnInit=()=>{
+                var datauserlogin = JSON.parse(window.localStorage.getItem('pegawai'));
+                var statusCode = ModelItem.getStatusUser();
+                if(statusCode!="akuntansi"){
+                    if(statusCode=="tatarekening"){
+                        // if(datauserlogin['id']!="502"||datauserlogin['id']!="1104"||datauserlogin['id']!="1013"||datauserlogin['id']!="22914"||datauserlogin['id']!="994"||datauserlogin['id']!="969"){
+                        //     $scope.isAccessDanied();
+                        // }
+                        var idUser = [
+                            { "id":"502" },
+                            { "id":"1104" },
+                            { "id":"1013" },
+                            { "id":"22914" },
+                            { "id":"994" },
+                            { "id":"99" },
+                        ];
+                        let cekUser = idUser.filter(e=>e.id==datauserlogin['id']);
+                        if(cekUser.length<1){
+                            $scope.isAccessDanied();
+                        }
+                    }else if(statusCode=="dokter"){
+                        if(datauserlogin['id']!="950"){
+                            $scope.isAccessDanied();
+                        }
+                    }else if(statusCode=="laborat"){
+                        if(datauserlogin['id']!="1125"){
+                            $scope.isAccessDanied();
+                        }
+                    }else if(statusCode=="logistik"){
+                        if(datauserlogin['id']!="996"){
+                            $scope.isAccessDanied();
+                        }
+                    }else if(statusCode=="bedah"){
+                        if(datauserlogin['id']!="696"){
+                            $scope.isAccessDanied();
+                        }
+                    }else if(statusCode=="bidangmedik"){
+                        console.log("ok");
+                    }
+                }
+            }
+            $scope.isAccessDanied=()=>{
+                toastr.warning('OOps! Anda tidak memiliki akses disini', 'Warning');
+                setTimeout(() => {
+                    $state.go('home')
+                }, 2000);
+            }
+            $scope.OnInit();
+
             $scope.item = {};
             $scope.jumlahLayanan = 2000;
             $scope.item.unitKerja='';
@@ -283,8 +332,17 @@ define(['initialize'], function (initialize) {
                     "attributes": { "style": "text-align: right" }
                 },
                 {
+                    "field": "total_volume",
+                    "title": "Total Volume",
+                    "filterable": false,
+                    "format": "{0:n0}",
+                    "footerTemplate":"#: data.total_volume ? kendo.format('{0:n0}', data.total_volume.sum) : 0#",
+                    "width": 150,
+                    "attributes": { "style": "text-align: right" }
+                },
+                {
                     "field": "total",
-                    "title": "Total",
+                    "title": "Total Pendapatan",
                     "filterable": false,
                     "format": "{0:n0}",
                     "footerTemplate":"#: data.total ? kendo.format('{0:n0}', data.total.sum) : 0#",
@@ -331,22 +389,23 @@ define(['initialize'], function (initialize) {
                                                 let asuransi=0,bpjs=0,umum=0,perusahaan=0,perjanjian=0,kementriankesehatan=0,jamkesda=0,
                                                 totalasuransi=0,totalbpjs=0,totalumum=0,totalperusahaan=0,totalperjanjian=0,totalkementriankesehatan=0,totaljamkesda=0;
                                                 detailProduct.forEach(detailProduct => {
-                                                    if(detailProduct.bpjs!==null){bpjs+=parseInt(detailProduct.bpjs);}
-                                                    if(detailProduct.jamkesda!==null){jamkesda+=parseInt(detailProduct.jamkesda);}
-                                                    if(detailProduct.asuransi!==null){asuransi+=parseInt(detailProduct.asuransi);}
-                                                    if(detailProduct.umum!==null){umum+=parseInt(detailProduct.umum);}
-                                                    if(detailProduct.perusahaan!==null){perusahaan+=parseInt(detailProduct.perusahaan);}
-                                                    if(detailProduct.perjanjian!==null){perjanjian+=parseInt(detailProduct.perjanjian);}
-                                                    if(detailProduct.kementrian_kesehatan!==null){kementriankesehatan+=parseInt(detailProduct.kementrian_kesehatan);}
-                                                    if(detailProduct.total_bpjs!==null){totalbpjs+=parseInt(detailProduct.total_bpjs);}
-                                                    if(detailProduct.total_jamkesda!==null){totaljamkesda+=parseInt(detailProduct.total_jamkesda);}
-                                                    if(detailProduct.total_asuransi!==null){totalasuransi+=parseInt(detailProduct.total_asuransi);}
-                                                    if(detailProduct.total_umum!==null){totalumum+=parseInt(detailProduct.total_umum);}
-                                                    if(detailProduct.total_perusahaan!==null){totalperusahaan+=parseInt(detailProduct.total_perusahaan);}
-                                                    if(detailProduct.total_perjanjian!==null){totalperjanjian+=parseInt(detailProduct.total_perjanjian);}
-                                                    if(detailProduct.total_kementrian_kesehatan!==null){totalkementriankesehatan+=parseInt(detailProduct.total_kementrian_kesehatan);}
+                                                    if(detailProduct.bpjs!==null){bpjs+=parseFloat(detailProduct.bpjs);}
+                                                    if(detailProduct.jamkesda!==null){jamkesda+=parseFloat(detailProduct.jamkesda);}
+                                                    if(detailProduct.asuransi!==null){asuransi+=parseFloat(detailProduct.asuransi);}
+                                                    if(detailProduct.umum!==null){umum+=parseFloat(detailProduct.umum);}
+                                                    if(detailProduct.perusahaan!==null){perusahaan+=parseFloat(detailProduct.perusahaan);}
+                                                    if(detailProduct.perjanjian!==null){perjanjian+=parseFloat(detailProduct.perjanjian);}
+                                                    if(detailProduct.kementrian_kesehatan!==null){kementriankesehatan+=parseFloat(detailProduct.kementrian_kesehatan);}
+                                                    if(detailProduct.total_bpjs!==null){totalbpjs+=parseFloat(detailProduct.total_bpjs);}
+                                                    if(detailProduct.total_jamkesda!==null){totaljamkesda+=parseFloat(detailProduct.total_jamkesda);}
+                                                    if(detailProduct.total_asuransi!==null){totalasuransi+=parseFloat(detailProduct.total_asuransi);}
+                                                    if(detailProduct.total_umum!==null){totalumum+=parseFloat(detailProduct.total_umum);}
+                                                    if(detailProduct.total_perusahaan!==null){totalperusahaan+=parseFloat(detailProduct.total_perusahaan);}
+                                                    if(detailProduct.total_perjanjian!==null){totalperjanjian+=parseFloat(detailProduct.total_perjanjian);}
+                                                    if(detailProduct.total_kementrian_kesehatan!==null){totalkementriankesehatan+=parseFloat(detailProduct.total_kementrian_kesehatan);}
                                                 });
                                                 let total=totalbpjs+totaljamkesda+totalasuransi+totalumum+totalperusahaan+totalperjanjian+totalkementriankesehatan;
+                                                let total_volume = bpjs+jamkesda+asuransi+umum+perusahaan+perjanjian+kementriankesehatan;
                                                 newDataSource.push({
                                                     "idru": newResponse.idru,
                                                     "nama_ruangan":newResponse.nama_ruangan,
@@ -369,7 +428,8 @@ define(['initialize'], function (initialize) {
                                                     "totalperjanjian":totalperjanjian,
                                                     "kementriankesehatan":kementriankesehatan,
                                                     "totalkementriankesehatan":totalkementriankesehatan,
-                                                    "total":total
+                                                    "total":total,
+                                                    "total_volume":total_volume 
                                                 });
                                             }
                                         });
@@ -398,6 +458,7 @@ define(['initialize'], function (initialize) {
                             { field: "kementriankesehatan", aggregate: "sum" },
                             { field: "totalkementriankesehatan", aggregate: "sum" },
                             { field: "total", aggregate: "sum" },
+                            { field: "total_volume", aggregate:"sum"}
                         ],
                         // aggregate: [
                         //     { field: "kunjungan", aggregate: "sum" },

@@ -74,7 +74,7 @@ define(['initialize'], function (initialize) {
 			};
 
 			$scope.klik = function (current) {
-				debugger
+				// debugger
 				$scope.item.idx = current.id;
 				$scope.item.id = current.id;
 			}
@@ -130,6 +130,21 @@ define(['initialize'], function (initialize) {
 					"title": "Nama Rekanan",
 					"width": "300px",
 
+				},
+				{
+					"title": "Masa Berlaku",
+					"columns":[
+						{
+							"title": "Awal",
+							"field":"tglawal",
+							"width": "50px",
+						},
+						{
+							"title": "Akhir",
+							"field":"tglakhir",
+							"width": "50px",
+						}
+					]
 				},
 				{
 					"field": "kdrekanan",
