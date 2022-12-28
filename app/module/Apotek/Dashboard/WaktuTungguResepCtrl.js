@@ -161,6 +161,11 @@ define(['initialize'], function (initialize) {
 					"title": "Diserahkan",
 					"width": 80,
 					"template": "<span class='style-left'>{{formatTanggal('#: time_diserahkan #')}}</span>"
+				},
+				{
+					"field": "waktu_tunggu",
+					"title": "Waktu Tunggu",
+					"width": 80,
 				}
 				],
 				dataBound: function () {
