@@ -130,8 +130,8 @@
 		<!-- grid table -->
 		<div class="grid_12">
 			<div id="kGrid" kendo-grid k-data-source="dataPasienPulang" k-selectable="'row'"
-				k-columns="columnPasienPulang" k-pageable="'true'" k-options="optGrid" k-sortable="'true'" k-ng-model="dataPasienSelected"
-				ng-click="click(dataPasienSelected)">
+				k-columns="columnPasienPulang" k-pageable="'true'" k-options="optGrid" k-sortable="'true'"
+				k-ng-model="dataPasienSelected" ng-click="click(dataPasienSelected)">
 			</div>
 		</div>
 		<div class="grid_12">
@@ -182,3 +182,156 @@
 
 
 </div>
+
+<div kendo-window="detailPopup" k-title="'Detail Layanan'" k-width="1000" k-visible="false">
+	<div class="panel panel-default container_12" style="padding: 0px 10px;">
+		<md-card>
+			<md-card-content>
+				<div ng-if="isLoaderModal"><div class="loader" style="width:30px;height:30px;"></div></div>
+				<div class="grid_12">
+					<table class="table">
+						<thead>
+							<th>Tanggal</th>
+							<th>No.RM</th>
+							<th>No Registrasi</th>
+							<th>Nama</th>
+							<th>Jenis Pasien</th>
+							<th>Ruangan</th>
+							<th>Status</th>
+							<th>No. SBM</th>
+							<th>No Verif</th>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<span>{{dataItem.tanggalMasuk}}</span><br/>
+									<span class="button-badge">{{dataItem.tanggalPulang}}</span>
+								</td>
+								<td><span>{{dataItem.noCm}}</span></td>
+								<td><span>{{dataItem.noRegistrasi}}</span></td>
+								<td><span>{{dataItem.namaPasien}}</span></td>
+								<td><span>{{dataItem.jenisAsuransi}}</span></td>
+								<td><span>{{dataItem.namaRuangan}}</span></td>
+								<td><span>{{dataItem.status}}</span></td>
+								<td><span>{{dataItem.nosbm}}</span></td>
+								<td><span>{{dataItem.nostruk}}</span></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<br/>
+				<div class="grid_12" style="border: solid green 1px;padding: 2px;">
+					<div class="text-center" style="background-color: green;color: aliceblue;padding-bottom: 2px;padding: 10px;font-size: 5em;">
+						<label c-label c-label-text="RADIOLOGI"></label>
+					</div>
+					<ul id="accordion1">
+						<li id="radVerif" class="k-sate-active">
+							<span class="k-link" id="span1">Verifikasi</span>
+							<div id="accorradVerif">
+								<div kendo-grid k-data-source="detailRadverif" k-columns="optGridVerif" k-selectable="'row'" k-pageable="'true'" k-sortable="'true'"></div>
+							</div>
+						</li>
+						<li id="radVerif" class="k-sate-active">
+							<span class="k-link" id="span1">Belum Verifikasi</span>
+							<div id="accorradUnVerif">
+								<div kendo-grid k-data-source="detailRadunverif"  k-columns="optGridRadUnVerif" k-selectable="'row'" k-pageable="'true'" k-sortable="'true'"></div>
+							</div>
+						</li>
+					</ul>				
+				</div>
+				<div class="grid_12"><br/></div>
+				<div class="grid_12" style="border: solid blue 1px;padding: 2px;">
+					<div class="text-center" style="background-color: blue;color: aliceblue;padding-bottom: 2px;padding: 10px;font-size: 5em;">
+						<label c-label c-label-text="LABORATORIUM"></label>
+					</div>
+					<ul id="accordion2">
+						<li id="labVerif">
+							<span class="k-link" id="span1">Verifikasi</span>
+							<div id="accorLabVerif">
+								<div kendo-grid k-data-source="detailLabverif" k-columns="optGridVerif" k-selectable="'row'" k-pageable="'true'" k-sortable="'true'"></div>
+							</div>
+						</li>
+						<li id="labUnVerif">
+							<span class="k-link" id="span2">Belum Verifikasi</span>
+							<div id="accorLabUnVerif">
+								<div kendo-grid k-data-source="detailLabunverif"  k-columns="optGridLabUnVerif" k-selectable="'row'" k-pageable="'true'" k-sortable="'true'"></div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="grid_12"><br/></div>
+				<div class="grid_12" style="border: solid yellow 1px;padding: 2px;">
+					<div class="text-center" style="background-color: yellow;color: black;padding-bottom: 2px;padding: 10px;font-size: 5em;">
+						<label c-label c-label-text="OBAT"></label>
+					</div>
+					<ul id="accordion3">
+						<li id="obatVerif" class="k-sate-active">
+							<span class="k-link" id="span3">Verifikasi</span>
+							<div id="accorobatVerif">
+								<div kendo-grid k-data-source="detailObatverif"  k-columns="optGridVerif" k-selectable="'row'" k-pageable="'true'" k-sortable="'true'"></div>
+							</div>
+						</li>
+						<li id="obatUnVerif" class="k-sate-active">
+							<span class="k-link" id="span4">Belum Verifikasi</span>
+							<div id="accorobatUnVerif">
+								<div kendo-grid k-data-source="detailObatunverif"  k-columns="optGridObatUnVerif" k-selectable="'row'" k-pageable="'true'" k-sortable="'true'"></div>
+							</div>
+						</li>
+						<li id="obatBebas" class="k-sate-active">
+							<span class="k-link" id="span5">Obat Bebas</span>
+							<div id="accorobatObatBebas">
+								<div kendo-grid k-data-source="detailObatBebas"  k-columns="optGridObatBebas" k-selectable="'row'" k-pageable="'true'" k-sortable="'true'"></div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<br/>
+				<div class="grid_12">
+					<table class="table">
+						<thead>
+							<th></th>
+							<th>Jumlah</th>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Radiologi</td>
+								<td>{{totalRad}}</td>
+							</tr>
+							<tr>
+								<td>Laboaratorium</td>
+								<td>{{totalLab}}</td>
+							</tr>
+							<tr>
+								<td>Obat</td>
+								<td>{{totalObat}}</td>
+							</tr>
+							<tr>
+								<td>Total</td>
+								<td><span class="c-label">{{totalAll}}</span></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</md-card-content>
+		</md-card>
+	</div>
+	<div class="dialog_buttons pull-right" style="margin-top:5%;">
+		<div class="grid_4">
+			<md-button class="md-raised md-danger medium-button" style="width: 100%;" ng-click="closePopup()">
+				Batal
+			</md-button>
+		</div>
+	</div>
+</div>
+
+<script>
+	$("#accordion1").kendoPanelBar({
+		expandMode:"multiple"
+	})
+	$("#accordion2").kendoPanelBar({
+		expandMode:"multiple"
+	})
+	$("#accordion3").kendoPanelBar({
+		expandMode:"multiple"
+	})
+</script>

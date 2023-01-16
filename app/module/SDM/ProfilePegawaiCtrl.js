@@ -73,6 +73,11 @@ define(['initialize'], function (initialize) {
                         template: "#if(jabatan) { # #= jabatan.namaJabatan # #} else { #-# } #",
                     },
                     {
+                        field: "nilaiJabatan",
+                        title: "<h3 class='small-font'>Nilai Jabatan</h3>", width: "150px",
+                        template: "#if(jabatan) { # #= nilaiJabatan # #} else { #-# } #",
+                    },
+                    {
                         field: "unitKerjaPegawai",
                         title: "<h3 class='small-font'>Unit Kerja</h3>", width: "200px",
                         template: "#if(unitKerjaPegawai) { # #= unitKerjaPegawai.name # #} else { #-# } #",

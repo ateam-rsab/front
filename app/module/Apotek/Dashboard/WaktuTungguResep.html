@@ -58,7 +58,18 @@
                 k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
         </div>
     </div>
-    <div class="grid_4">
+    <div class="grid_3">
+        <div class="grid_12">
+            <label c-label item="item" c-label-text="Depo"></label>
+        </div>
+        <div class="clear"></div>
+
+        <div class="grid_12">
+            <input style="width: 100%;" kendo-combo-box k-ng-model="item.depo" k-data-text-field="'namaruangan'"
+                k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDepo" />
+        </div>
+    </div>
+    <div class="grid_3">
         <!-- AwalPeriode -->
         <div class="grid_6 padDatePicker">
             <div class="grid_12">
@@ -66,7 +77,7 @@
             </div>
             <div class="clear"></div>
             <div class="grid_12">
-                <input style="width: 100%" k-ng-model="item.periodeAwal" kendo-datetimepicker k-max="now"
+                <input style="width: 100%" k-ng-model="item.periodeAwal" kendo-datetimepicker
                     placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" />
             </div>
         </div>
