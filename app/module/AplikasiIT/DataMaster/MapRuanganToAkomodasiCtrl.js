@@ -137,7 +137,7 @@ define(['initialize'], function (initialize) {
 
                 var newModel = dataItem;
                 if (newModel.isRawatGabung) {
-                    if ($scope.ma.isRawatGabung.id == 1) {
+                    if ($scope.ma && $scope.ma.isRawatGabung && $scope.ma.isRawatGabung.id == 1) {
                         newModel.isRawatGabung = $scope.ma.isRawatGabung.id
                     } else {
                         newModel.isRawatGabung = null

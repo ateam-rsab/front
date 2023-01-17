@@ -62,7 +62,7 @@ define(['initialize'], function (initialize) {
                     //     $scope.isNov2022=true;
                         // $scope.isRouteLoading = false;
                     $q.all([
-                        ManageSdmNew.getListData("sdm/get-all-tindakan-dokter-rescored/" + dateHelper.getFormatMonthPicker($scope.item.periode) + "/" + $scope.item.pegawai.id),
+                        ManageSdmNew.getListData("sdm/get-all-tindakan-dokter-rescored/" + dateHelper.getFormatMonthPicker($scope.item.periode) + "/" + $scope.item.pegawai.id + "/1"),
                         ManageSdmNew.getListData("sdm/get-rekapitulasi-capaian/" + dateHelper.getFormatMonthPicker($scope.item.periode) + "/" + $scope.item.pegawai.id)
                     ])
                     .then(function (res) {
@@ -132,6 +132,19 @@ define(['initialize'], function (initialize) {
                                     title: "idProduk",
                                     hidden: true
                                 }, {
+                                    field: "harga",
+                                    title: "Tarif (Rp.)",
+                                    template: '# if( isSatuTarif && hargaKelas1 != null ) {# #= hargaKelas1# #} else {# #= harga# #} #',
+                                    format: "{0:n0}",
+                                    width: 100,
+                                    headerAttributes: {
+                                        style: "text-align: center"
+                                    },
+                                    attributes: {
+                                        class: "table-cell",
+                                        style: "text-align: right; font-size: 14px;"
+                                    }
+                                }, {
                                     field: "poin",
                                     title: "Poin",
                                     headerAttributes: {
@@ -142,19 +155,6 @@ define(['initialize'], function (initialize) {
                                     attributes: {
                                         class: "table-cell",
                                         style: "text-align: right;"
-                                    }
-                                }, {
-                                    field: "hargaKelas1",
-                                    title: "Tarif (Rp.)",
-                                    template: '# if( hargaKelas1 != null ) {# #= hargaKelas1# #} else {# #= harga# #} #',
-                                    format: "{0:n0}",
-                                    width: 100,
-                                    headerAttributes: {
-                                        style: "text-align: center"
-                                    },
-                                    attributes: {
-                                        class: "table-cell",
-                                        style: "text-align: right; font-size: 14px;"
                                     }
                                 }, {
                                     field: "Pencapaian",
@@ -570,7 +570,7 @@ define(['initialize'], function (initialize) {
                 var isValid = ModelItem.setValidation($scope, listRawRequired);
                 if (isValid.status) {
                     var fixUrlLaporan = cetakHelper.openURLReporting("reporting/lapLogbookKinerjaStaffMedis?idDokter=" + $scope.item.pegawai.id + "&idJabatan=" + $scope.item.jabatanCetak.id
-                        + "&periode=" + dateHelper.getFormatMonthPicker($scope.item.periode));
+                        + "&periode=" + dateHelper.getFormatMonthPicker($scope.item.periode) + "&idAlternatif=1");
 
                     window.open(fixUrlLaporan, '', 'width=800,height=600')
                 } else {
