@@ -1770,7 +1770,7 @@ define(['initialize'], function (initialize) {
                 $scope.item.keterangan = dataSelected.keterangan
                 $scope.item.nobatch = dataSelected.nobatch
                 $scope.item.tglkadaluarsa = dataSelected.tglkadaluarsa
-                GETKONVERSI(dataSelected.jumlah)
+                // GETKONVERSI(dataSelected.jumlah)
                 if (dataSelected.nilaikonversi == null) {
                     $scope.item.nilaiKonversi = 1;
                 } else {
