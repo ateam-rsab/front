@@ -1104,7 +1104,7 @@ define(['initialize'], function (initialize) {
                     return
                 }
                 $scope.listSatuan = $scope.item.produk.konversisatuan
-                if ($scope.listSatuan.length == 0) {
+                if ($scope.listSatuan!='') {
                     $scope.listSatuan = ([{
                         ssid: $scope.item.produk.ssid,
                         satuanstandar: $scope.item.produk.satuanstandar
@@ -1734,7 +1734,9 @@ define(['initialize'], function (initialize) {
                 // }
                 $scope.item.produk = {
                     id: dataSelected.produkfk,
-                    namaproduk: dataSelected.namaproduk
+                    namaproduk: dataSelected.namaproduk,
+                    ssid: dataSelected.satuanstandarfk,
+                    satuanstandar: dataSelected.satuanstandar
                 }
                 $scope.listSatuan = [{
                     ssid: dataSelected.satuanstandarfk,
