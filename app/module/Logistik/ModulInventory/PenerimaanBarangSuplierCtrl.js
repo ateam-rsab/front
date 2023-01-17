@@ -1891,7 +1891,7 @@ define(['initialize'], function (initialize) {
                     tglstruk: moment($scope.item.tglTerima).format('YYYY-MM-DD HH:mm'),
                     tglorder: moment($scope.item.tglAwal).format('YYYY-MM-DD HH:mm'),
                     tglrealisasi: moment($scope.item.tglTerima).format('YYYY-MM-DD HH:mm'),
-                    tglkontrak: moment($scope.item.tglUsulan).format('YYYY-MM-DD HH:mm'),
+                    tglkontrak: ($scope.item.tglUsulan) ? moment($scope.item.tglUsulan).format('YYYY-MM-DD HH:mm') : '',
                     objectpegawaipenanggungjawabfk: $scope.item.pegawaiPembuat.id,
                     pegawaimenerimafk: $scope.item.pegawaiPenerima.id,
                     namapegawaipenerima: $scope.item.pegawaiPenerima.namalengkap,

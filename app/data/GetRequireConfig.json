@@ -1,6 +1,10 @@
 {
   "path": [
     {
+      "nameDep": "QuotaPraktikDokterCtrl",
+      "urlDep": "module/Laporan/PraktikDokter/QuotaPraktikDokterCtrl"
+    },
+    {
       "nameDep": "WaktuTungguResepCtrl",
       "urlDep": "module/Apotek/Dashboard/WaktuTungguResepCtrl"
     },

@@ -1,0 +1,48 @@
+<style type="text/css">
+    h4 {
+        font-size: 16px;
+        font-weight: bold;
+        color: #363737;
+        border: solid 1px #363737;
+        background: #ffffff;
+        padding: 15px;
+        margin: 0;
+        text-align: center;
+        line-height: 23px;
+
+    }
+</style>
+<md-toolbar md-scroll-shrink class="shadow">
+    <div class="md-toolbar-tools">Quota Praktik Dokter</div>
+</md-toolbar>
+
+<div class="grid_12">
+    <div class="grid_2">
+        <label c-label item="item">Periode</label>
+        <input style="width: 100%;" k-ng-model="item.tahun" k-max="now"  kendo-date-picker
+            k-options="yearSelected" />
+    </div>
+    <div class="grid_4">
+        <label><b>Dokter</b></label>
+        <input style="width: 100%;" kendo-combo-box k-ng-model="item.dokter"
+					k-data-text-field="'namaLengkap'" k-data-value-field="'id'"
+					k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai" />
+    </div>
+    <div class="grid_1" style="margin-top: 20px;">
+        <md-button class="md-raised md-primary medium-button" ng-click="getServiceTable()">
+            <span style="margin-right: 5px;">Cari</span>
+            <i class="fa fa-search"></i>
+        </md-button>
+    </div>
+</div>
+
+<div class="grid_12">
+    <!-- <div id="kGrid" kendo-grid k-data-source="listQuotaPraktikDokter" k-selectable="'row'" k-options="optGrid"
+        k-pageable="'true'" k-sortable="'true'" k-ng-model="selectedData">
+    </div> -->
+    <div kendo-grid id="gridQuotaPraktikDokter" k-data-source="listQuotaPraktikDokter" k-options="optGrid"></div>
+</div>
+
+<div class="grid_12" style="margin-top:60px">
+    <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+</div>

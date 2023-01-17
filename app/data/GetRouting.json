@@ -1,5 +1,29 @@
 [
   {
+    "name": "QuotaPraktikDokter",
+    "url": "/QuotaPraktikDokter",
+    "templateurl": "module/Laporan/PraktikDokter/QuotaPraktikDokter.html",
+    "controller": "QuotaPraktikDokterCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "TataRekeningService",
+        "define": "TataRekeningService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      }
+    ]
+  },
+  {
     "name": "WaktuTungguResep",
     "url": "/WaktuTungguResep",
     "templateurl": "module/Apotek/Dashboard/WaktuTungguResep.html",

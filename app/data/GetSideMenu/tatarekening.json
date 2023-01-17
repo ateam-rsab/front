@@ -68,6 +68,10 @@
         "name": "Laporan",
         "children": [
             {
+                "name": "Quota Praktik Dokter",
+                "link": "#/QuotaPraktikDokter"
+            },
+            {
                 "name": "Daftar Waktu Tunggu",
                 "link": "#/DaftarWaktuTunggu"
             },
