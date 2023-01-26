@@ -510,6 +510,8 @@ define(['initialize'], function (initialize) {
                         // kategoriHasilTriaseId: "",
                         noRec: noRec,
                         detailHasilTriase: listData,
+                        tgl_diputuskan_triage: moment($scope.item.tglDitetapkan).format('YYYY-MM-DD HH:mm:ss'),
+                        tgl_diperiksa_dokter: moment($scope.item.tglPemeriksaan).format('YYYY-MM-DD HH:mm:ss'),
                         tanggalMasuk: moment($scope.item.tglMasuk).format('YYYY-MM-DD HH:mm:ss'),
                         namaPasien: namaPasien,
                         statusPasien: "",

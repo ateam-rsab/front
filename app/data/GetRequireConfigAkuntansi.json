@@ -1,6 +1,10 @@
   {
     "path": [
       {
+        "nameDep": "SaldoBarangDetailv2Ctrl",
+        "urlDep": "module/Logistik/ModulInventory/SaldoBarangDetailv2Ctrl"
+      },
+      {
         "nameDep": "KamarDashboardCtrl",
         "urlDep": "module/Dashboard/Kamar/KamarDashboardCtrl"
       },

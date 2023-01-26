@@ -37,6 +37,15 @@
         ]
     },
     {
+        "name": "IGD",
+        "children": [
+            {
+                "name": "Daftar Hasil Triase",
+                "link": "#/DaftarHasilTriase"
+            }
+        ]
+    },
+    {
         "name": "Laporan",
         "children": [
             {

@@ -133,6 +133,18 @@ define(['initialize'], function (initialize) {
 					"title": "Hasil"
 				},
 				{
+					"field": "tgl_diputuskan",
+					"title": "Tanggal ditetapkan"
+				},
+				{
+					"field": "tgl_diperiksa_dokter",
+					"title": "Tanggal diperiksa"
+				},
+				{
+					"field": "response_time",
+					"title": "Response Time"
+				},
+				{
 					"command":
 						[
 							{
