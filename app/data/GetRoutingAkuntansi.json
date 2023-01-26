@@ -1,5 +1,29 @@
 [
   {
+    "name": "SaldoBarangDetailv2",
+    "url": "/SaldoBarangDetailv2",
+    "templateurl": "module/Logistik/ModulInventory/SaldoBarangDetailv2.html",
+    "controller": "SaldoBarangDetailv2Ctrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
+      },
+      {
+        "module": "AkuntansiService",
+        "define": "AkuntansiService"
+      }
+    ]
+  },
+  {
     "name": "KamarDashboard",
     "url": "/KamarDashboard",
     "templateurl": "module/Dashboard/Kamar/KamarDashboard.html",
