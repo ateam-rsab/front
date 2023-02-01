@@ -23,7 +23,8 @@ define(['initialize'], function (initialize) {
             $scope.now = new Date();
             $scope.dataVOloaded = true;
             $scope.isRouteLoading = false;
-            $scope.isVerifPresensi = false
+            $scope.isVerifPresensi = false;
+            $scope.rangkapSubUnit = false;
             var validate = 2;
             $scope.paramURl = '';
             //1 by tanggal
@@ -51,6 +52,7 @@ define(['initialize'], function (initialize) {
                 ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true")
             ]).then(function (res) {
                 $scope.isSingle = false;
+                $scope.rangkapSubUnit = res[0].data.data.rangkapSubUnit;
                 $scope.listUnitKerja = res[1].data.data.data;
                 $scope.showButtonInputJadwalDinas = res[0].data.data.data;
                 $scope.isMonitoring = res[0].data.data.dataMonitoring;
@@ -786,7 +788,7 @@ define(['initialize'], function (initialize) {
 
             $scope.$watch('item.unitKerja', function (newVal, oldVal) {
                 if (!newVal) return;
-                if ((newVal && oldVal) && newVal.id == oldVal.id || $scope.isSingle === true) return;
+                if ((newVal && oldVal) && newVal.id == oldVal.id || ($scope.isSingle === true && $scope.rangkapSubUnit === false)) return;
                 $scope.item.subUnitKerja = "";
                 if (ModelItem.getPegawai().nama === "Administrator" || $scope.isPegawaiSDM || $scope.pegawaiDayaGunaSDM == 249) {
                     ManageSdm.getOrderList("service/list-generic/?view=SubUnitKerjaPegawai&select=id,name&criteria=statusEnabled,unitKerjaId&values=true,"
@@ -804,7 +806,7 @@ define(['initialize'], function (initialize) {
             $scope.$watch('item.subUnitKerja', function (newVal, oldVal) {
                 if (oldVal != undefined) {
                     if (!newVal) return;
-                    if ((newVal && oldVal) && newVal.id == oldVal.id || $scope.isSingle === true) return;
+                    if ((newVal && oldVal) && newVal.id == oldVal.id || $scope.rangkapSubUnit === false) return;
                     if ($scope.item.subUnitKerja) {
                         ManageSdmNew.getListData("sdm/get-dataPegawai-rev?idUnitKerja=" + $scope.item.unitKerja.id + "&idSubUnitKerja=" + newVal.id
                             + "&idPegawaiLogin=" + $scope.pegawai.id).then(function (data) {
