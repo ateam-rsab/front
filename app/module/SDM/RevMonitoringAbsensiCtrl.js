@@ -806,7 +806,7 @@ define(['initialize'], function (initialize) {
             $scope.$watch('item.subUnitKerja', function (newVal, oldVal) {
                 if (oldVal != undefined) {
                     if (!newVal) return;
-                    if ((newVal && oldVal) && newVal.id == oldVal.id || $scope.rangkapSubUnit === false) return;
+                    if ((newVal && oldVal) && newVal.id == oldVal.id || ($scope.isSingle === true && $scope.rangkapSubUnit === false)) return;
                     if ($scope.item.subUnitKerja) {
                         ManageSdmNew.getListData("sdm/get-dataPegawai-rev?idUnitKerja=" + $scope.item.unitKerja.id + "&idSubUnitKerja=" + newVal.id
                             + "&idPegawaiLogin=" + $scope.pegawai.id).then(function (data) {
