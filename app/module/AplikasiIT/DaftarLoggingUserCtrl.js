@@ -105,6 +105,10 @@ define(['initialize'], function(initialize) {
                     id:21,
                     jenis:'Login User'
                 },
+                {
+                    id:22,
+                    jenis:'Resume Medis'
+                },
               
            
             ]

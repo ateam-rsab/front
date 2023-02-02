@@ -1,0 +1,592 @@
+<div class="grid_12">
+    <div ng-controller="RegistrasiPelayananGawatDaruratCtrl">
+        <c-form item='item'>
+            <div class="grid_12">
+                <div class="tiles">
+                    <!--<span class='title center' ng-show='currentDate!==undefined'>Waktu Penanganan :  {{currentDate}}</span>-->
+                    <div class="grid_12" ng-show="state===1" ng-click='next()'>
+                        <br/>
+                            <div class="tile bg-yellow-saffron green"
+                                style="height:100px">
+                                <div class="corner" style="float: left;
+                                    font-weight: bold; padding: 0 5px;"><span></span></div>
+                                <div class="check"></div>
+                                <div class="tile-body" style="overflow:
+                                    initial">
+                                    <i style="font-style: normal;"></i>
+                                </div>
+                                <div class="tile-object" style="top:0
+                                    !important;bottom:auto !important;">
+                                    <div class="icon-panel">
+                                        <img width='70px'
+                                            src='stylesheets/disease.png' />
+                                    </div>
+                                    <div class="text_panel">
+                                        <span class="title"><label c-label
+                                                c-label-text="mulaiPenangananTriase"></label></span>
+                                        <label c-label item="item"
+                                            c-label-text="deskripsiPenangananTriase"
+                                            class="sub-detail" no-bold></label><span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid_12" ng-show="state===2">
+                            <div class="grid_12 block-header-panel"
+                                style="position:relative">
+                                <div class="title" c-translate>Tanda Vital</div>
+                                <img width='50px' ng-click='next()'
+                                    style='position: absolute;top: 10px;right:
+                                    17px;z-index: 1;cursor: pointer;'
+                                    src='stylesheets/right.png' />
+                                <img width='50px' ng-click='back()'
+                                    style='position: absolute;top: 10px;right:
+                                    77px;z-index: 1;cursor: pointer;'
+                                    src='stylesheets/left.png' />
+                            </div>
+                            <div class="grid_12">
+                                <div class="grid_2" ng-repeat="data in
+                                    arrTandaVital">
+                                    <div class="grid_12"
+                                        style="margin-bottom:5px">
+                                        <label c-label item="item"
+                                            c-label-text="{{data.name}}"></label>
+                                    </div>
+
+                                    <div class="grid_12
+                                        parentKeteranganFieldTambahan">
+                                        <input c-text-box type="input"
+                                            filter="data.type" class="k-textbox"
+                                            ng-model="data.nilai" />
+                                        <label class="keteranganFieldTambahan">{{data.ket}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid_12" ng-show="state===3">
+                            <div class="grid_12 block-header-panel"
+                                style="position:relative">
+                                <div class="title" c-translate>Jalan Nafas</div>
+                                <img width='50px' ng-click='next()'
+                                    style='position: absolute;top: 10px;right:
+                                    17px;z-index: 1;cursor: pointer;'
+                                    src='stylesheets/right.png' />
+                                <img width='50px' ng-click='back()'
+                                    style='position: absolute;top: 10px;right:
+                                    77px;z-index: 1;cursor: pointer;'
+                                    src='stylesheets/left.png' />
+                            </div>
+                            <div class="grid_12" style="position:relative">
+                                &nbsp;
+                            </div>
+                            <div class="grid_4" ng-repeat='data in jalansNafas'>
+                                <div class="tile bg-yellow-saffron green"
+                                    ng-click='manageItem(data)'
+                                    style="height:100px">
+                                    <div class="corner" style="float: left;
+                                        font-weight: bold; padding: 0 5px;"><span></span></div>
+                                    <div class="check"></div>
+                                    <div class="tile-body" style="overflow:
+                                        initial">
+                                        <i style="font-style: normal;"></i>
+                                    </div>
+                                    <div class="tile-object">
+                                        <div class="icon-panel"
+                                            ng-show='data.isSelected'>
+                                            <img width='70px'
+                                                src='stylesheets/check.png' />
+                                        </div>
+                                        <div class="text_panel">
+                                            <span class="title">{{data.namaTriage}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid_12" ng-show="state===4">
+                            <div class="grid_12 block-header-panel"
+                                style="position:relative">
+                                <div class="title" c-translate>Pernafasan</div>
+                                <img width='50px' ng-click='next()'
+                                    style='position: absolute;top: 10px;right:
+                                    17px;z-index: 1;cursor: pointer;'
+                                    src='stylesheets/right.png' />
+                                <img width='50px' ng-click='back()'
+                                    style='position: absolute;top: 10px;right:
+                                    77px;z-index: 1;cursor: pointer;'
+                                    src='stylesheets/left.png' />
+                            </div>
+                            <div class="grid_12" style="position:relative">
+                                &nbsp;
+                            </div>
+                            <div class="grid_4" ng-repeat='data in pernafasans'>
+                                <div class="tile bg-yellow-saffron green"
+                                    ng-click='manageItem(data)'
+                                    style="height:100px">
+                                    <div class="corner" style="float: left;
+                                        font-weight: bold; padding: 0 5px;"><span></span></div>
+                                    <div class="check"></div>
+                                    <div class="tile-body" style="overflow:
+                                        initial">
+                                        <i style="font-style: normal;"></i>
+                                    </div>
+                                    <div class="tile-object" style="top:0
+                                        !important;bottom:auto !important;">
+                                        <div class="icon-panel"
+                                            ng-show='data.isSelected'>
+                                            <img width='70px'
+                                                src='stylesheets/check.png' />
+                                        </div>
+                                        <div class="text_panel">
+                                            <span class="title">{{data.namaTriage}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid_12" ng-show="state===5">
+                            <div class="grid_12 block-header-panel"
+                                style="position:relative">
+                                <div class="title" c-translate>Sirkulasi</div>
+                                <img width='50px' ng-click='next()'
+                                    style='position: absolute;top: 10px;right:
+                                    17px;z-index: 1;cursor: pointer;'
+                                    src='stylesheets/right.png' />
+                                <img width='50px' ng-click='back()'
+                                    style='position: absolute;top: 10px;right:
+                                    77px;z-index: 1;cursor: pointer;'
+                                    src='stylesheets/left.png' />
+                            </div>
+                            <div class="grid_12" style="position:relative">
+                                &nbsp;
+                            </div>
+                            <div class="grid_4" ng-repeat='data in sirkulasis'>
+                                <div class="tile bg-yellow-saffron green"
+                                    ng-click='manageItem(data)'
+                                    style="height:100px">
+                                    <div class="corner" style="float: left;
+                                        font-weight: bold; padding: 0 5px;"><span></span></div>
+                                    <div class="check"></div>
+                                    <div class="tile-body" style="overflow:
+                                        initial">
+                                        <i style="font-style: normal;"></i>
+                                    </div>
+                                    <div class="tile-object" style="top:0
+                                        !important;bottom:auto !important;">
+                                        <div class="icon-panel"
+                                            ng-show='data.isSelected'>
+                                            <img width='70px'
+                                                src='stylesheets/check.png' />
+                                        </div>
+                                        <div class="text_panel">
+                                            <span class="title">{{data.namaTriage}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid_12" ng-show="state===6">
+                            <div class="grid_12 block-header-panel"
+                                style="position:relative">
+                                <div class="title" c-translate>Kesadaran</div>
+                                <img width='50px' ng-click='next()'
+                                    style='position: absolute;top: 10px;right:
+                                    17px;z-index: 1;cursor: pointer;'
+                                    src='stylesheets/right.png' />
+                                <img width='50px' ng-click='back()'
+                                    style='position: absolute;top: 10px;right:
+                                    77px;z-index: 1;cursor: pointer;'
+                                    src='stylesheets/left.png' />
+                            </div>
+                            <div class="grid_12" style="position:relative">
+                                &nbsp;
+                            </div>
+                            <div class="grid_4" ng-repeat='data in kesadarans'>
+                                <div class="tile bg-yellow-saffron green"
+                                    ng-click='manageItem(data)'
+                                    style="height:100px">
+                                    <div class="corner" style="float: left;
+                                        font-weight: bold; padding: 0 5px;"><span></span></div>
+                                    <div class="check"></div>
+                                    <div class="tile-body" style="overflow:
+                                        initial">
+                                        <i style="font-style: normal;"></i>
+                                    </div>
+                                    <div class="tile-object" style="top:0
+                                        !important;bottom:auto !important;">
+                                        <div class="icon-panel"
+                                            ng-show='data.isSelected'>
+                                            <img width='70px'
+                                                src='stylesheets/check.png' />
+                                        </div>
+                                        <div class="text_panel">
+                                            <span class="title">{{data.namaTriage}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid_12" ng-show="state===7">
+                            <div class="grid_3" ng-repeat="triage in groupItem">
+                                &nbsp;
+                                <span class="title-small">{{triage.key}}</span>
+                                <ul>
+                                    <li ng-repeat="subItem in triage.children">
+                                        <input type="checkbox"
+                                            class="k-checkbox"
+                                            name="{{subItem.namaTriage}}"
+                                            id="{{subItem.namaTriage}}" disabled
+                                            readonly checked>
+                                        <label class="k-checkbox-label"
+                                            for="{{subItem.namaTriage}}">{{subItem.namaTriage}}</label>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <div class="grid_12 block-header-panel"
+                                style="position:relative">
+                                <div class="title" c-translate>Kategori Triage</div>
+                                <img width='50px' ng-click='next()'
+                                    style='position: absolute;top: 10px;right:
+                                    17px;z-index: 1;cursor: pointer;'
+                                    src='stylesheets/right.png' />
+                                <img width='50px' ng-click='back()'
+                                    style='position: absolute;top: 10px;right:
+                                    77px;z-index: 1;cursor: pointer;'
+                                    src='stylesheets/left.png' />
+                            </div>
+                            <div class="grid_12" style="position:relative">
+                                &nbsp;
+                            </div>
+                            <div class="grid_12">
+                                <div class="grid_3" ng-repeat='data in
+                                    kategories'>
+                                    <div class="tile bg-yellow-saffron green"
+                                        ng-click='changeKategori(data)'
+                                        style="height:100px">
+                                        <div class="corner" style="float: left;
+                                            font-weight: bold; padding: 0 5px;"><span></span></div>
+                                        <div class="check"></div>
+                                        <div class="tile-body" style="overflow:
+                                            initial">
+                                            <i style="font-style: normal;"></i>
+                                        </div>
+                                        <div class="tile-object" style="top:0
+                                            !important;bottom:auto !important;">
+                                            <div class="icon-panel"
+                                                ng-show='jenisKategori ===data'>
+                                                <img width='70px'
+                                                    src='stylesheets/check.png'
+                                                    />
+                                            </div>
+                                            <div class="text_panel">
+                                                <span class="title">{{data.namaHasilKategoriTriase}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid_12 panel" ng-show="state===8">
+                            <div class="grid_12">
+                                <h1>Kategori : {{jenisKategori.jenisKategori}}</h1>
+                            </div>
+
+                            <div class="grid_3" ng-repeat="triage in groupItem">
+                                &nbsp;
+                                <span class="title-small">{{triage.key}}</span>
+                                <ul>
+                                    <li ng-repeat="subItem in triage.children">
+                                        <input type="checkbox"
+                                            class="k-checkbox"
+                                            name="{{subItem.namaTriage}}"
+                                            id="{{subItem.namaTriage}}" disabled
+                                            readonly checked>
+                                        <label class="k-checkbox-label"
+                                            for="{{subItem.namaTriage}}">{{subItem.namaTriage}}</label>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li>{{data.nilai}}</li>
+                                </ul>
+                            </div>
+                            <div class="panel panel-default panel-white">
+                                <div class="panel-heading"><span class="title
+                                        ng-scope" c-translate="">Identitas
+                                        pengantar</span></div>
+                                <div class="panel-body">
+
+                                </div>
+                            </div>
+                            <div class="grid_12">
+                                <div class="grid_3">
+                                    <label c-label item="item"
+                                        c-label-text="tanggalMasuk"></label>
+                                    <!--<input required style="width: 100%" kendo-date-time-picker k-max="value" k-max="now" k-ng-model="item.pasien.tglMasuk" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />-->
+                                    <input required style="width: 100%"
+                                        k-ng-model="item.pasien.tglMasuk"
+                                        k-max="now" kendo-date-time-picker
+                                        value="now" placeholer="dd-mm-yyyy
+                                        HH:mm" k-format="'dd-MM-yyyy HH:mm'" />
+                                </div>
+
+                                <div class="grid_3">
+                                    <div class="grid_12">
+                                        <label c-label item="item"
+                                            c-label-text="NamaKeluarga"></label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <input c-text-box type="input"
+                                            filter="'string'" class="k-textbox"
+                                            ng-model="item.namaKeluarga" />
+                                    </div>
+                                </div>
+                                <div class="grid_3">
+                                    <div class="grid_12">
+                                        <label c-label item="item"
+                                            c-label-text="HubunganPasien"></label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <input style="width: 100%;"
+                                            kendo-combo-box
+                                            k-ng-model="item.hubunganKeluarga"
+                                            k-data-text-field="'namaexternal'"
+                                            k-filter="'contains'"
+                                            k-data-value-field="'id'"
+                                            k-data-source="listHubunganKeluarga"
+                                            />
+                                    </div>
+                                </div>
+                                <div class="grid_3">
+                                    <div class="grid_12">
+                                        <label c-label item="item"
+                                            c-label-text="TanggalLahir"></label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <input style="width: 100%"
+                                            kendo-date-picker k-max="now"
+                                            k-ng-model="item.tglLahir"
+                                            k-data-text-field="'tanggallahir'"
+                                            placeholer="dd-mm-yyyy"
+                                            k-format="'dd-MM-yyyy'" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid_12">
+
+                                <div class="grid_3">
+                                    <div class="grid_12">
+                                        <label c-label item="item"
+                                            c-label-text="KasusPolisi"></label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_4" ng-repeat="stat in
+                                            listKasusPolisi">
+                                            <input type="radio"
+                                                name="{{stat.name}}"
+                                                id="{{stat.name}}"
+                                                class="k-radio"
+                                                ng-model="item.kasusPolisi"
+                                                value="{{stat.name}}">
+                                            <label class="k-radio-label"
+                                                for="{{stat.name}}">{{stat.name}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid_3">
+                                    <div class="grid_12">
+                                        <label c-label item="item"
+                                            c-label-text="JenisKelamin"></label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_4" ng-repeat="stat in
+                                            listJenisKelamin">
+                                            <input type="radio"
+                                                name="{{stat.name}}"
+                                                id="{{stat.name}}"
+                                                class="k-radio"
+                                                ng-checked="stat.id===item.jenisKelaminId"
+                                                ng-model="item.kelamin"
+                                                value="{{stat.name}}"
+                                                ng-click="radioKelamin(stat)">
+                                            <label class="k-radio-label"
+                                                for="{{stat.name}}">{{stat.name}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="grid_3">
+                                    <div class="grid_12">
+                                        <label c-label item="item" c-label-text="Pasien"></label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_4" ng-repeat="stat in listStatusPasien">
+                                        <input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.PasienStatus" value="{{stat.name}}">
+                                        <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <div class="grid_3">
+                                    <div class="grid_12">
+                                        <div class="grid_12">
+                                            <label c-label item="item"
+                                                c-label-text="DibawaDengan"></label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <input style="width: 100%;"
+                                                kendo-combo-box
+                                                k-ng-model="item.transportasiPasien"
+                                                k-data-text-field="'name'"
+                                                k-filter="'contains'"
+                                                k-data-value-field="'id'"
+                                                k-data-source="listStatusBawa"
+                                                />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid_3">
+                                    <div class="grid_12">
+                                        <div class="grid_12">
+                                            <label c-label item="item"
+                                                c-label-text="Umur"></label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <input c-text-box type="input"
+                                                class="k-textbox"
+                                                ng-model="item.umurPasien" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid_12"
+                                ng-show="item.kasusPolisi==='Ya'">
+                                <div class="grid_3">
+                                    <div class="grid_12">
+                                        <label c-label item="item"
+                                            c-label-text="TanggalKejadian"></label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <input style="width: 100%"
+                                            kendo-date-time-picker k-max="now"
+                                            k-ng-model="item.tanggalKejadian"
+                                            k-data-text-field="'tanggallahir'"
+                                            placeholer="dd-mm-yyyy"
+                                            k-format="'dd-MM-yyyy hh:mm:ss'" />
+                                    </div>
+                                </div>
+                                <div class="grid_3">
+                                    <div class="grid_12">
+                                        <label c-label item="item"
+                                            c-label-text="TempatKejadian"></label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <input c-text-box type="input"
+                                            filter="'string'" class="k-textbox"
+                                            ng-model="item.tempatKejadian" />
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////// -->
+                            <div class="grid_6">
+                                <div class="grid_12"
+                                    ng-show="item.tipePasien==='Lama'">
+
+                                </div>
+                                <!--  <div class="grid_12" ng-show="item.tipePasien==='Lama'">
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="TanggalMasuk"></label>
+                        </div>
+                        <div class="grid_12">
+                            <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tglMasuk" k-data-text-field="'tanggallahir'" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                        </div>
+                    </div> -->
+                                <div class="grid_12" ng-show="isRegistrasi">
+                                    <div class="grid_12">
+                                        <label c-label item="item"
+                                            c-label-text="DibawaDengan"></label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <input style="width: 100%;"
+                                            kendo-combo-box
+                                            k-ng-model="item.transportasiPasien"
+                                            k-data-text-field="'name'"
+                                            k-filter="'contains'"
+                                            k-data-value-field="'id'"
+                                            k-data-source="listStatusBawa" />
+                                    </div>
+                                </div>
+                                <div class="clear"> </div>
+
+                                <div class="grid_12" ng-show="isRegistrasi">
+                                    <label c-label item="item"
+                                        c-label-text="TempatKejadian"></label>
+                                </div>
+                                <div class="grid_12" ng-show="isRegistrasi">
+                                    <input c-text-box type="input"
+                                        filter="'string'" class="k-textbox"
+                                        ng-model="item.tempatKejadian" />
+                                </div>
+                                <!-- <div class="grid_12" ng-show="item.tipePasien==='Lama'">
+                        <div class="grid_4">
+                            <label c-label item="item" c-label-text="JenisKelamin"></label>
+                        </div>
+                        <div class="grid_4" style="margin:10px 0 0 0;" ng-repeat="stat in listKelamin">
+                            <input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-checked="stat.id ===item.jenisKelaminId" ng-model="item.kelamin"  value="{{stat.name}}" ng-click="radioKelamin(stat)">
+                            <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+                        </div>
+                    </div> -->
+                            </div>
+                            <div class="panel panel-default panel-white">
+                                <div class="panel-heading"><span class="title
+                                        ng-scope" c-translate="">Identitas
+                                        Pasien</span></div>
+                                <div class="panel-body">
+                                    <div class='panel-body animated'>
+                                        <div class="grid_6">
+                                            <!-- <div class="grid_12" >
+                                <div class="grid_4">
+                                    <label c-label item="item" c-label-text="Pasien"></label>
+                                </div>
+                                <div class="grid_4" ng-repeat="stat in listStatusPasien">
+                                    <input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.tipePasien" value="{{stat.name}}">
+                                    <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+    
+                                </div>
+                            </div> -->
+                                            <div class="grid_12">
+                                                <label c-label item="item"
+                                                    c-label-text="Nama"></label>
+                                            </div>
+                                            <div class="grid_12">
+                                                <input c-text-box type="input"
+                                                    filter="'string'"
+                                                    class="k-textbox"
+                                                    ng-model="item.namaPasien"
+                                                    />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--<div class="grid_6">
+                                  <label c-label item="item" c-label-text="waktuDiTanganiDokter"></label> 
+                                            <input required style="width: 100%" kendo-date-time-picker k-max="now" k-ng-model="item.pasien.tglDitangaiDokter" placeholer="dd-mm-yyyy hh:mm:ss" k-format="'dd-MM-yyyy hh:mm:ss'" />
+                            </div>-->
+                                <div class="grid_12">
+                                    &nbsp;
+                                </div>
+
+                                <div ng-include='"
+                                    ../app/module/Shared/TemplateButtonSimpan"
+                                    '></div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </c-form>
+            </div>
+        </div>
