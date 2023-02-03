@@ -137,7 +137,7 @@ $(document).ready(function() {
             var pathConfig = {};
 
             for (var i = 0; i < dataConfig.length; i++) {
-                pathConfig[dataConfig[i].nameDep] = window.root + dataConfig[i].urlDep
+                pathConfig[dataConfig[i]] = window.root + dataConfig[i].urlDep
             }
             var config = {
                 baseUrl: '/',

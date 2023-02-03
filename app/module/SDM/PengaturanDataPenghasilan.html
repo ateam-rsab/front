@@ -1,0 +1,152 @@
+<div ng-controller="PengaturanDataPenghasilanCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Pengaturan Data Penghasilan'" disabled>      
+		<!-- <div class="panel-body">
+		
+		<div class="grid_6">
+		
+		 <div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Tahun"></label>
+			</div>
+			<div class="grid_8">
+				 <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisGaji" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListNamaAsuransi" />
+			</div>
+			
+			</div>
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Jenis Kartu"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nomorGaji" />
+			</div>
+			
+			</div>
+		
+		
+		
+		</div>
+		
+		<div class="grid_12">
+							<div class="grid_8" style="float:left">
+							
+							
+							<div class="grid_2" style="margin-top: 25px">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate click="Cancel">
+                					<span class="title">Batal</span></button>
+							</div>
+							<div class="grid_2 " style="margin-top: 25px ">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+									<span class="title">Cetak</span>
+									</button>
+							</div>
+							<div class="grid_2 " style="margin-top: 25px ">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+									<span class="title">Proses</span>
+									</button>
+							</div>
+							</div>
+						</div>
+		
+		
+				<div class="grid_9" >
+							<div class="grid_3" style="margin-top: 0">
+								<div class="grid_12" style="margin-left:5px">
+									
+								</div>
+								<div class="grid_12" style="margin-top:12px">
+										<label c-label item="item" c-label-text="Nama Pegawai"></label>
+								</div>
+							</div>
+							
+							<div class="grid_3" style="margin-top: 0">
+								
+								<div class="grid_12" style="margin: 0 0 0 -26px;">
+										<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nomorContoh" />
+								</div>
+							</div>
+							<div class="grid_2"  style="margin: 6px 0 0 -25px;">
+								<button class="c-button"  ng-click="cari()">
+								
+                            	Cari</button>
+							</div>
+						</div>
+						</div>
+		
+	
+		<div class="grid_12">
+				<kendo-grid  k-data-source="daftarBahanLinen" k-pageable="true" k-selectable="'row'" k-columns="columnLaporanUjiHasil"  style="font-size: small;">
+            	</kendo-grid>
+					
+			</div> -->
+		
+		<div class="grid_12">
+            <div class="grid_6">
+
+            </div>
+            <div class="grid_6">
+                <div class="grid_7" style="margin-top: 10px;">
+                    <label c-label item="item">Atur dalam excel</label>
+                </div>                
+                <div class="grid_1" style="margin-top: 10px;">
+                    <label c-label item="item">:</label>
+                </div>
+                <div class="grid_4">
+                    <button class="c-button success" ng-click="downloadFormat()">Unduh Template</button>
+                </div>
+                <div class="grid_7" style="margin-top: 10px;">
+                    <label c-label item="item">Atau unggah excel yang sudah diisi</label>
+                </div>                
+                <div class="grid_1" style="margin-top: 10px;">
+                    <label c-label item="item">:</label>
+                </div>
+                <div class="grid_4" style="margin-top: 10px;">
+                    <input id="filePicker" valid-extensions="xls" data-max-size="2048" kendo-upload k-multiple="false" , k-select="onSelectFile" type="file">
+                </div>
+            </div>
+        </div>
+        <div class="grid_12" style="margin-top:2em">
+            <div class="grid_3">
+                <label c-label item="item" c-label-text="Bulan"></label>
+                <input kendo-date-picker k-max="now" style="width: 80%;">
+            </div>
+            <div class="grid_3">
+                <label c-label item="item" c-label-text="Unit Kerja"></label>
+                <input style="width: 80%;" kendo-combo-box>
+            </div>
+            <div class="grid_3">
+                <label c-label item="item" c-label-text="Pegawai"></label>
+                <input style="width: 80%;" kendo-combo-box>
+            </div>
+            <div class="grid_3" style="margin-top: 21px;">
+                <button class="c-button">Cari</button>
+            </div>
+        </div>
+        <div class="grid_12">
+            <div style="margin-top: 1em;">
+                <div class="grid_3">
+                    <button class="c-button" style="width: 80%;">Tambah</button>
+                </div>
+                <div class="grid_3">
+                    <button class="c-button" style="width: 80%;">Edit</button>
+                </div>
+            </div>
+            <div class="grid_6"></div>
+        </div>
+		<div class="grid_12" style="margin-top:1em">
+            <kendo-grid  k-data-source="daftarBahanLinen" k-pageable="true" k-selectable="'row'" k-columns="columnRincianDataPenghasilan"  style="font-size: small;">
+            </kendo-grid>               
+        </div>
+		
+		
+		
+		
+		
+		</c-panel>
+			
+		</div>
+	</div>
+</div>
+

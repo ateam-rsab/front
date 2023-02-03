@@ -357,6 +357,10 @@
       "urlDep": "module/SDM/CetakKartuGajiCtrl"
     },
     {
+      "nameDep": "PengaturanDataPenghasilanCtrl",
+      "urlDep": "module/SDM/PengaturanDataPenghasilanCtrl"
+    },
+    {
       "nameDep": "MasterUraianTugasCtrl",
       "urlDep": "module/SDM/MasterUraianTugasCtrl"
     },

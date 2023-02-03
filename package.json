@@ -47,6 +47,7 @@
     "multer": "^1.2.0",
     "node-sass": "^3.7.0",
     "node-storage": "0.0.7",
+    "nodemon": "^2.0.19",
     "rabbit.js": "^0.4.4",
     "socket.io": "^1.7.3",
     "socket.io-client": "^1.7.3",
