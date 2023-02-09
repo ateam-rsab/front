@@ -357,7 +357,8 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                         'noHp': $scope.item.noHp != undefined ? $scope.item.noHp : null,
                         'tempatLahir': $scope.item.tempatLahir,
                         'namaKeluarga': $scope.item.namaKeluarga != undefined ? $scope.item.namaKeluarga : null,
-                        'tglLahir': moment($scope.item.tglLahir).format('YYYY-MM-DD HH:mm')
+                        'tglLahir': moment($scope.item.tglLahir).format('YYYY-MM-DD HH:mm'),
+                        'email': $scope.item.email ? $scope.item.email : '-'
                     },
                     'agama': {
                         'id': $scope.item.agama != undefined ? $scope.item.agama.id : null,
@@ -401,7 +402,6 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                         'id': $scope.item.propinsi != undefined ? $scope.item.propinsi.id : null,
                     },
                     'kodePos': $scope.item.kodePos != undefined ? $scope.item.kodePos : null,
-                    'email': $scope.item.email ? $scope.item.email : '-'
                 }
                 managePhp.postData(postJson, 'pasien/save-pasien-fix')
                     .then(
