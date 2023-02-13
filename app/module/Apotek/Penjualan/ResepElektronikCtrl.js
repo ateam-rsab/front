@@ -320,6 +320,14 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.verifikasi = function () {
+                manageLogistikPhp.postpost('apotik/validasi-pasien-bayar?noreg=' + $scope.item.noregistrasi, '').then(res => {
+                    $scope.prosesVerifikasi();
+                }, error => {
+                    window.messageContainer.error("Opss! sudah close billing");
+                });
+            }
+
+            $scope.prosesverifikasi = () => {
                 if ($scope.item.statusorder == 'Blm Verifikasi') {
                     var arrStr = {
                         0: $scope.item.nocm,
