@@ -62,6 +62,7 @@ define(['initialize'], function(initialize) {
                     "&tglAkhir=" + tglAkhir +
                     "&keterangan=" + Jra
                     , true).then(function(dat){
+                        console.log(dat);
                         $scope.isRouteLoading=false;
                     // for (var i = 0; i < dat.data.data.length; i++) {
                     //     dat.data.data[i].no = i+1
@@ -87,6 +88,7 @@ define(['initialize'], function(initialize) {
                     
                     $scope.dataGrid = new kendo.data.DataSource({
                         data: dat.data,
+                        
                         // group: {
                         //     field: "tgl",
                         //     aggregates: [
@@ -290,7 +292,7 @@ define(['initialize'], function(initialize) {
                 filterable: false,
                 pageable: true,
                 columnMenu: false,
-                resizable: true,
+                resizable: true, 
                 selectable: 'row',
                 columns:[
                     // {

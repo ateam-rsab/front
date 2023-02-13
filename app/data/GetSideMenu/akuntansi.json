@@ -4,6 +4,23 @@
     "link": "#/JurnalRev2018"
   },
   {
+    "name": "BIOS",
+    "children": [
+      {
+        "name": "Penerimaan",
+        "link": "#/PenerimaanBridging"
+      },
+      {
+        "name": "Pengeluaran",
+        "link": "#/PengeluaranBridging"
+      },
+      {
+        "name": "Pengelolaan Rekening",
+        "link": "#/PengelolaanRekeningBridging"
+      }
+    ]
+  },
+  {
     "name": "Buku Besar ",
     "link": "#/LaporanBukuBesar"
   },

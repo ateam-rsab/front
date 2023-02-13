@@ -1,0 +1,110 @@
+<!-- primary color #10c4b2 -->
+<style>
+  #cellOne,
+  #cellTwo {
+    border: 1px solid #10c4b2;
+    padding: 0.5em;
+  }
+  .newRow,
+  .saveRow {
+    border: none;
+    background-color: #10c4b2;
+    color: #fff;
+    padding: 0.5em;
+  }
+  .newRow:hover {
+    background-color: #222;
+  }
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td,
+  th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+  .c-label {
+    display: inline !important;
+  }
+  label {
+    width: 50%;
+  }
+</style>
+<div ng-controller="PenerimaanBridgingCtrl">
+  <div ng-show="dataVOloaded">
+    <div class="grid_12 headerBox">
+      <h1 style="color: white"><b>Penerimaan</b></h1>
+    </div>
+    <div class="grid_12" style="margin-top: 1em">
+      <div class="grid_6">
+        <form name="formPenerimaan">
+            <ul class="form-penerimaan" ng-repeat="data in dataLists track by $index">
+                <div>
+                    <li class="grid_4">
+                      <label c-label item="item" c-label-text="Id"></label>
+                      <input type="input" c-text-box class="k-textbox" ng-model="data.id">
+                    </li>
+                    <li class="grid_4">
+                        <label c-label item="item" c-label-text="Kode Akun"></label>
+                        <input type="input" c-text-box class="k-textbox" ng-model="data.kd_akun">
+                    </li>
+                    <li class="grid_4">
+                        <label c-label item="item" c-label-text="Jumlah"></label>
+                        <input type="input" c-text-box class="k-textbox" ng-model="data.jumlah">
+                    </li>
+                </div>
+                  <button ng-show="dataLists.length == $index + 1" class="c-button" style="width:20%; margin-top: 1em; margin-bottom: 1em;" ng-click="addDataLists()">Tambah Akun</button>
+                  <button ng-show="dataLists.length == $index + 1" class="c-button" style="width:20%; margin-left: 2em; margin-top: 1em; margin-bottom: 1em;" ng-click="postData()">Simpan</button>
+            </ul>
+                <!-- <button type="button" class="add-btn" ng-click="addDataLists($index)">Tambah</button> -->
+        </form>
+      </div>
+    <div class="grid_2"></div>
+      <!-- <div class="grid_4">
+        <div class="grid_12">
+          <label c-label item="item" c-label-text="Periode Tanggal"></label>
+        </div>
+        <div class="grid_12">
+          <div class="grid_8 padDatePicker">
+            <div class="grid_12">
+              <input
+                style="width: 100%"
+                k-ng-model="tanggal"
+                kendo-datetimepicker
+                placeholer="yyyy-MM-dd HH:mm"
+                k-format="'yyyy-MM-dd HH:mm'"
+              />
+            </div>
+          </div>
+          <div class="grid_2">
+            <button class="c-button" ng-click="cariFilter()">Cari</button>
+          </div>
+        </div>
+      </div> -->
+    </div>
+    <div class="grid_12"> 
+      <div class="clear"></div>
+
+      <!-- grid table -->
+      <!-- <div class="grid_12 borderBox">
+        <kendo-grid
+          id="grid"
+          k-data-source="dataGrid"
+          k-options="optionsDataGrid"
+          k-ng-model="dataSelected"
+          ng-click=""
+        >
+        </kendo-grid>
+        <div class="clear"></div>
+      </div> -->
+    </div>
+  </div>
+</div>

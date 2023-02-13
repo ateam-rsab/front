@@ -1661,6 +1661,18 @@
         "urlDep": "module/Gizi/KirimMenuMakananAllCtrl"
       },
       {
+        "nameDep": "PenerimaanBridgingCtrl",
+        "urlDep": "module/Akuntansi/Laporan/PenerimaanBridgingCtrl"
+      },
+      {
+        "nameDep": "PengeluaranBridgingCtrl",
+        "urlDep": "module/Akuntansi/Laporan/PengeluaranBridgingCtrl"
+      },
+      {
+        "nameDep": "PengelolaanRekeningBridgingCtrl",
+        "urlDep": "module/Akuntansi/Laporan/PengelolaanRekeningBridgingCtrl"
+      },
+      {
         "nameDep": "BukuBesarPembantuCtrl",
         "urlDep": "module/Akuntansi/Jurnal/BukuBesarPembantuCtrl"
       },

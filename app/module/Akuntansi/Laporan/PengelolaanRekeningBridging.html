@@ -1,0 +1,45 @@
+<div ng-controller="PengelolaanRekeningBridgingCtrl">
+    <div ng-show="dataVOloaded">
+      <div class="grid_12 headerBox">
+        <h1 style="color: white"><b>Pengelolaan Rekening</b></h1>
+      </div>
+      <div class="grid_12">
+        <div class="grid_8"></div>
+        <div class="grid_4">
+            <div class="grid_12">
+              <label c-label item="item" c-label-text="Periode Tanggal"></label>
+            </div>
+            <div class="grid_12">
+              <!-- PeriodeTangal -->
+              <div class="grid_8 padDatePicker">
+                <div class="grid_12">
+                  <input
+                    style="width: 100%"
+                    k-ng-model="tanggal"
+                    kendo-datetimepicker
+                    placeholer="yyyy-MM-dd HH:mm"
+                    k-format="'yyyy-MM-dd HH:mm'"
+                  />
+                </div>
+              </div>
+              <div class="grid_2">
+                <button class="c-button" ng-click="cariFilter()">Cari</button>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="grid_12">
+        <div class="clear"></div>
+        <div class="grid_12 borderBox">
+            <kendo-grid
+            id="grid"
+            k-data-source="dataGrid"
+            k-options="optionsDataGrid"
+            k-ng-model="dataSelected"
+          >
+          </kendo-grid>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </div>
