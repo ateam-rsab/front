@@ -31,6 +31,9 @@ define(['initialize'], function (initialize) {
             $scope.listHubungan = [
                 { "id": 4, "nama": "Hubungan pasien dengan anggota keluarga", "detail": [{ "id": 1, "nama": "Baik" }, { "id": 2, "nama": "Tidak Baik" }] }
             ]
+            $scope.listYaTidak = [
+                { "id": 4, "nama": "-", "detail": [{ "id": 1, "nama": "Ada" }, { "id": 2, "nama": "Tidak Ada" }] }
+            ]
 
             $scope.getdata = function () {
                 var objectfk = "PSI";
@@ -163,7 +166,34 @@ define(['initialize'], function (initialize) {
                                     $scope.noRecHubungan = $scope.dataPsikologi[i].norec
                                     $scope.item.hubungan = $scope.dataPsikologi[i].nilai;
                                 }
-
+                                if ($scope.dataPsikologi[i].objectfk == "PSI-000013") {
+                                    $scope.noRecStatusTigaBelas = $scope.dataPsikologi[i].norec
+                                    if($scope.dataPsikologi[i].nilai=="1"){
+                                        $('#kepercayaan1').prop("checked",true)
+                                        $('#kepercayaan2').prop("checked",false);
+                                        $scope.isKepercayaan = false;
+                                        $scope.item.kepercayaandetail = ''
+                                    }else{
+                                        $('#kepercayaan1').prop("checked",false);
+                                        $('#kepercayaan2').prop("checked",true);
+                                        $scope.isKepercayaan = true;
+                                        $scope.item.kepercayaandetail = $scope.dataPsikologi[i].nilai
+                                    }
+                                }
+                                if ($scope.dataPsikologi[i].objectfk == "PSI-000014") {
+                                    $scope.noRecStatusEmpatBelas = $scope.dataPsikologi[i].norec
+                                     if($scope.dataPsikologi[i].nilai=="1"){
+                                        $('#budaya1').prop("checked",true)
+                                        $('#budaya2').prop("checked",false);
+                                        $scope.isBudayalain = false;
+                                        $scope.item.budayalaindetail = ''
+                                    }else{
+                                        $('#budaya1').prop("checked",false);
+                                        $('#budaya2').prop("checked",true);
+                                        $scope.isBudayalain = true;
+                                        $scope.item.budayalaindetail = $scope.dataPsikologi[i].nilai
+                                    }
+                                }
                             }
                         }
                     })
@@ -307,18 +337,18 @@ define(['initialize'], function (initialize) {
 
                 if($scope.item.kepercayaan){
                     var tmpStatus = {
-                        norec: $scope.noRecHubungan,
+                        norec: $scope.noRecStatusTigaBelas,
                         objectfk: "PSI-000013",
-                        nilai: "1",
+                        nilai:  $scope.item.kepercayaandetail,
                         satuan: "-",
                         jenisobject: "radio button"
                     }
                     tempData.push(tmpStatus);
                 }else{
                     var tmpStatus = {
-                        norec: $scope.noRecHubungan,
-                        objectfk: "PSI-000014",
-                        nilai: $scope.item.kepercayaandetail,
+                        norec: $scope.noRecStatusTigaBelas,
+                        objectfk: "PSI-000013",
+                        nilai: "1",
                         satuan: "-",
                         jenisobject: "radio button"
                     }
@@ -327,21 +357,21 @@ define(['initialize'], function (initialize) {
 
                 if($scope.item.budayalain){
                     var tmpStatus = {
-                        norec: $scope.noRecHubungan,
-                        objectfk: "PSI-000015",
-                        nilai: 1,
+                        norec: $scope.noRecStatusEmpatBelas,
+                        objectfk: "PSI-000014",
+                        nilai: $scope.item.budayalaindetail,
                         satuan: "-",
-                        jenisobject: "text area"
+                        jenisobject: "radio button"
                     }
                     tempData.push(tmpStatus);
                 }else{
                     var tmpStatus = {
-                        norec: $scope.noRecHubungan,
-                        objectfk: "PSI-000015",
-                        nilai: $scope.item.budayalaindetail,
+                        norec: $scope.noRecStatusEmpatBelas,
+                        objectfk: "PSI-000014",
+                        nilai: "1",
                         satuan: "-",
-                        jenisobject: "text area"
-                    }
+                        jenisobject: "radio button"
+                    }   
                     tempData.push(tmpStatus);
                 }
 
@@ -361,13 +391,13 @@ define(['initialize'], function (initialize) {
                     noregistrasifk: $state.params.noRec,
                     riwayatpapfk: $scope.noRecPap
                 }
-                console.log(jsonSave)
-                // ManagePhp.saveData(jsonSave).then(function (e) {
-                //     $scope.currentStatus = [];
-                //     $scope.getdata();
-                //     ManagePhp.postLogging('Pengkajian Keperawatan', 'Norec Antrian Pasien Diperiksa', $state.params.noRec, 'Psikososial').then(function (res) {
-                //     })
-                // });
+                // console.log(jsonSave)
+                ManagePhp.saveData(jsonSave).then(function (e) {
+                    $scope.currentStatus = [];
+                    $scope.getdata();
+                    ManagePhp.postLogging('Pengkajian Keperawatan', 'Norec Antrian Pasien Diperiksa', $state.params.noRec, 'Psikososial').then(function (res) {
+                    })
+                });
             }
 
         }
