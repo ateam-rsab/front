@@ -687,7 +687,7 @@ define(["initialize"], function (initialize) {
                             groupable: true,
                             group: [
                                 {
-                                    field: "resep"
+                                    field: "obat"
                                 },
                             ],
                             total: newObat,

@@ -15,6 +15,30 @@ hr {
     <div class="clear"></div>
     <br/>
     <div class="grid_12" style="margin-bottom:40px">
+        <div class="grid_12" style="padding: 5pt 10pt">
+            <b>Agama/Kepercayaan</b>
+        </div>
+        <div class="grid_12" style="padding-left:10px ">
+            <div class="grid_2">
+                <input type="radio" class="k-radio" name="agm1" id="agm1" ng-model="item.kepercayaan" value="agm1" ng-click="agamaChecked(this)">
+                <label class="k-radio-label" for="agm1">Tidak Ada</label>
+            </div>
+            <div class="grid_2">
+                <input type="radio" class="k-radio" name="agm2" id="agm2" ng-model="item.kepercayaan" value="agm2" ng-click="agamaChecked(this)">
+                <label class="k-radio-label" for="agm2">Ada, Sebutkan</label>
+            </div>
+            <div class="grid_6" ng-if="isAgama" style="padding-left:0px ">
+                <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.agm2detail" placeholder="Sebutkan agama disini">
+            </div>
+        </div>
+        <div class="grid_12" style="padding-left:10px ">
+            <div class="grid_3" style="margin-top: 10px">
+                <label>Nilai-nilai /budaya yang diyakini:</label>
+            </div>
+            <div class="grid_5">
+                <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.budayalain">
+            </div>
+        </div>
         <!-- form untuk Psikososial -->
         <div class="grid_12" ng-repeat="list in listStatus | orderBy:'id'" style="padding: 5pt 10pt">
             <b>{{list.nama}}</b>
