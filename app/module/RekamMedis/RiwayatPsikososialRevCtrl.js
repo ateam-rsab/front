@@ -334,8 +334,8 @@ define(['initialize'], function (initialize) {
                     }
                     tempData.push(tmpStatus);
                 }
-
-                if($scope.item.kepercayaan){
+                
+                if($scope.item.kepercayaan!=undefined){
                     var tmpStatus = {
                         norec: $scope.noRecStatusTigaBelas,
                         objectfk: "PSI-000013",
@@ -344,7 +344,8 @@ define(['initialize'], function (initialize) {
                         jenisobject: "radio button"
                     }
                     tempData.push(tmpStatus);
-                }else{
+                }
+                else{
                     var tmpStatus = {
                         norec: $scope.noRecStatusTigaBelas,
                         objectfk: "PSI-000013",
@@ -355,7 +356,7 @@ define(['initialize'], function (initialize) {
                     tempData.push(tmpStatus);
                 }
 
-                if($scope.item.budayalain){
+                if($scope.item.budayalain!=undefined){
                     var tmpStatus = {
                         norec: $scope.noRecStatusEmpatBelas,
                         objectfk: "PSI-000014",
@@ -364,7 +365,8 @@ define(['initialize'], function (initialize) {
                         jenisobject: "radio button"
                     }
                     tempData.push(tmpStatus);
-                }else{
+                }
+                else{
                     var tmpStatus = {
                         norec: $scope.noRecStatusEmpatBelas,
                         objectfk: "PSI-000014",
