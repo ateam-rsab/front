@@ -13,8 +13,9 @@ define(['initialize'], function (initialize) {
             $rootScope.tanggal = $state.params.tanggal;
             $scope.pasien = {};
             $scope.item = {};
-            $scope.isAgama = false;
-            $scope.title = "PSIKOSOSIAL";
+            $scope.isKepercayaan = false;
+            $scope.isBudayalain = false;
+            $scope.title = "PSIKOSOSIAL, SPIRITUAL & BUDAYA";
 
             $scope.noRecPap = cacheHelper.get('noRecPap');
 
@@ -170,7 +171,10 @@ define(['initialize'], function (initialize) {
             $scope.getdata();
 
             $scope.agamaChecked=(data)=>{
-                data.item.kepercayaan=="agm2" ? $scope.isAgama = true : $scope.isAgama = false;
+                data.item.kepercayaan=="kepercayaan2" ? $scope.isKepercayaan = true : $scope.isKepercayaan = false;
+            }
+            $scope.budayaChecked=(data)=>{
+                data.item.budayalain=="budaya2" ?  $scope.isBudayalain = true :  $scope.isBudayalain = false;
             }
             $scope.currentStatus = [];
             $scope.addListStatus = function (bool, data) {
@@ -314,7 +318,7 @@ define(['initialize'], function (initialize) {
                     var tmpStatus = {
                         norec: $scope.noRecHubungan,
                         objectfk: "PSI-000014",
-                        nilai: $scope.item.agm2detail,
+                        nilai: $scope.item.kepercayaandetail,
                         satuan: "-",
                         jenisobject: "radio button"
                     }
@@ -325,7 +329,16 @@ define(['initialize'], function (initialize) {
                     var tmpStatus = {
                         norec: $scope.noRecHubungan,
                         objectfk: "PSI-000015",
-                        nilai: $scope.item.budayalain,
+                        nilai: 1,
+                        satuan: "-",
+                        jenisobject: "text area"
+                    }
+                    tempData.push(tmpStatus);
+                }else{
+                    var tmpStatus = {
+                        norec: $scope.noRecHubungan,
+                        objectfk: "PSI-000015",
+                        nilai: $scope.item.budayalaindetail,
                         satuan: "-",
                         jenisobject: "text area"
                     }
