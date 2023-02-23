@@ -336,47 +336,48 @@ define(['initialize'], function (initialize) {
                 }
                 
                 if($scope.item.kepercayaan!=undefined){
-                    var tmpStatus = {
-                        norec: $scope.noRecStatusTigaBelas,
-                        objectfk: "PSI-000013",
-                        nilai:  $scope.item.kepercayaandetail,
-                        satuan: "-",
-                        jenisobject: "radio button"
+                    if($scope.item.kepercayaan=="kepercayaan2"){
+                        var tmpStatus = {
+                            norec: $scope.noRecStatusTigaBelas,
+                            objectfk: "PSI-000013",
+                            nilai:  $scope.item.kepercayaandetail,
+                            satuan: "-",
+                            jenisobject: "radio button"
+                        }
+                    }else{
+                        var tmpStatus = {
+                            norec: $scope.noRecStatusTigaBelas,
+                            objectfk: "PSI-000013",
+                            nilai:  "1",
+                            satuan: "-",
+                            jenisobject: "radio button"
+                        }
                     }
-                    tempData.push(tmpStatus);
-                }
-                else{
-                    var tmpStatus = {
-                        norec: $scope.noRecStatusTigaBelas,
-                        objectfk: "PSI-000013",
-                        nilai: "1",
-                        satuan: "-",
-                        jenisobject: "radio button"
-                    }
+                    
                     tempData.push(tmpStatus);
                 }
 
                 if($scope.item.budayalain!=undefined){
-                    var tmpStatus = {
-                        norec: $scope.noRecStatusEmpatBelas,
-                        objectfk: "PSI-000014",
-                        nilai: $scope.item.budayalaindetail,
-                        satuan: "-",
-                        jenisobject: "radio button"
+                    if($scope.item.budayalain=="budaya2"){
+                        var tmpStatus = {
+                            norec: $scope.noRecStatusEmpatBelas,
+                            objectfk: "PSI-000014",
+                            nilai: $scope.item.budayalaindetail,
+                            satuan: "-",
+                            jenisobject: "radio button"
+                        }
+                    }else{
+                        var tmpStatus = {
+                            norec: $scope.noRecStatusEmpatBelas,
+                            objectfk: "PSI-000014",
+                            nilai: "1",
+                            satuan: "-",
+                            jenisobject: "radio button"
+                        }
                     }
+                    
                     tempData.push(tmpStatus);
                 }
-                else{
-                    var tmpStatus = {
-                        norec: $scope.noRecStatusEmpatBelas,
-                        objectfk: "PSI-000014",
-                        nilai: "1",
-                        satuan: "-",
-                        jenisobject: "radio button"
-                    }   
-                    tempData.push(tmpStatus);
-                }
-
                 for (var i = tempData.length - 1; i >= 0; i--) {
                     if (tempData[i].nilai == undefined) {
                         tempData.splice([i], 1)
