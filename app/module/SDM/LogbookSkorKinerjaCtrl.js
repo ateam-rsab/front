@@ -457,6 +457,14 @@ define(['initialize'], function (initialize) {
                 });
             };
 
+            $scope.printPDF=()=>{
+                let newElement = $('#table-data').html();
+                let printWindow=window.open('','','height=auto,width=auto')
+                printWindow.document.write(newElement);
+                printWindow.document.title='logbook skor kinerja';
+                printWindow.document.close;
+                printWindow.print();
+            }
             $scope.detailTindakan = (ds, detail, data) => {
                 $scope.isRouteLoading = true;
 
