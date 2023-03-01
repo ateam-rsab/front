@@ -1,0 +1,93 @@
+<style>
+	body {
+		overflow-x: hidden;
+	}
+	.style-center {
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+    }
+	.k-grid-header th.k-header {
+		text-align: center !important;
+	}
+	.k-grid td {
+		text-align: center !important;
+	}
+</style>
+<div ng-controller="PengaturanDataPenghasilanCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Pengaturan Data Penghasilan'" disabled>      
+
+		
+		<div class="grid_12">
+            <div class="grid_6">
+
+            </div>
+            <div class="grid_6">
+                <div class="grid_7" style="margin-top: 10px;">
+                    <label c-label item="item">Atur dalam excel</label>
+                </div>                
+                <div class="grid_1" style="margin-top: 10px;">
+                    <label c-label item="item">:</label>
+                </div>
+                <div class="grid_4">
+                    <button class="c-button success"><a href="../../data/dokumen/Template_Slip_Gaji_20230203_074651.xls" style="color:#fff" download>Download Template</a></button>
+                </div>
+                <div class="grid_7" style="margin-top: 10px;">
+                    <label c-label item="item">Atau unggah excel yang sudah diisi</label>
+                </div>                
+                <div class="grid_1" style="margin-top: 10px;">
+                    <label c-label item="item">:</label>
+                </div>
+                <div class="grid_4" style="margin-top: 10px;">
+                    <input id="filePicker" valid-extensions="xls" data-max-size="2048" kendo-upload k-multiple="false" , k-select="onSelectFile" type="file">
+                </div>
+            </div>
+        </div>
+        <div class="grid_12" style="margin-top:2em">
+            <div class="grid_3">
+                <label c-label item="item" c-label-text="Bulan"></label>
+                <input k-ng-model="tanggal"  kendo-datetimepicker placeholder="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" style="width: 80%;" style="margin-top: 0;" />
+            </div>
+            <div class="grid_3">
+                <label c-label item="item" c-label-text="Unit Kerja"></label>
+                <input style="width: 80%;" kendo-combo-box>
+            </div>
+            <div class="grid_3">
+                <label c-label item="item" c-label-text="Pegawai"></label>
+                <input style="width: 80%;" kendo-combo-box>
+            </div>
+            <div class="grid_3" style="margin-top: 21px;">
+                <button class="c-button">Cari</button>
+            </div>
+        </div>
+        <!-- <div class="grid_12">
+            <div style="margin-top: 1em;">
+                <div class="grid_3">
+                    <button class="c-button" style="width: 80%;">Tambah</button>
+                </div>
+                <div class="grid_3">
+                    <button class="c-button" style="width: 80%;">Edit</button>
+                </div>
+            </div>
+            <div class="grid_6"></div>
+        </div> --> 
+
+		<div class="grid_12" style="margin-top:1em">
+            <div class="grid_12 borderBox">
+				<kendo-grid
+				  k-data-source="dataGrid"
+				  k-selectable="'row'"
+				  options="columnGridExcel"
+				  k-pageable="'true'"
+				  k-sortable="'true'"
+				>
+				</kendo-grid>
+			  </div>  
+        </div>
+			
+		</div>
+	</div>
+</div>
+

@@ -450,6 +450,10 @@
                     {
                         "name": "Cetak Kartu Gaji Pegawai",
                         "link": "#/CetakKartuGaji"
+                    },
+                    {
+                        "name": "Pengaturan Data Penghasilan",
+                        "link": "#/PengaturanDataPenghasilan"
                     }
                 ]
             },

@@ -2152,6 +2152,26 @@
     ]
   },
   {
+    "name": "PengaturanDataPenghasilan",
+    "url": "/PengaturanDataPenghasilan",
+    "templateurl": "module/SDM/PengaturanDataPenghasilan.html",
+    "controller": "PengaturanDataPenghasilanCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      }
+    ]
+  },
+  {
     "name": "GajiPegawaiHonor",
     "url": "/GajiPegawaiHonor",
     "templateurl": "module/SDM/GajiPegawaiHonor.html",

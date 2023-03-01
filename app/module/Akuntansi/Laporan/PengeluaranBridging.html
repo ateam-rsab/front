@@ -1,0 +1,93 @@
+<!-- primary color #10c4b2 -->
+<style>
+    body {
+      overflow-x: hidden;
+    }
+    .style-center {
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+    }
+    .c-label {
+      display: inline !important;
+    }
+    label {
+      width: 50%;
+    }
+    .delete-button {
+      background-color: rgb(240, 68, 68);
+      color: #fff;
+    }
+  </style>
+  <div ng-controller="PengeluaranBridgingCtrl">
+    <div ng-show="dataVOloaded">
+      <div class="grid_12 headerBox">
+        <h1 style="color: white"><b>Pengeluaran</b></h1>
+      </div>
+      <div class="grid_12" style="margin-top: 2em; display: flex; justify-content: center;">     
+        <div class="grid_6" style="background-color: #eaedf0; border-radius: 5px;">
+          <form name="formPengeluaran">
+            <div class="grid_12" style="display: flex; flex-direction: column; align-items: center;">
+              <!-- looping data -->
+              <ul class="form-pengeluaran grid_11" ng-repeat="data in dataLists track by $index" style="padding: 0;">
+                  <div class="grid_12">
+                      <li class="grid_4">
+                          <label c-label item="item" c-label-text="Kode Akun"></label>
+                          <input type="input" ng-keypress="enterHandling($event)" placeholder="Kode akun" c-text-box class="k-textbox addInputAkun" ng-model="data.kd_akun">
+                      </li>
+                      <li class="grid_4">
+                          <label c-label item="item" c-label-text="Jumlah"></label>
+                          <input type="input" ng-keypress="enterHandling($event)" placeholder="Jumlah" c-text-box class="k-textbox addInputJumlah" ng-model="data.jumlah">
+                      </li>
+                      <li class="grid_4">
+                        <button class="c-button delete-button" style="margin-top: 1.5em; margin-right: 5px;" ng-click="delete($index)"><i class="fa fa-trash" style="margin-top: 0;" aria-hidden="true"></i> Hapus</i></button>
+                      </li>
+                  </div>
+                </ul>
+                <!-- end looping data -->
+                <div class="grid_12" style="margin-left: 4em; margin-top: .50em; margin-bottom: .50em;">
+                  <div class="grid_3">
+                    <button class="c-button" ng-click="addDataLists()"><i class="fa fa-plus" style="margin-top: 0;" aria-hidden="true"></i> Tambah</button>
+                  </div>
+                  <div class="grid_3">
+                    <button class="c-button" id="simpanBtn" ng-click="sendData()"><i class="fa fa-floppy-o" style="margin-top: 0;"></i> Simpan</button>
+                  </div>
+                </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="grid_12">
+        <div class="grid_12" style="margin-left: 1.3em; margin-top: 2em;">
+          <label c-label item="item" c-label-text="Cari Data Berdasarkan Tanggal:"></label>
+        </div>
+        <!-- datepicker -->
+        <div class="grid_12" style="margin-left: 1em; margin-bottom: 1em;">
+          <div class="grid_7 padDatePicker">
+            <div class="grid_3" style="padding-left: 0; margin-right: 1.5em;">
+                <input k-ng-model="tglParam"  kendo-datetimepicker placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" style="margin-top: 0;" />
+            </div>
+            <div class="grid_2">
+              <button class="c-button"  ng-click="cariFilter()"><i class="fa fa-search" style="margin-top: 0;"></i> Cari</button>
+            </div>
+          </div>
+        </div>
+        <!-- end datepicker -->
+        
+        <!-- data table -->
+        <div class="grid_12">
+          <div class="grid_12 borderBox">
+            <kendo-grid
+                  k-data-source="dataGrid" 
+                  k-selectable="'row'" 
+                  options="columnGridExcel"                 
+                  k-pageable="'true'"
+                  k-sortable="'true'">
+            </kendo-grid>
+          </div>
+        </div>
+        <!-- end data table -->
+      </div>
+    </div>
+  </div>
+  

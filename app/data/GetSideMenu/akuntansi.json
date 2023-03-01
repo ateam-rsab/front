@@ -4,6 +4,31 @@
     "link": "#/JurnalRev2018"
   },
   {
+    "name": "BIOS",
+    "children": [
+      {
+        "name": "Penerimaan",
+        "link": "#/PenerimaanBridging"
+      },
+      {
+        "name": "Pengeluaran",
+        "link": "#/PengeluaranBridging"
+      },
+      {
+        "name": "Saldo Pengelolaan Rekening",
+        "link": "#/PengelolaanRekeningBridging"
+      },
+      {
+        "name": "Saldo Operasional",
+        "link": "#/SaldoOperasionalBridging"
+      },
+      {
+        "name": "Saldo Kas",
+        "link": "#/SaldoKasBridging"
+      }
+    ]
+  },
+  {
     "name": "Buku Besar ",
     "link": "#/LaporanBukuBesar"
   },

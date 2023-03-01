@@ -10122,6 +10122,106 @@
     ]
   },
   {
+    "name": "PenerimaanBridging",
+    "url": "/PenerimaanBridging",
+    "templateurl": "module/Akuntansi/Laporan/PenerimaanBridging.html",
+    "controller": "PenerimaanBridgingCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "AkuntansiService",
+        "define": "AkuntansiService"
+      }
+    ]
+  },
+  {
+    "name": "PengeluaranBridging",
+    "url": "/PengeluaranBridging",
+    "templateurl": "module/Akuntansi/Laporan/PengeluaranBridging.html",
+    "controller": "PengeluaranBridgingCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "AkuntansiService",
+        "define": "AkuntansiService"
+      }
+    ]
+  },
+  {
+    "name": "PengelolaanRekeningBridging",
+    "url": "/PengelolaanRekeningBridging",
+    "templateurl": "module/Akuntansi/Laporan/PengelolaanRekeningBridging.html",
+    "controller": "PengelolaanRekeningBridgingCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "AkuntansiService",
+        "define": "AkuntansiService"
+      }
+    ]
+  },
+  {
+    "name": "SaldoOperasionalBridging",
+    "url": "/SaldoOperasionalBridging",
+    "templateurl": "module/Akuntansi/Laporan/SaldoOperasionalBridging.html",
+    "controller": "SaldoOperasionalBridgingCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "AkuntansiService",
+        "define": "AkuntansiService"
+      }
+    ]
+  },
+  {
+    "name": "SaldoKasBridging",
+    "url": "/SaldoKasBridging",
+    "templateurl": "module/Akuntansi/Laporan/SaldoKasBridging.html",
+    "controller": "SaldoKasBridgingCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "AkuntansiService",
+        "define": "AkuntansiService"
+      }
+    ]
+  },
+  {
     "name": "BukuBesarPembantu",
     "url": "/BukuBesarPembantu",
     "templateurl": "module/Akuntansi/Jurnal/BukuBesarPembantu.html",

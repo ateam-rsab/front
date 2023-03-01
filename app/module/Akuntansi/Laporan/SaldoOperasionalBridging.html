@@ -1,0 +1,144 @@
+<style>
+    body {
+      overflow-x: hidden;
+    }
+    .c-label {
+      display: inline !important;
+    }
+    label {
+      width: 50%;
+    }
+    .delete-button {
+      background-color: rgb(240, 68, 68);
+      color: #fff;
+    }
+    .container_12 .grid_2 {
+      width: 20% !important;
+    }
+    .style-center {
+      display: inline-block;
+      text-align: center;
+      width: 100%;
+    }
+  </style>
+  <div ng-controller="SaldoOperasionalBridgingCtrl">
+    <div ng-show="dataVOloaded">
+      <div class="grid_12 headerBox">
+        <h1 style="color: white"><b>Saldo Operasional</b></h1>
+      </div>
+      <div
+        class="grid_12"
+        style="display: flex; justify-content: center; margin-top: 2em"
+      >
+        <div
+          class="grid_11"
+          style="background-color: #eaedf0; border-radius: 5px; padding: 3em 1em"
+        >
+          <form name="formSaldoOperasional">
+            <div
+              class="grid_12"
+              style="display: flex; flex-direction: column; align-items: center"
+            >
+              <ul class="form-saldo-operasional grid_12" style="padding: 0">
+                <li class="grid_2" style="margin-bottom: 1em">
+                  <label c-label item="item" c-label-text="Kode Bank"></label>
+                  <input
+                    type="input"
+                    placeholder="Kode bank"
+                    c-text-box
+                    class="k-textbox"
+                    ng-model="dataLists.kd_bank"
+                  />
+                </li>
+                <li class="grid_2" style="margin-bottom: 1em">
+                  <label c-label item="item" c-label-text="No Rekening"></label>
+                  <input
+                    type="input"
+                    placeholder="No rekening"
+                    c-text-box
+                    class="k-textbox"
+                    ng-model="dataLists.no_rekening"
+                  />
+                </li>
+                <li class="grid_2" style="margin-bottom: 1em">
+                  <label c-label item="item" c-label-text="Unit"></label>
+                  <input
+                    type="input"
+                    placeholder="Unit"
+                    c-text-box
+                    class="k-textbox"
+                    ng-model="dataLists.unit"
+                  />
+                </li>
+                <li class="grid_2">
+                  <label c-label item="item" c-label-text="Saldo Akhir"></label>
+                  <input
+                    type="input"
+                    placeholder="Saldo akhir"
+                    c-text-box
+                    class="k-textbox"
+                    ng-model="dataLists.saldo_akhir"
+                    id="currency-field"
+                    data-type="currency"
+                  />
+                </li>
+                <li class="grid_2">
+                  <button
+                    class="c-button"
+                    ng-click="sendData()"
+                    style="margin-top: 1.56em"
+                    id="simpanBtn"
+                  ><i class="fa fa-floppy-o" style="margin-top: 0;"></i>
+                    Simpan
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="grid_12">
+        <div class="grid_12" style="margin-left: 1.3em; margin-top: 2em">
+          <label
+            c-label
+            item="item"
+            c-label-text="Cari Data Berdasarkan Tanggal:"
+          ></label>
+        </div>
+        <!-- datepicker -->
+        <div class="grid_12" style="margin-left: 1em; margin-bottom: 1em">
+          <div class="grid_7 padDatePicker">
+            <div class="grid_3" style="padding-left: 0; margin-right: 1.5em">
+              <input
+                k-ng-model="tglParam"
+                kendo-datetimepicker
+                placeholer="yyyy-MM-dd HH:mm"
+                k-format="'yyyy-MM-dd HH:mm'"
+                style="margin-top: 0"
+              />
+            </div>
+            <div class="grid_2">
+              <button class="c-button" ng-click="cariFilter()"><i class="fa fa-search" style="margin-top: 0;"></i> Cari</button>
+            </div>
+          </div>
+        </div>
+        <!-- end datepicker -->
+  
+        <!-- data table -->
+        <div class="grid_12">
+          <div class="grid_12 borderBox">
+            <kendo-grid
+              k-data-source="dataGrid"
+              k-selectable="'row'"
+              options="columnGridExcel"
+              k-pageable="'true'"
+              k-sortable="'true'"
+            >
+            </kendo-grid>
+          </div>
+        </div>
+        <!-- end data table -->
+      </div>
+    </div>
+  </div>
+  
