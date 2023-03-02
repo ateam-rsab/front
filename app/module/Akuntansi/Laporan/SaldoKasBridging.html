@@ -135,7 +135,16 @@
         <div class="grid_7 padDatePicker">
           <div class="grid_3" style="padding-left: 0; margin-right: 1.5em">
             <input
-              k-ng-model="tglParam"
+              k-ng-model="tglParamAwal"
+              kendo-datetimepicker
+              placeholer="yyyy-MM-dd HH:mm"
+              k-format="'yyyy-MM-dd HH:mm'"
+              style="margin-top: 0"
+            />
+          </div>
+          <div class="grid_3" style="padding-left: 0; margin-right: 1.5em">
+            <input
+              k-ng-model="tglParamAkhir"
               kendo-datetimepicker
               placeholer="yyyy-MM-dd HH:mm"
               k-format="'yyyy-MM-dd HH:mm'"

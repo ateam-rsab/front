@@ -5,8 +5,10 @@ define(['initialize'], function(initialize) {
 			$scope.dataVOloaded = true;
 			$scope.now = new Date();
 
-			$scope.tanggal = $scope.now;
-			$scope.tglParam = $scope.now;
+			$scope.tanggalAwal = $scope.now;
+            $scope.tanggalAkhir = $scope.now;
+			$scope.tglParamAwal = $scope.now;
+			$scope.tglParamAkhir = $scope.now;
 			$scope.dataSelected = {};
 			$scope.item = {};
 			$scope.dblklik = {};
@@ -16,8 +18,9 @@ define(['initialize'], function(initialize) {
 
 			// set function to get data
 			$scope.init = () => {
-				var tgl = moment($scope.tanggal).format('YYYY-MM-DD HH:mm:ss');
-				manageAkuntansi.getDataTableTransaksi(`akuntansi/get-saldo-operasional-bridge?tanggal_transaksi=${tgl}`)
+				var tglAwal = moment($scope.tanggalAwal).format('YYYY-MM-DD HH:mm:ss');
+				var tglAkhir = moment($scope.tanggalAkhir).format('YYYY-MM-DD HH:mm:ss');
+				manageAkuntansi.getDataTableTransaksi(`akuntansi/get-saldo-operasional-bridge?tglAwal=${tglAwal}&tglAkhir=${tglAkhir}`)
 				.then(res => {
 					
 					if(res.data.data.length === 0) {
@@ -41,14 +44,15 @@ define(['initialize'], function(initialize) {
 
 			// search function to find the data
 			$scope.cariFilter = () => {
-				var tgl = moment($scope.tglParam).format('YYYY-MM-DD HH:mm:ss');
-				manageAkuntansi.getDataTableTransaksi(`akuntansi/get-saldo-operasional-bridge?tanggal_transaksi=${tgl}`).then((res) => {
+				var tglParAwal = moment($scope.tglParamAwal).format('YYYY-MM-DD HH:mm:ss');
+				var tglParAkhir = moment($scope.tglParamAkhir).format('YYYY-MM-DD HH:mm:ss');
+				manageAkuntansi.getDataTableTransaksi(`akuntansi/get-saldo-operasional-bridge?tglAwal=${tglParAwal}&tglAkhir=${tglParAkhir}`).then((res) => {
 					// data table
 					$scope.dataGrid = new kendo.data.DataSource({
 						data: res.data.data,
 						sort:[
                             {
-                                field: "nojurnal",
+                                field: "",
                                 dir:"asc"
                             }
                         ],
@@ -71,6 +75,12 @@ define(['initialize'], function(initialize) {
 						resizable: true, 
 						selectable: 'row',
 						columns:[
+							{
+								"field": "tanggal_transaksi",
+								"title": "Tanggal",
+								"width" : "20px",
+								"template": "<span class='style-center'>#: tanggal_transaksi #</span>"
+							},
 							{
 								"field": "kd_bank",
 								"title": "Kode Bank",
