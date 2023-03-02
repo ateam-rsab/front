@@ -53,8 +53,8 @@ define(['initialize'], function(initialize) {
 						data: res.data.data,
 						sort:[
 							{
-								field: "",
-								dir:"asc"
+								field: "tanggal_transaksi",
+								dir:"asc",
 							}
 						],
 						pageSize: 10,
