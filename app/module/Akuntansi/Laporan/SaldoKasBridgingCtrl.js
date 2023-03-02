@@ -26,12 +26,16 @@ define(['initialize'], function(initialize) {
 					if(res.data.data.length === 0) {
 						$scope.dataLists = {
 							"kd_bank": "",
-							"no_rekening": "",
-							"unit": "",
-							"saldo_akhir": parseInt("")
+							"no_bilyet": "",
+							"nilai_deposito": parseInt(""),
+							"nilai_bunga": parseInt("")
 						}
 					} else {
 						res.data.data[0].nilai_deposito = new Intl.NumberFormat('en-US').format(res.data.data[0].nilai_deposito);
+
+						res.data.data[0].nilai_bunga = new Intl.NumberFormat('en-US').format(res.data.data[0].nilai_bunga);
+
+						console.log(res.data.data[0].nilai_bunga);
 	
 						$scope.dataLists = res.data.data[0];
 					}
@@ -102,7 +106,7 @@ define(['initialize'], function(initialize) {
 								"field": "nilai_bunga",
 								"title": "Nilai Bunga",
 								"width" : "50px",
-								"template": "<span class='style-center'>#: nilai_bunga #</span>"
+								"template": "<span class='style-center'>{{formatRupiah('#: nilai_bunga #', '')}}</span>"
 							},
 						]
 					}
@@ -121,9 +125,9 @@ define(['initialize'], function(initialize) {
 			$scope.addDataLists = () => {
 				$scope.dataLists.push({
 					"kd_bank": "",
-					"no_rekening": "",
-					"unit": "",
-					"saldo_akhir": parseInt("")
+					"no_bilyet": "",
+					"nilai_deposito": parseInt(""),
+					"nilai_bunga": parseInt("")
 				})
 			}
 
@@ -132,6 +136,7 @@ define(['initialize'], function(initialize) {
 				let body = $scope.dataLists;
 
 				body.nilai_deposito = parseInt(body.nilai_deposito.replace(/,/g, ''));
+				body.nilai_bunga = parseInt(body.nilai_bunga.replace(/,/g, ''));
 
 				$scope.postListSaldoKas = () => {
 					manageAkuntansi.postpost(body, 'akuntansi/add-saldo-kas-bridge')
