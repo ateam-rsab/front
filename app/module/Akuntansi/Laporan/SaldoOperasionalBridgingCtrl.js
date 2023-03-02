@@ -53,7 +53,7 @@ define(['initialize'], function(initialize) {
 						sort:[
                             {
                                 field: "tanggal_transaksi",
-                                dir:"asc"
+                                dir:"desc"
                             }
                         ],
 						pageSize: 20,

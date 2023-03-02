@@ -96,14 +96,14 @@
         <label c-label item="item" c-label-text="Cari Data Berdasarkan Periode Tanggal:"></label>
       </div>
       <!-- datepicker -->
-      <div class="grid_12" style="margin-left: 1em; margin-bottom: 1em">
-        <div class="grid_7 padDatePicker">
-          <div class="grid_3" style="padding-left: 0; margin-right: 1.5em;">
-              <input k-ng-model="tglParamAwal"  kendo-datetimepicker placeholder="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" style="margin-top: 0;" />
+      <div class="grid_12" style="margin-left: 1em; margin-bottom: 1em;">
+        <div class="grid_6 padDatePicker">
+          <div class="grid_2" style="padding-left: 0;">
+              <input k-ng-model="tglParamAwal"  kendo-datetimepicker placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" style="margin-top: 0; width: 100%;" />
           </div>
-          <div class="grid_3" style="padding-left: 0; margin-right: 1.5em;">
-            <input k-ng-model="tglParamAkhir"  kendo-datetimepicker placeholder="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" style="margin-top: 0;" />
-        </div>
+          <div class="grid_2" style="padding-left: 0;">
+              <input k-ng-model="tglParamAkhir"  kendo-datetimepicker placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" style="margin-top: 0; width: 100%;" />
+          </div>
           <div class="grid_2">
             <button class="c-button"  ng-click="cariFilter()"><i class="fa fa-search" style="margin-top: 0;"></i> Cari</button>
           </div>
