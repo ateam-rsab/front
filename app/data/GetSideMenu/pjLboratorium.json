@@ -64,10 +64,6 @@
         "name": "Aplikasi Remunerasi",
         "children": [
             {
-                "name": "Skoring Tindakan Medis",
-                "link": "#/SkoringTindakanMedis"
-            },
-            {
                 "name": "Skoring Tindakan Farmakologi",
                 "link": "#/SkoringTindakanFarmakologi"
             },

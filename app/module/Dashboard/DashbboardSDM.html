@@ -35,8 +35,8 @@
             <div class="panel-heading-white"><span class="title" c-translate>Dashboard</span>
             </div>
             <div class="panel-body"> -->
-                <!--<input style="width: 100%; " kendo-combo-box k-ng-model="groupItem " k-data-text-field=" 'name' " k-filter=" 'contains' " k-data-value-field=" 'value' " k-auto-bind="false " k-data-source="kelompok" />-->
-                <!--<div kendo-chart k-options="pie" k-data-source="sourceyes"></div>
+    <!--<input style="width: 100%; " kendo-combo-box k-ng-model="groupItem " k-data-text-field=" 'name' " k-filter=" 'contains' " k-data-value-field=" 'value' " k-auto-bind="false " k-data-source="kelompok" />-->
+    <!--<div kendo-chart k-options="pie" k-data-source="sourceyes"></div>
             </div>
         </div>
     </div> -->
@@ -46,15 +46,18 @@
             <div class="grid_10">
                 <div class="grid_2">
                     <label><b>Periode</b></label>
-                    <input kendo-date-picker k-max="now" k-ng-model="item.periode" style="width: 100%" k-options="yearSelected"/>
+                    <input kendo-date-picker k-max="now" k-ng-model="item.periode" style="width: 100%"
+                        k-options="yearSelected" />
                 </div>
                 <div class="grid_4">
                     <label><b>Pegawai</b></label>
-                    <input kendo-combo-box k-ng-model="item.pegawai" k-data-value-field="'id'" k-data-text-field="'namaLengkap'" k-filter="'contains'" k-auto-bind="true" k-data-source="listPegawai" style="width:100%" ng-disabled="isIT"/>
+                    <input kendo-combo-box k-ng-model="item.pegawai" k-data-value-field="'id'"
+                        k-data-text-field="'namaLengkap'" k-filter="'contains'" k-auto-bind="true"
+                        k-data-source="listPegawai" style="width:100%" ng-disabled="isIT" />
                 </div>
                 <div class="grid_1" style="margin-top:5px">
                     <label c-label c-label-text=""></label>
-                    <button class="c-button"  ng-click="cariLogbookKinerja()">Cari</button>
+                    <button class="c-button" ng-click="cariLogbookKinerja()">Cari</button>
                 </div>
                 <div class="grid_1" style="margin-top:5px" ng-hide="isDtMain">
                     <label c-label c-label-text=""></label>
@@ -64,27 +67,28 @@
                 <div class="grid_2" style="margin-top:5px" ng-hide="isDtMain">
                     <label c-label c-label-text=""></label>
                     <!-- <button class="c-button"  ng-click="cetakDaftarLogBookKinerja()">Cetak Daftar</button> -->
-                    <button class="c-button"  ng-click="openWindowCetakLks('CetakDaftarLogbook')">Cetak Daftar</button>
+                    <button class="c-button" ng-click="openWindowCetakLks('CetakDaftarLogbook')">Cetak Daftar</button>
                 </div>
                 <div class="grid_2" style="margin-top:5px" ng-hide="isDtMain">
                     <label c-label c-label-text=""></label>
                     <!-- <button class="c-button"  ng-click="cetakDaftarLogBookKinerjaRekapWithPasien()">Cetak Rekapitulasi Kinerja dan Detail Pasien</button> -->
-                    <button class="c-button"  ng-click="openWindowCetakLks('CetakDetailLogbook')">Cetak Detail</button>
+                    <button class="c-button" ng-click="openWindowCetakLks('CetakDetailLogbook')">Cetak Detail</button>
                 </div>
             </div>
             <div class="grid_2 pull-right" style="text-align:right;font-style:italic;margin-top:4px" ng-hide="isDtMain">
                 <label c-label>Total Capaian:</label>
-                <input c-text-box type="input" placeholder="0,00" filter="'varchar'" class="k-textbox label-total" ng-model="gridOrder" style="text-align:right" disabled/>
+                <input c-text-box type="input" placeholder="0,00" filter="'varchar'" class="k-textbox label-total"
+                    ng-model="gridOrder" style="text-align:right" disabled />
             </div>
             <div class="clearfix"></div>
-            
+
             <!-- grid tindakan pegawai -->
             <div class="grid_12" style="margin: 10px 0 50px;">
-                <div ng-hide="isNov2022" style="text-align: center;padding: 1px 0px 1px 0px;"><h2 style="color:#bf1121;font-weight:bold;font-size:50px;padding: 0px;">OOps!<span style='font-size:40px;'>&#128556;</span></h2><p style="font-size: large;">Mohon maaf, Logbook Kinerja Poin Dokter sedang dalam penyesuaian tarif baru.</p></div>
+                <!-- <div ng-hide="isNov2022" style="text-align: center;padding: 1px 0px 1px 0px;"><h2 style="color:#bf1121;font-weight:bold;font-size:50px;padding: 0px;">OOps!<span style='font-size:40px;'>&#128556;</span></h2><p style="font-size: large;">Mohon maaf, Logbook Kinerja Poin Dokter sedang dalam proses simulasi</p></div> -->
                 <!-- <div kendo-grid id="gridLogKinerja" k-data-source="dataSource" k-options="mainGridOption"></div> -->
-                <div ng-hide="isDtMain">
-                    <div kendo-grid id="gridOrder" k-data-source="dataSource" k-options="mainGridOption"></div>
-                </div>
+                <!-- <div ng-hide="isDtMain"> -->
+                <div kendo-grid id="gridOrder" k-data-source="dataSource" k-options="mainGridOption"></div>
+                <!-- </div> -->
             </div>
         </div>
         <!-- <div class="grid_12">
@@ -101,41 +105,44 @@
             <div class="grid_10">
                 <div class="grid_2">
                     <label><b>Periode</b></label>
-                    <input kendo-date-picker k-max="now" k-ng-model="item.periodeFee" style="width: 100%" k-options="yearSelected"/>
+                    <input kendo-date-picker k-max="now" k-ng-model="item.periodeFee" style="width: 100%"
+                        k-options="yearSelected" />
                 </div>
                 <div class="grid_4">
                     <label><b>Pegawai</b></label>
-                    <input kendo-combo-box k-ng-model="item.pegawai" k-data-value-field="'id'" k-data-text-field="'namaLengkap'" k-filter="'contains'" k-auto-bind="true" k-data-source="listPegawai" style="width:100%" ng-disabled="isIT"/>
+                    <input kendo-combo-box k-ng-model="item.pegawai" k-data-value-field="'id'"
+                        k-data-text-field="'namaLengkap'" k-filter="'contains'" k-auto-bind="true"
+                        k-data-source="listPegawai" style="width:100%" ng-disabled="isIT" />
                 </div>
                 <div class="grid_1" style="margin-top:5px">
                     <label c-label c-label-text=""></label>
-                    <button class="c-button"  ng-click="getFeeService()">Cari</button>
+                    <button class="c-button" ng-click="getFeeService()">Cari</button>
                 </div>
                 <div class="grid_2" style="margin-top:5px" ng-hide="isDtMainffs">
                     <label c-label c-label-text=""></label>
                     <!-- <button class="c-button"  ng-click="cetakDaftarLogBookKinerjaFFS()">Cetak Daftar</button> -->
-                    <button class="c-button"  ng-click="openWindowCetakFfs('CetakDaftarFFS')">Cetak Daftar</button>
+                    <button class="c-button" ng-click="openWindowCetakFfs('CetakDaftarFFS')">Cetak Daftar</button>
                 </div>
                 <div class="grid_2" style="margin-top:5px" ng-hide="isDtMainffs">
                     <label c-label c-label-text=""></label>
                     <!-- <button class="c-button"  ng-click="cetakDaftarLogBookKinerjaRekapWithPasienFFs()">Cetak Rekapitulasi Kinerja dan Detail Pasien</button> -->
-                    <button class="c-button"  ng-click="openWindowCetakFfs('CetakDetailFFS')">Cetak Laporan</button>
+                    <button class="c-button" ng-click="openWindowCetakFfs('CetakDetailFFS')">Cetak Laporan</button>
                 </div>
             </div>
-            
+
             <!-- <div class="grid_2 pull-right" style="text-align:right;font-style:italic">
                 <label c-label>Total Capaian:</label>
                     <input c-text-box type="input" placeholder="0,00" filter="'varchar'" class="k-textbox label-total" ng-model="gridOrderService" style="text-align:right" disabled/>
             </div> -->
             <div class="clearfix"></div>
-            
+
             <!-- grid tindakan pegawai -->
             <div class="grid_12" style="margin: 10px 0 50px;">
-                <div ng-hide="isNov2022ffs" style="text-align: center;padding: 1px 0px 1px 0px;"><h2 style="color:#bf1121;font-weight:bold;font-size:50px;padding: 0px;">OOps!<span style='font-size:40px;'>&#128556;</span></h2><p style="font-size: large;">Mohon maaf, Fee for Service Poin Dokter sedang dalam penyesuaian tarif baru.</p></div>
+                <!-- <div ng-hide="isNov2022ffs" style="text-align: center;padding: 1px 0px 1px 0px;"><h2 style="color:#bf1121;font-weight:bold;font-size:50px;padding: 0px;">OOps!<span style='font-size:40px;'>&#128556;</span></h2><p style="font-size: large;">Mohon maaf, Fee for Service Poin Dokter sedang dalam proses simulasi.</p></div> -->
                 <!-- <div kendo-grid id="gridLogKinerja" k-data-source="dataSource" k-options="mainGridOption"></div> -->
-                <div ng-hide="isDtMainffs">
+                <!-- <div ng-hide="isDtMainffs"> -->
                 <div kendo-grid id="gridOrderService" k-data-source="dataSourceFfs" k-options="gridFeeService"></div>
-                </div>
+                <!-- </div> -->
             </div>
 
             <!-- <div class="grid_12">               
@@ -148,25 +155,29 @@
 
         </div>
     </div>
-    
-            <div class="clearfix"></div>
-               <div class="grid_12">    
-                   <div class="panel-heading-white"><span class="title" c-translate>Rekapitulasi Kinerja LogBook dan FFS</span></div>
-                <div class="grid_2">
-                    <label><b>Periode</b></label>
-                    <input kendo-date-picker k-max="now" k-ng-model="item.periodeRekaps" style="width: 100%" k-options="yearSelected"/>
-                </div>    
-                <div class="grid_3" style="margin-top:5px">
-                    <label c-label c-label-text=""></label>
-                    <!-- <button class="c-button"  ng-click="cetakDaftarLogBookKinerjaRekap()">Cetak Rekapitulasi Kinerja LogBook dan FFS</button> -->
-                    <button class="c-button"  ng-click="openWindowCetak('CetakRekapLogbookFFS')">Cetak Rekapitulasi Kinerja LogBook dan FFS</button>
-                </div>  
-            </div>
+
+    <div class="clearfix"></div>
+    <div class="grid_12">
+        <div class="panel-heading-white"><span class="title" c-translate>Rekapitulasi Kinerja LogBook dan FFS</span>
+        </div>
+        <div class="grid_2">
+            <label><b>Periode</b></label>
+            <input kendo-date-picker k-max="now" k-ng-model="item.periodeRekaps" style="width: 100%"
+                k-options="yearSelected" />
+        </div>
+        <div class="grid_3" style="margin-top:5px">
+            <label c-label c-label-text=""></label>
+            <!-- <button class="c-button"  ng-click="cetakDaftarLogBookKinerjaRekap()">Cetak Rekapitulasi Kinerja LogBook dan FFS</button> -->
+            <button class="c-button" ng-click="openWindowCetakLksFfs('CetakRekapLogbookFFS')">Cetak Rekapitulasi Kinerja
+                LogBook dan FFS</button>
+        </div>
+    </div>
     <div class="grid_12 panel panel-default panel-white">
         <div class="panel-heading-white"><span class="title" c-translate>Uraian Tugas</span></div>
         <div class="panel-body">
             <div class="grid_6">
-                <input kendo-date-picker k-max ="now" k-ng-model="item.waktu" style="width: 100%" k-options="yearSelected"/>
+                <input kendo-date-picker k-max="now" k-ng-model="item.waktu" style="width: 100%"
+                    k-options="yearSelected" />
             </div>
             <div class="grid_2" style="margin: 7px 0 0 0">
                 <button class="c-button" ng-click="getUraianTugas()">CARI</button>
@@ -184,11 +195,12 @@
             </div>
         </div>
     </div>
-</div>  
+</div>
 <div class="grid_12">
     <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
 </div>
-<div kendo-window="win1" id="winPopUpCetak" k-title="'Cetak Logbook'" k-width="'55%'" k-draggable="false" k-position="{ 'top': '30%', 'left':'20%' }" k-on-close="closeWindow()" k-visible="isShowPopUp">
+<div kendo-window="win1" id="winPopUpCetak" k-title="'Cetak Logbook'" k-width="'55%'" k-draggable="false"
+    k-position="{ 'top': '30%', 'left':'20%' }" k-on-close="closeWindow()" k-visible="isShowPopUp">
     <div class="grid_12">
         <div class="grid_12">
             <label c-label item="item" c-label-text="Jabatan"></label>
@@ -196,8 +208,9 @@
         <div class="clear"></div>
 
         <div class="grid_12">
-        <!-- <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jabatan" disabled="true"/> -->
-        <input style="width: 100%;" kendo-combo-box k-ng-model="item.jabatanCetak" k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJabatanCetak"/>
+            <!-- <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jabatan" disabled="true"/> -->
+            <input style="width: 100%;" kendo-combo-box k-ng-model="item.jabatanCetak" k-data-text-field="'namaJabatan'"
+                k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJabatanCetak" />
         </div>
     </div>
     <div class="grid_12">
@@ -207,7 +220,9 @@
         <div class="clear"></div>
 
         <div class="grid_12">
-        <input style="width: 100%;" kendo-combo-box k-ng-model="item.atasanCetak" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listAtasan" k-on-change="getJabatanAtasanCetak()"/>
+            <input style="width: 100%;" kendo-combo-box k-ng-model="item.atasanCetak" k-data-text-field="'namaLengkap'"
+                k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listAtasan"
+                k-on-change="getJabatanAtasanCetak()" />
         </div>
     </div>
     <div class="grid_12">
@@ -217,8 +232,10 @@
         <div class="clear"></div>
 
         <div class="grid_12">
-        <!-- <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jabatan" disabled="true"/> -->
-        <input style="width: 100%;" kendo-combo-box k-ng-model="item.jabatanAtasanCetak" k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJabatanAtasanCetak"/>
+            <!-- <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jabatan" disabled="true"/> -->
+            <input style="width: 100%;" kendo-combo-box k-ng-model="item.jabatanAtasanCetak"
+                k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
+                k-data-source="listJabatanAtasanCetak" />
         </div>
     </div>
     <div class="grid_12">
@@ -230,7 +247,8 @@
         </div>
     </div>
 </div>
-<div kendo-window="win1" id="winPopUp" k-title="'Cetak LogBook'" k-width="'55%'" k-draggable="false" k-position="{ 'top': '30%', 'left':'20%' }" k-on-close="closeWindow()" k-visible="isShowPopUp">
+<div kendo-window="win1" id="winPopUp" k-title="'Cetak LogBook'" k-width="'55%'" k-draggable="false"
+    k-position="{ 'top': '30%', 'left':'20%' }" k-on-close="closeWindow()" k-visible="isShowPopUp">
     <div class="grid_12">
         <div class="grid_12">
             <label c-label item="item" c-label-text="Bulan"></label>
@@ -238,7 +256,8 @@
         <div class="clear"></div>
 
         <div class="grid_12">
-        <input kendo-date-picker k-ng-model="item.until" k-format="'MMM-yyyy'" k-options="monthSelectorOptions" k-on-change="init()" ng-click="init()" style="width: 100%; ">
+            <input kendo-date-picker k-ng-model="item.until" k-format="'MMM-yyyy'" k-options="monthSelectorOptions"
+                k-on-change="init()" ng-click="init()" style="width: 100%; ">
         </div>
     </div>
     <div class="grid_12">
@@ -248,7 +267,9 @@
         <div class="clear"></div>
 
         <div class="grid_12">
-        <input style="width: 100%;" kendo-combo-box k-ng-model="item.pegawai" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai" k-on-change="getDataPegawai()"/>
+            <input style="width: 100%;" kendo-combo-box k-ng-model="item.pegawai" k-data-text-field="'namaLengkap'"
+                k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai"
+                k-on-change="getDataPegawai()" />
         </div>
     </div>
     <div class="grid_12">
@@ -258,7 +279,7 @@
         <div class="clear"></div>
 
         <div class="grid_12">
-        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jabatan" disabled="true"/>
+            <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jabatan" disabled="true" />
         </div>
     </div>
     <div class="grid_12">
@@ -270,7 +291,8 @@
         </div>
     </div>
 </div>
-<div kendo-window="win1" id="winPopUp2" k-title="'Cetak Capaian'"  k-width="'55%'" k-draggable="false" k-position="{ 'top': '30%', 'left':'20%' }" k-on-close="closeWindow()" k-visible="isShowPopUp">
+<div kendo-window="win1" id="winPopUp2" k-title="'Cetak Capaian'" k-width="'55%'" k-draggable="false"
+    k-position="{ 'top': '30%', 'left':'20%' }" k-on-close="closeWindow()" k-visible="isShowPopUp">
     <div class="grid_12">
         <div class="grid_12">
             <label c-label item="item" c-label-text="Tanggal"></label>
@@ -278,7 +300,7 @@
         <div class="clear"></div>
 
         <div class="grid_12">
-            <input style="width: 100%" kendo-date-picker k-ng-model="item.until" data-k-format="'yyyy-MM-dd'"/>
+            <input style="width: 100%" kendo-date-picker k-ng-model="item.until" data-k-format="'yyyy-MM-dd'" />
         </div>
     </div>
 
@@ -289,7 +311,9 @@
         <div class="clear"></div>
 
         <div class="grid_12">
-            <input style="width: 100%;" kendo-combo-box k-ng-model="item.pegawai" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai" k-on-change="getDataPegawai()"/>
+            <input style="width: 100%;" kendo-combo-box k-ng-model="item.pegawai" k-data-text-field="'namaLengkap'"
+                k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai"
+                k-on-change="getDataPegawai()" />
         </div>
     </div>
 
@@ -300,7 +324,7 @@
         <div class="clear"></div>
 
         <div class="grid_12">
-        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jabatan" disabled="true"/>
+            <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jabatan" disabled="true" />
         </div>
     </div>
 
@@ -315,51 +339,55 @@
 
 </div>
 
-<div kendo-window="winDialog" k-title="'Detil Logbook Pegawai'" k-width="1100" k-visible="false" >
+<div kendo-window="winDialog" k-title="'Detil Logbook Pegawai'" k-width="1100" k-visible="false">
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="grid_10">
                 <label c-label item="item" c-label-text="Nama"></label>
-                <input style="width: 150%;" c-text-box type="input" class="k-textbox" ng-model="item.pegawai.namaLengkap" readonly />
+                <input style="width: 150%;" c-text-box type="input" class="k-textbox"
+                    ng-model="item.pegawai.namaLengkap" readonly />
             </div>
             <div class="clearfix"></div>
             <div class="grid_12" style="margin:20px 0 20px">
-                <div kendo-grid="gridDetil" k-data-source="dataDetil" options="detilGridOptions" ng-show="showDetailPasien"></div>
-                <div kendo-grid="gridDetil" k-data-source="dataDetilFfs" options="detilGridFfsOptions" ng-show="showDetailPasienFfs"></div>
+                <div kendo-grid="gridDetil" k-data-source="dataDetil" options="detilGridOptions"
+                    ng-show="showDetailPasien"></div>
+                <div kendo-grid="gridDetil" k-data-source="dataDetilFfs" options="detilGridFfsOptions"
+                    ng-show="showDetailPasienFfs"></div>
             </div>
         </div>
     </div>
     <!-- <span><b>Total Poin: </b><label c-label item="item">{{dats.total}}</label></span> -->
     <!--<button class="k-button" ng-click="pilihDokter(item, items.pilihDokter)" style="float:right;margin-top:4%">Simpan</button>-->
 </div>
-<div kendo-window="inputCapaian" k-title="'Input Capaian Uraian Tugas'" k-width="600" k-visible="false" >
+<div kendo-window="inputCapaian" k-title="'Input Capaian Uraian Tugas'" k-width="600" k-visible="false">
     <div class="panel panel-default">
         <div class="panel-body" style="margin-bottom:15px;">
             <div style="margin-bottom: 6px">
                 <label c-label item="item" c-label-text="tanggal"></label>
-                <input kendo-date-picker k-ng-model="items.tglInput" k-max="now" k-format="'yyyy-MM-dd'" disabled/>
+                <input kendo-date-picker k-ng-model="items.tglInput" k-max="now" k-format="'yyyy-MM-dd'" disabled />
             </div>
             <div>
                 <label c-label item="item" c-label-text="Uraian Tugas"></label>
-                <textarea c-text-area type="input" row="3" class="k-textbox" ng-model="items.rincianKegiatan" placeholder="namaUraianTugas" readonly/>
+                <textarea c-text-area type="input" row="3" class="k-textbox" ng-model="items.rincianKegiatan"
+                    placeholder="namaUraianTugas" readonly />
             </div>
         </div>
         <div class="panel-body">
             <div class="grid_2">
                 <label c-label item="item" c-label-text="Target"></label>
-                <input kendo-numeric-text-box k-ng-model="items.bobot" k-options="formatInt" readonly/>
+                <input kendo-numeric-text-box k-ng-model="items.bobot" k-options="formatInt" readonly />
             </div>
             <div class="grid_2">
                 <label c-label item="item" c-label-text="Bobot"></label>
-                <input kendo-numeric-text-box k-ng-model="items.bobot" k-options="formatInt" readonly/>
+                <input kendo-numeric-text-box k-ng-model="items.bobot" k-options="formatInt" readonly />
             </div>
             <div class="grid_2">
                 <label c-label item="item" c-label-text="Capaian"></label>
-                <input kendo-numeric-text-box k-ng-model="items.capaian" k-options="formatInt"/>
+                <input kendo-numeric-text-box k-ng-model="items.capaian" k-options="formatInt" />
             </div>
         </div>
     </div>
-    
+
     <div class="grid_6 pull-right">
         <div class="grid_6">
             <button class="k-button k-button-icon success" ng-click='simpanCapaian(items)' style="margin-top:6px;">
@@ -377,21 +405,25 @@
 </div>
 <div ng-include=' "../app/module/Shared/TemplateLoading" '></div>
 <style>
-.loading {
-    z-index: 99999;
-}
-.title {
-    padding-left: 6px;
-}
-.label-total {
-    text-align: left;
-    font-weight: 800;
-}
-.danger {
-    background-color: #bf1121;
-}
-.k-button-icon {
-    font-size:16px;
-    font-weight: 700;
-}
+    .loading {
+        z-index: 99999;
+    }
+
+    .title {
+        padding-left: 6px;
+    }
+
+    .label-total {
+        text-align: left;
+        font-weight: 800;
+    }
+
+    .danger {
+        background-color: #bf1121;
+    }
+
+    .k-button-icon {
+        font-size: 16px;
+        font-weight: 700;
+    }
 </style>

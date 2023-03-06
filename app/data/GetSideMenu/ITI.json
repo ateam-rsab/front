@@ -117,10 +117,6 @@
                         "link": "#/MasterIndikatorKinerja"
                     },
                     {
-                        "name": "Skoring Tindakan Medis",
-                        "link": "#/SkoringTindakanMedis"
-                    },
-                    {
                         "name": "Skoring Tindakan Farmakologi",
                         "link": "#/SkoringTindakanFarmakologi"
                     },
@@ -2585,10 +2581,6 @@
             {
                 "name": "InputLemburPegawaiUnitKerja",
                 "link": "#/InputLemburPegawaiUnitKerja"
-            },
-            {
-                "name": "Skoring Tindakan Medis",
-                "link": "#/SkoringTindakanMedis"
             },
             {
                 "name": "Verifikasi Uraian Tugas Bawahan",
