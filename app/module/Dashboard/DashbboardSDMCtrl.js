@@ -4,8 +4,6 @@ define(['initialize'], function (initialize) {
 		, 'FindSdm', 'CetakHelper',
 		function ($q, $parse, loginService, socket, $rootScope, $scope, ModelItem, $state, DateHelper, ManageSdm, ManageSdmNew
 			, reportHelper, CetakHelper, FindSdm, cetakHelper) {
-			$scope.isNov2022 = true;
-			$scope.isNov2022ffs = true;
 			$scope.now = new Date();
 			$scope.isIT = true;
 			var userLogin = JSON.parse(localStorage.getItem('datauserlogin'));
@@ -462,7 +460,7 @@ define(['initialize'], function (initialize) {
 				} else if ($scope.jenisCetakan == 'CetakDetailFFS') {
 					$scope.cetakDaftarLogBookKinerjaRekapWithPasienFFs();
 				} else if ($scope.jenisCetakan == 'CetakRekapLogbookFFS') {
-					$scope.cetakDaftarLogBookKinerjaRekap(); 
+					$scope.cetakDaftarLogBookKinerjaRekap();
 				}
 				var myWindow = $("#winPopUpCetak");
 				myWindow.data("kendoWindow").close();
@@ -664,79 +662,21 @@ define(['initialize'], function (initialize) {
 								}
 							};
 
-									dataGrid.push(customData);
+							dataGrid.push(customData);
 
 
-									var i = 0;
+							var i = 0;
 
-									if (dataGrid != undefined) {
-										for (i = 0; i < dataGrid.length; i++)
-											dataGrid[i].no = i + 1;
-									}
-								},
-								{
-									field: "harga", title: "Tarif (Rp.)", "template": '# if( isSatuTarif && hargaKelas1 != null ) {# #= kendo.toString(hargaKelas1, "n0") # #} else {# #= kendo.toString(harga, "n0") # #} #', format: "{0:n0}", width: 100, headerAttributes: { style: "text-align: center" }, attributes: {
-										"class": "table-cell", style: "text-align: right;  "//font-size: 14px;"
-									}
-								},
-								{ field: "Pencapaian", headerAttributes: { style: "text-align: center" }, columns: $scope.generateGridColumn() },
-								{
-									title: "Total", headerAttributes: { style: "text-align: center" }, columns: [
-										{
-											field: "totalKonsul", title: "Konsultasi", width: 80,
-											headerAttributes: { style: "text-align: center" }, attributes: { style: "text-align: right;" }, aggregates: ["sum"],
-											footerTemplate: "#= sum #",
-											footerAttributes: {
-												"class": "table-footer-cell",
-												style: "text-align: right;"
-											}
-										},
-										{
-											field: "totalVisit", title: "Visite", width: 80,
-											headerAttributes: { style: "text-align: center" }, attributes: { style: "text-align: right;" }, aggregates: ["sum"],
-											footerTemplate: "#= sum #",
-											footerAttributes: {
-												"class": "table-footer-cell",
-												style: "text-align: right;"
-											}
-										},
-										{
-											field: "totalTindakan", title: "Tindakan", width: 80,
-											headerAttributes: { style: "text-align: center" }, attributes: { style: "text-align: right;" }, aggregates: ["sum"],
-											footerTemplate: "#= sum #",
-											footerAttributes: {
-												"class": "table-footer-cell",
-												style: "text-align: right;"
-											}
-										},
-										{
-											field: "totalProduk", title: "Total", width: 80,
-											headerAttributes: { style: "text-align: center" }, attributes: { style: "text-align: right;" }, aggregates: ["sum"],
-											footerTemplate: "#= sum #",
-											footerAttributes: {
-												"class": "table-footer-cell",
-												style: "text-align: right;"
-											}
-										},
-										{
-											field: "pointQty", title: "Poin", width: 80, headerAttributes: { style: "text-align: center" },
-											attributes: { style: "text-align: right;" },
-											aggregates: ["sum"], format: "{0:n2}",
-											footerTemplate: " #= kendo.toString(sum, 'n2') #",
-											footerAttributes: {
-												"class": "table-footer-cell",
-												style: "text-align: right;"
-											}
-										},
-										// { field: "pointQty", title: "Poin", aggregates: ["sum"], headerAttributes: { style: "text-align: center"}, footerTemplate: "<b>Total Poin:</b>  #= kendo.toString(sum, 'n2') #", template: "#= kendo.toString(pointQty, 'n2') #", attributes: {
-										// "class": "table-cell", style: "text-align: right;  "//font-size: 14px"
-										// } }
+							if (dataGrid != undefined) {
+								for (i = 0; i < dataGrid.length; i++)
+									dataGrid[i].no = i + 1;
+							}
 
-									if (dataGrid.length != 0) {
-										$scope.jmlDataOrder = "Jumlah data : " + dataGrid.length;
-									} else {
-										$scope.jmlDataOrder = "";
-									}
+							if (dataGrid.length != 0) {
+								$scope.jmlDataOrder = "Jumlah data : " + dataGrid.length;
+							} else {
+								$scope.jmlDataOrder = "";
+							}
 
 						});
 						$scope.mainGridOption = {
@@ -763,13 +703,13 @@ define(['initialize'], function (initialize) {
 								sheet.mergedCells = ["A1:AP1"];
 								sheet.name = "Logbook Poin";
 
-										var myHeaders = [{
-											value: "Logbook " + $scope.item.pegawai.namaLengkap + " (Periode " + DateHelper.getPeriodFormat($scope.item.periode) + ")",
-											fontSize: 14,
-											textAlign: "left",
-											background: "#ffffff",
-											// color:"#ffffff"
-										}];
+								var myHeaders = [{
+									value: "Logbook " + $scope.item.pegawai.namaLengkap + " (Periode " + DateHelper.getPeriodFormat($scope.item.periode) + ")",
+									fontSize: 14,
+									textAlign: "left",
+									background: "#ffffff",
+									// color:"#ffffff"
+								}];
 
 								sheet.rows.splice(0, 0, { cells: myHeaders, type: "header", height: 30 });
 							},
