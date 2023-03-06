@@ -5,11 +5,6 @@
         "shortcut": "ctrl+1"
     },
     {
-        "caption": "Logbook Skor (TRIAL)",
-        "link": "#/LogbookSkorDokter",
-        "shortcut": "ctrl+1"
-    },
-    {
         "caption": "Rekam Medik",
         "link": "#/RekamMedik",
         "shortcut": "ctrl+1"
