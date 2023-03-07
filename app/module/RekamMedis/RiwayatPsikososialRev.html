@@ -73,6 +73,9 @@ hr {
             <b>Agama/Kepercayaan</b>
         </div>
         <div class="grid_12" style="padding-left:10px ">
+            <div class="grid_3">
+                <label>Kebutuhan dalam menjalankan keyakinan</label>
+            </div>
             <div class="grid_2">
                 <input type="radio" class="k-radio" name="kepercayaan1" id="kepercayaan1" ng-model="item.kepercayaan" value="kepercayaan1" ng-click="agamaChecked(this)">
                 <label class="k-radio-label" for="kepercayaan1">Tidak Ada</label>
@@ -81,7 +84,7 @@ hr {
                 <input type="radio" class="k-radio" name="kepercayaan2" id="kepercayaan2" ng-model="item.kepercayaan" value="kepercayaan2" ng-click="agamaChecked(this)">
                 <label class="k-radio-label" for="kepercayaan2">Ada, Sebutkan</label>
             </div>
-            <div class="grid_6" ng-if="isKepercayaan" style="padding-left:0px ">
+            <div class="grid_5" ng-if="isKepercayaan" style="padding-left:0px ">
                 <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.kepercayaandetail" placeholder="Sebutkan Agama/kepercayaan disini">
             </div>
         </div>
@@ -89,6 +92,9 @@ hr {
             <b>Nilai-nilai/ budaya yang diyakini</b>
         </div>
         <div class="grid_12" style="padding-left:10px ">
+            <div class="grid_3">
+                <label>Nilai - nilai/ budaya yang diyakini</label>
+            </div>
             <div class="grid_2">
                 <input type="radio" class="k-radio" name="budaya1" id="budaya1" ng-model="item.budayalain" value="budaya1" ng-click="budayaChecked(this)">
                 <label class="k-radio-label" for="budaya1">Tidak Ada</label>
@@ -97,7 +103,7 @@ hr {
                 <input type="radio" class="k-radio" name="budaya2" id="budaya2" ng-model="item.budayalain" value="budaya2" ng-click="budayaChecked(this)">
                 <label class="k-radio-label" for="budaya2">Ada, Sebutkan</label>
             </div>
-            <div class="grid_6" ng-if="isBudayalain" style="padding-left:0px">
+            <div class="grid_5" ng-if="isBudayalain" style="padding-left:0px">
                 <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.budayalaindetail" placeholder="Sebutkan Nilai-nilai/ budaya yang diyakini disini">
             </div>
         </div>

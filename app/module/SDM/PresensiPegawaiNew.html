@@ -173,7 +173,6 @@
             <canvas id="canvas" width="400" height="400"></canvas>
         </md-card-content>
     </md-card>
-
     <md-card>
         <md-card-content>
             <div id="mapid"></div>
@@ -277,9 +276,29 @@
 
         </md-card-content>
     </md-card>
+    <div kendo-window="popUp" id="winSipStr" k-title="'NIK'" k-width="550" k-on-open="win1visible = true"
+        k-on-close="win1visible = false">
+        <div class="panel panel-default container_12" style="padding: 0px 10px;text-align: center;">
+            <div class="grid_12">
+                <label c-label item="item">OOps! NIK anda belum dilengkapi, mohon dilengkapi dengan mengisi field dibawah ini.</label>
+                <input c-text-box type="input" class="k-textbox" ng-model="item.nik" minlength="16" maxlength="16" onkeypress="return onlyNumberKey(event)" />
+            </div>
+            <div class="grid_12">
+                <button type="button" class="c-button" ng-click="postKelengkapan()">Simpan</button>
+            </div>
+        </div>
+    </div> 
 </div>
 
 <div ng-include=' "../app/module/Shared/TemplateLoading" '></div>
 <script>
-    document.title = "Presensi Pegawai"
+    document.title = "Presensi Pegawai";
+    function onlyNumberKey(evt) {
+          
+          // Only ASCII character in that range allowed
+          var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+          if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+              return false;
+          return true;
+      }
 </script>

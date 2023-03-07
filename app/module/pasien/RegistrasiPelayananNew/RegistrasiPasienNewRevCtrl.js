@@ -358,7 +358,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                         'tempatLahir': $scope.item.tempatLahir,
                         'namaKeluarga': $scope.item.namaKeluarga != undefined ? $scope.item.namaKeluarga : null,
                         'tglLahir': moment($scope.item.tglLahir).format('YYYY-MM-DD HH:mm'),
-                        'email': $scope.item.email ? $scope.item.email : '-'
+                        'email': $scope.item.email != undefined ? $scope.item.email : '-'
                     },
                     'agama': {
                         'id': $scope.item.agama != undefined ? $scope.item.agama.id : null,
@@ -403,18 +403,19 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                     },
                     'kodePos': $scope.item.kodePos != undefined ? $scope.item.kodePos : null,
                 }
-                managePhp.postData(postJson, 'pasien/save-pasien-fix')
-                    .then(
-                        function (res) {
-                            tempId = res.data.data.id;
+                console.log(postJson)
+                // managePhp.postData(postJson, 'pasien/save-pasien-fix')
+                //     .then(
+                //         function (res) {
+                //             tempId = res.data.data.id;
 
-                            $scope.isNext = true;
-                            $scope.noCm = res.data.data.nocm;
-                            $scope.noRec = res.data.data.id;
-                            // toastr.info($scope.noCm, 'No RM Pasien')
-                            cacheHelper.set('CacheRegisBayi', undefined);
-                        },
-                        function (err) { })
+                //             $scope.isNext = true;
+                //             $scope.noCm = res.data.data.nocm;
+                //             $scope.noRec = res.data.data.id;
+                //             // toastr.info($scope.noCm, 'No RM Pasien')
+                //             cacheHelper.set('CacheRegisBayi', undefined);
+                //         },
+                //         function (err) { })
 
             }
 
