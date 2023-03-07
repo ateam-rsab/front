@@ -4,6 +4,7 @@ define(['initialize'], function (initialize) {
         '$state', 'ManageSarprasPhp', '$timeout',
         function ($q, $rootScope, $scope, ModelItem, ManageSdm, ManageSdmNew, DateHelper, $mdDialog, cetakHelper, $state, manageSarprasPhp, $timeout) {
             $scope.data = {};
+            $scope.item={};
             $scope.now = new Date();
             $scope.dataDevice = {};
             $scope.time = "";
@@ -14,7 +15,6 @@ define(['initialize'], function (initialize) {
             $scope.dataPegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
             $scope.userLocation = {};
             $scope.isCameraNotDetected = false;
-
             let canvas = document.getElementById('canvas');
             let context = canvas.getContext('2d');
             let getDataHistory = function () {
@@ -61,6 +61,26 @@ define(['initialize'], function (initialize) {
                 return (n - Math.floor(n));
             }
 
+            $scope.postKelengkapan = function (){
+                if(!$scope.item.nik){
+                    console.log($scope.item.nik)
+                    toastr.warning("NIK tidak boleh kosong | Harus 16 angka");
+                    return;
+                }
+
+                let data = {
+                    id:$scope.dataPegawaiLogin.id,
+                    noIdentitas:$scope.item.nik
+                }
+               
+                ManageSdmNew.saveData(data,'pegawai/kelengkapan').then((res) => {
+                    console.log(res);
+                    setTimeout(() => {
+                        $('#winSipStr').data("kendoWindow").close();
+                    }, 2000);
+                })
+            }
+            
             let init = function () {
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition((position) => {
@@ -130,6 +150,14 @@ define(['initialize'], function (initialize) {
                 $scope.tanggalPresensi = new Date();
                 getDataHistory();
                 ManageSdmNew.getListData('sdm/get-jadwal-pegawai?idPegawai=' + $scope.dataPegawaiLogin.id).then((res) => {
+                    // $scope.isComplete = res.data.data.isComplete ? false : $scope.popUp.open();
+                    if(res.data.data.isComplete!=true){
+                        $('#winSipStr').kendoWindow({
+                            open: function () {
+                                this.center();
+                            }
+                        });
+                    }
                     if (res.data.data && res.data.data.idFinger == null) {
                         toastr.warning("ID Finger Belum Tersedia. Silakan hubungi Bagian SDM");
                     }
@@ -140,7 +168,7 @@ define(['initialize'], function (initialize) {
                 });
 
                 $scope.ip = getIPAddr();
-                var listProviders = ['43.225.67.209', '103.116.203.81', '103.116.203.82', '103.116.203.83', '103.116.203.84', '103.116.203.85', '103.116.203.86', '103.116.203.87', '103.116.203.88', '103.116.203.89', '103.116.203.90', '103.116.203.91', '103.116.203.92', '103.116.203.93', '103.116.203.94', '103.116.203.95', '103.247.219.149', '103.151.15.73', '103.121.212.154', '103.144.126.78','103.80.89.229']
+                var listProviders = ['43.225.67.209', '103.116.203.81', '103.116.203.82', '103.116.203.83', '103.116.203.84', '103.116.203.85', '103.116.203.86', '103.116.203.87', '103.116.203.88', '103.116.203.89', '103.116.203.90', '103.116.203.91', '103.116.203.92', '103.116.203.93', '103.116.203.94', '103.116.203.95', '103.247.219.149', '103.151.15.73', '103.121.212.154', '103.144.126.78', '103.80.89.229']
                 if ($scope.ip !== undefined) {
                     if (listProviders.includes($scope.ip)) {
                         $scope.strJenisJaringan = "Jaringan Internet RSAB"

@@ -4,7 +4,7 @@ define(['initialize'], function (initialize) {
         function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper, $mdDialog) {
             $scope.item = {};
             $scope.selectedResep = {};
-	    $scope.isConsisDisabled = true;
+            $scope.isConsisDisabled = true;
             $scope.onSave = false;
             $scope.dataVOloaded = true;
             $scope.now = new Date();
@@ -20,7 +20,7 @@ define(['initialize'], function (initialize) {
                 data: []
             })
             $scope.item.hargaNetto = 0;
-	    let dataLogin = JSON.parse(localStorage.getItem('datauserlogin'));
+            let dataLogin = JSON.parse(localStorage.getItem('datauserlogin'));
             var pegawaiUser = {}
 
             var norec_apd = '';
@@ -290,7 +290,7 @@ define(['initialize'], function (initialize) {
                             resep: res.data.data[i].resep,
                             keteranganlainnya: "",
                             keteranganpakai: "",
-                            status:'-',
+                            status: '-',
                             obat: [],
                         }
                         for (let ii = 0; ii < res.data.data[i].obat.length; ii++) {
@@ -388,7 +388,7 @@ define(['initialize'], function (initialize) {
                         id: 2,
                         jeniskemasan: "Non Racikan"
                     }
-                    
+
                     $scope.resep = {
                         rke: dataItem.resep,
                         namaObat: dataItem.obat[0].namaobat,
@@ -403,7 +403,7 @@ define(['initialize'], function (initialize) {
                         id: 1,
                         jeniskemasan: "Racikan"
                     }
-                    
+
                     let dataObat = [];
                     $scope.resep = {
                         rke: dataItem.resep,
@@ -555,7 +555,7 @@ define(['initialize'], function (initialize) {
                     }
                 }
             });
-            
+
             $scope.$watch('item.rke', function (newValue, oldValue) {
                 if (newValue != oldValue) {
                     if (tarifJasa == 0) {
@@ -908,7 +908,7 @@ define(['initialize'], function (initialize) {
                 Kosongkan();
                 racikan = ''
             }
-            
+
             let subTotal = 0;
             $scope.tambahObat = function () {
                 let gridResepDokter = $('#gridResepDokter').data().kendoGrid.dataSource._data[$scope.selectedResep.resep - 1];
@@ -927,7 +927,7 @@ define(['initialize'], function (initialize) {
                 if ($scope.item.jenisKemasan.jeniskemasan == 'Racikan') {
                     dosis = $scope.item.dosis
                 }
-                
+
                 if (!$scope.item.jenisKemasan) {
                     toastr.warning('Anda belum memilih Jenis Kemasan!');
                     return
@@ -952,7 +952,7 @@ define(['initialize'], function (initialize) {
                     toastr.warning('Anda belum mengisi Route!')
                     return;
                 }
-                
+
                 let obat = {
                     no: nomor,
                     noregistrasifk: norec_apd,//$scope.item.noRegistrasi,
@@ -991,19 +991,19 @@ define(['initialize'], function (initialize) {
                     jmldosis: String(($scope.item.jumlah) / dosis) + '/' + String(dosis),
                     jasa: $scope.item.jumlah === 0 ? 0 : 800
                 }
-                
+
                 subTotal = subTotal + obat.total;
                 $scope.item.totalSubTotal = subTotal.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })
                 Kosongkan();
                 $scope.dataGrid.add(obat);
                 gridResepDokter["status"] = "<span> &#10004;</span>"
                 $('#gridResepDokter').data('kendoGrid').refresh();
-                if($scope.item.jenisKemasan.jeniskemasan === "Non Racikan") {
+                if ($scope.item.jenisKemasan.jeniskemasan === "Non Racikan") {
                     $scope.popupInputObat.close();
-                }                
+                }
                 // $scope.getLengthObat();
-                
-                
+
+
             }
 
             $scope.tutupPopUpObat = function () {
@@ -1028,8 +1028,8 @@ define(['initialize'], function (initialize) {
 
             $scope.tesButton = function () {
                 // kendoGrid.dataSource.options.data
-                
-                 
+
+
                 // $scope.selectedResep.status = "&#10004;";
             }
 
@@ -1201,9 +1201,18 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.simpan = function () {
+                manageLogistikPhp.postpost('apotik/validasi-pasien-bayar?noreg=' + $scope.item.noregistrasi, '').then(res => {
+                    $scope.prosesVerifikasi();
+                }, error => {
+                    window.messageContainer.error("Opss! sudah close billing");
+                });
+
+            }
+
+            $scope.prosesVerifikasi=()=>{
                 $scope.isRouteLoading = true;
-		let isConfirm = $scope.item.ruangan.namaruangan === 'Farmasi 1';
-                if($scope.dataGrid._data.length === 0) {
+                let isConfirm = $scope.item.ruangan.namaruangan === 'Farmasi 1';
+                if ($scope.dataGrid._data.length === 0) {
                     toastr.info('Belum ada obat yang dimasukkan');
                     return;
                 }
@@ -1254,20 +1263,20 @@ define(['initialize'], function (initialize) {
 
                 // $scope.tombolSimpanVis = false;
                 manageLogistikPhp.postpelayananapotik(objSave).then(function (e) {
-		    $scope.isConsisDisabled = false;
+                    $scope.isConsisDisabled = false;
                     // $scope.tombolSimpanVis = true;
                     $scope.item.resep = e.data.noresep.norec;
                     $scope.isRouteLoading = false;
                     $scope.onSave = true;
-		    $scope.prompBridgingConsisD();
-		    // var confirmDialog = $mdDialog.confirm()
+                    $scope.prompBridgingConsisD();
+                    // var confirmDialog = $mdDialog.confirm()
                     //     .title(`Apakah Obat akan dikeluarkan melalui "ROBOTIK" ?`)
                     //     .ok('Ya')
                     //    .cancel('Batal');
 
                     // if (isConfirm) {
                     //    $mdDialog.show(confirmDialog).then(function () {
-                            // yes
+                    // yes
                     //         $scope.BridgingConsisD();
                     //    }, function () {
                     //        console.info('Cancel');
@@ -1336,37 +1345,36 @@ define(['initialize'], function (initialize) {
                 })
 
                 // $state.go("TransaksiPelayananApotik")
-
             }
 
-	    $scope.prompBridgingConsisD = () => {
+            $scope.prompBridgingConsisD = () => {
                 $scope.counterID = 3;
-        
-                var confirm = $mdDialog
-                  .prompt()
-                  .title("Isi Nomor Counter?")
-                  // .textContent('Bowser is a common name.')
-                  .placeholder("Nomor")
-                  .initialValue("3")
-                  .ok("Ya");
-                // .cancel('I\'m a cat person');
-        
-                $mdDialog.show(confirm).then(
-                  function (result) {
-                    $scope.counterID = result;
-                    $scope.BridgingConsisD();
-                  },
-                  function () { }
-                );
-              };
 
-	    $scope.BridgingConsisD = function () {
+                var confirm = $mdDialog
+                    .prompt()
+                    .title("Isi Nomor Counter?")
+                    // .textContent('Bowser is a common name.')
+                    .placeholder("Nomor")
+                    .initialValue("3")
+                    .ok("Ya");
+                // .cancel('I\'m a cat person');
+
+                $mdDialog.show(confirm).then(
+                    function (result) {
+                        $scope.counterID = result;
+                        $scope.BridgingConsisD();
+                    },
+                    function () { }
+                );
+            };
+
+            $scope.BridgingConsisD = function () {
                 // var confirm = prompt("Isi Nomor sesuai Jenis Pasien : BPJS, Umum dan Ranap", "3");
                 var objSave = {
                     strukresep: $scope.item.resep,
                     counterid: parseInt($scope.counterID)
 
-                   // counterid: confirm
+                    // counterid: confirm
                 }
 
                 // manageLogistikPhp.saveconsisobatbebas(objSave).then(function (e) {
@@ -1375,7 +1383,7 @@ define(['initialize'], function (initialize) {
                 })
             }
 
-	    $scope.BridgingMiniR45 = function () {
+            $scope.BridgingMiniR45 = function () {
                 if ($scope.dataSelected == undefined) {
                     alert("Pilih Resep terlebih dahulu!!")
                     return
@@ -1502,7 +1510,7 @@ define(['initialize'], function (initialize) {
 
             ];
 
-	    $scope.cetakLabelResep = function () {
+            $scope.cetakLabelResep = function () {
                 if ($scope.dataSelected == undefined) {
                     alert('Pilih resep yg akan di cetak')
                     return;
