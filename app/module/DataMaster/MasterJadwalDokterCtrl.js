@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
 	'use strict';
-	initialize.controller('MasterJadwalDokterCtrl', ['$q', '$rootScope', '$scope', 'ManageSarprasPhp', '$state', 'CacheHelper', 'DateHelper', 'ModelItemAkuntansi',
-		function ($q, $rootScope, $scope, manageSarprasPhp, $state, cacheHelper, dateHelper, modelItemAkuntansi) {
+	initialize.controller('MasterJadwalDokterCtrl', ['$q', '$rootScope', '$scope', 'R', 'ManageSarprasPhp', '$state', 'CacheHelper', 'DateHelper', 'ModelItemAkuntansi',
+		function ($q, $rootScope, $scope, r, manageSarprasPhp, $state, cacheHelper, dateHelper, modelItemAkuntansi) {
 			$scope.dataVOloaded = true;
 			$scope.item = {};
 			$scope.item.id = "";
@@ -9,15 +9,13 @@ define(['initialize'], function (initialize) {
 			loadData();
 			$scope.isRouteLoading = false;
 
-			$scope.listJenisJadwal = [
-				{
-					nama: "Daftar Online",
-					id: 1
-				}, {
-					nama: "Telekonsultasi",
-					id: 2
-				}
-			]
+			$scope.listJenisJadwal = [{
+				nama: "Daftar Online",
+				id: 1
+			}, {
+				nama: "Telekonsultasi",
+				id: 2
+			}]
 
 			modelItemAkuntansi.getDataDummyPHP("humas/get-daftar-combo-pegawai", true, true, 20).then(function (data) {
 				$scope.listdokter = data;
@@ -39,15 +37,13 @@ define(['initialize'], function (initialize) {
 				excelExport: function (e) {
 					var sheet = e.workbook.sheets[0];
 					sheet.frozenRows = 2;
-					sheet.mergedCells = ["A1:D1"];
-					sheet.name = "Orders";
+					sheet.mergedCells = ["A1:G1"];
 
 					var myHeaders = [{
 						value: "Jadwal Dokter",
 						fontSize: 20,
 						textAlign: "center",
 						background: "#ffffff",
-						// color:"#ffffff"
 					}];
 
 					sheet.rows.splice(0, 0, {
@@ -56,113 +52,161 @@ define(['initialize'], function (initialize) {
 						height: 70
 					});
 				},
-				sortable: false,
-				reorderable: true,
 				filterable: false,
 				pageable: true,
 				columnMenu: false,
 				resizable: true,
 				selectable: 'row',
 				columns: [{
-						field: "namaruangan",
-						title: "Ruangan",
-						width: "250px"
-					},
-					{
-						field: "namahari",
-						title: "Hari",
-						width: "100px"
-					},
-					{
-						field: "jampraktek",
-						title: "Jam Praktek",
-						width: "100px"
-					},
-					{
-						field: "namalengkap",
-						title: "Dokter",
-						width: "300px"
-					},
-					{
-						field: "jenis_jadwal",
-						title: "Jenis Jadwal",
-						width: "100px"
-					},
-					{
-						field: "quota",
-						title: "quota",
-						width: "75px"
-					},
-					{
-						field: "status",
-						title: "Status",
-						width: "75px"
-					},
-					{
-						command: [{
-							text: "Edit",
-							width: "40px",
-							align: "center",
-							attributes: {
-								align: "center"
-							},
-							click: changeRow,
-							imageClass: "k-icon k-i-pencil"
-						}, {
-							text: "Hapus",
-							width: "40px",
-							align: "center",
-							attributes: {
-								align: "center"
-							},
-							click: removeRow,
-							imageClass: "k-icon k-delete"
-						}],
-						title: "",
-						width: "200px",
-					}
-				],
-				sortable: {
-					mode: "single",
-					allowUnsort: false,
-				},
+					field: "namaruangan",
+					title: "Ruangan",
+					width: "250px"
+				}, {
+					field: "namahari",
+					title: "Hari",
+					width: "100px"
+				}, {
+					field: "jampraktek",
+					title: "Jam Praktek",
+					width: "100px"
+				}, {
+					field: "namalengkap",
+					title: "Dokter",
+					width: "300px"
+				}, {
+					field: "jenis_jadwal",
+					title: "Jenis Jadwal",
+					width: "100px"
+				}, {
+					field: "quota",
+					title: "quota",
+					width: "75px"
+				}, {
+					field: "statusenabled_text",
+					title: "Status",
+					width: "75px"
+				}, {
+					command: [{
+						text: "Edit",
+						width: "40px",
+						align: "center",
+						attributes: { align: "center" },
+						click: changeRow,
+						imageClass: "k-icon k-i-pencil"
+					}],
+					title: "",
+					width: "60px",
+				}],
 				pageable: {
-					messages: {
-						display: "Menampilkan {0} - {1} data dari {2} data"
-					},
+					messages: { display: "Menampilkan {0} - {1} data dari {2} data" },
 					refresh: true,
 					pageSizes: true,
 					buttonCount: 5
 				}
 			};
 
-
-			function removeRow(e) {
-
-				e.preventDefault();
-				var grid = this;
-				var row = $(e.currentTarget).closest("tr");
-				var tr = $(e.target).closest("tr");
-				var dataItem = this.dataItem(tr);
-
-				var dataObjPost = {};
-
-				dataObjPost = {
-					id: dataItem.id
+			$scope.ubatStatus = function () {
+				if ($scope.dataSelected == undefined) {
+					window.messageContainer.error("Pilih jadwal terlebih dahulu!");
+					return;
 				}
-				manageSarprasPhp.saveDataTransaksi("jadwaldokter/delete-jadwal", dataObjPost).then(function (e) {
-					if (e.status === 201) {
+				var dataObjPost = {
+					id: $scope.dataSelected.id
+				}
+				if ($scope.dataSelected.statusenabled) {
+					manageSarprasPhp.saveDataTransaksi("jadwaldokter/delete-jadwal", dataObjPost).then(function (e) {
 						loadData();
-						grid.removeRow(row);
-					}
-					$scope.ClearData();
-				})
+					})
+				} else {
+					manageSarprasPhp.saveDataTransaksi("jadwaldokter/open-jadwal", dataObjPost).then(function (e) {
+						loadData();
+					})
+				}
+				$scope.dataSelected = undefined;
+			}
+
+			$scope.lihatBatalPraktek = function () {
+				if ($scope.dataSelected == undefined) {
+					window.messageContainer.error("Pilih jadwal terlebih dahulu!");
+					return;
+				}
+				daftarBatalPraktek($scope.dataSelected);
+				$scope.popUpBatal.center().open();
+			}
+
+			function daftarBatalPraktek(dataSelected) {
+				let idDokter = dataSelected.idpeg;
+				let jamPraktek = dataSelected.jampraktek;
+				let hari = dataSelected.idhari;
+				let idRuangan = dataSelected.idruangan;
+				r.get({
+					url: "https://pelayanan.rsabhk.co.id/pelayanan-service/praktek/batal?"
+						+ "idDokter=" + idDokter + "&idRuangan=" + idRuangan + "&hari=" + hari + "&jamPraktek=" + jamPraktek
+				}).then(function (data) {
+					$scope.bDataSource = new kendo.data.DataSource({
+						data: data.data,
+						pageSize: 7,
+					});
+				});
+			}
+
+			$scope.bColumnGrid = {
+				filterable: false,
+				pageable: true,
+				columnMenu: false,
+				resizable: true,
+				selectable: 'row',
+				columns: [{
+					field: "tglpraktek",
+					title: "Tanggal Praktek",
+					width: "100px"
+				}, {
+					field: "statusenabled",
+					title: "Status Batal",
+					width: "60px",
+					template: "#if(statusenabled===true){# Batal #} else if(statusenabled===false){# Cancel Batal #}#"
+				}, {
+					command: [{
+						text: "Cancel Batal",
+						click: cancelBatal
+					}],
+					title: "",
+					width: "50px",
+				}],
+				pageable: {
+					messages: { display: "Menampilkan {0} - {1} data dari {2} data" },
+					refresh: true,
+					pageSizes: true,
+					buttonCount: 5
+				}
+			};
+
+			$scope.klikGrid = function (dataSelected) {
+				$scope.popUpBatal.close();
+				$scope.popUpJadwal.close();
+			}
+
+			function cancelBatal(e) {
+				e.preventDefault();
+				var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+				if (dataItem.statusenabled === false) {
+					toastr.warning("Sudah cancel batal praktek!");
+					return;
+				}
+				cancelBatalPraktek(dataItem.norec);
+			}
+
+			function cancelBatalPraktek(norec) {
+				var jsonSave = { "norec": norec };
+				r.post({
+					url: "https://pelayanan.rsabhk.co.id/pelayanan-service/praktek/batal/cancel"
+				}, jsonSave).then(function (res) {
+					$scope.popUpBatal.close();
+				});
 			}
 
 			function changeRow(e) {
 				e.preventDefault();
-				var grid = this;
-				var row = $(e.currentTarget).closest("tr");
 				var tr = $(e.target).closest("tr");
 				var dataItem = this.dataItem(tr);
 				$scope.item.id = dataItem.id;
@@ -175,10 +219,6 @@ define(['initialize'], function (initialize) {
 					id: dataItem.idhari,
 					namahari: dataItem.namahari
 				};
-				// $scope.listDokter.add({
-				// 	id: dataItem.idpeg,
-				// 	namalengkap: dataItem.namalengkap
-				// });
 				$scope.item.dokter = {
 					id: dataItem.idpeg,
 					namalengkap: dataItem.namalengkap
@@ -191,7 +231,6 @@ define(['initialize'], function (initialize) {
 				$scope.popUpJadwal.center().open();
 
 			}
-
 
 			$scope.ClearData = function () {
 				$scope.item = {};
@@ -217,7 +256,6 @@ define(['initialize'], function (initialize) {
 			};
 
 			function loadComboPopup() {
-
 				clearField();
 				manageSarprasPhp.getDataTableMaster("jadwaldokter/get-drop-down-jadwal")
 					.then(function (data) {
@@ -225,7 +263,6 @@ define(['initialize'], function (initialize) {
 						$scope.listHari = data.data.datahari;
 						$scope.listJam = data.data.datajadwal;
 					});
-
 				modelItemAkuntansi.getDataDummyPHP("jadwaldokter/get-drop-down-pegawai", true, true, 10).then(function (data) {
 					$scope.listDokter = data;
 				});
@@ -243,35 +280,31 @@ define(['initialize'], function (initialize) {
 			$scope.batal = function () {
 				clearField();
 				$scope.popUpJadwal.close();
-				//loadCombo()
 			};
 
 			$scope.Save = function () {
 				$scope.isRouteLoading = true;
 				if ($scope.item.ruangan2 == "") {
-					toastr.error("ruangan belum diisi!");
+					window.messageContainer.error("ruangan belum diisi!");
 					return;
 				}
 				if ($scope.item.hari2 == "") {
-					toastr.error("hari belum diisi!");
+					window.messageContainer.error("hari belum diisi!");
 					return;
 				}
 				if ($scope.item.dokter == "") {
-					toastr.error("dokter belum diisi!");
+					window.messageContainer.error("dokter belum diisi!");
 					return;
 				}
 				if ($scope.item.jam == "") {
-					toastr.error("jam belum diisi!");
+					window.messageContainer.error("jam belum diisi!");
 					return;
 				}
 				if ($scope.item.quota == "") {
-					toastr.error("quota belum diisi!");
+					window.messageContainer.error("quota belum diisi!");
 					return;
 				}
-
-				var dataObjPost = {};
-
-				dataObjPost = {
+				var dataObjPost = {
 					id: $scope.item.id,
 					quota: $scope.item.quota,
 					idruangan: $scope.item.ruangan2.id,
@@ -291,32 +324,20 @@ define(['initialize'], function (initialize) {
 
 			function loadData() {
 				$scope.isRouteLoading = true;
-				var rd = ""
-				if ($scope.item.ruangan != undefined) {
-					rd = $scope.item.ruangan.id
-				};
-				var hr = ""
-				if ($scope.item.hari != undefined) {
-					hr = $scope.item.hari.id
-				};
+				var rd = $scope.item.ruangan != undefined ? $scope.item.ruangan.id : '';
+				var hr = $scope.item.hari != undefined ? $scope.item.hari.id : '';
+				var dr = $scope.item.dokter ? $scope.item.dokter.id : '';
+				var jj = $scope.item.jenisJadwal ? $scope.item.jenisJadwal.nama : '';
 				$scope.isRouteLoading = true;
-				manageSarprasPhp.getDataTableTransaksi("humas/get-data-jadwal?ruangan=" + rd + "&hari=" + hr + "&dokterId=" + ($scope.item.dokter ? $scope.item.dokter.id : '') + "&jenisjadwal=" + ($scope.item.jenisJadwal ? $scope.item.jenisJadwal.nama: "")).then(function (data) {
-					$scope.isRouteLoading = false;
-
-					console.log(data.data)
-					$scope.dataSource = new kendo.data.DataSource({
-						data: data.data,
-						// _data: data.data,
-						pageSize: 30,
-						// selectable: true,
-						// refresh: true,
-						// total: data.data.length,
-						// serverPaging: false,
+				manageSarprasPhp.getDataTableTransaksi("humas/get-data-jadwal?ruangan=" + rd + "&hari=" + hr + "&dokterId=" + dr + "&jenisjadwal=" + jj)
+					.then(function (data) {
+						$scope.isRouteLoading = false;
+						$scope.dataSource = new kendo.data.DataSource({
+							data: data.data,
+							pageSize: 30,
+						});
 					});
-				});
 			};
-
-			///end
 		}
 	]);
 });
