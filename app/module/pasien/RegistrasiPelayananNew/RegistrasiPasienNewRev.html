@@ -70,6 +70,32 @@
                                     <input style="width: 100%;" kendo-combo-box k-ng-model="item.statusPerkawinan"
                                         k-data-text-field="'statusperkawinan'" k-filter="'contains'" k-minLength="'3'"
                                         k-data-value-field="'id'" k-data-source="listDataStatusPerkawinan"
+                                         />
+
+                                </div>
+
+                                <div class="grid_6">
+                                    <label c-label item="item">Pendidikan</label>
+
+                                    <input required style="width: 100%;" kendo-combo-box k-ng-model="item.pendidikan"
+                                        k-data-text-field="'pendidikan'" k-filter="'contains'" k-minLength="'3'"
+                                        k-data-value-field="'id'" k-data-source="listDataPendidikan"
+                                         />
+                                </div>
+
+                                <div class="grid_6">
+                                    <label c-label item="item">Pekerjaan</label>
+
+                                    <input required style="width: 100%;" kendo-combo-box k-ng-model="item.pekerjaan"
+                                        k-data-text-field="'pekerjaan'" k-filter="'contains'" k-minLength="'3'"
+                                        k-data-value-field="'id'" k-data-source="listDataPekerjaan"
+                                         />
+                                </div>
+                                <!-- <div class="grid_6">
+                                    <label c-label item="item">Status Perkawinan</label>
+                                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.statusPerkawinan"
+                                        k-data-text-field="'statusperkawinan'" k-filter="'contains'" k-minLength="'3'"
+                                        k-data-value-field="'id'" k-data-source="listDataStatusPerkawinan"
                                         ng-disabled="isBayi" />
 
                                 </div>
@@ -90,7 +116,7 @@
                                         k-data-text-field="'pekerjaan'" k-filter="'contains'" k-minLength="'3'"
                                         k-data-value-field="'id'" k-data-source="listDataPekerjaan"
                                         ng-disabled="isBayi" />
-                                </div>
+                                </div> -->
                                 <div class="grid_6">
                                     <label c-label item="item">Kebangsaan</label>
                                     <input required style="width: 100%;" kendo-combo-box k-ng-model="item.kebangsaan"
