@@ -209,7 +209,7 @@ define(['initialize'], function (initialize) {
                 $scope.isRouteLoading = true;
                 if($scope.verif.ruanganOperasi){
                     if($scope.verif.ruanganOperasi.subRuangan=="==Ruangan=="){
-                        ManageServicePhp.getDataTableTransaksi("rekam-medis/get-jadwal-operasi-after-verif?tglbedah=" + ($scope.verif.tglBedah ? dateHelper.formatDate($scope.verif.tglBedah, 'YYYY-MM-DD') : "") + "&namaruangan=", true).then(function (data) {
+                        ManageServicePhp.getDataTableTransaksi("rekam-medis/get-jadwal-operasi-after-verif?tglbedah=" + ($scope.verif.tglBedah ? dateHelper.formatDate($scope.verif.tglBedah, 'YYYY-MM-DD') : "") + "&namaruangan="+($scope.verif.ruanganOperasi ? $scope.verif.ruanganOperasi.id : ""), true).then(function (data) {
                             if(!data.data.data) return;
                             for (let i = 0; i < data.data.data.length; i++) {
                                 data.data.data[i].tglverifikasi = data.data.data[i].tglverifikasi ? data.data.data[i].tglverifikasi : '-';
@@ -223,7 +223,7 @@ define(['initialize'], function (initialize) {
                             $scope.isRouteLoading = false;
                         });
                     }else{
-                        ManageServicePhp.getDataTableTransaksi("rekam-medis/get-jadwal-operasi-after-verif?tglbedah=" + ($scope.verif.tglBedah ? dateHelper.formatDate($scope.verif.tglBedah, 'YYYY-MM-DD') : "") + "&namaruangan="+ ($scope.verif.ruanganOperasi ? $scope.verif.ruanganOperasi.subRuangan : ""), true).then(function (data) {
+                        ManageServicePhp.getDataTableTransaksi("rekam-medis/get-jadwal-operasi-after-verif?tglbedah=" + ($scope.verif.tglBedah ? dateHelper.formatDate($scope.verif.tglBedah, 'YYYY-MM-DD') : "") + "&namaruangan="+ ($scope.verif.ruanganOperasi ? $scope.verif.ruanganOperasi.id : ""), true).then(function (data) {
                             if(!data.data.data) return;
                             for (let i = 0; i < data.data.data.length; i++) {
                                 data.data.data[i].tglverifikasi = data.data.data[i].tglverifikasi ? data.data.data[i].tglverifikasi : '-';
